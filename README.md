@@ -34,11 +34,11 @@ To set up the project, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/rag-ai-assistant.git
-   cd rag-ai-assistant
+   git clone https://github.com/jacopovolpe/LLM
+   cd LLM
    ```
 
-2. **Create a virtual environment:**
+2. **Create a virtual environment:** (suggested)
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
@@ -53,21 +53,40 @@ To set up the project, follow these steps:
    Create a `.env` file in the root directory and add your Hugging Face API token:
    ```bash
    HUGGING_FACE_TOKEN=your_hugging_face_token_here
+   GEMINI_TOKEN=your_gemini_token_here
    ```
-
 ## Usage
 
 1. **Run the Flask application:**
+   To start the Flask application, use the following command:
    ```bash
    python app.py
    ```
+   This will start the server on `localhost` at port `5000`.
 
 2. **Access the web interface:**
    Open your browser and navigate to `http://localhost:5000` to interact with the AI assistant.
 
-3. **Ask questions:**
-   Use the web interface to ask questions, and the assistant will generate responses based on the retrieved context.
+   **NOTE:** If you want to run the application and make it accessible from other devices on the same Local Area Network (LAN), you can start the Flask server with the following command:
+   ```bash
+   flask run --host=0.0.0.0 --port=5000
+   ```
+   This will bind the application to all available IP addresses on your machine. To access the app from another device, use the IP address of your host machine followed by the port number (e.g., `http://IP_OF_HOST:5000`).
 
+   To find your machine's IP address, run the following command in your terminal:
+   - On **Windows**: 
+     ```bash
+     ipconfig
+     ```
+   - On **Linux/Mac**:
+     ```bash
+     ifconfig
+     ```
+
+3. **Ask questions:**
+   Once the application is running, use the web interface to ask questions. The AI assistant will retrieve relevant information from the knowledge base and generate a natural language response based on the context.
+
+   
 ## Project Structure
 
 ```
