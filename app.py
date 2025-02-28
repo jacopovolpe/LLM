@@ -16,7 +16,7 @@ def ask():
     if not question:
         return jsonify({"error": "Domanda non valida"}), 400
 
-    response = assistant.ask_assistant(question, debug=True)
+    response = assistant.ask(question, debug=True)
     return jsonify({"response": response})
 
 @app.route("/get_history")
