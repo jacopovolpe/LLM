@@ -1,0 +1,28 @@
+This document outlines the final project for the Master's level course in Computer Engineering on Natural Language Processing and Large Language Models (NLP & LLMs).  The project tasks students with developing a specialized chatbot and requires a comprehensive understanding of the concepts covered in the course.
+
+**I. Project Objective:  A Specialized Chatbot for NLP & LLMs**
+
+The core objective of this project is to design and implement a chatbot specifically tailored to the NLP & LLMs course. This chatbot should be capable of answering a range of questions, encompassing both specific course content (e.g., lecture topics, assignments, and deadlines) and general course information (e.g., instructor contact information, recommended textbooks, and office hours). A critical aspect of this project is building robust out-of-context handling. The chatbot must be able to identify and politely decline questions that fall outside the scope of the NLP & LLMs course, transparently communicating its limitations.
+
+The final deliverable consists of two components: the complete source code of the chatbot and a detailed report.  This report should thoroughly document the development process, explaining the design choices, implementation details, and the rationale behind the selected tools and techniques.  Clear justification for the chosen approach, particularly regarding the integration of different components, is crucial for a successful project.
+
+**II. Tools and Technologies: Flexibility and Justification**
+
+Students are afforded considerable flexibility in their choice of tools and technologies for this project. The course encourages exploration of the wide spectrum of techniques covered, ranging from state-of-the-art Large Language Models (LLMs) to more traditional Natural Language Processing (NLP) methods.  Students are welcome to leverage the strengths of both paradigms, potentially creating hybrid systems that combine LLMs with classical NLP approaches.  For instance, LLMs could be used for generating responses, while more traditional methods could handle tasks like intent recognition or named entity extraction.
+
+Pre-trained LLMs and other existing models can be incorporated, either directly or with modifications. However, it is essential that students demonstrate a deep understanding of any tools or models they employ.  They should be prepared to answer detailed questions about their functionality, implementation, and limitations, moving beyond a superficial "black box" understanding. The project report should clearly articulate the rationale behind choosing specific tools and justify their appropriateness for the task.
+
+**III. Chatbot Evaluation:  A Multifaceted Assessment**
+
+The evaluation of the chatbot will involve a real-time interaction with the course instructors, who will pose a predefined set of questions related to the NLP & LLMs course. The chatbot's responses will be assessed based on several key criteria:
+
+* **Relevance:**  Does the generated text accurately and directly address the posed question?
+* **Fluency:**  Is the output grammatically correct, stylistically appropriate, and easy to understand?
+* **Coherence:**  Does the response exhibit a logical flow and internal consistency?
+
+Beyond these core aspects, the chatbot's robustness and precision will also be evaluated through a separate set of predefined questions designed to test its ability to handle challenging scenarios:
+
+* **Robustness:**  Can the chatbot resist adversarial or misleading prompts, such as questions designed to trick or confuse it (e.g., "Are you sure about that?")? This assesses the chatbot's ability to maintain accurate and consistent responses even under pressure.
+* **Precision:**  How effectively does the chatbot identify and handle out-of-context questions (e.g., "Who is the king of Spain?")? This tests its ability to stay within its defined scope and avoid providing irrelevant or incorrect information.
+
+The final grade will be based on the chatbot's performance across all these dimensions, reflecting its ability to provide relevant, fluent, coherent, robust, and precise responses within the context of the NLP & LLMs course. This holistic evaluation ensures that the chatbot effectively meets the project's objectives and demonstrates the student's understanding of the course material.
