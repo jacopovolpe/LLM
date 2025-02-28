@@ -13,7 +13,7 @@ if ('webkitSpeechRecognition' in window) {
     recognition = new webkitSpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = 'it-IT';
+        .lang = 'it-IT';
 
     recognition.onstart = () => {
         startBtn.disabled = true;
@@ -41,32 +41,6 @@ if ('webkitSpeechRecognition' in window) {
     addMessage('bot', 'Il riconoscimento vocale non è supportato in questo browser.', false);
     startBtn.disabled = true;
 }
-
-
-let wakeRecognition;
-
-if ('webkitSpeechRecognition' in window) {
-    wakeRecognition = new webkitSpeechRecognition();
-    wakeRecognition.continuous = true;
-    wakeRecognition.interimResults = false;
-    wakeRecognition.lang = 'it-IT';
-
-    wakeRecognition.onresult = (event) => {
-        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-        console.log("Wake word detected:", transcript);
-        if (transcript === "ok boss") {
-            recognition.start();
-        }
-    };
-
-    wakeRecognition.onerror = (event) => {
-        console.error("Errore riconoscimento wake word:", event.error);
-    };
-
-    wakeRecognition.start();
-}
-
-
 
 startBtn.addEventListener('click', () => recognition.start());
 resetBtn.addEventListener('click', () => {
@@ -112,9 +86,6 @@ async function sendMessage(userMessage = textInput.value.trim()) {
             if (isSpeakEnabled) {
                 speak(result.response);
             }
-
-            
-            wakeRecognition.start();
         } catch (error) {
             console.error(error);
             addMessage('bot', 'Errore durante l\'invio della richiesta.', false);
