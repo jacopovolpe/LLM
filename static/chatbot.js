@@ -13,7 +13,7 @@ if ('webkitSpeechRecognition' in window) {
     recognition = new webkitSpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
-        .lang = 'it-IT';
+    recognition.lang = 'it-IT';
 
     recognition.onstart = () => {
         startBtn.disabled = true;
