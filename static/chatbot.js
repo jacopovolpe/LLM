@@ -112,6 +112,9 @@ async function sendMessage(userMessage = textInput.value.trim()) {
             if (isSpeakEnabled) {
                 speak(result.response);
             }
+
+            
+            wakeRecognition.start();
         } catch (error) {
             console.error(error);
             addMessage('bot', 'Errore durante l\'invio della richiesta.', false);
