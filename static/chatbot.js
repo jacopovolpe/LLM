@@ -68,11 +68,18 @@ async function sendMessage(userMessage = textInput.value.trim()) {
         const thinkingMessage = addMessage('bot', 'Thinking...', false);
         thinkingMessage.classList.add('thinking');
 
+        let responseLength = "MEDIUM"; // Default
+        if (document.getElementById("shortResponse").checked) {
+            responseLength = "SHORT";
+        } else if (document.getElementById("longResponse").checked) {
+            responseLength = "LONG";
+        }
+
         try {
             let response = await fetch("/ask", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question: userMessage })
+                body: JSON.stringify({ question: userMessage,  responseLength: responseLength })
             });
             const result = await response.json();
             console.log(response);

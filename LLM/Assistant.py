@@ -1,6 +1,6 @@
 import requests
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings 
 import numpy as np
 
 import tensorflow as tf
@@ -68,7 +68,7 @@ class Assistant:
         context = "\n".join([doc.page_content for doc in docs])
         return context
 
-    def generate_response(self, question, debug = False):
+    def generate_response(self, question, responseLength, debug = False):
         
         context = self.get_simple_chunks(question, k = 5) 
     
@@ -96,6 +96,7 @@ class Assistant:
             "- If the answer is not in the provided context, state: \"I'm sorry, but I don't have enough information to answer that.\"\n"
             "- Avoid making assumptions or fabricating details.\n"
             "- Use a conversational and engaging tone to make the response pleasant for text-to-speech.\n"
+            "- generate a answer with a length of {responseLength}.\n"
             "\n-----END_PROMPT-----\n"
         )
 
@@ -149,8 +150,8 @@ class Assistant:
     
     
     #-------------------------------------------------------------    
-    def ask(self, question, debug=False):
+    def ask(self, question, responseLength = None, debug=False):
         question = question.lower()
-        response = self.generate_response(question, debug)  
+        response = self.generate_response(question, responseLength, debug)  
         self.add_to_history(question, response)
         return response

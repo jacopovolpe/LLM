@@ -14,6 +14,17 @@
         <h1>Chat about LLM</h1>
         <div class="chat-window" id="chat-box"></div>
         <div class="button-container">
+            <div class="toggle-container">
+                <label class="toggle-label">Short</label>
+                <input type="radio" name="responseLength" id="shortResponse" class="toggle-button" checked>
+                
+                <label class="toggle-label">Medium</label>
+                <input type="radio" name="responseLength" id="mediumResponse" class="toggle-button">
+                
+                <label class="toggle-label">Long</label>
+                <input type="radio" name="responseLength" id="longResponse" class="toggle-button">
+            </div>
+            
             <button id="toggleSpeakBtn"><i class="fa fa-volume-up" id="fa-audio-element" aria-hidden="true"></i></button>
             <button id="resetBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>

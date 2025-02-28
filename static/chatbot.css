@@ -196,3 +196,46 @@ button:disabled {
 .recording {
     animation: recording 1s infinite;
 }
+
+ 
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.toggle-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.toggle-button {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-button:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.toggle-button:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}

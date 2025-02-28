@@ -13,10 +13,11 @@ def index():
 def ask():
     data = request.json
     question = data.get("question", "")
+    responseLength = data.get("responseLength", "MEDIUM")
     if not question:
         return jsonify({"error": "Domanda non valida"}), 400
 
-    response = assistant.ask(question, debug=True)
+    response = assistant.ask(question, responseLength, debug=True)
     return jsonify({"response": response})
 
 @app.route("/get_history")
