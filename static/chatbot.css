@@ -197,30 +197,36 @@ button:disabled {
     animation: recording 1s infinite;
 }
 
- 
 .toggle-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: center;
+    background: #ddd;
+    padding: 5px 15px;
+    border-radius: 25px;
+    gap: 5px;
+    width: fit-content;
+    margin: 10px auto;
 }
 
 .toggle-label {
     font-size: 14px;
     font-weight: bold;
     color: #333;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
 }
 
 .toggle-button {
     appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #333;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #666;
     border-radius: 50%;
-    display: inline-block;
+    background: white;
     position: relative;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .toggle-button:checked {
@@ -233,9 +239,14 @@ button:disabled {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: white;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+}
+
+.toggle-container input:checked + .toggle-label {
+    color: #4CAF50;
+    font-weight: bold;
 }
