@@ -1,0 +1,31 @@
+ Edition!
+This book is a practical guide to building and deploying natural language
+processing (NLP) models. It covers a wide range of topics, from the basics of
+NLP to advanced techniques for building large language models (LLMs).
+The book is divided into 17 lessons, each focusing on a specific aspect of NLP.
+The lessons are designed to be self-contained, so you can read them in any
+order. However, the lessons build on each other, so it's best to start at the
+beginning and work your way through the book.
+The book is written for developers with some programming experience,
+particularly in Python. It assumes that you have a basic understanding of
+machine learning and deep learning concepts. If you're new to these topics,
+you might want to check out our first edition, which covers the basics of
+machine learning and deep learning.
+We've made every effort to ensure that the code in this book is accurate and
+up-to-date. However, we can't guarantee that it will work perfectly on your
+system. If you encounter any problems, please let us know, and we'll do our
+best to help you out.
+We hope you enjoy learning about NLP and building your own models!
+
+
+In this lesson, we will discuss fine-tuning large language models (LLMs) for specific tasks. Fine-tuning is the process of adapting a pre-trained LLM to a specific task by training it further on a task-specific dataset. We will cover the following topics:
+
+* Types of fine-tuning
+* Parameter Efficient Fine-Tuning (PEFT)
+* Instruction Fine-Tuning
+
+Fine-tuning is an essential step in using LLMs for practical applications. It allows us to specialize LLMs for domain-specific tasks, improve accuracy and relevance for specific applications, and optimize performance on small, focused datasets.
+
+Full fine-tuning, which updates all model parameters, allows us to achieve high accuracy for specific tasks by fully leveraging the model's capacity. However, it is computationally expensive and risks overfitting on small datasets.
+
+Parameter-Efficient Fine-Tuning (PEFT) is a strategy developed to fine-tune large-scale pre-trained models in a computationally efficient manner while requiring fewer learnable parameters

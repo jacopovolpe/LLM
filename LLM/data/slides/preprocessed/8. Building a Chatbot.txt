@@ -1,0 +1,22 @@
+
+
+
+Traduzione:
+Natural Language Processing e modelli di linguaggio di grandi dimensioni
+Corso di Laurea Magistrale in Ingegneria Informatica Lesson 8
+Costruire un chatbot di pizzeria
+Nicola Capuano e Antonio Greco
+DIEM – Università di Salerno
+Esercizio
+
+Costruire un chatbot di pizzeria
+Crea un chatbot per aiutare le operazioni della pizzeria
+• Gli utenti possono richiedere il menu della pizzeria
+• Gli utenti possono ordinare una pizza disponibile nel menu (solo una, senza bevanda)
+• Al conferma dell'ordine, il bot registra la data, l'id utente e il tipo di pizza ordinata (utilizza un'azione personalizzata)
+• Il bot ha un'interfaccia web basata
+
+Informazioni aggiuntive:
+Questo esercizio ti guida attraverso la creazione di un chatbot che può aiutarti (e forse anche qualche amico, o addirittura più persone se ti fortunati) se distribuito su un server o in una cloud. Tuttavia, se vuoi costruire un chatbot che serve centinaia o migliaia di utenti, devi avere un sistema più robusto e scalabile. Fortunatamente, esistono framework disponibili che ti permettono di concentrarti sulla costruzione del tuo bot, mentre si occupa dei problemi che derivano dalla necessità di costruire un sistema di produzione.
+
+In questo capitolo, ti mostreremo come costruire un chatbot che può capire le tue intenzioni e rispondere in modo appropriato. Inoltre, ti mostreremo come costruire un chatbot che può capire e generare testo più significativo e veritiero di quello generato da ChatGPT o da qualsiasi altro app di AI che possa comparire in questo mondo di app di AI che cercano di guadagnare. Ti avvantaggi di molto rispetto a BigTech, perché ti pre

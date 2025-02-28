@@ -1,0 +1,34 @@
+
+don't have a large enough LLM to answer the question directly.
+You can also use RAG to augment your LLM prompts. For example, if you
+want to ask your LLM to write a short story about a character who is a
+mathematician, you can use RAG to retrieve a few sentences about mathematicians
+from a database of curated documents. You can then use these sentences to
+augment your LLM prompt.
+Another approach is to use a combination of LLMs and rule-based systems.
+For example, you can use an LLM to generate a list of possible answers to a
+question, and then use a rule-based system to select the best answer. This
+approach is called hybrid systems.
+
+In this lesson, we will focus on Prompt Engineering, a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. The main goals of Prompt Engineering are to:
+
+1. Enhance understanding of the capabilities and limitations of LLMs
+2. Improve LLM performance on a broad range of tasks (e.g., question answering, arithmetic reasoning, ...)
+3. Help interfacing LLMs with domain knowledge and external resources
+4. Augment LLMs with domain knowledge and external resources
+
+Writing Good Prompts
+
+* Start with simple prompts, adding elements gradually while iterating and refining to improve results
+* Be clear, specific, and descriptive to achieve better outcomes
+* Consider using examples to guide the model's output
+* Balance detail and length carefully, as excessive information can reduce effectiveness, and experiment to find the ideal format
+
+Bad Prompt: "Summarize this article."
+Good Prompt: "Generate a 100-word summary of this research article, focusing on the main findings."
+Bad Prompt: "Write an apology email to a client."
+Good Prompt: "Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate."
+Bad Prompt: "Make this explanation easier to understand."
+Good Prompt: "Rewrite this technical explanation in simpler language suitable for high school students."
+Bad Prompt: "Classify the following review."
+Good Prompt: "Classify the following review as positive, neutral, or negative"

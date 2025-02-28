@@ -1,19 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+    <script defer src="{{ url_for('static', filename='chatbot.js') }}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
+</head>
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
+    <div class="container">
+        <h1>Chat about LLM</h1>
+        <div class="chat-window" id="chat-box"></div>
+        <div class="button-container">
+            <button id="toggleSpeakBtn"><i class="fa fa-volume-up" id="fa-audio-element" aria-hidden="true"></i></button>
+            <button id="resetBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Scrivi un messaggio...">
+            <button id="sendBtn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button id="startBtn"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+        </div>
     </div>
 </body>
-
 </html>

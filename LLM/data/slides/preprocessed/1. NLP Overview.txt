@@ -1,0 +1,26 @@
+
+book.
+
+[19] https://www.w3schools.com/sql/sql_data_types.asp
+[20] https://www.ethnologue.com/
+[21] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5734784/
+[22] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5734784/
+
+Natural Language Processing and Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 1
+NLP Overview
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+Natural Language Processing (NLP) is a field of study that focuses on enabling computers to understand, interpret, and generate human language. It is a crucial component of Artificial Intelligence (AI) and has numerous applications in various industries.
+
+Importance of NLP
+Natural language is the most important part of Artificial Intelligence, according to philosopher John Searle. Natural language processing is a cornerstone of artificial intelligence, allowing computers to read and understand human language, as well as to produce and recognize speech, according to IBM CEO Ginni Rometty. Dan Jurafsky, a professor of linguistics and computer science at Stanford University, considers natural language processing one of the most important fields in artificial intelligence and also one of the most difficult.
+
+Definitions
+Natural language processing is the set of methods for making human language accessible to computers (Jacob Eisenstein). It is the field at the intersection of computer science and linguistics (Christopher Manning). Natural language processing is an area of research in computer science and artificial intelligence concerned with processing natural languages such as English or Mandarin. This processing generally involves translating natural language into data that a computer can use to learn about the world.
+
+Natural Language Understanding (NLU) is a subfield of NLP focused on transforming human language in a way that machines can process. It involves extracting meaning, context, and intent from text, and text is transformed into a numerical representation (embedding).
+
+Natural Language Generation (NLG) is a subfield of NLP focused

@@ -1,0 +1,35 @@
+
+would rank the pages based on the TF-IDF scores of the words you typed.
+But this approach had a big problem. If you typed in "apple" and the web
+page had the word "apple" but also the word "fruit," the search engine
+wouldn t know that "apple" and "fruit" are related. So it would rank the
+page lower than it should have.
+To solve this problem, search engines started to use word embeddings.
+Instead of just looking for the exact words you typed, they started to look
+for words that were similar to the words you typed. So if you typed in
+"apple," the search engine would look for pages that had words like
+"fruit," "orchard," "tree," and "eat." This made the search results much
+better.
+6.2.2 Information filtering
+Another problem with TF-IDF vectors is that they don t tell you much about
+the meaning of a document. So if you wanted to filter out documents that
+were about a certain topic, you had to look at the words in the document
+and decide if they were related to the topic. This was a lot of work.
+But with word embeddings, you can just look at the vector of the document
+and see if it is close to the vectors of documents that are about the topic.
+This makes it much easier to filter out documents that are not about the
+topic.
+6.2.3 Text classification
+Another problem with TF-IDF vectors is that they don t tell you much about
+the meaning of a document. So if you wanted to classify a document as
+belonging to a certain category, you had to look at the words in the document
+and decide if they were related to the category. This was a lot of work.
+But with word embeddings, you can just look at the vector of the document
+and see if it is close to the vectors of documents that belong to the category.
+This makes it much easier to classify documents.
+6.2.4 Other applications
+There are many other applications where word embeddings can be useful.
+For example, you can use word embeddings to generate new sentences
+automatically. You can use word embeddings to translate text from one
+language to another. You can use word embeddings to answer questions about
+text. And you can

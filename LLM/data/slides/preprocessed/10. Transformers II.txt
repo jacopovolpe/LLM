@@ -1,0 +1,33 @@
+ is a mechanism that allows the model to focus on different
+positions in the input sequence, not just the ones centered on a single word.
+This effectively creates several different vector subspaces where the transformer
+can encode a particular generalization for a subset of the word patterns in your
+text. In the original transformers paper, the model uses n=8 attention heads
+such that \(d_k = d_v = \frac{d_{model}}{n} = 64\). The reduced dimensionality in the
+multi-head setup is to ensure the computation and concatenation cost is nearly
+equivalent to the size of a full-dimensional single-attention head.
+The attention matrices (attention heads) created by the product of Q and K
+all have the same shape, and they are all square (same number of rows as
+columns). This means that the attention matrix merely rotates the input
+sequence of embeddings into a new sequence of embeddings, without affecting
+the shape or magnitude of the embeddings. And this makes it possible to
+explain a bit about what the attention matrix is doing for a particular example
+input text.
+
+The Transformer model is a type of neural network architecture that was
+introduced in the paper "Attention Is All You Need" by Vaswani et al. in 2017.
+The Transformer model is designed to handle long sequences of text data,
+such as sentences or paragraphs, and it does this by using a mechanism called
+self-attention. Self-attention allows the model to focus on different parts of
+the input sequence, rather than just processing the input sequentially like
+traditional recurrent neural networks (RNNs).
+The Transformer model consists of two main components: the encoder and the
+decoder. The encoder takes in the input sequence and produces a sequence of
+representations, each of which captures the meaning of a portion of the input
+sequence. The decoder then uses these representations to generate the output
+sequence.
+The encoder and decoder both use a multi-head self-attention mechanism,
+which allows the model to attend to different parts of the input sequence at
+different positions. This is done by creating multiple attention heads, each of
+which attends to a different subset of the input sequence. The outputs of these
+attention heads are then concatenated and passed

@@ -1,0 +1,33 @@
+
+...     input_ids = src_field.vocab.encode(tokens, add_special_tokens=True)
+...     input_ids = torch.tensor([input_ids]).to(device)
+...     attention_mask = torch.ones(1, len(input_ids), device=device)
+...     target_ids = trg_field.vocab.stoi[trg_field.bos_token]
+...     target_ids = torch.tensor([target_ids]).to(device)
+...     target_key_padding_mask = torch.zeros(1, len(input_ids),
+...         dtype=torch.long, device=device)
+...     target_sentence_mask = torch.zeros(1, len(input_ids),
+...         dtype=torch.long, device=device)
+...     trg_indexes = []
+...     for i in range(max_len):
+...         output = model(input_ids, attention_mask=attention_mask,
+...             target_ids=target_ids, target_key_padding_mask=
+...             target_key_padding_mask, target_sentence_mask=
+...             target_sentence_mask)
+...         output = rearrange(output, 'T N E -> N T E')
+...         output = model.linear(output)
+...         pred_token = output.argmax(2)[:,-1].item()  # #3
+...         trg_indexes.append(pred_token)
+...
+...         if pred_token == trg_field.vocab.stoi[
+...                 trg_field.eos_token]:  # #4
+...             break
+...
+...     trg_tokens = [trg_field.vocab.itos[i] for i in trg_indexe
+...     translation = trg_tokens[1:]
+...
+...     return translation, model.decoder.attention_weights
+
+BERT (Bidirectional Encoder Representations from Transformers) is a transformer-based
+language model introduced by Google Research in 2018 for language understanding. It
+uses only the encoder part from the Transformer model. BERT is

@@ -1,0 +1,37 @@
+ Edition!
+This book is a practical guide to building and deploying natural language
+processing (NLP) applications. It covers a wide range of topics, from the basics
+of text processing and word embeddings to advanced techniques like
+transformers and large language models.
+The book is divided into 15 chapters, each focusing on a specific aspect of NLP.
+Here's a brief overview of what you'll learn:
+1. Machines that read and write (NLP overview)
+2. Tokens of thought (natural language words)
+3. Math with words (TF-IDF vectors)
+4. Finding meaning in word counts (semantic analysis)
+5. Word brain (neural networks)
+6. Reasoning with word embeddings (word vectors)
+7. Finding Kernels of Knowledge in Text with Convolutional Neural Networks
+8. Reduce, Reuse, Recycle Your Words (RNNs and LSTMs)
+9. Stackable deep learning (Transformers)
+10. Large Language Models in the real world
+11. Information extraction and knowledge graphs (grounding)
+12. Getting Chatty with Dialog Engines
+13. Appendix A. Your NLP tools
+14. Appendix B. Playful Python and regular expressions
+15. Appendix C. Vectors and Linear Algebra
+16. Appendix D. Machine learning tools and techniques
+17. Appendix E. Deploy NLU containerized microservices
+18. Appendix F. Glossary
+In this first chapter, we'll introduce the basics of NLP and discuss some of the
+key challenges in building NLP applications. We'll also take a look at some
+common NLP tasks and the tools you'll need to get started.
+By the end of this chapter, you'll have a solid understanding of what NLP is,
+why it's important, and how it can be used to solve real-world problems. You'll
+also be ready to dive into the more advanced topics covered in the rest of the
+book.
+So let's get started!
+
+In this lesson, we will discuss the Encoder-Decoder Transformers, specifically
+the T5 model, and its applications in translation and summarization tasks.
+Encoder-Decoder Transformers are a class of neural networks

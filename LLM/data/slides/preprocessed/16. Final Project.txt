@@ -1,0 +1,17 @@
+
+their lessons and for students to learn from them.
+
+Trascrizione:
+Natural Language Processing and Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 16
+Final Project
+
+Obiettivo del progetto:
+Il progetto ha lo scopo di creare un chatbot che risponda alle domande riguardanti il corso di NLP e LLM 2024/2025. Le domande possono essere non solo riguardanti i temi trattati nel corso, ma anche riguardanti informazioni generali, come i docenti, i libri consigliati, ecc. Inoltre, il chatbot deve rispondere solo alle domande relative al corso, riconoscendo le domande fuori contesto e rispondendo che non è abilitato a fornire risposte su temi fuori contesto. I gruppi consegneranno il codice del chatbot e un rapporto in cui descriveranno in dettaglio la loro soluzione.
+
+Strumenti da utilizzare per il progetto:
+I studenti sono liberi di utilizzare qualsiasi strumento o tecnologia analizzata nel corso, sia quelle più recenti associate ai LLM che quelle più classiche di NLP. Per ottenere il risultato richiesto, i studenti possono sviluppare parti del chatbot con LLM e altre parti con strumenti più classici, con totale libertà di scelta a condizione che le soluzioni identificate siano giustificate nel rapporto finale. Qualsiasi LLM o altro modello già disponibile può essere utilizzato con o senza modifiche, a condizione che i gruppi siano familiarizzati con gli strumenti utilizzati e siano in grado di rispondere a tutte le domande riguardo al codice e ai modelli.
+
+Procedura di valutazione del chatbot:
+Prima della discussione del progetto, gli istruttori del corso interrogheranno il chatbot del gruppo in tempo reale con un

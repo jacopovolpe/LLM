@@ -1,0 +1,36 @@
+
+In this book, you will learn how to build a complete NLP pipeline from
+scratch, starting with the basics of tokenizing text and moving on to
+building sophisticated neural networks for NLU and NLG. You will
+learn how to use Python to build your NLP pipeline, and you will learn
+how to use the latest NLP libraries and tools to make your life easier.
+
+
+Informazioni aggiuntive:
+1. Introduction to NLP
+2. Text representation: Tokenization, Stemming, Lemmatization, POS tagging
+3. Math with Words: Bag of Words, Vector Space Model, TF-IDF, Search Engines
+4. Text Classification: Topic Labelling, Sentiment Analysis
+5. Word Embeddings: Word2Vec, CBOW, Skip-Gram, GloVe, FastText
+6. Neural Networks for NLP: RNN, LSTM, GRU, CNN, Introduction to Text Generation
+7. Information Extraction: Parsing, Named Entity Recognition
+8. Question Answering and Dialog Engines (chatbots)
+9. Transformers: Self-Attention, Multi-Head Attention, Positional Encoding, Masking
+10. Encoder and Decoder of a Transformer
+11. Introduction to HuggingFace
+12. Encoder-Decoder or Seq2Seq models (translation and summarization)
+13. Encoder-only Models (sentence classification and named entity recognition)
+14. Decoder-only Models (text generation)
+15. Definition and training of a Large Language Model
+16. Zero-shot and Few-shot Prompting
+17. Chain-of-Thought, Self-Consistency, Prompt Chaining
+18. Role Prompting, Structured Prompts, System Prompts
+19. Retrieval Augmented Generation
+20. Feature-Based Fine Tuning
+21. Parameter Efficient Fine Tuning and Low Rank Adaptation
+22. Reinforcement Learning with Human Feedback
+23. Large Language Models in the real world
+24. Information extraction and knowledge graphs (grounding)
+25. Getting Chatty with dialog engines
+26. Your NLP tools
+27.
