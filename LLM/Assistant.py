@@ -97,7 +97,7 @@ class Assistant:
             "- If the answer is not in the provided context, state: \"I'm sorry, but I don't have enough information to answer that.\"\n"
             "- Avoid making assumptions or fabricating details.\n"
             "- Use a conversational and engaging tone to make the response pleasant for text-to-speech.\n"
-            "- generate a answer with a length of {responseLength}.\n"
+            f"- generate a answer with a length of {responseLength}.\n"
             "\n-----END_PROMPT-----\n"
         )
 
