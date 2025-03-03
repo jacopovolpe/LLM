@@ -1,0 +1,48 @@
+## Natural Language Processing and Large Language Models: Transformers I
+
+<----------section---------->
+
+### Limitations of Recurrent Neural Networks (RNNs)
+
+Recurrent Neural Networks, while effective for sequential data processing, suffer from several limitations that hinder their performance, particularly with long sequences.  One major drawback is their struggle with **long-term dependencies**.  Information from earlier parts of a sequence can fade as the RNN processes more data, making it difficult to capture relationships between distant words or events. This limitation is particularly apparent in encoder-decoder models, where the encoder needs to retain information from the entire input sequence for the decoder.
+
+Another significant issue is the **slow training speed** of RNNs. Their inherently sequential nature prevents parallel processing.  Each element in the sequence must be processed individually, waiting for the previous element's computation to complete. This sequential dependency limits the ability to leverage the parallel processing power of modern GPUs, significantly increasing training time for long sequences.
+
+Finally, RNNs are susceptible to the **vanishing gradient problem**.  During training, the backpropagation through time (BPTT) algorithm repeatedly traverses the same layers for each time step in the sequence.  If the gradients are small, their values diminish exponentially with each traversal, making it difficult to update the weights of earlier layers effectively. Conversely, large gradients can lead to the exploding gradient problem, destabilizing the training process. This problem is exacerbated by the length of the sequence, as longer sequences necessitate traversing the same layers more times.
+
+
+<----------section---------->
+
+### The Transformer Architecture
+
+The Transformer architecture, introduced in 2017, addresses the limitations of RNNs by enabling parallel processing of sequence elements. This innovative approach allows the model to capture long-range dependencies more effectively and eliminates the sequential bottleneck of RNNs. Unlike RNNs, the number of layers traversed in a Transformer does not depend on the sequence length, mitigating the vanishing gradient problem. Originally designed for machine translation, the Transformer's flexibility allows its components to be adapted for various sequence processing tasks.
+
+
+<----------section---------->
+
+### Transformer Input Processing
+
+The Transformer's input processing pipeline involves several crucial steps: tokenization, input embedding, and positional encoding.  **Tokenization** breaks down the input text into individual units (tokens), each assigned a unique identifier. This process allows the model to handle variable-length input sequences and represents words or sub-word units as discrete entities.
+
+**Input embedding** maps these token IDs to continuous vector representations in a high-dimensional space.  This embedding process captures semantic relationships between words, placing semantically similar words closer together in the embedding space. The embedding vectors provide a richer representation of the input data than simple one-hot encodings, enabling the model to learn complex relationships.
+
+Finally, **positional encoding** incorporates information about the order of words in the sequence.  Since the attention mechanism itself is permutation-invariant, meaning it doesn't inherently consider word order, positional encoding is essential.  It injects positional information by adding a vector to each word embedding, where this vector is a function of the word's position. This allows the model to differentiate between sentences with the same words in different orders, crucial for understanding grammatical structure and meaning.  The positional encoding is designed such that relative positional information can be easily learned.
+
+
+<----------section---------->
+
+### Self-Attention Mechanism
+
+Self-attention, a core component of the Transformer, allows the model to weigh the importance of different parts of the input sequence when encoding each word.  It helps the model understand relationships between words within a sentence, even when they are far apart. For example, in the sentence "The animal didn’t cross the street because it was too wide," self-attention helps determine that "it" refers to "the street."
+
+The attention mechanism works by calculating a relevance score between each pair of words in the sequence.  This score is based on the query, key, and value vectors derived from the input embeddings.  The query vector represents the current word being encoded, while the key vectors represent all other words in the sequence. The value vectors are also derived from the input embeddings and are used to compute the weighted average.  The attention score between the query and each key is calculated using a scaled dot-product, which is then normalized using the softmax function.  This results in a weighted sum of the value vectors, where the weights represent the attention given to each word in the context of the current word.
+
+Multi-head attention extends this mechanism by using multiple sets of query, key, and value matrices, allowing the model to capture different aspects of the relationships between words. This enables the model to focus on multiple relevant parts of the input simultaneously, further enhancing its ability to understand complex dependencies within the sequence.  Essentially, each attention head learns a different representation of the relationships within the input sequence.
+
+<----------section---------->
+
+### Encoder Architecture
+
+The Transformer encoder processes the input sequence by passing it through multiple encoder layers.  Each encoder layer consists of two sub-layers: a multi-head self-attention layer and a position-wise feed-forward network.  The self-attention layer allows each word in the sequence to attend to all other words, including itself, enabling the model to capture relationships between different parts of the input. The feed-forward network further processes the output of the self-attention layer, applying a non-linear transformation to each word's representation.
+
+Residual connections and layer normalization are employed around each sub-layer to facilitate training and improve performance.  The residual connections allow gradients to flow directly through the network, mitigating the vanishing gradient problem. Layer normalization ensures that the inputs to each layer have a consistent distribution, further stabilizing the training process.  The output of the final encoder layer is a sequence of context-rich vector representations, capturing the meaning and relationships within the input sequence. This output then serves as input for the decoder in sequence-to-sequence tasks like machine translation.

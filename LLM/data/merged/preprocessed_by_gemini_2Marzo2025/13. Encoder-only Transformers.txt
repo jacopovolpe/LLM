@@ -1,0 +1,66 @@
+## Encoder-Only Transformers and BERT for Natural Language Processing
+
+<----------section---------->
+
+### Encoder-Only Transformers
+
+The full Transformer architecture, with both encoder and decoder components, is essential for tasks that transform a sequence into another sequence of a different length, such as machine translation.  However, when the input and output sequences have the same length, or when the task involves transforming a sequence into a single value (like sequence classification), the encoder alone suffices.
+
+For tasks with equal-length input and output sequences, the encoder's output vectors directly serve as the final output.  In sequence classification, a special "START" token is prepended to the input sequence, and the encoder's output vector corresponding to this token represents the entire sequence, used for subsequent classification.
+
+<----------section---------->
+
+### BERT: A Bidirectional Transformer Model
+
+BERT (Bidirectional Encoder Representations from Transformers), introduced by Google in 2018, is a powerful language model based solely on the Transformer encoder.  It comes in two main sizes: BERT-base (12 encoder layers, 110 million parameters) and BERT-large (24 encoder layers, 340 million parameters). BERT's key innovation lies in its bidirectional context understanding.  Unlike traditional language models that process text sequentially, BERT considers both preceding and following words to understand the meaning of a word in its context. This bidirectional approach is crucial for capturing nuanced language patterns and relationships. Primarily designed for transfer learning, BERT serves as a pre-trained foundation, fine-tuned for specific downstream tasks.
+
+<----------section---------->
+
+### BERT Input Encoding
+
+BERT utilizes WordPiece tokenization, a subword-based method that splits words into smaller units. This allows BERT to effectively handle a wide range of words, including rare words, misspellings, and out-of-vocabulary terms, by breaking them down into recognizable subword components. The WordPiece vocabulary includes both common words and subword units.  For example, "unhappiness" could be tokenized into "un," "happy," and "##ness," where "##" indicates that the subword is part of a larger word.
+
+BERT also employs special tokens: `[CLS]` (classification token) placed at the beginning of each sequence, and `[SEP]` (separator token) used to mark the end of a sentence or to separate sentences in sentence-pair tasks. The `[CLS]` token's final hidden state serves as a context-aware representation of the entire input sequence and is used for downstream tasks.  In single-sentence classification, the `[CLS]` embedding is directly fed into a classifier. In sentence-pair tasks (e.g., determining if two sentences are related), the `[CLS]` embedding captures the relationship between the two sentences.
+
+WordPiece embedding offers several advantages: vocabulary size reduction without sacrificing representational power, handling of unseen words, and enhanced language understanding.
+
+
+<----------section---------->
+
+### BERT Pre-training and Fine-tuning
+
+BERT's pre-training employs two self-supervised learning strategies: Masked Language Modeling (MLM) and Next Sentence Prediction (NSP). In MLM, random tokens are masked, and BERT is trained to predict them based on surrounding context. NSP trains BERT to understand the relationship between two sentences by predicting whether one sentence logically follows another. The training dataset includes a vast corpus of text and code, encompassing books, Wikipedia, and code repositories.
+
+Fine-tuning adapts BERT to specific tasks by adding a task-specific layer and training it on labeled data. The pre-trained parameters can be either frozen or updated during fine-tuning.  The `[CLS]` token’s final embedding plays a vital role in fine-tuning, as it is specifically trained for the task at hand.  Examples of downstream tasks include text classification, named entity recognition, and question answering.
+
+<----------section---------->
+
+### BERT Strengths and Limitations
+
+BERT's strengths include its bidirectional context understanding, flexibility in transfer learning, and high performance on benchmark datasets. However, its limitations include the large model size, high computational cost for pre-training and fine-tuning, and the need for labeled data for fine-tuning.
+
+
+<----------section---------->
+
+### Popular BERT Variants
+
+Several variants of BERT have been developed to address its limitations and improve performance.  Here are a few key examples:
+
+* **RoBERTa:** Trained on a larger corpus with optimized training parameters, removing the NSP task and using dynamic masking.
+* **ALBERT:** A lite version of BERT with reduced parameters achieved through parameter factorization and cross-layer parameter sharing.
+* **DistilBERT:**  A smaller, faster version achieved through knowledge distillation.
+* **TinyBERT:** An even smaller and faster version, optimized for mobile and edge devices, using two-step knowledge distillation.
+* **ELECTRA:** Uses a replaced token detection task for more efficient pre-training.
+* **SciBERT and BioBERT:** Domain-specific versions trained on scientific and biomedical text, respectively.
+* **ClinicalBERT:** Trained on clinical notes for healthcare applications.
+* **mBERT:** Multilingual BERT trained on 104 languages.
+
+Other variants exist for specific domains, such as CamemBERT (French), FinBERT (finance), and LegalBERT (legal). BERT's influence extends beyond NLP to other fields like computer vision, inspiring models like Vision Transformers and Masked Auto Encoders.
+
+
+
+<----------section---------->
+
+### Practice with Token Classification and Named Entity Recognition
+
+Using resources like the Hugging Face tutorial and datasets like CoNLL-2003, explore different BERT variants for named entity recognition. Experiment with custom prompts and publicly available datasets. With sufficient resources, consider fine-tuning a lightweight BERT model for improved performance.

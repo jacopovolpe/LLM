@@ -16,21 +16,22 @@ class Assistant:
     def __init__(self,
                  HUGGING_FACE_TOKEN="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", 
                  MODEL_LLM="mistralai/Mistral-7B-Instruct-v0.2",
-                 faiss_index="LLM/data/faiss_index/ALL_faiss_index__all-MiniLM-L6-v2",
+                 faiss_index="LLM/data/faiss_index/ALL_bge-m3",
+                 embedding_model="BAAI/bge-m3",  # o -> sentence-transformers/all-MiniLM-L6-v2
                  max_history=5):
 
         self.API_URL = f"https://api-inference.huggingface.co/models/{MODEL_LLM}"
         self.HEADERS = {"Authorization": f"Bearer {HUGGING_FACE_TOKEN}"}
 
         self.faiss_index = faiss_index
-        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.vectorstore = FAISS.load_local(faiss_index, self.embeddings, allow_dangerous_deserialization=True)
 
         
         self.history = []  
         self.max_history = max_history 
         
-    def get_relevant_chunks(self, question, top_k=50, min_contribution=0.1, diversity_threshold=0.5):
+    def get_relevant_chunks(self, question, top_k=15, min_contribution=0.1, diversity_threshold=0.5):
         """
         Seleziona i chunk che contribuiscono almeno al 10% della CDF delle similarità dei top 50 risultati.
         Applica anche un filtro di diversità per evitare troppi chunk simili tra loro.
@@ -70,7 +71,7 @@ class Assistant:
 
     def generate_response(self, question, responseLength, debug = False):
         
-        context = self.get_simple_chunks(question, k = 5) 
+        context = self.get_simple_chunks(question, k = 7) 
     
 
         prompt = (

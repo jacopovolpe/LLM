@@ -1,0 +1,50 @@
+## Text Representation in Natural Language Processing
+
+This document explores the fundamental concepts of text representation in Natural Language Processing (NLP), covering techniques from basic tokenization to more advanced methods like lemmatization and named entity recognition, with a focus on practical implementation using libraries like NLTK and spaCy.
+
+<----------section---------->
+
+### Tokenization: Breaking Down Text
+
+Tokenization is the process of segmenting text into individual units, or tokens, which can be words, punctuation marks, emojis, numbers, sub-words, or even phrases. While whitespace can be a starting point, a robust tokenizer needs to handle various complexities like punctuation and language-specific characteristics.  For example, the sentence "The company’s revenue for 2023 was $1,234,567.89" presents challenges in handling the apostrophe, numbers with commas and decimal points, and the dollar sign.  Similarly, abbreviations, acronyms, and special characters require careful consideration.  Dedicated NLP libraries offer sophisticated tokenizers that address these challenges using regular expressions and exception rules.
+
+<----------section---------->
+
+### Bag of Words Representation: Quantifying Text
+
+The Bag of Words (BoW) model represents text by counting the occurrences of each unique token in a document or sentence. This creates a vector representation where each element corresponds to a token in the vocabulary, and the value indicates the token's frequency. A simpler variant, Binary BoW, only marks the presence or absence of a token.
+
+While BoW is computationally efficient, it suffers from information loss by discarding word order and context.  For example, “Mark reported to the CEO” and “Suzanne reported as the CEO to the board” might appear similar in a BoW representation, despite conveying different meanings. However, the simplicity of BoW makes it suitable for tasks like document similarity comparison and basic information retrieval, leveraging techniques like dot product to measure overlap between BoW vectors.  Its limitations become apparent when trying to reconstruct the original text or capture nuanced semantic relationships.
+
+<----------section---------->
+
+### Token Normalization: Refining Tokenization
+
+Token normalization improves the effectiveness of NLP pipelines by consolidating different forms of tokens. Case folding reduces all letters to lowercase, improving matching but potentially losing information encoded in capitalization.  Strategies like selectively normalizing only non-proper nouns can mitigate this issue.  Stop word removal filters out frequent words like articles and prepositions that often contribute little to the overall meaning. However, this can inadvertently remove crucial contextual information in some cases.
+
+<----------section---------->
+
+### Stemming and Lemmatization: Reducing Words to their Roots
+
+Stemming and lemmatization aim to reduce words to their base forms. Stemming uses heuristics to truncate words, often resulting in non-words (e.g., "running" becomes "runn"). While efficient, this can lead to inaccurate representations. Lemmatization, on the other hand, uses morphological analysis and dictionaries to derive the canonical lemma (dictionary form) of a word (e.g., "better" becomes "good"). This approach is more accurate but computationally intensive. Libraries like NLTK offer both stemming (e.g., Porter Stemmer, Snowball Stemmer) and lemmatization functionalities.
+
+<----------section---------->
+
+### Part of Speech (PoS) Tagging: Identifying Grammatical Roles
+
+PoS tagging assigns grammatical labels (e.g., noun, verb, adjective) to tokens. This contextual information is crucial for disambiguation and other downstream tasks like lemmatization and parsing.  For example, distinguishing between "light" as a noun and "light" as a verb requires understanding its role in the sentence.  PoS tagging algorithms often utilize statistical models trained on annotated corpora to predict the most likely tag based on context and word morphology.
+
+<----------section---------->
+
+### Introducing spaCy: An Advanced NLP Library
+
+SpaCy is a powerful NLP library that provides a wide range of functionalities, including tokenization, sentence boundary detection, PoS tagging, named entity recognition (NER), and dependency parsing. SpaCy handles complex tokenization scenarios, provides detailed token attributes, and offers efficient processing pipelines. Its visualization capabilities, through the `displacy` module, offer valuable insights into text structure and relationships.
+
+SpaCy also excels in NER, identifying and classifying named entities like people, organizations, and locations. This is vital for applications like information extraction and knowledge base construction.
+
+
+<----------section---------->
+
+### Performance Considerations
+
+While libraries like spaCy offer extensive features, their performance can be a concern for large-scale applications. Techniques like disabling unused pipeline components (e.g., parsing, NER) can significantly speed up processing. For maximum speed, regular expression tokenizers offer a simpler, albeit less accurate, alternative. The choice of tokenizer depends on the specific application requirements, balancing speed, accuracy, and the need for linguistic features.

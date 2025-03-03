@@ -1,0 +1,57 @@
+## Natural Language Processing and Large Language Models Chatbot Project
+
+This document outlines the details of the final project for the Natural Language Processing and Large Language Models course. The project involves designing and implementing a chatbot specifically tailored to answer questions about the course itself.  The following sections will detail the project goals, the tools students can utilize, and the evaluation procedure.
+
+<----------section---------->
+
+### Project Goal
+
+The primary objective of this project is to develop a chatbot capable of accurately and comprehensively answering questions related to the NLP and LLM 2024/2025 course. This includes questions about course content, logistics, instructors, recommended reading materials, and other relevant information.  Crucially, the chatbot should be able to discern between in-context and out-of-context queries.  If a question falls outside the scope of the course, the chatbot should politely indicate its inability to provide an answer.  Deliverables for the project include the complete chatbot code and a comprehensive report detailing the design and implementation choices made by the group.
+
+<----------section---------->
+
+### Tools and Technologies
+
+Students have the freedom to employ any tools and technologies discussed in the course, including both classic NLP techniques and more recent LLM-based approaches. A hybrid approach, leveraging the strengths of both classic and modern methods, is encouraged. The final report should justify the chosen tools and explain their integration within the chatbot architecture.  Students are permitted to utilize existing LLMs and other pre-trained models, either directly or with modifications. However, it is essential that the group demonstrates a thorough understanding of the chosen tools and models, including their underlying mechanisms and limitations. They should be prepared to answer detailed questions regarding their implementation during the project presentation.
+
+<----------section---------->
+
+### Chatbot Evaluation Procedure
+
+The chatbot's performance will be evaluated by the course instructors through a real-time question-and-answer session using a predefined set of questions. The evaluation will focus on several key aspects:
+
+**Phase 1: Core Functionality**
+
+* **Relevance:**  Does the chatbot's response accurately address the question posed?
+* **Fluency:** Is the generated text grammatically correct, readable, and natural-sounding?
+* **Coherence:** Does the response exhibit a logical flow and internal consistency?
+
+**Phase 2: Advanced Capabilities**
+
+* **Robustness:**  Can the chatbot handle ambiguous or misleading prompts (e.g., "Are you sure?") without compromising the accuracy or relevance of its responses?
+* **Precision:**  Can the chatbot reliably identify and appropriately respond to out-of-context questions (e.g., "Who is the king of Spain?") by indicating its limitations rather than attempting to provide an irrelevant or incorrect answer?
+
+The instructors will assign a grade based on the chatbot's performance across these dimensions.
+
+<----------section---------->
+
+### Building a Robust and Intelligent Chatbot:  An In-Depth Look
+
+Developing an effective chatbot necessitates a deep understanding of Natural Language Processing principles.  A chatbot's "intelligence" is multi-faceted and goes beyond simple question-and-answer matching.  It involves a complex interplay of several core components:
+
+* **Feature Extraction:** Transforming raw text into a structured representation that captures relevant information (often involving vector space models).
+* **Information Extraction:** Identifying specific facts and entities within the text to answer factual queries.
+* **Semantic Search:**  Utilizing semantic understanding to retrieve relevant information from a knowledge base or training data.
+* **Natural Language Generation:**  Constructing grammatically correct and contextually appropriate responses.
+* **Dialogue Management:** Maintaining context and coherence across multiple turns in a conversation.
+
+
+These stages are not isolated but work together in a pipeline.  A well-designed chatbot utilizes a variety of techniques, including regular expressions, machine learning models (especially deep learning), and hand-coded algorithms. Machine learning, in particular, allows chatbots to learn complex patterns from data, handle ambiguity, and adapt to variations in user input.
+
+The choice of specific algorithms and techniques depends on the desired chatbot functionality. A chatbot designed for factual question answering requires a different approach than one focused on generating engaging and human-like conversations.  This project encourages exploring different strategies and justifying the chosen methods based on their suitability for answering questions about the NLP and LLM course.
+
+<----------section---------->
+
+### Beyond the Course: Broader Applications of NLP
+
+While this project focuses on a specific application (a course-related chatbot), the underlying NLP principles and techniques are applicable to a wide range of domains, including search engines, financial forecasting, business analytics, and even social good initiatives.  By understanding the core components of an NLP pipeline, students gain valuable skills transferable to various real-world problems.  The project serves as a practical introduction to the exciting world of NLP and its potential to transform the way we interact with information and technology.

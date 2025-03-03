@@ -1,0 +1,76 @@
+## Natural Language Processing with Neural Networks
+
+<----------section---------->
+
+### Introduction to Neural Networks for NLP
+
+Traditional feedforward neural networks, while effective for many tasks, are limited in their ability to process sequential data like text. This is because they lack memory; each input is processed independently, without considering the context of preceding inputs.  This limitation necessitates representing the entire text as a single data point, as seen with Bag-of-Words (BoW) or TF-IDF vectors, or by averaging word embeddings. However, this approach fails to capture the crucial sequential relationships between words in a sentence.  Human language understanding relies heavily on context and the order of words. For instance, "The stolen car sped into the arena" evokes a different meaning than "The clown car sped into the arena," even though the sentence structures are nearly identical. The change in a single adjective significantly alters the overall interpretation.
+
+<----------section---------->
+
+### Recurrent Neural Networks (RNNs)
+
+Recurrent Neural Networks address this limitation by incorporating memory. RNNs process sequential information iteratively, maintaining an internal state that is updated with each new input. This allows the network to "remember" previous inputs and use that information to inform its processing of subsequent inputs. Imagine reading a book; you process each word sequentially while retaining the context of previous sentences and chapters. RNNs operate similarly, processing word embeddings one by one and updating their internal state to reflect the evolving meaning of the text.
+
+Technically, an RNN achieves this by feeding the output of its hidden layer back into itself as input for the next time step, along with the next word in the sequence. This recurrent loop allows information to persist and influence future computations. This process can be visualized as "unrolling" the network through time, creating a chain of interconnected layers where each layer represents the processing of a single word.  The weights within the RNN are shared across all time steps; it's the same network applied repeatedly, with the hidden state carrying the memory of past inputs.
+
+<----------section---------->
+
+### RNN Training and Backpropagation Through Time
+
+Training an RNN involves comparing its output to a desired target. For tasks like text classification, the target is the label assigned to the entire text. During training, the network processes the input sequence, and the error is calculated based on the final output. The error is then backpropagated through time, adjusting the weights of the network to minimize the difference between predicted and actual output. This "backpropagation through time" accounts for the impact of each input on the final output, propagating the error back through all time steps.
+
+However, some applications require considering the output at each time step, such as in text generation.  In these cases, the error is calculated and backpropagated at each step, allowing the network to learn the relationships between successive words.  This process allows the RNN to refine its internal representation of the language and generate more coherent and contextually appropriate text.
+
+
+<----------section---------->
+
+### RNN Variants: Addressing the Vanishing Gradient Problem
+
+Traditional RNNs struggle with learning long-term dependencies in sequences.  This is due to the vanishing gradient problem, where gradients become increasingly small as they are backpropagated through many time steps, hindering the network's ability to learn from distant inputs.  To address this, more advanced RNN architectures have been developed.
+
+* **Long Short-Term Memory (LSTM) Networks:** LSTMs introduce a more sophisticated memory mechanism using gates that regulate the flow of information into, out of, and within the memory cell.  These gates allow the network to selectively remember or forget information, enabling it to learn long-term dependencies more effectively. LSTMs have an internal cell state that acts as a long-term memory, and a hidden state that captures short-term dependencies.  The gates control how these states are updated, allowing the network to learn complex relationships over extended sequences.
+
+* **Gated Recurrent Units (GRUs):** GRUs offer a simpler alternative to LSTMs with fewer parameters, making them faster to train. GRUs combine the forget and input gates of LSTMs into a single update gate, streamlining the architecture while still effectively addressing the vanishing gradient problem.  Unlike LSTMs, GRUs don't maintain a separate cell state, relying solely on the hidden state for information storage and transfer.
+
+* **Bidirectional RNNs:** These networks process the input sequence in both forward and backward directions, concatenating the outputs at each time step. This allows the network to capture contextual information from both preceding and succeeding words, enriching its understanding of the sequence. Bidirectional RNNs are particularly useful for tasks where context from both directions is crucial, such as machine translation.
+
+* **Stacked RNNs:** Stacking multiple RNN layers, similar to stacking layers in other neural network architectures, allows the network to learn hierarchical representations of the input sequence. Each layer builds upon the representations learned by the layers below it, allowing the network to capture more complex and abstract patterns.  Stacked LSTMs are a popular choice for many NLP tasks, combining the benefits of LSTMs with the increased representational power of deep networks.
+
+<----------section---------->
+
+### Applications of RNNs in NLP
+
+RNNs and their variants have become indispensable tools in various NLP tasks:
+
+* **Spam Detection:** RNNs can classify emails or text messages as spam or not spam by learning the patterns and characteristics of spam messages.
+
+* **Text Generation:** RNNs can generate new text, including poetry, code, scripts, musical pieces, email, letters, etc., by learning the statistical structure of language from training data.
+
+* **Machine Translation:**  RNNs power machine translation systems by learning the mappings between different languages.
+
+* **Sentiment Analysis:**  RNNs can determine the emotional tone of a text, classifying it as positive, negative, or neutral.
+
+* **Question Answering:**  RNNs can answer questions based on a given context, like a paragraph or document.
+
+* **Text Summarization:**  RNNs can generate summaries of longer texts.
+
+
+<----------section---------->
+
+### Working with Text Data in RNNs: Ragged Tensors and Language Models
+
+* **Ragged Tensors:** Text data often comes in variable lengths. Ragged tensors efficiently handle this variability by allowing different rows to have different lengths, eliminating the need for padding or truncating sequences to a fixed size, thereby improving efficiency.
+
+* **Language Models (LMs):**  LMs predict the probability of the next word in a sequence given the preceding words. RNNs are trained as LMs by predicting the next character or word in the sequence at each time step.  The output at each time step is compared to the actual next word, and the error is used to update the network's weights. This process enables the RNN to learn the statistical structure of language and generate realistic and coherent text.
+
+* **Temperature in Text Generation:**  Temperature is a parameter that controls the randomness of text generation. Low temperatures produce more predictable text, while higher temperatures lead to more creative and diverse output.  It essentially rescales the predicted probabilities before sampling, influencing the likelihood of selecting less probable words.
+
+
+<----------section---------->
+
+### Building a Poetry Generator and Further Exploration
+
+Building a poetry generator exemplifies the power of RNNs in creative text generation.  By training an RNN on a corpus of poetry, the model can learn the style, structure, and vocabulary used in poems. The trained model can then generate new poems by sampling from the learned probability distribution over words.
+
+Furthermore, experimenting with different RNN architectures, hyperparameters, and training data can lead to fascinating results and a deeper understanding of how RNNs learn and represent language.  Tools like Keras and PyTorch provide readily available implementations of various RNN architectures, making exploration and experimentation accessible.  The field of NLP is constantly evolving, and with these powerful tools, discovering new and innovative applications of RNNs is within reach.

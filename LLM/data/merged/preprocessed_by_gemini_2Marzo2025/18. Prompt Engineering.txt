@@ -1,0 +1,74 @@
+## Introduction to Prompt Engineering
+
+Prompt engineering is a relatively new field dedicated to crafting and refining prompts for Large Language Models (LLMs) to maximize their effectiveness across various applications and research domains.  The goals of prompt engineering are multifaceted: understanding the strengths and weaknesses of LLMs, improving their performance on tasks like question answering and reasoning, facilitating easier interaction and integration with other tools, and unlocking new capabilities, such as incorporating domain-specific knowledge and utilizing external resources.
+
+<----------section---------->
+
+## Crafting Effective Prompts
+
+The key to successful prompt engineering lies in writing effective prompts.  A good prompt is clear, concise, and specific. It should begin with a direct instruction (e.g., "Write," "Classify," "Summarize") and provide sufficient detail and description to guide the LLM toward the desired output.  Using examples can be highly beneficial, demonstrating the expected format and content.  However, finding the right balance between detail and brevity is crucial.  Overly long or complex prompts can hinder performance.  Iteration and refinement are essential; start with a simple prompt and gradually add elements, testing and tweaking until optimal results are achieved.
+
+Here are some examples of ineffective prompts and their improved counterparts:
+
+* **Bad:** "Summarize this article."
+* **Good:** "Generate a 100-word summary of this research article, focusing on the main findings."
+
+* **Bad:** "Write an apology email to a client."
+* **Good:** "Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate."
+
+* **Bad:** "Classify the following review."
+* **Good:** "Classify the following review as positive, neutral, or negative."
+
+<----------section---------->
+
+## Anatomy of a Prompt
+
+A typical prompt comprises several key elements:
+
+* **Instruction:** The specific task or action the LLM should perform.
+* **Context:** External information or background details relevant to the task.
+* **Input Data:** The input or question to be processed.
+* **Output Indicator:** The desired format or type of output.
+
+For example, the prompt "Classify the text into neutral, negative, or positive. Text: I think the vacation is okay. Sentiment:" contains the instruction to classify sentiment, the input text "I think the vacation is okay," and the output indicator "Sentiment," which implies a classification label is expected. Another example uses context to guide the response.
+
+<----------section---------->
+
+## In-Context Learning
+
+In-context learning is a core concept in prompt engineering. It refers to the LLM's ability to perform a task using information provided directly within the prompt (the context) without needing to update its internal parameters.  This context can include reference material, input-output examples, step-by-step instructions, clarifying details, or templates to be completed.  Prompt engineering heavily leverages this in-context learning capability.
+
+<----------section---------->
+
+## Prompts for Diverse NLP Tasks
+
+Prompts can be tailored to accomplish a wide range of Natural Language Processing (NLP) tasks, including text summarization, information extraction, question answering, text classification, code generation, and reasoning.  While LLMs have demonstrated significant progress, reasoning tasks, particularly those involving complex logic or mathematics, can still be challenging and require more advanced prompting techniques.
+
+<----------section---------->
+
+## System Prompts and Advanced Techniques
+
+System prompts are instructions provided to the LLM before any user interaction, setting the overall behavior, context, and tone of the assistant. They guide the model on how to respond and what to focus on. Examples include:
+
+* "You are a helpful and knowledgeable assistant who answers questions accurately and concisely."
+* "You are an IT support assistant specializing in troubleshooting software and hardware issues. Respond politely and guide users through step-by-step solutions."
+
+Beyond basic prompting, advanced techniques like zero-shot, few-shot, and chain-of-thought prompting address complex reasoning tasks.  Zero-shot prompting involves giving direct instructions without examples, while few-shot prompting includes examples to guide the model. Chain-of-thought prompting encourages the model to break down complex problems into intermediate steps, enhancing reasoning abilities. Other techniques like self-consistency prompting, meta prompting (including meta meta prompting), prompt chaining, and role prompting further refine and enhance LLM performance.  Self-consistency runs the prompt multiple times and chooses the most frequent output, meta prompting directs the LLM through problem-solving steps, prompt chaining breaks down complex tasks into a sequence of prompts, and role prompting asks the model to adopt a specific persona.
+
+<----------section---------->
+
+## Structured and Generate Knowledge Prompting
+
+Structured prompting employs a semi-formal approach, dividing prompts into distinct sections using delimiters (e.g., ###, ===, >>>, or XML tags) to enhance clarity and predictability for complex tasks. Frameworks like CO-STAR further structure prompts into Context, Objective, Style, Tone, Audience, and Response sections. Generate knowledge prompting, on the other hand, directs the LLM to first generate relevant knowledge about a topic before tackling the main task.  This approach proves particularly valuable when the LLM lacks specific information within its training data.
+
+<----------section---------->
+
+## Retrieval Augmented Generation
+
+Retrieval Augmented Generation (RAG) integrates external information retrieval with LLM text generation. This method addresses the limitations of LLMs by allowing them to access updated or domain-specific data from external sources like databases or search engines.  The LLM then generates responses based on both its internal knowledge and the retrieved information.
+
+<----------section---------->
+
+## Prompt Testing and LLM Settings
+
+Thorough testing is crucial for optimizing prompts and achieving desired outcomes.  Prompt testing tools like OpenAI Playground, Google AI Studio, and LM Studio facilitate this process, offering features for prompt creation, iteration, and model customization.  Furthermore, adjusting LLM settings like temperature, top-p sampling, max length, stop sequences, frequency and presence penalties, and response format significantly impacts the model's output, allowing for fine-grained control over randomness, diversity, length, and repetition.  These settings are typically accessible through the LLM's API.

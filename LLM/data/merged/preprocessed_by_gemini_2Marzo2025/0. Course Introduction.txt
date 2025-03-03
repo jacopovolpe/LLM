@@ -1,0 +1,72 @@
+<----------section---------->
+
+## Introduction to Natural Language Processing and Large Language Models
+
+This course provides a comprehensive introduction to Natural Language Processing (NLP) with a focus on Large Language Models (LLMs).  We will explore fundamental NLP concepts, delve into the architecture and functionalities of transformers, and learn techniques for effectively utilizing and fine-tuning LLMs.  This journey will equip you with the knowledge and skills to design and implement sophisticated NLP systems.
+
+<----------section---------->
+
+## Fundamentals of NLP
+
+NLP is a dynamic field at the intersection of computer science and artificial intelligence that focuses on enabling computers to understand, interpret, and generate human language. This involves transforming text into a format computers can process, extracting meaning, and generating meaningful responses.  The field has evolved significantly, leading to a wide range of applications, from simple text analysis to complex conversational agents.
+
+We begin with the foundational concepts of NLP, tracing its evolution and exploring its diverse applications.  A crucial step in NLP is representing text in a way that computers can understand. This involves techniques like tokenization (breaking text into individual words or units), stemming (reducing words to their root form), lemmatization (finding the dictionary form of words), and Part-of-Speech (POS) tagging.
+
+To analyze textual data quantitatively, we employ mathematical representations like Bag of Words, Vector Space Model, and TF-IDF. These techniques are essential for building search engines and enabling machines to compare and categorize texts based on their content.  We then delve into text classification tasks, including topic labeling and sentiment analysis, which allow machines to automatically categorize and understand the emotional tone of text.
+
+Word embeddings, such as Word2Vec, GloVe, and FastText, represent words as dense vectors, capturing semantic relationships between them.  These embeddings are crucial for many NLP tasks.  We further explore the use of neural networks, specifically Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRUs), and Convolutional Neural Networks (CNNs), in NLP tasks, including text generation.  Finally, we discuss information extraction techniques like parsing and Named Entity Recognition (NER) and their application in building question-answering systems and chatbots.
+
+<----------section---------->
+
+## Transformer Models: The Foundation of LLMs
+
+Transformers have revolutionized NLP with their attention mechanism, allowing models to weigh the importance of different parts of the input text.  We explore the core components of transformers, including self-attention, multi-head attention, positional encoding, and masking.  Understanding the encoder and decoder components of a transformer is essential for grasping how these models process and generate text.
+
+We introduce the Hugging Face library, a powerful tool for working with transformer models, providing pre-trained models and resources for various NLP tasks.  Different transformer architectures exist, tailored for specific tasks. Encoder-decoder models, also known as Seq2Seq models, are commonly used for tasks like translation and summarization. Encoder-only models excel in sentence classification and named entity recognition, while decoder-only models are specialized for text generation.  The section concludes with an explanation of how Large Language Models are defined and trained, building upon the transformer architecture.
+
+
+<----------section---------->
+
+## Prompt Engineering: Guiding LLMs
+
+Prompt engineering plays a crucial role in eliciting desired responses from LLMs. We explore various prompting techniques, including zero-shot and few-shot prompting, which allow us to utilize pre-trained models without extensive task-specific data.  Advanced prompting techniques like Chain-of-Thought prompting, Self-Consistency, and Prompt Chaining can improve the reasoning capabilities and output quality of LLMs.
+
+We also delve into techniques like Role Prompting, Structured Prompts, and System Prompts, which provide further control over the generation process and allow tailoring the model's behavior to specific contexts.  Finally, we introduce Retrieval Augmented Generation, a method that enhances LLM responses by incorporating information retrieved from external knowledge sources.
+
+<----------section---------->
+
+## Fine-Tuning LLMs: Adapting to Specific Tasks
+
+While pre-trained LLMs are powerful, fine-tuning allows us to adapt them to specific tasks and improve their performance. We discuss Feature-Based Fine-Tuning, a method that leverages task-specific features to guide the fine-tuning process.  We also explore Parameter Efficient Fine-Tuning and Low Rank Adaptation, techniques that minimize the computational cost of fine-tuning large models.  Finally, we introduce Reinforcement Learning with Human Feedback, a powerful approach for aligning LLMs with human preferences and values.
+
+<----------section---------->
+
+## Data Augmentation and Model Optimization
+
+Data augmentation is crucial, particularly when dealing with limited data.  While straightforward for images, it's more nuanced in NLP. Techniques include adding random words, substituting synonyms, introducing typos, and converting to lowercase.  Advanced methods involve generative models or grammar rules.  However, it's essential to ensure that the augmented data remains representative of the target domain to avoid negatively impacting model performance.  Actively involving human labelers, especially for edge cases, can significantly enhance model accuracy.
+
+Model optimization involves selecting appropriate hyperparameters, the parameters that govern the model's architecture and training process. These include the number of neurons, layers, learning rates, and various preprocessing choices like tokenizer type and TF-IDF settings.  Initial training typically utilizes default parameters. However, hyperparameter tuning, a process of systematically exploring different hyperparameter combinations, is essential for achieving optimal performance.  This process can be computationally intensive, so starting with a smaller representative dataset and gradually increasing its size as the optimal hyperparameter range is narrowed down is a recommended strategy.
+
+<----------section---------->
+
+## Course Information
+
+**Textbook:**
+
+* H. Lane, C. Howard, H. M. Hapke, Natural Language Processing IN ACTION: Understanding, analyzing, and generating text with Python, Manning, 2019.  Second Edition expected Fall 2024.  Early Access version available online: [https://www.manning.com/books/natural-language-processing-in-action-second-edition](https://www.manning.com/books/natural-language-processing-in-action-second-edition)
+
+**Instructors:**
+
+* Nicola Capuano (DIEM, FSTEC-05P02007, ncapuano@unisa.it, 089 964292)
+* Antonio Greco (DIEM, FSTEC-05P01036, agreco@unisa.it, 089 963003)
+
+
+**Online Material:**
+
+* [https://elearning.unisa.it/](https://elearning.unisa.it/)
+
+
+**Exam:**
+
+* Project work
+* Oral exam (including discussion of the project work)
