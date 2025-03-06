@@ -1,0 +1,1632 @@
+=== Extracted text from PDF ===
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 7Dialog EnginesNicola Capuano and Antonio GrecoDIEM – University of Salerno
+Outline•Task Oriented Dialogue Systems•Introduction to Rasa•Building a Chatbot with Rasa•Custom Actions
+
+Task Oriented Dialogue Systems
+Types of Conversational AIChit-Chat•No specific goal•Focus on generating natural responses•The more conversational turns the better
+Task-Oriented Dialogue Systems (TOD)•Help users achieve their goal •Focus on understanding users, tracking states, and generating next actions•The less conversational turns the better 
+
+Task Oriented Dialogue•I have a question•Which room is the dialogue tutorial in?•When is the IJCNLP 2017 conference?•I need to get this done•Book me the flight from Seattle to Taipei•Schedule a meeting with Bill at 10:00 tomorrow•I need a recommendation•Can you suggest me a restaurant?•Can you suggest me something to see near me?
+TOD System Architecture
+Rasa is a popular framework for building TOD systemshttps://rasa.com/ 
+Natural Language UnderstandingTwo main tasks:•Intent Classification•Approached as a multi-label sentence classification task•Entity recognition•Approached with NER (rule-based or ML-based)
+What’s the weather like tomorrow?
+Conversation designPlanning the types of conversations your assistant will be able to have•Asking who your users are •Understanding the assistant’s purpose •Documenting the most typical conversations users will have with the assistantIt’s difficult to anticipate everything users might ask•You should only rely on hypothetical conversations in the early stages of development •Then train your assistant on real conversations as soon as possible
+Introduction to
+Rasa IntroOpen-Source Conversational Framework•Launched in 2016•Used globally to create thousands of bots in various languagesRasa Basic Units•Intents: what the user wants to achieve•Entities: terms or objects that are relevant/necessary for the intent
+
+Rasa IntroRasa Basic Units (continued)•Actions: what should the bot do in response to intents•Responses: predefined utterances•Complex Actions: custom Python code interacting with other systems (e.g., databases, Web APIs)•Slots: variables used to store information extracted from user inputs during a conversation•Forms: sets of slots used to collect multiple pieces of information from the user in a structured manner•Stories: sequences of user intents and bot actions used to pre-program dialog scenarios
+Rasa Intro
+Sample Story
+Installing RasaCreate and activate a new virtual environment:•python-m venvrasa.env•source rasa.env/bin/activateInstall Rasa•pip install rasaRasa Project•Most information is stored in YAML files•Python code needed to program complex actions
+Create a New Projectrasa init
+…
+…
+…
+Create a New Projectrasa init
+…
+…
+…
+Directory StructureIncludes Python code for custom actionsDefines intents and entitiesDefines short conversation paths that should always be followedDefines general stories to train the modelIncludes the trained modelsIncludes Bot test casesDefines pipelines, policies, and componentsCredentials for external platformsThe main file: lists all intents, entities, slots, responses, forms, and actionsLists the endpoints your Bot can use
+
+domain.yml
+If the user starts a new interaction after the previous session expires, the data from the previous session must be transferred to the new one
+minutes
+nlu.yml
+…
+
+nlu.yml
+Note: To train the model to recognize intents, RASA needs at least 7-10 utterances per intent
+stories.yml
+rules.yml
+Visualize Storiesrasa visualize
+Other Commands•rasa train Trains a model using your NLU data and stories, saves trained model in ./models•rasa shell Loads your trained model and lets you talk to your assistant on the command line•rasa runStarts a server with your trained modelFor cross origin calls use: rasa run --cors "*"•rasa –h (help) 
+
+Other Commands•rasa train Trains a model using your NLU data and stories, saves trained model in ./models•rasa shell Loads your trained model and lets you talk to your assistant on the command line•rasa runStarts a server with your trained modelFor cross origin calls use: rasa run --cors "*”•rasa –h (help) 
+Rasa REST APIRasa will provide you with a REST endpoint •You can post messages and receive the Bot’s responses from external systems (e.g., Web apps)•Add the REST channel to your credentials.yml:
+•After restarting your Rasa server, you can reach the bot at: http://<host>:<port>/webhooks/rest/webhook •Documentation: https://rasa.com/docs/rasa/connectors/your-own-website/
+
+Request and Response FormatYou can POST JSON requests with the following format:
+The response from Rasa will be a JSON body of bot responses, for example:
+Web-based FrontendsYou can integrate a Rasa bot into your website•Custom Implementation•Build your own frontend using HTML/CSS/JavaScript•Use a pre-built solution•Rasa Widget (React-based)•Clone from: https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0 •Copy the ./dist files to your web project to use the widget
+
+More on Connectors•You can enable authentication•You can use web-socket for real-time interaction•Rasa provides built-in connectors for:•Facebook Messenger•Slack•Telegram•Twilio•Microsoft Bot Frameworkhttps://rasa.com/docs/rasa/messaging-and-voice-channels/
+•Cisco Webex Teams•RocketChat•Mattermost•Google Hangouts Chat
+Building a Chatbot with
+
+Domain FileDefines everything your assistant knows:
+•Responses: These are the things the assistant can say to users•Intents: These are categories of things users say•Entities: These are pieces of information extracted from incoming text•Slots: These are variables remembered over the course of a conversation•Actions: These add application logic and extend what your assistant can do
+Domain File
+Basic responses:
+Domain File
+Multiple responses: when triggered, one of this responses will be randomly selected
+Slots: {name} will be filled with the value of the name slot ("None" until it's filled)
+Domain FileResponses: buttons and images
+Buttons and corresponding intents
+Text + image
+Domain FileResponses: buttons and images
+Buttons and corresponding intents
+Text + image
+Rendering depends on the chosen channel
+Domain File•Must correspond to the intents on the NLU file•Tip: Start with the fewest intents possibleYou can add or change intents at any time
+List of intents
+
+Domain FileList of entities•Can be numbers, dates, country names, product names, …•Standard entities can be extracted with pre-built models
+•Specific modules must be included in the config file•Custom entities can be extracted with regular expressions, lookup tables or machine learning•The NLU file will specify how
+NLU FileAimed at training the system to extract structured information from user messages•This includes the intents and involved entitiesTraining data•Example user utterances categorized by intentExtra information•Regular Expressions: patterns to capture specific types of entities•Lookup Tables: comprehensive lists of possible values for entities•Synonyms: Define synonyms for common terms to ensure that variations in user input are understood correctly
+NLU FileSample lists of utterances divided by intent
+Involved entities: city and flight_number•must correspond to those listed in the domain file
+entity: cityvalue: New York
+NLU FileSample extra information
+Without lookup tables and regex, custom entities are simply recognized based on machine learning
+NLU FileEntity Roles allow you to add more details to your entitiesExample:
+NLU FileGood practices:•Start with the smallest possible number of intents•Most people want to do the same thing•Start with the most common•Additional intents will come from user data•Don’t use intents to store information (use entities instead)
+
+Stories FileStories are training data to teach your assistant what it should do next
+If the confidence is too low…
+Stories File
+•Start with common flows (happy paths)•Add common errors/digressions•Use interactive learning to improve stories•Once your model is in production add more data from real user conversations
+
+Stories FileOR Statements:Same action for different intents
+Checkpoints:Link to other stories
+Rules FileRules are a way to describe short pieces of conversations that always go the same way•Not suitable for multi-turn interactions•Not used to train ML algorithms but applied as isRules file:
+
+SlotsSlots are your assistant's memory•Enable your assistant to store important details and later use them in a specific context
+•Can be configured to influence the flow of the conversation
+Slots and EntitiesSlots are defined in the domain file and are usually connected to entitiesExample:
+Type can be text, boolean, categorical float, list, anyThis slot will not influence the conversation flowThis slot is filled with the value of the destination entity (if set)
+Slot MappingsAllow you to define how each slot will be filled in•Are applied after each user messageExample:
+Intent: make_transactionslot is set
+Intent: check_transactionslot is not set
+Slot MappingsAllow you to define how each slot will be filled in•Are applied after each user messageExample:
+Intent: make_transactionslot is set
+Intent: check_transactionslot is not set
+Mapping parameters:•intent: only applies the mapping when this intent is predicted•not_intent: does not apply the mapping when this intent is predicted•role: only applies the mapping if the extracted entity has this role
+Use Slots in ResponsesYou can create more dynamic responses by including slots in the responses
+If name is not set, then its value will be None
+Pipeline ConfigurationThe config.yml file defines the NLU pipeline, and the dialog policies used by Rasa•Language: defines the language of the bot (e.g., en, fr, it).•Pipeline: specifies the steps to process user messages (NLU pipeline) to extract intents and entities•Policies: defines how the bot should handle dialogue and predict next actions.
+
+NLU PipelineThe pipeline defines the sequence of components that process user messages:•Tokenizers: Break down the text into tokens (words, subwords)•Featurizers: Convert tokens into numerical features that models can use•Classifiers: Determine the user’s intent•Entity Extractors: Identify named entities (e.g., names, dates)
+NLU PipelineTokenizers:•WhitespaceTokenizer: Splits text into tokens based on whitespace•SpacyTokenizer: Leverages SpaCy’s tokenization•...Featurizers:•CountVectorsFeaturizer: Converts text into a bag-of-words•ConveRTFeaturizer: Uses pre-trained ConveRT embeddings specialized for conversational data•SpacyFeaturizer: Leverages SpaCy’s pre-trained word embeddings•...
+NLU PipelineClassifiers:•DIETClassifier: A multi-task transformer-based classifier for both intent classification and entity extraction•SklearnIntentClassifier: Uses scikit-learn algorithms (e.g., SVM or logistic regression) for intent classification•...Entity extractors:•RegexEntityExtractor: Extracts entities using regular expressions for pattern matching•SpacyEntityExtractor: Uses SpaCy’s pre-trained models to extract named entities based on SpaCy’s NER system.•…
+Training PoliciesTraining policies are techniques your assistant uses to decide on how to respond back to the userPolicy priority defines how assistant makes decisions when multiple policies predict the next actin with the same accuracy
+
+Training Policies•Rule Policy: assistant makes the decision on how to respond based on rules defined in rules.yml
+Training Policies•Memoization Policy: assistant makes the decision on how to respond matching the real interaction with stories from stories.yml
+HelloHey! How can I help you?Can I check the balance of my card?
+Training Policies•TED Policy: assistant makes the decision on how to respond by learning from the data defined in stories.yml•Transformer Embedding Dialogue (TED) is a neural network architecture for next action prediction•Max History: how many conversational steps your assistant keeps in the memory when making the prediction•Epochs: the number of epochs used to train the model
+Custom Actions
+Custom ActionsWhat do we want virtual assistants to do?•Send back appropriate message•Send an email•Make a calendar appointment•Fetch relevant information from a database•Check information from an API•Calculate something specific
+Example
+
+nlu.yml
+rules.ymldomain.yml
+config.yml
+Enables the use of lookup tables for entity recognitionThe model must be then trained with…rasa train
+actions.py
+actions.py
+
+Action ServerTo enable custom actions the action server endpoint must be set in endpoints.yml…•Then the action server must be run: rasa run actions•We can then try the model: rasa shell
+ReferencesNatural Language Processing IN ACTIONUnderstanding, analyzing, and generating text with Python Chapter 12
+14 Video Tutorialhttps://www.youtube.com/playlist?list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi 
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 7Dialog EnginesNicola Capuano and Antonio GrecoDIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 7
+Dialog Engines
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+Task Oriented Dialogue Systems
+Introduction to Rasa
+
+Building a Chatbot with
+
+‘a
+Rasa Wieru
+
+0 __.
+\V
+0
+
+Custom Actions
+
+Task Oriented Dialogue
+Systems
+
+Types of Conversational Al
+
+Chit-Chat Task-Oriented Dialogue
+Systems (TOD)
+
+° Help users achieve their goal
+
+° No specific goal
+
+® Focus on generating
+
+natural responses * Focus on understanding
+* The more conversational users, tracking states, and
+turns the better generating next actions
+
+® The less conversational turns
+the better
+
+_—
+—
+
+Task Oriented Dialogue
+
+* | have a question
+
+° Which room is the dialogue tutorial in?
+
+° When is the IJCNLP 2017 conference?
+* | need to get this done
+
+® Book me the flight from Seattle to Taipei
+
+° Schedule a meeting with Bill at 10:00 tomorrow
+* | need a recommendation
+
+® Can you suggest me a restaurant?
+
+° Can you suggest me something to see near me?
+
+TOD System Architecture
+
+| I
+
+I Input Modules I
+
+I “Ears” I
+
+- I 1
+
+“What’s the weather I NLU. GUI elements 1
+
+2 like tomorrow: > Connector context, personal '
+
+ae cc eunuest ws Modules info ;
+
+pater ! Dialogue I
+
+| Management | _!
+
+rar l “Brain” !
+It will be sunny and I I Backend,
+20°C.” I Connector to any Output , database,
+. conversational Modules API, etc.
+
+penne je L platforms ; 1
+
+—_ I “Mouth I
+
+I I
+
+1 NLG, GUI elements l
+
+|
+
+Rasa is a popular framework for building TOD systems
+
+https://rasa.com/
+
+Natural Language Understanding
+
+Two main tasks:
+* Intent Classification
+
+°® Approached as a multi-label sentence classification task
+® Entity recognition
+
+° Approached with NER (rule-based or ML-based)
+
+-— Intent Classification
+What's the
+weather like
+tomorrow?
+
+“What's the weather like tomorrow?” {“intent’: “request_weather’}
+
+A — Entity recognition
+
+_ “What's the weather like tomorrow?” {“date”: “tomorrow’}
+
+Conversation design
+
+Planning the types of conversations your assistant will be
+able to have
+
+° Asking who your users are
+
+® Understanding the assistant’s purpose
+
+* Documenting the most typical conversations users will have with
+the assistant
+
+It’s difficult to anticipate everything users might ask
+
+® You should only rely on hypothetical conversations in the early
+
+stages of development
+Y
+
+Then train your assistant on real conversations as soon as possible
+
+( Introduction to
+
+Rasa Intro
+
+Open-Source Conversational Framework
+® Launched in 2016
+
+° Used globally to create thousands of bots in various languages
+
+Rasa Basic Units
+© {ntents: what the user wants to achieve
+
+® Entities: terms or objects that are relevant/necessary for the
+intent
+
+Utterance
+
+“Show me yesterday's financial news”
+
+—_— WoO” eo
+Entity Entity
+
+—r+u~
+
+Intent: showNews
+wee
+
+Verb Noun
+
+Rasa Intro
+
+Rasa Basic Units (continued)
+® Actions: what should the bot do in response to intents
+°® Responses: predefined utterances
+
+° Complex Actions: custom Python code interacting with other systems
+(e.g., databases, Web APIs)
+
+® Slots: variables used to store information extracted from user
+inputs during a conversation
+
+°® Forms: sets of slots used to collect multiple pieces of information
+from the user in a structured manner
+
+® Stories: sequences of user intents and bot actions used to pre-
+program dialog scenarios
+
+Rasa Intro
+
+Sample Story
+| con : ## explain nlu tory name
+(ea) Hello there! How can | help? - utter_greet «bot utterance
+
+(2) Rasa NLU performs Natural
+La) Language Understanding. It - utter_explain_rasa_nlu
+
+turns unstructured inputs
+
+into structured data.
+
+Installing Rasa
+
+Create and activate a new virtual environment:
+
+* python -m venv rasa.env
+
+© source rasa.env/bin/activate
+
+Install Rasa
+
+* pip install rasa
+
+Rasa Project
+
+© Most information is stored in YAML files
+
+° Python code needed to program complex actions
+
+Create a New Project
+
+rasa init <a
+
+Welcome to Rasa! w
+
+To get started quickly, an initial project will be created.
+If you need some help, check out the documentation at https://rasa.com/docs/rasa.
+Now let's start! Sf
+
+? Please enter a path where the project will be created [default: current directory] myBot
+? Path 'myBot' does not exist ©. Create path? Yes
+
+Created project directory at '/Users/niccap/Sorgenti/VSCode/NLP/Rasa/myBot'.
+Finished creating project structure.
+
+? ? Do you want to train an initial model? & ™@ Yes
+
+Training an initial model...
+
+Your Rasa model is trained and saved at 'models/20240808-163752-ornery-notch.tar.gz'.
+
+\ you want to speak to the trained assistant on the command line? @ Yes
+
+Create a New Project
+
+rasa init <a
+
+Welcome to Rasa! w
+
+To get started quickly, an initial project will be created.
+If you need some help, check out the documentation at https://rasa.com/docs/rasa.
+Now let's start! Sf
+
+? Please enter a path where the project will be created [default: current directory] myBot
+? Path 'myBot' does not exist ©. Create path? Yes
+
+Created projecj Bot loaded. Type a message and press enter (use '/stop' to exit):
+Finished creat} Your input -> hello
+? ? Do you wan Hey! How are you?
+Training an in} Your input -> I'm very sad today
+Here is something to cheer you up:
+Image: https://i. imgur.com/nGF1K8f. jpg
+
+Did that help you?
+Your Rasa mode] your input -> yes, thanks
+? Do you want | Great, carry on!
+Your input -> bye
+Bye
+Your input —> /stop
+
+Directory Structure
+
+; Includes Python code for custom actions
+> actions <———~
+
+v data _-s Defines intents and entities
+! nluyml a Defines short conversation paths that
+! rules.yml should always be followed
+
+! stories.yml <————— Defines general stories to train the model
+
+models <——————— Includes the trained models
+
+tests <—_—________ includes Bot test cases
+config.yml
+
+c= VY VY
+
+— Defines pipelines, policies, and components
+credentials.yml
+
+— Credentials for external platforms
+
+domain.yml
+endpoints ym — The main file: lists all intents, entities, slots,
+
+NN responses, forms, and actions
+
+Lists the endpoints your Bot can use
+
+domain.yml
+
+intents: utter_happy:
+
+- greet - text: "Great, carry on!"
+
+- goodbye
+
+- affirm utter_goodbye:
+
+- deny - text: "Bye"
+
+- mood_great
+
+— mood_unhappy utter_iamabot:
+
+- bot_challenge - text: "I am a bot, powered by Rasa."
+responses: session_config:
+
+utter_greet: session_expiration_time: 60 <———— minutes
+
+- text: "Hey! How are you?" carry_over_slots_to_new_session: true
+
+utter_cheer_up:
+- text: "Here is something to cheer you up:"
+image: "https://i.imgur.com/nGF1K8f.jpg"
+
+utter_did_that_help: If the user starts a new
+
+- text: "Did that help you?" interaction after the previous
+session expires, the data from
+the previous session must be
+transferred to the new one
+
+nlu.yml
+
+- intent: greet - intent: goodbye - intent: affirm
+examples: | examples: | examples: |
+— hey - cu - yes
+- hello - good by -y
+- hi - cee you later - indeed
+- hello there - good night - of course
+- good morning — bye - that sounds good
+- good evening - goodbye - correct
+— moin — have a nice day
+— hey there - see you around - intent: deny
+- let's go - bye bye examples: |
+— hey dude - see you later - no
+— goodmorning -n
+— goodevening ; - never
+good afternoon — intent: bot_challenge - I don't think so
+examples: | - don't like that
+- are you a bot? — no way
+- are you a human? - not really
+
+am I talking to a bot?
+am I talking to a human?
+
+- intent: mood_great
+examples: |
+perfect
+
+great
+
+extremely good
+so so perfect
+so good
+
+so perfect
+
+story: sad path 1
+steps:
+
+— intent:
+- action:
+- intent:
+- action:
+— action:
+- intent:
+- action:
+
+greet
+
+utter_greet
+mood_unhappy
+utter_cheer_up
+utter_did_that_help
+affirm
+utter_happy
+
+story: happy path
+steps:
+
+— intent:
+- action:
+- intent:
+- action:
+
+greet
+utter_greet
+mood_great
+utter_happy
+
+—_—_——_~ - intent:
+
+nlu.yml
+
+- intent: mood_unhappy
+examples: |
+- my day was horrible
+- I am sad
+
+amazing - I don't feel very well
+feeling like a king - I am disappointed
+wonderful -— super sad
+
+I am feeling very good - I'm so sad
+
+I am great - sad
+
+I am amazing - very sad
+
+I am going to save the world — unhappy
+
+super stoked — not good
+
+- not very good
+- extremly sad
+- so saad
+
+- so sad
+
+Note: To train the model to recognize intents,
+RASA needs at least 7-10 utterances per intent
+
+stories.yml
+
+- story: sad path 2
+steps:
+- intent:
+- action:
+- intent:
+- action:
+- action:
+
+greet
+
+utter_greet
+mood_unhappy
+utter_cheer_up
+utter_did_that_help
+deny
+
+- action: utter_goodbye
+
+rules.yml
+
+- rule: Say goodbye anytime the user says goodbye
+steps:
+- intent: goodbye
+- action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+steps:
+- intent: bot_challenge
+- action: utter_iamabot
+
+Visualize
+Stories
+utter_greet
+rasa visualize
+utter_happy utter_lamabot
+
+Other Commands
+
+rasa train
+
+Trains a model using your NLU data and stories, saves trained
+model in ./models
+
+rasa shell
+
+Loads your trained model and lets you talk to your assistant on
+the command line
+
+rasa run
+Starts a server with your trained model
+INFO root - Starting Rasa server on http://0.0.0.0:5005
+
+For cross origin calls use: rasa run --cors "*"
+
+rasa -h (help)
+
+Other Commands
+
+®* rasa train
+
+usage: rasa [-h] |--version] {init, run,shell, train, interactive, telemetry, test, visualize,data,export,x,evaluate} ...
+
+Rasa command line interface. Rasa allows you to build your own conversational assistants @. The ‘rasa’ command allows you
+
+to easily run most
+
+common commands like creating a new bot, training or evaluating models.
+
+positional arguments:
+
+{init,run,shell, train, interactive, telemetry, test, visualize, data, export, x, evaluate}
+
+init
+
+run
+
+shell
+train
+interactive
+telemetry
+test
+visualize
+data
+export
+
+x
+evaluate
+
+options:
+
+-h, —-help
+--version
+
+rest:
+
+Rasa commands
+
+Creates a new project, with example training data, actions, and config files.
+
+Starts a Rasa server with your trained model.
+
+Loads your trained model and lets you talk to your assistant on the command Line.
+
+Trains a Rasa model using your NLU data and stories.
+
+Starts an interactive learning session to create new training data for a Rasa model by chatting.
+Configuration of Rasa Open Source telemetry reporting.
+
+Tests Rasa models using your test NLU data and stories.
+
+Visualize stories.
+
+Utils for the Rasa training files.
+
+Export conversations using an event broker.
+
+Run a Rasa server in a mode that enables connecting to Rasa Enterprise as the config endpoint.
+Tools for evaluating models.
+
+show this help message and exit
+Print installed Rasa version
+
+Rasa REST API
+
+Rasa will provide you with a REST endpoint
+
+® You can post messages and receive the Bot’s responses from
+external systems (e.g., Web apps)
+
+° Add the REST channel to your credentials. yml:
+
+# # you don't need to provide anything here - this channel doesn't
+# # require any credentials
+
+° After restarting your Rasa server, you can reach the bot at:
+http://<host>:<port>/webhooks/rest/webhook
+
+Documentation:
+https://rasa.com/docs/rasa/connectors/your-own-website/
+
+Request and Response Format
+
+You can POST JSON requests with the following format:
+
+q
+"sender": "test_user", + ~//-sender- ID
+"message": "I'm- sad!"
+$
+[
+i
+The response from "recipient_id": "test_user",
+. "text": "Here is something to cheer you up:"
+Rasa will be a JSON ee
+body of bot : a
+"recipient_id": "test_user",
+responses, "image": "https: //i.imgur.com/nGF1K8f. jpg"
+for example: 7
+
+"recipient_id": "test_user",
+"text": "Did that help you?"
+
+Web-based Frontends
+
+You can integrate a Rasa bot into
+your website
+
+e Custom Implementation Fri, Aug 9, 10:30 AM
+
+Here is something to cheer you up:
+® Build your own frontend using
+HTML/CSS/JavaScript
+
+* Use a pre-built solution
+°® Rasa Widget (React-based)
+
+© Clone from:
+
+https://github.com/JiteshGaikwad/Ch
+atbot-Widget/tree/Widget2.o eee
+
+o Fri, Aug 9, 10:30AM
+
+® Copy the ./dist files to your web
+project to use the widget Type your message here... J
+
+More on Connectors
+
+® You can enable authentication
+
+® You can use web-socket for real-time interaction
+
+° Rasa provides built-in connectors for:
+
+°® Facebook Messenger * Cisco Webex Teams
+
+°® Slack * RocketChat
+
+* Telegram ° Mattermost
+
+* Twilio * Google Hangouts Chat
+
+© Microsoft Bot Framework
+
+https://rasa.com/docs/rasa/messaging-and-voice-channels/
+
+Building a Chatbot with
+
+RASA
+
+Domain File
+
+Defines everything your assistant knows:
+
+Responses: These are the things the assistant
+can say to users
+
+Intents: These are categories of things users
+
+Say
+
+Entities: These are pieces of information
+extracted from incoming text
+
+© Slots: These are variables remembered over
+the course of a conversation
+
+® Actions: These add application logic and
+extend what your assistant can do
+
+Domain File
+
+Basic responses:
+
+responses:
+utter greet:
+
+- text: "Hey there!"
+utter goodbye:
+
+- text: "Goodbye : ("
+utter default:
+
+- text: "Sorry, I didn't get that, can you rephrase?"
+utter youarewelcome:
+
+- text: "You're very welcome."
+
+utter iamabot:
+- text: "I am a bot, powered by Rasa."
+
+Domain File
+
+Multiple responses: when triggered, one of this
+responses will be randomly selected
+
+responses:
+
+utter greet:
+- text: "Hey, {name}. How are you?"
+
+- text: "Hey, {name}. How is your day going?"
+
+Slots: {name} will be filled with the
+value of the name slot ("None"
+until it's filled)
+
+Domain File
+
+Responses: buttons and images
+
+responses:
+utter greet:
+- text: "Hey! How are you?"
+buttons:
+- title: "great"
+edechgnh Buttons and
+eetreleciuancertsad: corresponding intents
+
+payload: "/mood_sad"
+
+payload: "/mood_ great"
+
+utter cheer up:
+- text: "Here is something to cheer you up:"
+image: "https://i.imgur.com/nGF1K8£.jpg"
+
+Text + image
+
+Domain File
+
+Responses: buttons and images
+
+responses:
+utter greet:
+- text: "Hey! How are you?" Hey! How are you?
+buttons:
+great super sad
+
+- title: "great" Sun, Aug 11, 10:32AM
+edechgnh Buttons a
+
+payload: "/mood_ great"
+
+- title: "super sad" correspon ——
+payload: "/mood_sad"
+utter cheer up:
+
+Here is something to cheer you up:
+
+- text: "Here is something to cheer
+image: "https://i.imgur.com/nGF1K8f
+
+Rendering
+depends on the
+chosen channel
+
+Text + image
+
+Domain File
+
+List of intents
+
+intents: ® Must correspond to the
+* SEES intents on the NLU file
+deny
+greet
+
+thankyou ° Tip: Start with the fewest
+Seen he intents possible
+
+search concerts
+search venues
+
+— You can add or change
+
+- compare reviews
+
+bot challenge intents at any time
+
+- how_to get started
+
+Domain File
+
+List of entities
+* Can be numbers, dates, country names, product names, ...
+
+® Standard entities can be extracted with pre-built models
+
+entities
+PERSON
+time
+
+membership_type
+- priority
+
+° Specific modules must be included in the config file
+
+® Custom entities can be extracted with regular expressions,
+lookup tables or machine learning
+
+° The NLU file will specify how
+
+NLU File
+
+Aimed at training the system to extract structured
+information from user messages
+
+® This includes the intents and involved entities
+
+Training data
+
+°* Example user utterances categorized by intent
+
+Extra information
+® Regular Expressions: patterns to capture specific types of entities
+
+® Lookup Tables: comprehensive lists of possible values for entities
+
+® Synonyms: Define synonyms for common terms to ensure that
+variations in user input are understood correctly
+
+NLU File
+
+Sample lists of utterances divided by intent
+
+nlu: entity: city
+
+onarpless a value: New York
+- I want to book a flight to [New York](city)
+- Book a flight from [Los Angeles](city) to [Chicago](city)
+- Can you help me book a flight to [San Francisco] (city)?
+- I need a flight ticket to [Boston] (city)
+- I'd like to fly from [Houston](city) to [Atlanta] (city)
+
+- intent: check_flight_status
+examples: |
+- What is the status of flight [AA123](flight_number)?
+- Can you tell me if flight [UA456](flight_number) is delayed?
+- I want to check the status of flight number [DL789](flight_number)
+- Is flight [AA123](flight_number) on time?
+
+Involved entities: city and flight_number
+
+® must correspond to those listed in the domain file
+
+NLU File
+
+Sample extra information
+
+- lookup_table: city — synonym:
+examples: | - synonym: flight
+- New York examples: |
+- Los Angeles - flight
+- Chicago - flight ticket
+- San Francisco - plane ticket
+= Boston — air ticket
+- Houston
+- Atlanta
+- regex:
+
+- name: flight_number
+pattern: "\\b[A-Z0-9]{2,5}\\b" # Regex for flight numbers
+
+Without lookup tables and regex, custom entities are
+simply recognized based on machine learning
+
+NLU File
+
+Entity Roles allow you to add more details to your entities
+
+Example:
+
+| am looking for a flight from New York to Boston.
+
+entity: location entity: Location
+value: New York value: Boston
+role: origin role: destination
+
+I am looking for a flight from [New York]{“entity”:”location”, “role”:”origin”} to
+
+[Boston] {“entity”:” location”, “role”: ”’destination”}.
+
+NLU File
+
+Good practices:
+
+* Start with the smallest possible number of intents
+° Most people want to do the same thing
+
+© Start with the most common
+® Additional intents will come from user data
+
+* Don’t use intents to store information (use entities instead)
+
+book_train: make_booking:
+@ One train ticket @ One [train](train) ticket
+@ Need to book a train ride e Need to book a [train](train) ride
+e Arail journey please e A [rail](train) journey please
+@ One [plane](air) ticket
+book_plane: e@ Need to book a [plane](air) ride
+
+@ One plane ticket e i'd like to book a trip
+e Need to book a plane ride e Need a vacation
+
+Stories File
+
+Stories are training data to teach your assistant what it
+should do next
+
+Hi, | need a hospital A
+
+Next best action:
+
+Hi, | need a hospital A
+
+© Sorry, | didn't quite understand.
+Can you rephrase?
+
+utter_ask_name | am ill and would like to
+utter_greet_user find the nearest hospital to
+
+get a checkup.
+
+© Sure, let me do a search.
+
+Where are you based?
+
+If the confidence is
+too low...
+
+Stories File
+
+stories:
+- story: happy path
+steps:
+- intent: greet
+- action: utter greet
+- intent: moood great
+
+- action: utter happy
+
+Start with common flows (happy paths)
+Add common errors/digressions
+Use interactive learning to improve stories
+
+Once your model is in production add more data from
+real user conversations
+
+Stories File
+
+stories: OR
+- story: newsletter signup with OR
+steps: Statements:
+
+intent: signup newsletter Same action for
+
+action: utter ask confirm signup different intents
+
+or:
+- intent: affirm
+- intent: thanks
+action: action signup newsletter
+
+stories: Checkpoints:
+- story: beginning of conversation ;
+steps: Link to other
+
+intent: greet stories
+action: utter greet
+
+intent: goodbye
+
+action: utter goodbye
+
+checkpoint: ask_feedback
+
+Rules File
+
+Rules are a way to describe short pieces of conversations
+that always go the same way
+
+© Not suitable for multi-turn interactions
+
+® Not used to train ML algorithms but applied as is
+
+Rules file: rules:
+- rule: Greeting Rule
+steps:
+
+- intent: greet
+
+- action: utter greet
+
+Slots are your assistant's memory
+
+® Enable your assistant to store important details and later use
+
+them ina specific context
+
+| would like to book a flight to Sydney. ~,,
+()) Booking a ticket to Sydney! -_
+
+slot: destination
+value: Sydney
+
+® Can be configured to influence the flow of the conversation
+
+| would like to book a flight to New
+York.
+
+Sure! Looking for the options.
+
+| would like to book a flight ticket.
+
+@) What is your destination?
+
+Slots and Entities
+
+Slots are defined in the domain file and are usually
+
+connected to entities
+
+Example:
+
+entities:
+- destination
+
+slots:
+destination:
+type: text
+
+influence_conversation:
+
+mappings:
+
+- type: from_entity
+entity: destination
+
+Type can be text,
+boolean, categorical
+float, list, any
+
+This slot will not
+influence the
+conversation flow
+
+This slot is filled with the
+value of the destination
+entity (if set)
+
+Slot Mappings
+
+Allow you to define how each slot will be filled in
+
+° Are applied after each user message
+
+Example:
+
+entities:
+- entity_name
+slots:
+amount_of_money:
+type: any
+mappings:
+- type: from_entity entity: number
+entity: number . .
+nee make_transaction Did | receive the $1000
+not_intent: check_transaction that Alice sent me yesterday?
+
+Send $200)to Ben.
+
+Intent: make_transaction
+slot is set
+
+Intent: check_transaction
+slot is not set
+
+Slot Mappings
+
+Allow you to define how each slot will be filled in
+
+° Are applied after each user message
+
+Example: Mapping parameters:
+
+entities: ® intent: only applies the
+~_entity_name mapping when this intent is
+
+slots:
+amount_of_money: predicted
+
+wy Pes aty ° not_intent: does not apply
+mappings: h h hi
+- type: from_entity the mapping when this
+
+entity: number intent is predicted
+intent: make_transaction
+not_intent: check_transaction ® role: only applies the
+
+mapping if the extracted
+entity has this role
+
+Use Slots in Responses
+
+You can create more dynamic responses by including
+slots in the responses
+
+slots:
+name:
+type: any
+
+responses:
+utter_greet:
+- text: “Hello {name}! How are you?”
+- text: “Hello there :)”
+- text: “Hi. How can I help you today?”
+
+If name is not set, then its value will be None
+
+Pipeline Configuration
+
+The config.yml file defines the NLU pipeline, and the
+dialog policies used by Rasa
+° Language: defines the language of the bot (e.g., en, fr, it).
+
+° Pipeline: specifies the steps to process user messages (NLU
+pipeline) to extract intents and entities
+
+® Policies: defines how the bot should handle dialogue and predict
+next actions.
+
+language: en
+
+pipeline: null
+# The default pipeline is used to train your model.
+
+policies: null
+# The default policies are used to train your model.
+
+NLU Pipeline
+
+The pipeline defines the sequence of components that
+process user messages:
+
+® Tokenizers: Break down the text into tokens (words, subwords)
+
+© Featurizers: Convert tokens into numerical features that models
+can use
+
+® Classifiers: Determine the user’s intent
+Entity Extractors: Identify named entities (e.g., names, dates)
+pipeline:
+
+—- name: WhitespaceTokenizer
+
+- name: CountVectorsFeaturizer
+
+- name: DIETClassifier
+
+epochs: 150
+- name: EntitySynonymMapper
+
+NLU Pipeline
+
+Tokenizers:
+°® WhitespaceTokenizer: Splits text into tokens based on whitespace
+
+°® SpacyTokenizer: Leverages SpaCy’s tokenization
+
+Featurizers:
+® CountVectorsFeaturizer: Converts text into a bag-of-words
+
+°® ConveRTFeaturizer: Uses pre-trained ConveRT embeddings
+specialized for conversational data
+
+° SpacyFeaturizer: Leverages SpaCy’s pre-trained word embeddings
+
+Y
+
+NLU Pipeline
+
+Classifiers:
+
+°® DIETClassifier: A multi-task transformer-based classifier for both
+intent classification and entity extraction
+
+° SklearnintentClassifier: Uses scikit-learn algorithms (e.g.,
+SVM or logistic regression) for intent classification
+
+Entity extractors:
+
+° RegexEntityExtractor: Extracts entities using regular expressions
+for pattern matching
+
+°® SpacyEntityExtractor: Uses SpaCy’s pre-trained models to extract
+named entities based on SpaCy’s NER system.
+
+Training policies are
+techniques your
+assistant uses to decide
+on how to respond
+back to the user
+
+Training Policies
+
+config.yml
+
+Policy priority defines
+
+name: MemoizationPolicy
+
+how assistant makes name: TEDPolicy
+decisions when multiple PES
+policies predict the next same:
+actin with the same
+
+ccuracy
+
+\
+
+Training Policies
+
+® Rule Policy: assistant makes the decision on how to
+respond based on rules defined in rules.yml
+
+rules:
+= rule: Chitchat
+steps:
+
+- intent: chitchat
+- action: utter_chitchat
+
+Training Policies
+
+°* Memoization Policy: assistant makes the decision on
+how to respond matching the real interaction with
+stories from stories.yml
+
+Hello stories:
+
+Hey! How can | help
+you?
+
+intent: inform
+Can | check the balance ee CRETE
+
+action: check_balance
+
+of my card? - intent: thanks
+
+- action: utter_goodbye
+
+Training Policies
+
+° TED Policy: assistant makes the decision on how to
+respond by learning from the data defined in
+stories.yml
+
+° Transformer Embedding Dialogue (TED) is a neural network
+architecture for next action prediction
+
+° Max History: how many conversational steps your assistant
+keeps in the memory when
+making the prediction
+
+® Epochs: the number of epochs
+used to train the model
+
+Custom Actions
+
+Custom Actions
+
+What do we want virtual assistants to do?
+® Send back appropriate message
+
+°® Send anemail
+
+°® Make a calendar appointment
+
+® Fetch relevant information from a database
+
+® Check information from an API
+
+Calculate something specific
+
+RASA RASA SDK
+
+©) === NLU —--— CUSTOM
+C_)--~ | CORE )-=-|AcTIONs
+
+alld
+
+Example
+
+r Entity: Place
+
+Hey, what time is it in Amsterdam right now?
+
+(2) It’s currently 15:01.
+
+Custom Action
+Take the place entity and return
+the current time.
+
+- intent: inquire_time
+examples: |
+- what time is it? nlu.yml
+- what time is it in [Amsterdam] (place)?
+- what time is it in [London] (place)?
+- tell me the time in [Lisbon] (place)
+- what is the current time in [Berlin] (place)
+- what time is it in [amsterdam] (place) [amsterdam] (place)
+- lookup: place
+examples: |
+- brussels
+- zagreb
+- london
+- lisbon
+— amsterdam
+seattle
+
+domain.yml
+
+| ml intents:
+ru es.y - inquire_time
+- rule: Tell the time entities:
+steps: - place
+- intent: inquire_time ;
+actions:
+
+- action: action_tell_time
+
+- action_tell_time
+
+config.yml
+language: en
+
+pipeline:
+
+— name: WhitespaceTokenizer
+
+— name: LexicalSyntacticFeaturizer
+
+- name: CountVectorsFeaturizer
+
+- name: CountVectorsFeaturizer
+analyzer: char_wb
+min_ngram: 1
+max_ngram: 4
+
+- name: DIETClassifier
+entity_recognition: False
+
+_— = Enables the use of lookup
+
+— name: RegexEntityExtractor .
+use_lookup_tables: True Ga tables for entity
+
+recognition
+policies:
+— name: MemoizationPolicy
+- name: TEDPolicy The model must be then
+max_history: 5 trained with...
+
+epochs; 100
+name: RulePolicy rasa train
+
+actions.py
+
+from typing import Any, Text, Dict, List
+
+import arrow # pip install arrow
+
+import dateparser # pip install dateparser
+
+from rasa_sdk import Action, Tracker
+
+from rasa_sdk.events import SlotSet
+
+from rasa_sdk.executor import CollectingDispatcher
+
+city_db = {
+
+‘prussels': ‘Europe/Brussels',
+‘zagreb': ‘Europe/Zagreb',
+‘london’: ‘Europe/Dublin',
+‘lisbon': ‘Europe/Lisbon',
+‘amsterdam’: ‘'Europe/Amsterdam',
+‘rome': ‘Europe/Rome’',
+‘seattle’: ‘US/Pacific'
+
+actions.py
+
+class ActionTellTime(Action):
+
+def name(self) -> Text:
+return “action_tell_time” # returns the name of the action
+
+def run(self, dispatcher: CollectingDispatcher, # allows you to send messages back to the user
+tracker: Tracker, # provides the state of the conversation
+domain: Dict[Text, Any]}) -> List(Dict[Text, Any]]:
+current_place = next(tracker.get_latest_entity_values("place"}, None)
+utc = arrow.utcnow()
+
+if not current_place:
+msg = f"It's {utc.format(‘HH:mm')} utc now. You can also give me a place."
+dispatcher.utter_message(text=msg) # sends a message back to the user
+return []
+
+tz_string = city_db.get(current_place, None)
+
+if not tz_string:
+msg = f“It's I didn't recognize {current_place}. Is it spelled correctly?"
+dispatcher.utter_message(text=msg) # sends a message back to the user
+return []
+
+msg = f"It's {utc.to(city_db(current_place] )}.format('HH:mm')} in {current_place} now."
+dispatcher. utter_message(text=msg) # sends a message back to the user
+
+return []
+
+Action Server
+
+To enable custom actions the action server endpoint must
+be set in endpoints.yml...
+
+action_endpoint:
+url: “http://localhost:5055/webhook"
+
+© Then the action server must be run: rasa run actions
+
+°® We can then try the model: rasa shell
+
+Bot loaded. Type a message and press enter (use '/stop' to exit):
+Your input -> hello
+
+Hey! How are you?
+
+Your input -> what time is it?
+
+It's 18:54 utc now. You can also give me a place.
+
+Your input -> what time is it in amsterdam?
+
+It's 20:55 in amsterdam now.
+
+Your input -> what time is it in rome?
+
+It's 20:55 in rome now.
+
+References
+
+Natural Language Processing IN ACTION
+
+Understanding, analyzing, and generating text with Python
+Chapter 12 hg, Language
+"Sa Processing
+
+» IN ACTION
+
+INTRODUCTION “
+TORASA .
+
+g
+
+ey)
+
+# ro ¢
+5
+e)
+
+Conversational Al with
+
+Rasa Open Source 3.x 14 Video Tutorial
+
+Rasa
+
+14 video 223.430 visualizzazioni Ultimo aggiornamento... htt S://WWW. outube.com la list? list=PL eo
+POE A87dlEjGAcgjgv3ashamxl2Zofi
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 7
+Dialog Engines
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

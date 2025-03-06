@@ -1,0 +1,68 @@
+## Natural Language Processing and Large Language Models
+
+**Master's Degree in Computer Engineering**
+
+**Lesson 2: Representing Text**
+
+*Nicola Capuano and Antonio Greco*
+
+*DIEM – University of Salerno*
+
+
+### Representing Text in NLP
+
+This lesson explores fundamental techniques for representing text in a format suitable for Natural Language Processing (NLP) tasks.  We'll cover the process of transforming unstructured text into numerical representations that can be used by computers to understand and analyze textual data. This transformation is crucial for various NLP applications, from simple tasks like keyword search to more complex ones like machine translation and sentiment analysis.
+
+<----------section---------->
+
+### Tokenization: Breaking Down Text
+
+Tokenization is the process of decomposing text into individual units called tokens. These tokens can represent words, punctuation marks, numbers, emojis, or even sub-word units like prefixes and suffixes. The choice of tokenization method depends on the specific NLP application.
+
+A simple approach is to split text based on whitespace. However, this method is insufficient for handling punctuation, contractions, and languages without clear word boundaries. More sophisticated techniques utilize regular expressions to address these challenges. For instance, regular expressions can be designed to handle punctuation marks as separate tokens while preserving the integrity of contractions like "can't" or "won't".
+
+Advanced tokenization methods consider language-specific rules and utilize statistical models. For example, in languages like Chinese and Japanese, word segmentation can be complex due to the absence of explicit delimiters between words. Specialized tools like Jieba for Chinese and spaCy's multilingual capabilities offer advanced tokenization functionalities for various languages.
+
+<----------section---------->
+
+### Bag of Words Representation: Quantifying Text
+
+The Bag of Words (BoW) model represents text by counting the occurrences of each token in a document.  A vocabulary is created containing all unique tokens, and each document is represented as a vector where each element corresponds to the count of a specific token. This creates a numerical representation of the text, discarding word order and focusing solely on word frequency.
+
+One-hot encoding is a simple BoW implementation where each token is represented by a vector with a single '1' at the index corresponding to the token in the vocabulary and '0' elsewhere.  While this preserves all information about token presence, it becomes computationally expensive for large vocabularies.
+
+BoW can be further simplified into Binary BoW, where the vector elements are '1' if a token is present in the document and '0' otherwise, regardless of its frequency.  While more compact, both BoW and Binary BoW lose information about word order and context.
+
+<----------section---------->
+
+### Token Normalization: Refining Tokens
+
+Token normalization techniques improve the quality of text representation by reducing noise and redundancy.
+
+**Case Folding:** Converting all text to lowercase helps treat words like "The" and "the" as the same token, improving matching and reducing vocabulary size. However, it might lose information encoded in capitalization (e.g., proper nouns).
+
+**Stop Word Removal:** Eliminating common words like "a," "the," and "is" that carry little semantic meaning reduces the dimensionality of the representation and focuses on more informative words. However, removing stop words can sometimes alter the meaning or sentiment of a sentence.
+
+**Regular Expressions:** Regular expressions offer flexible ways to clean text data by removing unwanted characters, handling special symbols, and standardizing formatting.
+
+<----------section---------->
+
+### Stemming and Lemmatization: Reducing Word Forms
+
+Stemming and lemmatization reduce words to their base forms, improving generalization and reducing vocabulary size.
+
+**Stemming:**  A crude heuristic process that removes suffixes to obtain a stem (e.g., "running" becomes "run").  Stems might not be valid words (e.g., "flies" might stem to "fli"). Popular stemming algorithms include Porter Stemmer and Snowball Stemmer.
+
+**Lemmatization:**  A more sophisticated technique that uses dictionaries and morphological analysis to convert words to their canonical lemma (e.g., "better" becomes "good"). Lemmatization always produces a valid dictionary word and often requires part-of-speech information.
+
+<----------section---------->
+
+### Part of Speech (PoS) Tagging: Understanding Grammatical Roles
+
+PoS tagging assigns grammatical tags (e.g., noun, verb, adjective) to each token, providing valuable information about its role in the sentence.  PoS tagging helps disambiguate words with multiple meanings and is crucial for tasks like lemmatization, parsing, and named entity recognition.
+
+<----------section---------->
+
+### Introducing spaCy: A Powerful NLP Library
+
+spaCy is a versatile and efficient Python library for NLP. It provides pre-trained language models that offer functionalities including tokenization, PoS tagging, dependency parsing, lemmatization, and named entity recognition.  spaCy's object-oriented design and optimized implementation make it a powerful tool for building robust NLP pipelines.  It also offers visualization tools like displaCy to analyze syntactic relationships and named entities.  spaCy supports multiple languages and provides various pre-trained models with different sizes and functionalities.  Its ability to handle complex linguistic tasks makes it a valuable resource for NLP practitioners.

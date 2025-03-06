@@ -1,0 +1,70 @@
+## Natural Language Processing and Large Language Models
+
+**Master's Degree in Computer Engineering**
+
+**Lesson 11: From Transformers to LLMs**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Outline
+
+* Transformers for Text Representation and Generation
+* The Paradigm Shift in NLP
+* Pre-training of LLMs
+* Datasets and Data Pre-processing
+* Utilizing LLMs Post Pre-training
+
+
+<----------section---------->
+
+### Transformers for Text Representation and Generation
+
+Transformers are versatile neural network architectures used for both representing and generating text. Their flexibility lies in their ability to be configured differently for various tasks.  For instance, encoder-only models like BERT excel at understanding and representing text by processing the entire input sequence simultaneously. This allows them to capture contextual relationships between words effectively.  Conversely, decoder-only models like GPT are designed for text generation, predicting the next word in a sequence based on the preceding words.  Finally, models incorporating both encoder and decoder components, known as sequence-to-sequence (Seq2Seq) models, are well-suited for tasks requiring input-to-output mappings, such as machine translation.
+
+
+*(The diagrams from the original PDF illustrating different transformer architectures should be reinserted here if possible)*
+
+
+<----------section---------->
+
+
+### The Paradigm Shift in NLP
+
+The advent of Large Language Models (LLMs) has fundamentally changed the Natural Language Processing (NLP) landscape. Previously, NLP workflows heavily relied on manual feature engineering, meticulous model selection for specific tasks, and intricate transfer learning techniques to overcome data scarcity.  The constant struggle was to balance model complexity for optimal performance with the risk of overfitting, where models perform exceptionally well on training data but poorly on unseen data.
+
+LLMs have ushered in a new era characterized by pre-training and fine-tuning. These models are first pre-trained on vast amounts of unlabeled data, learning general language representations. Then, they are fine-tuned on smaller, task-specific datasets.  This approach has enabled remarkable advancements like zero-shot and few-shot learning, where models can perform tasks with minimal or no specific training examples. Prompting, guiding model behavior through natural language instructions, has become a central aspect of interacting with LLMs.  Furthermore, understanding the inner workings of these complex models through interpretability and explainability techniques is a crucial ongoing research area.
+
+This paradigm shift was driven by the limitations of recurrent neural networks (RNNs). RNNs struggled with long sequences due to vanishing gradients and their inherent sequential nature, hindering parallel processing.  The attention mechanism, the cornerstone of transformer architectures, addressed these limitations by efficiently capturing long-range dependencies, enabling parallel computation, and dynamically weighting the importance of different parts of the input sequence.
+
+
+<----------section---------->
+
+
+### Pre-training of LLMs
+
+LLMs are typically pre-trained using self-supervised learning on massive unlabeled text datasets.  This approach creates pseudo-supervised tasks from the unlabeled data itself.  Several key self-supervised tasks are prevalent:  Masked Language Modeling (MLM), used in encoder-only models like BERT, involves masking words in the input and training the model to predict them based on the surrounding context.  Causal Language Modeling (CLM), employed by decoder-only models like GPT, focuses on predicting the next word in a sequence based on the preceding words. Seq2Seq models often utilize tasks like Span Corruption, where segments of text are corrupted, and the model is trained to reconstruct them.
+
+The flexibility in combining these pre-training tasks allows models to develop a robust understanding of language. Self-supervised learning enables the model to learn from the inherent structure and patterns within the data, capturing rich representations applicable to a wide range of downstream tasks.  This learned knowledge base enables zero-shot learning and facilitates transfer learning to specific tasks.
+
+
+<----------section---------->
+
+
+### Datasets and Data Pre-processing
+
+Training LLMs necessitates enormous text datasets.  Sources range from curated collections like BookCorpus and Project Gutenberg to the vast and diverse CommonCrawl web archive, high-quality encyclopedic data from Wikipedia, and various other sources including Reddit, web pages, and code repositories.
+
+Crucially, data pre-processing plays a vital role in LLM performance and safety.  Quality filtering removes low-quality or irrelevant text, while deduplication eliminates redundant data to prevent biases and improve training stability.  Privacy scrubbing protects sensitive information, and filtering toxic and biased content mitigates potential harms and promotes fairness in model outputs.
+
+
+<----------section---------->
+
+
+### Utilizing LLMs Post Pre-training
+
+After pre-training, LLMs can be adapted for specific tasks through fine-tuning or prompting. Fine-tuning involves adjusting the model's parameters using gradient descent on a labeled dataset specific to the target task. This can involve fine-tuning the entire model, specific output layers, or using parameter-efficient techniques like adapters.
+
+Prompting, on the other hand, steers the model's behavior by crafting specific input prompts without altering the model's parameters.  A single pre-trained model can be used for diverse tasks by simply changing the input prompt.  This flexibility makes prompting a powerful tool for interacting with LLMs and adapting them to various applications.  The rise of LLMs has also spawned new fields like prompt engineering and the critical need for real-time content curation and fact-checking (grounding) to ensure accuracy and reliability. The increasing integration of LLMs into various workflows has also sparked important conversations about the changing nature of work and the future of the information economy.

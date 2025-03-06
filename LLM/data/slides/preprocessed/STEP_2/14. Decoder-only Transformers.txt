@@ -1,0 +1,189 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 14: Decoder-only Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Decoder-only transformer
+* GPT
+* LLAMA
+* Practice on text generation
+
+### Decoder-only Transformer
+
+Decoder-only transformers utilize only the decoder part of the Transformer architecture.  Focusing solely on decoding makes them efficient for autoregressive generation tasks. They lack the separate encoder layers found in sequence-to-sequence models. Primarily used for language generation tasks such as text generation, summarization, and question answering. Popular examples include the GPT (Generative Pre-trained Transformer) series (GPT-2, GPT-3, and GPT-4) and LLAMA.
+
+In a decoder-only transformer, text generation is achieved through an autoregressive approach. Each token is generated sequentially by attending only to previously generated tokens within the same sequence, rather than using encoder-decoder attention. The input context (prompt) and the generated text are treated as a single, continuous sequence. This allows the decoder-only model to handle both "encoding" (understanding the input prompt) and "decoding" (generating text) in one step, without a separate encoder block. Once a token is generated, it’s appended to the input sequence, and the model generates the next token.
+
+Decoder-only transformers employ self-attention within the decoder layers with a causal (unidirectional) mask. This mask prevents each token from attending to future tokens, ensuring that each position considers only information from previous positions, simulating sequential word generation.  The model builds context as it processes tokens sequentially. As it reads through a sequence, it "remembers" previous tokens and learns relationships between them within the attention layers. This sequential context buildup replaces the need for separate encoder-decoder attention, allowing the model to accumulate an understanding of the input as it progresses through each token.
+
+### Encoder-only vs. Decoder-only
+
+| Feature          | Encoder-Only Transformers (e.g., BERT)                       | Decoder-Only Transformers (e.g., GPT)                       |
+|-----------------|-------------------------------------------------------------|-------------------------------------------------------------|
+| Architecture     | Only encoder blocks (bidirectional attention)                 | Only decoder blocks (causal attention)                       |
+| Training Objective | Masked Language Modeling (MLM)                               | Autoregressive Language Modeling                           |
+| Context         | Processes entire sequence in parallel                         | Processes tokens sequentially (one by one)                    |
+| Main Use Cases  | Text classification, NER, question answering                   | Text generation, story generation, code generation           |
+| Attention Type   | Bidirectional self-attention                                 | Unidirectional (masked) self-attention                       |
+| Output          | Contextual embeddings for downstream tasks                 | Sequential token generation (text or other content)          |
+
+
+### Decoder-only Transformer Applications
+
+Applications of Decoder-Only Transformers include:
+
+* Text Generation: News articles, stories, and creative content.
+* Conversational AI: Chatbots and virtual assistants for real-time dialogue.
+* Programming Help: Code generation and debugging.
+* Summarization: Generating concise summaries of long documents.
+
+
+### GPT
+
+GPT is a decoder-only transformer developed by OpenAI. It generates human-like text, understanding and predicting language. Trained on vast amounts of text data, it can perform various natural language tasks without task-specific training.
+
+* **GPT-1 (2018):** Introduced decoder-only transformer architecture, with 117 million parameters (12 decoder blocks, 768-dimensional embeddings, and 12 attention heads per block).
+* **GPT-2 (2019):** Significantly larger with 1.5 billion parameters in its XL version (48 decoder blocks, 1600-dimensional embeddings, and 25 attention heads per block), capable of generating coherent long-form text.
+* **GPT-3 (2020):** 175 billion parameters (96 decoder blocks, 12,288-dimensional embeddings, and 96 attention heads per block), with advanced capabilities in language, code, and even reasoning.
+* **GPT-4 (2023):** Multi-modal capabilities (image and text), improved reasoning, and broader general knowledge (detailed architecture information is not yet available).
+
+### GPT Input Encoding
+
+GPT models use Byte-Pair Encoding (BPE). BPE is a subword tokenization technique balancing word-level and character-level representations, breaking down words into smaller, meaningful subunits (tokens) based on frequency in the training data. The vocabulary size varies by model version (e.g., GPT-2 uses about 50,000 tokens), allowing efficient representation of both frequent and rare words.
+
+**Main features of BPE:**
+
+* **Subword Tokenization:** BPE splits rare or complex words into subword units while keeping common words as single tokens (e.g., "unhappiness" might be split into "un," "happi," and "ness").
+* **Fixed Vocabulary:** BPE produces a fixed-size vocabulary (e.g., around 50,000 tokens in GPT-2), containing common words, word fragments, and some single characters.
+* **Efficiency in Language Representation:** Subword tokens allow GPT to represent diverse language patterns, handling both common and rare words effectively while reducing the required tokens.
+
+**Main advantages of BPE (similar to WordPiece):**
+
+* **Flexibility:** Handles languages with rich morphology or new words (e.g., "AI-generated") by breaking them down into reusable subword tokens.
+* **Reduced Vocabulary Size:** Keeps the vocabulary smaller and training more efficient compared to word-level tokenizers.
+* **Out-of-Vocabulary Handling:** BPE is resilient to unknown words, breaking them down into familiar subwords or characters.
+
+
+### GPT Pre-training
+
+GPT is pre-trained to predict the next word (or token) in a sequence (autoregressive modeling).  Its Next-Token Prediction strategy minimizes the difference between its predicted and the actual next token, effectively learning context and word relationships. The prediction is sequential (left-to-right).
+
+GPT models are trained on massive, diverse datasets from internet text. GPT-1 used BookCorpus (around 985 million words); GPT-2 used WebText (40GB of text, around 10 billion words); GPT-3 used even larger datasets (570GB of text, hundreds of billions of words), combining sources like Common Crawl, Books, Wikipedia, and more.  The data covers a broad range of topics and linguistic structures. OpenAI's training FLOPS for GPT-4 is ~2.15e25, on ~25,000 A100s for 90 to 100 days.
+
+GPT minimizes cross-entropy loss between predicted token probabilities and actual tokens. It uses the Adam optimizer, applying a learning rate schedule (warm-up and decay). Large batch sizes stabilize training and improve generalization.
+
+
+### GPT Fine-tuning
+
+Fine-tuning GPT requires a labeled dataset for the specific task (e.g., prompts and expected responses).  Examples of fine-tuning tasks:
+
+* Customer Support Automation
+* Medical Assistance
+* Legal Document Processing
+* Coding Assistance
+* Educational Tutoring
+* Content Creation
+* Virtual Personal Assistants
+
+
+### GPT Strengths
+
+* Language Fluency and Coherence
+* Broad Knowledge Base
+* Few-Shot and Zero-Shot Learning
+* Creative and Contextual Writing
+* Rapid Adaptation with Fine-Tuning
+* Scalability with Large Models
+
+### GPT Limitations
+
+* Lack of True Understanding
+* Sensitivity to Prompting
+* Ethical and Bias Concerns
+* Inability to Reason or Perform Complex Calculations
+* High Computational Requirements
+* Limited Memory Across Interactions
+* Vulnerability to Adversarial Prompts
+
+
+### Popular GPT Variants
+
+* **Codex:** A GPT-3 model fine-tuned for coding tasks, powering GitHub Copilot.
+* **MT-NLG (Megatron-Turing Natural Language Generation):** Developed by NVIDIA and Microsoft, one of the largest language models (530 billion parameters).
+* **GLaM (Generalist Language Model):** Developed by Google Research, a sparse mixture-of-experts model with 1.2 trillion parameters.
+* **PanGu-α:** Huawei’s Chinese language model (200 billion parameters).
+* **Chinchilla:** A DeepMind model optimized for training data and parameter efficiency.
+* **OPT (Open Pretrained Transformer):**  A series of open-source language models from Meta, comparable to GPT-3.
+* **BLOOM:** An open-source multilingual model (176 billion parameters) from the BigScience collaborative project.
+
+
+### LLAMA
+
+LLAMA (Large Language Model Meta AI) is a family of transformer-based language models developed by Meta, designed for efficiency and performance across various NLP tasks.
+
+**LLaMA family models:**
+
+* **LLaMA-7B:** 32 decoder blocks with 32 attention heads, 4096-dimensional embeddings.
+* **LLaMA-13B:** 40 decoder blocks with 40 attention heads, 5120-dimensional embeddings.
+* **LLaMA-30B:** 60 decoder blocks with 40 attention heads, 6656-dimensional embeddings.
+* **LLaMA-65B:** 80 decoder blocks with 64 attention heads, 8192-dimensional embeddings.
+
+
+### LLAMA Input Encoding
+
+LLAMA uses BPE with a dictionary of 32,768 tokens and relative positional encodings (instead of absolute), allowing it to better handle varying sequence lengths and generalize across different contexts.
+
+
+### LLAMA Pre-training
+
+LLAMA, like GPT, is pre-trained using an autoregressive language modeling objective (predicting the next token).  It's trained on "The Pile" (825GB, 300 to 1000 billion tokens), a diverse dataset of publicly available text sources including books, web data, and scientific papers.
+
+LLAMA uses cross-entropy loss, optimized using SGD or Adam with gradient clipping. It utilizes mixed precision, learning rate schedules, weight decay, and batch/layer normalization.
+
+
+### LLAMA Variants
+
+| Model Parameters | Use Case                                                     | Strengths                                  | Limitations                                     |
+|-----------------|--------------------------------------------------------------|--------------------------------------------|-------------------------------------------------|
+| LLaMA-7B       | Resource-efficient tasks (e.g., small-scale NLP)               | High efficiency, suitable for smaller environments | May not achieve top performance on complex tasks |
+| LLaMA-13B      | General-purpose NLP tasks, fine-tuning for specific applications | Balanced performance and efficiency          | May lack performance for more advanced tasks     |
+| LLaMA-30B      | Complex tasks (e.g., summarization, translation)            | High performance on state-of-the-art NLP tasks | Requires significant computational resources       |
+| LLaMA-65B      | High-end applications, advanced research                      | Top-tier NLP performance across multiple domains | Extremely resource-intensive, challenging deployment |
+
+
+### LLAMA vs. GPT
+
+| Aspect       | LLAMA                                                      | GPT                                                              |
+|--------------|-----------------------------------------------------------|-------------------------------------------------------------------|
+| Size Range   | 7B, 13B, 30B, 65B                                        | 117M to 175B+ (GPT-3)                                               |
+| Training Data | Public data (The Pile, Wikipedia, Common Crawl, etc.)     | Public data (Common Crawl, WebText, etc.)                           |
+| Performance  | Strong, competitive, especially for smaller models           | State-of-the-art, particularly in zero/few-shot learning          |
+| Training     | More efficient, parameter-efficient                       | Very resource-intensive, especially for GPT-3                       |
+| Efficiency   | Open-sourced, flexible deployment                         | Commercial API via OpenAI                                           |
+| Deployment  | Strong ethical considerations                              | Criticism over transparency and biases                             |
+| Applications | Academic research, custom deployment                      | Broad commercial use, APIs, and applications                        |
+
+
+### Practice on Text Generation
+
+* Explore the Hugging Face guide on text generation: [https://huggingface.co/tasks/text-generation](https://huggingface.co/tasks/text-generation)
+* Search for text generation models on Hugging Face: [https://huggingface.co/models?pipeline_tag=text-generation&sort=trending](https://huggingface.co/models?pipeline_tag=text-generation&sort=trending)
+* Consider fine-tuning a text generation model: [https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
+
+
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 14: Decoder-only Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**

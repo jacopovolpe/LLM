@@ -1,0 +1,80 @@
+### Enhanced Text:
+
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 20: Retrieval Augmented Generation (RAG)**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction
+
+Large Language Models (LLMs) exhibit remarkable abilities in understanding and generating human-like text.  However, their knowledge is inherently limited by the data they were trained on. This presents challenges when dealing with information generated after their training cutoff or when accessing private, domain-specific data.  Retrieval Augmented Generation (RAG) addresses these limitations by connecting LLMs with external knowledge sources, enabling them to access and process real-time information and proprietary datasets.
+
+<----------section---------->
+
+### Understanding Retrieval Augmented Generation (RAG)
+
+RAG allows LLMs to tap into a broader knowledge base beyond their training data. This empowers them to handle dynamic information and incorporate context from specific datasets, enabling the development of more adaptable and specialized AI applications.  Imagine an LLM tasked with answering questions about a company's internal documentation.  Without access to this specific data, its responses would be generic and potentially inaccurate.  RAG allows the LLM to retrieve relevant sections from the documentation and use this information to generate precise and informed answers.
+
+
+<----------section---------->
+
+### Core Components of RAG
+
+A typical RAG system comprises two main stages: Indexing and Retrieval & Generation.
+
+**Indexing:** This stage involves preparing external data for efficient access by the LLM.  The process begins by loading data from various sources like PDFs, databases, or web pages.  This data is then divided into smaller, manageable chunks to facilitate indexing and accommodate the LLM's input limitations. These chunks are subsequently converted into vector representations (embeddings) that capture their semantic meaning. These embeddings are then stored in a specialized database known as a Vector Store, enabling efficient similarity-based search.
+
+**Retrieval & Generation:** At runtime, when a user poses a query, the system retrieves relevant information chunks from the Vector Store based on semantic similarity to the query.  A prompt is then constructed containing both the user's query and the retrieved information. This augmented prompt is fed to the LLM, which generates a response informed by both the query and the relevant context retrieved from the external data source.
+
+
+<----------section---------->
+
+### LangChain: A Framework for LLM Application Development
+
+LangChain streamlines the development of LLM-powered applications by providing a structured set of tools and components.  It connects LLMs with diverse data sources, external APIs, and other tools, enabling the creation of complex and powerful applications.  LangChain supports a wide range of use cases, including chatbots, question-answering systems, data analysis tools, and more sophisticated applications that chain together multiple steps.  It simplifies interacting with various LLMs, managing prompts, and processing the outputs, enabling developers to focus on building the application logic rather than low-level integration details.
+
+
+<----------section---------->
+
+### Key Components of LangChain
+
+LangChain offers a modular approach to building LLM applications with the following key components:
+
+* **Prompt Templates:** These provide a structured way to create dynamic prompts, ensuring consistency and facilitating experimentation with different prompting strategies.
+* **LLMs:**  LangChain supports seamless integration with various LLM providers, enabling developers to easily switch between different models.
+* **Chat Models:**  Specialized components for building conversational applications, supporting different roles and conversational context.
+* **Example Selectors:** Allow for dynamically including relevant examples in prompts to improve LLM performance.
+* **Output Parsers:** Structure LLM outputs into specific formats like JSON or XML for easier processing and integration.
+* **Document Loaders:** Simplify loading data from various sources, including local files, cloud storage, and online databases.
+* **Vector Stores:**  Integrate with various vector databases to store and retrieve embeddings efficiently.
+* **Retrievers:**  Abstract the logic for retrieving relevant documents from vector stores and other data sources.
+* **Agents:** Enable more complex interactions by allowing LLMs to take actions based on user input and the environment.
+
+
+
+<----------section---------->
+
+### Setting up LangChain
+
+To get started with LangChain, you need to install the necessary libraries:
+
+* **Core LangChain:** `pip install langchain`
+* **Community Extensions:** `pip install langchain_community`
+* **Hugging Face Integration:** `pip install langchain_huggingface`
+* **PDF Processing:** `pip install pypdf`
+* **FAISS Vector Store:** `pip install faiss-cpu`
+
+After installation, secure a Hugging Face access token and grant access to the desired LLM model, such as Mistral-7B-Instruct-v0.2, by accepting its license agreement.
+
+
+<----------section---------->
+
+### Interacting with LLMs using LangChain
+
+Using LangChain to interact with an LLM involves setting up the LLM endpoint, crafting a query, and invoking the LLM to generate a response.  Prompt templates can be used to create more dynamic and reusable prompts.  Furthermore, chains can be used to orchestrate multiple steps in an LLM workflow, including prompt generation, LLM invocation, and output processing.  This allows for building more complex and sophisticated LLM-powered applications. Data augmentation techniques, while valuable for improving model robustness and generalization, should be approached with caution, especially with generative models. Techniques like appending random words, synonym substitution, introducing typos, and case folding can be helpful, but it's crucial to ensure the augmented data remains representative of the real-world data the model is intended to process.  Model optimization involves selecting appropriate hyperparameters and efficiently tuning them using methods like grid search, random search, evolutionary algorithms, and Bayesian optimization.  Finally, thorough model evaluation using appropriate metrics is essential for assessing performance and guiding further development.

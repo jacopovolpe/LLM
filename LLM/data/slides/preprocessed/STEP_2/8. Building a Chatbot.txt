@@ -1,0 +1,50 @@
+**Natural Language Processing and Large Language Models**
+
+*Corso di Laurea Magistrale in Ingegneria Informatica*
+
+*Lesson 8: Building a Chatbot*
+
+*Nicola Capuano and Antonio Greco*
+
+*DIEM – University of Salerno*
+
+**Exercise: Building a Pizzeria Chatbot**
+
+Develop a chatbot to assist with pizzeria operations:
+
+* Users can request the pizzeria's menu.
+* Users can order a pizza that is available in the menu (just one, no beverage).
+* Upon order confirmation, the bot will log the date, the user ID, and the kind of ordered pizza (use a custom action).
+* The bot has a web-based GUI.
+
+*Hint: Start with a dummy bot.*
+
+**Hints:**
+
+Start with a dummy bot:
+
+* `mkdir pizzaBot`
+* `cd pizzaBot`
+* `rasa init --no-prompt`
+
+Configure and run the REST and the Actions servers:
+
+* `rasa run --cors "*"`
+* `rasa run actions`
+
+Use a Web frontend like:
+
+`https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0`
+
+
+**(Example Conversation - From OCR Text)**
+
+* **User:** can i have the menu?
+* **Bot:** What kind of pizza would you like? We have Margherita, Pepperoni, Vegetarian, and SO Mushroom.
+* **User:** Pepperoni
+* **Bot:** You want a Pepperoni pizza. Is that correct?
+* **User:** yes
+* **Bot:** Great! Your Pepperoni pizza is on its way!
+
+
+This cleaned-up version removes the redundant information and presents the exercise instructions and hints clearly. The example conversation from the OCR text is included as a separate section for context, demonstrating a potential interaction flow.  Note the correction of "gqithub" to "github" in the URL.

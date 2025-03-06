@@ -1,0 +1,76 @@
+## Natural Language Processing and Large Language Models: Encoder-Decoder Transformers
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 15: Encoder-Decoder Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction to Encoder-Decoder Transformers
+
+Encoder-decoder transformers represent a significant advancement in neural network architectures for handling sequence-to-sequence (seq2seq) tasks.  These tasks, which involve mapping an input sequence to an output sequence, are fundamental to various NLP applications, including machine translation, text summarization, question answering, and dialogue generation.  The encoder component processes the input sequence, capturing its inherent structure and meaning, while the decoder component generates the output sequence, conditioned on the encoded representation. This architecture allows for the flexible handling of variable-length input and output sequences. The core innovation of transformers lies in their reliance on the attention mechanism, which allows the model to focus on different parts of the input sequence when generating each element of the output sequence.
+
+<----------section---------->
+
+### Deep Dive into T5
+
+T5 (Text-to-Text Transfer Transformer), developed by Google Research, exemplifies the power of the encoder-decoder transformer architecture.  Its defining characteristic is the framing of all NLP tasks as text-to-text problems. This unified approach simplifies model development and allows for transfer learning across different tasks.  T5 exists in various sizes, catering to different computational resources:
+
+| T5 Version | Encoder Blocks | Attention Heads | Decoder Blocks | Embedding Dimensionality |
+|---|---|---|---|---|
+| T5-Small | 6 | 8 | 6 | 512 |
+| T5-Base | 12 | 12 | 12 | 768 |
+| T5-Large | 24 | 16 | 24 | 1024 |
+| T5-XL | 24 | 32 | 24 | 2048 |
+| T5-XXL | 24 | 64 | 24 | 4096 |
+
+The number of encoder and decoder blocks, attention heads, and the embedding dimensionality all contribute to the model's capacity and performance. Larger models generally perform better but require significantly more computational resources for training and inference.
+
+<----------section---------->
+
+### T5 Input Encoding and Special Tokens
+
+T5 employs a SentencePiece tokenizer with a vocabulary of 32,000 tokens. This tokenizer utilizes a subword tokenization approach based on a unigram language model. This strategy effectively handles out-of-vocabulary words by breaking them down into smaller, known subword units.  Furthermore, this approach allows the model to represent a vast lexicon efficiently.
+
+Several special tokens play crucial roles within the T5 framework:
+
+* `<pad>`:  Pads sequences to a uniform length within a batch, facilitating efficient parallel processing.
+* `<unk>`: Represents unknown tokens, handling out-of-vocabulary words encountered during inference.
+* `<eos>`: Signals the end of a sequence, allowing the model to delineate the boundaries of input and output.
+* `<sep>`: Separates different segments of the input, like question and context in a question-answering task.
+* Task-specific prefixes: Guide the model towards the intended task by prepending prefixes like "translate English to German:" or "summarize:". This text-to-text framework allows for a flexible and unified approach to different NLP tasks.
+
+<----------section---------->
+
+### T5 Pre-training and Fine-tuning
+
+T5's pre-training leverages a "span-corruption" objective, a variant of denoising autoencoding. This method masks random spans of text in the input and trains the model to reconstruct the original text. This approach fosters a deeper understanding of contextual relationships and encourages the model to generate coherent and fluent text.  The C4 dataset (Colossal Clean Crawled Corpus), a massive and diverse text corpus, provides the training data for this pre-training phase.  The training process uses cross-entropy loss and the Adafactor optimizer, known for its memory efficiency, alongside a learning rate schedule that includes a warm-up phase and inverse square root decay.
+
+Fine-tuning adapts the pre-trained T5 model to specific downstream tasks by continuing the text-to-text paradigm.  The input is crafted to include task-specific instructions and the input data, while the output represents the desired result. Examples include:
+
+* **Summarization:** `summarize: <document>` → `<summary>`
+* **Translation:** `translate English to French: <text>` → `<translated_text>`
+* **Question Answering:** `question: <question> context: <context>` → `<answer>`
+
+
+<----------section---------->
+
+### Exploring T5 Variants and Applications
+
+Several T5 variants have been developed, each addressing specific needs and challenges in NLP:
+
+| Variant | Purpose | Key Strengths | Limitations |
+|---|---|---|---|
+| mT5 | Multilingual NLP | Supports numerous languages | Performance can vary across languages |
+| Flan-T5 | Instruction-following | Strong generalization capabilities | Requires carefully crafted prompts |
+| ByT5 | Byte-level processing | Handles noisy and unstructured text effectively | Can be slower due to byte-level input |
+| T5-3B/11B | High-capacity NLP | Exceptional performance | Demands substantial computational resources |
+| UL2 | Unified Language Learner | Designed for versatility across various tasks | Increased training complexity |
+| Multimodal T5 | Vision-language tasks | Processes both text and image inputs | Higher computational requirements |
+| Efficient T5 | Resource-constrained scenarios | Lightweight and faster inference | Potential trade-off in performance |
+
+
+Practical experience with translation and summarization using T5 and other encoder-decoder models is essential for understanding their capabilities and limitations.  Experimentation with different model sizes and fine-tuning strategies allows for a deeper appreciation of their versatility and effectiveness in solving real-world NLP problems.  This hands-on practice provides valuable insights into the power and flexibility of encoder-decoder transformers.

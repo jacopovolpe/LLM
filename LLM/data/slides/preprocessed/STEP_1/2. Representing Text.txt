@@ -1,0 +1,2041 @@
+=== Extracted text from PDF ===
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 2Representing TextNicola Capuano and Antonio GrecoDIEM – University of Salerno
+Outline•Tokenization•Bag of Words Representation•Token Normalization•Stemming and Lemmatization•Part of Speech Tagging•Introducing spaCy
+Tokenization
+Prepare the EnvironmentFor most exercises, we will use Jupyter notebooks•Install the Jupyter Extension for Visual Studio Code•pip install jupyter•Create and activate a virtual environment:•python-m venv.env•source .env/bin/activate•Alternative: Google Colab notebooks https://colab.research.google.com/ For this section we also need some Python package…•pip install numpy pandas
+
+Text SegmentationThe process of dividing a text into meaningful units•Paragraph Segmentation: breaking a document into paragraphs•Sentence Segmentation: breaking a paragraph into sentences•Word Segmentation: breaking a sentence into wordsTokenization:•A specialized form of text segmentation•Involves breaking text into small units called tokens
+What is a Token?A unit of text that is treated as a single, meaningful element•Words: the most common form of tokens•Punctuation Marks: symbols that punctuate sentences (e.g., periods, commas)•Emojis: visual symbols representing emotions or concepts•Numbers: digits and numerical expressions•Sub-words: smaller units within words, such as prefixes (re, pre, …) or suffixes (ing, …) that have intrinsic meaning•Phrases: multiword expressions treated as single units (e.g., "ice cream")
+TokenizerIdea: use whitespaces as the “delimiter” of words•Not suitable for languages with a continuous orthographic system (Chinese, Japanese, Thai, etc.)
+Here a good tokenizer should separate 51 and . We'll tackle punctuation and other challenges later
+Bag of Words Representation
+Turning Words into NumbersOne-hot Vectors•A vocabulary lists all unique tokens that we want to keep track of•Each word is represented by a vector with all 0s except for a 1 corresponding to the index of the word
+Turning Words into Numbers
+
+One-hot VectorsPositive features:•No information is lost: you can reconstruct the original document from a table of one-hot vectorsNegative Features:•One-hot vectors are super-sparse, this results in a large table even for a short sentence•Moreover, a language vocabulary typically contains at least 20,000 common words•This number increases to millions when you consider word variations (conjugations, plurals, etc.) and proper nouns (names of people, places, organizations, etc.)
+One-hot VectorsLet's assume you have:•A million tokens in your vocabulary•A small library of 3.000 short books with 3.500 sentences each and 15 words per sentence15 x 3.500 x 3.000 = 157.500.000 tokens106 bits per tokens x 157.500.000 = 157,5 x 1012 bits157,5 x 1012 / (8 x 10244) ≈ 17,9 TBNot practical!
+Bag-of-WordsBoW: a vector obtained by summing all the one-hot vectors•One bag for each sentence or short document•Compresses a document down to a single vector representing its essence•Lossy transformation: you can't reconstruct the initial textBinary BoW: each word presence is marked as 1 or 0, regardless of its frequency
+Binary BoW: ExampleGenerating a vocabulary for a text corpus…
+['1452.', '51.', 'A', 'Grand', 'In', 'Italy,', 'Leonardo', 'Lisa', 'Mona', 'Slam', 'Tennis', 'The', 'Vinci', 'Vinci,', 'a', 'addition', 'age', 'also', 'are', 'as', 'at', 'began', 'being', 'best', 'born', 'court', 'da', 'engineer.', 'events', 'five', 'four', 'in', 'is', 'match', 'middle.', 'most', 'net', 'of', 'on', 'or', 'painter,', 'painting', 'played', 'prestigious', 'rectangular', 'sets.', 'skilled', 'tennis', 'tennis.', 'the', 'three', 'to', 'tournaments', 'typically', 'was', 'with']
+Binary BoW: ExampleGenerating a BoW vector for each text…
+for display purposes only
+Binary BoW: Example
+•You can see little overlap in word usage for some sentences…•We can use this overlap to compare documents or search for similar documents
+Bag-of-Words OverlapMeasuring the bag of words overlap for two texts...•we can get a (good?) estimate of how similar they are in the words they use•and this is a (good?) estimate of how similar they are in meaningIdea: use the dot product
+Bag-of-Words OverlapMeasuring the bag of words overlap for two texts...•we can get a (good?) estimate of how similar they are in the words they use•and this is a (good?) estimate of how similar they are in meaningIdea: use the dot product?
+Bag-of-Words OverlapMeasuring the bag of words overlap for two texts...•we can get a (good?) estimate of how similar they are in the words they use•and this is a (good?) estimate of how similar they are in meaningIdea: use the dot product
+Bag-of-Words OverlapMeasuring the bag of words overlap for two texts...•we can get a (good?) estimate of how similar they are in the words they use•and this is a (good?) estimate of how similar they are in meaningIdea: use the dot product?
+
+Token Normalization
+Tokenizer ImprovementNot only spaces are used to separate words•\t (tab), \n (newline), \r (return), ...•punctuation (commas, periods, quotes, semicolons, dashes, ...) We can improve our tokenizer with regular expressions
+
+Tokenizer ImprovementBut… what would happen with these sentences?•The company’s revenue for 2023 was $1,234,567.89.•The CEO of the U.N. (United Nations) gave a speech.•It’s important to know the basics of A.I. (Artificial Intelligence).•He didn’t realize the cost was $12,345.67.•Her new book, ‘Intro to NLP (Natural Language Processing)’, is popular.•The temperature in Washington, D.C. can reach 100°F in the summer.Tokenizers can easily become complex ...… but NLP libraries can help us (we will see them later)
+Case FoldingConsolidates multiple “spellings” of a word that differ only in their capitalization under a single token•Tennis → tennis, A → a, Leonardo → leonardo, …•A.K.A. Case normalizationAdvantages:•Improves text matching and recall in search enginesDisadvantages:•Loss of distinction between proper and common nouns•May alter the original meaning (e.g., US → us) 
+Case Folding
+A lot of meaningful capitalization is “normalized” away•We can just normalize first-word-in-sentence capitalization ...•... but the first word can be a proper noun•We can first detect proper nouns and then normalizing only the remaining words …•... we will see Named Entity Recognition later
+Stop WordsCommon words that occur with a high frequency but carry little information about the meaning of a sentence•Articles, prepositions, conjunctions, forms of the verb “to be”, …•These words are can be filtered out to reduce noise
+
+Stop WordsDisadvantages:•Even though the stop words carry little information, thy can provide important relational information•Mark reported to the CEO → Mark reported CEO•Suzanne reported as the CEO to the board → Suzanne reported CEO boardItalian stop words:a, affinché, agl’, agli, ai, al, all’, alla, alle, allo, anziché, avere, bensì, che, chi, cioè, come, comunque, con, contro, cosa, da, dacché, dagl’, dagli, dai, dal, dall’, dalla, dalle, dallo, degl’, degli, dei, del, dell’, delle, dello, di, dopo, dove, dunque, durante, e, egli, eppure, essere, essi, finché, fino, fra, giacché, gl’, gli, grazie, i, il, in, inoltre, io, l’, la, le, lo, loro, ma, mentre, mio, ne, neanche, negl’, negli, nei, nel, nell’, nella, nelle, nello, nemmeno, neppure, noi, nonché, nondimeno, nostro, o, onde, oppure, ossia, ovvero, per, perché, perciò, però, poiché, prima, purché, quand’anche, quando, quantunque, quasi, quindi, se, sebbene, sennonché, senza, seppure, si, siccome, sopra, sotto, su, subito, sugl’, sugli, sui, sul, sull’, sulla, sulle, sullo, suo, talché, tu, tuo, tuttavia, tutti, un, una, uno, voi, vostro
+Putting All Together
+
+Putting All Together
+Using NL TKThe Natural Language Toolkit is a popular NLP library•pip install nltk•It includes more refined tokenizers 
+
+Using NL TKThe Natural Language Toolkit is a popular NLP library•pip install nltk•It includes extended stop-word lists for many languages
+Stemming and Lemmatization
+StemmingIdentifies a common stem among various forms of a word•E.g., Housing and houses share the same stem: houseFunction:•Removes suffixes to combine words with similar meanings under the same token (stem)•A stem isn’t required to be a properly spelled word: Relational, Relate, Relating all stemmed to Relat Benefits:•Helps generalize your vocabulary•Important for information retrieval (improves recall)
+A Naïve Stemmer
+Very basic example…•Doesn't handle exceptions, multiple suffixes, or words that require more complex modificationsNPL libraries include more accurate stemmers
+
+Porter Stemmer•Step 1a: Remove s and es endings•cats → cat, buses → bus•Step 1b: Remove ed, ing, and at endings•hoped → hope, running → run•Step 1c: Change y to i if preceded by a consonant•happy → happi, cry → cri•Step 2: Remove "nounifying" endings such as ational, tional, ence, and able•relational → relate, dependence → depend
+Porter Stemmer•Step 3: Remove adjective endings such as icate, ful, and alize•duplicate → duplic, hopeful → hope•Step 4: Remove adjective and noun endings such as ive, ible, ent, and ism•effective → effect, responsible → respons•Step 5a: Remove stubborn e endings•probate → probat, rate → rat•Step 5b: Reduce trailing double consonants ending in l to a single l•controlling → controll → control, rolling → roll → rol
+Using NL TK Porter Stemmer
+Snowball ProjectProvides stemming algorithms for several languages•https://snowballstem.org/ Italian stemming examples:
+Supported in NLTK
+LemmatizationDetermines the dictionary form (lemma) of a word•Considers the context of the word•Uses dictionaries and language rules (morphological analysis)•Requires to prior identify the part of speech (PoS) of the word (verb, noun, adjective, …)Lemmatization vs Stemming:•Lemmatization always produces a valid lemma; stemming may produce roots that are not actual words•Lemmatization is slower; stemming is faster
+LemmatizationLemmatization: •went → go•ate → eat•better → good•best → good•children → child•andato → andare•migliore → buono•corre → correre•connessione → connettere
+Stemming: •went → went•ate → at•better → better•best → best•children → children•andato → andat•migliore → miglior•corre → corr•connessione → conness
+Part of Speech Tagging
+Part of Speech Tagging •PoS tagging is the operation of labeling tokens with respect to their lexical category•Noun, Adjective, Article, Verb, Preposition, ...•Each category in turn admits different subcategories and morphological variants•Gender and number in the case of nouns•Tense, person, and number in the case of verbs•PoS tagging is a prerequisite for lemmatization•It is also important for many other NLP tasks (parsing, information extraction, …)
+Main PoS TagsPOS TagDescription Example(s)ADJAdjective, describes or modifies a noun“big”, “yellow”, “quick”ADPAdposition, shows relationship between a noun or pronoun and another word“in”, “on”, “at”ADVAdverb, modifies a verb, an adjective, or another adverb“quickly”, “very”, “well”AUXAuxiliary verb, used to form tenses, moods, aspects, and voices“is”, “have”, “will”CCONJCoordinating conjunction, links words, phrases, or clauses of equal rank“and”, “but”, “or”DETDeterminer, specifies a noun in terms of quantity, possession, specificity, etc.“the”, “a”, “an”, “some”INTJInterjection, expresses emotion or a spontaneous reaction“oh”, “wow”, “ouch”NOUNNoun, person, place, thing, or idea“dog”, “city”, “happiness”NUMNumeral, expresses a number“one”, “two”, “first”PRONPronoun, replaces a noun“he”, “she”, “they”PROPNProper noun, a specific name of a person, place, or organization“John”, “Paris”, “Google”PUNCTPunctuation mark“.”, “,”, “!”SCONJSubordinating conjunction, introduces a subordinate clause“because”, “if”, “while”SYMSymbol “%”, “&”, “$”VERBVerb, describes an action, state, or occurrence“run”, “is”, “seems”
+Specific PoS Tags
+
+Specific PoS Tags
+PoS Tagging AlgorithmsPoS tagging is a complex task due to the ambiguity of natural language•The same term can represent different parts of speechExample:•The word light can be a noun or a verb:•In the sentence The light is bright, it is a noun•In Please light the candle, it is a verb•Only the context can help to discriminate
+PoS Tagging AlgorithmsPoS Tagging Algorithms•Use dictionaries of words annotated with all their possible PoS•Use statistical models to choose the most appropriate tag for a token based on the surrounding contextSimple models assign the PoS tag based on the PoS tag assigned to the previous token•let w1, …, wnbe the sequence of tokens to be analyzed…•… assign to the token wi the tag ti which maximizes the probability:P(ti) = P(wi|ti) P(ti|ti-1)where probabilities are learned on corpora of annotated text
+Example“The light is bright”After determining that t1 = DET (article) we estimate:•P(t2 = NOUN) = P(light|NOUN) × P(NOUN|DET)•P(t2 = VERB) = P(light|VERB) × P(VERB|DET)where:•P(light|NOUN) is the marginal probability that light is a noun•P(NOUN|DET) is the conditional probability that a token is a noun when the preceding is an article•P(light|VERB) is the marginal probability that light is a verb•P(VERB|DET) is the conditional probability that a token is a verb when the preceding is an article
+Morphological AnalysisMore complex models consider longer sequences of tokens and use morphological analysisMorphological Analysis •Analyze the grammatical structure of the word  •Identify inflectional morphemes (suffixes that indicate verb conjugation or noun declension)•Example: Running is good for health•The word running is recognized as a verb in the gerund form based on the suffix -ing•Recognizing inflectional morphemes allows estimating the conditional probability for an unknown word
+POS Tagging with NL TKNL TK includes several pre-trained POS tagger models
+
+Lemmatization with NL TKPOS Tagging enables Lemmatization•To obtain the lemma we must know the POS tag of a token first•NL TK also include some lemmatizer modelsWordnet Lemmatizer•Uses the Wordnet lexicon•Includes about 155.000 words divided in four lexical categories •Nouns, Verbs, Adjectives, Adverbs•https://wordnet.princeton.edu/
+Lemmatization with NL TK
+
+Introducing spaCy
+spaCyspaCy is a free, open-source library for NLP in Python•Supports 25 languages (including Italian)•Different models for each language•it_core_news_sm (12 MB)•it_core_news_md (40 MB)•it_core_news_lg (541 MB)Installation:
+https://spacy.io/ 
+•en_core_web_sm (12 MB)•en_core_web_md (40 MB)•en_core_web_lg (560 MB)
+spaCy Features
+Tokenization•First, the text is split on whitespace characters•Then, on each substring, the following checks are performed:•Does the substring match a tokenizer exception rule?•Can a prefix, suffix or infix be split off?•Matching rules are applied, and the tokenizer continues its loop
+
+Tokenization
+Additional Token Info
+
+Other Token AttributesA spaCy token has many other attributes•Full list here: https://spacy.io/api/token#attributes We can also ask spaCy to explain a tag…
+Sentence SplittingspaCy can easily determine sentence boundaries
+
+Creating BoWs with spaCy
+Creating BoWs with spaCy
+With lemmatization:•Each term is reduced to its lemma•Smaller vocabulary•Preserves almost the same discriminative information
+Dependency ParsingspaCy can determine syntactic dependencies between tokens (like subject, object, etc.)
+Displacy is the built-in spaCy visualizer
+Named Entity RecognitionA named entity is a real-world object that’s assigned a name (a person, a country, a product, a book title, …)•spaCy can recognize various types of named entities
+
+Named Entity RecognitionEntity Labels•CARDINAL: Numerals that don’t refer to a specific quantity of something, like “three”, “100”, “thousands”.•DATE: References to dates, such as exact days, months, or years, e.g., “January 1st”, “2019”, “Monday”.•EVENT: Named occurrences of events like “Olympics”, “World War II”, or “Super Bowl”.•FAC (Facility): Buildings, airports, highways, bridges, etc., such as “Eiffel Tower”, “Golden Gate Bridge”.•GPE (Geo-political Entity): Countries, cities, states, or regions, e.g., “France”, “New York”, “Asia”.•LANGUAGE: Any mention of a language, e.g., “English”, “Spanish”, “Mandarin”.•LAW: Legal documents, laws, treaties, or regulations, such as “First Amendment”, “Treaty of Versailles”.•LOC (Location): Non-political locations such as mountain ranges, bodies of water, and general areas, e.g., “Sahara Desert”, “Pacific Ocean”.
+•MONEY: Monetary values, including currency symbols, e.g., “$10”, “€500”, “five dollars”.•NORP: Nationalities, religious, or political groups, e.g., “American”, “Buddhists”, “Republicans”.•ORDINAL: Words indicating order or rank, such as “first”, “second”, “10th”.•ORG (Organization): Companies, institutions, agencies, etc., e.g., “Google”, “United Nations”, “NASA”.•PERCENT: Percentage values, e.g., “50%”, “twelve percent”.•PERSON: Names of people, including fictional, e.g., “ John”, “Marie Curie”, “Sherlock Holmes”.•PRODUCT: Objects, vehicles, foods, etc., e.g., “iPhone”, “Tesla Model S”, “Big Mac”.•QUANTITY: Measurable quantities, including units of measurement, e.g., “10 kilograms”, “two liters”.•TIME: Specific times or periods, e.g., “10:30 AM”, “two hours”, “last night”.
+ReferencesNatural Language Processing IN ACTIONUnderstanding, analyzing, and generating text with Python Chapter 2 (2.3 excluded)
+Further Readings…•spaCy 101: Everything you need to knowhttps://spacy.io/usage/spacy-101 •NL TK Documentationhttps://www.nltk.org/ 
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 2Representing TextNicola Capuano and Antonio GrecoDIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 2
+Representing Text
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+® Tokenization
+* Bag of Words Representation
+® Token Normalization
+
+* Stemming and Lemmatization Treaty
+
+0 __.
+0 __
+© —
+
+° Part of Speech Tagging
+
+® Introducing spaCy
+
+Tokenization
+
+Prepare the Environment
+
+For most exercises, we will use Jupyter notebooks
+* Install the Jupyter Extension for Visual Studio Code
+
+* pip install jupyter
+
+® Create and activate a virtual environment:
+
+* python -m venv .env
+
+@
+@ gl.
+* source .env/bin/activate
+Jupyter
+° Alternative: Google Colab notebooks ww”
+@
+
+https://colab.research.google.com/
+
+For this section we also need some Python package...
+* pip install numpy pandas
+
+Text Segmentation
+
+The process of dividing a text into meaningful units
+°® Paragraph Segmentation: breaking a document into paragraphs
+® Sentence Segmentation: breaking a paragraph into sentences
+
+° Word Segmentation: breaking a sentence into words
+
+Tokenization:
+
+° Aspecialized form of text segmentation
+Y
+
+A unit of text that is treated as a single, meaningful
+element
+
+Involves breaking text into small units called tokens
+
+What Is a Token?
+
+© Words: the most common form of tokens
+
+® Punctuation Marks: symbols that punctuate sentences (e.g.,
+periods, commas)
+
+°® Emojis: visual symbols representing emotions or concepts
+° Numbers: digits and numerical expressions
+
+°® Sub-words: smaller units within words, such as prefixes
+(re, pre, ...) or suffixes (ing, ...) that have intrinsic meaning
+
+Phrases: multiword expressions treated as single units
+(e.g., "ice cream")
+
+Tokenizer
+
+Idea: use whitespaces as the “delimiter” of words
+
+® Not suitable for languages with a continuous orthographic
+system (Chinese, Japanese, Thai, etc.)
+
+sentence = "Leonardo da Vinci began painting the Mona Lisa at the age of 51."
+token_seq = sentence.split()
+token_seq
+
+['Leonardo',
+
+‘da',
+
+'Vinci', .
+
+‘hegan', Here a good tokenizer should separate
+prong 51 and.
+
+‘Mona’, \ .
+
+‘Lisa’, We'll tackle punctuation and other
+the’, challenges later
+‘age',
+‘of',
+'51.']
+
+Bag of Words
+Representation
+
+Turning Words into Numbers
+
+One-hot Vectors
+°® Avocabulary lists all unique tokens that we want to keep track of
+
+® Each word is represented by a vector with all os except for a1
+corresponding to the index of the word
+
+vocab = sorted(set(token_seq) ) import numpy as np
+
+vocab onehot_vectors = np.zeros((len(token_seq), len(vocab)), int)
+for i, word in enumerate(token_seq):
+['51.', onehot_vectors[i, vocab.index(word)] = 1
+‘Leonardo’, onehot_vectors
+‘Lisa',
+‘Mona’, array([[0, 1, @, 0, 0, 0, @, 0, 0, @, @, 9],
+'Vinci', [0, @, 0, 0, 0, 0, @, 0, 1, @, 2, 01,
+‘age’, [Q, Q, 0, Q, 1, Q, Q, 0, Q, 0, Q, el,
+‘at', [0, 0, 0, 0, 0, 0, @, 1, @, @, @, @],
+‘da', [0, 0, 0, 0, 0, 0, @, @, @, @, @, 1],
+‘of', {[0, 0, 0, 1, 0, 0, 0, 0, @, @, @, @],
+‘painting’, [0, 0, 1, 0, 0, 0, @, 0, @, @, @, @],
+‘the'] {[0, 0, 0, 0, 0, 0, 1, 0, @, @, @, @],
+[0, 0, 0, 0, 0, 0, @, @, @, @, @, 1],
+[0, 0, 0, 0, 0, 1, 0, 0, @, @, @, @],
+{[1, 0, 0, 0, 0, 0, @, @, @, @, @, @)])
+
+Turning Words into Numbers
+
+import pandas as pd
+pd.DataFrame(onehot_vectors, columns = vocab, index = token_seq)
+
+51. Leonardo Lisa Mona Vinci age at began da of painting the
+
+Leonardo 0 1 ie) 0 ie) 0 Oo 0 oO 0 0 0
+da 0 0 0 0 0 0 oO Oo 1 0 0 0
+Vinci 0 0 0 0 1 0 Oo 0 oOo 0 0 0
+began 0 0 0 0 0 0 oO 1 oO 0O 0 0
+painting 0 0 0 0 0 0 Oo 0 oO O 1 0
+the 0 0 0 0 0 0 O 0 oO 0 0 1
+Mona 0 0 0 1 0 0 Oo 0 oOo 0 0 0
+Lisa 0 0 1 0 0 0 Oo 0 oO 0 0 0
+at 0 0 0 0 0 Oo 1 0 oO 0 0 0
+the 0 0 0 0 0 0 Oo 0 oO 0 0 1
+age 0 0 0 0 0 1 0 0 oO 0 0 0
+0 0 0 0 0 0 Oo 0 oO 1 0 0
+
+1 0 0 0 0 0 Oo 0 oO 0 0 0
+
+One-hot Vectors
+
+Positive features:
+
+® No information is lost: you can reconstruct the original document
+from a table of one-hot vectors
+
+Negative Features:
+
+® One-hot vectors are super-sparse, this results in a large table even
+for a short sentence
+
+°® Moreover, a language vocabulary typically contains at least
+20,000 common words
+
+® This number increases to millions when you consider word
+variations (conjugations, plurals, etc.) and proper nouns (names of
+people, places, organizations, etc.)
+
+One-hot Vectors
+
+Let's assume you have:
+® Amillion tokens in your vocabulary
+
+* Asmall library of 3.000 short books with 3.500 sentences each and
+15 words per sentence
+
+15 X 3.500 X 3.000 = 157.500.000 tokens
+10° bits per tokens x 157.500.000 = 157,5 X 107” bits
+157,5 X 107? / (8 X 1024*) = 17,9 TB
+
+Not practical!
+
+Bag-of-Words
+
+Tokenizer
+
+BoW: a vector obtained by
+summing all the one-hot vectors
+
+® One bag for each sentence or short
+document
+
+°* Compresses a document down to a
+single vector representing its essence
+
+° Lossy transformation: you can't
+reconstruct the initial text
+
+Binary BoW: each word presence
+is marked as 1 or o, regardless of
+its frequency
+
+Bag-of-words
+
+/
+vector (3, 1, 4, 8, 9, 0,..,]
+
+Binary BoW: Example
+
+Generating a vocabulary for a text corpus...
+
+sentences = [
+“Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+“Leonardo was born in Vinci, Italy, in 1452.",
+"In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+"Tennis is played on a rectangular court with a net in the middle.",
+"The four Grand Slam tournaments are the most prestigious events in tennis.",
+"A tennis match is typically played as a best of three or best of five sets."
+
+]
+
+all_words = " ".join(sentences).split()
+vocab = sorted(set(all_words) )
+vocab
+
+['1452.', '51.', 'A', ‘'Grand', ‘In', ‘Italy,', 'Leonardo', 'Lisa', 'Mona', 'Slam',
+"Tennis', 'The', ‘Vinci’, 'Vinci,', 'a', ‘addition', ‘age’, 'also', ‘are', ‘as', ‘at’,
+"began', 'being', ‘best’, ‘born', ‘court’, 'da', ‘engineer.', ‘events', ‘five’,
+"four', ‘in', ‘is', 'match', 'middle.', 'most', 'net', 'of', ‘'on', ‘or', '‘painter,',
+"‘painting', '‘played', 'prestigious', 'rectangular', 'sets.', 'skilled', ‘tennis’,
+"tennis.', 'the', ‘three’, 'to', ‘tournaments’, ‘typically’, ‘was', ‘with']
+
+bags
+
+Binary BoW: Example
+
+import numpy as np, pandas as pd
+
+= np.zeros((len(sentences), len(vocab)), int)
+
+1452. 010000
+51. 100000
+A 000001
+
+Grand 000
+
+[)
+°
+
+Ey
+°
+°
+oo
+°
+°
+
+Italy, 010 00
+Leonardo 111000
+Lisa 100000
+Mona 100000
+Slam 000010
+
+Tennis 000100
+The
+
+°
+[}
+°
+°
+°
+
+°o
+oo
+[-)
+[)
+
+= vocab).transpose()
+
+a
+addition
+age
+also
+are
+as
+at
+began
+being
+
+engineer.
+
+for i, sentence in enumerate(sentences):
+for j, word in enumerate(sentences[i].split()):
+bags[i, vocab. index(word)] = 1
+pd.DataFrame(bags, columns
+
+°
+
+oo
+
+ooo 8
+
+0
+
+ooo oO oO oO 8 ooo lO UF
+
+oo
+
+[) ooo ft OO oO Oo
+
+°
+
+oo
+
+match
+middle.
+most
+net
+of
+on
+or
+painter,
+
+painting
+
+oo
+
+oooo ©
+
+ooo co oO
+
+Generating a BoW vector for each text...
+
+i = = = = = = =
+
+coo w
+
+oo °o
+
+for display
+purposes only
+
+45
+
+10 played
+o1 prestigious
+10 rectangular
+10 sets.
+01 skilled
+01 tennis
+00 tennis.
+
+1 0 the
+oo three
+01 to
+00 tournaments
+o1 typically
+00 was
+00 with
+
+Binary BoW: Example
+
+1452. 010000
+51. 100000
+A 000001
+
+Grand 000010
+
+In 001000
+Italy, 010000
+Lisa 100000
+
+Mona 100000
+Slam 000010
+Tennis 000100
+The 0oooo0o10
+Vinci 01000
+
+Vinci, 010000
+
+a
+addition
+age
+also
+are
+as
+at
+began
+being
+
+engineer.
+
+° oo 8
+
+oo
+
+ooo 8
+
+0
+
+ooo oO oO oO 8 ooo lO UF
+
+oo
+
+[) ooo ft OO oO Oo
+
+°
+
+oo
+
+match
+middle.
+most
+net
+of
+on
+or
+painter,
+
+painting
+
+oo
+
+oooo ©
+
+ooo co oO
+
+i = = = = = = =
+
+coo w
+
+oo °o
+
+° You can see little overlap in word usage for some
+sentences...
+
+°® We can use this overlap to compare documents or
+search for similar documents
+
+45
+
+10 played
+o1 prestigious
+10 rectangular
+10 sets.
+01 skilled
+01 tennis
+00 tennis.
+
+1 0 the
+oo three
+o1 to
+00 tournaments
+o1 typically
+00 was
+00 with
+
+t')
+t')
+
+t')
+t')
+
+ray
+
+i a —  -  -  )
+
+ray
+
+i a —  -  -  )
+
+ooo oO HF OD OD oO 8
+
+oo
+
+ooo oO HF OD OD oO 8
+
+oo
+
+- eo CO oO
+
+ooo oO oO
+
+- eo CO oO
+
+ooo oO oO
+
+- oOo oO
+
+ooo
+
+- oOo oO
+
+ooo
+
+- co oO
+
+oo
+
+- co oO
+
+oo
+
+Bag-of-Words Overlap
+
+Measuring the bag of words overlap for two
+texts...
+
+® we can get a (good?) estimate of how similar they
+are in the words they use
+
+® and this is a (good?) estimate of how similar they
+are in meaning
+
+Idea: use the dot product
+#0: “Leonardo da Vinci began painting the Mona Lisa
+
+# at the age of 51."
+#2: "In addition to being a painter, Leonardo da Vinci
+
+# was also a skilled engineer."
+n
+\
+
+p.dot(bags[@], bags[2])
+Measuring the bag of words overlap for two
+texts...
+
+Bag-of-Words Overlap
+
+® we can get a (good?) estimate of how similar they
+are in the words they use
+
+® and this is a (good?) estimate of how similar they
+are in meaning
+
+Idea: use the dot product
+
+#3: "Tennis is played on a rectangular court with a net in
+
+# the middle.",
+
+#5: "A tennis match is typically played as a best of three
+or best of five sets."
+
+np.dot(bags[3], bags[5])
+
+® 2
+
+51. 10
+
+In 01
+
+Lisa 1:0
+Mona 1 0
+a 01
+addition O 1
+
+10
+
+also 01
+
+10
+
+began 1 0
+
+being 01
+engineer. 1
+of 0
+painter, 1
+painting 0
+1
+0
+1
+1
+
+0
+1
+(e)
+1
+skilled 0
+1
+0
+0
+
+3 5
+
+A 01
+Tennis 10
+as 01
+best 01
+court 1 0
+five 01
+in 1 0
+
+match 01
+middle. 10
+net 10
+of 01
+on 1 0
+or 01
+rectangular 0
+sets. 1
+
+1
+
+ie)
+
+1
+
+1
+
+0
+
+tennis
+
+three
+typically
+
+1
+0)
+0
+the 1
+ie)
+ie)
+with 1
+
+Bag-of-Words Overlap
+
+Measuring the bag of words overlap for two
+texts...
+
+° we can get a (good?) estimate of how similar they
+
+are in the words they use
+
+and this is a (good?) estimate of how similar they
+are in meaning
+
+Idea: use the dot product
+
+#2: "In addition to being a painter, Leonardo da Vinci
+
+# was also a skilled engineer."
+
+#5: "A tennis match is typically played as a best of three
+or best of five sets."
+
+p.dot(bags[2], bags[5])
+
+Bag-of-Words Overlap
+
+Measuring the bag of words overlap for two
+texts...
+
+® we can get a (good?) estimate of how similar they
+
+are in the words they use
+
+and this is a (good?) estimate of how similar they
+are in meaning
+
+Idea: use the dot product
+
+#0: “Leonardo da Vinci began painting the Mona Lisa at the
+#. age of 51."
+
+#1: “Leonardo was born in Vinci, Italy, in 1452."
+np.dot(bags[@], bags[1])
+
+@)
+
+Leonardo
+
+Vinci
+
+addition
+also
+as
+being
+best
+da
+engineer.
+five
+is
+match
+of
+or
+painter,
+played
+sets.
+skilled
+tennis
+three
+to
+typically
+
+was
+
+1452.
+51.
+
+Italy,
+
+Lisa
+Mona
+Vinci
+Vinci,
+
+of
+painting
+the
+
+was
+
+-~ oO - OO oO rF OD Ort GO COOoeeoe oOo stslhlUcrhUhUcCOOUCUCUcrrhUlUchCOOOUlUCUchUhlUD
+
+0
+0
+1
+0
+
+1
+
+ooo Ww
+
+o Eo Ba = Bon =. a oo Bs = Bea = Bas o Bon - Bow = Bon o
+
+1
+
+1
+
+0
+
+1
+
+Leonardo 1 1
+
+0
+
+0
+
+0
+1
+0
+0
+0
+1
+0
+1
+
+- oO FO Oo
+
+|?
+
+Token Normalization
+
+Tokenizer Improvement
+
+Not only spaces are used to separate words
+® \t (tab), \n (newline), \r (return), ...
+
+® punctuation (commas, periods, quotes, semicolons, dashes, ...)
+
+We can improve our tokenizer with regular expressions
+
+import re
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+token_seq
+
+['Leonardo', 'was', 'born', ‘in', 'Vinci', 'Italy', ‘in', '1452']
+
+Tokenizer Improvement
+
+But... what would happen with these sentences?
+
+° The company’s revenue for 2023 was $1,234,567.89.
+
+° The CEO of the U.N. (United Nations) gave a speech.
+
+° It's important to know the basics of A.I. (Artificial Intelligence).
+
+° He didn’t realize the cost was $12,345.67.
+
+°® Her new book, ‘Intro to NLP (Natural Language Processing)’, is popular.
+
+°® The temperature in Washington, D.C. can reach 100°F in the summer.
+
+Tokenizers can easily become complex ...
+
+Consolidates multiple “spellings” of a word that differ only
+in their capitalization under a single token
+
+.. but NLP libraries can help us (we will see them later)
+
+Case Folding
+
+°® Tennis — tennis, A— a, Leonardo — leonardo, ...
+
+© A.K.A. Case normalization
+
+Advantages:
+
+® Improves text matching and recall in search engines
+
+Disadvantages:
+® Loss of distinction between proper and common nouns
+
+\
+
+May alter the original meaning (e.g., US > us)
+
+Case Folding
+
+import re
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+token_seq = [x.lower() for x in token_seq] # case folding
+
+token_seq
+
+['leonardo', 'was', ‘born', ‘in', ‘vinci', ‘italy', ‘in', '1452']
+
+A lot of meaningful capitalization is “normalized” away
+°® We can just normalize first-word-in-sentence capitalization ...
+
+° ... but the first word can be a proper noun
+
+°® We can first detect proper nouns and then normalizing only the
+remaining words ...
+
+... we willsee Named Entity Recognition later
+
+Stop Words
+
+Common words that occur with a high frequency but
+carry little information about the meaning of a sentence
+
+° Articles, prepositions, conjunctions, forms of the verb “to be”, ...
+
+© These words are can be filtered out to reduce noise
+
+stop_words = [
+"a", "about", "after", "all", "also", "an", "and", "any", “are", "as", "at", "be", "because",
+"been", "but", "by", "can", "co", "corp", "could", "for", "from", "had", "has", “have", "he",
+"her", "his", "if", "in", "inc", "into", "is", "it", "its", "last", "more", "most", "mr",
+"mrs", "ms", "mz", "no", "not", "of", "on", "one", "only", "or", "other", "out", "over", "s",
+"says", "she", "so", "some", "such", "than", "that", "the", "their", "there", "they", "this",
+"to", "up", "was", "we", "were", "when", "which", "who", "will", "with", "would"
+
+]
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+
+token_seq = [token for token in token_seq if token] # remove void tokens
+
+token_seq = [x.lower() for x in token_seq] # case folding
+
+token_seq = [x for x in token_seq if x not in stop_words] # remove stop words
+
+token_seq
+
+['leonardo', 'born', ‘vinci', ‘italy', '1452']
+
+Stop Words
+
+Disadvantages:
+
+® Even though the stop words carry little information, thy can
+provide important relational information
+
+° Mark reported to the CEO — Mark reported CEO
+° Suzanne reported as the CEO to the board — Suzanne reported CEO board
+
+Italian stop words:
+
+a, affinché, agl’, agli, ai, al, all’, alla, alle, allo, anziché, avere, bensi, che, chi,
+cioé, come, comunque, con, contro, cosa, da, dacché, dagl’, dagli, dai, dal, dall’, dalla,
+dalle, dallo, degl’, degli, dei, del, dell’, delle, dello, di, dopo, dove, dunque,
+durante, e, egli, eppure, essere, essi, finché, fino, fra, giacché, gl’, gli, grazie, i,
+il, in, inoltre, io, 1’, la, le, lo, loro, ma, mentre, mio, ne, neanche, negl’, negli,
+nei, nel, nell’, nella, nelle, nello, nemmeno, neppure, noi, nonché, nondimeno, nostro, o,
+onde, oppure, ossia, ovvero, per, perché, perciOd, pero, poiché, prima, purché,
+quand’anche, quando, quantunque, quasi, quindi, se, sebbene, sennonché, senza, seppure,
+si, siccome, sopra, sotto, su, subito, sugl’, sugli, sui, sul, sull’, sulla, sulle, sullo,
+suo, talché, tu, tuo, tuttavia, tutti, un, una, uno, voi, vostro
+
+Putting All Together
+
+stop_words = [
+"a", "about", "after", "all", "also", "an", "and", "any", "are", "as", "at", "be", "because",
+"been", "but", "by", "can", "co", "corp", "could", "for", "from", "had", "has", "have", "he",
+"her", "his", “if", "in", "inc", "into", "is", "it", "its", "last", "more", "most", "mr",
+"mrs", "ms", "mz", "no", "not", "of", "on", "one", "only", "or", "other", "out", “over", "s",
+"says", "she", "so", "some", "such", "than", "that", "the", "their", "there", "they", "this",
+"to", "up", "was", "we", “were”, "when", "which", "who", "will", "with", "would"
+
+]
+
+sentences = [
+"Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+“Leonardo was born in Vinci, Italy, in 1452.",
+"In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+"Tennis is played on a rectangular court with a net in the middle.",
+“The four Grand Slam tournaments are the most prestigious events in tennis.",
+"A tennis match is typically played as a best of three or best of five sets."
+
+]
+
+def tokenize (sentence):
+
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+token_seq = [x.lower() for x in token_seq] # case folding
+
+token_seq = [x for x in token_seq if x not in stop_words] # remove stop words
+return token_seq
+
+tok_sentences = [tokenize(sentence) for sentence in sentences]
+all_tokens = [x for tokens in tok_sentences for x in tokens]
+vocab = sorted(set(all_tokens) )
+
+bags = np.zeros((len(tok_sentences), len(vocab)), int)
+for i, sentence in enumerate(tok_sentences):
+for j, word in enumerate(tok_sentences [i] ):
+bagsl[i, vocab. index(word)] = 1
+pd.DataFrame(bags, columns = vocab).transpose()
+
+Putting All Together
+
+@12345 @12345 @12345
+1452 010000 five 000001 played 0 0 0|1 0 1|
+51 100000 four 000010 prestigious 0 0 0 0 1 0
+addition 001000 grand 000010 rectangular 0 0 010 0
+age 100000 italy 010000 sets 000001
+began 100000 leonardo [1 1 1]0 0 0 skilled 001000
+being 001000 lisa 100000 slam 000010
+best 00000 1 match 000001 tennis 00 O0;1 1 1
+born 010000 middle 00010 0 three 000001
+court 000100 mona 100000 tournaments 0 0 0 0 1 0
+da 101/000 net 000100 typically 0 0 000 1
+engineer O 01 00 0 painter 001000 vinci 1 1°1;/0 0 0
+events 00001 0 painting 100000
+
+Using NLTK
+
+The Natural Language Toolkit is a popular NLP library
+* pip install nltk
+
+© |t includes more refined tokenizers
+
+import nltk
+
+nltk.download('punkt') # download the Punkt tokenizer models
+text = "Good muffins cost $3.88\nin New York. Please buy me two of them.\n\nThanks."
+
+print(nltk.tokenize.word_tokenize(text)) # word tokenization
+print(nltk.tokenize.sent_tokenize(text)) # sentence tokenization
+
+['Good', 'muffins', ‘cost', '$', '3.88', ‘in', 'New', 'York', '.', ‘Please', ‘buy',
+‘me', ‘two', ‘of', ‘them', '.', ‘Thanks’, '.']
+
+iN muffins cost $3.88\nin New York.', ‘Please buy me two of them.', ‘'Thanks.']
+
+Using NLTK
+
+The Natural Language Toolkit is a popular NLP library
+* pip install nltk
+
+® Itincludes extended stop-word lists for many languages
+
+import nltk
+
+nltk.download('stopwords') # download the stop words corpus
+text = "This is an example sentence demonstrating how to remove stop words using NLTK."
+
+tokens = nltk.tokenize.word_tokenize(text)
+stop_words = set(nltk.corpus.stopwords.words('english') )
+filtered_tokens = [x for x in tokens if x not in stop_words]
+
+print("Original Tokens:", tokens)
+print("Filtered Tokens:", filtered_tokens)
+
+Original Tokens: ['This', ‘is', 'an', ‘'example', 'sentence', 'demonstrating', 'how', ‘to',
+‘remove', ‘stop', ‘words', ‘'using', 'NLTK', ‘.']
+Filtered Tokens: ['This', ‘example’, ‘sentence', 'demonstrating', 'remove', ‘stop', ‘words’,
+
+‘using', 'NLTK', '.']
+
+Stemming and
+Lemmatization
+
+Stemming
+
+Identifies acommon stem among various forms of a word
+
+° E.g., Housing and houses share the same stem: house
+
+Function:
+
+°® Removes suffixes to combine words with similar meanings under
+the same token (stem)
+
+° Astem isn’t required to be a properly spelled word:
+Relational, Relate, Relating all stemmed to Relat
+
+Benefits:
+* Helps generalize your vocabulary
+
+® Important for information retrieval (improves recall)
+
+A Naive Stemmer
+
+def simple_stemmer(word):
+suffixes = ['ing', ‘ly', ‘ed', ‘ious', ‘ies', 'ive', 'es', ‘'s', ‘ment']
+for suffix in suffixes:
+if word.endswith(suffix) :
+return word[:-Len(suffix) ]
+return word
+
+words = ["running", "happily", "stopped", "curious", "cries", "effective", "runs", "“management"]
+{simple_stemmer(word) for word in words]
+
+['runn', ‘happi', ‘'stopp', ‘cur', ‘cr', ‘effect', ‘run', ‘manage']
+
+Very basic example...
+
+® Doesn't handle exceptions, multiple suffixes, or words that
+require more complex modifications
+
+NPL libraries include more accurate stemmers
+
+Porter Stemmer
+
+° Step 1a: Remove s and es endings
+° cats — cat, buses — bus
+° Step ab: Remove ed, ing, and at endings
+° hoped — hope, running > run
+° Step 1c: Change y toi if preceded by a consonant
+° happy — happi, cry > cri
+° Step 2: Remove "nounifying" endings such as ational,
+tional, ence, and able
+
+° relational — relate, dependence — depend
+
+Porter Stemmer
+
+° Step 3: Remove adjective endings such as icate, ful,
+and alize
+
+° duplicate — duplic, hopeful — hope
+° Step 4: Remove adjective and noun endings such as ive,
+ible, ent, and ism
+° effective — effect, responsible — respons
+° Step 5a: Remove stubborn e endings
+
+° probate — probat, rate — rat
+
+® Step 5b: Reduce trailing double consonants ending in |
+to asingle |
+
+° controlling — controll — control, rolling — roll — ro!
+
+import nltk
+
+texts = [
+"I love machine learning.",
+"Deep learning is a subset of machine learning.",
+"Natural language processing is fun.",
+"Machine learning can be used for various tasks."
+
+stemmed_texts = []
+for text in texts:
+tokens = nltk.tokenize.word_tokenize(text. lower())
+
+stemmed_texts.append(' '.join(stemmed_tokens) )
+for text in stemmed_texts:
+
+print (text)
+i love machin learn
+
+® https://snowballstem.org/
+
+Italian stemming ae —
+
+abbandonata abbandon
+. abbandonate abbandon
+exam p | es: abbandonati abbandon
+abbandonato abbandon
+abbandonava abbandon
+abbandonera abbandon
+abbandoneranno abbandon
+abbandonerd abbandon
+
+abbandono abband
+abbandono abbandon
+
+. abbaruffato abbaruff
+
+S u p po rted in abbassamento —_abbass
+
+abbassando abbass
+
+abbassandola abbass
+
+abbassandole abbass
+
+abbassar abbass
+
+abbassare abbass
+
+abbassarono abbass
+
+nltk.download('punkt') # Download the Punkt tokenizer models
+stemmer = nltk.stem.PorterStemmer() # Initialize the Porter Stemmer
+
+Snowball Project
+
+word
+
+pronto
+pronuncera
+pronuncia
+pronunciamento
+pronunciare
+pronunciarsi
+pronunciata
+pronunciate
+pronunciato
+pronunzia
+pronunziano
+pronunziare
+pronunziarle
+pronunziato
+pronunzio
+pronunzio
+propaga
+propagamento
+
+Using NLTK Porter Stemmer
+
+stemmed_tokens = [stemmer.stem(token) for token in tokens if token.isalpha()]
+
+deep learn is a subset of machin learn
+natur languag process is fun
+machin learn can be use for variou task
+
+Provides stemming algorithms for several languages
+
+stem
+pront
+pronunc
+pronunc
+pronunc
+pronunc
+pronunc
+pronunc
+pronunc
+pronunc
+pronunz
+pronunz
+pronunz
+pronunz
+pronunz
+pronunz
+pronunz
+propag
+propag
+
+Lemmatization
+
+Determines the dictionary form (lemma) of a word
+*® Considers the context of the word
+® Uses dictionaries and language rules (morphological analysis)
+
+® Requires to prior identify the part of speech (PoS) of the word
+(verb, noun, adjective, ...)
+
+Lemmatization vs Stemming:
+
+° Lemmatization always produces a valid lemma; stemming may
+produce roots that are not actual words
+
+°® Lemmatization is slower; stemming is faster
+
+Lemmatization
+Lemmatization: Stemming:
+° went — go ° went — went
+° ate — eat ° ate — at
+° better — good ° better — better
+° best — good ° best — best
+® children — child ® children — children
+® andato — andare °® andato — andat
+° migliore — buono ° migliore — miglior
+corre — correre ° corre — corr
+
+connessione — connettere * connessione — conness
+
+Part of Speech Tagging
+
+Part of Speech Tagging
+
+respect to their lexical category
+
+®* Noun, Adjective, Article, Verb, Preposition, ...
+
+and morphological variants
+® Gender and number in the case of nouns
+°® Tense, person, and number in the case of verbs
+® PoS tagging is a prerequisite for lemmatization
+
+® It is also important for many other NLP tasks (parsing,
+information extraction, ...)
+
+® PoS tagging is the operation of labeling tokens with
+
+® Each category in turn admits different subcategories
+
+Main PoS Tags
+
+POS Tag Description Example(s)
+
+ADJ Adjective, describes or modifies a noun “big”, “yellow”, “quick”
+
+ADP Adposition, shows relationship between a noun or pronoun and another word ‘in’, “on”, “at”
+
+ADV Adverb, modifies a verb, an adjective, or another adverb “quickly”, “very”, “well”
+
+AUX Auxiliary verb, used to form tenses, moods, aspects, and voices ‘is’, “have”, “will”
+CCONJ Coordinating conjunction, links words, phrases, or clauses of equal rank “and”, “but”, “or”
+
+DET Determiner, specifies a noun in terms of quantity, possession, specificity, etc. “the”, “a”, “an”, “some”
+
+INTJ Interjection, expresses emotion or a spontaneous reaction “oh”, “wow”, “ouch”
+NOUN Noun, person, place, thing, or idea “dog”, “city”, “happiness”
+
+NUM Numeral, expresses a number “one”, “two”, “first”
+PRON Pronoun, replaces a noun “he”, “she”, “they”
+PROPN Proper noun, a specific name of a person, place, or organization “John”, “Paris”, “Google”
+PUNCT Punctuation mark ion
+SCONJ Subordinating conjunction, introduces a subordinate clause “because”, “if”, “while”
+
+SYM Symbol 9H" BR" S”
+
+VERB Verb, describes an action, state, or occurrence “run”, “is”, “seems”
+
+Specific PoS Tags
+
+DESCRIPTION EXAMPLE
+conjunction, coordinating and, or, but
+
+cardinal number five, three, 13%
+determiner the, a, these
+existential there there were six boys
+foreign word mais
+
+conjunction, subordinating or preposition of, on, before, unless
+adjective nice, easy
+adjective, comparative nicer, easier
+adjective, superlative nicest, easiest
+
+list item marker
+
+verb, modal auxillary may, should
+
+noun, singular or mass tiger, chair, laughter
+
+noun, plural tigers, chairs, insects
+
+noun, proper singular Germany, God, Alice
+
+noun, proper plural we met two Christmases ago
+predeterminer both his children
+
+possessive ending s
+
+pronoun, personal me, you, it
+
+pronoun, possessive my, your, our
+
+adverb extremely, loudly, hard
+
+adverb, comparative better
+
+Specific PoS Tags
+
+DESCRIPTION
+adverb, superlative
+
+adverb, particle
+
+EXAMPLE
+best
+
+about, off, up
+
+symbol %
+
+infinitival to what to do?
+interjection oh, oops, gosh
+verb, base form think
+
+verb, 3rd person singular present she thinks
+
+verb, non-3rd person singular present I think
+
+verb, past tense they thought
+verb, past participle a sunken ship
+verb, gerund or present participle thinking is fun
+wh-determiner which, whatever, whichever
+wh-pronoun, personal what, who, whom
+wh-pronoun, possessive whose, whosever
+wh-adverb where, when
+punctuation mark, sentence closer of?
+
+punctuation mark, comma
+
+punctuation mark, colon
+
+contextual separator, left paren (
+
+contextual separator, right paren )
+
+PoS Tagging Algorithms
+
+PoS tagging is a complex task due to the ambiguity of
+natural language
+
+° The same term can represent different parts of speech
+
+Example:
+
+° The word light can be a noun ora verb:
+® Inthe sentence The light is bright, it isa noun
+° In Please light the candle, it is a verb
+
+® Only the context can help to discriminate
+
+PoS Tagging Algorithms
+
+PoS Tagging Algorithms
+® Use dictionaries of words annotated with all their possible PoS
+
+° Use statistical models to choose the most appropriate tag for a
+token based on the surrounding context
+
+Simple models assign the PoS tag based on the PoS tag
+assigned to the previous token
+
+° let w,, ..., w, be the sequence of tokens to be analyzed...
+
+® ... assign to the token w; the tag t; which maximizes the probability:
+
+P(t;) = P(w;,|t;) P(t;|t;-1)
+
+where probabilities are learned on corpora of annotated text
+
+Example
+
+“The light is bright”
+
+After determining that t, = DET (article) we estimate:
+
+°* P(t, = NOUN) = P(lightINOUN) x P(NOUN|DET)
+
+* P(t, = VERB) = P(light|VERB) x P(VERB|DET)
+
+where:
+
+® P(light]|NOUN) is the marginal probability that light is a noun
+
+° P(NOUNJDET) is the conditional probability that a token is a noun when
+the preceding is an article
+
+® P(light|VERB) isthe marginal probability that light is a verb
+
+P(VERB|DET) is the conditional probability that a token is a verb when
+the preceding is an article
+
+Morphological Analysis
+
+More complex models consider longer sequences of
+tokens and use morphological analysis
+
+Morphological Analysis
+° Analyze the grammatical structure of the word
+
+° Identify inflectional morphemes (suffixes that indicate verb
+conjugation or noun declension)
+
+°* Example: Running is good for health
+
+® The word running is recognized as a verb in the gerund form based on
+the suffix -ing
+
+Recognizing inflectional morphemes allows estimating the
+conditional probability for an unknown word
+
+POS Tagging with NLTK
+
+NLTK includes several pre-trained POS tagger models
+
+import nltk
+
+nltk.download('punkt') # Download the Punkt tokenizer models
+nltk.download('averaged_perceptron_tagger') # Download a pre-trained tagger model
+
+sentence = "The quick brown foxes are jumping over the lazy dogs."
+tokens = nltk.tokenize.word_tokenize(sentence)
+pos_tags = nltk.pos_tag(tokens)
+
+pos_tags [('The', 'DT'),
+('quick', 'JJ'),
+
+('brown', 'NN'),
+('foxes', 'NNS'),
+(‘are', 'VBP'),
+
+('jumping', 'VBG'),
+(‘over', '‘IN'),
+('the', 'DT'),
+(‘lazy', 'JJ'),
+('dogs', '‘NNS'),
+('.', '.')]
+
+Lemmatization with NLTK
+
+POS Tagging enables Lemmatization
+® To obtain the lemma we must know the POS tag of a token first
+
+© NLTK also include some lemmatizer models
+
+Wordnet Lemmatizer
+°® Uses the Wordnet lexicon
+® Includes about 155.000 words divided in four lexical categories
+
+* Nouns, Verbs, Adjectives, Adverbs
+
+https://wordnet.princeton.edu/
+
+Lemmatization with NLTK
+
+import nltk
+from nltk.corpus import wordnet
+
+nltk.download('wordnet') # Download the WordNet corpus
+lemmatizer = nltk.stem.WordNetLemmatizer() # Initialize the WordNet lemmatizer
+
+# Function to convert NLTK POS tags to WordNet POS tags
+def wordnet_pos(tag):
+if tag.startswith('J'): return wordnet.ADJ
+if tag.startswith('V'): return wordnet.VERB
+if tag.startswith('N'): return wordnet.NOUN
+if tag.startswith('R')
+
+: return wordnet.ADV
+return wordnet.NOUN
+[('The', 'DT', 'The'),
+('quick', 'JJ', ‘quick'),
+('brown', 'NN', ‘brown'),
+('foxes', 'NNS', 'fox'),
+(‘are', 'VBP', 'be'),
+(‘jumping', 'VBG', ‘jump'),
+(‘over', 'IN', ‘over'),
+('the', 'DT', ‘the'),
+(‘lazy', 'JJ', 'lazy'),
+('dogs', 'NNS', ‘dog'),
+(iat, tat, 'e')]
+
+lemmatized_tokens = []
+
+for token, pos in pos_tags:
+
+lemmatized_token = lemmatizer.\
+\
+
+lemmatize(token, pos = wordnet_pos(pos) )
+lemmatized_tokens.append((token, pos, lemmatized_token) )
+
+emmatized_tokens
+
+Introducing spaCy
+
+spaCy
+
+spaCy is a free, open-source library for NLP in Python
+® Supports 25 languages (including Italian)
+
+° Different models for each language
+
+° jt_core_news_sm (12 MB) °® en_core_web_sm (12 MB)
+
+° jt_core_news_md (40 MB) ® en_core_web_md (40 MB)
+
+° it_core_news_lg (541 MB) ° en_core_web_lg (560 MB)
+Installation:
+
+pip install -U pip setuptools wheel
+pip install -U spacy
+python -m spacy download en_core_web_sm
+
+python -m spacy download it_core_news_sm https://spacy.io/
+
+NAME DESCRIPTION
+Tokenization Segmenting text into words, punctuations marks etc.
+Part-of-speech (POS) Assigning word types to tokens, like verb or noun.
+Tagging
+Dependency Parsing Assigning syntactic dependency labels, describing the relations between
+individual tokens, like subject or object.
+Lemmatization Assigning the base forms of words. For example, the lemma of “was" is “be”, and
+the lemma of “rats” is “rat”.
+Sentence Boundary Finding and segmenting individual sentences.
+Detection (SBD)
+Named Entity Recognition Labelling named “real-world” objects, like persons, companies or locations.
+(NER)
+Entity Linking (EL) Disambiguating textual entities to unique identifiers in a knowledge base.
+Similarity Comparing words, text spans and documents and how similar they are to each
+other.
+Text Classification Assigning categories or labels to a whole document, or parts of a document.
+Rule-based Matching Finding sequences of tokens based on their texts and linguistic annotations,
+similar to regular expressions.
+Training Updating and improving a statistical model’s predictions.
+Serialization Saving objects to files or byte strings.
+
+Tokenization
+
+° First, the text is split on whitespace characters
+
+® Then, on each substring, the following checks are performed:
+°* Does the substring match a tokenizer exception rule?
+
+°* Cana prefix, suffix or infix be split off?
+
+® Matching rules are applied, and the tokenizer continues its loop
+
+PREFIX
+EXCEPTION
+SUFFIX
+
+Tokenization
+
+sentences = [
+“Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+“Leonardo was born in Vinci, Italy, in 1452.",
+“Tennis is played on a rectangular court with a net in the middle.",
+"The four Grand Slam tournaments are the most prestigious events in tennis.",
+"The company’s revenue for 2023 was $1,234,567.89.",
+"The CEO of the U.N. (United Nations) gave a speech.",
+"It’s important to know the basics of A.I. (Artificial Intelligence).",
+“He didn’t realize the cost was $12,345.67.",
+"The temperature in Washington, D.C. can reach 100°F in the summer."
+
+]
+
+import spacy
+nlp = spacy. load("en_core_web_sm") # load the language model
+
+for sentence in sentences:
+doc = nlp(sentence)
+tokens = [tok.text for tok in doc]
+print (tokens)
+
+['Leonardo', 'da', ‘Vinci’, ‘began', 'painting', 'the', 'Mona', ‘Lisa', ‘at', 'the', ‘age', ‘of', '51', '.']
+['Leonardo', 'was', 'born', ‘in', 'Vinci', ',', ‘Italy’, ',', ‘in', '1452', '.']
+
+{'Tennis', ‘is', 'played', 'on', ‘a', ‘rectangular', ‘court', ‘with', ‘a', 'net', ‘in', 'the', 'middle', '.']
+{'The', 'four', 'Grand', 'Slam', 'tournaments', ‘are', ‘'the', 'most', ‘prestigious', ‘events', ‘in', ‘tennis’, '.']
+['The', ‘company', ''’s', 'revenue', 'for', '2@23', 'was', '$', '1,234,567.89', '.']
+
+['The', 'CEO', ‘of', ‘the', 'U.N.', ‘(', ‘United', 'Nations', ')', 'gave', ‘a', ‘speech’, '.']
+
+['It', ''s', ‘important', ‘to', ‘'know', ‘the', ‘basics', ‘of', 'A.I.', '(', ‘Artificial', 'Intelligence', ')', '.']
+{'He', 'did', 'n’t', 'realize', 'the', 'cost', ‘was', '$', '12,345.67', '.']
+
+{'The', 'temperature', ‘in', ‘'Washington', ',', 'D.C.', ‘'can', ‘reach', '100', '°', 'F', ‘in', 'the', ‘summer', '.']
+
+Additional Token Info
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+
+def token_info(sentence):
+doc = nlp(sentence)
+print([tok.text for tok in doc]) # tokens
+print([tok.text for tok in doc if not tok.is_stop]) # tokens without sotp words
+print([tok.pos_ for tok in doc]) # PoS tag (generic)
+print([tok.tag_ for tok in doc]) # PoS tag (specific)
+print([tok. lemma_ for tok in doc]) # lemmas
+print()
+
+token_info("Leonardo da Vinci began painting the Mona Lisa at the age of 51.")
+token_info("The company’s revenue for 2023 was $1,234,567.89.")
+
+['Leonardo', 'da', 'Vinci', 'began', 'painting', 'the', 'Mona', ‘Lisa', ‘at', 'the', 'age', ‘of', '51', '.']
+['Leonardo', 'da', 'Vinci', 'began', 'painting', 'Mona', 'Lisa', ‘age’, '51', '.']
+
+['PROPN', 'PROPN', 'PROPN', 'VERB', 'VERB', 'DET', 'PROPN', 'PROPN', 'ADP', 'DET', 'NOUN', '‘ADP', 'NUM', ‘PUNCT']
+['NNP', 'NNP', ‘NNP', ‘VBD', 'VBG', ‘DT’, 'NNP', 'NNP', "IN', ‘DT', ‘NN’, ‘IN’, ‘CD', ‘.']
+
+['Leonardo', 'da', 'Vinci', 'begin', 'paint', ‘'the', 'Mona', 'Lisa', ‘at', 'the', ‘age', ‘of', '51', '.']
+
+['The', 'company', '’s', 'revenue', 'for', '2023', ‘was', '$', '1,234,567.89', '.']
+['company', 'revenue', '2023', '$', '1,234,567.89', '.']
+
+['DET', 'NOUN', 'PART', "NOUN', 'ADP', "NUM', ‘AUX', 'SYM', 'NUM', 'PUNCT']
+
+['DT', 'NN', 'POS', 'NN', ‘IN', 'CD', ‘'VBD', '$', ‘CD', '.']
+
+['the', 'company', '’s', 'revenue', ‘for', '2023', 'be', '$', '1,234,567.89', '.']
+
+Other Token Attributes
+
+A spaCy token has many other attributes
+® Full list here: https://spacy.io/api/token#attributes
+
+We can also ask spaCy to explain a tag...
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+
+print(spacy.explain("PROPN")) # explain a generic PoS tag
+print(spacy.explain("NNP")) # explain a specific PoS tag
+
+proper noun
+noun, proper singular
+
+Sentence Splitting
+
+spaCy can easily determine sentence boundaries
+
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+text = "This is the first sentence. Here is another one! Can you see how it works?"
+doc = nlp(text)
+
+for sent in doc.sents:
+print(sent.text)
+
+This is the first sentence.
+Here is another one!
+Can you see how it works?
+
+Creating BoWs with spaCy
+
+sentences = [
+
+"Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+
+"Leonardo was born in Vinci, Italy, in 1452.",
+
+"In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+
+"Tennis is played on a rectangular court with a net in the middle.",
+
+"The four Grand Slam tournaments are the most prestigious events in tennis.",
+"A tennis match is typically played as a best of three or best of five sets."
+
+]
+
+import spacy, numpy as np, pandas as pd
+
+nlp = spacy.load("en_core_web_sm") # load the language model
+
+def tokenize (sentence):
+
+doc = nlp(sentence)
+return [tok.lemma_ for tok in doc if not tok.is_stop and not tok.is_punct]
+
+tok_sentences = [tokenize(sentence) for sentence in sentences]
+
+all_tokens = [x for tokens in tok_sentences for x in tokens]
+
+vocab = sorted(set(all_tokens) )
+
+bags = np.zeros((len(tok_sentences), len(vocab)), int)
+for i, sentence in enumerate(tok_sentences):
+for j, word in enumerate(tok_sentences[i]):
+bags[i, vocab. index(word)] = 1
+pd.DataFrame(bags, columns
+
+vocab). transpose()
+
+Creating BoWs with spaCy
+
+With lemmatization:
+
+Each term is reduced
+to its lemma
+
+Smaller vocabulary
+
+Preserves almost the
+same discriminative
+information
+
+()
+
+1452 0
+51 1
+Grand 0
+Italy (e)
+
+Leonardo 1
+
+Lisa 1
+Mona 1
+Slam ie)
+
+Tennis ie)
+
+Vinci [111]
+
+addition 0
+age 1
+bear ie)
+
+begin 1
+court ie)
+
+123 45
+10000
+0000 0
+00010
+10000
+11000
+000 0 0
+00000
+0001 0
+0010 0
+000
+01000
+0000 0
+100 ie)
+000 ie)
+00100
+0 0
+
+a [10 iJo
+
+engineer
+event
+good
+match
+middle
+net
+paint
+painter
+play
+prestigious
+rectangular
+set
+skilled
+tennis
+tournament
+
+typically
+
+oo Oo Oo
+
+fo)
+
+oo fo 28
+
+= 0hlU et
+on © © © ee > ee >)
+lo)
+
+100 0
+
+000 1
+
+Dependency Parsing
+
+spaCy can determine syntactic dependencies between
+tokens (like subject, object, etc.)
+
+import spacy
+
+From spacy import AiSPVLacy Ge Displacy is the built-in
+
+spaCy visualizer
+nlp = spacy. load("en_core_web_sm")
+doc = nlp("This is a sentence.")
+displacy.render(doc, style="dep", jupyter=True)
+
+attr
+
+L det
+
+This is a sentence.
+
+PRON AUX DET NOUN
+
+Named Entity Recognition
+
+A named entity is a real-world object that’s assigned a
+name (a person, a country, a product, a book title, ...)
+
+® spaCy can recognize various types of named entities
+
+from spacy import displacy
+doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+for ent in doc.ents:
+
+print(ent.text, ent.start_char, ent.end_char, ent. label_)
+
+displacy.render(doc, style="ent")
+
+Apple @ 5 ORG
+U.K. 27 31 GPE
+$1 billion 44 54 MONEY
+
+“Apple orc is looking at buying “UK. GPE startup for $1 billion MONEY
+
+Named Entity Recognition
+
+Entity Labels
+
+CARDINAL: Numerals that don’t refer to a specific
+
+quantity of something, like “three”, “100”,
+“thousands”.
+
+DATE: References to dates, such as exact days,
+months, or years, e.g., January ast”, "2019",
+“Monday”.
+
+EVENT: Named occurrences of events like
+“Olympics”, “World War Il”, or “Super Bowl”.
+
+FAC (Facility): Buildings, airports, highways, bridges,
+etc., such as “Eiffel Tower”, “Golden Gate Bridge”.
+
+GPE (Geo-political Entity): Countries, cities, states,
+or regions, e.g., “France”, “New York”, “Asia”.
+
+LANGUAGE: Any mention of a language, e.g.,
+“English”, “Spanish”, “Mandarin”.
+
+LAW: Legal documents, laws, treaties, or regulations,
+such as “First Amendment”, “Treaty of Versailles”.
+
+LOC (Location): Non-political locations such as
+mountain ranges, bodies of water, and general areas,
+e.g., “Sahara Desert”, “Pacific Ocean”.
+
+MONEY: Monetary values, including currency
+
+uw
+
+symbols, e.g., "$10", “€500”, “five dollars”.
+
+NORP: Nationalities, religious, or political groups,
+e.g., “American”, “Buddhists”, “Republicans”.
+
+ORDINAL: Words indicating order or rank, such as
+“first”, “second”, “aoth”.
+
+ORG (Organization): Companies, institutions,
+agencies, etc., e.g., “Google”, “United Nations”,
+“NASA”.
+
+PERCENT: Percentage values, e.g., “50%”, “twelve
+percent”.
+
+PERSON: Names of people, including fictional,
+e.g., Sohn”, “Marie Curie”, “Sherlock Holmes”.
+
+PRODUCT: Objects, vehicles, foods, etc., e.g.,
+“iPhone”, “Tesla Model S”, “Big Mac”.
+
+QUANTITY: Measurable quantities, including units
+
+WOW.
+
+of measurement, e.g., “10 kilograms”, “two liters”.
+
+TIME: Specific times or periods, e.g., "10:30 AM”,
+“two hours”, “last night”.
+
+References
+
+Natural Language Processing INACTION
+
+Understanding, analyzing, and generating text with Python
+
+Chapter 2 (2.3 excluded)
+
+Further Readings...
+
+® spaCy 101: Everything you need to know
+
+https://spacy.io/usage/spacy-101
+
+© NLTK Documentation
+
+https://www.nltk.org/
+
+Natural
+Language
+‘Processing
+
+» IN ACTION
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 2
+Representing Text
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

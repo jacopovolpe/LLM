@@ -1,0 +1,62 @@
+### Recurrent Neural Networks and the Rise of Transformers
+
+This lesson explores the evolution of sequence processing in Natural Language Processing (NLP), starting with Recurrent Neural Networks (RNNs) and their limitations, which paved the way for the groundbreaking Transformer architecture.
+
+`<----------section---------->`
+
+### Limitations of Recurrent Neural Networks
+
+RNNs, designed to process sequential data by maintaining a hidden state that incorporates information from previous steps, face several significant challenges that hinder their performance, especially with long sequences.
+
+* **Vanishing/Exploding Gradients:**  During training, RNNs use Backpropagation Through Time (BPTT), which involves repeated application of the same function across the sequence.  This process can lead to vanishing or exploding gradients.  When gradients vanish, the network struggles to learn long-range dependencies, effectively losing information from earlier parts of the sequence. Conversely, exploding gradients lead to numerical instability during training, making it difficult for the model to converge.
+
+* **Sequential Processing:**  RNNs process input sequentially, one element at a time. This inherent sequentiality prevents parallelization, making them computationally expensive, especially for long sequences.  This bottleneck hinders their ability to take full advantage of modern hardware like GPUs, which excel at parallel processing.
+
+* **Limited Long-Term Memory:**  While RNNs theoretically maintain a hidden state that captures past information, in practice, their ability to retain information over long sequences is limited. The vanishing gradient problem contributes to this by hindering the propagation of information from earlier steps to later ones. This limitation makes it difficult for RNNs to capture long-range dependencies crucial for understanding complex language structures.
+
+`<----------section---------->`
+
+### The Transformer Architecture: A Paradigm Shift
+
+Introduced in 2017, the Transformer architecture revolutionized NLP by addressing the limitations of RNNs. Its key innovation lies in replacing recurrent connections with self-attention mechanisms, allowing parallel processing of sequence elements.  This shift significantly improves training speed and enables the model to capture long-range dependencies more effectively.  Initially designed for machine translation, the Transformer's versatility has led to its adoption in various NLP tasks.
+
+`<----------section---------->`
+
+### Transformer Components and Input Processing
+
+The Transformer architecture comprises several key components that work together to process sequential data.  These components include an input processing pipeline, encoders, decoders, and an output layer.
+
+* **Tokenization and Input Embedding:** The input text is first tokenized, breaking it down into individual words or subword units. Each token is then converted into a continuous vector representation called an embedding.  These embeddings capture semantic relationships between words, with similar words having similar vector representations.
+
+* **Positional Encoding:** Since the Transformer processes input in parallel, it lacks inherent information about the order of tokens. Positional encodings are added to the input embeddings to provide this crucial information. These encodings are generated using sinusoidal functions, ensuring that each position in the sequence has a unique representation.
+
+`<----------section---------->`
+
+### The Encoder: Understanding Self-Attention
+
+The encoder transforms the input sequence into a context-rich representation. It consists of multiple identical layers, each employing self-attention and feed-forward networks.
+
+* **Self-Attention:** The core of the Transformer's power lies in self-attention. This mechanism allows the model to weigh the importance of different parts of the input sequence when encoding each token.  It does this by computing relationships between all pairs of tokens in the input.  This process identifies relevant contextual information for each word, even if those words are far apart in the sequence.  For example, in the sentence "The cat sat on the mat because it was comfortable," self-attention helps the model understand that "it" refers to "the mat."
+
+* **Multi-Head Attention:** The Transformer uses multi-head attention, which employs multiple self-attention mechanisms operating in parallel. Each "head" focuses on different aspects of the input, allowing the model to capture a richer representation of the relationships between tokens.
+
+* **Add & Norm and Feedforward:**  Each encoder layer also includes a feed-forward network applied to each token's representation independently.  Residual connections (Add & Norm) are used to facilitate training and prevent information loss.
+
+`<----------section---------->`
+
+### The Decoder and Output
+
+The decoder, similar in structure to the encoder, generates the output sequence.  In tasks like machine translation, it uses information from the encoder’s output and its own generated sequence. It employs masked self-attention, which only attends to previous tokens in the output sequence, preventing the model from "looking ahead" during generation.  The final output layer converts the decoder’s output into a probability distribution over the vocabulary, allowing the model to predict the next token in the sequence.
+
+
+`<----------section---------->`
+
+### Self-Attention Mechanism in Detail
+
+Self-attention calculates a weighted sum of the input sequence, where the weights are determined by the relationships between the tokens.  It involves three main steps:
+
+1. **Creating Query, Key, and Value Matrices:**  The input embeddings are linearly projected into three separate matrices: Query (Q), Key (K), and Value (V).
+
+2. **Calculating Attention Weights:**  The attention weights are calculated using a scaled dot-product between the Query and Key matrices. This dot-product represents the similarity between tokens. The scaling factor helps prevent the softmax function from saturating, ensuring stable gradients.  A softmax function is then applied to normalize these weights, ensuring they sum up to 1.
+
+3. **Weighted Sum of Values:**  Finally, the attention weights are used to compute a weighted sum of the Value matrix.  This weighted sum represents the context-aware representation of each token, considering its relationship with all other tokens in the input.

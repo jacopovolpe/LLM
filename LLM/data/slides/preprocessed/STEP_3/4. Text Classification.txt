@@ -1,0 +1,86 @@
+## Natural Language Processing and Large Language Models: Text Classification
+
+**Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 4**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+**Introduction**
+
+This lesson explores the crucial task of text classification within the broader field of Natural Language Processing (NLP).  We'll delve into the fundamental concepts of text classification, examining different types and methodologies, and illustrating its application through practical examples like topic labeling and sentiment analysis. We'll also discuss performance evaluation metrics and explore the challenges and considerations involved in building effective text classification models.
+
+
+<----------section---------->
+
+**Text Classification Fundamentals**
+
+Text classification involves assigning predefined categories to text documents based solely on their content, disregarding any metadata. This distinguishes it from document classification, which may utilize additional information beyond the text itself.  It also differs from document clustering, where the categories are not predefined but discovered through the analysis of the data. The goal is to create a function that accurately maps documents to their corresponding categories.
+
+Formally, given a set of documents *D* and a set of predefined classes *C*, text classification seeks a classifier function *F* that determines whether a document belongs to a specific class. This function essentially assigns a Boolean value (True or False) to each document-class pair.
+
+
+<----------section---------->
+
+**Types of Text Classification**
+
+Text classification problems can be categorized based on the number of classes assigned to each document:
+
+* **Single-label classification:** Each document is assigned to exactly one class.  This is appropriate when documents belong to mutually exclusive categories.
+* **Binary classification:** A specialized case of single-label classification where only two classes exist. This simplifies the problem to deciding between a class and its complement (e.g., spam or not spam).
+* **Multi-label classification:**  Each document can be assigned to multiple classes simultaneously.  This is suitable for scenarios where documents can belong to overlapping categories (e.g., a news article categorized as both "finance" and "politics").  Multi-label classification can be approached as a series of binary classification problems, one for each class.
+
+
+<----------section---------->
+
+**Machine Learning for Text Classification**
+
+Machine learning (ML) is widely used for text classification.  A model is trained on a labeled dataset, where each document is associated with its correct class(es). This training process allows the model to learn patterns and relationships between the text content and the assigned categories.  After training, the model can predict the class(es) for new, unseen documents, often providing a confidence score for each prediction.
+
+Crucially, text data must be transformed into a numerical representation suitable for ML algorithms.  Techniques like Term Frequency-Inverse Document Frequency (TF-IDF) create vector representations of documents, capturing the importance of words within the corpus.  TF-IDF considers both the frequency of a term within a document and its rarity across the entire document collection.
+
+
+<----------section---------->
+
+**Topic Labeling Example: Classifying Reuters News**
+
+The Reuters-21578 dataset serves as a practical example of multi-class, multi-label text classification. This dataset comprises news articles categorized into various topics. The dataset exhibits characteristics common in real-world data, such as an imbalanced class distribution (some categories have significantly more articles than others) and varying document lengths. These challenges highlight the importance of choosing appropriate evaluation metrics and addressing potential biases during model training.
+
+
+<----------section---------->
+
+**Building a Text Classifier: Process and Metrics**
+
+Building an ML-based text classifier typically involves the following steps:
+
+1. **Data Preparation:** Extracting training and testing data and their corresponding labels.
+2. **Feature Engineering:** Creating numerical representations of the text data (e.g., using TF-IDF).
+3. **Label Transformation:**  Converting label lists into a format suitable for the ML algorithm (e.g., one-hot encoding for multi-label classification).
+4. **Model Training:** Training a chosen classifier (e.g., a Multilayer Perceptron or other suitable algorithm) on the prepared data.
+5. **Model Evaluation:** Evaluating the trained classifier's performance on the test data using appropriate metrics.
+
+Key performance metrics for text classification include:
+
+* **Micro Average:**  Calculates the overall performance by aggregating the contributions of all classes. This metric is sensitive to class imbalance.
+* **Macro Average:**  Calculates the average performance across all classes, treating each class equally regardless of its size.
+* **Weighted Average:** Calculates the weighted average of the performance of each class, where the weight is proportional to the number of instances in that class.  This metric accounts for class imbalance.
+* **Samples Average:** Calculates the average performance across all samples, particularly relevant in multi-label classification where each sample can belong to multiple classes.
+
+
+<----------section---------->
+
+**Sentiment Analysis Exercise: Classifying Movie Reviews**
+
+Sentiment analysis, another application of text classification, aims to determine the sentiment expressed in text (e.g., positive, negative, or neutral).  The IMDB movie review dataset, containing polarized reviews, provides a suitable training ground for building a sentiment classifier. This binary classification task involves predicting whether a given review is positive or negative. The exercise emphasizes practical considerations like data preprocessing, feature selection, and visualization techniques for evaluating model performance, such as confusion matrices visualized with heatmaps.
+
+
+<----------section---------->
+
+**Advanced Techniques and Further Exploration**
+
+Beyond basic TF-IDF and bag-of-words approaches, advanced techniques like Latent Dirichlet Allocation (LDA) can uncover underlying thematic structures in text data, leading to more robust and meaningful representations. LDA addresses the limitations of purely frequency-based methods by identifying latent topics that capture the semantic relationships between words.
+
+Furthermore, understanding the curse of dimensionality and employing dimensionality reduction methods is crucial for handling high-dimensional text data efficiently. These techniques can improve model performance and computational efficiency.
+
+Exploring these concepts provides a solid foundation for tackling various text classification applications, from spam filtering and intent detection to content moderation and recommendation systems. Continuous learning and exploration of new techniques are essential in this rapidly evolving field.

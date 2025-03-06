@@ -1,0 +1,102 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 15: Encoder-Decoder Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Encoder-decoder transformer
+* T5
+* Practice on translation and summarization
+
+### Encoder-decoder Transformer
+
+Encoder-Decoder Transformers are a class of neural networks designed for sequence-to-sequence (seq2seq) tasks.
+
+### T5
+
+T5 (Text-to-Text Transfer Transformer) is a language model based on an encoder-decoder transformer developed by Google Research. T5 comes in multiple sizes to suit different resource constraints:
+
+| T5 Version | Encoder Blocks | Heads | Decoder Blocks | Embedding Dimensionality |
+|---|---|---|---|---|
+| T5-Small | 6 | 8 | 6 | 512 |
+| T5-Base | 12 | 12 | 12 | 768 |
+| T5-Large | 24 | 16 | 24 | 1024 |
+| T5-XL | 24 | 32 | 24 | 2048 |
+| T5-XXL | 24 | 64 | 24 | 4096 |
+
+### T5 Input Encoding
+
+T5 uses a SentencePiece tokenizer with a custom vocabulary for its input encoding.
+
+* **Subword Units:** T5 employs a subword-based tokenizer using the SentencePiece library. Subword tokenization ensures a balance between character-level and word-level tokenization, effectively handling rare words and unseen combinations.
+* **Unigram Language Model:** The SentencePiece tokenizer in T5 is trained using a unigram language model, which selects subwords to maximize the likelihood of the training data.
+
+T5 uses a fixed vocabulary of 32,000 tokens. The vocabulary includes subwords, whole words, and special tokens. This compact vocabulary size strikes a balance between computational efficiency and representation capacity.
+
+T5 introduces several special tokens in the vocabulary to guide the model for various tasks:
+
+* `<pad>`: Padding token for aligning sequences in a batch.
+* `<unk>`: Unknown token for handling out-of-vocabulary (OOV) cases.
+* `<eos>`: End-of-sequence token, marking the conclusion of an input or output sequence.
+* `<sep>` and task-specific prefixes: Used to define input task types (e.g., "translate English to German:" or "summarize:").
+
+
+### T5 Pre-training
+
+For pre-training, T5 uses a denoising autoencoder objective called span-corruption. This objective involves masking spans of text (not just individual tokens) in the input sequence and training the model to predict those spans.
+
+* **Input Corruption:** Random spans of text in the input are replaced with a special `<extra_id_X>` token (e.g., `<extra_id_0>`, `<extra_id_1>`).
+* **Original Input:** "The quick brown fox jumps over the lazy dog."
+* **Corrupted Input:** "The quick `<extra_id_0>` jumps `<extra_id_1>` dog."
+* **Target Output:** The model is trained to predict the original masked spans in sequential order.
+* **Target Output:** `<extra_id_0>` brown fox `<extra_id_1>` over the lazy.
+
+This formulation forces the model to generate coherent text while learning contextual relationships between tokens.  Predicting spans, rather than individual tokens, encourages the model to learn:
+
+* **Global Context:** How spans relate to the larger sentence or paragraph structure.
+* **Fluency and Cohesion:** Span prediction ensures generated outputs are natural and coherent.
+* **Task Versatility:** The model is better prepared for downstream tasks like summarization, translation, and question answering.
+
+T5 pre-training uses the C4 dataset (Colossal Clean Crawled Corpus), a massive dataset derived from Common Crawl.
+
+* **Size:** Approximately 750 GB of cleaned text.
+* **Cleaning:** Aggressive data cleaning is applied to remove spam, duplicate text, and low-quality content.
+* **Versatility:** The dataset contains diverse text, helping the model generalize across domains.
+
+T5 pre-training details:
+
+* **Loss Function:** Cross-entropy loss is used for predicting masked spans.
+* **Optimizer:** T5 employs the Adafactor optimizer, which is memory-efficient and designed for large-scale training.
+* **Learning Rate Scheduling:** The learning rate is adjusted using a warm-up phase followed by an inverse square root decay.
+
+### T5 Fine-tuning
+
+* **Input and Output as Text:** Fine-tuning continues the paradigm where the input and output are always text strings, regardless of the task.
+
+* **Example Tasks:**
+    * **Summarization:** Input: `summarize: <document>` → Output: `<summary>`
+    * **Translation:** Input: `translate English to French: <text>` → Output: `<translated_text>`
+    * **Question Answering:** Input: `question: <question> context: <context>` → Output: `<answer>`
+
+### Popular T5 Variants
+
+| Variant | Purpose | Key Strengths | Limitations |
+|---|---|---|---|
+| mT5 | Multilingual NLP | Supports 101 languages | Uneven performance across languages |
+| Flan-T5 | Instruction-following | Strong generalization | Needs task-specific prompts |
+| ByT5 | No tokenization | Handles noisy/unstructured text | Slower due to byte-level inputs |
+| T5-3B/11B | High-capacity NLP | Exceptional performance | High resource requirements |
+| UL2 | Unified objectives | Versatility across tasks | Increased training complexity |
+| Multimodal T5 | Vision-language tasks | Combines text and image inputs | Higher computational cost |
+| Efficient T5 | Resource-constrained NLP | Lightweight, faster inference | Reduced task performance |
+
+
+### Practice on Translation and Summarization
+
+Looking at the Hugging Face guides on translation (https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt) and summarization (https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt), use various models to perform these tasks. By following the guides, if you have time and computational resources, you can also fine-tune one of the encoder-decoder models.

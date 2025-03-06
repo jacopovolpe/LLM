@@ -1,0 +1,68 @@
+## Natural Language Processing and Large Language Models
+
+**Master's Degree in Computer Engineering**
+
+**Lesson 1: NLP Overview**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction
+
+Natural Language Processing (NLP) is rapidly transforming how we interact with technology and access information.  From AI-powered chatbots like ChatGPT to sophisticated search engines, NLP is behind many of the tools we use daily. This overview explores the core concepts of NLP, its diverse applications, and its historical evolution, providing a foundation for understanding this dynamic field.
+
+<----------section---------->
+
+### What is Natural Language Processing?
+
+NLP bridges the gap between human language and computer understanding.  It empowers computers to interpret, analyze, and generate human language, enabling them to perform tasks previously exclusive to humans.  This includes understanding the meaning of text, translating between languages, summarizing documents, and even engaging in conversations.  Leading figures in technology and philosophy recognize NLP's crucial role in the advancement of Artificial Intelligence, highlighting its significance and inherent challenges.  Essentially, NLP equips computers with the ability to process and utilize the richness and complexity of human language.  This involves translating natural language into a structured, numerical format that computers can manipulate and learn from. This understanding is then often used to generate human-like text or perform other language-based tasks.
+
+<----------section---------->
+
+### Core Components of NLP
+
+NLP comprises two key subfields: Natural Language Understanding (NLU) and Natural Language Generation (NLG).  NLU focuses on enabling computers to comprehend the meaning embedded within human language. This process involves dissecting text to extract meaning, identify context, and discern intent. The resulting numerical representation, often called an embedding, captures the essence of the text and is utilized in various applications like search engines, email spam filters, and social media sentiment analysis.  Conversely, NLG focuses on generating human-quality text from structured data. This could involve translating text between languages, summarizing long documents, or creating conversational responses in chatbots.  NLG powers applications like machine translation, text summarization, dialogue processing, and even content creation.
+
+<----------section---------->
+
+### Challenges in NLP
+
+One of the primary challenges in NLP stems from the inherent ambiguity of human language.  A single sentence can have multiple interpretations depending on context, word choice, and even cultural nuances. This ambiguity exists at various levels: lexical (word meanings), syntactic (sentence structure), and pragmatic (contextual interpretation).  For example, the simple sentence "I made her duck" can describe several different actions, illustrating the complexities NLP systems must navigate. Overcoming these ambiguities requires sophisticated algorithms and models capable of discerning the intended meaning from various potential interpretations.  These challenges are compounded by the ever-evolving nature of language itself, with new words, phrases, and slang constantly emerging.
+
+<----------section---------->
+
+### The Interplay of NLP and Linguistics
+
+NLP draws heavily on the principles of linguistics, the scientific study of language.  Linguistic concepts such as phonetics (speech sounds), morphology (word structure), syntax (sentence structure), semantics (meaning), and pragmatics (contextual meaning) are essential for developing effective NLP algorithms.  While linguistics focuses on understanding language as a human phenomenon, NLP leverages this knowledge to build computational systems capable of interacting with and processing human language.  This symbiotic relationship between linguistics and NLP drives advancements in both fields.
+
+<----------section---------->
+
+### Applications of Natural Language Processing
+
+The applications of NLP are vast and span across diverse industries.  In healthcare, NLP assists in processing patient data, aiding diagnosis, and supporting treatment planning.  In finance, it is used to analyze market sentiment, assess risk, and detect fraud.  E-commerce leverages NLP for personalized recommendations and improved search functionality, while the legal field benefits from automated document analysis and contract review.  Customer service utilizes NLP-powered chatbots to automate responses and guide users. These are just a few examples of how NLP is transforming industries and creating new possibilities. Other applications include search autocompletion, grammar and spelling correction, email filtering, text mining, and even creative writing.
+
+<----------section---------->
+
+### The Hype and Market of NLP
+
+The impact and potential of NLP have not gone unnoticed. Industry analysts recognize its transformative power, placing related technologies like generative AI at the forefront of emerging trends.  The demand for NLP expertise is rapidly growing, with career opportunities expanding across various sectors.  The market for NLP solutions is projected to experience significant growth, reflecting the increasing integration of NLP into business processes and technological advancements.
+
+<----------section---------->
+
+### A Journey Through the History of NLP
+
+The evolution of NLP has been a journey of continuous advancements, punctuated by both periods of rapid progress and temporary setbacks.  Early efforts in machine translation during the 1950s and 1960s faced significant challenges due to the complexity of language and limitations in computational power. The ALPAC report in 1966, which highlighted the limitations of early machine translation systems, led to a shift in focus and funding.  However, pioneering systems like ELIZA, a simulated psychotherapist, demonstrated the potential of human-computer interaction through language.
+
+<----------section---------->
+
+### Key Milestones in NLP's Development
+
+The field of NLP has been shaped by numerous key milestones. Noam Chomsky's work on generative grammar influenced the understanding of language structure. The Turing Test, proposed by Alan Turing, provided a framework for evaluating machine intelligence through language interaction. The rise of symbolic approaches in the 1970s and 1980s led to rule-based systems.  The statistical revolution in the 1990s, fueled by increasing computational power, saw statistical models outperforming rule-based systems.  The 2000s witnessed the rise of neural networks and word embeddings, paving the way for the deep learning era in the 2010s.
+
+<----------section---------->
+
+### The Rise of Deep Learning and LLMs
+
+Deep learning architectures like LSTM and CNN became prominent, along with techniques like Word2Vec for learning word representations. Sequence-to-sequence models, with their encoder-decoder architecture, further advanced NLP capabilities. The introduction of the Transformer architecture in 2017, with its attention mechanism, revolutionized the field, enabling the development of large language models (LLMs). These models, trained on massive datasets, have demonstrated impressive capabilities in various NLP tasks.  The latest advancements include multimodal LLMs, which integrate and process various data types like text, images, audio, and video, opening up new possibilities for applications like image captioning and text-to-image generation.

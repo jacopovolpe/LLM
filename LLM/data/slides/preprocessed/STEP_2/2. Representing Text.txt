@@ -1,0 +1,158 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 2: Representing Text**
+
+*Nicola Capuano and Antonio Greco*
+
+*DIEM – University of Salerno*
+
+
+### Outline
+
+* Tokenization
+* Bag of Words Representation
+* Token Normalization
+* Stemming and Lemmatization
+* Part of Speech Tagging
+* Introducing spaCy
+
+
+### Tokenization
+
+**Prepare the Environment**
+
+For most exercises, we will use Jupyter notebooks.
+
+* Install the Jupyter Extension for Visual Studio Code.
+* `pip install jupyter`
+* Create and activate a virtual environment:
+    * `python -m venv .env`
+    * `source .env/bin/activate`
+* Alternative: Google Colab notebooks (https://colab.research.google.com/)
+
+For this section, we also need some Python packages:
+
+* `pip install numpy pandas`
+
+
+**Text Segmentation**
+
+Text segmentation is the process of dividing text into meaningful units. This includes:
+
+* Paragraph Segmentation: Breaking a document into paragraphs.
+* Sentence Segmentation: Breaking a paragraph into sentences.
+* Word Segmentation: Breaking a sentence into words.
+
+Tokenization is a specialized form of text segmentation that involves breaking text into small units called tokens.
+
+
+**What is a Token?**
+
+A token is a unit of text treated as a single, meaningful element. Examples include:
+
+* Words: The most common form of tokens.
+* Punctuation Marks: Symbols that punctuate sentences (e.g., periods, commas).
+* Emojis: Visual symbols representing emotions or concepts.
+* Numbers: Digits and numerical expressions.
+* Sub-words: Smaller units within words, such as prefixes (re-, pre-) or suffixes (-ing, -ed) that have intrinsic meaning.
+* Phrases: Multiword expressions treated as single units (e.g., "ice cream").
+
+
+**Tokenizer**
+
+One simple idea is to use whitespaces as delimiters for words. However, this approach is not suitable for languages with a continuous orthographic system (Chinese, Japanese, Thai, etc.).  For example, in the sentence "Leonardo da Vinci began painting the Mona Lisa at the age of 51.", a good tokenizer should separate "51" and ".". We'll address punctuation and other challenges later.
+
+
+
+### Bag of Words Representation
+
+**Turning Words into Numbers: One-hot Vectors**
+
+A vocabulary lists all unique tokens we want to track. Each word is represented by a vector with all 0s except for a 1 corresponding to the word's index in the vocabulary.
+
+**Positive features:** No information is lost; you can reconstruct the original document from a table of one-hot vectors.
+
+**Negative features:** One-hot vectors are very sparse, resulting in a large table even for short sentences. A language vocabulary typically contains at least 20,000 common words, increasing to millions when considering word variations (conjugations, plurals, etc.) and proper nouns.
+
+Consider a vocabulary of one million tokens and a small library of 3,000 short books, each with 3,500 sentences and 15 words per sentence. This results in 157,500,000 tokens, requiring approximately 17.9 TB of storage using one-hot vectors, which is impractical.
+
+
+**Bag-of-Words (BoW)**
+
+A BoW vector is obtained by summing all the one-hot vectors for a sentence or short document.  This compresses a document into a single vector representing its essence. It is a lossy transformation, meaning you cannot reconstruct the original text. A Binary BoW marks each word's presence as 1 or 0, regardless of frequency.
+
+
+
+**Binary BoW: Example**
+
+Consider the following text corpus:
+
+```
+sentences = [
+    "Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+    "Leonardo was born in Vinci, Italy, in 1452.",
+    "In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+    "Tennis is played on a rectangular court with a net in the middle.",
+    "The four Grand Slam tournaments are the most prestigious events in tennis.",
+    "A tennis match is typically played as a best of three or best of five sets."
+]
+```
+
+Generating a vocabulary and BoW vectors reveals little overlap in word usage for some sentences. We can use this overlap (e.g., using the dot product) to compare documents and search for similar ones.
+
+
+
+### Token Normalization
+
+**Tokenizer Improvement**
+
+Besides spaces, other characters like tabs (`\t`), newlines (`\n`), returns (`\r`), and punctuation can separate words. Regular expressions can improve tokenization by handling these characters. However, complex cases like abbreviations, numbers, and special symbols require more sophisticated tokenizers.
+
+
+**Case Folding**
+
+Case folding consolidates words differing only in capitalization under a single token (e.g., Tennis → tennis, A → a). This improves text matching and recall in search engines but can lose the distinction between proper and common nouns and alter meaning (e.g., US → us).  Handling meaningful capitalization (e.g., proper nouns) requires techniques like Named Entity Recognition.
+
+
+**Stop Words**
+
+Stop words are common, high-frequency words (articles, prepositions, conjunctions, forms of "to be") that carry little meaning.  Filtering them reduces noise but can also lose important relational information (e.g., "Mark reported to the CEO" → "Mark reported CEO").
+
+
+**Putting it All Together**
+
+Combining these techniques (regular expressions, case folding, stop word removal) improves basic text preprocessing.  Libraries like NLTK provide more refined tools and resources (e.g., extended stop word lists).
+
+
+### Stemming and Lemmatization
+
+**Stemming**
+
+Stemming identifies a common stem among word forms (e.g., "housing" and "houses" share the stem "house").  It removes suffixes to combine similar words, helping generalize vocabulary and improve information retrieval.  A stem isn't necessarily a valid word (e.g., "relational," "relate," "relating" might stem to "relat").  NLTK includes stemming algorithms like the Porter Stemmer and Snowball Stemmer (supporting multiple languages).
+
+
+**Lemmatization**
+
+Lemmatization determines a word's dictionary form (lemma) considering context and using dictionaries and morphological analysis.  It requires identifying the part of speech (PoS).  Lemmatization always produces a valid word, unlike stemming, but is slower.  Examples: went → go, better → good, children → child.
+
+
+### Part of Speech (PoS) Tagging
+
+PoS tagging labels tokens with their lexical category (noun, verb, adjective, etc.), including subcategories and morphological variations (e.g., tense, gender, number).  It's crucial for lemmatization and other NLP tasks. The ambiguity of natural language makes PoS tagging complex (e.g., "light" can be a noun or verb).  Algorithms use dictionaries and statistical models considering surrounding context and morphological analysis. NLTK provides pre-trained PoS tagger models.
+
+
+### Introducing spaCy
+
+spaCy is a free, open-source Python library for NLP supporting multiple languages. It offers pre-trained models with varying sizes and functionalities (tokenization, PoS tagging, dependency parsing, lemmatization, named entity recognition).  spaCy provides detailed token information (attributes like `is_stop`, `pos_`, `lemma_`) and facilitates tasks like sentence splitting and BoW creation.  Its built-in visualizer, displaCy, helps analyze syntactic dependencies and named entities.  spaCy's Named Entity Recognition (NER) identifies real-world objects (people, organizations, locations, etc.) and classifies them using specific labels (PERSON, ORG, GPE, etc.).
+
+
+### References
+
+* *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Chapter 2 (excluding 2.3).
+
+### Further Readings
+
+* spaCy 101: https://spacy.io/usage/spacy-101
+* NLTK Documentation: https://www.nltk.org/

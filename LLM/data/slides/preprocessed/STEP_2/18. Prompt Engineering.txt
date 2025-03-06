@@ -1,0 +1,124 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 18: Prompt Engineering**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Introduction to Prompt Engineering
+* Prompt Engineering Techniques
+* Prompt Testing
+
+### Introduction to Prompt Engineering
+
+**Prompt Engineering** is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas.
+
+**Goals:**
+
+* Enhance understanding of the capabilities and limitations of LLMs.
+* Improve LLM performance on a broad range of tasks (e.g., question answering, arithmetic reasoning).
+* Help interfacing with LLMs and integrating with other tools.
+* Enable new capabilities, such as augmenting LLMs with domain knowledge and external resources.
+
+### Writing Good Prompts
+
+* Start with simple prompts, adding elements gradually while iterating and refining to improve results.
+* Use clear, specific instructions (e.g., "Write," "Classify," "Summarize") at the beginning of prompts.
+* Be detailed and descriptive to achieve better outcomes.
+* Consider using examples to guide the model’s output.
+* Balance detail and length carefully, as excessive information can reduce effectiveness, and experiment to find the ideal format.
+
+**Examples:**
+
+* **Bad Prompt:** "Summarize this article."
+* **Good Prompt:** "Generate a 100-word summary of this research article, focusing on the main findings."
+
+* **Bad Prompt:** "Write an apology email to a client."
+* **Good Prompt:** "Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate."
+
+* **Bad Prompt:** "Make this explanation easier to understand."
+* **Good Prompt:** "Rewrite this technical explanation in simpler language suitable for high school students."
+
+* **Bad Prompt:** "Classify the following review."
+* **Good Prompt:** "Classify the following review as positive, neutral, or negative."
+
+* **Bad Prompt:** "Tell me about exercise benefits."
+* **Good Prompt:** "List five health benefits of regular exercise, each with a short explanation of how it improves well-being."
+
+* **Bad Prompt:** "Translate this sentence to French."
+* **Good Prompt:** "Translate the following English sentence into French, preserving the formal tone."
+
+
+### Elements of a Prompt
+
+A prompt usually contains any of the following elements:
+
+* **Instruction:** A specific task or instruction you want the model to perform.
+* **Context:** External information or additional context that can steer the model to better responses.
+* **Input Data:** The input or question that we are interested in finding a response for.
+* **Output Indicator:** The type or format of the output.
+
+**Example 1:**
+
+**Instruction:** Classify the text into neutral, negative, or positive.
+**Input Data:** Text: I think the vacation is okay.
+**Output Indicator:** Sentiment:
+
+
+**Example 2:**
+
+**Instruction:** Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure.
+**Context:** Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
+**Input Data:** Question: What was OKT3 originally sourced from?
+**Output Indicator:** Answer:
+
+
+### In-Context Learning
+
+The ability of an LLM to perform a task by interpreting and leveraging information provided in its prompt (context) without updating its internal parameters.
+
+A prompt context may specify:
+
+* **Reference Material:** Specific text or data to be used to perform the task.
+* **Input-Output Pairs:** Examples of the task to illustrate the desired pattern.
+* **Step-by-Step Instructions:** Detailed guidance for completing the task.
+* **Clarifications:** Addressing potential ambiguities in the task.
+* **Templates:** Structures or placeholders to be filled in.
+
+Prompt engineering heavily leverages in-context learning.
+
+
+### Prompts and NLP Tasks
+
+Prompts can be designed to achieve various NLP tasks:
+
+* **Text Summarization:**  (Example provided in the original text)
+* **Information Extraction:** (Example provided in the original text)
+* **Question Answering:** (Example provided in the original text)
+* **Text Classification:** (Example provided in the original text)
+* **Code Generation:** (Example provided in the original text)
+* **Reasoning:** (Examples and discussion provided in the original text highlight the challenges of reasoning tasks for LLMs)
+
+
+### System Prompts
+
+A configuration provided to the AI model before any user interactions.
+
+* Establishes the assistant's behavior, context, tone, and any special instructions.
+* Guides the model on how to respond and what it should focus on.
+
+**Examples:**
+
+* You are a helpful and knowledgeable assistant who answers questions accurately and concisely.
+* You are an IT support assistant specializing in troubleshooting software and hardware issues. Respond politely and guide users through step-by-step solutions.
+* You are a friendly and engaging AI who responds in a warm and conversational tone, keeping responses lighthearted and approachable.
+
+
+### Prompt Engineering Techniques
+
+**(The following sections are continued in the next part due to character limits.)**

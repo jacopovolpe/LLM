@@ -1,0 +1,256 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 5: Word Embeddings**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Limitations of TF-IDF
+* Word Embeddings
+* Learning Word Embeddings
+* Word2Vec Alternatives
+* Working with Word Embeddings
+
+### Limitations of TF-IDF
+
+TF-IDF counts terms according to their exact spelling. Texts with the same meaning will have completely different TF-IDF vector representations if they use different words.
+
+**Examples:**
+
+* The movie was amazing and exciting.
+* The film was incredible and thrilling.
+* The team conducted a detailed analysis of the data and found significant correlations between variables.
+* The group performed an in-depth examination of the information and discovered notable relationships among factors.
+
+**Term Normalization**
+
+Techniques like stemming and lemmatization help normalize terms. Words with similar spellings are collected under a single token.
+
+**Disadvantages:**
+
+* They fail to group most synonyms.
+* They may group together words with similar/same spellings but different meanings.
+* _She is leading the project_ vs _The plumber leads the pipe_.
+* _The bat flew out of the cave_ vs _He hit the ball with a bat_.
+
+**TF-IDF Applications**
+
+TF-IDF is sufficient for many NLP applications:
+
+* Information Retrieval (Search Engines)
+* Information Filtering (Document Recommendation)
+* Text Classification
+
+Other applications require a deeper understanding of text semantics:
+
+* Text generation (Chatbot)
+* Automatic Translation
+* Question Answering
+* Paraphrasing and Text Rewriting
+
+### Bag-of-Words (recap)
+
+Each word is assigned an index that represents its position in the vocabulary:
+
+* the 1st word (e.g., apple) has index 0
+* the 2nd word (e.g., banana) has index 1
+* the 3rd word (e.g., king) has index 2
+* ...
+
+Each word is then represented by a one-hot vector:
+
+* apple = (1,0,0,0,…,0)
+* banana = (0,1,0,0,…,0)
+* king = (0,0,1,0,…,0)
+
+With this encoding, the distance between any pair of vectors is always the same. It does not capture the semantics of words. Furthermore, it is not efficient since it uses sparse vectors. *(Note: the figure in the original document shows only three dimensions of a space where dimensions equal the cardinality of the vocabulary.)*
+
+### Word Embeddings
+
+Word Embeddings are a technique for representing words with vectors (A.K.A. Word Vectors) that are:
+
+* Dense
+* With dimensions much smaller than the vocabulary size
+* In a continuous vector space
+
+**Key Feature:**
+
+* Vectors are generated so that words with similar meanings are close to each other.
+* The position in the space represents the semantics of the word.
+
+**Example:**
+
+* Apple = (0.25,0.16)
+* Banana = (0.33,0.10)
+* King = (0.29,0.68)
+* Queen = (0.51,0.71)
+
+_king_ and _queen_ are close to each other. _apple_ and _banana_ are close to each other. The words of the first group are far from those of the second group.
+
+**Word Embedding: Properties**
+
+Word embeddings enable semantic text reasoning based on vector arithmetic.
+
+**Examples:**
+
+* Subtracting _royal_ from _king_ we arrive close to _man_.
+* Subtracting _royal_ from _queen_ we arrive close to _woman_.
+* Subtracting _man_ from _king_ and adding _woman_ we arrive close to _queen_ (king - man + woman).
+
+**Semantic Queries**
+
+Word embeddings allow for searching words or names by interpreting the semantic meaning of a query.
+
+**Examples:**
+
+* Query: "Famous European woman physicist"  
+  `wv['famous'] + wv['European'] + wv['woman'] + wv['physicist'] ≈ wv['Marie_Curie'] ≈ ['Lise_Meitner’] ≈ …`
+
+* Query: “Popular American rock band”  
+  `wv['popular'] + wv['American'] + wv['rock'] + wv['band'] ≈ wv['Nirvana'] ≈ wv['Pearl Jam’] ≈ …`
+
+**Analogies**
+
+Word embeddings enable answering analogy questions by leveraging their semantic relationships.
+
+**Examples:**
+
+* Who is to physics what Louis Pasteur is to germs?  
+  `wv['Louis_Pasteur'] – wv['germs'] + wv['physics'] ≈ wv['Marie_Curie']`
+
+* Marie Curie is to science as who is to music?  
+  `wv['Marie_Curie'] – wv['science'] + wv['music'] ≈ wv['Ludwig_van_Beethoven']`
+
+* Legs is to walk as mouth is to what?  
+  `wv['legs'] – wv['walk'] + wv['mouth'] ≈ wv['speak'] or wv['eat']`
+
+**Visualizing Word Embeddings**
+
+*(The original document included a figure showing Google News Word2vec 300-D vectors projected onto a 2D map using PCA. Semantic proximity approximates geographical proximity.)*
+
+### Learning Word Embeddings
+
+**Word2Vec**
+
+Word embeddings were introduced by Google in 2013 in the following paper:
+
+* T. Mikolov, K. Chen, G. Corrado, and J. Dean, "Efficient estimation of word representations in vector space," in 1st International Conference on Learning Representations, ICLR 2013.
+
+The paper defines Word2Vec:
+
+* A methodology for the generation of word embeddings.
+* Based on neural networks.
+* Using unsupervised learning on a large unlabeled textual corpus.
+
+**Word2Vec Idea:**
+
+Words with similar meanings are often found in similar contexts. Context: a sequence of words in a sentence.
+
+**Example:**
+
+* Consider the sentence: _Apple juice is delicious_.
+* Remove one word: _____ juice is delicious_.
+* Ask someone to guess the missing word. Terms such as _banana_, _pear_, or _apple_ would probably be suggested.
+* These terms have similar meanings and are used in similar contexts.
+
+
+**Continuous Bag-of-Words (CBOW)**
+
+A neural network is trained to predict the central token of a context of *m* tokens.
+
+* Input: The bag of words composed of the sum of all one-hot vectors of the surrounding tokens.
+* Output: A probability distribution over the vocabulary with its maximum in the most probable missing word.
+
+*Example: Claude Monet painted the Grand Canal in Venice in 1806.* *(The original document included a figure illustrating the CBOW network and example training data.)*
+
+After the training is complete, the output layer of the network is discarded. Only the weights of the inputs to the hidden layer are important. They represent the semantic meaning of words. Similar words are found in similar contexts… their weights to the hidden layer adjust in similar ways… this results in similar vector representations.
+
+
+**Skip-Gram**
+
+An alternative training method for Word2Vec.
+
+* A neural network is trained to predict a context of *m* tokens based on the central token.
+* Input: The one-hot vector of the central token.
+* Output: The one-hot vector of a surrounding word (one training iteration for each surrounding word).
+
+*(The original document included figures illustrating the Skip-gram network and example training data.)*
+
+After the training is complete, the output layer of the network is discarded. Only the weights of the inputs to the hidden layer are important.  They represent the semantic meaning of words. Similar words are found in similar contexts… their weights to the hidden layer adjust in similar ways… this results in similar vector representations.
+
+
+
+**CBOW vs. Skip-Gram**
+
+* **CBOW:** Higher accuracies for frequent words, much faster to train, suitable for large datasets.
+* **Skip-Gram:** Works well with small corpora and rare terms.
+
+
+**Dimension of Embeddings (*n*)**
+
+* Large enough to capture the semantic meaning of tokens for the specific task.
+* Not so large that it results in excessive computational expense.
+
+
+**Improvements to Word2Vec**
+
+**Frequent Bigrams:** Some words often occur in combination (e.g., _Elvis Presley_). To let the network focus on useful predictions, frequent bigrams and trigrams are included as terms in the Word2vec vocabulary. Inclusion criteria: co-occurrence frequency greater than a threshold. Examples: _Elvis_Presley_, _New_York_, _Chicago_Bulls_, _Los_Angeles_Lakers_, etc.
+
+**Subsampling Frequent Tokens:** Common words (like stop-words) often don’t carry significant information. To reduce their effect, during training (skip-gram method), words are sampled in inverse proportion to their frequency. The effect is like the IDF effect on TF-IDF vectors. *(The original document included formulas for subsampling probability.)*
+
+**Negative Sampling:** Each training example causes the network to update all weights. With thousands or millions of words in the vocabulary, this makes the process computationally expensive. Instead of updating all weights, 5 to 20 negative words (words not in the context) are selected. Weights are updated only for the negative words and the target word. Negative words are selected based on their frequency. Common words are chosen more often than rare words. The quality of embeddings is maintained.
+
+
+### Word2Vec Alternatives
+
+**GloVe (Global Vectors for Word Representation):** Introduced by researchers from Stanford University in 2014. Uses classical optimization methods like Singular Value Decomposition instead of neural networks. Advantages: Comparable precision to Word2Vec, significantly faster training times, effective on small corpora.  [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/)
+
+**FastText:** Introduced by Facebook researchers in 2017. Based on sub-words, it predicts the surrounding *n*-character grams rather than the surrounding words.  Example: the word _whisper_ would generate the following 2- and 3-character grams: _wh_, _whi_, _hi_, _his_, _is_, _isp_, _sp_, _spe_, _pe_, _per_, _er_. Advantages: Particularly effective for rare or compound words, can handle misspelled words, available in 157 languages. [https://fasttext.cc/](https://fasttext.cc/)
+
+
+**Static Embeddings**
+
+Word2Vec, GloVe, and FastText are Static Embeddings. Each word is represented by a single static vector that captures the average meaning of the word based on the training corpus. Once trained, vectors do not change based on context. This does not account for polysemy and homonymy.
+
+**Example:** The word _apple_ could refer to the fruit, the tech company, or even a popular song (ABBA). A word embedding would blend these meanings into a single vector, failing to capture the specific context.
+
+**Semantic Drift:** The meanings of words change over time, posing a challenge for static embeddings. *(The original document included examples of semantic drift.)*
+
+**Social Stereotypes:** Word embeddings can perpetuate and amplify societal biases present in the training data. *(The original document included examples of gender, racial, and religious biases.)*
+
+**Other Issues of WEs:**
+
+* **Out-of-Vocabulary words:** Traditional WEs cannot handle unknown words. They are limited to the words present in the training data. Models based on sub-words (like FastText) can handle this.
+* **Lack of transparency:** It can be difficult to interpret the meaning of individual dimensions or word vectors. This makes it difficult to analyze and improve the model, ensure its fairness, and explain its behavior to stakeholders.
+
+
+**Contextual Embeddings:** Contextual Embeddings can be updated based on the context of surrounding words. Context is used both during training and usage. They are effective for applications that need deep language understanding. The embedding for _not happy_ is closer to _unhappy_ than in static embeddings. Examples: ELMo (Embeddings from Language Model) – 2018, BERT (Bi-directional Encoder Representations for Transformers) – 2020, and many others based on transformers.
+
+
+### Working with Word Embeddings
+
+**Load Pre-trained WEs**
+
+Gensim is a popular Python library for NLP supporting various word embedding models. [https://radimrehurek.com/gensim/](https://radimrehurek.com/gensim/)  
+`pip install gensim`
+
+*(The original document included code examples for loading pre-trained models, getting word vectors, calculating similarity between words, and performing operations with word embeddings.)*
+
+**Change the WE Model:** Gensim comes with several pre-trained models (e.g., _fasttext-wiki-news-subwords-300_, _glove-wiki-gigaword-300_, etc.). You can also import an external model.
+
+*(The original document included code examples for using Italian word embeddings, training a word embedding model, handling out-of-vocabulary words, using FastText, working with word embeddings in spaCy, and calculating document similarity.)*
+
+### References
+
+* "Natural Language Processing in Action: Understanding, analyzing, and generating text with Python," Chapter 6.
+
+
+### Further Readings
+
+* Gensim documentation: [https://radimrehurek.com/gensim/auto_examples/index.html#documentation](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)
+
+
+**(The repeated footer information has been omitted for brevity.)**

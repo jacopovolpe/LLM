@@ -1,0 +1,76 @@
+=== Extracted text from PDF ===
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 8Building a ChatbotNicola Capuano and Antonio GrecoDIEM – University of Salerno
+Exercise
+
+Building a Pizzeria ChatbotDevelop a chatbot to assist with pizzeria operations•Users can request the pizzeria's menu•Users can order a pizza that is available in the menu (just one, no beverage)•Upon order confirmation, the bot will log the date, the user id and the kind of ordered pizza (use a custom action)•The bot has a web-based GUIHint: start with a dummy bot
+HintsStart with a dummy bot•mkdir pizzaBot•cd pizzaBot•rasa init --no-promptConfigure and run the REST and the Actions servers:•rasa run --cors "*”•rasa run actionsUse a Web frontend like:•https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0 
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 8Building a ChatbotNicola Capuano and Antonio GrecoDIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 8
+
+Building a Chatbot
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Exercise
+
+Building a Pizzeria Chatbot
+
+Develop a chatbot to assist with
+pizzeria operations
+
+can i have the menu?
+
+Mon, Oct 14, 2:21 PM
+
+® Users can request the pizzeria's menu
+
+What kind of pizza would you like? We have
+
+° Users can order a pizza that is Parenti, Pepperoni Vegetarianvand
+available in the menu (just one, no SO Memon
+beverage) —
+e@ Upon order confirmation, the bot will « You want a Pepperoni pizza. Is that correct?
+log the date, the user id and the kind
+of ordered pizza (use a custom action) vino
+Great! Your Pepperoni pizza is on its way!
+© The bot has a web-based GUI @
+Hint: start with adummy bot eyourmescane ce, ¥
+
+Hints
+
+Start with a dummy bot
+* mkdir pizzaBot
+* cd pizzaBot
+
+* rasa init --no-prompt
+
+Configure and run the REST and the Actions servers:
+® rasa run --cors "*”
+
+® rasa run actions
+
+Use a Web frontend like:
+
+https://gqithub.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 8
+
+Building a Chatbot
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

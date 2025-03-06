@@ -1,0 +1,111 @@
+Natural Language Processing and Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 9: Transformers I
+
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+**Outline**
+
+* Limitations of RNNs
+* Transformer
+* Transformer’s Input
+* Self Attention
+
+**Limitations of RNNs**
+
+* RNNs lack long-term memory (enc-dec models).
+* RNNs are extremely slow to train (for long series).
+* RNNs suffer from the vanishing gradient problem.
+
+**RNNs lack of long-term memory** (Context vector visualization from image omitted as it's unclear and likely redundant)
+
+**RNNs are extremely slow to train**
+
+* Processing is inherently sequential.
+* The network cannot start processing 𝑥𝑖 until it has finished with 𝑥𝑖−1.
+* Thus, the network cannot exploit the massive parallelism available in a modern GPU!
+
+**RNNs suffer from the vanishing gradient problem**
+
+* The problem is related to vanishing/exploding gradients.
+* During backpropagation through time (BPTT), the same function F is traversed many times.
+* 𝜕𝐿𝑜𝑠𝑠/𝜕ℎ0 = (𝜕𝐿𝑜𝑠𝑠/𝜕ℎ1) ∙ (𝜕𝐹/𝜕ℎ0) = (𝜕𝐿𝑜𝑠𝑠/𝜕ℎ2) ∙ (𝜕𝐹/𝜕ℎ1) ∙ (𝜕𝐹/𝜕ℎ0) = ...
+* The derivatives of F are multiplied several times by themselves.
+* If the absolute value of the derivatives of F is small, it will become smaller and smaller (vanishing gradient).
+* If it is large, it will become larger and larger (exploding gradient), causing instability.
+* This problem is caused by traversing the same layer many times (sequence length).
+
+
+**Transformer**
+
+In 2017, researchers at Google Brain proposed the Transformer, an alternative model for processing sequential data.  This model allows parallel processing of sequence elements. The number of layers traversed doesn't depend on the sequence length, eliminating gradient problems. Initially designed for language translation (sequence-to-sequence with varying lengths), subsets of the model can be used for other sequence processing tasks.
+
+**Transformer Components**
+
+* Input
+* Tokenization
+* Input Embedding
+* Positional Encoding
+* Encoder
+    * Attention
+    * Query
+    * Key
+    * Value
+    * Self-Attention
+    * Multi-head Attention
+    * Add & Norm
+    * Feedforward
+* Decoder
+    * Masked Attention
+    * Encoder-Decoder Attention
+* Output (Diagram from image omitted as textual description is sufficient)
+
+**Input: Tokenization**
+
+* Represents text with a set of tokens.
+* Each token is encoded with a unique ID. (Table from image omitted as it doesn't add essential information.)
+
+**Input Embedding**
+
+* Embedding represents a symbol (word, character, sentence) in a low-dimensional space of continuous-valued vectors.
+* Tokens are projected into a continuous Euclidean space.
+* Correlations among words are visualized in the embedding space. Word embeddings can push dissimilar words further apart and keep similar words close, capturing semantics.
+
+**Positional Encoding**
+
+* **The Importance of Order:**  Standard encoding doesn't differentiate between sequences with the same elements in different orders (e.g., "The student is eating an apple" vs. "An apple is eating the student"). The attention module's output is order-independent.
+* **Solution:**  Add a position-dependent perturbation to each element.  The same element in different positions will have slightly different vector encodings.
+* **Implementation:** Uses periodic functions. If *d_model* is the embedding size and *pos* is the element's position, the perturbation to component *i* is: PE(pos, 2i) = sin(pos/10000^(2i/d_model)).
+* The positional encoding vector, having the same dimension as the input embedding, is added directly to the input.
+
+**Encoder**
+
+* Transforms an input sequence of vectors 𝑥1,…,𝑥𝑡 into an intermediate representation 𝑧1,…,𝑧𝑡 of the same length.
+* Vectors 𝑧1,…,𝑧𝑡 are generated in parallel.
+* Each 𝑧𝑖 depends on the entire input sequence 𝑥1,…,𝑥𝑡, not just 𝑥𝑖.
+* Composed of a sequence of identical encoder blocks (the original paper used 6).
+* Each block uses:
+    * Self-attention (multi-headed) where the same vectors are used as Query, Key, and Value.
+    * A feed-forward layer applied to each element.
+    * Skip connections.
+    * Normalization.
+
+**Self Attention**
+
+* Example: In the sentence "The animal didn’t cross the street because it was too wide," self-attention helps determine the referent of "it."  It learns which words are relevant for encoding "it."
+* **Attention Function:** Used when a computed value (e.g., a token's context-aware embedding) depends on other values (other tokens). It assigns different weights ("attention levels") to each value based on its relevance.  It uses Query, Key, and Value.
+* **Target Function:**  𝑓𝑇(𝑞) = Σᵢ α(𝑞,𝑘𝑖) ∙ 𝑓𝑉(𝑣𝑖), where α is the attention function, and 𝑓𝑉 processes the values.  The attention function and 𝑓𝑉 are learned. Typically, α(𝑞,𝑘𝑖) is between 0 and 1, and they sum to 1.  The order of key-value pairs doesn't affect the target function.
+* **Transformer's Attention Function:** Based on linear algebra and softmax. It is differentiable (learnable via backpropagation), efficient, and parallelizable.
+* **Input:** Matrices Q (m x dq - queries), K (n x dk - keys), and V (n x dv - values). K and V have the same number of rows.
+* **Matching Score:** Scaled dot product (cosine similarity) if query and key vectors have the same dimensionality.
+* **Steps:**
+    1. **Projection:** Project Q, K, and V into a different subspace using weight matrices: Q′ = Q ∙ WQ, K′ = K ∙ WK, V′ = V ∙ WV.
+    2. **Attention Matrix:**  A = softmax((Q′∙K′ᵀ)/√dk).  A is an (m x n) matrix, where 𝑎𝑖𝑗 = α(𝑞𝑖,𝑘𝑗). Softmax is applied row-wise. Scaling prevents large softmax arguments.
+    3. **Target Value:** 𝑓𝑇(𝑄) = 𝐴∙𝑉′.  This is an m x d'v matrix representing the target function for the m queries.
+
+
+
+(Diagrams from images omitted as the textual description is sufficient)

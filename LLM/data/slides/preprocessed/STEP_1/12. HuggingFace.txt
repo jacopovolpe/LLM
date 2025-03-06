@@ -1,0 +1,524 @@
+=== Extracted text from PDF ===
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 12
+HuggingFace
+Nicola Capuano and Antonio Greco
+DIEM –University of Salerno
+
+Outline
+•Overview
+•Setup
+•Pipeline
+•Model selection
+•Common models
+•Gradio
+Overview
+Hugging Face
+• https://github.com/huggingface/education-toolkit
+
+Hugging Face
+• The Hugging Face Hub 
+(https://huggingface.co/) hosts:
+• Models
+• Datasets
+• Spaces for demos and code
+• Key libraries include:
+• datasets: Download datasets from the 
+hub
+• transformers: Work with pipelines, 
+tokenizers, models, etc.
+• evaluate: Compute evaluation metrics
+• These libraries can use PyTorch and 
+TensorFlow
+
+Hugging Face –Model Hub
+https://huggingface.co/models
+Hugging Face - Datasets
+• The Hub (https://hf.co/datasets) hosts around 3000 
+datasets that are open-sourced and free to use in 
+multiple domains. 
+• On top of it, the open-source datasets library allows the 
+easy use of these datasets, including huge ones, using 
+very convenient features such as streaming.
+• Similar to model repositories, you have a dataset card 
+that documents the dataset. If you scroll down a bit, 
+you will find things such as the summary, the structure, 
+and more.
+• Example: https://huggingface.co/datasets/nyu-mll/glue 
+Setup
+Setup –Google Colab
+• Using a Colab notebook is the simplest possible setup; 
+boot up a notebook in your browser and get straight to 
+coding!
+• !pip install transformers
+• import transformers
+• This installs a very light version of Transformers. In 
+particular, no specific machine learning frameworks 
+(like PyTorch or TensorFlow) are installed. You can also 
+install the development version, which comes with all 
+the required dependencies for pretty much any 
+imaginable use case:
+• !pip install transformers[sentencepiece]
+Setup –Virtual environment
+Download and install Anaconda: 
+https://www.anaconda.com/download
+ 
+•conda create --name nlpllm
+•conda activate nlpllm
+•conda install transformers[sentencepiece]    
+Setup –Create a Hugging Face 
+account
+• Most of the functionalities relies on you having a 
+Hugging Face account. 
+• It is  recommend creating one
+
+Pipeline
+Pipeline
+• The Hugging Face Transformers library provides the 
+functionality to create and use the models. 
+• The Model Hub contains thousands of pretrained 
+models that anyone can download and use. 
+• The most basic object in the Hugging Face Transformers 
+library is the pipeline() function. 
+• It connects a model with its necessary preprocessing 
+and postprocessing steps, allowing us to directly input 
+any text and get an intelligible answer.
+
+Pipeline
+
+Model selection
+Model selection
+
+Model selection
+
+Model selection
+
+Common models
+Common models
+
+Gradio
+Gradio –Demos on the web
+
+Gradio –Demos on the web
+
+Gradio –Free hosting on hf.space
+
+Gradio –Build your demo
+Try it yourself
+•conda install gradio
+https://bit.ly/34wESgd
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+ 
+Lesson 12
+HuggingFace
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 12
+
+HuggingFace
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+* Overview
+
+° Setup
+
+* Pipeline
+
+* Model selection
+* Common models
+
+® Gradio
+
+
+
+Hugging Face
+
+® https://github.com/huggingface/education-toolkit
+
+®& Education Toolkit
+
+) Welcome!
+
+We've assembled a toolkit that anyone can use to easily prepare workshops, events, homework or classes. The
+content is self-contained so that it can be easily incorporated in other material. This content is free and uses well-
+known Open Source technologies ( transformers , gradio , etc).
+
+Apart from tutorials, we also share other resources to go further into ML or that can assist in designing content.
+
+Hugging Face
+
+® The Hugging Face Hub
+(https://huggingface.co/) hosts:
+
+°* Models
+° Datasets
+° Spaces for demos and code
+° Key libraries include:
+datasets: Download datasets from the
+hub
+* transformers: Work with pipelines,
+tokenizers, models, etc.
+°* evaluate: Compute evaluation metrics
+° These libraries can use PyTorch and
+
+TensorFlow
+
+Hugging Face — Model Hub
+
+Navigatingthe * ©
+ModelHub ~
+
+y with Lysandre
+
+https://huggingface.co/models
+
+\
+
+Hugging Face - Datasets
+
+°* The Hub (https://hf.co/datasets) hosts around 3000
+
+datasets that are open-sourced and free to use in
+multiple domains.
+
+* On top of it, the open-source datasets library allows the
+easy use of these datasets, including huge ones, using
+very convenient features such as streaming.
+
+* Similar to model repositories, you have a dataset card
+
+that documents the dataset. If you scroll down a bit,
+
+you will find things such as the summary, the structure,
+and more.
+
+Example: https://huggingface.co/datasets/nyu-mll/glue
+
+
+
+Setup — Google Colab
+
+® Using a Colab notebook is the simplest possible setup;
+boot up a notebook in your browser and get straight to
+coding!
+* '!pip install transformers
+° import transformers
+
+® This installs a very light version of Transformers. In
+particular, no specific machine learning frameworks
+(like PyTorch or TensorFlow) are installed. You can also
+install the development version, which comes with all
+the required dependencies for pretty much any
+
+imaginable use case:
+° '!pip install transformers[sentencepiece]
+
+Setup — Virtual environment
+
+Download and install Anaconda:
+httos://www.anaconda.com/download
+
+* conda create --name nlpllm
+® conda activate nlipllm
+* conda install transformers[sentencepiece]
+
+Setup — Create a Hugging Face
+account
+
+°* Most of the functionalities relies on you having a
+Hugging Face account.
+° Itis recommend creating one
+
+Welcome Skip to feed —
+
+Create anew model Hub documentation
+
+From the website Take a first look at the Hub features
+
+Programmatic access
+
+
+
+Pipeline
+
+The Hugging Face Transformers library provides the
+functionality to create and use the models.
+
+* The Model Hub contains thousands of pretrained
+models that anyone can download and use.
+
+The most basic object in the Hugging Face Transformers
+library is the pipeline() function.
+
+It connects a model with its necessary preprocessing
+and postprocessing steps, allowing us to directly input
+any text and get an intelligible answer.
+
+ire using Hugg
+
+Allen Institute for Al Facebook Al @M Microsoft Grammarly
+Ai2 \ Ha
+
+G Google Al S Typeform Musixmatch ay Asteroid-team
+
+Pipeline
+
+Pipeline /= -
+function <=
+
+~) with Sylvain
+
+Model selection
+
+\
+
+Model selection
+
+(CNN)
+
+A magnitude 6.7 earthquake rattled Papua New Guinea
+early Friday afternoon, according to the U.S. Geological
+Survey. The quake was centered about 200 miles
+north-northeast of Port Moresby and had a depth of 28
+miles. No tsunami warning was issued...
+
+<Article 1
+summary>
+
+NLP task behind this app: Find a model for this task:
+
+Summarization
+
+Hugging Face Hub > 176,620 models.
+Filter by task > 960 models.
+
+Then...2 Consider your needs.
+
+Extractive: Select representative pieces of text.
+A
+
+stractive: Generate new text.
+
+©2023 Databricks Inc. — All rights reserved
+
+Filter by task, license, language, etc.
+
+a Hugging Face * Models Datasets Spaces Dxs © Solutions
+t Tasks | libraries futesets Languages Licenses Models
+bert-base-uncased
+
+Footure Extraction Taxtto-image ® jonatasgrosman/wav2vec2-large-
+
+Filter by model size
+(for limits on hardware, cost, or latency)
+
+| Files and versions
+
+pytorch_model.bin
+
+©2023 Databricks Inc. — All rights reserved
+
+Model selection
+
+Sort by popularity
+and updates
+
+TL Sort: Most Downloads
+Most Downloads
+Recently Updated
+
+Most Likes
+
+Check git release history
+
+github.com/google-research/bert/blob/master/README.md
+
+BERT
+
+***** New March 11th, 2020; Smailler BERT Models *****
+
+This is a release of 24 smaller BERT models (Engli
+
+Pick good variants of models for your task.
+
+e Different sizes of the same base model.
+e Fine-tuned variants of base models.
+
+Models 5,564 few Fulltext search
+
+t5-base
+
+Updated 11 days ago
+
+t5-small
+Updated 11 days ago
+
+§ prithivida/parrot_paraphrasezr_on_T5
+
+Updated May 18, 2021 545k a7
+
+©2023 Databricks Inc. — All rights reserved
+
+Model selection
+
+Also consider:
+
+Search for examples and datasets not just models.
+
+Is the model “good" at everything, or was it fine-tuned for a
+specific task?
+
+Which datasets were used for pre-training and/or
+fine-tuning?
+
+Ultimately, it’s about your data and users.
+
+e Define KPIs.
+e Test on your data or users.
+
+Common models
+
+\
+
+Common models
+
+Pythia 19M-12B Apache 2.0 EleutherAl 2023 series of 8 models for
+comparisons across sizes
+
+Dolly 12B MIT Databricks 2023 instruction-tuned Pythia model
+
+GPT-3.5 175B proprietary OpenAl 2022 ChatGPT model option; related
+models GPT-1/2/3/4
+
+OPT 125M-175B MIT Meta 2022 based on GPT-3 architecture
+
+BLOOM 560M - 176B RAIL v1.0 many groups 2022 46 languages
+
+GPT-Neo/X 125M-20B MIT / Apache 2.0 | EleutherAl 2021 / 2022 | based on GPT-2 architecture
+
+FLAN 80M-540B Apache 2.0 Google 2021 methods to improve training for
+existing architectures
+
+BART 139M-406M _ | Apache 2.0 Meta 2019 derived from BERT, GPT, others
+
+T5 50M-TIB Apache 2.0 Google 2019 4 languages
+
+BERT. ccabricks pcIO9MG335M, | Apache 20 Google 2018 early breekthrough
+
+
+
+Gradio — Demos on the web
+
+Framework Language
+
+1. Train a model ‘fF TensorFlow Python
+PYTORCH
+
+2. Containerize and deploy Python
+the model
+3. Store incoming samples S gradio
+
+4. Build an interactive front- Python
+end
+
+Gradio — Demos on the web
+
+News Summarizer
+
+Let Hugging Face models summarize articles for you. Note: Shorter articles generate faster summaries. This summarizer uses bart-large-cnn model by Facebook
+URL
+
+Screenshot Flag
+
+Clear Submit
+
+Examples
+
+https://www.technologyreview.com/2021/07/22/1029973/deepmind-alphafold-protein-folding-biology-disease-drugs-proteome/
+https://www.technologyreview.com/2021/07/21/1029860/disability-rights-employment-discrimination-ai-hiring/
+
+https://www.technologyreview.com/2021/07/09/1028140/ai-voice-actors-sound-human/
+
+Gradio — Freeh
+
+a Hugging Face
+
+BB spaces
+
+Discover amazing ML apps made by the community!
+
+Poolformer
+ye
+
+Models Datasets Spaces Docs
+
+on hf.space
+
+Solutions Pricing = By
+
+Create new Space
+
+a dt © akhaliq
+
+«au Kili & radames
+
+All running apps, most recent first
+
+Manifesto Id The Seas
+
+@ snakeeyes021
+
+@ Flux9665
+
+® akhaliq
+
+& onnx
+
+@ valhalla
+
+@ nateraw
+
+"= erogol
+
+TL Sort: Recently Updated
+
+CoquiTTS(Official)
+
+Gradio — Build your demo
+
+Try it yourself
+
+* conda install gradio
+
+nttps://bit.ly/34wESgd
+
+\
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 12
+
+HuggingFace
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

@@ -1,0 +1,95 @@
+### Natural Language Processing and Large Language Models
+
+**Master's Degree in Computer Engineering**
+
+**Course Introduction**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+This course explores the fascinating world of Natural Language Processing (NLP) with a focus on Large Language Models (LLMs). We will delve into the core concepts of NLP, progressing from fundamental techniques to cutting-edge transformer-based models and their practical applications. This journey includes understanding how machines interpret and generate human language, covering both the theoretical underpinnings and hands-on implementation. You will gain practical skills in designing and building NLP systems using LLMs, integrating existing tools and technologies.  The course culminates in a project where you will apply your learned knowledge to a real-world NLP problem.
+
+
+<----------section---------->
+
+**Course Objectives**
+
+This course aims to equip you with both theoretical knowledge and practical abilities in the field of NLP.
+
+**Knowledge Objectives:**
+
+* **Foundational NLP Concepts:** Understand the basic principles and evolution of NLP, including its diverse applications across various domains.
+* **Language Understanding and Generation:**  Learn the mechanisms by which machines comprehend and produce human language.
+* **Statistical NLP:** Explore traditional statistical methods for analyzing and processing text data.
+* **Transformer-based LLMs:** Gain in-depth knowledge of the transformer architecture and its role in powering modern LLMs.
+* **LLM Applications:**  Discover the wide array of practical applications of LLMs, from chatbots to text summarization and beyond.
+* **Prompt Engineering and Fine-tuning:** Master techniques for effectively interacting with and customizing LLMs for specific tasks.
+
+**Ability Objectives:**
+
+* **NLP System Design and Implementation:** Develop the skills to design and implement complete NLP systems leveraging LLMs and integrating relevant tools and technologies.
+
+
+<----------section---------->
+
+**Course Content**
+
+The course will cover the following key topics:
+
+**Fundamentals of NLP:**
+
+* **Introduction and Core Concepts:**  Explore the evolution of NLP, its applications, and fundamental challenges.
+* **Text Representation:** Learn techniques for representing text numerically, including tokenization, stemming, lemmatization, and Part-of-Speech (POS) tagging.
+* **Mathematical Foundations:**  Dive into mathematical models for representing text, such as Bag of Words, Vector Space Model, TF-IDF, and their application in search engines.
+* **Text Classification:**  Explore methods for classifying text, including topic labeling and sentiment analysis.
+* **Word Embeddings:** Understand how words are represented as vectors and how these representations capture semantic relationships, covering Word2Vec, CBOW, Skip-gram, GloVe, and FastText.
+* **Neural Networks for NLP:**  Learn about neural network architectures used in NLP, including Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTMs), Gated Recurrent Units (GRUs), Convolutional Neural Networks (CNNs), and an introduction to text generation.
+* **Information Extraction:**  Explore techniques for extracting structured information from unstructured text, including parsing and Named Entity Recognition (NER).
+* **Question Answering and Dialogue Systems:**  Learn about the development of question answering systems and conversational agents (chatbots).
+
+
+**Transformers:**
+
+* **Transformer Architecture:**  Understand the core components of the transformer architecture, including self-attention, multi-head attention, positional encoding, and masking.
+* **Encoder-Decoder Models:** Explore the encoder and decoder components of a transformer and their application in tasks like machine translation and text summarization.
+* **Encoder-Only Models:**  Learn about encoder-only models and their use in sentence classification and named entity recognition.
+* **Decoder-Only Models:**  Understand decoder-only models and their application in text generation.
+* **Large Language Models:**  Delve into the definition, training, and characteristics of large language models.
+* **Hugging Face Ecosystem:** Gain practical experience using the Hugging Face library for working with pre-trained transformer models.
+
+
+**Prompt Engineering:**
+
+* **Prompting Techniques:**  Learn various prompting strategies, including zero-shot, few-shot, chain-of-thought, self-consistency, and prompt chaining.
+* **Advanced Prompting Methods:** Explore advanced prompting techniques like role prompting, structured prompts, and system prompts.
+* **Retrieval Augmented Generation:**  Understand how to enhance LLM responses by incorporating information retrieval.
+
+
+**LLM Fine-tuning:**
+
+* **Fine-tuning Strategies:**  Learn different methods for fine-tuning LLMs, including feature-based fine-tuning and parameter-efficient fine-tuning.
+* **Low-Rank Adaptation:**  Explore low-rank adaptation techniques for efficient fine-tuning.
+* **Reinforcement Learning with Human Feedback (RLHF):** Understand the principles of RLHF and its application in training LLMs.
+
+
+
+<----------section---------->
+
+**Textbook and Resources**
+
+* **Textbook:** *Natural Language Processing in Action, Second Edition* by Hobson Lane, Cole Howard, and Hannes Max Hapke (Manning Publications).  Early access version available online.
+
+
+**Further Information**
+
+* **Instructors:**
+    * Nicola Capuano (ncapuano@unisa.it, 089 964292)
+    * Antonio Greco (agreco@unisa.it, 089 963003)
+
+* **Online Material:** Available on the university's e-learning platform.
+
+* **Exam:**
+    * Project work (implementation of an NLP system)
+    * Oral exam (including discussion of the project work)

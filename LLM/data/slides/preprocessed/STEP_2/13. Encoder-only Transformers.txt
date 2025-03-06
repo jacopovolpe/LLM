@@ -1,0 +1,125 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 13: Encoder-only Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Encoder-only transformer
+* BERT
+* Practice on token classification and named entity recognition
+
+### Encoder-only Transformer
+
+You need the whole transformer architecture if the task requires transforming a sequence into a sequence of a different length.  An example is translation between different languages (the original application of the Transformer model).
+
+For a task where you want to transform a sequence into another sequence of the same length, you can use just the Encoder part of the transformer. In this case, the vectors 𝑧₁, ..., 𝑧𝑡 will be your output vectors, and you can compute the loss function directly on them.
+
+For a task where you want to transform a sequence into a single value (e.g., a sequence classification task), you can also use just the Encoder part of the transformer. You add a special START value as the first element 𝑥₁ of the input. You take the corresponding output value 𝑧₁ as the result of your transformation and compute your loss function only on it.
+
+
+### BERT
+
+BERT (Bidirectional Encoder Representation from Transformers) is a language model introduced by Google Research in 2018 for language understanding. It uses only the Encoder part from the Transformer model. BERT-base has 12 stacked encoder blocks (110M parameters), while BERT-large has 24 (340M parameters).
+
+BERT is pre-trained to use "bidirectional" context (i.e., successive words, as well as previous ones, for understanding a word in a sentence). It is designed to be used as a pre-trained base for Natural Language Processing tasks (after fine-tuning).
+
+### BERT Input Encoding
+
+BERT uses a WordPiece tokenizer as its tokenization method.
+
+* **Subword-Based:** WordPiece tokenizes text at the subword level rather than using full words or individual characters. This helps BERT handle both common words and rarer or misspelled words by breaking them into manageable parts.
+* **Vocabulary Building:** The WordPiece tokenizer builds a vocabulary of common words and subword units (e.g., "playing" could be tokenized as "play" and "##ing").
+* **Unknown Words:** Rare or out-of-vocabulary words can be broken down into familiar subwords. For example, "unhappiness" could be split into "un," "happy," and "##ness."
+* **Splitting:** Sentences are split into tokens based on whitespace, punctuation, and common prefixes (like "##"). BERT requires certain special tokens:
+    * `[CLS]`: A classification token added at the beginning of each input sequence.
+    * `[SEP]`: A separator token used to mark the end of a sentence (or between sentences in the case of sentence-pair tasks).
+* **Example:** The sentence "I'm feeling fantastic!" might be tokenized by WordPiece as: `[CLS] I ' m feeling fan ##tas ##tic ! [SEP]`
+* **Converting Tokens to IDs:** After tokenization, each token is mapped to an ID from BERT's vocabulary, which serves as input to the model.
+
+**Advantages of WordPiece Embedding:**
+
+* **Efficiency:** Reduces the vocabulary size without losing the ability to represent diverse language constructs.
+* **Handling Unseen Words:** Subword tokenization allows BERT to manage rare or newly created words by breaking them down into recognizable parts.
+* **Improved Language Understanding:** Helps BERT capture complex linguistic patterns by learning useful subword components during pre-training.
+
+### BERT [CLS] Token
+
+In BERT, the `[CLS]` token plays a crucial role as a special token added at the beginning of each input sequence. The `[CLS]` token (short for "classification token") is always placed at the very start of the tokenized sequence and is primarily used as a summary representation of the entire input sequence.  After the input is processed by BERT, the final hidden state of the `[CLS]` token acts as a condensed, context-aware embedding for the whole sentence or sequence of sentences. This embedding can then be fed into additional layers (like a classifier) for specific tasks.
+
+**Usage of [CLS] Token:**
+
+* **Single-Sentence Classification:** The final hidden state of the `[CLS]` token is passed to a classifier layer to make predictions. For instance, in sentiment analysis, the classifier might predict "positive" or "negative" sentiment based on the `[CLS]` embedding.
+* **Sentence-Pair Tasks:** For tasks involving two sentences, BERT tokenizes them as `[CLS] Sentence A [SEP] Sentence B [SEP]`. The `[CLS]` token's final hidden state captures the relationship between the two sentences, making it suitable for tasks like entailment detection or similarity scoring.
+
+### BERT Pre-training
+
+BERT is pre-trained using two self-supervised learning strategies:
+
+* **Masked Language Modeling (MLM):**
+    * **Objective:** Predict masked (hidden) tokens in a sentence.
+    * **Process:** Randomly mask 15% of tokens and train BERT to predict them based on context.
+    * **Benefit:** Enables BERT to learn bidirectional context.
+* **Next Sentence Prediction (NSP):**
+    * **Objective:** Determine if one sentence logically follows another.
+    * **Process:** Trains BERT to understand sentence-level relationships.
+    * **Benefit:** Improves performance in tasks like question answering and natural language inference.
+
+The training set is composed of a corpus of publicly available books plus the English Wikipedia, totaling more than 3 billion words.
+
+### BERT Fine-tuning
+
+The output of the encoder is given to an additional layer to solve a specific problem. The cross-entropy loss between the prediction and the label for the classification task is minimized via gradient-based algorithms. The additional layer is trained from scratch, while pre-trained parameters of BERT may be updated or not.  BERT is pre-trained on general language data, then fine-tuned on specific datasets for each task. In fine-tuning, the `[CLS]` token's final embedding is specifically trained for the downstream task, refining its ability to represent the input sequence as needed for that task.
+
+**Example Tasks:**
+
+* Text Classification (sentiment analysis, spam detection)
+* Named Entity Recognition (NER) (identifying names, dates, organizations, etc., within text)
+* Question Answering (extractive QA where BERT locates answers within a passage)
+
+Only a few additional layers are added per task (minimal task-specific adjustments).
+
+
+### BERT Strengths and Limitations
+
+**Strengths:**
+
+* Bidirectional Contextual Understanding: Provides richer and more accurate representations of language.
+* Flexibility in Transfer Learning: BERT's pre-training allows for easy adaptation to diverse NLP tasks.
+* High Performance on Benchmark Datasets: Consistently ranks at or near the top on datasets like SQuAD (QA) and GLUE (general language understanding).
+
+**Limitations:**
+
+* Large Model Size: High computational and memory requirements make deployment challenging.
+* Pre-training Costs: Requires extensive computational resources, especially for BERT-Large.
+* Fine-tuning Time and Data: Fine-tuning on new tasks requires labeled data and can still be time-intensive.
+
+
+### Popular BERT Variants
+
+* **RoBERTa (Robustly Optimized BERT Approach):**  Developed by Facebook AI.  Larger training corpus, removed NSP, longer training and larger batches, dynamic masking.  Outperforms BERT on various NLP benchmarks.
+* **ALBERT (A Lite BERT):** Developed by Google Research. Parameter reduction, cross-layer parameter sharing, sentence order prediction (SOP). Achieves comparable results to BERT-Large with fewer parameters.
+* **DistilBERT (Distilled BERT):** Developed by Hugging Face. Uses knowledge distillation to reduce BERT's size while retaining most of its performance. Fewer layers and faster inference.
+* **TinyBERT:** Developed by Huawei. Two-step knowledge distillation. Smaller and faster than DistilBERT, optimized for mobile and edge devices.
+* **ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately):** Developed by Google Research. Replaced token detection instead of masked language modeling. Efficient pre-training and higher performance.
+* **SciBERT:** Tailored for scientific literature. Domain-specific pre-training and vocabulary.
+* **BioBERT:**  Pretrained on a biomedical text corpus. Enhanced performance on biomedical tasks.
+* **ClinicalBERT:** Tailored for processing clinical notes and healthcare-related NLP tasks. Trained on the MIMIC-III dataset.
+* **mBERT:** Multilingual support (104 languages). Language-agnostic representation.
+
+**Other BERT Variants:**
+
+* CamemBERT (French)
+* FinBERT (Financial)
+* LegalBERT (Legal)
+
+BERT also inspired Transformer pre-training in computer vision, such as with Vision Transformers, Swin Transformers, and Masked Auto Encoders (MAE).
+
+### Practice on Token Classification and Named Entity Recognition
+
+Using the Hugging Face tutorial on token classification (https://huggingface.co/learn/nlp-course/chapter7/2?fw=pt), use different existing versions of BERT to perform named entity recognition.  Test these versions with your own prompts and with data available in public datasets (e.g., https://huggingface.co/datasets/eriktks/conll2003).  If resources allow, fine-tune a lightweight version of BERT (https://huggingface.co/learn/nlp-course/chapter7/2?fw=pt#fine-tuning-the-model-with-the-trainer-api).

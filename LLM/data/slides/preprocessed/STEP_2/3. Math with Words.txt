@@ -1,0 +1,224 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 3: Math with Words**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Outline
+
+* Term Frequency
+* Vector Space Model
+* TF-IDF
+* Building a Search Engine
+
+
+### Term Frequency
+
+**Bag of Words:** A vector space model of text.
+
+* One-hot encode each word in a text and combine one-hot vectors.
+* Binary BoW: one-hot vectors are combined with the OR operation.
+* Standard BoW: one-hot vectors are summed.
+* Term Frequency (TF): number of occurrences of each word in the text.
+
+**Assumption:** The more times a word occurs, the more meaning it contributes to that document.
+
+**Calculating TF**
+
+```python
+# Extract tokens
+sentence = "The faster Harry got to the store, the faster Harry, the faster, would get home."
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+doc = nlp(sentence)
+
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct]
+
+print(tokens)
+
+# Build BoW with word count
+
+import collections
+
+bag_of_words = collections.Counter(tokens) # counts the elements of a list
+print(bag_of_words)
+
+# Most common words
+print(bag_of_words.most_common(2)) # most common 2 words
+
+
+import pandas as pd
+
+counts = pd.Series(bag_of_words) # from dict to Pandas Series
+print(counts / counts.sum()) # calculate TF
+```
+
+**Limits of TF**
+
+**Example:**
+
+* In document A, the word "dog" appears 3 times.
+* In document B, the word "dog" appears 100 times.
+
+Is the word "dog" more important for document A or B?
+
+**Additional information:**
+
+* Document A is a 30-word email to a veterinarian.
+* Document B is the novel *War & Peace* (approx. 580,000 words).
+
+Is the word "dog" more important for document A or B?
+
+
+### Normalized TF
+
+Normalized (weighted) TF is the word count normalized by the document length.
+
+* TF (dog, document A) = 3/30 = 0.1
+* TF (dog, document B) = 100/580000 = 0.00017
+
+
+### Vector Space Model
+
+**NLTK Corpora**
+
+Natural Language Toolkit includes several text corpora.
+
+* They can be used to train and test NLP algorithms.
+* It has a package to easily access corpus data: [https://www.nltk.org/howto/corpus.html](https://www.nltk.org/howto/corpus.html)
+
+**Reuters 21578 corpus:**
+
+* Widely used for NLP and text classification.
+* It contains thousands of news articles published by Reuters in 1986.
+* News articles are categorized into 90 different topics.
+
+**Using Reuters 21578**
+
+```python
+import nltk
+
+nltk.download('reuters') # download the reuters corpus
+ids = nltk.corpus.reuters.fileids() # ids of the documents
+sample = nltk.corpus.reuters.raw(ids[0]) # first document
+
+print(len(ids), "samples.\n") # number of documents
+print(sample)
+
+# ... (Further code examples for processing the corpus)
+```
+
+### Corpus Processing
+
+(Optimized code example using spaCy pipeline disabling)
+
+```python
+# ... (Code for optimized corpus processing)
+```
+
+**Term-Document Matrix:**
+
+* Rows represent documents.
+* Columns represent terms from the vocabulary.
+* Elements can be TF, normalized TF, or other options.
+
+### Vector Space Model (continued)
+
+Mathematical representation of documents as vectors in a multidimensional space.
+
+* Each dimension of the space represents a word.
+* Built from a term-document matrix.
+
+### Document Similarity
+
+**Euclidean Distance:**
+
+* Sensitive to the magnitude of the vectors.
+* Less commonly used in NLP.
+
+**Cosine Similarity:**
+
+* Measures the cosine of the angle between two vectors.
+* Focuses on the direction of the vectors, ignoring their magnitude.
+* Effective for normalized text representations.
+* Widely used in NLP.
+
+**Properties of Cosine Similarity:**
+
+Cosine similarity is a value between -1 and 1.
+
+* 1: The vectors point in the same direction across all dimensions. Documents use the same words in similar proportions, likely talking about the same thing.
+* 0: The vectors are orthogonal in all dimensions. Documents share no words, likely discussing completely different topics.
+* -1: The vectors point in opposite directions across all dimensions. Impossible with TF (counts of words cannot be negative). Can happen with other word representations (discussed later).
+
+```python
+# ... (Code example for calculating cosine similarity)
+```
+
+### TF-IDF
+
+**Inverse Document Frequency:**
+
+TF does not consider the uniqueness of the word across the corpus.  IDF addresses this by measuring the importance of each word in relation to the entire corpus.  It increases the weight of rare words and decreases the weight of common words.
+
+**TF-IDF (Term Frequency – Inverse Document Frequency):**
+
+The product of TF and IDF.  High TF-IDF indicates a term that is frequent in a document but rare in the corpus. Low TF-IDF indicates a term that is infrequent in the document or common in the corpus.
+
+**Zipf’s Law:**
+
+Observes patterns in word frequency distribution in natural languages. The frequency of a word is inversely proportional to its rank in a frequency table.
+
+**Calculating TF-IDF:**
+
+```python
+# ... (Code example for calculating TF-IDF)
+```
+
+**Using Scikit-Learn:**
+
+```python
+# ... (Code example for calculating TF-IDF using scikit-learn)
+```
+
+**TF-IDF Alternatives:** (List of alternative methods)
+
+### Building a Search Engine
+
+TF-IDF matrices have been the mainstay of information retrieval (search) for decades.
+
+**Process:**
+
+1. Tokenize all documents and create a TF-IDF matrix.
+2. Prompt the user to input a query.
+3. Treat the query as a document and calculate its TF-IDF vector.
+4. Calculate the cosine similarity between the query vector and all documents in the TF-IDF matrix.
+5. Identify the document(s) with the highest similarity to the query.
+
+```python
+# ... (Code example for building a basic search engine)
+```
+
+**More on Search Engines:**
+
+Real search engines use inverted indexes for efficiency, rather than comparing the query with all indexed documents directly.
+
+### References
+
+* *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Chapter 3
+
+### Further Readings
+
+* Scikit-Learn Documentation: [https://scikit-learn.org/stable/user_guide.html](https://scikit-learn.org/stable/user_guide.html)
+* NLTK Corpora How-To: [https://www.nltk.org/howto/corpus.html](https://www.nltk.org/howto/corpus.html)
+
+
+---
+**(Repeated course information removed for conciseness)**
+---

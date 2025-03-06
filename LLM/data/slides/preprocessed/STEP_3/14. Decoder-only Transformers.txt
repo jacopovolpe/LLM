@@ -1,0 +1,96 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 14: Decoder-only Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Introduction to Decoder-only Transformers
+
+Decoder-only transformers represent a powerful class of language models that leverage the decoder component of the original transformer architecture. Unlike the full transformer, which utilizes both encoder and decoder components for tasks like translation, decoder-only models focus solely on generating text sequentially. This specialized architecture makes them highly effective for autoregressive tasks where the generation of each word (or token) depends on the previously generated ones.  Popular examples of decoder-only transformers include the Generative Pre-trained Transformer (GPT) series and LLaMA.  These models excel in various natural language processing tasks, including text generation, summarization, question answering, and even code generation.
+
+<----------section---------->
+
+###  Architecture and Functionality of Decoder-only Transformers
+
+Decoder-only transformers operate by processing text as a continuous sequence, including both the input prompt and the generated text.  The absence of a separate encoder simplifies the architecture and allows the model to handle both understanding the input and generating the output within the same processing flow. This streamlined approach relies on self-attention mechanisms within the decoder layers.  Specifically, causal or unidirectional masking within the self-attention prevents a token from attending to future tokens in the sequence.  This masking is crucial for maintaining the autoregressive property, ensuring that the generation of each token is based solely on the preceding context. As the model processes the sequence token by token, it builds up context and learns relationships between tokens through these masked self-attention layers. This context accumulation replaces the need for a separate encoder, enabling the model to comprehend the input as it generates the output.
+
+<----------section---------->
+
+### Encoder-only vs. Decoder-only Transformers: A Comparison
+
+A key distinction within the transformer family lies in the architectural choice between encoder-only and decoder-only models.  Encoder-only models like BERT employ bidirectional attention, processing the entire input sequence simultaneously to generate contextualized embeddings. These embeddings are particularly useful for tasks like text classification, named entity recognition, and question answering. In contrast, decoder-only transformers, with their causal attention mechanism, process input sequentially, generating text or other content token by token.  This autoregressive approach makes them ideal for generative tasks.  The table below summarizes the key differences:
+
+| Feature          | Encoder-Only Transformers (e.g., BERT)                       | Decoder-Only Transformers (e.g., GPT)                       |
+|-----------------|-------------------------------------------------------------|-------------------------------------------------------------|
+| Architecture     | Only encoder blocks (bidirectional attention)                 | Only decoder blocks (causal attention)                       |
+| Training Objective | Masked Language Modeling (MLM)                               | Autoregressive Language Modeling                           |
+| Context         | Processes entire sequence in parallel                         | Processes tokens sequentially (one by one)                    |
+| Main Use Cases  | Text classification, NER, question answering                   | Text generation, story generation, code generation           |
+| Attention Type   | Bidirectional self-attention                                 | Unidirectional (masked) self-attention                       |
+| Output          | Contextual embeddings for downstream tasks                 | Sequential token generation (text or other content)          |
+
+
+<----------section---------->
+
+###  Applications of Decoder-only Transformers
+
+The autoregressive nature of decoder-only transformers makes them highly versatile for a wide range of applications. They are particularly well-suited for tasks that involve generating sequential output:
+
+* **Text Generation:** Creating various forms of text content, including news articles, creative writing, scripts, and poems.
+* **Conversational AI:** Powering chatbots and virtual assistants to engage in dynamic and contextually relevant conversations.
+* **Code Generation and Completion:** Assisting developers by generating code snippets, completing code, and suggesting code improvements.
+* **Summarization:** Condensing lengthy documents into concise and informative summaries.
+* **Translation:** Adapting decoder-only models for translating text between different languages by training them on parallel corpora.
+* **Question Answering:** Generating answers to questions based on provided context or general knowledge acquired during pre-training.
+
+<----------section---------->
+
+
+###  Deep Dive into GPT Models
+
+GPT, developed by OpenAI, stands as a prominent example of a decoder-only transformer. It has gained recognition for its ability to generate human-quality text, demonstrating a remarkable understanding of language structure and semantics.  Trained on massive text datasets, GPT can perform various NLP tasks without requiring task-specific training data.
+
+* **GPT-1 (2018):** The foundational model, introducing the decoder-only architecture with 117 million parameters.
+* **GPT-2 (2019):** A significant scale-up with 1.5 billion parameters, showcasing enhanced text generation capabilities.
+* **GPT-3 (2020):** A substantial leap with 175 billion parameters, achieving advanced capabilities in language understanding, code generation, and even reasoning.
+* **GPT-4 (2023):** Further advancements, incorporating multi-modal capabilities (handling both image and text inputs), improved reasoning abilities, and an even broader knowledge base.
+
+GPT models utilize Byte-Pair Encoding (BPE) for tokenization, breaking down words into smaller subword units.  This approach allows for efficient representation of both frequent and rare words, handling out-of-vocabulary words effectively.  Pre-training involves next-token prediction on massive text datasets, enabling the model to learn intricate language patterns and relationships. Fine-tuning adapts GPT to specific tasks by training it on smaller, task-specific datasets, enabling it to perform specialized tasks like customer support automation, medical assistance, and content creation.
+
+While GPT models exhibit impressive strengths in language fluency, knowledge, and adaptability, they also face limitations. These include a lack of true understanding, sensitivity to prompting, potential biases, limited reasoning capabilities, and high computational requirements.
+
+
+<----------section---------->
+
+###  LLaMA: An Efficient Decoder-only Transformer
+
+LLaMA, developed by Meta, is a family of decoder-only transformer models designed for efficiency and strong performance across diverse NLP tasks.  The LLaMA family comprises models of varying sizes, from 7 billion parameters to 65 billion parameters, offering a balance between performance and resource requirements.  LLaMA utilizes BPE tokenization with relative positional encodings, enhancing its ability to handle varying sequence lengths.  Like GPT, LLaMA is pre-trained using an autoregressive language modeling objective on a diverse dataset of text and code.  The different sizes within the LLaMA family cater to a range of use cases, from resource-efficient tasks to complex applications demanding high performance.
+
+<----------section---------->
+
+
+###  LLaMA vs. GPT: A Comparative Analysis
+
+Both LLaMA and GPT are powerful decoder-only transformers, but they differ in several aspects:
+
+| Aspect       | LLAMA                                                      | GPT                                                              |
+|--------------|-----------------------------------------------------------|-------------------------------------------------------------------|
+| Size Range   | 7B, 13B, 30B, 65B                                        | 117M to 175B+ (GPT-3)                                               |
+| Training Data | Public data (The Pile, Wikipedia, Common Crawl, etc.)     | Primarily public data (Common Crawl, WebText, Books, Code, etc.)   |
+| Performance  | Strong, competitive, especially for smaller models           | State-of-the-art, particularly in zero/few-shot learning          |
+| Training     | More efficient, parameter-efficient                       | Very resource-intensive, especially for larger models             |
+| Access       | Open-sourced (with restrictions), allowing for wider access and customization  | Primarily accessed via OpenAI's commercial API  |
+| Applications |  Research, fine-tuning for specific applications |  Wider commercial deployment, API-driven applications |
+
+
+
+<----------section---------->
+
+
+### Practical Exploration and Hands-on Learning
+
+Hands-on practice is crucial for understanding and utilizing decoder-only transformers. Resources like the Hugging Face platform offer pre-trained models, code examples, and tutorials for tasks like text generation and fine-tuning. Exploring these resources empowers you to experiment with different models, architectures, and fine-tuning techniques, deepening your practical knowledge and enabling you to build custom NLP applications.  Engaging with these platforms will enhance your understanding of how to effectively use decoder-only transformers for real-world projects and research.
