@@ -1,0 +1,148 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 18: Prompt Engineering**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This document provides a comprehensive overview of prompt engineering, a crucial aspect of effectively utilizing Large Language Models (LLMs).  It covers fundamental concepts, techniques, and considerations for crafting effective prompts to achieve desired outcomes across various NLP tasks.
+
+<----------section---------->
+
+### Outline
+
+* Introduction to Prompt Engineering
+* Prompt Engineering Techniques
+* Prompt Testing
+
+This outline structures the lesson into three key parts: introducing the concept of prompt engineering, delving into specific techniques, and finally addressing the importance of testing and iterating on prompts.
+
+<----------section---------->
+
+### Introduction to Prompt Engineering
+
+**Prompt Engineering** is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas.  It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs.  This involves understanding how to instruct LLMs in a way that elicits the desired response, accounting for their capabilities and limitations.
+
+**Goals:**
+
+* Enhance understanding of the capabilities and limitations of LLMs. This includes recognizing their strengths in tasks like text generation and summarization, as well as their weaknesses, such as potential biases and factual inaccuracies.
+* Improve LLM performance on a broad range of tasks (e.g., question answering, arithmetic reasoning).  By carefully structuring prompts, we can guide LLMs toward more accurate and relevant responses.
+* Help interfacing with LLMs and integrating with other tools.  Prompt engineering facilitates seamless integration with other software and systems, expanding the potential applications of LLMs.
+* Enable new capabilities, such as augmenting LLMs with domain knowledge and external resources.  Through techniques like retrieval augmented generation (RAG), prompts can incorporate external information, enhancing the LLM's knowledge base and enabling more informed responses.
+
+<----------section---------->
+
+### Writing Good Prompts
+
+Crafting effective prompts is crucial for successful LLM interaction. The following guidelines provide practical advice for writing prompts that elicit desired outputs:
+
+* Start with simple prompts, adding elements gradually while iterating and refining to improve results.  This iterative approach allows for incremental improvement and avoids overwhelming the model with excessive complexity.
+* Use clear, specific instructions (e.g., "Write," "Classify," "Summarize") at the beginning of prompts.  Explicitly stating the desired task helps the LLM understand the intended action.
+* Be detailed and descriptive to achieve better outcomes.  Providing sufficient context and specifying the desired format or length enhances the clarity of the prompt.
+* Consider using examples to guide the model’s output.  Few-shot learning, where examples are provided within the prompt, can significantly improve the model's performance on specific tasks.
+* Balance detail and length carefully, as excessive information can reduce effectiveness, and experiment to find the ideal format.  Finding the right balance between conciseness and providing sufficient context is essential for optimal prompt performance.
+
+**Examples:**
+
+The following examples illustrate the difference between ineffective and effective prompts:
+
+* **Bad Prompt:** "Summarize this article."  Lacks specificity regarding desired length or focus.
+* **Good Prompt:** "Generate a 100-word summary of this research article, focusing on the main findings." Clearly specifies the desired length and focus.
+
+* **Bad Prompt:** "Write an apology email to a client."  Lacks context regarding the reason for the apology.
+* **Good Prompt:** "Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate." Provides specific details and instructions.
+
+* **Bad Prompt:** "Make this explanation easier to understand." Lacks target audience information.
+* **Good Prompt:** "Rewrite this technical explanation in simpler language suitable for high school students." Specifies the target audience and desired simplification.
+
+* **Bad Prompt:** "Classify the following review." Lacks classification categories.
+* **Good Prompt:** "Classify the following review as positive, neutral, or negative." Provides specific classification categories.
+
+* **Bad Prompt:** "Tell me about exercise benefits."  Lacks specificity and limits on the response.
+* **Good Prompt:** "List five health benefits of regular exercise, each with a short explanation of how it improves well-being." Specifies the desired number of benefits and explanation.
+
+* **Bad Prompt:** "Translate this sentence to French." Lacks information about tone or style.
+* **Good Prompt:** "Translate the following English sentence into French, preserving the formal tone."  Specifies the desired tone for the translation.
+
+<----------section---------->
+
+### Elements of a Prompt
+
+A well-structured prompt typically comprises the following elements:
+
+* **Instruction:** A specific task or instruction you want the model to perform. This clearly directs the LLM towards the desired action.
+* **Context:** External information or additional context that can steer the model to better responses.  Providing background information or relevant details helps the LLM generate more informed and relevant outputs.
+* **Input Data:** The input or question that we are interested in finding a response for.  This is the data upon which the LLM will operate.
+* **Output Indicator:** The type or format of the output.  Specifying the desired output format, such as a list, paragraph, or code snippet, helps structure the LLM's response.
+
+**Example 1:**
+
+* **Instruction:** Classify the text into neutral, negative, or positive.
+* **Input Data:** Text: I think the vacation is okay.
+* **Output Indicator:** Sentiment:
+
+**Example 2:**
+
+* **Instruction:** Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure.
+* **Context:** Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
+* **Input Data:** Question: What was OKT3 originally sourced from?
+* **Output Indicator:** Answer:
+
+<----------section---------->
+
+### In-Context Learning
+
+In-context learning is a powerful capability of LLMs where they learn to perform a task by interpreting and leveraging information provided directly within the prompt, without requiring updates to their internal parameters. This eliminates the need for extensive retraining and allows for rapid adaptation to new tasks.
+
+A prompt context for in-context learning may specify:
+
+* **Reference Material:** Specific text or data to be used to perform the task. This provides the LLM with the necessary information to answer questions or generate relevant content.
+* **Input-Output Pairs:** Examples of the task to illustrate the desired pattern.  Demonstrating the expected input-output relationship guides the LLM towards the correct behavior.
+* **Step-by-Step Instructions:** Detailed guidance for completing the task.  Breaking down complex tasks into smaller, manageable steps helps the LLM follow the desired process.
+* **Clarifications:** Addressing potential ambiguities in the task.  Removing any ambiguity ensures that the LLM correctly interprets the intended meaning.
+* **Templates:** Structures or placeholders to be filled in.  Templates provide a framework for the LLM's response, ensuring consistent formatting and structure.
+
+Prompt engineering heavily leverages in-context learning to efficiently guide LLMs towards desired behaviors without requiring retraining.
+
+
+<----------section---------->
+
+### Prompts and NLP Tasks
+
+Prompts can be designed to achieve various NLP tasks, showcasing the versatility of LLMs:
+
+* **Text Summarization:** Condensing longer texts into shorter, coherent summaries. (Examples provided in the "Writing Good Prompts" section)
+* **Information Extraction:**  Retrieving specific information from a given text. (Examples provided in the "Writing Good Prompts" section)
+* **Question Answering:** Providing answers to questions based on given context or knowledge. (Examples provided in the "Elements of a Prompt" section)
+* **Text Classification:** Categorizing text into predefined categories. (Examples provided in the "Writing Good Prompts" section)
+* **Code Generation:**  Generating code in various programming languages based on natural language descriptions. (Mentioned in the "Additional Context" as a capability of LLMs)
+* **Reasoning:**  Performing logical deductions and inferences. (Discussed in the "Additional Context" as a challenging area for LLMs, requiring careful prompt design and potentially external tools)
+
+
+<----------section---------->
+
+### System Prompts
+
+System prompts are instructions provided to the AI model *before* any user interactions. They establish the initial context and desired behavior for the LLM, shaping its subsequent responses.  This differs from user prompts, which are provided during the interaction.
+
+System prompts can:
+
+* Establish the assistant's behavior, context, tone, and any special instructions. This sets the overall persona and style of the LLM's responses.
+* Guide the model on how to respond and what it should focus on. This can include specifying the desired level of detail, formality, or creativity.
+
+**Examples:**
+
+* "You are a helpful and knowledgeable assistant who answers questions accurately and concisely."  This promotes helpful and concise responses.
+* "You are an IT support assistant specializing in troubleshooting software and hardware issues. Respond politely and guide users through step-by-step solutions."  This establishes a specific persona and response style for IT support.
+* "You are a friendly and engaging AI who responds in a warm and conversational tone, keeping responses lighthearted and approachable." This encourages a casual and friendly conversational style.
+
+
+
+<----------section---------->
+
+### Prompt Engineering Techniques
+
+This section is intentionally left blank as it is indicated in the original text that the discussion of prompt engineering techniques continues in the next part due to character limits. The "Additional Context" provides further insights into various aspects of working with LLMs, including prompt design, limitations, and best practices, which are relevant to prompt engineering techniques.  This added context emphasizes the complexities of using LLMs, particularly for tasks involving reasoning, and highlights the importance of careful prompt construction, iteration, and evaluation. It also touches upon ethical considerations and the evolving landscape of LLM development, with a focus on open-source models and their potential advantages.  This information will likely be incorporated and expanded upon when the discussion of prompt engineering techniques continues in the next part.  It also highlights the importance of prompt testing and evaluation, a key aspect of prompt engineering.

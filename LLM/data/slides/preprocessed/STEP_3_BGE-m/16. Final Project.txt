@@ -1,0 +1,45 @@
+### Enhanced Text: Natural Language Processing and Large Language Models Final Project Guidelines
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 16: Final Project**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This document provides comprehensive guidelines for the final project of the NLP and LLM 2024/2025 course. The project involves designing and implementing a chatbot specialized in answering questions about the course content and related information, while effectively handling out-of-context queries. This document outlines the project goals, approved tools, and the evaluation procedure.
+
+
+<----------section---------->
+
+**Project Goal**
+
+The primary objective of this project is to develop a chatbot capable of accurately and comprehensively answering questions pertaining to the NLP and LLM 2024/2025 course. This includes questions about the course material, schedule, assignments, instructors, recommended resources, and other relevant administrative details.  Crucially, the chatbot should demonstrate the ability to discern questions outside the course's scope and respond appropriately, indicating its inability to address unrelated topics.  This requires implementing a robust context recognition mechanism.  Deliverables for this project include the complete chatbot code and a detailed report explaining the design choices, implemented methodologies, and justification for the chosen tools and technologies.
+
+<----------section---------->
+
+**Permitted Tools and Technologies**
+
+Students are granted the freedom to utilize any tools and technologies discussed during the course. This encompasses both modern Large Language Model (LLM) based approaches and traditional Natural Language Processing (NLP) techniques.  A hybrid approach, combining LLMs for certain functionalities and classic NLP methods for others, is encouraged.  The rationale behind the chosen combination should be clearly articulated in the final report.  Pre-existing LLMs and other models can be incorporated, either directly or with modifications. However, groups must possess a thorough understanding of the chosen tools and models, demonstrating the ability to explain their workings, limitations, and integration within the chatbot's architecture. This includes a deep familiarity with the codebase and the underlying model's functionalities.
+
+<----------section---------->
+
+**Chatbot Evaluation Procedure**
+
+The evaluation process will consist of two phases, both conducted by the course instructors before the project discussion.  In the first phase, the chatbot will be assessed in real-time using a pre-determined set of questions related to the course content.  The evaluation criteria for this phase are:
+
+* **Relevance:**  Does the chatbot provide an answer directly addressing the specific query? This assesses the chatbot's ability to understand the question's intent and retrieve the correct information.
+
+* **Fluency:** Is the generated response grammatically correct, well-structured, and easy to understand? This evaluates the quality of the language used by the chatbot.
+
+* **Coherence:** Does the response exhibit a logical flow and internal consistency? This examines the overall structure and organization of the answer.
+
+In the second phase, a different set of pre-defined questions will be used to evaluate the following aspects:
+
+* **Robustness:** Can the chatbot handle adversarial or misleading prompts designed to test its resilience and ability to maintain context?  Examples include questions like "Are you sure?"  This evaluates the chatbot's ability to handle challenging inputs.
+
+* **Precision:**  How accurately does the chatbot identify and handle out-of-context questions?  Examples include questions like "Who is the king of Spain?"  This assesses the chatbot's ability to stay within the defined scope.
+
+
+The final project grade will be based on the chatbot's performance across all these evaluation criteria.  The detailed report will also be considered in the overall assessment.  The instructors will provide specific grading rubrics and weighting for each evaluation aspect before the project commencement.

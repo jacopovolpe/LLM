@@ -1,0 +1,118 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 15: Encoder-Decoder Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This lesson explores the architecture and functionality of Encoder-Decoder Transformers, focusing on the T5 model and its application in sequence-to-sequence tasks like translation and summarization.  We will delve into the model's structure, training process, and various adaptations for specific tasks.  Finally, we'll provide resources for hands-on practice with these models.
+
+<----------section---------->
+
+### Outline
+
+* Encoder-decoder transformer architecture
+* T5 model and its variants
+* Practical applications: Translation and Summarization
+
+<----------section---------->
+
+### Encoder-Decoder Transformer Architecture
+
+Encoder-Decoder Transformers are a powerful class of neural networks specifically designed for sequence-to-sequence (seq2seq) tasks, where the input is a sequence of tokens (e.g., words in a sentence) and the output is another sequence of tokens, potentially in a different language or format.  They leverage the attention mechanism to capture dependencies between input and output sequences, enabling effective handling of long-range dependencies and contextual information. This architecture contrasts with recurrent neural networks (RNNs), which process sequences sequentially and can struggle with long-range dependencies.
+
+The encoder processes the input sequence, transforming it into a set of hidden representations that capture the meaning and context of the input. The decoder then takes these representations and generates the output sequence, one token at a time, while attending to relevant parts of the encoded input. This attention mechanism allows the decoder to focus on specific parts of the input when generating each output token, leading to improved performance, especially in tasks like machine translation.
+
+<----------section---------->
+
+### T5: Text-to-Text Transfer Transformer
+
+T5 (Text-to-Text Transfer Transformer) is a prominent language model developed by Google Research, based on the encoder-decoder transformer architecture.  Its defining characteristic is the framing of all tasks as text-to-text problems, simplifying training and fine-tuning for diverse applications.  T5 is available in various sizes, catering to different computational resource limitations:
+
+| T5 Version | Encoder Blocks | Heads | Decoder Blocks | Embedding Dimensionality |
+|---|---|---|---|---|
+| T5-Small | 6 | 8 | 6 | 512 |
+| T5-Base | 12 | 12 | 12 | 768 |
+| T5-Large | 24 | 16 | 24 | 1024 |
+| T5-XL | 24 | 32 | 24 | 2048 |
+| T5-XXL | 24 | 64 | 24 | 4096 |
+
+The number of encoder and decoder blocks, attention heads, and embedding dimensionality directly influence the model's capacity and performance. Larger models generally perform better but require significantly more computational resources for training and inference.
+
+<----------section---------->
+
+### T5 Input Encoding
+
+T5 utilizes a SentencePiece tokenizer with a vocabulary size of 32,000 tokens.  SentencePiece is a subword tokenizer that creates a balance between character and word-level tokenization, efficiently handling rare words and out-of-vocabulary terms. This is achieved through the use of a unigram language model that selects subwords to maximize the likelihood of the training data. This approach allows for a more compact vocabulary while still capturing a rich representation of the language.
+
+
+* **Subword Units:**  Breaking words into subword units allows the model to handle unseen words by combining known subwords.
+* **Unigram Language Model:** The unigram language model used for training the tokenizer ensures that frequent subwords are prioritized, optimizing the vocabulary for efficiency.
+* **Special Tokens:** T5 incorporates special tokens to guide the model:
+    * `<pad>`:  Pads sequences to a uniform length within a batch.
+    * `<unk>`: Represents unknown tokens.
+    * `<eos>`: Signals the end of a sequence.
+    * `<sep>` and task-specific prefixes: Define the task type (e.g., "translate English to German:", "summarize:").  These prefixes guide the model towards the desired output format.
+
+
+<----------section---------->
+
+### T5 Pre-training
+
+T5's pre-training employs a denoising autoencoder objective called span corruption.  This involves masking random spans of text within the input and training the model to reconstruct the original text.
+
+* **Span Corruption:**  Instead of masking individual tokens, T5 masks entire spans of text, encouraging the model to learn contextual relationships and generate more coherent output.  This differs from masked language modeling (MLM) used in models like BERT, which masks individual tokens.
+* **Example:**
+    * **Original Input:** "The quick brown fox jumps over the lazy dog."
+    * **Corrupted Input:** "The quick `<extra_id_0>` jumps `<extra_id_1>` dog."
+    * **Target Output:** `<extra_id_0>` brown fox `<extra_id_1>` over the lazy.
+* **C4 Dataset:**  T5's pre-training leverages the C4 (Colossal Clean Crawled Corpus) dataset, a massive and diverse text corpus derived from Common Crawl.  Its large size and diversity contribute to the model's robust performance across various domains.
+* **Training Details:**
+    * **Loss Function:** Cross-entropy loss measures the difference between predicted and actual masked spans.
+    * **Optimizer:** Adafactor, a memory-efficient optimizer designed for large-scale training, is used to update the model's parameters.
+    * **Learning Rate Scheduling:** A warm-up phase followed by inverse square root decay adjusts the learning rate throughout training. This strategy helps the model converge efficiently and avoid getting stuck in local minima.
+
+<----------section---------->
+
+### T5 Fine-tuning
+
+Fine-tuning adapts the pre-trained T5 model for specific downstream tasks.  The text-to-text paradigm is maintained, with task-specific prefixes guiding the model.
+
+* **Text-to-Text Paradigm:**  All inputs and outputs are treated as text strings, simplifying the adaptation process.
+* **Example Tasks and Prefixes:**
+    * **Summarization:** `summarize: <document>` → `<summary>`
+    * **Translation:** `translate English to French: <text>` → `<translated_text>`
+    * **Question Answering:** `question: <question> context: <context>` → `<answer>`
+
+<----------section---------->
+
+### Popular T5 Variants
+
+Several T5 variants have been developed for specific purposes and improvements:
+
+| Variant | Purpose | Key Strengths | Limitations |
+|---|---|---|---|
+| mT5 | Multilingual NLP | Supports 101 languages | Performance can vary across languages |
+| Flan-T5 | Instruction-following | Generalizes well to new instructions |  Requires carefully crafted task-specific prompts |
+| ByT5 | No tokenization | Handles noisy and unstructured text well | Slower due to byte-level processing |
+| T5-3B/11B | High-capacity NLP | Excellent performance on complex tasks | Requires substantial computational resources |
+| UL2 | Unified objectives | Versatile across different tasks | Increased training complexity |
+| Multimodal T5 | Vision-language tasks | Processes both text and image inputs | Computationally intensive |
+| Efficient T5 | Resource-constrained NLP | Lightweight and fast inference |  Performance trade-off compared to larger models |
+
+These variants showcase the adaptability of the T5 architecture to diverse NLP tasks and resource constraints.
+
+
+<----------section---------->
+
+### Practice on Translation and Summarization
+
+The following Hugging Face guides offer practical examples and code for implementing translation and summarization using various pre-trained models, including T5:
+
+* **Translation:** https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt
+* **Summarization:** https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt
+
+These resources provide a starting point for exploring the practical application of encoder-decoder transformers. If time and computational resources permit, these guides also provide information for fine-tuning a pre-trained model on a specific dataset, further enhancing its performance on the target task.  Fine-tuning allows you to adapt a general-purpose model to a specific domain or task, resulting in improved performance.

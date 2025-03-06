@@ -1,0 +1,94 @@
+### Enhanced Text:
+
+**Natural Language Processing and Large Language Models**
+
+**Master's Degree Program in Computer Engineering**
+
+**Lesson 0: Course Introduction**
+
+**Instructors: Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This course provides a comprehensive introduction to Natural Language Processing (NLP) with a strong emphasis on Large Language Models (LLMs). It covers fundamental NLP concepts, explores the underlying architecture of LLMs (Transformers), and delves into practical applications, including prompt engineering and fine-tuning techniques.  Students will gain both theoretical knowledge and practical skills in designing and implementing NLP systems using LLMs.
+
+
+<----------section---------->
+
+**Course Objectives**
+
+This course aims to equip students with a deep understanding of NLP and LLMs, enabling them to tackle real-world challenges in the field.  The objectives are divided into knowledge acquisition and skill development:
+
+* **Knowledge:**  Students will learn the following:
+    * **Basic concepts of Natural Language Processing (NLP):** This includes the history, evolution, and core challenges of NLP, such as ambiguity, variability, and knowledge dependence.
+    * **Natural Language Understanding (NLU) and Generation (NLG):**  NLU focuses on enabling computers to understand human language, while NLG deals with generating human-like text.  This involves exploring different techniques for representing meaning and context in textual data.
+    * **Statistical Approaches to NLP:** This covers traditional statistical methods used in NLP, providing a foundation for understanding the evolution towards deep learning approaches.
+    * **Large Language Models (LLM) based on Transformers:** This includes a detailed examination of the Transformer architecture, including self-attention mechanisms, encoder-decoder structures, and the advantages they offer over previous architectures like RNNs and LSTMs.
+    * **NLP applications with LLM:**  This explores the various applications of LLMs, such as text generation, translation, summarization, question answering, and chatbot development.
+    * **Prompt Engineering and Fine Tuning of LLM:**  This covers techniques for effectively interacting with and customizing LLMs for specific tasks.  Prompt engineering involves crafting effective input prompts, while fine-tuning adapts the model to specific datasets and tasks.
+
+* **Abilities:** Students will develop the following skills:
+    * **Design and implementation of a NLP system based on LLMs, integrating existing technologies and tools:** This involves hands-on experience with popular libraries and frameworks like HuggingFace Transformers, along with practical project work to solidify the learned concepts.
+
+
+
+<----------section---------->
+
+**Course Content**
+
+The course will cover the following topics:
+
+* **Fundamentals of NLP:**
+    * Basic concepts, Evolution and Applications of NLP:  A historical overview and discussion of the various real-world applications of NLP.
+    * Representing text: Tokenization, Stemming, Lemmatization, Part-of-Speech (POS) tagging: Techniques for preprocessing text data and extracting linguistic features.
+    * Math with Words: Bag of Words, Vector Space Model, TF-IDF, Search Engines: Representing text numerically and applying it to search tasks.
+    * Text Classification: Topic Labelling, Sentiment Analysis:  Categorizing text based on its content and emotional tone.
+    * Word Embeddings: Word2Vec, CBOW, Skip-Gram, GloVe, FastText: Representing words as dense vectors to capture semantic relationships.
+    * Neural Networks for NLP: RNN, LSTM, GRU, CNN, Introduction to Text Generation: Applying neural network architectures to NLP tasks.
+    * Information Extraction: Parsing, Named Entity Recognition: Extracting structured information from unstructured text.
+    * Question Answering and Dialog Engines (chatbots): Building systems capable of answering questions and engaging in conversations.
+
+* **Transformers:**
+    * Self-Attention, Multi-Head Attention, Positional Encoding, Masking:  Understanding the core components of the Transformer architecture.
+    * Encoder and Decoder of a Transformer:  Examining the roles of the encoder and decoder in different NLP tasks.
+    * Introduction to HuggingFace:  Practical experience with the HuggingFace library for working with pre-trained transformer models.
+    * Encoder-Decoder or Seq2Seq models (translation and summarization): Applying transformers to sequence-to-sequence tasks.
+    * Encoder-only Models (sentence classification and named entity recognition): Using encoder-only transformers for classification tasks.
+    * Decoder-only Models (text generation): Utilizing decoder-only transformers for text generation.
+    * Definition and training of a Large Language Model:  Understanding the process of training and deploying LLMs.
+
+* **Prompt Engineering:**
+    * Zero-shot and Few-shot Prompting:  Techniques for using LLMs with limited or no task-specific training data.
+    * Chain-of-Thought, Self-Consistency, Prompt Chaining: Advanced prompting techniques for complex reasoning tasks.
+    * Role Prompting, Structured Prompts, System Prompts:  Different strategies for structuring prompts to elicit desired outputs.
+    * Retrieval Augmented Generation:  Combining information retrieval with LLMs to improve accuracy and grounding.
+
+* **LLM Fine Tuning:**
+    * Feature-Based Fine Tuning:  Adapting LLMs by fine-tuning specific features.
+    * Parameter Efficient Fine Tuning and Low Rank Adaptation:  Techniques for fine-tuning LLMs with reduced computational cost.
+    * Reinforcement Learning with Human Feedback:  Improving LLM performance by incorporating human feedback during training.
+
+
+<----------section---------->
+
+**Textbook**
+
+H. Lane, C. Howard, H. M. Hapke, *Natural Language Processing in Action: Understanding, analyzing, and generating text with Python*, Manning, 2019. Second Edition in fall 2024. Early Access version available online: https://www.manning.com/books/natural-language-processing-in-action-second-edition.  The second edition will be utilized to cover the latest advancements in NLP and LLMs, including transformers and recent architectures. The early access version will provide access to updated content as it becomes available.
+
+
+<----------section---------->
+
+**Further Information**
+
+* **Teachers:**
+    * Nicola Capuano, DIEM, FSTEC-05P02007, ncapuano@unisa.it, +39 089 964292
+    * Antonio Greco, DIEM, FSTEC-05P01036, agreco@unisa.it, +39 089 963003
+
+* **Online Material:** Course materials, assignments, and announcements will be available on the university's e-learning platform: https://elearning.unisa.it/
+
+* **Exam:** The final evaluation will consist of two components:
+    * **Project Work:** Students will undertake a practical project involving the design and implementation of an NLP system based on LLMs.
+    * **Oral Exam:** The oral examination will cover the course content and include a discussion of the project work. This allows students to demonstrate their understanding of the theoretical concepts and their ability to apply them in practice.
+
+
+The provided excerpt from the textbook's preface and chapter introductions highlights the rapid evolution of NLP, particularly with the advent of Transformers and LLMs.  This course will focus on equipping students with the knowledge and skills necessary to navigate this evolving landscape and contribute to the field of NLP.

@@ -1,0 +1,125 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 11: From Transformers to LLMs**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This document provides a comprehensive overview of the evolution of Natural Language Processing (NLP) with the advent of Large Language Models (LLMs), focusing on the transformative role of the Transformer architecture.  It covers the core concepts, training methodologies, datasets used, and various applications of LLMs.
+
+<----------section---------->
+
+### Outline
+
+* Transformers for text representation and generation
+* Paradigm Shift in NLP
+* Pre-training of LLMs
+* Datasets and data pre-processing
+* Using LLMs after pre-training
+
+<----------section---------->
+
+### Transformers for text representation and generation
+
+Transformers have revolutionized NLP by offering a powerful architecture for both text representation and generation. Their flexibility allows for various configurations tailored to specific tasks:
+
+* **Encoder-only models (e.g., BERT):** These models excel at text representation by processing the entire input sequence simultaneously, capturing contextual information from both preceding and following words. This bidirectional understanding makes them ideal for tasks like sentence classification, question answering, and named entity recognition.
+
+* **Decoder-only models (e.g., GPT):** These models are specialized for text generation. They process the input sequence sequentially, predicting the next word based on the preceding context.  This autoregressive approach makes them suitable for tasks like text completion, translation, and summarization.
+
+* **Seq2Seq models (Encoder-Decoder Architectures):** Combining encoder and decoder components, these models are well-suited for tasks requiring mapping input sequences to output sequences, such as machine translation. The encoder processes the input sequence, and the decoder generates the output sequence based on the encoder's representation.
+
+
+*(The diagrams from the original PDF illustrating different transformer architectures should be reinserted here if possible)*
+
+<----------section---------->
+
+### Paradigm Shift in NLP
+
+The introduction of LLMs marked a significant paradigm shift in NLP, moving away from traditional methods and embracing new approaches:
+
+**Before LLMs:**
+
+* **Feature Engineering:** NLP pipelines heavily relied on manually crafted features, requiring domain expertise and significant effort.
+* **Model Selection:** Choosing the right model architecture for each task was crucial and often involved extensive experimentation.
+* **Transfer Learning:**  Transferring knowledge from one domain to another with limited labeled data was a common challenge.
+* **Overfitting vs. Generalization:** Carefully balancing model complexity to prevent overfitting while ensuring good generalization was essential.
+
+**Since LLMs:**
+
+* **Pre-training and Fine-tuning:** LLMs leverage vast amounts of unlabeled data during pre-training to learn general language representations.  Fine-tuning then adapts these representations to specific downstream tasks with smaller labeled datasets.
+* **Zero-shot and Few-shot learning:** LLMs can perform tasks with limited or no task-specific training data, showcasing remarkable generalization abilities.
+* **Prompting:**  Guiding LLMs to perform specific tasks by providing natural language instructions (prompts) has become a standard practice.
+* **Interpretability and Explainability:** Understanding how LLMs arrive at their outputs remains a critical research area.
+
+**What caused this shift?**
+
+The limitations of Recurrent Neural Networks (RNNs), particularly in handling long sequences due to vanishing gradients and sequential processing, paved the way for the Transformer architecture. The attention mechanism within Transformers addresses these limitations by:
+
+* **Handling long-range dependencies:** Attention allows the model to consider relationships between words regardless of their distance in the sequence.
+* **Enabling parallel training:** Unlike RNNs, the attention mechanism enables parallel processing of the input sequence, significantly reducing training time.
+* **Calculating dynamic attention weights:** The attention mechanism dynamically assigns weights to different parts of the input sequence, focusing on the most relevant information for the given task.
+
+<----------section---------->
+
+### Pre-training of LLMs
+
+**Self-supervised Pre-training:**
+
+LLMs are pre-trained using self-supervised learning on massive text datasets, eliminating the need for extensive manual labeling:
+
+* **Autoencoding models (e.g., Masked Language Modeling - MLM):**  These models, like BERT, are trained to predict masked words in a sentence based on the surrounding context. This fosters a bidirectional understanding of language.
+
+* **Autoregressive models (e.g., Causal Language Modeling - CLM):** Models like GPT are trained to predict the next word in a sequence.  This unidirectional approach is well-suited for text generation.
+
+* **Seq2seq models (e.g., Span Corruption):**  These models reconstruct corrupted sections of text, combining comprehension and generation capabilities.
+
+
+The flexibility to combine different pre-training tasks contributes significantly to the versatility of LLMs, allowing them to develop a rich understanding of language applicable to various downstream tasks. This self-supervised approach enables learning from the inherent structure of language itself, developing a knowledge base readily adapted for specific applications, including zero-shot learning scenarios.
+
+
+<----------section---------->
+
+### Datasets and Data Pre-processing
+
+**Datasets:**
+
+Training LLMs requires enormous text corpora sourced from diverse sources:
+
+* **Books:** BookCorpus, Project Gutenberg, and other collections provide a rich source of long-form text.
+* **CommonCrawl:** This massive web archive provides a broad snapshot of the internet but requires extensive pre-processing due to its noisy nature.
+* **Wikipedia:**  A reliable source of high-quality factual information available in numerous languages.
+* **Other Sources:** Social media platforms (Reddit), code repositories (GitHub), news articles, and various other web sources contribute to the diversity of training data.
+
+**Data Pre-processing:**
+
+Pre-processing is essential to ensure data quality, model performance, and mitigate potential biases and harmful outputs:
+
+* **Quality Filtering:** Removing low-quality, noisy, or irrelevant text using heuristics, regular expressions, or machine learning classifiers.
+* **Deduplication:** Identifying and removing duplicate content to avoid overfitting and ensure balanced representation.
+* **Privacy Scrubbing:** Removing personally identifiable information (PII) and other sensitive data to protect user privacy.
+* **Filtering Toxic and Biased Text:**  Identifying and mitigating potentially harmful or biased language to promote fairness and responsible AI.
+
+
+<----------section---------->
+
+### Using LLMs after Pre-training
+
+After pre-training, LLMs can be adapted to specific downstream tasks through two primary methods:
+
+**Fine-tuning:**
+
+Fine-tuning adjusts the pre-trained model's weights using a smaller, task-specific dataset and gradient descent.  This can involve fine-tuning the entire model, specific layers (e.g., adding a classification head), or utilizing parameter-efficient methods like adapters.
+
+**Prompting:**
+
+Prompting involves crafting specific input instructions to guide the model's output without modifying its parameters. This enables a single pre-trained model to perform various tasks simply by changing the prompt, offering remarkable flexibility.
+
+<----------section---------->
+
+**Additional Context:**
+
+The provided links refer to various resources related to PyTorch, Transformers, datasets, and NLP techniques.  These resources offer further insights into implementation details, code examples, and practical applications. While these specific citations were not directly integrated into the main text, they are preserved here as valuable supplementary material for readers seeking deeper understanding and practical guidance. They highlight valuable tools and concepts related to PyTorch implementation, transformer architecture, and dataset management, enriching the context surrounding LLMs and their application in NLP.

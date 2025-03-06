@@ -1,0 +1,175 @@
+## Enhanced Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 20: Retrieval Augmented Generation (RAG)**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+<----------section---------->
+
+### Outline
+
+* Introduction to RAG
+* Introduction to LangChain
+* Building a RAG with LangChain and HuggingFace
+
+
+<----------section---------->
+
+### Introduction to RAG
+
+**What is RAG?**
+
+Large Language Models (LLMs) possess broad reasoning capabilities, yet they face inherent limitations:
+
+* **Knowledge Cutoff:**  Their knowledge is confined to the data they were trained on.  This creates a "cutoff" date beyond which they are unaware of new information, world events, or evolving scientific understanding.
+* **Inability to Access External Information:** LLMs, in their standard form, operate in isolation and cannot access real-time information from the internet or other external sources. This restricts their ability to respond to queries requiring current data.
+* **Handling Private and Proprietary Data:**  Standard LLMs are not designed to process private or proprietary information.  Submitting such data to publicly available LLMs poses security risks and potential breaches of confidentiality.
+
+Retrieval Augmented Generation (RAG) addresses these limitations by enriching LLMs with access to external and private data sources. This technique allows AI applications to leverage the power of LLMs while grounding their responses in specific, relevant information, broadening their knowledge beyond the training data and enabling them to work with sensitive data securely.
+
+
+**RAG Concepts**
+
+RAG applications typically involve two key stages:
+
+* **Indexing (Offline):**  This process involves ingesting data from various sources and preparing it for efficient retrieval.  The data is transformed into a searchable format, often involving splitting large documents into smaller, manageable chunks and converting them into vector representations.
+* **Retrieval and Generation (Runtime):** When a user submits a query, the system retrieves relevant information from the indexed data. This retrieved context is then integrated into a prompt that is fed to the LLM.  The LLM, now armed with pertinent information, generates a more informed and contextually appropriate response.
+
+
+**Indexing**
+
+The indexing stage consists of three main steps:
+
+* **Load:**  Data is loaded from various sources, including files (PDF, CSV, HTML, JSON), websites, databases, and other repositories.  RAG frameworks often provide specialized loaders to handle different data formats.
+* **Split (Chunking):**  Long documents are divided into smaller chunks.  This is crucial for two reasons: (1) smaller chunks are easier to search and retrieve efficiently, and (2) they fit within the limited context window of LLMs.
+* **Store (Vectorization):**  The data chunks are stored in a Vector Store. This involves converting text chunks into vector representations (embeddings) that capture their semantic meaning, enabling similarity-based search.
+
+
+**Vector Stores**
+
+Vector Stores are specialized databases designed for storing and retrieving vector embeddings.
+
+* **Embeddings Recap:** Embeddings are mathematical representations of text that capture semantic relationships between words and phrases.  Similar concepts have similar vector representations.
+* **Semantic Search:** Vector stores enable semantic search, where retrieval is based on the meaning of the query and the indexed data, rather than just keyword matching. This allows for more accurate and relevant retrieval of information.
+
+
+**Retrieval and Generation**
+
+The runtime process involves:
+
+* **Retrieval:** Based on the user's query, the system retrieves the most relevant data chunks from the Vector Store, using similarity search based on embeddings.
+* **Prompt Augmentation:** The retrieved data is incorporated into a prompt along with the user's query.
+* **LLM Generation:** This augmented prompt is fed to the LLM, enabling it to generate a response grounded in the retrieved context.
+
+
+<----------section---------->
+
+
+### Introduction to LangChain
+
+**LangChain**
+
+LangChain is a framework designed to streamline the development of LLM-powered applications.
+
+* **Building Blocks:** It provides modular components for integrating LLMs into various workflows.
+* **Connectivity:** It connects to diverse resources, including LLMs (OpenAI, HuggingFace), data sources (Slack, Notion), and external tools.
+* **Chainable Components:**  LangChain's components can be chained together to create complex and sophisticated application logic.
+* **Use Cases:**  It supports a wide range of applications like chatbots, document search, RAG, question answering, data processing, and information extraction.
+* **Open Source and Commercial:** LangChain offers a mix of open-source and commercially available components.
+
+
+
+**Key Components**
+
+* **Prompt Templates:**  Standardized formats for structuring prompts, enabling dynamic and reusable interaction with LLMs.  Supports both string and message list formats for greater flexibility.
+* **LLMs:**  Integration with various third-party LLMs, enabling seamless switching and experimentation with different models.
+* **Chat Models:**  Specialized handling of conversational interfaces, enabling back-and-forth exchanges with LLMs. Supports distinct roles (user, assistant) within the conversation.
+* **Example Selectors:**  Intelligently chooses relevant examples to include in prompts, improving LLM performance by providing context and guidance.
+* **Output Parsers:** Structures LLM output into specific formats (JSON, XML, CSV), facilitating downstream processing and analysis. Includes features for error correction and handling complex output structures.
+* **Document Loaders:**  Ingests data from diverse sources into a standardized format for use within the LangChain framework.
+* **Vector Stores:** Integration with various vector storage solutions for efficient semantic search and retrieval of embeddings.
+* **Retrievers:** Provides a unified interface for retrieving data from different sources, including vector stores and external databases.
+* **Agents:** Empowers LLMs to make decisions and take actions based on user input, enabling more interactive and dynamic applications.
+
+
+**Installation**
+
+The following commands install the necessary libraries:
+
+```bash
+pip install langchain
+pip install langchain_community
+pip install langchain_huggingface
+pip install pypdf
+pip install faiss-cpu
+```
+
+**Preliminary Steps**
+
+1. **Hugging Face Access Token:**  Obtain an access token from Hugging Face.  This is required to access their models and APIs.
+2. **Mistral Model Access:** Request access to the Mistral-7B-Instruct-v0.2 model on Hugging Face by accepting the user license: [https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
+
+
+<----------section---------->
+
+**Query a LLM Model**
+
+```python
+from langchain_huggingface import HuggingFaceEndpoint
+import os
+
+# Store API key securely as an environment variable.
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_TOKEN"
+
+llm = HuggingFaceEndpoint(
+    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+    temperature=0.1  # Controls randomness of LLM output
+)
+
+query = "Who won the FIFA World Cup in the year 2006?"
+print(llm.invoke(query))
+```
+
+
+**Prompt Templates**
+
+Prompt templates provide a structured and reusable way to interact with LLMs.
+
+```python
+from langchain.prompts import PromptTemplate
+
+template = "Who won the {competition} in the year {year}?"
+prompt_template = PromptTemplate(
+    template=template,
+    input_variables=["competition", "year"]
+)
+
+query = prompt_template.invoke({"competition": "Davis Cup", "year": "2018"})
+answer = llm.invoke(query)
+
+print(answer)
+```
+
+
+**Introduction to Chains**
+
+Chains enable the sequential execution of multiple steps in an NLP pipeline.
+
+```python
+chain = prompt_template | llm  # Pipe operator connects template and LLM
+answer = chain.invoke({"competition": "Davis Cup", "year": "2018"})
+
+print(answer)
+```
+
+
+<----------section---------->
+
+**(Continued from previous response)**
+
+The original text also included extensive excerpts from the book "Natural Language Processing in Action, Second Edition." While valuable, directly incorporating these excerpts makes the lesson notes overly long and difficult to follow. The enhanced version focuses on the core concepts of RAG and LangChain, providing concise explanations and relevant code examples.  For a complete understanding of the topics discussed, referring to the original book is recommended.  This separation allows the lesson notes to serve as a focused introduction and guide, while the book provides in-depth knowledge and broader context.
