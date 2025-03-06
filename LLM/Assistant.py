@@ -96,8 +96,9 @@ class Assistant:
             "- If the context includes symbols, lists, or bullet points, integrate the information smoothly into sentences.\n"
             "- If the answer is not in the provided context, state: \"I'm sorry, but I don't have enough information to answer that.\"\n"
             "- Avoid making assumptions or fabricating details.\n"
+            "- if the answer is structured, use HTML formatting.\n"
             "- Use a conversational and engaging tone to make the response pleasant for text-to-speech.\n"
-            f"- generate a answer with a length of {responseLength}.\n"
+            f"- generate a answer with a length {responseLength}.\n"
             "\n-----END_PROMPT-----\n"
         )
 
