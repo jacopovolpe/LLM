@@ -10,15 +10,19 @@ import os
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-JV_TOKEN = "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"
-RS_TOKEN = "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"
+JV_HF_TOKEN = "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"
+RS_HF_TOKEN = "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"
+
+GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
+FAISS_INDEX = "LLM/data/faiss_index/ALL_bge-m3"
+EMBEDDING_MODEL = "BAAI/bge-m3"
 
 class Assistant:
     def __init__(self,
-                 HUGGING_FACE_TOKEN=RS_TOKEN, 
-                 MODEL_LLM="mistralai/Mistral-7B-Instruct-v0.2",
-                 faiss_index="LLM/data/faiss_index/ALL_bge-m3",
-                 embedding_model="BAAI/bge-m3",  # o -> sentence-transformers/all-MiniLM-L6-v2
+                 HUGGING_FACE_TOKEN=RS_HF_TOKEN, 
+                 MODEL_LLM=GENERATION_MODEL,
+                 faiss_index=FAISS_INDEX,
+                 embedding_model=EMBEDDING_MODEL, 
                  max_history=5):
 
         self.API_URL = f"https://api-inference.huggingface.co/models/{MODEL_LLM}"
@@ -32,39 +36,7 @@ class Assistant:
         self.history = []  
         self.max_history = max_history 
         
-    def get_relevant_chunks(self, question, top_k=15, min_contribution=0.1, diversity_threshold=0.5):
-        """
-        Seleziona i chunk che contribuiscono almeno al 10% della CDF delle similarità dei top 50 risultati.
-        Applica anche un filtro di diversità per evitare troppi chunk simili tra loro.
-        """
-    
-        # Recupera tutti i documenti con similarità
-        docs_with_scores = self.vectorstore.similarity_search_with_score(question, k=top_k)
         
-        # Estrai i punteggi e normalizza in una distribuzione cumulativa
-        scores = np.array([score for _, score in docs_with_scores])
-        sorted_indices = np.argsort(scores)[::-1]  # Ordina per score decrescente
-        sorted_scores = scores[sorted_indices]
-        cdf = np.cumsum(sorted_scores) / np.sum(sorted_scores)  # Normalizza in CDF
-        
-        # Calcola la soglia dinamica adattiva invece di un valore fisso
-        dynamic_threshold = max(min_contribution, np.percentile(cdf, 10))
-        
-        # Filtra i chunk che contribuiscono almeno alla soglia dinamica
-        relevant_chunks = []
-        selected_embeddings = []
-        for idx, cdf_value in enumerate(cdf):
-            if cdf_value >= dynamic_threshold:
-                chunk_content = docs_with_scores[sorted_indices[idx]][0].page_content
-                chunk_embedding = self.embeddings.embed_query(chunk_content)
-                
-                # Controlla la diversità semantica rispetto ai chunk già selezionati
-                if all(np.linalg.norm(np.array(chunk_embedding) - np.array(e)) > diversity_threshold for e in selected_embeddings):
-                    relevant_chunks.append(chunk_content)
-                    selected_embeddings.append(chunk_embedding)
-        
-        return "\n".join(relevant_chunks)
-    
     def get_simple_chunks(self, question, k=5):
         docs = self.vectorstore.similarity_search(question, k=k)
         context = "\n".join([doc.page_content for doc in docs])
@@ -103,8 +75,6 @@ class Assistant:
             "Answer:\n"
         )
 
-
-
         payload = {"inputs": prompt}
         response = requests.post(self.API_URL, headers=self.HEADERS, json=payload)
 
@@ -118,27 +88,31 @@ class Assistant:
         
         try:
             response_json = response.json()
-            clean_response = response_json[0].get("generated_text", "Errore nella generazione della risposta")
-            clean_response = clean_response.split("-----END_PROMPT-----")[-1].strip() 
-            clean_response = clean_response.split("Response:")[-1].strip() 
-            clean_response = clean_response.split("Answer:")[-1].strip() 
-            clean_response = clean_response.split("Assistant:")[-1].strip() 
+            response = response_json[0].get("generated_text", "Errore nella generazione della risposta")
             
-            # Remove any length indicators (case-insensitive)
-            clean_response = re.sub(r"/Length: LONG/gi", "", clean_response, flags=re.IGNORECASE)
-            clean_response = re.sub(r"/Length: MEDIUM/gi", "", clean_response, flags=re.IGNORECASE)
-            clean_response = re.sub(r"/Length: VERY_SHORT/gi", "", clean_response, flags=re.IGNORECASE)
-            
-            # Final strip to remove any leading/trailing whitespace
-            clean_response = clean_response.strip()
-
-            return clean_response
+            return self.clean_response(response)
 
         
         except requests.exceptions.JSONDecodeError:
             return "Errore nel parsing della risposta JSON"
 
-
+    def clarify_response(self, clean_response):
+        clean_response = clean_response.split("-----END_PROMPT-----")[-1].strip() 
+        clean_response = clean_response.split("Response:")[-1].strip() 
+        clean_response = clean_response.split("Answer:")[-1].strip() 
+        clean_response = clean_response.split("Assistant:")[-1].strip() 
+        
+        # Remove any length indicators (case-insensitive)
+        clean_response = re.sub(r"/Length: LONG/gi", "", clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r"/Length: MEDIUM/gi", "", clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r"/Length: VERY_SHORT/gi", "", clean_response, flags=re.IGNORECASE)
+        
+        # Final strip to remove any leading/trailing whitespace
+        clean_response = clean_response.strip()
+        
+        return clean_response
+    
+    
     def add_to_history(self, question, answer):
         if len(self.history) >= self.max_history:
             self.history.pop(0) 

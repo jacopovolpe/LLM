@@ -1,0 +1,95 @@
+### Enhanced Text
+
+**Natural Language Processing and Large Language Models**
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 9: Transformers I**
+
+**Nicola Capuano and Antonio Greco**
+**DIEM – University of Salerno**
+
+This document provides a comprehensive overview of the Transformer model, a groundbreaking architecture in Natural Language Processing (NLP).  It begins by explaining the limitations of Recurrent Neural Networks (RNNs), which motivated the development of Transformers.  Following this, the core components of the Transformer model are detailed, focusing on the mechanism of self-attention.
+
+<----------section---------->
+
+**Limitations of RNNs**
+
+RNNs, while powerful for sequential data processing, face several inherent limitations that hinder their performance, especially with long sequences:
+
+* **Vanishing Gradients:** This problem arises during backpropagation through time (BPTT), the algorithm used to train RNNs.  As gradients are propagated back through the network, they can diminish exponentially, making it difficult to learn long-range dependencies in the data. The repeated multiplication of small derivative values during BPTT leads to the vanishing gradient, effectively preventing the network from adjusting its weights based on earlier parts of the sequence.
+
+* **Slow Training:** RNNs process data sequentially, meaning they handle one input at a time.  This inherent sequentiality prevents the network from leveraging the parallel processing capabilities of modern GPUs, resulting in significantly slower training times, especially for long sequences.  The network must complete processing 𝑥𝑖−1 before starting on 𝑥𝑖, creating a bottleneck.
+
+* **Limited Long-Term Memory:** RNNs struggle to retain information from earlier stages of the sequence when processing long sequences. Information from the beginning of a sequence is gradually lost as the network proceeds, making it difficult for the model to understand and utilize context over extended spans of text. This is typically represented by a context vector, which has a fixed size and thus cannot effectively store information from arbitrarily long sequences.
+
+
+<----------section---------->
+
+**Transformer**
+
+Introduced by Google Brain in 2017, the Transformer architecture revolutionized NLP by addressing the shortcomings of RNNs. It enables parallel processing of sequence elements, significantly speeding up training and mitigating the vanishing gradient problem. The number of layers traversed is independent of the sequence length, contributing to its efficiency and ability to handle long-range dependencies. While initially designed for machine translation, its components are adaptable to various NLP tasks.
+
+<----------section---------->
+
+**Transformer Components**
+
+The Transformer model comprises several key components:
+
+* **Input:** The raw textual data.
+* **Tokenization:**  The process of breaking down the input text into individual units, or tokens (words, subwords, or characters). Each token is then assigned a unique numerical identifier.
+* **Input Embedding:**  Tokens are represented as dense vectors in a continuous Euclidean space. This embedding captures semantic relationships between words, placing similar words closer together and dissimilar words further apart.
+* **Positional Encoding:**  Since the attention mechanism is order-agnostic, positional encodings are added to the input embeddings.  These encodings provide information about the position of each token in the sequence, enabling the model to understand word order.
+* **Encoder:** Processes the input sequence to generate an intermediate representation. It consists of multiple identical layers, each employing self-attention and a feed-forward network.
+* **Decoder:** Generates the output sequence based on the encoder's representation. It also uses masked self-attention to prevent "peeking" at future tokens during training.
+* **Output:** The generated sequence of tokens, which can then be converted back to text.
+
+
+<----------section---------->
+
+**Input: Tokenization**
+
+Tokenization is a fundamental step in NLP.  It transforms text into a sequence of discrete units (tokens), which are then mapped to unique numerical IDs. This process allows the model to represent and process textual data in a structured manner.
+
+<----------section---------->
+
+**Input Embedding**
+
+Word embeddings are crucial for representing words in a format that machine learning models can understand. They project tokens into a continuous vector space, capturing semantic relationships between words.  Similar words tend to have similar vector representations, allowing the model to learn meaningful associations.
+
+<----------section---------->
+
+**Positional Encoding**
+
+The attention mechanism, while powerful, doesn't inherently consider word order.  Positional encodings address this limitation by adding position-specific information to the input embeddings. These encodings utilize periodic functions (sine and cosine) to create unique representations for each position.  This ensures that the model differentiates between sequences with the same words in different orders.
+
+<----------section---------->
+
+**Encoder**
+
+The encoder transforms the input sequence into a contextualized representation.  It consists of stacked identical blocks, each containing multi-head self-attention and a feed-forward layer.  Crucially, the encoder processes all input tokens in parallel, a key advantage over sequential RNNs.
+
+<----------section---------->
+
+**Self Attention**
+
+Self-attention allows the model to weigh the importance of different words in the input sequence when encoding a specific word.  It helps the model understand relationships between words within the same sentence.  For example, in the sentence "The animal didn’t cross the street because it was too wide," self-attention helps the model associate "it" with "the street" rather than "the animal."
+
+The attention mechanism employs three matrices: Query (Q), Key (K), and Value (V).  These matrices are derived from the input embeddings through linear transformations.  The attention weights are calculated using scaled dot-product attention, which measures the similarity between query and key vectors.  These weights are then used to create a weighted sum of the value vectors, producing a context-aware representation of the input sequence.  The scaling factor (1/√dk) is crucial for preventing extremely small gradients during training, especially with high-dimensional vectors.
+
+<----------section---------->
+
+**Additional Context and Insights**
+
+The core innovation of the Transformer model lies in its use of self-attention, a mechanism that allows the model to consider the relationships between all words in a sequence simultaneously. This contrasts with RNNs, which process sequences sequentially. The parallel processing capabilities of transformers, coupled with their ability to handle long-range dependencies, have made them a cornerstone of modern NLP.
+
+Byte Pair Encoding (BPE), a subword tokenization technique, is often used with transformers to handle large vocabularies efficiently. BPE allows the model to represent rare or unseen words as combinations of more frequent subword units.
+
+Transformers are highly scalable, meaning their capacity can be increased by stacking more layers and using larger datasets.  This scalability, combined with the parallelizability of attention, has enabled the development of extremely large language models (LLMs) capable of performing complex tasks like question answering, text generation, and translation.
+
+
+The omission of recurrence in Transformers necessitates positional encodings to incorporate word order information. These encodings are crucial for tasks where word order is essential, like translation and grammar parsing.
+
+The combination of BPE, self-attention, and positional encoding allows Transformers to effectively handle long sequences and capture complex relationships between words, leading to significant advancements in NLP.  These models can learn rich representations of text, enabling them to outperform traditional methods on various tasks. The attention mechanism is a key component of this success, allowing the model to focus on relevant parts of the input when generating the output.
+
+
