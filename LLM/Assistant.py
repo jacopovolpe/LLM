@@ -89,7 +89,7 @@ class Assistant:
             f"{self.get_history_for_prompt()}\n\n"
             
             "User's Question:\n"
-            f"{question}\n\n"
+            f"{question}\n\n\n"
             
             "Instructions:\n"
             "- Convert structured or formatted information into natural, flowing sentences.\n"
