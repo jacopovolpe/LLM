@@ -10,11 +10,12 @@ import os
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-
+JV_TOKEN = "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"
+RS_TOKEN = "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"
 
 class Assistant:
     def __init__(self,
-                 HUGGING_FACE_TOKEN="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", 
+                 HUGGING_FACE_TOKEN=RS_TOKEN, 
                  MODEL_LLM="mistralai/Mistral-7B-Instruct-v0.2",
                  faiss_index="LLM/data/faiss_index/ALL_bge-m3",
                  embedding_model="BAAI/bge-m3",  # o -> sentence-transformers/all-MiniLM-L6-v2
