@@ -2,7 +2,7 @@ import requests
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings 
 import numpy as np
-
+import re
 import tensorflow as tf
 import os
 
@@ -121,6 +121,15 @@ class Assistant:
             clean_response = clean_response.split("Response:")[-1].strip() 
             clean_response = clean_response.split("Answer:")[-1].strip() 
             clean_response = clean_response.split("Assistant:")[-1].strip() 
+            
+            # Remove any length indicators (case-insensitive)
+            clean_response = re.sub(r"/Length: LONG/gi", "", clean_response, flags=re.IGNORECASE)
+            clean_response = re.sub(r"/Length: MEDIUM/gi", "", clean_response, flags=re.IGNORECASE)
+            clean_response = re.sub(r"/Length: VERY_SHORT/gi", "", clean_response, flags=re.IGNORECASE)
+            
+            # Final strip to remove any leading/trailing whitespace
+            clean_response = clean_response.strip()
+
             return clean_response
 
         
