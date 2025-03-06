@@ -99,6 +99,7 @@ class Assistant:
             "- Use a conversational and engaging tone to make the response pleasant for text-to-speech.\n"
             f"- generate a answer with a length {responseLength}.\n"
             "\n-----END_PROMPT-----\n"
+            "Answer:\n"
         )
 
 
