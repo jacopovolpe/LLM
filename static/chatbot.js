@@ -72,7 +72,7 @@ async function sendMessage(userMessage = textInput.value.trim()) {
 
         let responseLength = "MEDIUM"; // Default
         if (document.getElementById("shortResponse").checked) {
-            responseLength = "SHORT";
+            responseLength = "VERY_SHORT";
         } else if (document.getElementById("longResponse").checked) {
             responseLength = "LONG";
         }
