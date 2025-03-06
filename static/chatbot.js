@@ -61,6 +61,8 @@ toggleSpeakBtn.addEventListener('click', () => {
     }
 });
 
+
+
 async function sendMessage(userMessage = textInput.value.trim()) {
     if (userMessage) {
         addMessage('user', userMessage, false);
@@ -86,8 +88,9 @@ async function sendMessage(userMessage = textInput.value.trim()) {
             thinkingMessage.classList.remove('thinking');
             chatBox.removeChild(thinkingMessage);
 
-            
-            addMessage('bot', result.response, false);
+            const htmlResponse = convertMarkdownToHTML(result.response);
+            addMessage('bot', htmlResponse, true);
+            //addMessage('bot', result.response, false);
             
 
             if (isSpeakEnabled) {
