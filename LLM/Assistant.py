@@ -5,48 +5,92 @@ import numpy as np
 import re
 import tensorflow as tf
 import os
+import time
+from datetime import datetime
+import json
 
-# Disabilita alcuni warning
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
+##------------------------------------------------------------------------------------------
+# Configurazione dei token per l'accesso ai servizi
 JV_HF_TOKEN = "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"
 RS_HF_TOKEN = "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"
 
+JV_GEMINI_TOKEN = "AIzaSyArDcTFUTzztpgCIlogXSYQwBhUieZxv7Y"
+RS_GEMINI_TOKEN = "AIzaSyAS0kVBJkyFyosoCwqAQyJM0ElyKEzrmgM"
+VM_GEMINI_TOKEN = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
+
+# Modelli e indici utilizzati
 GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
-FAISS_INDEX = "LLM/data/faiss_index/ALL_bge-m3"
-EMBEDDING_MODEL = "BAAI/bge-m3"
+FAISS_INDEX = "data/faiss_index/ALL__6Marzo2025__all-miniLM-L6-v2"
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+
+##------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------
+
+import google.generativeai as genai
+
+# Configura il modello Gemini
+genai.configure(api_key=VM_GEMINI_TOKEN)
+model = genai.GenerativeModel("gemini-1.5-pro-latest")
+
+def call_gemini(prompt):
+    response = model.generate_content(prompt)
+    return response.text
+
+##------------------------------------------------------------------------------------------
+
+def call_model_on_huggingface(prompt):
+    payload = {"inputs": prompt}
+        
+    API_URL = f"https://api-inference.huggingface.co/models/{GENERATION_MODEL}"
+    HEADERS = {"Authorization": f"Bearer {RS_HF_TOKEN}"}
+
+    response = requests.post(API_URL, headers=HEADERS, json=payload)
+    if response.status_code != 200:
+        return f"Errore API ({response.status_code}): {response.text}"
+    
+    response_json = response.json()
+    if isinstance(response_json, list) and len(response_json) > 0:
+        response_text = response_json[0].get("generated_text", "Errore nella generazione della risposta")
+    else:
+        response_text = "Errore nella generazione della risposta"
+    
+    return response_text
+
+##------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------
 
 class Assistant:
     def __init__(self,
-                 HUGGING_FACE_TOKEN=RS_HF_TOKEN, 
-                 MODEL_LLM=GENERATION_MODEL,
                  faiss_index=FAISS_INDEX,
                  embedding_model=EMBEDDING_MODEL, 
-                 max_history=5):
-
-        self.API_URL = f"https://api-inference.huggingface.co/models/{MODEL_LLM}"
-        self.HEADERS = {"Authorization": f"Bearer {HUGGING_FACE_TOKEN}"}
-
+                 max_history=5,
+                 log_file = "logs/assistant.log"):
+      
         self.faiss_index = faiss_index
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.vectorstore = FAISS.load_local(faiss_index, self.embeddings, allow_dangerous_deserialization=True)
 
-        
         self.history = []  
         self.max_history = max_history 
+        self.log_file = log_file
+
+    def generate_response(self, question, responseLength, debug=False):
         
-        
-    def get_simple_chunks(self, question, k=5):
-        docs = self.vectorstore.similarity_search(question, k=k)
+        if debug:
+            start_time = time.time()
+
+        docs = self.vectorstore.similarity_search(question, k=5)
         context = "\n".join([doc.page_content for doc in docs])
-        return context
-
-    def generate_response(self, question, responseLength, debug = False):
         
-        context = self.get_simple_chunks(question, k = 7) 
+        if debug:
+            elapsed_time = (time.time() - start_time) * 1000
+            print(f"Tempo impiegato per il retrivial: {elapsed_time:.3f} ms")
     
-
         prompt = (
             "You are an advanced AI assistant utilizing Retrieval-Augmented Generation (RAG) "
             "to provide accurate and context-aware responses. Your goal is to assist users by leveraging "
@@ -75,26 +119,16 @@ class Assistant:
             "Answer:\n"
         )
 
-        payload = {"inputs": prompt}
-        response = requests.post(self.API_URL, headers=self.HEADERS, json=payload)
+        response = call_gemini(prompt)
 
         if debug:
-            print(f"API Response Code: {response.status_code}")
-            print(f"Total Response: \n{response}\n\n\n\n")
-            print(f"API Raw Response: {response.text}")
+            print(f"prompt: \n\n\n{prompt}\n\n")
+            print(f"API Raw Response: {response}")
 
-        if response.status_code != 200:
-            return f"Errore API ({response.status_code}): {response.text}"
-        
-        try:
-            response_json = response.json()
-            response = response_json[0].get("generated_text", "Errore nella generazione della risposta")
-            
-            return self.clean_response(response)
+        clear_response = self.clarify_response(response)
+        self.log_interaction(question, docs, response, clear_response)
 
-        
-        except requests.exceptions.JSONDecodeError:
-            return "Errore nel parsing della risposta JSON"
+        return clear_response
 
     def clarify_response(self, clean_response):
         clean_response = clean_response.split("-----END_PROMPT-----")[-1].strip() 
@@ -103,15 +137,14 @@ class Assistant:
         clean_response = clean_response.split("Assistant:")[-1].strip() 
         
         # Remove any length indicators (case-insensitive)
-        clean_response = re.sub(r"/Length: LONG/gi", "", clean_response, flags=re.IGNORECASE)
-        clean_response = re.sub(r"/Length: MEDIUM/gi", "", clean_response, flags=re.IGNORECASE)
-        clean_response = re.sub(r"/Length: VERY_SHORT/gi", "", clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r"/Length: LONG/gi", "", clean_response)
+        clean_response = re.sub(r"/Length: MEDIUM/gi", "", clean_response)
+        clean_response = re.sub(r"/Length: VERY_SHORT/gi", "", clean_response)
         
         # Final strip to remove any leading/trailing whitespace
         clean_response = clean_response.strip()
         
         return clean_response
-    
     
     def add_to_history(self, question, answer):
         if len(self.history) >= self.max_history:
@@ -134,10 +167,33 @@ class Assistant:
             
         return history_string
     
-    
-    #-------------------------------------------------------------    
-    def ask(self, question, responseLength = None, debug=False):
+    def ask(self, question, responseLength=None, debug=False):
         question = question.lower()
         response = self.generate_response(question, responseLength, debug)  
         self.add_to_history(question, response)
         return response
+    
+    def log_interaction(self, question, docs, response, clear_response):
+        entry = {
+            "timestamp": datetime.now().strftime("%Y/%m/%d %H:%M"),
+            "question": question,
+            "retrieved_docs": [doc.page_content for doc in docs],
+            "response": response,
+            "clear_response": clear_response,
+            "GENERATION_MODEL": GENERATION_MODEL,
+            "EMBEDDING_MODEL": EMBEDDING_MODEL,
+            "FAISS_INDEX": FAISS_INDEX
+        }
+        
+        if os.path.exists(self.log_file):
+            with open(self.log_file, "r", encoding="utf-8") as f:
+                try:
+                    log_data = json.load(f)
+                except json.JSONDecodeError:
+                    log_data = []
+        else:
+            log_data = []
+        
+        log_data.append(entry)
+        with open(self.log_file, "w", encoding="utf-8") as f:
+            json.dump(log_data, f, ensure_ascii=False, indent=4)
