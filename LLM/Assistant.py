@@ -23,8 +23,9 @@ VM_GEMINI_TOKEN = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
 
 # Modelli e indici utilizzati
 GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
-FAISS_INDEX = "data/faiss_index/ALL__6Marzo2025__all-miniLM-L6-v2"
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+FAISS_INDEX = "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+#EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "BAAI/bge-m3"
 
 ##------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------
@@ -34,8 +35,8 @@ import google.generativeai as genai
 
 # Configura il modello Gemini
 genai.configure(api_key=VM_GEMINI_TOKEN)
-model = genai.GenerativeModel("gemini-1.5-pro-latest")
-
+#model = genai.GenerativeModel("gemini-1.5-pro-latest")
+model = genai.GenerativeModel("gemini-2.0-flash")
 def call_gemini(prompt):
     response = model.generate_content(prompt)
     return response.text
