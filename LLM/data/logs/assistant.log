@@ -384,5 +384,32 @@
         "GENERATION_MODEL": "gemini-2.0-flash",
         "EMBEDDING_MODEL": "BAAI/bge-m3",
         "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+    },
+    {
+        "timestamp": "2025/03/08 20:18",
+        "question": "hi",
+        "response": "Hey there! The Hugging Face ecosystem is a comprehensive suite of tools and resources for Natural Language Processing. The platform revolves around the Hugging Face Hub, a centralized repository and platform accessible at huggingface.co. The Hub provides access to a vast collection of ready-to-use pre-trained models for various NLP tasks, a diverse range of datasets suitable for training and evaluating NLP models, a platform for showcasing interactive demos and sharing code called Spaces, and educational resources. This ecosystem is powered by several key open-source libraries including `datasets`, `transformers`, and `evaluate`.",
+        "clear_response": "Hey there! The Hugging Face ecosystem is a comprehensive suite of tools and resources for Natural Language Processing. The platform revolves around the Hugging Face Hub, a centralized repository and platform accessible at huggingface.co. The Hub provides access to a vast collection of ready-to-use pre-trained models for various NLP tasks, a diverse range of datasets suitable for training and evaluating NLP models, a platform for showcasing interactive demos and sharing code called Spaces, and educational resources. This ecosystem is powered by several key open-source libraries including `datasets`, `transformers`, and `evaluate`.",
+        "GENERATION_MODEL": "gemini-2.0-flash",
+        "EMBEDDING_MODEL": "BAAI/bge-m3",
+        "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+    },
+    {
+        "timestamp": "2025/03/08 20:18",
+        "question": "talk me about antonio greco",
+        "response": "Okay! Antonio Greco is one of the teachers for this course, Natural Language Processing and Large Language Models. He works at DIEM, at the University of Salerno, and his office is FSTEC-05P01036. You can reach him by email at agreco@unisa.it, or by phone at +39 089 963003.",
+        "clear_response": "Okay! Antonio Greco is one of the teachers for this course, Natural Language Processing and Large Language Models. He works at DIEM, at the University of Salerno, and his office is FSTEC-05P01036. You can reach him by email at agreco@unisa.it, or by phone at +39 089 963003.",
+        "GENERATION_MODEL": "gemini-2.0-flash",
+        "EMBEDDING_MODEL": "BAAI/bge-m3",
+        "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+    },
+    {
+        "timestamp": "2025/03/08 20:18",
+        "question": "are you sure?",
+        "response": "I'm sorry, but I don't have enough information to answer that.",
+        "clear_response": "I'm sorry, but I don't have enough information to answer that.",
+        "GENERATION_MODEL": "gemini-2.0-flash",
+        "EMBEDDING_MODEL": "BAAI/bge-m3",
+        "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
     }
 ]

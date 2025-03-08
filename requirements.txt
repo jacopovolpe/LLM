@@ -10,4 +10,4 @@ langchain-community
 langchain-huggingface
 gunicorn
 tf-keras
-google-generativeai
+langchain-google-genai
