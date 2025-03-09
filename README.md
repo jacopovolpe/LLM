@@ -1,6 +1,6 @@
 # RAG-based AI Assistant with Flask and Mistral-7B
 
-This project implements a Retrieval-Augmented Generation (RAG) based AI assistant using Flask as the web framework and Mistral-7B as the language model. The assistant is capable of answering user questions by retrieving relevant information from a pre-processed knowledge base and generating natural language responses.
+This project implements a Retrieval-Augmented Generation (RAG) based AI assistant using Flask as the web framework and Gemini 2.0 Flash as the language model. The assistant is capable of answering user questions by retrieving relevant information from a pre-processed knowledge base and generating natural language responses.
 
 ## Table of Contents
 
