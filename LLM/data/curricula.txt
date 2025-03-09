@@ -1,0 +1,99 @@
+﻿NICOLA CAPUANO 
+Nicola Capuano is an Associate Professor at the Department of Information and Electrical 
+Engineering and Applied Mathematics (DIEM) at the University of Salerno. He obtained his 
+degree in Computer Science and his Ph.D. in Computer Science and Computer Engineering 
+from the University of Salerno. At the same university, he also held a four-year research 
+fellowship on the topic of "Artificial Intelligence." Before pursuing an academic career, he 
+collaborated with private research institutes, including the Center for Research in Pure and 
+Applied Mathematics and the Center of Excellence for Software Technology. He also served as a 
+researcher at the School of Engineering of the University of Basilicata. In 2021, he achieved the 
+National Scientific Qualification as a Full Professor in the field 09/H1: Information Processing 
+Systems. 
+His research focuses on Natural Language Processing, Machine Learning, Knowledge 
+Representation, Fuzzy Systems, and Artificial Intelligence in Education. He is the author of more 
+than 120 publications, including journal articles, conference proceedings, and book chapters. 
+He serves as an Associate Editor for the Journal of Ambient Intelligence and Humanized 
+Computing by Springer Nature and Frontiers in Artificial Intelligence by Frontiers Media. He has 
+been a Guest Editor for several journals, including the International Journal of Educational 
+Technology in Higher Education and the International Journal of Emerging Technologies in 
+Learning. He is a member of editorial boards and a reviewer for numerous journals, a track 
+chair, and a program committee member for international conferences and workshops. He is 
+also a member of the executive committee for the international conference The Learning Ideas. 
+He edited the volume The Learning Grid Handbook, published by IOS Press. 
+Nicola Capuano acts as an independent evaluator of projects and proposals for the European 
+Commission under the Horizon Europe program and for the European Institute of Innovation 
+and Technology. He coordinated the projects Diogene (A Training Web Broker for ICT 
+Professionals) and InTraServ (Intelligent Training Service for Management Training in SMEs), both 
+funded by the European Commission under the Fifth Framework Programme. He was a member 
+of the European Network of Excellence Kaleidoscope (Concepts and Methods for Exploring the 
+Future of e-Learning with Digital Technologies), where he coordinated the Special Interest 
+Group on Learning Grid. He led the research line “Intelligent Features for Learning” at the Center 
+of Excellence in Methods and Systems for Learning and Knowledge at the University of Salerno. 
+He has held scientific and coordination roles in several other research and innovation projects. 
+He is a Project Management Professional (PMP) certified by the Project Management Institute. 
+
+ANTONIO GRECO 
+Antonio Greco graduated with honors in Computer Engineering in 2014 from the University of 
+Salerno (Italy). In March 2018, he earned a Ph.D. in Computer Science and Information 
+Engineering from the same university. In March 2020, he became an RTD/A Researcher (SSD 
+ING-INF/05 "Information Processing Systems") at the Department of Information and Electrical 
+Engineering and Applied Mathematics (DIEM) at the University of Salerno, where he has been an 
+RTD/B Researcher since November 2022. Within the same department, he has served as 
+Delegate for Student Orientation since November 2022 and has been a member of the Ph.D. 
+Board in Information Engineering since May 2024. 
+For the department, he has taught various courses, including Logic Networks (SSD ING-INF/05, 
+Bachelor's Degree in Computer Engineering), Autonomous Vehicle Driving (SSD ING-INF/05, 
+Master's Degree in Computer Engineering), Web Software Technologies (SSD ING-INF/05, 
+Bachelor's Degree in Computer Engineering), Artificial Intelligence for Cybersecurity (SSD ING
+INF/05, Master's Degree in Computer Engineering), Robotics for E-Health (SSD ING-INF/05, 
+Master's Degree in Digital Health and Bioinformatics Engineering), System and Network Security 
+(SSD ING-INF/05, Master's Degree in Computer Engineering), Artificial Vision (SSD ING-INF/05, 
+Master's Degree in Computer Engineering), and Natural Language Processing and Large 
+Language Models (SSD ING-INF/05, Master's Degree in Computer Engineering). Since the 
+2021/2022 academic year, he has also taught the course Advanced Machine Learning as part of 
+the accredited Ph.D. program in Information Engineering (D.M. 226/2021). 
+Since 2014, he has been a member of the MIVIA Lab (Machines for Intelligent Video, Image, and 
+Audio recognition) at the University of Salerno’s DIEM, a group with a strong focus on 
+international collaborations. His research primarily focuses on Computer Vision and Pattern 
+Recognition, specifically on the design, implementation, and optimization of real-time 
+computer vision and deep learning algorithms (e.g., gender recognition, age estimation, 
+ethnicity recognition, emotion analysis, fire detection, anomaly detection, people counting, 
+object tracking, and audio event recognition) for data acquired from static devices (smart 
+cameras, microphones) or moving devices (drones, robots, autonomous vehicles). These 
+activities are often conducted in collaboration with European research groups, particularly at 
+the University of Malta, the University of Groningen (Netherlands), and the University of Twente 
+(Netherlands), where he has spent a total of nine months as a Visiting Researcher (January
+April 2020 and August 2021–February 2022). At Twente, he collaborated with the Data 
+Management and Biometrics Group within the Faculty of Electrical Engineering, Mathematics, 
+and Computer Science. 
+In recent years, he has organized several Special Issues for international journals, including an 
+issue of the Journal of Ambient Intelligence and Humanized Computing titled “Ambient 
+Understanding for Mobile Autonomous Robots (AutoRob)," an issue of Pattern Recognition on 
+“From Bench to the Wild: Recent Advances in Computer Vision Methods (WILD-VISION)," and 
+an issue of Pattern Analysis and Applications on “Pedestrian Attribute Recognition and Person 
+Re-Identification." As of March 2024, he is an Associate Editor for Pattern Analysis and 
+Applications and serves as a reviewer for over 25 international journals. 
+Antonio Greco has presented his scientific work at more than ten international conferences and 
+has served as Contest Chair at various events. Notably, he organized the Guess the Age (GTA) 
+Contest 2021 at the International Conference on Computer Analysis of Images and Patterns 
+(CAIP), co-organized the ONFIRE 2023 contest at the International Conference on Image 
+Analysis and Processing (ICIAP), and co-organized the Pedestrian Attributes Recognition (PAR) 
+Contest 2023 at CAIP. Additionally, he served on the Local Committee for the International 
+Workshop on Graph-based Representations (GBR) in Capri, Italy (May 16–18), the International 
+Conference on Computer Analysis of Images and Patterns (CAIP) in Salerno, Italy (September 2
+6, 2019), the IEEE Conference on Cognitive and Computational Aspects of Situation 
+Management (CogSIMA) in Salerno, Italy (June 6–10, 2022), and the GBR Workshop in Salerno 
+(September 6–8). In 2021, he was an Invited Speaker at the CogSIMA Challenge Problems 
+Workshop at the IEEE CogSIMA Conference, delivering a talk titled “Adding Awareness to AI 
+Systems.” 
+In national and international research projects, he has served as the scientific lead of the local 
+research unit at DIEM for the PON ARS01_01226 project PerMedNet – Personalized Medicine for 
+Innovative Strategies in Neuropsychiatric and Vascular Diseases. He also led work packages 
+WP4 and WP5 in the European research project Flexible Assembly Manufacturing with Human
+Robot Collaboration and Digital Twin Models (FELICE) (Grant Agreement ID: 101017151, funded 
+under H2020-EU.2.1.1). Additionally, he was the scientific lead for DIEM in a research contract 
+with the company RED&BLUE for the project Development of a Platform for Evaluating AI 
+System Safety. 
+In the field of technology transfer, Antonio Greco co-founded AI-READY, a spin-off of the 
+University of Salerno specializing in AI applications for cognitive robotics, mobility, and 
+autonomous vehicles, in December 2019.

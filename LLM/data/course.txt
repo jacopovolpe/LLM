@@ -1,0 +1,84 @@
+**NATURAL LANGUAGE PROCESSING AND LARGE LANGUAGE MODELS**
+
+### General Information
+- **Program of Study:** Computer Engineering  
+- **Track:** Artificial Intelligence and Intelligent Robotics  
+- **Course Type:** Master’s Degree  
+- **Academic Year:** 2024/2025  
+- **Course Year:** 2nd Year  
+- **Educational Activity Type:** Elective  
+- **Field:** Elective  
+- **Language:** English  
+- **Credits:** 6 CFU  
+- **Teaching Activity Type:** Lecture, Laboratory  
+- **Exam Type:** Written and oral exam with a single grade  
+- **Assessment:** Final Grade  
+- **Teaching Period:** First Semester (01/10/2024 – 15/12/2024)  
+- **Instructors:** Nicola Capuano, Antonio Greco  
+- **Duration:** 48 hours (24 hours lectures, 24 hours lab sessions)  
+- **Scientific-Disciplinary Sector:** ING-INF/05  
+- **Location:** University of Salerno - Fisciano  
+
+### Learning Objectives
+The course provides theoretical, methodological, technological, and practical knowledge on natural language understanding and text processing. It introduces the innovative paradigms of Large Language Models (LLMs) within the general framework of Natural Language Processing (NLP), highlighting their numerous modern applications.  
+
+### Knowledge and Understanding
+- Fundamental concepts of NLP systems  
+- Standard language models  
+- Transformer-based LLMs  
+- NLP applications using LLMs  
+- Prompt engineering and fine-tuning LLMs  
+
+### Applying Knowledge and Understanding
+- Design and implementation of NLP systems using LLMs, effectively integrating existing technologies and optimizing configuration parameters  
+
+### Prerequisites
+- **Prerequisite Exam:** Machine Learning  
+
+## Course Content
+
+### **Module 1: Fundamentals of Natural Language Processing** (10 hours lecture, 6 hours exercises)
+1. **Introduction to NLP:** Basic concepts, tasks, evolution, and applications (2 hours lecture)  
+2. **Text Representation:** Tokenization, stemming, lemmatization, bag of words, n-grams, similarity measures, word embeddings (2 hours lecture)  
+3. **TF-IDF and Classification:** TF-IDF vectors, text classification, and clustering (2 hours lecture)  
+4. **Neural Networks for Text Analysis:** CNNs, recurrent networks, LSTMs (2 hours lecture)  
+5. **Implementation:** Developing a text classifier (2 hours exercises)  
+6. **Information Extraction:** Named Entity Recognition (NER), Question Answering (2 hours lecture)  
+7. **Chatbot Development:** Using Python and SpaCy/RASA (4 hours exercises)  
+
+### **Module 2: Transformers** (6 hours lecture, 10 hours exercises)
+1. **Core Concepts:** Self-attention, multi-head attention, positional encoding, masking (2 hours lecture)  
+2. **Transformer Architectures:** Encoder and decoder (2 hours lecture)  
+3. **Practical Implementation:** Introduction to Hugging Face (2 hours exercises)  
+4. **Applications:** Encoder-decoder models for translation and summarization (2 hours exercises)  
+5. **Encoder-only Models:** Sentence classification, Named Entity Recognition (NER) (2 hours exercises)  
+6. **Decoder-only Models:** Text generation (2 hours exercises)  
+7. **LLM Definition:** Defining and training an LLM (2 hours lecture)  
+8. **LLM Training:** Hands-on training (2 hours exercises)  
+
+### **Module 3: Prompt Engineering** (2 hours lecture, 4 hours exercises)
+1. **Techniques:** Zero-shot, few-shot, chain-of-thought prompting, self-consistency, generated knowledge, prompt chaining, ReAct, Retrieval-Augmented Generation (RAG) (2 hours lecture)  
+2. **Exercises:** Basic prompting techniques (2 hours)  
+3. **Advanced Techniques:** Exercises on RAG and LangChain (2 hours)  
+
+### **Module 4: Fine-Tuning LLMs** (4 hours lecture, 4 hours exercises, 2 hours lab)
+1. **Fine-Tuning Methods:** Feature-based tuning, updating output layers, Parameter-Efficient Tuning (PEFT), Low-Rank Adaptation (LoRA) (2 hours lecture)  
+2. **Hands-on Fine-Tuning:** Practical exercises (2 hours exercises)  
+3. **Reinforcement Learning with Human Feedback (RLHF):** Theoretical overview (2 hours lecture)  
+4. **RLHF Practical Exercises:** Application and experimentation (2 hours exercises)  
+5. **Final Project:** Application of learned techniques (2 hours lab)  
+
+## Teaching Methods
+The course includes lectures and in-class exercises. Lectures provide fundamental knowledge on advanced text representation, analysis, and classification techniques using LLMs. Exercises focus on applying these techniques to develop tools for text classification, analysis, and question answering. Attendance is mandatory, with a minimum requirement of 70% to access the exam. Attendance is tracked through the university's EasyBadge system.  
+
+## Assessment
+The exam consists of a group project and an oral test:  
+- **Project:** Students will critically apply methodologies learned during the course to a practical case.  
+- **Oral Test:** Evaluation of theoretical knowledge, project design choices, and answers to specific topics covered in the lectures.  
+The final grade is the average of both components.  
+
+## Recommended Texts
+- **Reference Book:**  
+  H. Lane, C. Howard, H. M. Hapke: *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Manning.  
+- **Supplementary Materials:** Available on the university's e-learning platform ([https://elearning.unisa.it](https://elearning.unisa.it)), accessible to course students using their university credentials.
+
