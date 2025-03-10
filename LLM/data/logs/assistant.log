@@ -411,5 +411,14 @@
         "GENERATION_MODEL": "gemini-2.0-flash",
         "EMBEDDING_MODEL": "BAAI/bge-m3",
         "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+    },
+    {
+        "timestamp": "2025/03/10 19:30",
+        "question": "what is faiss index?",
+        "response": "I'm sorry, but I don't have enough information to answer that.",
+        "clear_response": "I'm sorry, but I don't have enough information to answer that.",
+        "GENERATION_MODEL": "gemini-2.0-flash",
+        "EMBEDDING_MODEL": "BAAI/bge-m3",
+        "FAISS_INDEX": "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
     }
 ]
