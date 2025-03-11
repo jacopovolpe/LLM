@@ -10,8 +10,7 @@ VM_GEMINI_TOKEN = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
 # Modelli e indici utilizzati
 #GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
 #GENERATION_MODEL = "gemini-1.5-pro-latest"
-GENERATION_MODEL = "gemini-2.0-flash"
-FAISS_INDEX = "LLM/data/faiss_index/ALL__10Marzo2025__bge-m3"
+FAISS_INDEX = "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
 #EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_MODEL = "BAAI/bge-m3"
 
@@ -31,7 +30,21 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
+
 from langchain_google_genai import ChatGoogleGenerativeAI
+llm = ChatGoogleGenerativeAI(
+    model = "gemini-2.0-flash",
+    temperature=0.5,
+    api_key=VM_GEMINI_TOKEN
+    )
+
+'''
+from langchain_anthropic import ChatAnthropic
+llm = ChatAnthropic(
+            model="claude-3-7-sonnet-20250219",  # Utilizza il modello Claude 3.7 Sonnet
+            temperature=0.5,
+            anthropic_api_key="YOUR_ANTHROPIC_API_KEY" )
+'''
 
 class Assistant:
     def __init__(self,
@@ -57,10 +70,9 @@ class Assistant:
             
         os.makedirs(os.path.dirname(log_file), exist_ok=True) 
         
-
         
         self.qa_chain = ConversationalRetrievalChain.from_llm(
-            llm=ChatGoogleGenerativeAI(model = GENERATION_MODEL, temperature=0.5, api_key=VM_GEMINI_TOKEN),
+            llm=llm
             retriever=self.retriever,
             memory=self.memory,
             combine_docs_chain_kwargs={"prompt": self.get_prompt_template()}
@@ -106,7 +118,7 @@ class Assistant:
         response = self.qa_chain.invoke({
             "question": question
         })
-        print(response)
+        
         response = response["answer"]
         
         if debug:
