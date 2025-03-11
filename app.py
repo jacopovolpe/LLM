@@ -9,6 +9,10 @@ assistant = Assistant()
 def index():
     return render_template("index.html")  # Serve la pagina HTML
 
+@app.route("/logs")
+def logs():
+    return render_template("showLogInterface.html")  # Serve la pagina HTML
+
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.json

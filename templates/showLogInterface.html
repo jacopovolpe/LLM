@@ -73,7 +73,7 @@
 
         // Carica il file di default (assistant.log) all'avvio
         window.onload = function() {
-            fetch('assistant.log')
+            fetch('LLM/data/logs/assistant.log')
                 .then(response => response.json())
                 .then(data => displayLogs(data))
                 .catch(error => {
