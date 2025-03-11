@@ -1,18 +1,3 @@
-##------------------------------------------------------------------------------------------
-# Configurazione dei token per l'accesso ai servizi
-JV_HF_TOKEN = "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"
-RS_HF_TOKEN = "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"
-
-JV_GEMINI_TOKEN = "AIzaSyArDcTFUTzztpgCIlogXSYQwBhUieZxv7Y"
-RS_GEMINI_TOKEN = "AIzaSyAS0kVBJkyFyosoCwqAQyJM0ElyKEzrmgM"
-VM_GEMINI_TOKEN = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
-
-# Modelli e indici utilizzati
-#GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
-#GENERATION_MODEL = "gemini-1.5-pro-latest"
-FAISS_INDEX = "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
-#EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-EMBEDDING_MODEL = "BAAI/bge-m3"
 
 ##-----------------------------------------------------------------------------------------------------------------------------
 ##-----------------------------------------------------------------------------------------------------------------------------
@@ -31,20 +16,17 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 
-from langchain_google_genai import ChatGoogleGenerativeAI
-llm = ChatGoogleGenerativeAI(
-    model = "gemini-2.0-flash",
-    temperature=0.5,
-    api_key=VM_GEMINI_TOKEN
-    )
+# Modelli e indici utilizzati
+#GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
+#GENERATION_MODEL = "gemini-1.5-pro-latest"
+#EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "BAAI/bge-m3"
+FAISS_INDEX = "LLM/data/faiss_index/ALL__10Marzo2025__bge-m3"
 
-'''
-from langchain_anthropic import ChatAnthropic
-llm = ChatAnthropic(
-            model="claude-3-7-sonnet-20250219",  # Utilizza il modello Claude 3.7 Sonnet
-            temperature=0.5,
-            anthropic_api_key="YOUR_ANTHROPIC_API_KEY" )
-'''
+
+from GenerationModel import GoogleGemini
+generationModel = GoogleGemini()
+
 
 class Assistant:
     def __init__(self,
@@ -62,20 +44,23 @@ class Assistant:
         except Exception as e:
             raise RuntimeError(f"Errore nel caricamento di FAISS: {e}")
         
-        self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+        self.memory = ConversationBufferMemory(memory_key="chat_history", output_key="answer", return_messages=True)
         self.history = []
         self.max_history = max_history
         self.log_file = log_file
+        
+        self.generarionModel = generationModel
     
             
         os.makedirs(os.path.dirname(log_file), exist_ok=True) 
         
         
         self.qa_chain = ConversationalRetrievalChain.from_llm(
-            llm=llm
+            llm=self.generarionModel.llm,
             retriever=self.retriever,
             memory=self.memory,
-            combine_docs_chain_kwargs={"prompt": self.get_prompt_template()}
+            combine_docs_chain_kwargs={"prompt": self.get_prompt_template()},
+            return_source_documents=True
         )
     
     def get_prompt_template(self):
@@ -115,11 +100,12 @@ class Assistant:
         if debug:
             start_time = time.time()
         
-        response = self.qa_chain.invoke({
+        result = self.qa_chain.invoke({
             "question": question
         })
         
-        response = response["answer"]
+        response = result["answer"]
+        retrieved_docs = result.get("source_documents", [])
         
         if debug:
             elapsed_time = (time.time() - start_time) * 1000
@@ -127,7 +113,7 @@ class Assistant:
         
         clear_response = self.clarify_response(response)
         
-        self.log_interaction(question, response, clear_response)
+        self.log_interaction(question, response, clear_response, retrieved_docs)
         self.add_to_history(question, clear_response)
         
         return clear_response
@@ -163,17 +149,22 @@ class Assistant:
         return history_string
     
     
-    def log_interaction(self, question, response, clear_response):
+    def log_interaction(self, question, response, clear_response, retrieved_docs=None):
         entry = {
             "timestamp": datetime.now().strftime("%Y/%m/%d %H:%M"),
             "question": question,
             "response": response,
             "clear_response": clear_response,
-            "GENERATION_MODEL": GENERATION_MODEL,
+            "GENERATION_MODEL": self.generarionModel.modelName(),
             "EMBEDDING_MODEL": EMBEDDING_MODEL,
-            "FAISS_INDEX": FAISS_INDEX
+            "FAISS_INDEX": FAISS_INDEX,
         }
-        
+
+        # Aggiungi i documenti recuperati, se disponibili
+        if retrieved_docs:
+            entry["retrieved_documents"] = [ doc.page_content for doc in retrieved_docs]
+            
+        # Leggi il log esistente (se presente)
         if os.path.exists(self.log_file):
             with open(self.log_file, "r", encoding="utf-8") as f:
                 try:
@@ -182,7 +173,8 @@ class Assistant:
                     log_data = []
         else:
             log_data = []
-        
+
+        # Aggiungi il nuovo log e salva il file
         log_data.append(entry)
         with open(self.log_file, "w", encoding="utf-8") as f:
             json.dump(log_data, f, ensure_ascii=False, indent=4)

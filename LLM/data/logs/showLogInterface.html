@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .log-entry { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        .log-entry:nth-child(even) { background-color: #f9f9f9; }
+        .missing { color: red; font-style: italic; }
+        .file-input { margin-bottom: 20px; }
+        .document-list { margin-left: 20px; list-style-type: square; }
+        .document-list li { margin-bottom: 5px; }
+        .timestamp { font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Log Viewer</h1>
+    <input type="file" id="fileInput" class="file-input" accept=".json, .log">
+    <div id="logs"></div>
+
+    <script>
+        // Funzione per caricare e visualizzare i log
+        function loadAndDisplayLogs(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const logs = JSON.parse(e.target.result);
+                    displayLogs(logs);
+                } catch (error) {
+                    alert("Errore nel parsing del file JSON.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Funzione per visualizzare i log
+        function displayLogs(logs) {
+            const logsContainer = document.getElementById('logs');
+            logsContainer.innerHTML = '';
+
+            if (!Array.isArray(logs)) {
+                logsContainer.innerHTML = '<div class="log-entry">Il file JSON non contiene un array di log.</div>';
+                return;
+            }
+
+            // Ordina i log per timestamp (dal più recente al più vecchio)
+            logs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            logs.forEach(log => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('log-entry');
+                entryDiv.innerHTML = `
+                    <div class="timestamp">Timestamp: ${log.timestamp || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Domanda:</strong> ${log.question || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Risposta:</strong> ${log.response || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Risposta Chiara:</strong> ${log.clear_response || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Modello Generazione:</strong> ${log.GENERATION_MODEL || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Modello Embedding:</strong> ${log.EMBEDDING_MODEL || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Indice FAISS:</strong> ${log.FAISS_INDEX || '<span class="missing">Mancante</span>'}</div>
+                    <div><strong>Documenti Recuperati:</strong> ${log.retrieved_documents ? formatDocuments(log.retrieved_documents) : '<span class="missing">Nessuno</span>'}</div>
+                `;
+                logsContainer.appendChild(entryDiv);
+            });
+        }
+
+        // Funzione per formattare i documenti recuperati come elenco
+        function formatDocuments(documents) {
+            if (!Array.isArray(documents)) return '<span class="missing">Formato non valido</span>';
+            return `<ul class="document-list">${documents.map(doc => `<li>${doc}</li>`).join('')}</ul>`;
+        }
+
+        // Carica il file di default (assistant.log) all'avvio
+        window.onload = function() {
+            fetch('assistant.log')
+                .then(response => response.json())
+                .then(data => displayLogs(data))
+                .catch(error => {
+                    console.error("Errore nel caricamento del file di default:", error);
+                    alert("Impossibile caricare il file di default 'assistant.log'.");
+                });
+        };
+
+        // Gestione del cambio file
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            loadAndDisplayLogs(file);
+        });
+    </script>
+</body>
+</html>
