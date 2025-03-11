@@ -93,6 +93,8 @@ H. Lane, C. Howard, H. M. Hapke, *Natural Language Processing in Action: Underst
 
 The provided excerpt from the textbook's preface and chapter introductions highlights the rapid evolution of NLP, particularly with the advent of Transformers and LLMs.  This course will focus on equipping students with the knowledge and skills necessary to navigate this evolving landscape and contribute to the field of NLP.
 
+<----------section---------->
+
 ### Enhanced Text
 
 **Natural Language Processing and Large Language Models**
@@ -188,6 +190,8 @@ The omission of recurrence in Transformers necessitates positional encodings to 
 The combination of BPE, self-attention, and positional encoding allows Transformers to effectively handle long sequences and capture complex relationships between words, leading to significant advancements in NLP.  These models can learn rich representations of text, enabling them to outperform traditional methods on various tasks. The attention mechanism is a key component of this success, allowing the model to focus on relevant parts of the input when generating the output.
 
 
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -399,6 +403,8 @@ Multimodal LLMs integrate and process diverse data types like images, text, audi
 
 **(The extensive additional context provided is omitted here as per the prompt requirements of only expanding on the provided information. That content elaborates on many of the points already made in this expanded version, delving into further practical applications, ethical considerations, and technical details.  However, incorporating all of it would create an excessively lengthy response.)**
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -506,6 +512,8 @@ The Transformer architecture offers several advantages over traditional recurren
 * **Positional Encodings:**  These encodings compensate for the lack of inherent positional information in self-attention, allowing the model to account for word order in the input sequence.
 
 These innovations, combined with the ability to train on massive datasets, have led to significant performance improvements in various NLP tasks, including machine translation, text summarization, question answering, and text generation. The Transformer’s ability to capture long-range dependencies and be trained efficiently has been particularly crucial for the development of Large Language Models (LLMs) which demonstrate impressive abilities in understanding and generating human-like text.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -633,6 +641,8 @@ Prompting involves crafting specific input instructions to guide the model's out
 
 The provided links refer to various resources related to PyTorch, Transformers, datasets, and NLP techniques.  These resources offer further insights into implementation details, code examples, and practical applications. While these specific citations were not directly integrated into the main text, they are preserved here as valuable supplementary material for readers seeking deeper understanding and practical guidance. They highlight valuable tools and concepts related to PyTorch implementation, transformer architecture, and dataset management, enriching the context surrounding LLMs and their application in NLP.
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -752,6 +762,8 @@ Gradio simplifies the creation and hosting of interactive demos for machine lear
 **Additional Context (Transformer Architecture and Training):**
 
 The original text also included detailed information about the Transformer architecture, encompassing the encoder-decoder structure, attention mechanisms, and masking in the decoder.  It further discussed training transformers for translation tasks, including data preparation using the `datasets` library, tokenization with Byte-Pair Encoding (BPE), and fine-tuning pre-trained models using the `Trainer` class from the `transformers` library.  This contextual information is crucial for understanding the underlying mechanisms of the models available on the Hugging Face Hub and effectively utilizing them for various NLP tasks.  It also highlighted the importance of using established data structures and APIs for consistency and avoiding bugs. It briefly touched upon the computational advantages of using GPUs for training transformers and provided insights into causal and bidirectional language models, referencing models like BERT and GPT. Finally, it explained how to deploy a question-answering app using Streamlit and Hugging Face Spaces, offering practical advice on building user interfaces and sharing your applications.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -885,6 +897,8 @@ BERT's influence extends beyond NLP, inspiring transformer-based models in compu
 ### Practice on Token Classification and Named Entity Recognition
 
 The provided Hugging Face tutorial (https://huggingface.co/learn/nlp-course/chapter7/2?fw=pt) offers practical guidance on using BERT for token classification and named entity recognition.  It recommends exploring different BERT versions, testing with custom prompts and public datasets like CoNLL-2003 (https://huggingface.co/datasets/eriktks/conll2003), and fine-tuning lightweight BERT versions when resources permit. This hands-on approach allows for practical experience with BERT's application in these crucial NLP tasks.  Experimenting with different models, datasets, and fine-tuning strategies will provide a deeper understanding of BERT's capabilities and limitations.  The Hugging Face ecosystem simplifies the process of leveraging pre-trained models and fine-tuning them for specific tasks.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -1107,6 +1121,8 @@ LLaMA follows a similar pre-training approach to GPT, using autoregressive langu
 
 The provided code examples showcase practical implementation aspects of fine-tuning a language model (likely GPT-2) using the Hugging Face `Trainer` class and `DataCollatorForLanguageModeling`.  The code demonstrates how to set up training arguments, configure the data collator for causal language modeling (non-masked language modeling), and initiate the training process. The discussion elaborates on the importance of the `mlm=False` setting for causal language models, distinguishing them from masked language models like BERT. It also touches upon the concept of causal language models and draws parallels with how humans process language sequentially. The code further illustrates how to generate text using the fine-tuned model and compares the generated output with that of the original, pre-trained model.  It emphasizes the impact of fine-tuning on the generated text and encourages exploring alternative training approaches beyond using the Hugging Face `Trainer`. The additional context excerpts discuss various topics related to transformers, their architecture, training processes, applications, and limitations, providing a deeper understanding of the subject matter. It also covers specific models like BERT, GPT-2, and their variants, along with practical considerations for training and deployment. It discusses the importance of ethical considerations and responsible use of large language models, highlighting the potential risks and biases associated with these powerful technologies.  Finally, it provides resources and further learning opportunities for those interested in delving deeper into the field of natural language processing and large language models.
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -1226,6 +1242,8 @@ The following Hugging Face guides offer practical examples and code for implemen
 
 These resources provide a starting point for exploring the practical application of encoder-decoder transformers. If time and computational resources permit, these guides also provide information for fine-tuning a pre-trained model on a specific dataset, further enhancing its performance on the target task.  Fine-tuning allows you to adapt a general-purpose model to a specific domain or task, resulting in improved performance.
 
+<----------section---------->
+
 ### Enhanced Text: Natural Language Processing and Large Language Models Final Project Guidelines
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -1271,6 +1289,8 @@ In the second phase, a different set of pre-defined questions will be used to ev
 
 
 The final project grade will be based on the chatbot's performance across all these evaluation criteria.  The detailed report will also be considered in the overall assessment.  The instructors will provide specific grading rubrics and weighting for each evaluation aspect before the project commencement.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -1381,6 +1401,8 @@ By training on a diverse range of instruction-response pairs, the LLM learns to 
 <----------section---------->
 
 **Additional context** provided in the original text regarding BERT pre-training, fine-tuning, implementation details, and discussion of other NLP concepts and challenges are relevant to the broader context of LLMs and their applications.  They highlight the advancements and challenges in the field and offer valuable insights into the practical aspects of working with large language models. However,  they are tangential to the core topic of this lesson - fine-tuning -  and have been omitted from this enhanced text for improved focus and coherence.  Refer to the original text for these additional details.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -1530,6 +1552,8 @@ System prompts can:
 ### Prompt Engineering Techniques
 
 This section is intentionally left blank as it is indicated in the original text that the discussion of prompt engineering techniques continues in the next part due to character limits. The "Additional Context" provides further insights into various aspects of working with LLMs, including prompt design, limitations, and best practices, which are relevant to prompt engineering techniques.  This added context emphasizes the complexities of using LLMs, particularly for tasks involving reasoning, and highlights the importance of careful prompt construction, iteration, and evaluation. It also touches upon ethical considerations and the evolving landscape of LLM development, with a focus on open-source models and their potential advantages.  This information will likely be incorporated and expanded upon when the discussion of prompt engineering techniques continues in the next part.  It also highlights the importance of prompt testing and evaluation, a key aspect of prompt engineering.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -1684,6 +1708,8 @@ spaCy is a powerful open-source Python library for advanced NLP. It provides pre
 
 
 This enhanced version maintains all original information while significantly expanding on the core concepts with additional context, examples, and explanations for improved clarity and depth. The added details about different tokenization approaches, the limitations of one-hot encoding, the role of PoS tagging, and the functionalities of spaCy enhance the overall understanding of text representation in NLP. The structured format with clear section delimiters improves readability and facilitates navigation.  The provided additional context fragments regarding tokenizer performance and specific functionalities of libraries like spaCy and NLTK have been integrated into the relevant sections, enriching the technical discussion without introducing personal opinions or unverifiable information.
+
+<----------section---------->
 
 ## Enhanced Natural Language Processing and Large Language Models
 
@@ -1861,6 +1887,8 @@ print(answer)
 
 The original text also included extensive excerpts from the book "Natural Language Processing in Action, Second Edition." While valuable, directly incorporating these excerpts makes the lesson notes overly long and difficult to follow. The enhanced version focuses on the core concepts of RAG and LangChain, providing concise explanations and relevant code examples.  For a complete understanding of the topics discussed, referring to the original book is recommended.  This separation allows the lesson notes to serve as a focused introduction and guide, while the book provides in-depth knowledge and broader context.
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -2005,6 +2033,8 @@ Study the examples most relevant to your objectives:
 
 Apply RLHF to your own projects, leveraging the TRL library and the provided examples as starting points. The included code snippets in the "Additional Context" section provide examples of fine-tuning language models using Hugging Face's `Trainer` class and data collators. These examples, while not directly related to RLHF, demonstrate the process of training and fine-tuning transformer models using the Hugging Face ecosystem, which can be adapted for RLHF using the TRL library.  Remember to choose a relevant pre-trained model and dataset for your specific task.
 
+<----------section---------->
+
 ## Enhanced Text: Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica**
@@ -2130,6 +2160,8 @@ prompt = PromptTemplate(
 ### Additional Context and Insights
 
 The provided additional context discusses the limitations of relying solely on prompt engineering or templating languages for robust guardrails. While tools like Guardrails AI and LangChain can provide valuable functionalities for prompt management and basic filtering, they may not be sufficient for complex applications requiring advanced filtering, detection of malicious intent, or protection against adversarial attacks.  The context also emphasizes the importance of combining rule-based systems, machine learning classifiers, and continuous monitoring to build truly robust and reliable guardrails for LLMs.  It suggests exploring tools like SpaCy Matcher, ReLM patterns, and the LM evaluation harness for implementing more sophisticated rule-based filtering and evaluation mechanisms.  It further underscores the value of active learning and bug bounties for continuously improving the robustness of LLM guardrails and adapting to evolving challenges.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -2346,6 +2378,8 @@ TF-IDF matrices form the foundation of many information retrieval systems.
 
 The provided additional context from the book goes into more detail about specific calculations and advanced concepts like smoothing and alternative TF-IDF scoring methods. It also discusses the limitations of simpler techniques and motivates the use of more advanced semantic analysis techniques in subsequent chapters.  While these details are valuable, they are beyond the scope of this introductory lesson.  The reader is encouraged to consult the references and further readings for a more in-depth understanding.
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 4: Text Classification**
@@ -2529,6 +2563,8 @@ The following resources provide additional information on the libraries and tech
 
 The provided additional context related to Bag of Words, VADER, and other NLP concepts has been integrated into relevant sections throughout the enhanced text for better coherence and understanding. Specifically, the context regarding IMDB movie review sentiment, TF-IDF vector creation, and the Naive Bayes model training process has been incorporated into the Topic Labelling and Sentiment Analysis sections to provide a more complete and practical understanding of these concepts within the context of text classification.  Similarly, the discussion of VADER's rule-based approach has been incorporated into the Sentiment Analysis section to contrast with the ML-based approach.  Other provided context regarding word embeddings, dimensionality reduction, and backpropagation has been integrated into the general discussion of ML-based classification, further enriching the content and improving the overall flow. This integration avoids redundancy and ensures a more logically structured presentation of the material.
 
+<----------section---------->
+
 ## Natural Language Processing and Large Language Models
 
 **Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 5: Word Embeddings**
@@ -2682,6 +2718,8 @@ Libraries like Gensim and spaCy provide tools for loading pre-trained word embed
 ### Conclusion
 
 This enhanced lesson provides a comprehensive overview of word embeddings, covering their advantages over traditional methods, different learning algorithms, and practical applications. By understanding the principles and techniques presented here, you can leverage the power of word embeddings to build more sophisticated and effective NLP systems.
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models
 
@@ -2906,6 +2944,8 @@ Helper functions sample from the model's predictions at each character step and 
 ### References
 
 * Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python (Chapters 8 and 9)
+
+<----------section---------->
 
 ## Natural Language Processing and Large Language Models: Enhanced
 
@@ -3282,6 +3322,8 @@ Custom actions extend the chatbot's functionality beyond simple responses. They 
 
 This enhanced version of the lesson notes provides more detailed explanations, context, and examples, facilitating a deeper understanding of dialogue engines and Rasa framework. It maintains the original information while improving clarity and coherence.
 
+<----------section---------->
+
 ### Enhanced Text: Building a Pizzeria Chatbot with Rasa
 
 This document outlines the specifications and provides guidance for developing a chatbot designed to streamline pizzeria operations. The chatbot will allow users to access the menu and place orders, while also providing a logging mechanism for order tracking.
@@ -3439,6 +3481,7 @@ The final grade is the average of both components.
   H. Lane, C. Howard, H. M. Hapke: *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Manning.  
 - **Supplementary Materials:** Available on the university's e-learning platform ([https://elearning.unisa.it](https://elearning.unisa.it)), accessible to course students using their university credentials.
 
+
 <----------section---------->
 
 NICOLA CAPUANO 
@@ -3542,4 +3585,6 @@ System Safety.
 In the field of technology transfer, Antonio Greco co-founded AI-READY, a spin-off of the 
 University of Salerno specializing in AI applications for cognitive robotics, mobility, and 
 autonomous vehicles, in December 2019.
+
+<----------section---------->
 

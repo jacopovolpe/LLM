@@ -11,7 +11,7 @@ VM_GEMINI_TOKEN = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
 #GENERATION_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
 #GENERATION_MODEL = "gemini-1.5-pro-latest"
 GENERATION_MODEL = "gemini-2.0-flash"
-FAISS_INDEX = "LLM/data/faiss_index/ALL__6Marzo2025__bge-m3"
+FAISS_INDEX = "LLM/data/faiss_index/ALL__10Marzo2025__bge-m3"
 #EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_MODEL = "BAAI/bge-m3"
 
