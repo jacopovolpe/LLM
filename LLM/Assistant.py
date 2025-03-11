@@ -21,7 +21,7 @@ from langchain.prompts import PromptTemplate
 #GENERATION_MODEL = "gemini-1.5-pro-latest"
 #EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_MODEL = "BAAI/bge-m3"
-FAISS_INDEX = "LLM/data/faiss_index/ALL__11Marzo2025__bge-m3"
+FAISS_INDEX = "LLM/data/faiss_index/ALL__11Marzo2025_split__bge-m3"
 
 try:
     from GenerationModel import GoogleGemini
