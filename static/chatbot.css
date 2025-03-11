@@ -1,125 +1,302 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e8f4f8;
+    font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #d9efff 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
-    margin:auto;
-    color: #333;
+    margin: 0;
+    color: #2d3748;
+    overflow: hidden;
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 28px;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 0.5);
     width: 90%;
     height: 90%;
-    box-sizing: border-box;
     max-width: 1000px;
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 22px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(114, 205, 255, 0.08) 0%, transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: -1;
 }
 
 h1 {
-    font-size: 24px;
-    color: #007bff;
+    font-size: 28px;
+    color: #1a73e8;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1a73e8, transparent);
+    border-radius: 3px;
+    box-shadow: 0 0 8px 1px rgba(26, 115, 232, 0.5);
+    animation: glowingLine 5s infinite;
+}
+
+@keyframes glowingLine {
+    0% {
+        width: 70px;
+        opacity: 0.7;
+        box-shadow: 0 0 3px 0.5px rgba(26, 115, 232, 0.5);
+    }
+    50% {
+        width: 100px;
+        opacity: 1;
+        box-shadow: 0 0 7px 1px rgba(119, 171, 239, 0.8);
+    }
+    100% {
+        width: 70px;
+        opacity: 0.7;
+        box-shadow: 0 0 5px 0.5px rgba(157, 176, 202, 0.5);
+    }
 }
 
 .chat-window {
     flex: 1;
     overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 18px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 115, 232, 0.3) transparent;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.chat-window::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+    background-color: rgba(26, 115, 232, 0.3);
+    border-radius: 6px;
 }
 
 .user-msg {
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #e9f5ff 0%, #d3ebff 100%);
+    color: #2d3748;
+    padding: 14px 18px;
+    border-radius: 18px 18px 4px 18px;
     align-self: flex-end;
     max-width: 70%;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeInRight 0.3s ease-in-out;
+    border: 1px solid rgba(26, 115, 232, 0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
 .bot-msg {
-    background: #e9ecef;
-    color: #333;
-    padding: 10px 15px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    color: #2d3748;
+    padding: 14px 18px;
+    border-radius: 18px 18px 18px 4px;
     align-self: flex-start;
     max-width: 85%;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeInLeft 0.3s ease-in-out;
+    border: 1px solid rgba(52, 168, 83, 0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    line-height: 1.5;
+    position: relative;
+}
+
+.bot-msg::before, .user-msg::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 10px;
+    height: 10px;
+    background: inherit;
+}
+
+.bot-msg::before {
+    left: -5px;
+    border-left: 1px solid rgba(52, 168, 83, 0.2);
+    border-bottom: 1px solid rgba(52, 168, 83, 0.2);
+    border-bottom-right-radius: 12px;
+    transform: rotate(45deg);
+}
+
+.user-msg::before {
+    right: -5px;
+    border-right: 1px solid rgba(26, 115, 232, 0.2);
+    border-bottom: 1px solid rgba(26, 115, 232, 0.2);
+    border-bottom-left-radius: 12px;
+    transform: rotate(-45deg);
 }
 
 .input-container {
     display: flex;
-    gap: 2px;
+    gap: 12px;
     align-items: center;
+    position: relative;
 }
 
 input {
     flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
     font-size: 16px;
     outline: none;
-    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2d3748;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 input:focus {
-    border-color: #007bff;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+input::placeholder {
+    color: rgba(45, 55, 72, 0.5);
+    transition: opacity 0.3s;
+}
+
+input:focus::placeholder {
+    opacity: 0.5;
 }
 
 button {
-    padding:8px 0px;
-    width: 45px;
-    font-size: 16px;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 15px;
     cursor: pointer;
     border: none;
-    border-radius: 25px;
-    background-color: #007bff;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
     color: white;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 3px 8px rgba(26, 115, 232, 0.3);
+    flex-shrink: 0;
 }
 
 button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #1967d2 0%, #3b78e7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4);
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(26, 115, 232, 0.3);
 }
 
 .button-container {
     display: flex;
-    gap: 2px;
-    justify-content: flex-end;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
 }
 
-@keyframes fadeIn {
+.right-buttons {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+@keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fa-volume-up, .fa-trash, .fa-paper-plane, .fa-microphone {
+    font-size: 16px;
+    color: white;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+button:disabled {
+    background: linear-gradient(135deg, #c5d0e6 0%, #d0d7e6 100%);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+.error-msg {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    color: #c62828;
+    padding: 14px 18px;
+    border-radius: 16px;
+    align-self: center;
+    max-width: 80%;
+    animation: fadeInTop 0.3s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(198, 40, 40, 0.2);
+}
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -127,112 +304,87 @@ button:active {
     }
 }
 
-/* Icone */
-.fa-volume-up, .fa-trash, .fa-paper-plane, .fa-microphone {
-    font-size: 15px;
-}
-
-/* Bottone disabilitato */
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Messaggi di errore */
-.error-msg {
-    background: #ff6b6b;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    align-self: center;
-    max-width: 80%;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
 .code-block {
-    background-color: #f5f5f5;
-    border-left: 4px solid #007bff;
-    padding: 10px;
-    margin: 10px 0;
-    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(245, 247, 250, 0.95);
+    border-left: 4px solid #1a73e8;
+    padding: 16px;
+    margin: 12px 0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
     font-size: 14px;
-    color: #333;
-    border-radius: 4px;
+    color: #2d3748;
+    border-radius: 6px;
     overflow-x: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .python-code {
-    color: #d63384; /* Colore specifico per il codice Python */
+    color: #1967d2;
 }
 
-/* Stile per il contenuto del codice */
 .code-block code {
     display: block;
     white-space: pre-wrap;
 }
 
-
- /* Animazione per lo stato di "pensiero" */
- @keyframes thinking {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+@keyframes thinking {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
 }
 
-/* Animazione per lo stato di "registrazione" */
 @keyframes recording {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+    0% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(234, 67, 53, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0); }
 }
 
-/* Stile per l'animazione di "pensiero" */
 .thinking {
-    animation: thinking 1s infinite;
+    animation: thinking 1.5s infinite;
 }
 
-/* Stile per l'animazione di "registrazione" */
 .recording {
-    animation: recording 1s infinite;
+    animation: recording 1.5s infinite;
+    background: linear-gradient(135deg, #ea4335 0%, #ff5252 100%) !important;
 }
 
 .toggle-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eee;
-    padding: 2px 10px;
-    border-radius: 10px;
-    gap: 2px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 10px 16px;
+    border-radius: 16px;
+    gap: 12px;
     width: fit-content;
-    margin: 4px auto;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 .toggle-label {
-    font-size: 12px;
-    font-weight: 550;
-    color: #444;
-    transition: color 0.2s ease;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    transition: color 0.3s ease;
+    padding: 0 4px;
+    cursor: pointer;
 }
 
 .toggle-button {
     appearance: none;
-    width: 13px;
-    height: 13px;
-    border: 2px solid #666;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #cbd5e1;
     border-radius: 50%;
-    background: white;
+    background-color: transparent;
     position: relative;
     cursor: pointer;
-    transition: all 0.2s ease;
-    margin-left:0;
-    
+    transition: all 0.3s ease;
 }
 
 .toggle-button:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: #34a853;
+    border-color: #34a853;
+    box-shadow: 0 0 10px rgba(52, 168, 83, 0.3);
 }
 
 .toggle-button:checked::after {
@@ -248,6 +400,205 @@ button:disabled {
 }
 
 .toggle-container input:checked + .toggle-label {
-    color: #4CAF50;
-    font-weight: bold;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        height: 95%;
+        padding: 16px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .user-msg, .bot-msg {
+        max-width: 85%;
+    }
+    
+    button {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .button-container {
+        gap: 6px;
+    }
+    
+    .right-buttons {
+        gap: 6px;
+    }
+    
+    .fa-volume-up, .fa-trash, .fa-paper-plane, .fa-microphone {
+        font-size: 14px;
+    }
+    
+    .chat-window {
+        padding: 16px;
+    }
+    
+    input {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 400px) {
+    button {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+    }
+    
+    .fa-volume-up, .fa-trash, .fa-paper-plane, .fa-microphone {
+        font-size: 13px;
+    }
+    
+    .button-container {
+        gap: 4px;
+    }
+    
+    .right-buttons {
+        gap: 4px;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+}
+
+/* Add a subtle background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 25px 25px, rgba(0, 0, 0, 0.03) 2%, transparent 0%),
+                      radial-gradient(circle at 75px 75px, rgba(0, 0, 0, 0.03) 2%, transparent 0%);
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Playful decorative elements */
+.container::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(52, 168, 83, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* Stile per il contenitore delle opzioni di dimensione risposta */
+.response-size-container {
+    display: flex;
+    gap: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin: 12px 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    justify-content: center;
+}
+
+/* Nascondi i radio button originali */
+.response-size-container input[type="radio"] {
+    display: none;
+}
+
+/* Stile per le etichette delle opzioni */
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    padding: 6px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* Stile per l'etichetta dell'opzione attiva */
+.active-option {
+    background-color: #e9f5ff;
+    color: #1a73e8;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(26, 115, 232, 0.15);
+}
+
+/* Effetto hover per le etichette non attive */
+.toggle-label:not(.active-option):hover {
+    background-color: rgba(233, 245, 255, 0.3);
+    color: #64748b;
+}
+
+/* Stile per il messaggio di stato (ascolto in corso, ecc.) */
+.status-message {
+    background-color: rgba(52, 168, 83, 0.1);
+    color: #34a853;
+    padding: 8px 14px;
+    border-radius: 16px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* Stile per i pulsanti di controllo */
+.control-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Metti in risalto il pulsante attualmente selezionato */
+#toggleSpeakBtn[style*="background-color: #34a853"] {
+    box-shadow: 0 0 0 2px rgba(52, 168, 83, 0.3);
+}
+
+/* Versione disabilitata del pulsante speak */
+#toggleSpeakBtn:disabled {
+    background-color: #d1d5db !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .response-size-container {
+        flex-wrap: wrap;
+        padding: 6px 12px;
+    }
+    
+    .toggle-label {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
 }

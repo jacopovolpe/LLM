@@ -15,19 +15,20 @@
         <h1>Chat about LLM</h1>
         <div class="chat-window" id="chat-box"></div>
         <div class="button-container">
-            <div class="toggle-container">
-                <label class="toggle-label">Short</label>
-                <input type="radio" name="responseLength" id="shortResponse" class="toggle-button" checked>
+            <div class="response-size-container" style="display: none;">
+                <input type="radio" id="shortResponse" name="responseSize" value="short">
+                <label for="shortResponse" class="toggle-label">Breve</label>
                 
-                <label class="toggle-label">Medium</label>
-                <input type="radio" name="responseLength" id="mediumResponse" class="toggle-button">
+                <input type="radio" id="mediumResponse" name="responseSize" value="medium" checked>
+                <label for="mediumResponse" class="toggle-label active-option">Media</label>
                 
-                <label class="toggle-label">Long</label>
-                <input type="radio" name="responseLength" id="longResponse" class="toggle-button">
+                <input type="radio" id="longResponse" name="responseSize" value="long">
+                <label for="longResponse" class="toggle-label">Lunga</label>
             </div>
-            
-            <button id="toggleSpeakBtn"><i class="fa fa-volume-up" id="fa-audio-element" aria-hidden="true"></i></button>
-            <button id="resetBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <div class="right-buttons">
+                <button id="toggleSpeakBtn"><i class="fa fa-volume-up" id="fa-audio-element" aria-hidden="true"></i></button>
+                <button id="resetBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
         </div>
         <div class="input-container">
             <input type="text" id="user-input" placeholder="Scrivi un messaggio...">
