@@ -1,10 +1,10 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # Disable TensorFlow warning messages
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import re
 import time
 from datetime import datetime
 import json
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings 
@@ -13,7 +13,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.schema import Document
 
-# Models and indexes used
 EMBEDDING_MODEL = "BAAI/bge-m3"
 FAISS_INDEX = "LLM/data/faiss_index/ALL__11Marzo2025_split__bge-m3"
 
@@ -28,184 +27,113 @@ class Assistant:
                  embedding_model=EMBEDDING_MODEL,  
                  max_history=5,
                  log_file="LLM/data/logs/assistant.log"):
-        
         self.faiss_index = faiss_index
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.generation_model = GoogleGemini()
-        
         try:
             self.vectorstore = FAISS.load_local(faiss_index, self.embeddings, allow_dangerous_deserialization=True)
             self.retriever = self.vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 5})
         except Exception as e:
             raise RuntimeError(f"Error loading FAISS: {e}")
-        
         self.memory = ConversationBufferMemory(memory_key="chat_history", output_key="answer", return_messages=True)
         self.history = []
         self.max_history = max_history
         self.log_file = log_file
-        
         os.makedirs(os.path.dirname(log_file), exist_ok=True)
-        
-        # Initialize chains
         self.query_reformulation_chain = self._create_query_reformulation_chain()
         self.qa_chain = self._create_qa_chain()
     
     def _create_query_reformulation_chain(self):
-        """Create the chain for query reformulation"""
-        query_template = (
+        template = (
             "You are an assistant specialized in conversation analysis and question reformulation. "
-            "Your task is to analyze the user's question and conversation history "
-            "to formulate an optimized query for searching in the knowledge database.\n\n"
-            
-            "Conversation history:\n"
-            "{chat_history}\n\n"
-            
-            "Original user question:\n"
-            "{question}\n\n"
-            
+            "Analyze the user's question and conversation history to formulate an optimized query for searching in the knowledge database.\n\n"
+            "Conversation history:\n{chat_history}\n\n"
+            "Original user question:\n{question}\n\n"
             "Instructions:\n"
-            "1. Analyze the context of the previous conversation.\n"
-            "2. Identify key concepts and important entities in the user's question.\n"
-            "3. Disambiguate implicit references based on the conversation history.\n"
-            "4. Expand acronyms or specialized terms that might not be clear.\n"
-            "5. Reformulate the question into a complete and explicit search query.\n"
-            "6. Do not add information not present in the original question or conversation.\n"
-            "7. The reformulated query should be a single question or search phrase, NOT a paragraph.\n\n"
-            
-            "Generate ONLY the reformulated query without explanations or introductory phrases.\n"
+            "1. Analyze context and identify key concepts and entities.\n"
+            "2. Disambiguate implicit references based on history.\n"
+            "3. Expand acronyms or specialized terms.\n"
+            "4. Reformulate the question into a complete, explicit search query as a single question or phrase.\n"
+            "5. Determine if the new query follows previous context or is separate.\n\n"
+            "Generate ONLY the reformulated query without additional explanation."
         )
-        
-        query_prompt = PromptTemplate(
-            template=query_template,
-            input_variables=["chat_history", "question"]
-        )
-        
-        return LLMChain(
-            llm=self.generation_model.llm,
-            prompt=query_prompt
-        )
+        prompt = PromptTemplate(template=template, input_variables=["chat_history", "question"])
+        return LLMChain(llm=self.generation_model.llm, prompt=prompt)
     
     def _create_qa_chain(self):
-        """Create the chain for context-based response generation"""
         template = (
-            "You are an advanced AI assistant using Retrieval-Augmented Generation (RAG) "
-            "to provide accurate and context-aware responses. Your goal is to assist users by leveraging "
-            "relevant information retrieved from a structured knowledge base. The provided information may contain "
-            "symbols, bullet points, or other formatting, but your response should be fluid, natural, and well-structured, "
-            "suitable for spoken language.\n\n"
-            
-            "Context (structured information retrieved from knowledge base):\n"
-            "{context}\n\n"
-            
-            "Conversation History:\n"
-            "{chat_history}\n\n"
-            
-            "Reformulated User Query:\n"
-            "{question}\n\n"
-            
-            "Instructions:\n"
-            "- Convert structured or formatted information into natural, flowing sentences.\n"
-            "- Ensure that the response is clear, concise, and sounds natural when spoken aloud.\n"
-            "- If the context includes symbols, lists, or bullet points, integrate the information smoothly into sentences.\n"
-            "- If the answer is not in the provided context, state: \"I'm sorry, but I don't have enough information to answer that question.\"\n"
-            "- Avoid making assumptions or fabricating details not present in the context.\n"
-            "- Use a conversational and engaging tone to make the response pleasant for text-to-speech.\n"
-            "- Produce a response that would be appropriate in a professional context.\n"
-            
-            "\n-----END_PROMPT-----\n"
+            "You are an advanced AI assistant using Retrieval-Augmented Generation (RAG) to provide accurate, context-aware responses. "
+            "Leverage relevant information retrieved from a structured knowledge base. "
+            "Convert structured or formatted information into natural, flowing sentences. "
+            "If the context includes symbols or bullet points, integrate them in modo fluido. "
+            "If the answer is not in the provided context, do not fabricate details.\n\n"
+            "Context:\n{context}\n\n"
+            "Conversation History:\n{chat_history}\n\n"
+            "Reformulated User Query:\n{question}\n\n"
             "Answer:\n"
         )
-        
-        qa_prompt = PromptTemplate(
-            template=template,
-            input_variables=["context", "chat_history", "question"]
-        )
-        
+        prompt = PromptTemplate(template=template, input_variables=["context", "chat_history", "question"])
         return ConversationalRetrievalChain.from_llm(
             llm=self.generation_model.llm,
             retriever=self.retriever,
             memory=self.memory,
-            combine_docs_chain_kwargs={"prompt": qa_prompt},
+            combine_docs_chain_kwargs={"prompt": prompt},
             return_source_documents=True
         )
     
-    def generate_response(self, question: str, response_length: str = "MEDIUM", debug: bool = False) -> str:
-        """Generate a response using the dual-prompt chain"""
+    def generate_response(self, question: str, response_length: str = "MEDIUM", debug: bool = False) -> dict:
         if debug:
             start_time = time.time()
-        
-        # Step 1: Query reformulation
-        history_for_prompt = self.get_history_for_prompt()
+        history_prompt = self.get_history_for_prompt()
         reformulated_query = self.query_reformulation_chain.invoke({
             "question": question,
-            "chat_history": history_for_prompt
+            "chat_history": history_prompt
         })["text"].strip()
-        
         if debug:
             print(f"Original query: {question}")
             print(f"Reformulated query: {reformulated_query}")
             query_time = time.time()
-            print(f"Time for query reformulation: {(query_time - start_time) * 1000:.3f} ms")
-        
-        # Step 2: Generate response with reformulated query
-        result = self.qa_chain.invoke({
-            "question": reformulated_query
-        })
-        
-        response = result["answer"]
+            print(f"Query reformulation time: {(query_time - start_time) * 1000:.3f} ms")
+        result = self.qa_chain.invoke({"question": reformulated_query})
+        raw_response = result["answer"]
         retrieved_docs = result.get("source_documents", [])
-        
         if debug:
             rag_time = time.time()
-            print(f"Time for RAG response generation: {(rag_time - query_time) * 1000:.3f} ms")
+            print(f"RAG generation time: {(rag_time - query_time) * 1000:.3f} ms")
             print(f"Total time: {(rag_time - start_time) * 1000:.3f} ms")
-        
-        clean_response = self.clarify_response(response)
-        
-        # Logging
-        self.log_interaction(question, reformulated_query, response, clean_response, retrieved_docs)
-        self.add_to_history(question, clean_response)
-        
-        return clean_response
+        final_response = self.clarify_response(raw_response)
+        interaction_json = self.interaction(question, reformulated_query, raw_response, final_response, retrieved_docs)
+        self.add_to_history(question, final_response, reformulated_query)
+        return interaction_json
     
     def clarify_response(self, response: str) -> str:
-        """Remove markers and instructions from the response text"""
         for marker in ["-----END_PROMPT-----", "Response:", "Answer:", "Assistant:"]:
             if marker in response:
                 response = response.split(marker)[-1].strip()
-        
-        # Remove length tags
-        response = re.sub(r"/Length: (LONG|MEDIUM|SHORT|VERY_SHORT)/", "", response, flags=re.IGNORECASE)
-        
-        return response.strip()
+        return re.sub(r"/Length: (LONG|MEDIUM|SHORT|VERY_SHORT)/", "", response, flags=re.IGNORECASE).strip()
     
-    def add_to_history(self, question: str, answer: str) -> None:
-        """Add a new interaction to the conversation history"""
+    def add_to_history(self, question: str, answer: str, reformulated_query=None) -> None:
         if len(self.history) >= self.max_history:
             self.history.pop(0)
-        self.history.append({"question": question, "answer": answer})
+        self.history.append({"original_question": question, "final_response": answer, "reformulated_query":reformulated_query})
     
     def clear_history(self) -> None:
-        """Clear the conversation history"""
         self.history.clear()
-        # Also reset LangChain memory
         self.memory.clear()
     
     def get_history(self) -> List[Dict[str, str]]:
-        """Return the history as a list of dictionaries"""
         return self.history
     
     def get_history_for_prompt(self) -> str:
-        """Format the conversation history for use in prompts"""
-        history_string = ""
-        if self.history:
-            for entry in self.history:
-                history_string += f"\nUser: {entry['question']}\nAssistant: {entry['answer']}\n"
-        return history_string.strip()
+        return "\n".join(f"User: {entry['original_question']}\nAssistant: {entry['final_response']}" for entry in self.history)
     
-    def log_interaction(self, original_question: str, reformulated_query: str, raw_response: str, 
-                        final_response: str, retrieved_docs: Optional[List[Document]] = None) -> None:
-        """Log the interaction in a structured log file"""
+    def interaction(self,
+                    original_question: str,
+                    reformulated_query: str,
+                    raw_response: str,
+                    final_response: str,
+                    retrieved_docs: Optional[List[Document]] = None,
+                    log: bool = True) -> dict:
         entry = {
             "timestamp": datetime.now().strftime("%Y/%m/%d %H:%M"),
             "original_question": original_question,
@@ -216,26 +144,21 @@ class Assistant:
             "embedding_model": EMBEDDING_MODEL,
             "faiss_index": FAISS_INDEX,
         }
-
-        # Add retrieved documents if available
         if retrieved_docs:
             entry["retrieved_documents"] = [doc.page_content for doc in retrieved_docs]
-            
-        # Read existing log (if present)
-        if os.path.exists(self.log_file):
-            with open(self.log_file, "r", encoding="utf-8") as f:
-                try:
-                    log_data = json.load(f)
-                except json.JSONDecodeError:
-                    log_data = []
-        else:
-            log_data = []
-
-        # Add new log and save file
-        log_data.append(entry)
-        with open(self.log_file, "w", encoding="utf-8") as f:
-            json.dump(log_data, f, ensure_ascii=False, indent=4)
+        if log:
+            if os.path.exists(self.log_file):
+                with open(self.log_file, "r", encoding="utf-8") as f:
+                    try:
+                        log_data = json.load(f)
+                    except json.JSONDecodeError:
+                        log_data = []
+            else:
+                log_data = []
+            log_data.append(entry)
+            with open(self.log_file, "w", encoding="utf-8") as f:
+                json.dump(log_data, f, ensure_ascii=False, indent=4)
+        return entry
     
-    def ask(self, question: str, response_length: str = "MEDIUM", debug: bool = False) -> str:
-        """Main method to ask a question to the assistant"""
+    def ask(self, question: str, response_length: str = "MEDIUM", debug: bool = False) -> dict:
         return self.generate_response(question, response_length, debug)

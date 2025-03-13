@@ -30,7 +30,7 @@ def ask():
         return jsonify({"error": "Domanda non valida"}), 400
 
     response = assistant.ask(question, responseLength, debug=True)
-    return jsonify({"response": response})
+    return jsonify(response)
 
 @app.route("/get_history")
 def get_history():

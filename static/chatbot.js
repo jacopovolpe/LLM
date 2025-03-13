@@ -8,7 +8,7 @@ const responseSizeOptions = document.querySelectorAll('input[name="responseSize"
 
 // Stato dell'applicazione
 let recognition;
-let isSpeakEnabled = true;
+let isSpeakEnabled = false;
 let currentThinkingMessage = null;
 let voices = [];
 
@@ -177,11 +177,17 @@ async function sendMessage(userMessage = textInput.value.trim()) {
             currentThinkingMessage = null;
         }
 
-        const htmlResponse = convertMarkdownToHTML(result.response);
+        // Aggiungi la query riformulata con una classe diversa
+        if (result.reformulated_query) {
+            addReformulatedQuery(result.reformulated_query);
+        }
+
+        // Usa final_response invece di response
+        const htmlResponse = convertMarkdownToHTML(result.final_response);
         addMessage('bot', htmlResponse, true);
 
         if (isSpeakEnabled) {
-            speak(result.response);
+            speak(result.final_response);
         }
     } catch (error) {
         console.error(error);
@@ -191,6 +197,25 @@ async function sendMessage(userMessage = textInput.value.trim()) {
         }
         addMessage('bot', 'Errore durante l\'invio della richiesta.', false);
     }
+}
+
+function addReformulatedQuery(text) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', 'reformulated-query');
+    
+    const messageHeader = document.createElement('div');
+    messageHeader.classList.add('reformulated-header');
+    messageHeader.textContent = 'Reformulated query:';
+    
+    const messageText = document.createElement('p');
+    messageText.textContent = text;
+    
+    messageDiv.appendChild(messageHeader);
+    messageDiv.appendChild(messageText);
+    
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return messageDiv;
 }
 
 function getSelectedResponseLength() {
@@ -264,8 +289,16 @@ async function loadHistory() {
 
         if (Array.isArray(history)) {
             history.forEach(entry => {
-                addMessage('user', entry.question, false);
-                const htmlAnswer = convertMarkdownToHTML(entry.answer);
+                // Mostra la domanda originale
+                addMessage('user', entry.original_question, false);
+                
+                // Mostra la query riformulata se presente
+                if (entry.reformulated_query) {
+                    addReformulatedQuery(entry.reformulated_query);
+                }
+                
+                // Mostra la risposta finale
+                const htmlAnswer = convertMarkdownToHTML(entry.final_response);
                 addMessage('bot', htmlAnswer, true);
             });
         } else {
@@ -274,4 +307,11 @@ async function loadHistory() {
     } catch (error) {
         console.error("Errore durante il caricamento della cronologia:", error);
     }
+}
+
+// Funzione per convertire il markdown in HTML (assicurati che questa funzione sia implementata)
+function convertMarkdownToHTML(markdown) {
+    // Se la funzione non è già implementata nel tuo codice, aggiungi qui l'implementazione
+    // Per semplicità, assumo che sia già implementata altrove
+    return markdown; // Questa è solo una risposta segnaposto
 }

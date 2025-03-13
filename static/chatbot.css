@@ -600,6 +600,56 @@ body::before {
     animation: pulse 1.5s infinite;
 }
 
+/* CSS da aggiungere per la query riformulata */
+.reformulated-query {
+    margin: 0.4rem 0;
+    padding: 4px 6px;
+    background-color: #f5f5f5;
+    border-left: 3px solid #4361ee;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #555;
+    max-width: 70%;
+    align-self: flex-end;
+    opacity:0.8;
+}
+
+.reformulated-header {
+    font-weight: bold;
+    font-size: 0.6rem;
+    color: #4361ee;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.reformulated-query p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Modifica lo stile della message-container per supportare il nuovo elemento */
+#chat-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-msg {
+    align-self: flex-end;
+    background-color: #e3f2fd;
+    border-radius: 12px 12px 0 12px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.bot-msg {
+    align-self: flex-start;
+    background-color: white;
+    border-radius: 12px 12px 12px 0;
+    margin-right: auto;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 @keyframes pulse {
     0% { opacity: 0.7; }
     50% { opacity: 1; }
