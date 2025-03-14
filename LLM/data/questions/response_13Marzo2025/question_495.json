@@ -1,0 +1,8 @@
+{
+  "question_id": 495,
+  "section_index": 99,
+  "question": "Considering Lesson 2's focus on representing text for computers, how might these fundamental NLP concepts (tokenization, stemming, etc.) inform and interact with prompt engineering techniques for LLMs?",
+  "response": "The course \"Natural Language Processing and Large Language Models\" is part of the Master's Degree Program in Computer Engineering at the University of Salerno, instructed by Nicola Capuano and Antonio Greco. The course introduces NLP with a strong emphasis on LLMs, covering fundamental concepts, the Transformer architecture, and practical applications like prompt engineering and fine-tuning.\n\nLesson 2 explores fundamental concepts in NLP, focusing on representing text in a format computers can understand, covering tokenization, bag-of-words representation, token normalization techniques, stemming and lemmatization, and part-of-speech tagging, and introduces the spaCy library.\n\nLesson 18 provides a comprehensive overview of prompt engineering, which involves developing and optimizing prompts to effectively use LLMs for diverse applications and research areas.\n\nPrompt engineering aims to enhance the understanding of the capabilities and limitations of LLMs, improve LLM performance on various tasks, help in interfacing with LLMs and integrating them with other tools, and enable new capabilities such as augmenting LLMs with domain knowledge and external resources.",
+  "response_time": 2.420687675476074,
+  "timestamp": "2025-03-13T18:27:07.459909"
+}

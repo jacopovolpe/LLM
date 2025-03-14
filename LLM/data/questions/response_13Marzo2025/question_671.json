@@ -1,0 +1,8 @@
+{
+  "question_id": 671,
+  "section_index": 135,
+  "question": "What are some common methods used for representing text data numerically in machine learning-based text classification?",
+  "response": "Common numerical text representation techniques for machine learning text classification include TF-IDF (Term Frequency-Inverse Document Frequency). TF-IDF weighs words based on their importance within a document and across the corpus, converting text into a numerical vector format that ML algorithms can process.",
+  "response_time": 1.4951233863830566,
+  "timestamp": "2025-03-13T18:49:29.754158"
+}

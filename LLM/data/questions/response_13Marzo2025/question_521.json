@@ -1,0 +1,8 @@
+{
+  "question_id": 521,
+  "section_index": 105,
+  "question": "What is the purpose of Part of Speech (PoS) tagging?",
+  "response": "Part-of-Speech (PoS) tagging is used to assign grammatical labels, such as noun, verb, or adjective, to tokens. This assignment provides valuable information about sentence structure and word function. PoS tagging is crucial for tasks like lemmatization, parsing, and named entity recognition. Because words can have multiple possible tags depending on the context, PoS tagging algorithms use dictionaries, statistical models, and contextual information to disambiguate and assign the most likely tags. NLTK offers pre-trained PoS tagging models.",
+  "response_time": 1.708249568939209,
+  "timestamp": "2025-03-13T18:30:18.789045"
+}

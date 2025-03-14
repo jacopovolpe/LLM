@@ -1,0 +1,8 @@
+{
+  "question_id": 435,
+  "section_index": 87,
+  "question": "If the rank *r* in the LoRA decomposition is increased, how would it impact the performance and memory footprint of the fine-tuned model?",
+  "response": "LoRA, or Low-Rank Adaptation, is a parameter-efficient fine-tuning technique that decomposes weight updates into low-rank matrices, represented as *A* (m×r) and *B* (r×n), where *r* is the rank. Increasing the rank *r* in LoRA affects both the fine-tuned model's performance and memory usage. A higher rank allows the model to capture more complex task-specific knowledge, potentially leading to improved performance on the target task. However, it also increases the number of trainable parameters, resulting in higher memory usage and computational cost during training and inference. Therefore, selecting an appropriate rank *r* involves balancing performance requirements with resource constraints.",
+  "response_time": 2.1363234519958496,
+  "timestamp": "2025-03-13T18:19:34.439898"
+}

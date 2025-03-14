@@ -1,0 +1,8 @@
+{
+  "question_id": 583,
+  "section_index": 117,
+  "question": "What is the primary purpose of the TRL library?",
+  "response": "The primary purpose of the Transformer Reinforcement Learning (TRL) library is to provide a comprehensive suite of tools for training Transformer language models using reinforcement learning, specifically for implementing the key stages of RLHF (Reinforcement Learning from Human Feedback), including supervised fine-tuning (SFT), reward model training (RM), and Proximal Policy Optimization (PPO). It simplifies the process of applying RLHF to existing Transformer models by seamlessly integrating with the Hugging Face Transformers library.",
+  "response_time": 1.9320976734161377,
+  "timestamp": "2025-03-13T18:38:19.352916"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 178,
+  "section_index": 36,
+  "question": "What is the role of pipelines in interacting with Hugging Face models?",
+  "response": "Hugging Face pipelines offer a streamlined way to use pre-trained models for various NLP tasks. The `transformers` library provides the building blocks, including pipelines, tokenizers, and model architectures, for working with transformer models, supporting both PyTorch and TensorFlow. You can explore different models and their uses through the Hugging Face Hub.",
+  "response_time": 1.5044925212860107,
+  "timestamp": "2025-03-13T17:47:26.707239"
+}

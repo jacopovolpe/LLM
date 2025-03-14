@@ -1,0 +1,8 @@
+{
+  "question_id": 630,
+  "section_index": 126,
+  "question": "Based on the concepts of TF and Normalized TF, how might you modify the Python code example to calculate Normalized TF instead of raw TF?",
+  "response": "To address the limitations of raw Term Frequency (TF), Normalized TF is used. It is calculated by dividing the word count by the total number of words in the document. For example, if the word \"dog\" appears 3 times in a 30-word document A, the TF (dog, Document A) = 3/30 = 0.1. If \"dog\" appears 100 times in a 580,000-word document B, the TF (dog, Document B) = 100/580000 = 0.00017. This normalization provides a more accurate representation of a word's importance relative to the document length.",
+  "response_time": 2.301119565963745,
+  "timestamp": "2025-03-13T18:44:28.947667"
+}

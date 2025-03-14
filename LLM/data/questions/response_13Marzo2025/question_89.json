@@ -1,0 +1,8 @@
+{
+  "question_id": 89,
+  "section_index": 18,
+  "question": "How did the statistical revolution in the 1990s transform NLP?",
+  "response": "In the 1990s, increased computing power enabled statistically based models trained on large corpora of data to surpass rule-based systems, marking a statistical revolution in NLP. This era also saw the invention of Long Short-Term Memory (LSTM) networks.",
+  "response_time": 3.5145115852355957,
+  "timestamp": "2025-03-13T17:36:02.426961"
+}

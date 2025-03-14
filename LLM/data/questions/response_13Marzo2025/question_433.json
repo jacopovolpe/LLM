@@ -1,0 +1,8 @@
+{
+  "question_id": 433,
+  "section_index": 87,
+  "question": "How does LoRA inject task-specific knowledge into the model while maintaining the general knowledge from pre-training?",
+  "response": "LoRA, or Low-Rank Adaptation, is a parameter-efficient fine-tuning technique that injects task-specific knowledge into a pre-trained model while preserving the knowledge it has already acquired. It achieves this by learning a low-rank decomposition of the weight update, represented as the product of two low-rank matrices, *A* and *B*. During fine-tuning, the effective weight matrix *W'* is computed as the sum of the original weights *W* and the low-rank update Δ*W*, where Δ*W* = *A* × *B*. The original weights *W* remain frozen, and the matrices *A* and *B* encode the task-specific knowledge. Because the number of trainable parameters is dramatically reduced, LoRA is highly efficient. During inference, the low-rank update can be efficiently applied to the frozen weights.",
+  "response_time": 2.076829671859741,
+  "timestamp": "2025-03-13T18:19:21.462026"
+}

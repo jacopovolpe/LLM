@@ -1,0 +1,7 @@
+{
+  "question_id": 875,
+  "section_index": 173,
+  "question": "How does utilizing WebSockets typically affect the user experience when interacting with a Rasa chatbot?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:21:26.590344"
+}

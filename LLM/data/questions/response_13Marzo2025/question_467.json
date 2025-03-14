@@ -1,0 +1,8 @@
+{
+  "question_id": 467,
+  "section_index": 94,
+  "question": "Why is an iterative approach recommended when developing prompts for LLMs?",
+  "response": "Prompt engineering is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. The lesson outline structures the key parts of prompt engineering into three sections: introduction to the concept, specific techniques, and the importance of testing and iterating on prompts.",
+  "response_time": 1.720113754272461,
+  "timestamp": "2025-03-13T18:23:32.947390"
+}

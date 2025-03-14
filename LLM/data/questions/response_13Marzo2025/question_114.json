@@ -1,0 +1,8 @@
+{
+  "question_id": 114,
+  "section_index": 23,
+  "question": "Explain the concept of \"masked\" self-attention in the decoder and its importance during training.",
+  "response": "Masked Multi-Head Attention is a crucial component for training the decoder in a Transformer model. During the generation of the *i*-th output word, the decoder should only consider the preceding words (positions 1 to *i-1*) and should not \"peek\" into the future. This is achieved by applying a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, which forces the softmax function to assign zero probability to these future positions. This masking ensures that predictions are made only based on the information available up to the current time step.",
+  "response_time": 1.8045992851257324,
+  "timestamp": "2025-03-13T17:39:15.892690"
+}

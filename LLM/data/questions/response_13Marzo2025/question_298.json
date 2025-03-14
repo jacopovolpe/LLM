@@ -1,0 +1,8 @@
+{
+  "question_id": 298,
+  "section_index": 60,
+  "question": "What were the key improvements introduced in GPT-2 compared to its predecessor, GPT-1, and how did these improvements impact its text generation capabilities?",
+  "response": "GPT-1, the initial iteration of the GPT family, had 117 million parameters, distributed across 12 decoder blocks with 768-dimensional embeddings and 12 attention heads per block. GPT-2, a significantly larger model, had its XL version boasting 1.5 billion parameters. This version comprised 48 decoder blocks with 1600-dimensional embeddings and 25 attention heads per block, enabling it to generate more coherent and lengthy text. The increase in parameters and architectural changes allowed GPT-2 to generate more coherent and lengthy text compared to GPT-1.",
+  "response_time": 2.1408002376556396,
+  "timestamp": "2025-03-13T18:02:22.192556"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 295,
+  "section_index": 59,
+  "question": "How do decoder-only transformers approach the task of translating between different languages?",
+  "response": "Decoder-only transformers are indeed versatile and can be applied to machine translation by treating it as a text generation task conditioned on the source language input. The decoder-only architecture employs causal (unidirectional) self-attention, processing tokens sequentially from left to right, conditioning each prediction on previous tokens. Examples of successful decoder-only transformers include the GPT series and LLaMA.",
+  "response_time": 1.4804213047027588,
+  "timestamp": "2025-03-13T18:01:58.799592"
+}

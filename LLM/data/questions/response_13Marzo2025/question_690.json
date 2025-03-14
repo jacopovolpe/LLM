@@ -1,0 +1,8 @@
+{
+  "question_id": 690,
+  "section_index": 138,
+  "question": "If a classifier performs exceptionally well on a few small classes but poorly on a large class, how would this be reflected in the macro and weighted average results?",
+  "response": "When evaluating classifier performance, especially in situations with imbalanced classes, different averaging methods provide different insights. The **macro average** computes the metric for each class independently and then averages the results, treating all classes equally regardless of their size. This means that even if a classifier performs well on small classes but struggles with a large class, the macro average will give equal weight to the performance on each class, highlighting the poor performance on the smaller classes. The **weighted average**, on the other hand, averages the metric for each class, weighted by the number of true instances (support) for each class. This balances the influence of different class sizes, providing a more representative measure of overall performance when class imbalance is present.",
+  "response_time": 2.2726051807403564,
+  "timestamp": "2025-03-13T18:51:44.901445"
+}

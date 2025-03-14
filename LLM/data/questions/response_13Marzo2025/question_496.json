@@ -1,0 +1,8 @@
+{
+  "question_id": 496,
+  "section_index": 100,
+  "question": "What are the key steps involved in tokenizing and preparing text data for natural language processing?",
+  "response": "Tokenization is a crucial step in NLP, involving breaking down text into individual units called tokens. These tokens are the smallest meaningful units of text for an NLP system. Examples of tokens include words, punctuation marks, emojis, numbers, and sub-words. The course content covers tokenization as part of representing text, alongside stemming, lemmatization, and Part-of-Speech (POS) tagging. Token normalization, stemming, and lemmatization are also crucial for cleaning and standardizing tokens.",
+  "response_time": 1.8945882320404053,
+  "timestamp": "2025-03-13T18:27:16.133723"
+}

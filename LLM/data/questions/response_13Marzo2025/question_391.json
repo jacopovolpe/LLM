@@ -1,0 +1,8 @@
+{
+  "question_id": 391,
+  "section_index": 79,
+  "question": "What is the primary advantage of using mT5 over a standard T5 model?",
+  "response": "The main benefit of using the multilingual T5 (mT5) model is that it supports 101 languages, making it suitable for multilingual NLP tasks. However, its performance can vary across different languages.",
+  "response_time": 1.5598561763763428,
+  "timestamp": "2025-03-13T18:14:01.945206"
+}

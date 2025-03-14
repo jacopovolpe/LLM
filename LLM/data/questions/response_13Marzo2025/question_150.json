@@ -1,0 +1,8 @@
+{
+  "question_id": 150,
+  "section_index": 30,
+  "question": "Give examples of specific NLP tasks best suited for each of the three transformer configurations (encoder-only, decoder-only, and Seq2Seq).",
+  "response": "Encoder-only transformers, like BERT, are best suited for tasks requiring understanding of the entire input sequence, such as text classification, Named Entity Recognition (NER), and question answering. They employ bidirectional self-attention, processing the entire input sequence simultaneously to capture context from both directions. Decoder-only transformers, such as GPT, are ideal for generative tasks like text generation, story generation, code generation, and translation. They employ causal (unidirectional) self-attention, processing tokens sequentially from left to right, conditioning each prediction on previous tokens. Sequence-to-sequence models, which combine encoder and decoder components, are well-suited for tasks requiring mapping input sequences to output sequences, such as machine translation.",
+  "response_time": 1.7747282981872559,
+  "timestamp": "2025-03-13T17:43:52.435753"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 231,
+  "section_index": 47,
+  "question": "What are the two main components of the original transformer architecture?",
+  "response": "The Transformer model is composed of several key parts. First, the raw textual data serves as the **input**. This input undergoes **tokenization**, which breaks it down into individual units called tokens, each assigned a unique numerical identifier. These tokens are then converted into dense vectors via **input embedding**, capturing semantic relationships by placing similar words closer together in a continuous Euclidean space. To account for word order, **positional encodings** are added to the input embeddings, providing information about each token's position in the sequence. The **encoder** then processes the input sequence to generate an intermediate representation, using multiple identical layers with self-attention and feed-forward networks. Based on the encoder's representation, the **decoder** generates the output sequence, employing masked self-attention to prevent \"peeking\" at future tokens during training. Finally, the generated sequence of tokens becomes the **output**, which can be converted back into text.",
+  "response_time": 2.0635221004486084,
+  "timestamp": "2025-03-13T17:54:04.295727"
+}

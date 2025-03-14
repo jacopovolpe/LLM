@@ -1,0 +1,8 @@
+{
+  "question_id": 221,
+  "section_index": 45,
+  "question": "What are the primary applications of BERT and other encoder-only transformer models discussed in Lesson 13?",
+  "response": "Lesson 13 focuses on encoder-only transformer models, particularly BERT, and their applications. Encoder-only transformers are suitable for sequence-to-sequence tasks where the input and output sequences have the same length, such as part-of-speech tagging or named entity recognition, and for sequence-to-single-value tasks like sequence classification, such as sentiment analysis. BERT is particularly strong in understanding bidirectional context, considering both preceding and succeeding words. The lesson includes practical exercises on token classification and named entity recognition using BERT. The Hugging Face tutorial is recommended for hands-on experience.",
+  "response_time": 2.0513758659362793,
+  "timestamp": "2025-03-13T17:52:43.678133"
+}

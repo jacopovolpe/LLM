@@ -1,0 +1,8 @@
+{
+  "question_id": 669,
+  "section_index": 134,
+  "question": "What is the key difference between single-label and multi-label classification?",
+  "response": "In single-label classification, each document is assigned to only one class, which is suitable when categories are mutually exclusive. Binary classification is a special case of single-label classification with two classes. In contrast, multi-label classification allows a document to belong to multiple classes simultaneously, acknowledging that documents can address multiple topics or themes.",
+  "response_time": 1.8358585834503174,
+  "timestamp": "2025-03-13T18:49:18.047885"
+}

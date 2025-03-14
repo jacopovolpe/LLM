@@ -1,0 +1,8 @@
+{
+  "question_id": 668,
+  "section_index": 134,
+  "question": "Provide an example of a scenario where multi-label classification would be appropriate.",
+  "response": "In multi-label classification, a document can belong to multiple classes simultaneously, acknowledging that documents can address multiple topics or themes, such as a news article categorized as both \"finance\" and \"politics\". The Reuters 21578 dataset provides a real-world example of multi-class and multi-label text classification, containing news articles classified into 90 distinct categories. Articles in this dataset can belong to multiple categories, and the dataset exhibits an uneven distribution of documents across categories, with some having significantly more examples than others.",
+  "response_time": 1.8289315700531006,
+  "timestamp": "2025-03-13T18:49:13.126234"
+}

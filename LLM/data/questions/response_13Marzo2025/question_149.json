@@ -1,0 +1,8 @@
+{
+  "question_id": 149,
+  "section_index": 30,
+  "question": "For what types of NLP tasks are Seq2Seq models most suitable, and how do their encoder and decoder components contribute to these tasks?",
+  "response": "Sequence-to-sequence models, which utilize an encoder-decoder architecture, are well-suited for tasks requiring mapping an input sequence to an output sequence, such as machine translation. The encoder processes the input sequence, and the decoder generates the output sequence based on the encoder's representation.\n\nThe encoder-decoder transformer architecture is specifically designed for sequence-to-sequence (seq2seq) tasks, where the input is a sequence of tokens, and the output is another sequence of tokens, potentially in a different language or format. They leverage the attention mechanism to capture dependencies between input and output sequences, enabling effective handling of long-range dependencies and contextual information. The encoder processes the input sequence, transforming it into a set of hidden representations that capture the meaning and context of the input. The decoder then takes these representations and generates the output sequence, one token at a time, while attending to relevant parts of the encoded input. This attention mechanism allows the decoder to focus on specific parts of the input when generating each output token, leading to improved performance, especially in tasks like machine translation.",
+  "response_time": 2.5631494522094727,
+  "timestamp": "2025-03-13T17:43:44.408674"
+}

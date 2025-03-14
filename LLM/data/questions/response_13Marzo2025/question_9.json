@@ -1,0 +1,8 @@
+{
+  "question_id": 9,
+  "section_index": 2,
+  "question": "What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they important for adapting LLMs to specific tasks?",
+  "response": "Prompt engineering and fine-tuning are two distinct yet crucial techniques for adapting Large Language Models (LLMs) to specific tasks. Prompt engineering is a discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas, bridging the gap between human intention and machine interpretation. It enhances understanding of LLM capabilities and limitations, improves performance on tasks like question answering and arithmetic reasoning, helps in interfacing with LLMs and integrating with other tools, and enables new capabilities like augmenting LLMs with domain knowledge and external resources. Fine-tuning, on the other hand, tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. Fine-tuning is important for domain specialization, enhanced accuracy and relevance, and effective utilization of smaller datasets. Instruction fine-tuning, specifically, enhances the ability of LLMs to understand and respond to user instructions by training them on a dataset of (instruction, input, output) triples, improving the model's ability to generalize to new instructions and generate more accurate and contextually appropriate responses.",
+  "response_time": 2.4711365699768066,
+  "timestamp": "2025-03-13T17:26:11.566136"
+}

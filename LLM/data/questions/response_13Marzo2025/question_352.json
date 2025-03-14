@@ -1,0 +1,8 @@
+{
+  "question_id": 352,
+  "section_index": 71,
+  "question": "Where can one find trending text generation models on the Hugging Face platform?",
+  "response": "To find popular or trending text generation models on the Hugging Face Hub, you can visit [https://huggingface.co/models?pipeline_tag=text-generation&sort=trending](https://huggingface.co/models?pipeline_tag=text-generation&sort=trending). This link directly filters the models on the Hugging Face Hub to show those tagged for text generation and sorted by trending.",
+  "response_time": 1.7261402606964111,
+  "timestamp": "2025-03-13T18:09:05.385072"
+}

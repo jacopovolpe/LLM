@@ -1,0 +1,8 @@
+{
+  "question_id": 499,
+  "section_index": 100,
+  "question": "What is the difference between stemming and lemmatization, and when might you choose one over the other?",
+  "response": "Stemming and lemmatization are both techniques used to reduce words to their root form, but they differ in their approach and results. Stemming reduces words to their stem by heuristically removing prefixes and suffixes and can sometimes produce non-words. Common stemming algorithms include the Porter Stemmer and the Snowball Stemmer, with the latter offering multilingual support. Lemmatization, on the other hand, uses dictionaries and morphological analysis to determine a word's canonical form (lemma), considering its part of speech, and always results in a valid word. While lemmatization is generally more accurate, it is also computationally slower than stemming.",
+  "response_time": 1.8433499336242676,
+  "timestamp": "2025-03-13T18:27:35.947922"
+}

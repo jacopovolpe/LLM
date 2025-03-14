@@ -1,0 +1,8 @@
+{
+  "question_id": 288,
+  "section_index": 58,
+  "question": "Explain how the context processing approach varies between Encoder-only and Decoder-only models.",
+  "response": "Encoder-only transformers, such as BERT, employ bidirectional self-attention, processing the entire input sequence simultaneously to capture context from both directions. This allows for a rich contextual understanding because the entire sequence is processed in parallel. In contrast, decoder-only transformers, like GPT, use causal (unidirectional) self-attention, processing tokens sequentially from left to right, conditioning each prediction on previous tokens, building up context as it progresses.",
+  "response_time": 1.6028788089752197,
+  "timestamp": "2025-03-13T18:01:08.756050"
+}

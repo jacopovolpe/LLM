@@ -1,0 +1,8 @@
+{
+  "question_id": 145,
+  "section_index": 29,
+  "question": "How can LLMs be effectively utilized after pre-training?",
+  "response": "After pre-training, Large Language Models (LLMs) can be adapted to specific downstream tasks through fine-tuning or prompting. Fine-tuning adjusts the pre-trained model's weights using a smaller, task-specific dataset, while prompting involves crafting specific input instructions to guide the model's output without modifying its parameters. Fine-tuning tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. Types of fine-tuning include full fine-tuning, parameter-efficient fine-tuning (PEFT) encompassing techniques like LoRA, Adapters, and Prefix-Tuning, instruction fine-tuning which focuses on aligning the LLM with specific instructions or prompts, and Reinforcement Learning from Human Feedback (RLHF) which combines supervised learning with reinforcement learning to train LLMs to generate outputs that align with human preferences and values.",
+  "response_time": 2.054994821548462,
+  "timestamp": "2025-03-13T17:43:16.750301"
+}

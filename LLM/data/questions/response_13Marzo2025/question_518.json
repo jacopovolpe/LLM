@@ -1,0 +1,8 @@
+{
+  "question_id": 518,
+  "section_index": 104,
+  "question": "How does lemmatization ensure that the reduced form of a word is always a valid dictionary word?",
+  "response": "Lemmatization employs dictionaries and morphological analysis to ascertain a word's canonical form, or lemma, considering its part of speech. This process ensures that the outcome is consistently a valid word. For instance, the word \"better\" is lemmatized to \"good\".",
+  "response_time": 1.6661920547485352,
+  "timestamp": "2025-03-13T18:29:58.377274"
+}

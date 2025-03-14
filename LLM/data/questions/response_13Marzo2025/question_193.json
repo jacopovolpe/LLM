@@ -1,0 +1,8 @@
+{
+  "question_id": 193,
+  "section_index": 39,
+  "question": "What kind of information is typically included in a Hugging Face Dataset Card?",
+  "response": "This lesson introduces the Hugging Face ecosystem, a central hub for Natural Language Processing (NLP) resources. The platform revolves around the Hugging Face Hub, a centralized repository accessible at [https://huggingface.co/](https://huggingface.co/). The Hub provides access to pre-trained models, datasets, spaces, and educational resources, with the latter being available at [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit). The ecosystem is powered by open-source libraries such as `datasets`, which simplifies downloading and managing datasets, `transformers`, which provides building blocks for transformer models, and `evaluate`, which facilitates the computation of evaluation metrics. The Model Hub, located at [https://huggingface.co/models](https://huggingface.co/models), hosts a wide variety of pre-trained models. The Hub also hosts approximately 3000 open-source and free-to-use datasets at [https://hf.co/datasets](https://hf.co/datasets). Each dataset is accompanied by a detailed card containing documentation. An example of a dataset is the GLUE benchmark dataset, available at [https://huggingface.co/datasets/nyu-mll/glue](https://huggingface.co/datasets/nyu-mll/glue).",
+  "response_time": 2.4383673667907715,
+  "timestamp": "2025-03-13T17:49:17.661307"
+}

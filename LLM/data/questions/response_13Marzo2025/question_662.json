@@ -1,0 +1,8 @@
+{
+  "question_id": 662,
+  "section_index": 133,
+  "question": "How is the classifier function *F* in text classification formally defined?",
+  "response": "In text classification, given a set of documents *D* = {d₁, …, dₙ} and a set of predefined classes *C* = {c₁, …, cₘ}, the goal is to find a classifier function *F*: *D* x *C* → {True, False}. This function determines whether a document dᵢ belongs to class cⱼ, assigning a Boolean value accordingly.",
+  "response_time": 1.5150811672210693,
+  "timestamp": "2025-03-13T18:48:34.499885"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 226,
+  "section_index": 46,
+  "question": "What are the primary NLP tasks addressed by encoder-only Transformers?",
+  "response": "Encoder-only transformer models, such as BERT, are primarily suited for natural language processing tasks that require understanding the entire input sequence. These tasks include text classification, named entity recognition (NER), and question answering. In these models, bidirectional self-attention is employed, processing the entire input sequence simultaneously to capture context from both directions. The models typically generate contextualized embeddings for each input token, which can then be used for downstream tasks. For sequence-to-sequence tasks where the input and output sequences have the same length, only the encoder is necessary, and the output vectors are derived directly from the encoder, allowing for direct loss computation, as seen in part-of-speech tagging or named entity recognition. For sequence classification, a special `[CLS]` token is prepended to the input sequence, and its corresponding output vector represents the entire sequence, used for computing the loss function, as in sentiment analysis.",
+  "response_time": 2.120570659637451,
+  "timestamp": "2025-03-13T17:53:26.790550"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 104,
+  "section_index": 21,
+  "question": "What are the roles of the Add & Norm and Feed Forward layers in multi-head attention?",
+  "response": "In Multi-Head Attention, Add & Norm and Feed Forward layers play specific roles. The Add & Norm component normalizes the output, which stabilizes training and provides a regularization effect. The residual connections (Add) help mitigate vanishing gradients, which is crucial for training deep networks. The Feed Forward layers introduce non-linear transformations, enabling the model to learn complex, non-linear relationships between words in the sequence.",
+  "response_time": 1.6977360248565674,
+  "timestamp": "2025-03-13T17:38:01.042366"
+}

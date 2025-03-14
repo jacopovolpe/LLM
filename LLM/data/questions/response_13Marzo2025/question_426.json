@@ -1,0 +1,8 @@
+{
+  "question_id": 426,
+  "section_index": 86,
+  "question": "What are the primary advantages of using Parameter-Efficient Fine-Tuning (PEFT) methods for Large Language Models (LLMs)?",
+  "response": "Parameter-Efficient Fine-Tuning (PEFT) techniques offer significant advantages when adapting pre-trained Large Language Models (LLMs) to specific downstream tasks. These methods, implemented in libraries like Hugging Face Transformers and `peft`, reduce the computational and storage burden associated with full fine-tuning by modifying only a small fraction of the model's parameters. PEFT techniques include Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning. LoRA injects trainable rank decomposition matrices into each layer of the Transformer model, allowing efficient fine-tuning with minimal parameter updates. Adapters are small, task-specific modules inserted within the Transformer layers, enabling fine-tuning without modifying the original model weights and are particularly useful for multi-task learning. Prefix Tuning prepends a sequence of trainable prefix tokens to the input sequence, influencing the model's attention mechanism and guiding its output generation without altering the original weights.",
+  "response_time": 2.7307751178741455,
+  "timestamp": "2025-03-13T18:18:25.108130"
+}

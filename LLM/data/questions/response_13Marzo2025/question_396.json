@@ -1,0 +1,8 @@
+{
+  "question_id": 396,
+  "section_index": 80,
+  "question": "What pre-trained model is specifically mentioned in the provided Hugging Face guides for translation and summarization?",
+  "response": "The Hugging Face documentation and tutorials specifically mention the T5 model for translation and summarization tasks. The following Hugging Face guides offer practical examples and code for implementing translation and summarization using various pre-trained models, including T5: Translation ([https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt](https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt)) and Summarization ([https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt](https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt)).",
+  "response_time": 2.5767362117767334,
+  "timestamp": "2025-03-13T18:14:34.865253"
+}

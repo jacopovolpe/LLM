@@ -1,0 +1,8 @@
+{
+  "question_id": 65,
+  "section_index": 13,
+  "question": "Why is the scaling factor (1/√dk) important in the scaled dot-product attention calculation?",
+  "response": "The scaling factor (1/√dk) is a crucial component of the scaled dot-product attention mechanism. It prevents extremely small gradients during training, especially when using high-dimensional vectors.",
+  "response_time": 1.3939955234527588,
+  "timestamp": "2025-03-13T17:33:13.257187"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 534,
+  "section_index": 107,
+  "question": "Given the emphasis on text representation, what specific functionalities of spaCy are likely relevant to the topics covered in Lesson 20?",
+  "response": "spaCy is a powerful Python library that offers functionalities relevant to text representation techniques. It provides pre-trained language models with features like tokenization, PoS tagging, dependency parsing, lemmatization, and NER. spaCy offers detailed token attributes such as `is_stop`, `pos_`, and `lemma_`, simplifies common NLP tasks, and includes a built-in visualizer called displaCy for analyzing syntactic dependencies and named entities. Furthermore, spaCy's NER identifies and classifies real-world objects with specific labels.",
+  "response_time": 1.8169915676116943,
+  "timestamp": "2025-03-13T18:32:01.917296"
+}

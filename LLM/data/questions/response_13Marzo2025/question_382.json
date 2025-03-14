@@ -1,0 +1,8 @@
+{
+  "question_id": 382,
+  "section_index": 77,
+  "question": "How does the use of span corruption in T5 contribute to generating more coherent output compared to masking individual tokens?",
+  "response": "T5 employs a denoising autoencoder objective called span corruption for pre-training. Instead of masking individual tokens, as done in models like BERT, T5 masks entire spans of text. By masking spans, the model is encouraged to learn contextual relationships and generate more coherent output. The model is then trained to reconstruct the original text from the corrupted input. For example, the original input \"The quick brown fox jumps over the lazy dog\" could be corrupted to \"The quick `<extra_id_0>` jumps `<extra_id_1>` dog,\" and the target output would be `<extra_id_0>` brown fox `<extra_id_1>` over the lazy.\"",
+  "response_time": 2.1511240005493164,
+  "timestamp": "2025-03-13T18:12:54.782103"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 233,
+  "section_index": 47,
+  "question": "How are output vectors obtained in an encoder-only transformer when the input and output sequences have the same length?",
+  "response": "When an encoder-only Transformer model is used for tasks where the input and output sequences have the same length, the output vectors (z₁, ..., zₜ) are derived directly from the encoder, allowing for direct loss computation. Examples of such tasks include part-of-speech tagging or named entity recognition.",
+  "response_time": 1.5116896629333496,
+  "timestamp": "2025-03-13T17:54:20.158848"
+}

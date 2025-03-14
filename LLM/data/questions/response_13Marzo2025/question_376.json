@@ -1,0 +1,8 @@
+{
+  "question_id": 376,
+  "section_index": 76,
+  "question": "What is the vocabulary size of the SentencePiece tokenizer used by T5?",
+  "response": "T5 utilizes a SentencePiece tokenizer with a vocabulary size of 32,000 tokens.",
+  "response_time": 1.1849639415740967,
+  "timestamp": "2025-03-13T18:12:06.757046"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 314,
+  "section_index": 63,
+  "question": "What kind of dataset is typically used for fine-tuning a GPT model?",
+  "response": "Fine-tuning GPT models involves training them on smaller, labeled datasets curated for the specific target application. This adapts the pre-trained knowledge to the nuances of the downstream task, leading to improved performance. The document also mentions that fine-tuning enables LLMs to achieve good performance even with smaller, focused datasets, which are often easier to curate than massive general-purpose datasets.",
+  "response_time": 1.6305623054504395,
+  "timestamp": "2025-03-13T18:04:30.563240"
+}

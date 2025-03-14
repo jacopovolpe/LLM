@@ -1,0 +1,8 @@
+{
+  "question_id": 607,
+  "section_index": 122,
+  "question": "What is an example of a layered approach to LLM safety and reliability?",
+  "response": "Guardrails are essential mechanisms and policies that govern the behavior of LLMs, acting as a safety net to ensure that the model's responses are safe, accurate, relevant, and aligned with desired ethical and operational guidelines. They mitigate risks by preventing the generation of harmful, biased, or inaccurate outputs, enforce ethical standards by aligning responses with ethical guidelines, meet operational objectives by maintaining control over LLM outputs, and build trust and reliability by demonstrating responsible AI practices. Examples of guardrail implementation include content filtering, which blocks harmful or inappropriate content, and domain restriction, which confines LLM outputs to specific knowledge domains. There are different types of guardrails, including safety guardrails that focus on preventing harmful content, domain-specific guardrails that restrict responses to defined knowledge areas, ethical guardrails that address concerns related to bias and fairness, and operational guardrails that control outputs to align with specific business rules.",
+  "response_time": 2.057645797729492,
+  "timestamp": "2025-03-13T18:41:39.379041"
+}

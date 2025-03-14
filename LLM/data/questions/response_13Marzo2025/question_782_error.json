@@ -1,0 +1,7 @@
+{
+  "question_id": 782,
+  "section_index": 157,
+  "question": "What are the roles of `pack_padded_sequence` and `pad_packed_sequence` in the `forward` method of the `SpamDetector` class?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:06:16.233563"
+}

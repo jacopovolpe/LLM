@@ -1,0 +1,8 @@
+{
+  "question_id": 49,
+  "section_index": 9,
+  "question": "Why is tokenization crucial for a model's understanding of text?",
+  "response": "Tokenization is a fundamental step in NLP that transforms text into a sequence of discrete units called tokens, which are then mapped to unique numerical IDs. These tokens are the smallest meaningful units of text considered by an NLP system and can include words, punctuation marks, emojis, numbers, and sub-words. By breaking down the input text into tokens, the model can represent and process textual data in a structured manner.",
+  "response_time": 1.792067527770996,
+  "timestamp": "2025-03-13T17:31:17.735388"
+}

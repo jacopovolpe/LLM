@@ -1,0 +1,8 @@
+{
+  "question_id": 293,
+  "section_index": 59,
+  "question": "In what ways can decoder-only transformers assist software developers with their programming tasks?",
+  "response": "Decoder-only transformers are useful for programming help, assisting developers with code generation, completion, and debugging by suggesting code snippets and identifying potential errors.",
+  "response_time": 1.5479350090026855,
+  "timestamp": "2025-03-13T18:01:45.901590"
+}

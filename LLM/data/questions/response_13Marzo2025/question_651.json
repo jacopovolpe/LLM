@@ -1,0 +1,8 @@
+{
+  "question_id": 651,
+  "section_index": 131,
+  "question": "What are the key distinctions between text classification and other document-related tasks?",
+  "response": "Text classification, text summarization, information retrieval, and topic modeling are distinct yet related natural language processing tasks. Text classification assigns predefined categories to text documents based on their content, using a classifier function *F*: *D* x *C* → {True, False} to determine if a document *dᵢ* belongs to class *cⱼ*.  This differs from document classification, which considers metadata, and document clustering, which discovers categories from unlabeled data. Text summarization generates concise summaries of longer texts. Information retrieval identifies relevant documents based on keyword searches. Topic modeling discovers topics within a collection of documents.",
+  "response_time": 2.281879425048828,
+  "timestamp": "2025-03-13T18:47:10.458844"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 96,
+  "section_index": 20,
+  "question": "What is the role of Multi-Head Attention in the Transformer architecture?",
+  "response": "The Multi-Head Attention mechanism is a crucial component of the Transformer architecture, designed to enhance the model's ability to capture nuanced relationships within a sequence. It addresses the limitations of a single attention mechanism by employing multiple \"heads,\" each with its own set of learned weight matrices, allowing the model to attend to different aspects of the input sequence simultaneously. Each head performs a scaled dot-product attention operation, and the results from these parallel computations are then concatenated and transformed through another linear layer, combining the various perspectives into a unified representation. Multi-Head Attention also incorporates Add & Norm (skip connections and layer normalization) and Feed Forward layers, which serve to normalize the output, stabilize training, mitigate vanishing gradients, and introduce non-linear transformations, enabling the model to learn complex relationships between words in the sequence.",
+  "response_time": 1.9566624164581299,
+  "timestamp": "2025-03-13T17:36:55.557625"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 626,
+  "section_index": 126,
+  "question": "What are the different variations of the Bag of Words (BoW) model and how do they differ in their representation of text?",
+  "response": "The Bag-of-Words (BoW) model represents text as a vector of word counts, while disregarding word order and grammar. There are several variations of the BoW model. One-hot encoding represents each word in the vocabulary as a vector with a single '1' at the index corresponding to the word and '0' elsewhere. Binary BoW combines one-hot vectors using the OR operation, indicating the presence (1) or absence (0) of each word in the vocabulary. Standard BoW sums the one-hot vectors, representing the count of each word. Term Frequency (TF) focuses on the raw counts of each word. TF-IDF (Term Frequency-Inverse Document Frequency) improves upon TF by considering a term's prevalence across the entire corpus, reducing the weight of common words and increasing the weight of rare words.",
+  "response_time": 2.4842936992645264,
+  "timestamp": "2025-03-13T18:43:58.334899"
+}

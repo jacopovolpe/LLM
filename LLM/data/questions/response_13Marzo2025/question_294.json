@@ -1,0 +1,8 @@
+{
+  "question_id": 294,
+  "section_index": 59,
+  "question": "What is the primary function of decoder-only transformers in summarization tasks?",
+  "response": "Decoder-only transformers are well-suited for text summarization because of their autoregressive nature, where the output is generated conditionally based on an input prompt. They generate text token by token, predicting each new token based on the preceding tokens in the sequence. The input prompt and the generated text are treated as a single continuous sequence, enabling the model to implicitly encode the prompt's meaning while simultaneously decoding it into generated text.",
+  "response_time": 1.5391998291015625,
+  "timestamp": "2025-03-13T18:01:53.050016"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 97,
+  "section_index": 20,
+  "question": "How is the Encoder Output used in the Transformer?",
+  "response": "In the Transformer architecture, the encoder processes the entire input sequence and generates contextualized representations. The decoder then generates the output sequence one element at a time, using the encoder's output and the previously generated words. Specifically, the queries in the encoder-decoder attention mechanism come from the decoder, while the keys and values are derived from the encoder's output. This allows the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence.",
+  "response_time": 2.1429028511047363,
+  "timestamp": "2025-03-13T17:37:03.594747"
+}

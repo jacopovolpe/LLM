@@ -1,0 +1,8 @@
+{
+  "question_id": 243,
+  "section_index": 49,
+  "question": "Explain the purpose of the `[CLS]` and `[SEP]` tokens in BERT's input encoding.",
+  "response": "BERT uses special tokens, namely `[CLS]` and `[SEP]`, during input encoding. The `[CLS]` token is added at the beginning of each sequence and serves as an aggregate representation of the entire sequence. The final hidden state corresponding to the `[CLS]` token captures the overall meaning and context, which is then used for downstream tasks like classification. The `[SEP]` token is used to separate sentences within a sequence or to mark the end of a single sentence.",
+  "response_time": 1.7075715065002441,
+  "timestamp": "2025-03-13T17:55:33.957016"
+}

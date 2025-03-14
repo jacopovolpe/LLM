@@ -1,0 +1,8 @@
+{
+  "question_id": 637,
+  "section_index": 128,
+  "question": "How does Inverse Document Frequency (IDF) contribute to the TF-IDF calculation?",
+  "response": "TF-IDF, or Term Frequency-Inverse Document Frequency, is calculated as the product of TF and IDF. IDF, or Inverse Document Frequency, measures how unique a word is across the corpus. TF, or Term Frequency, quantifies the importance of a word within a document based on its frequency of occurrence. Therefore, IDF modifies TF in the TF-IDF calculation by reducing the weight of common words and increasing the weight of rare words, with a high TF-IDF score indicating a term that is frequent within a document but rare across the corpus, suggesting high relevance to that document.",
+  "response_time": 2.253448486328125,
+  "timestamp": "2025-03-13T18:45:25.359675"
+}

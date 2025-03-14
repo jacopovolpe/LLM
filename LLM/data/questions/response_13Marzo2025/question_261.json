@@ -1,0 +1,8 @@
+{
+  "question_id": 261,
+  "section_index": 53,
+  "question": "How does BERT's bidirectional contextual understanding differ from previous unidirectional approaches in NLP?",
+  "response": "BERT, or Bidirectional Encoder Representations from Transformers, is a powerful language model that leverages the encoder part of the transformer architecture. A key strength of BERT is its ability to understand bidirectional context, meaning it considers both preceding and succeeding words to understand the meaning of a word within a sentence, which is a significant advancement over traditional unidirectional language models. BERT comes in different sizes, with BERT-base (12 encoder blocks, 110M parameters) and BERT-large (24 encoder blocks, 340M parameters) being the most common.",
+  "response_time": 2.127964973449707,
+  "timestamp": "2025-03-13T17:57:47.655487"
+}

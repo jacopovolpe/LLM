@@ -1,0 +1,7 @@
+{
+  "question_id": 854,
+  "section_index": 169,
+  "question": "What does the `domain.yml` file define in a Rasa project, and why is it considered a central configuration file?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:17:59.128524"
+}

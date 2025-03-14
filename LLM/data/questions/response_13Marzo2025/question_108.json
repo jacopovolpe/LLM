@@ -1,0 +1,8 @@
+{
+  "question_id": 108,
+  "section_index": 22,
+  "question": "What are the main components of each encoder block in a Transformer?",
+  "response": "The Transformer's encoder block consists of a multi-head self-attention layer, followed by Add & Norm (skip connections and layer normalization), and Feed Forward layers. The Add & Norm component normalizes the output, stabilizing training and providing a regularization effect. The residual connections (Add) help mitigate vanishing gradients, which is crucial for training deep networks. The Feed Forward layers introduce non-linear transformations, enabling the model to learn complex, non-linear relationships between words in the sequence. Each block maintains the same output dimensionality as the input, allowing for stacking multiple encoder blocks. The output of one block becomes the input to the next, enabling the network to learn hierarchical representations of the input sequence. Positional encoding is incorporated to provide information about the position of each word in the sequence, typically by adding sinusoidal functions to the input embeddings.",
+  "response_time": 1.785721778869629,
+  "timestamp": "2025-03-13T17:38:31.293261"
+}

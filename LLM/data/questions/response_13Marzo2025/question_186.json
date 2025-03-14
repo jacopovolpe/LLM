@@ -1,0 +1,8 @@
+{
+  "question_id": 186,
+  "section_index": 38,
+  "question": "What types of NLP tasks are the pre-trained models on Hugging Face's Model Hub typically designed for?",
+  "response": "The Hugging Face Model Hub hosts a wide variety of pre-trained models readily available for various Natural Language Processing (NLP) tasks. These models are categorized and easily searchable, allowing users to find the best fit for their specific needs. The Hub also provides access to datasets suitable for training and evaluating NLP models.",
+  "response_time": 1.6561293601989746,
+  "timestamp": "2025-03-13T17:48:22.642673"
+}

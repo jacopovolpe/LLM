@@ -1,0 +1,8 @@
+{
+  "question_id": 64,
+  "section_index": 13,
+  "question": "Describe the process of calculating attention weights using scaled dot-product attention.",
+  "response": "In scaled dot-product attention, attention weights are calculated by measuring the similarity between query and key vectors. The scaling factor (1/√dk) is crucial for preventing extremely small gradients during training, especially with high-dimensional vectors.",
+  "response_time": 1.399832010269165,
+  "timestamp": "2025-03-13T17:33:06.974967"
+}

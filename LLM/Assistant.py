@@ -29,12 +29,15 @@ class Assistant:
                  log_file="LLM/data/logs/assistant.log"):
         self.faiss_index = faiss_index
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
+
         self.generation_model = GoogleGemini()
+
         try:
             self.vectorstore = FAISS.load_local(faiss_index, self.embeddings, allow_dangerous_deserialization=True)
             self.retriever = self.vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 5})
         except Exception as e:
             raise RuntimeError(f"Error loading FAISS: {e}")
+        
         self.memory = ConversationBufferMemory(memory_key="chat_history", output_key="answer", return_messages=True)
         self.history = []
         self.max_history = max_history
@@ -84,26 +87,31 @@ class Assistant:
     def generate_response(self, question: str, response_length: str = "MEDIUM", debug: bool = False) -> dict:
         if debug:
             start_time = time.time()
-        history_prompt = self.get_history_for_prompt()
+
         reformulated_query = self.query_reformulation_chain.invoke({
             "question": question,
-            "chat_history": history_prompt
+            "chat_history": self.get_history_for_prompt()
         })["text"].strip()
+
         if debug:
             print(f"Original query: {question}")
             print(f"Reformulated query: {reformulated_query}")
             query_time = time.time()
             print(f"Query reformulation time: {(query_time - start_time) * 1000:.3f} ms")
+
         result = self.qa_chain.invoke({"question": reformulated_query})
         raw_response = result["answer"]
+
         retrieved_docs = result.get("source_documents", [])
         if debug:
             rag_time = time.time()
             print(f"RAG generation time: {(rag_time - query_time) * 1000:.3f} ms")
             print(f"Total time: {(rag_time - start_time) * 1000:.3f} ms")
+
         final_response = self.clarify_response(raw_response)
         interaction_json = self.interaction(question, reformulated_query, raw_response, final_response, retrieved_docs)
         self.add_to_history(question, final_response, reformulated_query)
+        
         return interaction_json
     
     def clarify_response(self, response: str) -> str:

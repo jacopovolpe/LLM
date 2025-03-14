@@ -1,0 +1,8 @@
+{
+  "question_id": 48,
+  "section_index": 9,
+  "question": "How are tokens represented for computational processing?",
+  "response": "Tokenization is a crucial initial step in NLP, transforming text into a sequence of discrete units called tokens, which are then assigned unique numerical identifiers. These tokens, the smallest meaningful units of text, can be words (e.g., \"The\", \"quick\", \"brown\", \"fox\"), punctuation marks (e.g., \".\", \",\", \"!\", \"?\"), emojis (e.g., 😀, 😭), numbers (e.g., \"123\", \"3.14\"), sub-words (e.g., \"pre-\", \"re-\", \"-ing\", \"-ed\"), or even phrases (e.g., \"ice cream\", \"New York\"). After tokenization, word embeddings are used to project these tokens into a continuous vector space, capturing semantic relationships between words, where similar words have similar vector representations. Furthermore, since the attention mechanism is order-agnostic, positional encodings are added to the input embeddings to provide information about the position of each token in the sequence, enabling the model to understand word order.",
+  "response_time": 2.2007758617401123,
+  "timestamp": "2025-03-13T17:31:09.066612"
+}

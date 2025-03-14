@@ -1,0 +1,8 @@
+{
+  "question_id": 105,
+  "section_index": 21,
+  "question": "How does multi-head attention contribute to a richer understanding of relationships within a sequence compared to single-head attention?",
+  "response": "Multi-head attention enhances a model's ability to understand relationships within a sequence by employing multiple \"heads,\" each with its own set of learned weight matrices, allowing the model to attend to different aspects of the input sequence simultaneously. Each head performs a scaled dot-product attention operation, and the results are then concatenated and transformed through a linear layer, combining the various perspectives into a unified representation. Compared to a single-head approach, multi-head attention captures a richer understanding of the relationships within the sequence. Furthermore, Multi-Head Attention incorporates Add & Norm (skip connections and layer normalization) and Feed Forward layers, which normalizes the output, stabilizes training, mitigates vanishing gradients, and introduces non-linear transformations.",
+  "response_time": 1.9679529666900635,
+  "timestamp": "2025-03-13T17:38:07.719453"
+}

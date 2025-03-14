@@ -1,0 +1,8 @@
+{
+  "question_id": 238,
+  "section_index": 48,
+  "question": "What are the two most commonly used versions of BERT, and how do they differ in size and complexity?",
+  "response": "The two most common BERT model sizes are BERT-base and BERT-large. BERT-base consists of 12 encoder blocks and has 110 million parameters, while BERT-large has 24 encoder blocks and 340 million parameters.",
+  "response_time": 1.8572437763214111,
+  "timestamp": "2025-03-13T17:54:57.355562"
+}

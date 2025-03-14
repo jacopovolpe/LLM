@@ -1,0 +1,8 @@
+{
+  "question_id": 373,
+  "section_index": 75,
+  "question": "According to the provided table, how does the embedding dimensionality change as we move from T5-Small to T5-XXL?",
+  "response": "The T5 model family includes versions with varying embedding dimensionalities. T5-Small has an embedding dimensionality of 512, while T5-XXL has an embedding dimensionality of 4096. This shows a trend of increasing embedding dimensionality as the model size increases, which generally improves the model's capacity and performance but also requires more computational resources.",
+  "response_time": 1.709615707397461,
+  "timestamp": "2025-03-13T18:11:45.580340"
+}

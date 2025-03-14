@@ -1,0 +1,8 @@
+{
+  "question_id": 215,
+  "section_index": 43,
+  "question": "Considering the rapid evolution of NLP models, how might future models improve upon the limitations of the models listed here?",
+  "response": "The limitations of RNNs, such as vanishing gradients, slow training due to sequential processing, and limited long-term memory, have motivated the development of Transformer models. The Transformer architecture addresses these shortcomings by enabling parallel processing of sequence elements, significantly speeding up training and mitigating the vanishing gradient problem. The number of layers traversed is independent of the sequence length, contributing to its efficiency and ability to handle long-range dependencies. Furthermore, Byte Pair Encoding (BPE), a subword tokenization technique, is often used with transformers to handle large vocabularies efficiently, and positional encodings are used to incorporate word order information. Transformers are also highly scalable, enabling the development of extremely large language models (LLMs) capable of performing complex tasks.",
+  "response_time": 2.1030423641204834,
+  "timestamp": "2025-03-13T17:51:58.876936"
+}

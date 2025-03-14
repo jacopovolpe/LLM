@@ -1,0 +1,7 @@
+{
+  "question_id": 879,
+  "section_index": 174,
+  "question": "What is the relationship between intents defined in the `domain.yml` and `nlu.yml` files?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:22:04.273070"
+}

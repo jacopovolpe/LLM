@@ -1,0 +1,8 @@
+{
+  "question_id": 320,
+  "section_index": 64,
+  "question": "How do the computational requirements of GPT models impact their accessibility for researchers and developers?",
+  "response": "GPT models have strengths such as fluency, a broad knowledge base, and few-shot learning capabilities. However, they also have limitations, including a lack of true understanding, sensitivity to prompting, ethical and bias concerns, limited reasoning and calculation abilities, limited memory across interactions, and high computational requirements. Training and deploying large GPT models demand significant computational resources, limiting accessibility for researchers and developers with limited access to powerful hardware.",
+  "response_time": 1.9710822105407715,
+  "timestamp": "2025-03-13T18:05:08.748668"
+}

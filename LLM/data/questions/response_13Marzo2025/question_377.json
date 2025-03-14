@@ -1,0 +1,8 @@
+{
+  "question_id": 377,
+  "section_index": 76,
+  "question": "How does SentencePiece handle rare or out-of-vocabulary terms?",
+  "response": "BERT uses the WordPiece tokenizer, a subword tokenization method, to process input text. WordPiece breaks words into smaller units (subwords), which allows BERT to handle out-of-vocabulary words and efficiently represent a wide range of vocabulary with a smaller vocabulary size. Common words are treated as single tokens, while rarer words are split into constituent subwords. WordPiece constructs a vocabulary of common words and subwords; for example, \"unhappiness\" could be tokenized into \"un,\" \"happy,\" and \"##ness,\" where \"##\" signifies a subword continuing a previous word. One of the advantages of WordPiece embedding is that it facilitates the representation of rare or unknown words by breaking them into known subwords.",
+  "response_time": 2.011787176132202,
+  "timestamp": "2025-03-13T18:12:15.710967"
+}

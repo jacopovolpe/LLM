@@ -1,0 +1,8 @@
+{
+  "question_id": 527,
+  "section_index": 106,
+  "question": "How does spaCy facilitate the analysis of syntactic dependencies and named entities?",
+  "response": "spaCy is a powerful open-source Python library that offers pre-trained language models with functionalities like syntactic dependency parsing and named entity recognition (NER). The NER identifies and classifies real-world objects (e.g., persons, organizations, locations) with specific labels. spaCy also includes a built-in visualizer (displaCy) for analyzing syntactic dependencies and named entities.",
+  "response_time": 1.5941426753997803,
+  "timestamp": "2025-03-13T18:31:06.560870"
+}

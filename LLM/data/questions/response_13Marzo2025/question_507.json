@@ -1,0 +1,8 @@
+{
+  "question_id": 507,
+  "section_index": 102,
+  "question": "How does the Bag-of-Words (BoW) model address the limitations of one-hot vectors in terms of memory efficiency?",
+  "response": "The Bag-of-Words (BoW) model addresses the sparsity issue of one-hot encoding by summing the one-hot vectors for all words in a document, resulting in a single vector where each element represents the count of a specific word in the document and is more memory-efficient. In contrast, one-hot encoding represents each word in a vocabulary as a vector where the vector's length equals the vocabulary size, and only the element corresponding to the word's index is 1, with all others being 0, leading to very sparse, high-dimensional vectors.",
+  "response_time": 1.78300142288208,
+  "timestamp": "2025-03-13T18:28:34.937018"
+}

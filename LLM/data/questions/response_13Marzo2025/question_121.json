@@ -1,0 +1,8 @@
+{
+  "question_id": 121,
+  "section_index": 25,
+  "question": "What is the primary function of Encoder-Decoder Attention in a sequence-to-sequence model?",
+  "response": "The Encoder-Decoder Attention mechanism bridges the encoder and decoder in sequence-to-sequence models. It enables the decoder to leverage the contextualized information encoded by the encoder by allowing the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence. In this mechanism, the queries come from the decoder, while the keys and values are derived from the encoder's output.",
+  "response_time": 1.6064400672912598,
+  "timestamp": "2025-03-13T17:40:07.371600"
+}

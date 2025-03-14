@@ -1,0 +1,8 @@
+{
+  "question_id": 510,
+  "section_index": 102,
+  "question": "Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demonstrate the concept of document similarity using BoW and metrics like the dot product.",
+  "response": "The Bag-of-Words (BoW) model can be used to represent documents as vectors, enabling the calculation of document similarity. A binary variant of BoW indicates the presence (1) or absence (0) of a word, disregarding its frequency. By generating a vocabulary and BoW vectors from a corpus, we can observe the overlap in word usage between sentences. This overlap, quantifiable using metrics like the dot product, allows us to compare documents and identify similarities. BoW is foundational for document retrieval and search due to its efficiency and compatibility with hardware-accelerated binary operations.",
+  "response_time": 2.3436849117279053,
+  "timestamp": "2025-03-13T18:28:54.817979"
+}

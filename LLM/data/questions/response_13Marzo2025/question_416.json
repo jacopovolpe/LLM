@@ -1,0 +1,8 @@
+{
+  "question_id": 416,
+  "section_index": 84,
+  "question": "What are the different types of fine-tuning?",
+  "response": "Fine-tuning tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. There are several types of fine-tuning, including full fine-tuning, parameter-efficient fine-tuning (PEFT), instruction fine-tuning, and reinforcement learning from human feedback (RLHF). Full fine-tuning updates all the parameters of the pre-trained LLM, but this requires substantial computational resources and can lead to overfitting. Parameter-efficient fine-tuning (PEFT) encompasses techniques like LoRA, Adapters, and Prefix-Tuning, which offer a balance between performance and efficiency. Instruction fine-tuning focuses on aligning the LLM with specific instructions or prompts. RLHF combines supervised learning with reinforcement learning to train LLMs to generate outputs that align with human preferences and values.",
+  "response_time": 2.073603868484497,
+  "timestamp": "2025-03-13T18:17:02.919941"
+}

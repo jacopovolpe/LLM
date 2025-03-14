@@ -1,0 +1,8 @@
+{
+  "question_id": 260,
+  "section_index": 52,
+  "question": "Name three example tasks where fine-tuning BERT can be applied.",
+  "response": "BERT can be fine-tuned for various downstream tasks by adding task-specific layers on top of the encoder output. During this fine-tuning process, the pre-trained weights can either be frozen or further updated. Minimizing the cross-entropy loss between predicted and actual labels for the given task is a key aspect of fine-tuning, which allows BERT's general language understanding to be adapted to specific application domains. The `[CLS]` token's representation is especially important during fine-tuning, as it is specifically trained to capture the nuances required for the target task. Examples of tasks for which BERT can be fine-tuned include text classification for sentiment analysis, topic categorization, and spam detection; Named Entity Recognition (NER) for identifying and classifying named entities; and question answering, where the model identifies the answer span within a given text passage.",
+  "response_time": 2.1499581336975098,
+  "timestamp": "2025-03-13T17:57:38.496379"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 657,
+  "section_index": 132,
+  "question": "How does text classification relate to document clustering?",
+  "response": "Text classification and document clustering are distinct but related tasks. Text classification assigns predefined categories to text documents based solely on their content, while document clustering discovers categories from unlabeled data. In essence, text classification uses a predefined set of classes to categorize documents, whereas document clustering aims to identify the categories themselves from the data.",
+  "response_time": 1.8745293617248535,
+  "timestamp": "2025-03-13T18:47:54.510730"
+}

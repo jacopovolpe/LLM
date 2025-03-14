@@ -1,0 +1,8 @@
+{
+  "question_id": 431,
+  "section_index": 87,
+  "question": "How does the low-rank decomposition in LoRA contribute to parameter savings compared to directly fine-tuning the pre-trained model weights?",
+  "response": "LoRA, or Low-Rank Adaptation, achieves parameter efficiency by employing low-rank decomposition of weight updates. Instead of directly modifying the pre-trained model's weight matrices *W*, LoRA learns a low-rank decomposition of the weight update Δ*W*, represented as the product of two low-rank matrices, *A* (m×r) and *B* (r×n), where *r* is the rank. The rank *r* is significantly smaller than the dimensions *m* and *n* of *W*. During fine-tuning, the effective weight matrix *W'* is computed as the sum of the original weights *W* and the low-rank update Δ*W*, so *W'* = *W* + Δ*W*. Since the original weights *W* remain frozen, and only the low-rank matrices *A* and *B* are trained, the number of trainable parameters is dramatically reduced, making LoRA highly efficient compared to full fine-tuning where all parameters are updated.",
+  "response_time": 2.486215591430664,
+  "timestamp": "2025-03-13T18:19:06.469317"
+}

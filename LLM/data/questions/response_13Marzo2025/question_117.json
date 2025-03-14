@@ -1,0 +1,8 @@
+{
+  "question_id": 117,
+  "section_index": 24,
+  "question": "Which positions should the decoder consider when generating the *i*-th output word?",
+  "response": "When the decoder generates the *i*-th output word, it should only consider the preceding words, specifically positions 1 to *i-1*. It should not \"peek\" into the future. This is achieved using masked multi-head attention, which applies a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, forcing the softmax function to assign zero probability to these future positions.",
+  "response_time": 1.7462108135223389,
+  "timestamp": "2025-03-13T17:39:38.627461"
+}

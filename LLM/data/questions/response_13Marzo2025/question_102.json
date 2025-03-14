@@ -1,0 +1,8 @@
+{
+  "question_id": 102,
+  "section_index": 21,
+  "question": "How does multi-head attention combine the outputs of its individual attention heads?",
+  "response": "In multi-head attention, each head performs a scaled dot-product attention operation, and the results from these parallel computations are then concatenated and transformed through another linear layer. This final transformation combines the various perspectives offered by the different heads into a unified representation, allowing the model to capture a richer understanding of the relationships within the sequence compared to a single-head approach.",
+  "response_time": 1.5149054527282715,
+  "timestamp": "2025-03-13T17:37:44.450467"
+}

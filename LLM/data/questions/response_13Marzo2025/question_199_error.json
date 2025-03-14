@@ -1,0 +1,7 @@
+{
+  "question_id": 199,
+  "section_index": 40,
+  "question": "If using Anaconda, what command activates the newly created \"nlpllm\" environment?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T17:49:54.276786"
+}

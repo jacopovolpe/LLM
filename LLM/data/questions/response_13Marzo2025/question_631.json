@@ -1,0 +1,8 @@
+{
+  "question_id": 631,
+  "section_index": 127,
+  "question": "What is the purpose of representing documents as vectors in the Vector Space Model?",
+  "response": "The Vector Space Model (VSM) represents documents as vectors in a multidimensional space. Each dimension in this space corresponds to a term in the vocabulary. The values in each dimension typically represent the TF or normalized TF of the corresponding term in the document. This representation allows for mathematical comparison of documents based on their vector representations. VSM enables calculating document similarity using metrics like Euclidean Distance and Cosine Similarity. Cosine similarity measures the cosine of the angle between two vectors, focusing on direction and ignoring magnitude, making it more effective for normalized text representations and widely used in NLP.",
+  "response_time": 1.6953485012054443,
+  "timestamp": "2025-03-13T18:44:38.499192"
+}

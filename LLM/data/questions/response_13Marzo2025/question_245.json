@@ -1,0 +1,8 @@
+{
+  "question_id": 245,
+  "section_index": 49,
+  "question": "What are the advantages of using WordPiece embeddings over character-level models?",
+  "response": "WordPiece embeddings offer several advantages compared to character-level language models.  First, WordPiece facilitates the representation of rare or unknown words by breaking them into known subwords. Second, it improves computational efficiency due to the reduced vocabulary size compared to character-level models. Finally, it helps capture morphological information by representing words through their subword components.",
+  "response_time": 1.5048482418060303,
+  "timestamp": "2025-03-13T17:55:48.617699"
+}

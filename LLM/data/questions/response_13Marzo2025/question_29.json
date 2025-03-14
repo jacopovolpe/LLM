@@ -1,0 +1,8 @@
+{
+  "question_id": 29,
+  "section_index": 5,
+  "question": "What type of practical project will students undertake in this course?",
+  "response": "The final project for the Natural Language Processing and Large Language Models course involves designing and implementing a chatbot. This chatbot should specialize in answering questions about the course content and related information, while also being able to handle out-of-context queries appropriately. The deliverables include the complete chatbot code and a detailed report explaining the design choices, implemented methodologies, and justification for the chosen tools and technologies.",
+  "response_time": 1.4752984046936035,
+  "timestamp": "2025-03-13T17:28:44.983191"
+}

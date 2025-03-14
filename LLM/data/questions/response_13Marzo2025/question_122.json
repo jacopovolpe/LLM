@@ -1,0 +1,8 @@
+{
+  "question_id": 122,
+  "section_index": 25,
+  "question": "In Encoder-Decoder Attention, where do the queries, keys, and values originate from?",
+  "response": "In Encoder-Decoder Attention, the queries come from the decoder, while the keys and values are derived from the encoder's output. This mechanism allows the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence.",
+  "response_time": 1.3654632568359375,
+  "timestamp": "2025-03-13T17:40:13.922593"
+}

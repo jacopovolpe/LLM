@@ -1,0 +1,7 @@
+{
+  "question_id": 783,
+  "section_index": 157,
+  "question": "How would you adapt the provided code example to use a simple RNN instead of an LSTM?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:06:24.255009"
+}

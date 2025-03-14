@@ -1,0 +1,8 @@
+{
+  "question_id": 297,
+  "section_index": 60,
+  "question": "How does the pre-training process contribute to GPT's ability to perform various natural language tasks?",
+  "response": "GPT models are pre-trained using a next-token prediction objective, also known as autoregressive language modeling. This training strategy involves predicting the next word (or token) in a sequence, effectively learning contextual relationships and linguistic patterns. The prediction is sequential, proceeding from left to right. The training process utilizes massive and diverse datasets derived from internet text, allowing the model to absorb a wide range of linguistic structures and topical information. GPT-1 was trained on BookCorpus, while subsequent versions like GPT-2 and GPT-3 utilized larger datasets like WebText and a combination of sources including Common Crawl, Books, and Wikipedia. Training involves minimizing cross-entropy loss using optimizers like Adam, incorporating techniques like learning rate schedules (warm-up and decay) and large batch sizes to enhance training stability and generalization.",
+  "response_time": 2.188669443130493,
+  "timestamp": "2025-03-13T18:02:15.119698"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 36,
+  "section_index": 7,
+  "question": "What key limitation of Recurrent Neural Networks (RNNs) did the Transformer architecture address?",
+  "response": "The Transformer architecture addresses the limitations of Recurrent Neural Networks (RNNs) in handling long sequences, particularly the vanishing gradients problem and sequential processing. The attention mechanism within Transformers allows the model to consider relationships between words regardless of their distance in the sequence, enabling parallel training and calculating dynamic attention weights, focusing on the most relevant information for the given task. This solves the problem of RNNs struggling to retain information from earlier stages of the sequence when processing long sequences.",
+  "response_time": 1.664381742477417,
+  "timestamp": "2025-03-13T17:29:34.965094"
+}

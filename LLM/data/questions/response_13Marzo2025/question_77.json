@@ -1,0 +1,8 @@
+{
+  "question_id": 77,
+  "section_index": 16,
+  "question": "According to the provided definitions, what is the core function of Natural Language Processing (NLP)?",
+  "response": "Natural Language Processing (NLP) empowers computers to understand natural language and perform tasks like translation, summarization, and question answering, mimicking human language capabilities, as stated by Behrooz Mansouri. Jacob Eisenstein defines NLP as encompassing the methods that enable computers to access and process human language. Christopher Manning describes NLP as residing at the intersection of computer science and linguistics, leveraging insights from both fields. \"Natural Language Processing in Action\" defines NLP as a subfield of AI and computer science that translates natural language into a computationally usable format, enabling computers to learn from and generate text.",
+  "response_time": 1.761014461517334,
+  "timestamp": "2025-03-13T17:34:42.171273"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 535,
+  "section_index": 107,
+  "question": "Considering the context of Retrieval Augmented Generation, how might the limitations of one-hot encoding impact the effectiveness of this technique?",
+  "response": "One-hot encoding, used in the Bag-of-Words (BoW) model, represents each word in a vocabulary as a vector. The vector's length equals the vocabulary size, and only the element corresponding to the word's index is 1; all others are 0. While this preserves all information and allows document reconstruction, it creates very sparse, high-dimensional vectors. The distance between any two one-hot vectors is always the same, failing to capture semantic relationships between words. One-hot vectors are sparse, requiring significant memory and processing resources, especially for large vocabularies. For example, in a vocabulary of *n* words, each word is represented by a vector of length *n* with only one non-zero element. This leads to high dimensionality and sparsity. TF-IDF relies on exact word matching, meaning documents with similar meanings but different wording will have distinct TF-IDF vector representations.",
+  "response_time": 2.5340960025787354,
+  "timestamp": "2025-03-13T18:32:12.172655"
+}

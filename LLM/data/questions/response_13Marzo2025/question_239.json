@@ -1,0 +1,8 @@
+{
+  "question_id": 239,
+  "section_index": 48,
+  "question": "What does pre-training entail in the context of BERT, and why is this step important?",
+  "response": "BERT, or Bidirectional Encoder Representations from Transformers, leverages the encoder part of the transformer architecture and comes in different sizes such as BERT-base with 12 encoder blocks and 110M parameters and BERT-large with 24 encoder blocks and 340M parameters. A key strength of BERT is its bidirectional context understanding, considering both preceding and succeeding words to understand the meaning of a word within a sentence. BERT is typically pre-trained on a large text corpus and then fine-tuned for specific downstream tasks by adding task-specific layers on top of the encoder output, minimizing the cross-entropy loss between predicted and actual labels. Pre-training on large datasets allows for effective transfer learning to various downstream tasks, reducing the need for extensive task-specific data.",
+  "response_time": 2.149975538253784,
+  "timestamp": "2025-03-13T17:55:05.467727"
+}

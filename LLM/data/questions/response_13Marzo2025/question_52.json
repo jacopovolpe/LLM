@@ -1,0 +1,8 @@
+{
+  "question_id": 52,
+  "section_index": 11,
+  "question": "How do positional encodings incorporate position-specific information into the input embeddings?",
+  "response": "Positional encodings add position-specific information to the input embeddings because the attention mechanism doesn't inherently consider word order. These encodings use periodic functions, specifically sine and cosine, to create unique representations for each position, ensuring that the model can differentiate between sequences containing the same words but in different orders.",
+  "response_time": 1.5024526119232178,
+  "timestamp": "2025-03-13T17:31:34.940129"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 645,
+  "section_index": 129,
+  "question": "What techniques are employed by advanced search engines to improve efficiency and ranking beyond TF-IDF?",
+  "response": "Modern search engines go beyond Term Frequency-Inverse Document Frequency (TF-IDF) by employing more sophisticated techniques, such as inverted indexes for efficiency, and other ranking factors.",
+  "response_time": 1.718508243560791,
+  "timestamp": "2025-03-13T18:46:24.914270"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 456,
+  "section_index": 92,
+  "question": "What is prompt engineering?",
+  "response": "Prompt engineering is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. This involves understanding how to instruct LLMs in a way that elicits the desired response, accounting for their capabilities and limitations.\n\nA well-structured prompt typically comprises the following elements: an instruction, which is a specific task or instruction you want the model to perform; context, which is external information or additional context that can steer the model to better responses; input data, which is the input or question that we are interested in finding a response for; and an output indicator, which is the type or format of the output.\n\nInstruction fine-tuning enhances the ability of LLMs to understand and respond to user instructions by training them on a dataset of (instruction, input, output) triples. This process improves the model's ability to generalize to new instructions and generate more accurate and contextually appropriate responses. The training dataset consists of examples comprising an instruction, which is a human-readable prompt specifying the desired task; context (optional), which is relevant background information or data; and output, which is the desired response to the given instruction and context.",
+  "response_time": 2.351681709289551,
+  "timestamp": "2025-03-13T18:22:13.130114"
+}

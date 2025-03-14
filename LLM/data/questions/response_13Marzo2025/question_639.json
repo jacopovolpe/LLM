@@ -1,0 +1,8 @@
+{
+  "question_id": 639,
+  "section_index": 128,
+  "question": "How does Zipf’s Law relate to the effectiveness of IDF in TF-IDF?",
+  "response": "Zipf's Law describes the inverse relationship between a word's rank in a frequency table and its frequency of occurrence in natural language; this principle influences the effectiveness of Inverse Document Frequency (IDF) in Term Frequency-Inverse Document Frequency (TF-IDF).",
+  "response_time": 1.651019811630249,
+  "timestamp": "2025-03-13T18:45:36.837530"
+}

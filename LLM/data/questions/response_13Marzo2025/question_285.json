@@ -1,0 +1,8 @@
+{
+  "question_id": 285,
+  "section_index": 57,
+  "question": "How do decoder-only transformers effectively replace the need for a separate encoder block, specifically regarding context building and relationship learning between tokens?",
+  "response": "Decoder-only transformers achieve context building and learn relationships between tokens through autoregression, generating text token by token, where each new token is predicted based on the preceding tokens in the sequence. The input prompt and generated text are treated as a single continuous sequence, enabling the model to implicitly encode the prompt's meaning while simultaneously decoding it into generated text, thus eliminating the need for a separate encoder block.\n\nThe self-attention mechanism within decoder layers is crucial for context building, but a causal (unidirectional or forward) mask is applied to ensure that each token attends only to previous tokens, mimicking the natural flow of language generation and preventing the model from \"looking ahead\" at future tokens during training and generation. This sequential processing allows the model to accumulate contextual information and learn complex relationships between tokens, effectively replacing the need for explicit encoder-decoder attention.",
+  "response_time": 2.609527587890625,
+  "timestamp": "2025-03-13T18:00:42.000406"
+}

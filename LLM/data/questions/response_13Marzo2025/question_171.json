@@ -1,0 +1,8 @@
+{
+  "question_id": 171,
+  "section_index": 35,
+  "question": "What are the core components of the Hugging Face Hub?",
+  "response": "The Hugging Face Hub is a centralized repository and platform that offers several core components. These include a vast collection of pre-trained models ready for various NLP tasks, a diverse range of datasets suitable for training and evaluating NLP models, a platform called Spaces for showcasing interactive demos and sharing code, and educational resources that can be found at [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit). The Model Hub itself can be found at [https://huggingface.co/models](https://huggingface.co/models) and the Datasets Hub is located at [https://hf.co/datasets](https://hf.co/datasets).",
+  "response_time": 2.3974251747131348,
+  "timestamp": "2025-03-13T17:46:32.423394"
+}

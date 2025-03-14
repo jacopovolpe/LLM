@@ -1,0 +1,8 @@
+{
+  "question_id": 526,
+  "section_index": 106,
+  "question": "What are some of the core NLP functionalities provided by the spaCy library?",
+  "response": "spaCy is a powerful open-source Python library designed for advanced NLP tasks. It offers pre-trained language models that include functionalities like tokenization, part-of-speech (PoS) tagging, dependency parsing, lemmatization, and named entity recognition (NER). Furthermore, spaCy provides detailed token attributes such as `is_stop`, `pos_`, and `lemma_`, simplifies common NLP tasks, and features a built-in visualizer called displaCy for analyzing syntactic dependencies and named entities. spaCy's NER is capable of identifying and classifying real-world objects, such as persons, organizations, and locations, using specific labels.",
+  "response_time": 1.865591287612915,
+  "timestamp": "2025-03-13T18:31:00.222987"
+}

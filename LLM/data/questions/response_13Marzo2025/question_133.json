@@ -1,0 +1,8 @@
+{
+  "question_id": 133,
+  "section_index": 27,
+  "question": "What signals the end of the output sequence generation in a Transformer?",
+  "response": "The Transformer model's decoder generates the output sequence one element at a time until an end-of-sequence token is generated, signaling the completion of the output sequence.",
+  "response_time": 1.460524559020996,
+  "timestamp": "2025-03-13T17:41:36.931804"
+}

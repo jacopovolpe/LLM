@@ -1,0 +1,8 @@
+{
+  "question_id": 432,
+  "section_index": 87,
+  "question": "What is the significance of keeping the pre-trained weights (W) frozen during the LoRA fine-tuning process?",
+  "response": "During Low-Rank Adaptation (LoRA) fine-tuning, the pre-trained weights, denoted as *W*, of a large language model are kept frozen to preserve the general knowledge acquired during the initial pre-training phase. By freezing these weights, LoRA focuses on injecting task-specific knowledge through the low-rank matrices *A* and *B*, which encode the necessary adaptations for the new task. This approach dramatically reduces the number of trainable parameters, making LoRA highly parameter-efficient and ensuring fast, memory-efficient deployment during inference.",
+  "response_time": 1.964226484298706,
+  "timestamp": "2025-03-13T18:19:11.968829"
+}

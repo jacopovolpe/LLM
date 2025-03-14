@@ -1,0 +1,8 @@
+{
+  "question_id": 698,
+  "section_index": 140,
+  "question": "What kind of labeling is applied to the movie reviews in this dataset?",
+  "response": "The IMDB dataset contains 50,000 movie reviews labeled as positive or negative, making it suitable for sentiment analysis tasks. These sentiment labels are one-hot encoded using `OneHotEncoder` for model training.",
+  "response_time": 1.7669682502746582,
+  "timestamp": "2025-03-13T18:52:50.457227"
+}

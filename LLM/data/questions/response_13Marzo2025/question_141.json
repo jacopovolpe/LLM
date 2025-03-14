@@ -1,0 +1,8 @@
+{
+  "question_id": 141,
+  "section_index": 29,
+  "question": "How do transformers contribute to text representation and generation?",
+  "response": "Transformers have revolutionized Natural Language Processing (NLP) by providing a robust architecture for both text representation and generation. Their flexibility allows for different configurations tailored to specific tasks. Encoder-only models, such as BERT, are excellent at text representation by simultaneously processing the entire input sequence and capturing contextual information, making them suitable for tasks like sentence classification, question answering, and named entity recognition. Decoder-only models, such as GPT, are specialized for text generation, processing the input sequence sequentially and predicting the next word based on the preceding context, making them suitable for tasks like text completion, translation, and summarization. Seq2Seq models, which combine encoder and decoder components, are well-suited for tasks requiring mapping input sequences to output sequences, such as machine translation, where the encoder processes the input sequence, and the decoder generates the output sequence based on the encoder's representation.",
+  "response_time": 2.1517820358276367,
+  "timestamp": "2025-03-13T17:42:44.974796"
+}

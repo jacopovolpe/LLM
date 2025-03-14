@@ -1,0 +1,7 @@
+{
+  "question_id": 2,
+  "section_index": 1,
+  "question": "Who are the instructors for this course?",
+  "error": "'dict' object has no attribute 'final_response'",
+  "timestamp": "2025-03-13T17:22:13.811957"
+}

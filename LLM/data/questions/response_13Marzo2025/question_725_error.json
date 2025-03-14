@@ -1,0 +1,7 @@
+{
+  "question_id": 725,
+  "section_index": 145,
+  "question": "Provide an example demonstrating how stemming or lemmatization could lead to the misgrouping of words with different meanings.",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T18:57:12.249133"
+}

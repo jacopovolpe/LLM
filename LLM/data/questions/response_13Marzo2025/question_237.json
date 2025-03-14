@@ -1,0 +1,8 @@
+{
+  "question_id": 237,
+  "section_index": 48,
+  "question": "How does BERT's bidirectional approach differ from traditional language models, and what advantage does this offer?",
+  "response": "BERT (Bidirectional Encoder Representations from Transformers) uses a bidirectional training approach, considering both preceding and succeeding words to understand the meaning of a word within a sentence. This contrasts with traditional unidirectional language models. BERT's bidirectionality allows it to capture rich contextual information from both left and right, significantly improving language understanding. This makes it well-suited for tasks requiring understanding of the entire input sequence, such as text classification, Named Entity Recognition (NER), and question answering.",
+  "response_time": 2.3615806102752686,
+  "timestamp": "2025-03-13T17:54:50.437700"
+}

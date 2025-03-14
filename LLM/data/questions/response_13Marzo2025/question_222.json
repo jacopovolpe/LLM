@@ -1,0 +1,8 @@
+{
+  "question_id": 222,
+  "section_index": 45,
+  "question": "How does the document explain the pre-training and fine-tuning strategies specifically for encoder-only transformers like BERT?",
+  "response": "Encoder-only transformer models, such as BERT, utilize only the encoder portion of the transformer architecture. BERT comes in different sizes, such as BERT-base (12 encoder blocks, 110M parameters) and BERT-large (24 encoder blocks, 340M parameters). These models are pre-trained on large text corpora and then fine-tuned for specific downstream tasks. The pre-training involves Masked Language Modeling (MLM), where the model predicts randomly masked tokens based on the surrounding context. After pre-training, BERT is fine-tuned for specific tasks by adding task-specific layers on top of the encoder output, minimizing the cross-entropy loss between predicted and actual labels. The pre-trained weights can be either frozen or updated during this fine-tuning process, adapting BERT's general language understanding to specific application domains. The `[CLS]` token's representation is crucial during fine-tuning as it gets specifically trained to capture the nuances required for the target task. Variants like RoBERTa, ALBERT, DistilBERT, and ELECTRA have been developed to address limitations and improve performance.",
+  "response_time": 2.4570138454437256,
+  "timestamp": "2025-03-13T17:52:53.445699"
+}

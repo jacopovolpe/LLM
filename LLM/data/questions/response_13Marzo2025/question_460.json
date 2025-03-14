@@ -1,0 +1,8 @@
+{
+  "question_id": 460,
+  "section_index": 92,
+  "question": "What are the key components of a well-structured prompt?",
+  "response": "Prompt engineering is a discipline focused on developing and optimizing prompts to effectively use Large Language Models (LLMs) for diverse applications and research areas. It helps bridge the gap between human intention and machine interpretation. The goals of prompt engineering include enhancing the understanding of the capabilities and limitations of LLMs, improving LLM performance on a broad range of tasks, helping with interfacing LLMs and integrating them with other tools, and enabling new capabilities such as augmenting LLMs with domain knowledge and external resources. A well-structured prompt typically comprises an instruction, context, input data, and an output indicator. In-context learning is a powerful capability of LLMs where they learn to perform a task by interpreting and leveraging information provided directly within the prompt, without requiring updates to their internal parameters. System prompts are instructions provided to the AI model before any user interactions to establish the initial context and desired behavior for the LLM, shaping its subsequent responses.",
+  "response_time": 2.076331615447998,
+  "timestamp": "2025-03-13T18:22:43.924018"
+}

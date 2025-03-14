@@ -1,0 +1,8 @@
+{
+  "question_id": 599,
+  "section_index": 120,
+  "question": "Differentiate between safety guardrails and ethical guardrails in the context of LLMs.",
+  "response": "Guardrails are essential mechanisms and policies that govern the behavior of LLMs, acting as a safety net to ensure that the model's responses are safe, accurate, relevant, and aligned with ethical and operational guidelines. There are different types of guardrails, including safety guardrails, which focus on preventing the generation of harmful or offensive content and prioritizing user safety, and ethical guardrails, which address concerns related to bias, misinformation, and fairness, promoting responsible AI practices.",
+  "response_time": 1.6597263813018799,
+  "timestamp": "2025-03-13T18:40:29.768500"
+}

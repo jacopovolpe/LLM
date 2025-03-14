@@ -1,0 +1,8 @@
+{
+  "question_id": 476,
+  "section_index": 96,
+  "question": "What is in-context learning and how does it differ from traditional model training?",
+  "response": "Before the advent of Large Language Models (LLMs), Natural Language Processing (NLP) relied heavily on manually crafted features, requiring domain expertise and significant effort. Model selection was crucial, and transfer learning with limited labeled data posed a challenge, requiring careful balancing of model complexity to prevent overfitting. Since LLMs, the paradigm has shifted to pre-training and fine-tuning, where models leverage vast amounts of unlabeled data to learn general language representations. Fine-tuning adapts these representations to specific tasks with smaller labeled datasets. LLMs can perform tasks with limited or no task-specific training data, showcasing remarkable generalization abilities through zero-shot and few-shot learning. Guiding LLMs with natural language instructions, or prompts, has become standard practice. Understanding how LLMs arrive at their outputs remains a critical research area, focusing on interpretability and explainability.",
+  "response_time": 2.199982166290283,
+  "timestamp": "2025-03-13T18:24:40.211787"
+}

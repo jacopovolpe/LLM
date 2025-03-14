@@ -1,0 +1,8 @@
+{
+  "question_id": 313,
+  "section_index": 63,
+  "question": "Name three specific tasks where fine-tuning a GPT model can be beneficial.",
+  "response": "Fine-tuning GPT models allows for tailoring them to specific tasks, leading to improved performance. Some examples of fine-tuning tasks include customer support automation, medical assistance, and legal document processing.",
+  "response_time": 1.4129736423492432,
+  "timestamp": "2025-03-13T18:04:24.169548"
+}
