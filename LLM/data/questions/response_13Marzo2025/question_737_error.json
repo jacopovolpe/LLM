@@ -1,7 +1,0 @@
-{
-  "question_id": 737,
-  "section_index": 148,
-  "question": "Which Word2Vec architecture is better suited for a small dataset containing rare terms, and why?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:59:03.423472"
-}

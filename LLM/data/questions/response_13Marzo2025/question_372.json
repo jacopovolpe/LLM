@@ -1,8 +1,0 @@
-{
-  "question_id": 372,
-  "section_index": 75,
-  "question": "How does T5 approach the formulation of different tasks, and what is the advantage of this approach?",
-  "response": "The T5 model frames all tasks as text-to-text problems, which simplifies training and fine-tuning for diverse applications. This unified approach allows the model to handle tasks like summarization, translation, and question answering by treating both the input and output as text strings.",
-  "response_time": 1.8111157417297363,
-  "timestamp": "2025-03-13T18:11:36.165252"
-}

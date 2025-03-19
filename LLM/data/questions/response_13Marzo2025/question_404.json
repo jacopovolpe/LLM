@@ -1,8 +1,0 @@
-{
-  "question_id": 404,
-  "section_index": 81,
-  "question": "What are the required deliverables for this project, besides the functioning chatbot itself?",
-  "response": "The deliverables for the NLP and LLM 2024/2025 course project include the complete chatbot code and a detailed report. The report should explain the design choices, implemented methodologies, and justification for the chosen tools and technologies.",
-  "response_time": 1.577101230621338,
-  "timestamp": "2025-03-13T18:15:29.181854"
-}

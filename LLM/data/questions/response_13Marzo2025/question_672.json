@@ -1,8 +1,0 @@
-{
-  "question_id": 672,
-  "section_index": 135,
-  "question": "How does the model training process work in ML-based text classification, and what are some examples of algorithms used?",
-  "response": "In machine learning-based text classification, a model learns from a training set of annotated documents, where each document is associated with its correct class labels. The process generally involves: converting text into a numerical vector format that ML algorithms can process, such as TF-IDF, which weighs words based on their importance within a document and across the corpus; using a labeled dataset to train an ML algorithm (e.g., Naive Bayes, Support Vector Machines, or neural networks) to learn the relationship between text features and class labels; and applying the trained model to classify new, unseen documents by predicting their likely categories, often providing a confidence score. An example of text classification is the Reuters 21578 dataset, which contains news articles classified into 90 distinct categories, highlighting the complexities of real-world text data, including its multi-class, multi-label, imbalanced classes, and variable document length characteristics.",
-  "response_time": 2.050989866256714,
-  "timestamp": "2025-03-13T18:49:35.124203"
-}

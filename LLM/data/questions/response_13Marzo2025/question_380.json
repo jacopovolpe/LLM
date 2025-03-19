@@ -1,8 +1,0 @@
-{
-  "question_id": 380,
-  "section_index": 76,
-  "question": "How does T5 use special prefixes to guide the model towards the desired output?",
-  "response": "T5 incorporates special tokens to guide the model; these tokens include `<pad>`, which pads sequences to a uniform length within a batch, `<unk>`, which represents unknown tokens, and `<eos>`, which signals the end of a sequence. Additionally, `<sep>` and task-specific prefixes, such as \"translate English to German:\" or \"summarize:\", define the task type and guide the model towards the desired output format.",
-  "response_time": 2.147028923034668,
-  "timestamp": "2025-03-13T18:12:41.478337"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 51,
-  "section_index": 11,
-  "question": "What limitation of the attention mechanism do positional encodings address?",
-  "response": "Positional encodings address the limitation of the attention mechanism, which doesn't inherently consider word order. These encodings add position-specific information to the input embeddings, utilizing periodic functions like sine and cosine to create unique representations for each position. This ensures that the model can differentiate between sequences containing the same words but in different orders. Because self-attention mechanisms don't inherently account for word order, the encoder incorporates positional encoding. This is typically achieved by adding sinusoidal functions to the input embeddings, providing information about the position of each word in the sequence. The omission of recurrence in Transformers necessitates positional encodings to incorporate word order information. These encodings are crucial for tasks where word order is essential, like translation and grammar parsing.",
-  "response_time": 1.8513941764831543,
-  "timestamp": "2025-03-13T17:31:27.256994"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 656,
-  "section_index": 132,
-  "question": "What is the key difference between text classification and document classification?",
-  "response": "Text classification assigns predefined categories to text documents based solely on their content, disregarding metadata. Document classification, on the other hand, considers metadata in addition to the content when assigning categories.",
-  "response_time": 1.3845903873443604,
-  "timestamp": "2025-03-13T18:47:46.230824"
-}

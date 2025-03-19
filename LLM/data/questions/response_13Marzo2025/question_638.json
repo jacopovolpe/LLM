@@ -1,8 +1,0 @@
-{
-  "question_id": 638,
-  "section_index": 128,
-  "question": "What does a high TF-IDF score signify about a term's relevance to a document?",
-  "response": "TF-IDF (Term Frequency-Inverse Document Frequency) enhances Term Frequency (TF) by factoring in a term's prevalence across the entire corpus. It diminishes the weight of common words and amplifies the weight of rare words, which are more likely to be informative. A high TF-IDF score signifies a term that appears frequently within a document but is rare across the corpus, indicating its high relevance to that specific document.",
-  "response_time": 1.6423673629760742,
-  "timestamp": "2025-03-13T18:45:31.884196"
-}

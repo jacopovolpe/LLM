@@ -1,8 +1,0 @@
-{
-  "question_id": 265,
-  "section_index": 53,
-  "question": "Explain the concept of \"data dependency\" in BERT and its implications for practical applications.",
-  "response": "BERT, or Bidirectional Encoder Representations from Transformers, exhibits several strengths, including bidirectional contextual understanding and transfer learning capabilities, leading to state-of-the-art performance. However, it also has limitations, such as requiring substantial computational resources for pre-training and fine-tuning, especially for larger models, and large model sizes posing challenges for deployment on resource-constrained devices. While transfer learning reduces data requirements, fine-tuning still needs labeled data, which can be expensive to acquire.\n\nThe introduction of LLMs marked a significant paradigm shift in NLP, moving away from traditional methods and embracing new approaches such as pre-training and fine-tuning, zero-shot and few-shot learning and prompting. The limitations of Recurrent Neural Networks (RNNs), particularly in handling long sequences due to vanishing gradients and sequential processing, paved the way for the Transformer architecture. The attention mechanism within Transformers addresses these limitations by handling long-range dependencies, enabling parallel training and calculating dynamic attention weights.",
-  "response_time": 2.333448648452759,
-  "timestamp": "2025-03-13T17:58:19.736907"
-}

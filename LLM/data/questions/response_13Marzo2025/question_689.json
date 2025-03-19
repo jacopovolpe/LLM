@@ -1,8 +1,0 @@
-{
-  "question_id": 689,
-  "section_index": 138,
-  "question": "How does the weighted average balance the influence of different class sizes when calculating performance metrics?",
-  "response": "The weighted average calculates metrics for each class and then averages them, weighting by the number of true instances, also known as support, for each class. This method balances the influence of different class sizes on the overall metric.",
-  "response_time": 1.5606474876403809,
-  "timestamp": "2025-03-13T18:51:35.716080"
-}

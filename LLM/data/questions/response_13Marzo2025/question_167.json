@@ -1,8 +1,0 @@
-{
-  "question_id": 167,
-  "section_index": 34,
-  "question": "How does fine-tuning adjust a pre-trained LLM for a specific task?",
-  "response": "Fine-tuning tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. There are different approaches to fine-tuning. Full fine-tuning updates all the parameters of the pre-trained LLM, which can lead to high accuracy but also has significant computational costs and overfitting risks. Other strategies, like Parameter-Efficient Fine-Tuning (PEFT), which includes techniques like LoRA, Adapters, and Prefix-Tuning, address the limitations of full fine-tuning by updating only a subset of the model's parameters. Instruction fine-tuning focuses on aligning the LLM with specific instructions or prompts, making it more responsive and adaptable to diverse user queries. Reinforcement Learning from Human Feedback (RLHF) combines supervised learning with reinforcement learning to train LLMs to generate outputs that align with human preferences and values.",
-  "response_time": 2.5426995754241943,
-  "timestamp": "2025-03-13T17:46:05.130284"
-}

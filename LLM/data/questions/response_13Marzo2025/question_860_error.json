@@ -1,7 +1,0 @@
-{
-  "question_id": 860,
-  "section_index": 170,
-  "question": "What is the purpose of the `rasa run` command, and what does the `--cors \"*\"` option do?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:19:01.980941"
-}

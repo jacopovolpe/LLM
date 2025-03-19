@@ -1,8 +1,0 @@
-{
-  "question_id": 323,
-  "section_index": 65,
-  "question": "How does GLaM's architecture contribute to its efficiency and scalability?",
-  "response": "GLaM, developed by Google Research, uses a sparse mixture-of-experts architecture, which enables efficient scaling.",
-  "response_time": 1.676497220993042,
-  "timestamp": "2025-03-13T18:05:29.698229"
-}

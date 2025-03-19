@@ -1,8 +1,0 @@
-{
-  "question_id": 272,
-  "section_index": 55,
-  "question": "What are the key areas of focus when exploring decoder-only transformers according to the provided document?",
-  "response": "According to the document, decoder-only transformer models are well-suited for autoregressive tasks, especially text generation. Their versatility allows them to be applied to a wide range of tasks, including text generation for various forms of textual content, conversational AI to power chatbots and virtual assistants, providing programming help with code generation and debugging, summarization to condense lengthy documents, and translation between different languages. The document also mentions that examples of successful decoder-only transformers include the GPT series and LLaMA.",
-  "response_time": 1.7229673862457275,
-  "timestamp": "2025-03-13T17:59:09.709119"
-}

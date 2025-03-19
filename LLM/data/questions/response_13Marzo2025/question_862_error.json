@@ -1,7 +1,0 @@
-{
-  "question_id": 862,
-  "section_index": 171,
-  "question": "What is the default endpoint URL for the Rasa REST API after it has been configured?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:19:20.514852"
-}

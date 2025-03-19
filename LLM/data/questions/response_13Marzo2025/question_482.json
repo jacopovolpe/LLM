@@ -1,8 +1,0 @@
-{
-  "question_id": 482,
-  "section_index": 97,
-  "question": "Which NLP task is mentioned as being a capability of LLMs but without provided examples within the \"Writing Good Prompts\" or \"Elements of a Prompt\" sections?",
-  "response": "LLMs are capable of performing various NLP tasks, including text summarization, information extraction, question answering, text classification, code generation, and reasoning. Text summarization involves condensing longer texts into shorter, coherent summaries. Information extraction focuses on retrieving specific information from a given text. Question answering provides answers to questions based on given context or knowledge. Text classification categorizes text into predefined categories. Code generation creates code in various programming languages based on natural language descriptions. Reasoning involves performing logical deductions and inferences.",
-  "response_time": 2.6016035079956055,
-  "timestamp": "2025-03-13T18:25:33.400193"
-}

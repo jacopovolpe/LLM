@@ -1,8 +1,0 @@
-{
-  "question_id": 148,
-  "section_index": 30,
-  "question": "Explain the autoregressive approach used by decoder-only models like GPT for text generation.",
-  "response": "Decoder-only transformers, such as the GPT series, use an autoregressive approach to text generation. This means they generate text token by token, predicting each new token based on the preceding tokens in the sequence. The input prompt and generated text are treated as a single, continuous sequence, allowing the model to implicitly encode the prompt's meaning while decoding it into generated text, eliminating the need for a separate encoder block. A causal (unidirectional or forward) mask is applied to the self-attention mechanism within decoder layers to ensure that each token attends only to previous tokens, mimicking the natural flow of language generation and preventing the model from \"looking ahead\" at future tokens during training and generation.",
-  "response_time": 1.9162030220031738,
-  "timestamp": "2025-03-13T17:43:36.772757"
-}

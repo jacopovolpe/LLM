@@ -1,8 +1,0 @@
-{
-  "question_id": 502,
-  "section_index": 101,
-  "question": "What are the three levels of text segmentation, and what are their characteristics?",
-  "response": "Text segmentation divides text into meaningful units at different levels. Paragraph segmentation divides a document into paragraphs, often relying on visual cues like line breaks or indentation. Sentence segmentation splits paragraphs into sentences, typically using punctuation like periods, question marks, and exclamation points. Word segmentation separates sentences into individual words, which can be complex due to punctuation, contractions, and language-specific rules. Tokenization is a specialized form of text segmentation, breaking text into units called tokens. A token is the smallest meaningful unit of text and can be words, punctuation marks, emojis, numbers, or sub-words.",
-  "response_time": 1.7058181762695312,
-  "timestamp": "2025-03-13T18:27:56.896371"
-}

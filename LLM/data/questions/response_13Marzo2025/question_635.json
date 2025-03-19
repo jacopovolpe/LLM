@@ -1,8 +1,0 @@
-{
-  "question_id": 635,
-  "section_index": 127,
-  "question": "What does a cosine similarity score of 1 represent, and why is a score of -1 rarely encountered with TF-based vector representations?",
-  "response": "A cosine similarity score of 1 indicates perfect similarity between two documents, meaning they have identical word usage proportions in the context of the Vector Space Model. A TF-IDF score of -1 is theoretically possible but not generally encountered with TF-based representations.",
-  "response_time": 1.7384567260742188,
-  "timestamp": "2025-03-13T18:45:08.465265"
-}

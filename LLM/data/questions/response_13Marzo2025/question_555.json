@@ -1,8 +1,0 @@
-{
-  "question_id": 555,
-  "section_index": 111,
-  "question": "How does the pipe operator (`|`) contribute to the creation of the chain in the provided example?",
-  "response": "The decoder in the Transformer architecture generates the output sequence one element at a time, considering the encoder's output and previously generated words. It mirrors the encoder block structure but includes an encoder-decoder attention mechanism, which allows it to focus on relevant parts of the encoder's output. A key difference from the encoder is the \"masked\" self-attention, preventing the decoder from attending to future positions during training. The final layer is a linear layer followed by a softmax function, projecting the output to a probability distribution over possible words.\n\nEncoder-Decoder Attention bridges the encoder and decoder, enabling the decoder to leverage the contextualized information encoded by the encoder. The queries come from the decoder, while the keys and values are derived from the encoder's output, allowing the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence.\n\nThe Transformer processes data sequentially. The encoder processes the entire input sequence, generating contextualized representations. The decoder then generates the output sequence one element at a time, receiving the encoder's output and previously generated words at each step. This repeats until an end-of-sequence token is generated.",
-  "response_time": 2.5158309936523438,
-  "timestamp": "2025-03-13T18:34:43.071618"
-}

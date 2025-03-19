@@ -1,8 +1,0 @@
-{
-  "question_id": 386,
-  "section_index": 78,
-  "question": "What is the core principle behind T5's adaptation for specific tasks?",
-  "response": "While transfer learning is mentioned in the context, the specifics of how it enables adaptation to downstream tasks for T5 models are not detailed in the provided documents. Therefore, I cannot provide a direct answer to your question using the given information.",
-  "response_time": 1.4756245613098145,
-  "timestamp": "2025-03-13T18:13:25.467679"
-}

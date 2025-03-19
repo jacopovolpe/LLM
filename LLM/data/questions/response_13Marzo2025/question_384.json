@@ -1,8 +1,0 @@
-{
-  "question_id": 384,
-  "section_index": 77,
-  "question": "Explain the role of Adafactor and learning rate scheduling (including warm-up and decay) in T5's training process.",
-  "response": "Adafactor optimization and learning rate scheduling are important aspects of T5's pre-training. Specifically, T5 uses Adafactor, a memory-efficient optimizer designed for large-scale training, to update the model's parameters. The learning rate is adjusted throughout training using a warm-up phase followed by inverse square root decay; this strategy helps the model converge efficiently and avoid getting stuck in local minima.",
-  "response_time": 2.027118682861328,
-  "timestamp": "2025-03-13T18:13:10.323173"
-}

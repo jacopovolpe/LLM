@@ -1,7 +1,0 @@
-{
-  "question_id": 729,
-  "section_index": 146,
-  "question": "In a vocabulary of size *n*, how would a single word be represented using the Bag-of-Words model?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:57:45.555698"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 383,
-  "section_index": 77,
-  "question": "What is the C4 dataset, and why is it beneficial for pre-training T5?",
-  "response": "T5's pre-training leverages the C4 (Colossal Clean Crawled Corpus) dataset, a massive and diverse text corpus derived from Common Crawl. Its large size and diversity contribute to the model's robust performance across various domains.",
-  "response_time": 1.6562061309814453,
-  "timestamp": "2025-03-13T18:13:00.757420"
-}

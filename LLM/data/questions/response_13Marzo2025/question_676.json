@@ -1,8 +1,0 @@
-{
-  "question_id": 676,
-  "section_index": 136,
-  "question": "What are the two main characteristics of the Reuters 21578 dataset that make it a good example of complex real-world text data?",
-  "response": "The Reuters 21578 dataset is a real-world example of multi-class and multi-label text classification with several characteristics that make it complex. First, it is **multi-class**, meaning it contains a wide range of categories representing different news topics. Second, it is **multi-label**, so articles can belong to multiple categories. Third, it has **imbalanced classes**, with an uneven distribution of documents across categories, where some have significantly more examples than others, which poses a challenge for model training and requires careful consideration during evaluation. Finally, there is **variable document length**, where the number of words per document varies, requiring appropriate handling during vectorization.",
-  "response_time": 2.1695384979248047,
-  "timestamp": "2025-03-13T18:50:07.103664"
-}

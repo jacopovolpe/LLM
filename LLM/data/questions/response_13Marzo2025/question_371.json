@@ -1,8 +1,0 @@
-{
-  "question_id": 371,
-  "section_index": 75,
-  "question": "What is the core architectural design behind the T5 language model?",
-  "response": "The T5 model is based on the encoder-decoder transformer architecture. It comes in different sizes, including T5-Small, T5-Base, T5-Large, T5-XL, and T5-XXL. The number of encoder blocks for these versions are 6, 12, 24, 24, and 24 respectively. The number of attention heads are 8, 12, 16, 32, and 64, respectively. The number of decoder blocks are 6, 12, 24, 24, and 24, respectively. The embedding dimensionality for each version is 512, 768, 1024, 2048, and 4096, respectively.",
-  "response_time": 1.9309959411621094,
-  "timestamp": "2025-03-13T18:11:27.811736"
-}

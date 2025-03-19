@@ -1,8 +1,0 @@
-{
-  "question_id": 63,
-  "section_index": 13,
-  "question": "What are the three matrices used in the self-attention mechanism, and how are they derived?",
-  "response": "The self-attention mechanism employs three matrices: Query (Q), Key (K), and Value (V). These matrices are derived from the input embeddings through linear transformations. The attention weights are calculated using scaled dot-product attention, which measures the similarity between query and key vectors. These weights are then used to create a weighted sum of the value vectors, producing a context-aware representation of the input sequence. The scaling factor (1/√dk) is crucial for preventing extremely small gradients during training, especially with high-dimensional vectors.",
-  "response_time": 1.5752389430999756,
-  "timestamp": "2025-03-13T17:32:58.888718"
-}

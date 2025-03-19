@@ -1,8 +1,0 @@
-{
-  "question_id": 596,
-  "section_index": 120,
-  "question": "What are the primary risks that guardrails in LLMs aim to mitigate?",
-  "response": "Guardrails for LLMs are essential mechanisms and policies designed to govern the behavior of LLMs, acting as a safety net to ensure the model's responses are safe, accurate, relevant, and aligned with ethical and operational guidelines. The main risks and harms that safety guardrails in LLMs are designed to mitigate include preventing the generation of harmful, biased, or inaccurate outputs, ensuring fairness, avoiding discrimination, and promoting responsible AI usage. They also help maintain control over LLM outputs, aligning them with specific business or user objectives and preventing undesirable behaviors, ultimately building trust among users and stakeholders.",
-  "response_time": 2.0523879528045654,
-  "timestamp": "2025-03-13T18:40:06.710083"
-}

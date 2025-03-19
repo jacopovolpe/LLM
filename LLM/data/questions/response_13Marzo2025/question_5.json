@@ -1,8 +1,0 @@
-{
-  "question_id": 5,
-  "section_index": 1,
-  "question": "What underlying architecture of LLMs will be explored in this course?",
-  "response": "This course on Natural Language Processing (NLP) with a strong emphasis on Large Language Models (LLMs) covers the Transformer architecture in detail, including self-attention mechanisms and encoder-decoder structures. The course also explores the advantages that Transformers offer over previous architectures like RNNs and LSTMs. Furthermore, the course will examine encoder-only models (e.g., BERT) for text representation, decoder-only models (e.g., GPT) for text generation and Seq2Seq models (Encoder-Decoder Architectures) for mapping input sequences to output sequences.",
-  "response_time": 1.9018867015838623,
-  "timestamp": "2025-03-13T17:25:42.193015"
-}

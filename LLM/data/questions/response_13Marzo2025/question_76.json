@@ -1,8 +1,0 @@
-{
-  "question_id": 76,
-  "section_index": 16,
-  "question": "What are some real-world applications of Natural Language Processing (NLP) mentioned in the text?",
-  "response": "NLP has a wide array of real-world applications across various sectors. In healthcare, it's used for analyzing patient records, assisting in diagnosis, and supporting treatment planning. The finance industry benefits from NLP through market sentiment assessment, risk management, and fraud detection. E-commerce and retail leverage NLP for personalized recommendations, improved search functionality, and customer service chatbots. In the legal field, NLP automates document review, legal research, and contract analysis. Customer service utilizes NLP for automated responses, user guidance, and customer feedback analysis. Education benefits from NLP through automated grading, learning tool development, and text summarization. The automotive industry employs NLP for intelligent navigation and voice-controlled systems. Technology uses it for code generation, completion, and review. Media and entertainment utilize NLP for script generation, article writing, and crafting interactive narratives. Additional applications include search engines, autocompletion, spelling/grammar correction, chatbots, indexing, email filtering, text mining, knowledge extraction, legal inference, news event detection, plagiarism detection, sentiment analysis, behavior prediction, and creative writing.",
-  "response_time": 2.1829495429992676,
-  "timestamp": "2025-03-13T17:34:32.722279"
-}

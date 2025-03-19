@@ -1,8 +1,0 @@
-{
-  "question_id": 308,
-  "section_index": 62,
-  "question": "Which datasets were used for training GPT-1, GPT-2, and GPT-3, and how do they differ in size and scope?",
-  "response": "GPT models are pre-trained on massive and diverse datasets derived from internet text. GPT-1 was trained on BookCorpus. Subsequent versions like GPT-2 and GPT-3 utilized larger datasets like WebText and a combination of sources including Common Crawl, Books, and Wikipedia.",
-  "response_time": 1.5177879333496094,
-  "timestamp": "2025-03-13T18:03:45.241055"
-}

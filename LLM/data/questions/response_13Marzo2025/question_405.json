@@ -1,8 +1,0 @@
-{
-  "question_id": 405,
-  "section_index": 81,
-  "question": "What information should be included in the project report accompanying the chatbot code?",
-  "response": "The deliverables for the project include the complete chatbot code and a detailed report. The report should explain the design choices, implemented methodologies, and justification for the chosen tools and technologies.",
-  "response_time": 1.3709805011749268,
-  "timestamp": "2025-03-13T18:15:35.078042"
-}

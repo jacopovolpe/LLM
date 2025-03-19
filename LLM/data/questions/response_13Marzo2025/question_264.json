@@ -1,8 +1,0 @@
-{
-  "question_id": 264,
-  "section_index": 53,
-  "question": "How do BERT's memory requirements impact its deployment on devices with limited resources?",
-  "response": "BERT, or Bidirectional Encoder Representations from Transformers, has limitations related to memory requirements. The large model size can pose challenges when deploying it on resource-constrained devices. Several BERT variants, such as ALBERT, DistilBERT, and TinyBERT, have been developed to address these limitations and improve performance by employing parameter reduction techniques or knowledge distillation for smaller model sizes and faster inference. TinyBERT is optimized for resource-constrained environments.",
-  "response_time": 1.9543602466583252,
-  "timestamp": "2025-03-13T17:58:11.159406"
-}

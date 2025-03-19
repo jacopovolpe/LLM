@@ -1,8 +1,0 @@
-{
-  "question_id": 249,
-  "section_index": 50,
-  "question": "Where is the `[CLS]` token placed in an input sequence?",
-  "response": "The `[CLS]` token is prepended to every input sequence in BERT. In sequence classification tasks, this token serves as an aggregate representation of the entire sequence, and its corresponding output vector is used for computing the loss function.",
-  "response_time": 1.3490374088287354,
-  "timestamp": "2025-03-13T17:56:18.044729"
-}

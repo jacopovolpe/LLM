@@ -1,8 +1,0 @@
-{
-  "question_id": 700,
-  "section_index": 140,
-  "question": "Where can the IMDB dataset described in the text be downloaded from?",
-  "response": "The IMDB dataset, which contains 50,000 movie reviews labeled as positive or negative, is commonly used for sentiment analysis tasks and can be downloaded from Kaggle at https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews.",
-  "response_time": 1.58465576171875,
-  "timestamp": "2025-03-13T18:53:04.376465"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 119,
-  "section_index": 24,
-  "question": "What value is assigned to the attention scores corresponding to future positions by the masking process?",
-  "response": "During masked multi-head attention, which is crucial for training the decoder, the attention scores corresponding to future positions are set to negative infinity. This effectively forces the softmax function to assign zero probability to these future positions, preventing the decoder from \"peeking\" into the future.",
-  "response_time": 1.4756386280059814,
-  "timestamp": "2025-03-13T17:39:56.149427"
-}

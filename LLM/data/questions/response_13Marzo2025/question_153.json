@@ -1,8 +1,0 @@
-{
-  "question_id": 153,
-  "section_index": 31,
-  "question": "Explain how the attention mechanism in Transformers overcomes the limitations of Recurrent Neural Networks (RNNs) in handling long sequences.",
-  "response": "The Transformer architecture addresses the limitations of RNNs through its innovative attention mechanism. Specifically, the attention mechanism tackles the vanishing gradient problem, the sequential processing bottleneck, and the difficulty in capturing long-range dependencies. Unlike RNNs, the attention mechanism enables parallel processing of the input sequence, significantly reducing training time. It also allows the model to consider relationships between words regardless of their distance in the sequence, effectively handling long-range dependencies. Furthermore, the incorporation of residual connections (Add) within the multi-head attention mechanism helps mitigate vanishing gradients, which is crucial for training deep networks. By calculating dynamic attention weights, the model can focus on the most relevant information for a given task, overcoming the limitations of RNNs in processing long sequences.",
-  "response_time": 2.199711799621582,
-  "timestamp": "2025-03-13T17:44:15.238696"
-}

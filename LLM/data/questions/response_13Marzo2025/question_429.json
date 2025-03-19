@@ -1,8 +1,0 @@
-{
-  "question_id": 429,
-  "section_index": 86,
-  "question": "How does Prefix Tuning influence the model's output without directly modifying the original model weights?",
-  "response": "Prefix Tuning works by prepending a sequence of trainable prefix tokens to the input sequence. These prefixes then influence the model's attention mechanism, guiding its output generation without altering the original weights. This method optimizes a small set of continuous prefix vectors, making it highly parameter-efficient since only the prefix vectors are trained. The length of the prefix sequence determines the trade-off between task-specific expressiveness and parameter efficiency.",
-  "response_time": 1.8507850170135498,
-  "timestamp": "2025-03-13T18:18:48.688278"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 641,
-  "section_index": 129,
-  "question": "What is the role of a TF-IDF matrix in information retrieval systems?",
-  "response": "TF-IDF matrices serve as the foundation for many information retrieval systems. To build a basic search engine, you first create a TF-IDF matrix for all documents. Then, you process the user's search query by tokenizing it and creating its TF-IDF vector. Next, you calculate the cosine similarity between the query vector and all document vectors in the matrix. Finally, you rank the documents based on their cosine similarity to the query, presenting the most similar documents first. Real-world search engines use more advanced techniques like inverted indexes and other ranking factors beyond TF-IDF.",
-  "response_time": 1.9853546619415283,
-  "timestamp": "2025-03-13T18:45:48.795078"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 424,
-  "section_index": 85,
-  "question": "What are some examples of Parameter-Efficient Fine-Tuning (PEFT) techniques?",
-  "response": "Parameter-Efficient Fine-Tuning (PEFT) methods reduce computational and storage burden by modifying only a small fraction of the model's parameters. Some PEFT techniques include Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning. LoRA injects trainable rank decomposition matrices, while Adapters are small, task-specific modules inserted within the Transformer layers. Prefix Tuning prepends a sequence of trainable prefix tokens to the input sequence.",
-  "response_time": 1.6303746700286865,
-  "timestamp": "2025-03-13T18:18:07.335770"
-}

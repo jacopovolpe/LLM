@@ -1,8 +1,0 @@
-{
-  "question_id": 41,
-  "section_index": 8,
-  "question": "What is the purpose of tokenization in a Transformer model?",
-  "response": "Tokenization is a fundamental step in Natural Language Processing (NLP) and Transformer models. It involves transforming text into a sequence of discrete units called tokens, which are then mapped to unique numerical IDs. These tokens can be words, punctuation marks, emojis, numbers, sub-words or phrases. Tokenization allows the model to represent and process textual data in a structured manner. A good tokenizer should correctly separate elements like numbers and punctuation. For example, in the sentence \"Leonardo da Vinci began painting the Mona Lisa at the age of 51,\" a good tokenizer should correctly separate \"51\" and \".\".",
-  "response_time": 1.622992992401123,
-  "timestamp": "2025-03-13T17:30:15.775118"
-}

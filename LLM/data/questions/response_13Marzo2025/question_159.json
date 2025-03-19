@@ -1,8 +1,0 @@
-{
-  "question_id": 159,
-  "section_index": 32,
-  "question": "How do seq2seq models, trained with techniques like Span Corruption, combine both comprehension and generation capabilities?",
-  "response": "Sequence-to-sequence models, particularly those trained with techniques like Span Corruption, integrate comprehension and generation capabilities. Span Corruption involves reconstructing corrupted sections of text, which forces the model to both understand the context and generate the missing parts, thereby combining comprehension and generation.",
-  "response_time": 1.840205430984497,
-  "timestamp": "2025-03-13T17:44:59.164040"
-}

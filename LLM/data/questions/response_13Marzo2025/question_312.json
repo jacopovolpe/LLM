@@ -1,8 +1,0 @@
-{
-  "question_id": 312,
-  "section_index": 63,
-  "question": "What is the primary difference between pre-training and fine-tuning a GPT model?",
-  "response": "GPT models are first pre-trained on vast amounts of text data to learn language nuances. This pre-training enables them to perform various natural language tasks. Then, fine-tuning tailors a pre-trained GPT model to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task.",
-  "response_time": 1.8244245052337646,
-  "timestamp": "2025-03-13T18:04:15.323591"
-}

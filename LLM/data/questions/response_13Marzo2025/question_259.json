@@ -1,8 +1,0 @@
-{
-  "question_id": 259,
-  "section_index": 52,
-  "question": "Can the pre-trained weights of BERT be modified during the fine-tuning process, or are they always frozen?",
-  "response": "During the fine-tuning of BERT for specific downstream tasks, the pre-trained weights can be either frozen or further updated.",
-  "response_time": 1.7185914516448975,
-  "timestamp": "2025-03-13T17:57:32.859204"
-}

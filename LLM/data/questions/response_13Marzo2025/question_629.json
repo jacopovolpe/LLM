@@ -1,8 +1,0 @@
-{
-  "question_id": 629,
-  "section_index": 126,
-  "question": "How does Normalized Term Frequency (Normalized TF) address the limitations of raw TF, and what is the formula for calculating Normalized TF?",
-  "response": "Raw Term Frequency (TF) has limitations because it relies solely on raw word counts, which can be misleading. A word appearing many times in a long document might not be as significant as the same word appearing fewer times in a short document. Normalized TF addresses this limitation by dividing the word count by the total number of words in the document. For example:\n\n*   TF (dog, Document A) = 3/30 = 0.1, where \"dog\" appears 3 times in a 30-word document.\n*   TF (dog, Document B) = 100/580000 = 0.00017, where \"dog\" appears 100 times in a 580,000-word document.\n\nThis normalization provides a more accurate representation of a word's importance relative to the document length.",
-  "response_time": 2.3941309452056885,
-  "timestamp": "2025-03-13T18:44:23.084586"
-}

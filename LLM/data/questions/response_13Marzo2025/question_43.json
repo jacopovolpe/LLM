@@ -1,8 +1,0 @@
-{
-  "question_id": 43,
-  "section_index": 8,
-  "question": "Why are positional encodings necessary in a Transformer model, given its attention mechanism?",
-  "response": "Even though Transformer models use the attention mechanism, they still require positional encodings because the attention mechanism itself is order-agnostic. Positional encodings address this limitation by adding position-specific information to the input embeddings, typically using sinusoidal functions to create unique representations for each position. This ensures that the model differentiates between sequences with the same words in different orders, which is crucial for tasks where word order is essential, like translation and grammar parsing.",
-  "response_time": 1.9899916648864746,
-  "timestamp": "2025-03-13T17:30:30.429970"
-}

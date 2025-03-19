@@ -1,8 +1,0 @@
-{
-  "question_id": 533,
-  "section_index": 107,
-  "question": "How do the suggested further readings on spaCy and NLTK complement the content of Chapter 2 of the referenced book?",
-  "response": "The textbook, *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Chapter 2 (excluding 2.3), is a reference for the course. The supplementary materials, spaCy 101 (https://spacy.io/usage/spacy-101) and NLTK Documentation (https://www.nltk.org/), enhance or expand upon the topics covered in the textbook. spaCy is a powerful open-source Python library for advanced NLP that provides pre-trained language models with functionalities like tokenization, PoS tagging, dependency parsing, lemmatization, and NER. NLTK offers common stemming algorithms like the Porter Stemmer and Snowball Stemmer.",
-  "response_time": 2.5022902488708496,
-  "timestamp": "2025-03-13T18:31:52.554071"
-}

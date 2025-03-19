@@ -1,8 +1,0 @@
-{
-  "question_id": 87,
-  "section_index": 18,
-  "question": "How did ELIZA contribute to the field of NLP, and what were its limitations?",
-  "response": "ELIZA, a program developed in the 1960s, simulated a Rogerian psychotherapist using pattern matching, and it was influential in the field of Natural Language Processing. However, ELIZA's limited capabilities, along with the limitations of the Turing Test, prompted a search for more robust benchmarks in NLP.",
-  "response_time": 1.4415807723999023,
-  "timestamp": "2025-03-13T17:35:46.181691"
-}

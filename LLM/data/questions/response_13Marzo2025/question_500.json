@@ -1,8 +1,0 @@
-{
-  "question_id": 500,
-  "section_index": 100,
-  "question": "What is spaCy, and what are some of its functionalities that make it useful for NLP tasks?",
-  "response": "spaCy is a powerful open-source Python library designed for advanced NLP tasks. It offers pre-trained language models and functionalities such as tokenization, PoS tagging, dependency parsing, lemmatization, and NER. spaCy also provides detailed token attributes like `is_stop`, `pos_`, and `lemma_`, simplifying common NLP tasks. Furthermore, it includes a built-in visualizer called displaCy for analyzing syntactic dependencies and named entities. spaCy's NER is capable of identifying and classifying real-world objects, such as persons, organizations, and locations, with specific labels.",
-  "response_time": 1.8646941184997559,
-  "timestamp": "2025-03-13T18:27:41.135549"
-}

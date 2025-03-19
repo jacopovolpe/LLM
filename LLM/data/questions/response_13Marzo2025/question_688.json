@@ -1,8 +1,0 @@
-{
-  "question_id": 688,
-  "section_index": 138,
-  "question": "When is samples average particularly useful, and how does it differ from the other averaging methods?",
-  "response": "Sample averaging is most effective in multi-label classification scenarios, where each instance can have multiple labels. In this context, it calculates metrics at the instance level, averaging performance across individual samples.\n\nWhen evaluating classifier performance, different averaging methods are used for multi-class and multi-label problems. Micro averaging calculates metrics globally, considering total true positives, false negatives, and false positives across all classes, but it is sensitive to class imbalance. Macro averaging computes the metric independently for each class and then averages the results, treating all classes equally. Weighted averaging averages the metric for each class, weighted by the number of true instances for each class, balancing the influence of different class sizes.",
-  "response_time": 2.1754608154296875,
-  "timestamp": "2025-03-13T18:51:30.085294"
-}

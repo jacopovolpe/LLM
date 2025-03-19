@@ -1,8 +1,0 @@
-{
-  "question_id": 581,
-  "section_index": 117,
-  "question": "What are the key stages of RLHF that TRL supports?",
-  "response": "The Reinforcement Learning from Human Feedback (RLHF) workflow typically involves three stages, and the Transformer Reinforcement Learning (TRL) library provides tools for implementing each of these stages. The stages are:\n\n1.  **Supervised Fine-tuning (SFT):** An initial LLM is fine-tuned on a dataset of prompts and corresponding human-generated responses, instilling a basic understanding of desired behavior in the model.\n2.  **Reward Model Training:** A separate reward model is trained to score the quality of LLM-generated outputs, learning from human feedback in the form of comparisons or rankings.\n3.  **Reinforcement Learning Fine-tuning:** The initial LLM is further fine-tuned using reinforcement learning algorithms, guided by the reward model, to generate outputs that maximize the reward score and align with human preferences.\n\nTRL offers a comprehensive suite of tools for implementing these stages, from SFT and reward model training (RM) to Proximal Policy Optimization (PPO), and it seamlessly integrates with the Hugging Face Transformers library.",
-  "response_time": 2.6553432941436768,
-  "timestamp": "2025-03-13T18:38:04.072898"
-}

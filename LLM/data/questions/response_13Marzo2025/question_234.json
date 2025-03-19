@@ -1,8 +1,0 @@
-{
-  "question_id": 234,
-  "section_index": 47,
-  "question": "What special token is used in encoder-only transformers for sequence classification tasks, and what is its purpose?",
-  "response": "In encoder-only transformer models used for sequence classification, a special `[CLS]` token is prepended to the input sequence. The corresponding output vector of this token, denoted as 𝑧₁, represents the entire sequence and is used for computing the loss function.",
-  "response_time": 1.8295819759368896,
-  "timestamp": "2025-03-13T17:54:26.560065"
-}

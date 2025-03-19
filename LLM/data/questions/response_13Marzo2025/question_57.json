@@ -1,8 +1,0 @@
-{
-  "question_id": 57,
-  "section_index": 12,
-  "question": "What are the two main components within each block of the encoder?",
-  "response": "Each block in the Transformer's encoder consists of multi-head self-attention, followed by Add & Norm and Feed Forward layers. Positional encoding is also incorporated to provide information about the position of each word in the sequence. The encoder processes each word in the context of all other words in the input sequence, including itself. The encoder's design, where each block maintains the same output dimensionality as the input, allows for stacking multiple encoder blocks. The output of one block becomes the input to the next, enabling the network to learn hierarchical representations of the input sequence.",
-  "response_time": 1.833557367324829,
-  "timestamp": "2025-03-13T17:32:12.813576"
-}

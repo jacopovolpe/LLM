@@ -1,8 +1,0 @@
-{
-  "question_id": 646,
-  "section_index": 130,
-  "question": "What are some of the advanced concepts related to TF-IDF mentioned in *Natural Language Processing in Action*, but not covered in this introductory lesson?",
-  "response": "While the \"Natural Language Processing in Action\" book goes into more detail about specific calculations and advanced concepts like smoothing and alternative TF-IDF scoring methods, these details are beyond the scope of an introductory lesson. The book also discusses the limitations of simpler techniques and motivates the use of more advanced semantic analysis techniques in subsequent chapters. The reader is encouraged to consult the references and further readings for a more in-depth understanding. The textbook for the course is H. Lane, C. Howard, H. M. Hapke, *Natural Language Processing in Action: Understanding, analyzing, and generating text with Python*, Manning, 2019, with the second edition expected in fall 2024. An early access version is available online. The second edition will be utilized to cover the latest advancements in NLP and LLMs, including transformers and recent architectures.",
-  "response_time": 2.174030303955078,
-  "timestamp": "2025-03-13T18:46:32.203421"
-}

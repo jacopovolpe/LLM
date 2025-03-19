@@ -1,8 +1,0 @@
-{
-  "question_id": 183,
-  "section_index": 37,
-  "question": "Which Hugging Face library simplifies the process of downloading and processing datasets, and what key feature does it offer for large datasets?",
-  "response": "The `datasets` library within the Hugging Face ecosystem simplifies downloading and managing datasets from the Hub, including large ones. It offers features like streaming, which allows processing data in smaller chunks, thus reducing memory requirements. The Hub, accessible at [https://hf.co/datasets](https://hf.co/datasets), hosts approximately 3000 open-source and free-to-use datasets. Each dataset is accompanied by a detailed card containing documentation, including a summary, dataset structure, and usage examples.",
-  "response_time": 1.7895700931549072,
-  "timestamp": "2025-03-13T17:48:01.971038"
-}

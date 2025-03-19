@@ -1,8 +1,0 @@
-{
-  "question_id": 506,
-  "section_index": 102,
-  "question": "What are the main drawbacks of using one-hot vectors for representing words in a large corpus?",
-  "response": "One-hot encoding, while preserving all information and allowing document reconstruction, has limitations when applied to large corpora. The resulting vectors are very sparse and high-dimensional. This sparsity leads to massive memory requirements, making it impractical for large vocabularies and corpora. Moreover, one-hot encoding fails to capture semantic relationships between words.",
-  "response_time": 1.7963957786560059,
-  "timestamp": "2025-03-13T18:28:27.800509"
-}

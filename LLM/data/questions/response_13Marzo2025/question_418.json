@@ -1,8 +1,0 @@
-{
-  "question_id": 418,
-  "section_index": 84,
-  "question": "What are the benefits of using PEFT compared to traditional fine-tuning methods?",
-  "response": "Parameter-Efficient Fine-Tuning (PEFT) offers several advantages over full fine-tuning. PEFT methods modify only a small fraction of the model's parameters, which significantly reduces the computational and storage burden. This makes fine-tuning large LLMs feasible for resource-constrained environments and applications requiring frequent model updates. Full fine-tuning, on the other hand, updates all the parameters of the pre-trained LLM, which requires substantial computational resources and training time, making it impractical for many users and applications. Also, with small datasets, full fine-tuning can lead to overfitting, where the model performs exceptionally well on the training data but poorly on unseen data. PEFT techniques, such as LoRA, Adapters, and Prefix-Tuning, offer a balance between performance and efficiency.",
-  "response_time": 2.1750762462615967,
-  "timestamp": "2025-03-13T18:17:22.974314"
-}

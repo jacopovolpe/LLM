@@ -1,8 +1,0 @@
-{
-  "question_id": 132,
-  "section_index": 27,
-  "question": "How does the decoder utilize the encoder's output during sequence generation?",
-  "response": "The decoder in a sequence-to-sequence model with an attention mechanism generates the output sequence one element at a time, considering the encoder's output and the previously generated words. The decoder block mirrors the encoder block but includes a second multi-head attention mechanism called encoder-decoder attention. This allows the decoder to focus on relevant parts of the input sequence, using queries from the decoder and keys and values from the encoder's output, when generating each word. The final layer of the decoder is a linear layer followed by a softmax function, projecting the output to the vocabulary size and producing a probability distribution over possible words for the next position.",
-  "response_time": 1.9652183055877686,
-  "timestamp": "2025-03-13T17:41:28.235814"
-}

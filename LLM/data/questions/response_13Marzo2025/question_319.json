@@ -1,8 +1,0 @@
-{
-  "question_id": 319,
-  "section_index": 64,
-  "question": "What ethical concerns are associated with the use of GPT models, particularly regarding bias in training data?",
-  "response": "GPT models, while powerful, have limitations including ethical and bias concerns. Because GPT models are trained on internet data, they can inherit and amplify biases present in the training data, potentially leading to harmful or discriminatory outputs.",
-  "response_time": 1.75844407081604,
-  "timestamp": "2025-03-13T18:05:03.049986"
-}

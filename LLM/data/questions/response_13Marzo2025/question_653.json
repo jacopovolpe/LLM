@@ -1,8 +1,0 @@
-{
-  "question_id": 653,
-  "section_index": 131,
-  "question": "What specific steps are involved in building a sentiment classifier using the IMDB movie review dataset?",
-  "response": "To build a sentiment analysis classifier using the IMDB dataset, follow these steps:\n\n1.  **Data Preparation:** Download and preprocess the IMDB dataset, splitting it into training (80%) and testing (20%) sets. The IMDB dataset contains 50,000 movie reviews labeled as positive or negative and can be downloaded from Kaggle: [https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews](https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews).\n2.  **Label Encoding:** One-hot encode the sentiment labels (positive/negative) using `OneHotEncoder`.\n3.  **TF-IDF Vectorization:** Create TF-IDF vectors from the movie reviews, considering words appearing in at least 5 documents to reduce dimensionality and computational cost.\n4.  **Model Training:** Train a classifier (e.g., an MLP or another suitable algorithm) using the vectorized reviews and encoded labels.\n5.  **Evaluation:** Evaluate the classifier's performance on the test set using relevant metrics and visualize the results with a confusion matrix, plotted using a Seaborn heatmap. You can install Seaborn with `pip install seaborn`. This helps visualize the model's performance in classifying positive and negative reviews.",
-  "response_time": 2.7617299556732178,
-  "timestamp": "2025-03-13T18:47:24.127141"
-}

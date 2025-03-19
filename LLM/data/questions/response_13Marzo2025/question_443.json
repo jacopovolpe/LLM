@@ -1,8 +1,0 @@
-{
-  "question_id": 443,
-  "section_index": 89,
-  "question": "What is the primary advantage of Prefix Tuning in terms of parameter usage compared to fine-tuning all model parameters?",
-  "response": "Fine-tuning tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. There are different types of fine-tuning, including full fine-tuning, parameter-efficient fine-tuning (PEFT), instruction fine-tuning, and reinforcement learning from human feedback (RLHF). PEFT methods reduce the computational and storage burden by modifying only a small fraction of the model's parameters. PEFT techniques include Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning.\n\nPrefix Tuning optimizes a small set of continuous prefix vectors that are prepended to the input sequence. These prefixes guide the model's attention mechanism, allowing it to adapt to different tasks without modifying the underlying model weights. This approach is highly parameter-efficient, as only the prefix vectors are trained. The length of the prefix sequence controls the trade-off between task-specific expressiveness and parameter efficiency.",
-  "response_time": 2.753913640975952,
-  "timestamp": "2025-03-13T18:20:33.346372"
-}

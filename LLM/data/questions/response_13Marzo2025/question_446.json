@@ -1,8 +1,0 @@
-{
-  "question_id": 446,
-  "section_index": 90,
-  "question": "What are the three components of a training dataset used in instruction fine-tuning?",
-  "response": "Instruction fine-tuning enhances the ability of LLMs to understand and respond to user instructions by training them on a dataset of (instruction, input, output) triples. The training dataset consists of examples comprising an instruction, which is a human-readable prompt specifying the desired task, optional context providing relevant background information or data, and the desired output, which is the response to the given instruction and context.",
-  "response_time": 1.5623273849487305,
-  "timestamp": "2025-03-13T18:20:56.624059"
-}

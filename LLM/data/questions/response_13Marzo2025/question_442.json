@@ -1,8 +1,0 @@
-{
-  "question_id": 442,
-  "section_index": 89,
-  "question": "How does Prefix Tuning influence the model's attention mechanism?",
-  "response": "Prefix Tuning involves adding a sequence of trainable prefix vectors to the input sequence. These prefixes influence the model's attention mechanism, guiding its output generation without modifying the underlying model weights. This approach is parameter-efficient, as only the prefix vectors are trained. The length of the prefix sequence controls the trade-off between task-specific expressiveness and parameter efficiency.",
-  "response_time": 1.6181204319000244,
-  "timestamp": "2025-03-13T18:20:23.465826"
-}

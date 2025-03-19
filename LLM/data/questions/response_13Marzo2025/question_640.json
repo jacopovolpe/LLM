@@ -1,8 +1,0 @@
-{
-  "question_id": 640,
-  "section_index": 128,
-  "question": "What are some alternatives to TF-IDF for weighting terms?",
-  "response": "TF-IDF is a valuable tool, but there are alternatives for weighting terms that might be more suitable for specific applications. Some examples include BM25, probabilistic models, and word embeddings.",
-  "response_time": 1.5283660888671875,
-  "timestamp": "2025-03-13T18:45:42.518349"
-}

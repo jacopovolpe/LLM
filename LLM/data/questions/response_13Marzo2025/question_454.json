@@ -1,8 +1,0 @@
-{
-  "question_id": 454,
-  "section_index": 91,
-  "question": "What specific aspects of prompt engineering does the document claim to cover?",
-  "response": "This document discusses several prompt engineering topics, including an introduction to prompt engineering, prompt engineering techniques, and prompt testing. The introduction covers the goals of prompt engineering, such as enhancing understanding of LLM capabilities and limitations, improving LLM performance, and enabling new capabilities like augmenting LLMs with domain knowledge. The elements of a prompt are also discussed, including instruction, context, input data, and output indicator. The document also covers system prompts, which establish the initial context and desired behavior for the LLM. Furthermore, in-context learning, a powerful capability of LLMs where they learn to perform a task by interpreting and leveraging information provided directly within the prompt, is discussed. Finally, techniques for adding guardrails, best practices, and frameworks for implementing guardrails are covered.",
-  "response_time": 2.2388763427734375,
-  "timestamp": "2025-03-13T18:21:53.088064"
-}

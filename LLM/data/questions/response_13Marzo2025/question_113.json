@@ -1,8 +1,0 @@
-{
-  "question_id": 113,
-  "section_index": 23,
-  "question": "How many decoder blocks were used in the original Transformer architecture?",
-  "response": "The original Transformer architecture used 6 decoder blocks.",
-  "response_time": 1.2238681316375732,
-  "timestamp": "2025-03-13T17:39:08.516191"
-}

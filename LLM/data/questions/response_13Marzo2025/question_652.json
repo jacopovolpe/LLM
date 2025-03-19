@@ -1,8 +1,0 @@
-{
-  "question_id": 652,
-  "section_index": 131,
-  "question": "How is the Reuters news dataset used to demonstrate topic labeling as a text classification task?",
-  "response": "The Reuters 21578 dataset is a real-world example used for multi-class and multi-label text classification, containing news articles classified into 90 distinct categories. The characteristics of this dataset include it being multi-class, meaning it has a wide range of categories representing different news topics, and multi-label, meaning articles can belong to multiple categories. The dataset also has imbalanced classes, which means there is an uneven distribution of documents across categories, and variable document length, meaning the number of words per document varies.",
-  "response_time": 1.838500738143921,
-  "timestamp": "2025-03-13T18:47:18.008399"
-}

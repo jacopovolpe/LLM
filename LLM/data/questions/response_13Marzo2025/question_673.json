@@ -1,8 +1,0 @@
-{
-  "question_id": 673,
-  "section_index": 135,
-  "question": "What is the purpose of a confidence score in the prediction phase of text classification?",
-  "response": "In ML-based classification, after a model is trained on a labeled dataset, it can be used to classify new, unseen documents. The model often provides a confidence score, indicating the certainty of the classification, which can be used to assess the reliability and accuracy of the prediction.",
-  "response_time": 1.9029510021209717,
-  "timestamp": "2025-03-13T18:49:42.341765"
-}

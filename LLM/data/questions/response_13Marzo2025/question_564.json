@@ -1,8 +1,0 @@
-{
-  "question_id": 564,
-  "section_index": 113,
-  "question": "What are some practical applications or examples of using RLHF with the TRL library?",
-  "response": "Reinforcement Learning from Human Feedback (RLHF) is a technique used to optimize Large Language Models (LLMs) by incorporating human feedback into the learning process. The goal is to align model outputs with human values and preferences. The RLHF workflow typically involves supervised fine-tuning (SFT), reward model training, and reinforcement learning fine-tuning.\n\nThe Transformers TRL library is designed for training Transformer language models using reinforcement learning. It provides tools for supervised fine-tuning (SFT), reward model training (RM), and Proximal Policy Optimization (PPO).\n\nTo try it yourself, explore the TRL library on Hugging Face, paying close attention to the PPOTrainer and RewardTrainer. Study the sentiment analysis tuning and detoxifying a Large Language Model with PPO examples.",
-  "response_time": 2.3753890991210938,
-  "timestamp": "2025-03-13T18:35:50.689000"
-}

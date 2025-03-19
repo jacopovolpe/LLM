@@ -1,8 +1,0 @@
-{
-  "question_id": 628,
-  "section_index": 126,
-  "question": "Why can relying solely on raw word counts for Term Frequency be misleading, and how does the illustrative example of \"dog\" in Document A and Document B demonstrate this limitation?",
-  "response": "Term Frequency (TF) quantifies the importance of a word within a document based on its frequency of occurrence, assuming that more frequent words are more central to the document's topic. However, relying solely on raw word counts can be misleading because a word appearing many times in a long document might not be as significant as the same word appearing fewer times in a short document.\n\nFor example, consider two documents: Document A, a 30-word email mentioning \"dog\" 3 times, and Document B, the novel *War & Peace* (approximately 580,000 words) mentioning \"dog\" 100 times. While \"dog\" appears more frequently in Document B, its relative importance is higher in Document A.",
-  "response_time": 2.1909046173095703,
-  "timestamp": "2025-03-13T18:44:17.412045"
-}

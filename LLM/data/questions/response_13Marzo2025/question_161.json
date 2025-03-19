@@ -1,8 +1,0 @@
-{
-  "question_id": 161,
-  "section_index": 33,
-  "question": "What are the primary sources of text data used for training Large Language Models (LLMs)?",
-  "response": "LLMs are trained using enormous text corpora sourced from diverse sources, including books from BookCorpus and Project Gutenberg, the broad web archive CommonCrawl, Wikipedia, and other sources such as social media platforms like Reddit, code repositories like GitHub, and news articles.",
-  "response_time": 1.4704546928405762,
-  "timestamp": "2025-03-13T17:45:15.410836"
-}

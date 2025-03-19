@@ -1,8 +1,0 @@
-{
-  "question_id": 73,
-  "section_index": 15,
-  "question": "What are some of the applications of NLP?",
-  "response": "NLP has a wide range of practical applications across various domains. In healthcare, it's used for analyzing patient records, aiding in diagnosis, and supporting treatment planning. Within finance, NLP helps in assessing market sentiment, managing risk, and detecting fraudulent activities. E-commerce and retail benefit from NLP through personalized recommendations, enhanced search functionality, and customer service chatbots. In the legal field, NLP automates document review, conducts legal research, and analyzes contracts. Customer service utilizes NLP for automating responses, guiding users, and analyzing customer feedback. Education benefits from automated grading, learning tool development, and text summarization. The automotive industry uses NLP to power intelligent navigation and voice-controlled systems. Technology leverages NLP for generating, completing, and reviewing code. Finally, media and entertainment use NLP for generating scripts, writing articles, and crafting interactive narratives. Additional applications include search engines, autocompletion, spelling/grammar correction, chatbots, indexing, email filtering, text mining, knowledge extraction, legal inference, news event detection, plagiarism detection, sentiment analysis, behavior prediction, and creative writing.",
-  "response_time": 2.0761139392852783,
-  "timestamp": "2025-03-13T17:34:05.536093"
-}

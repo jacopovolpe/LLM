@@ -1,8 +1,0 @@
-{
-  "question_id": 144,
-  "section_index": 29,
-  "question": "What are the key considerations regarding datasets and data pre-processing for training LLMs?",
-  "response": "When training Large Language Models (LLMs), several key considerations must be taken into account regarding datasets and data pre-processing. These include quality filtering to remove low-quality, noisy, or irrelevant text, deduplication to avoid overfitting and ensure balanced representation, privacy scrubbing to remove personally identifiable information (PII) and other sensitive data, and filtering toxic and biased text to promote fairness and responsible AI. Furthermore, training LLMs requires enormous text corpora sourced from diverse sources such as books from BookCorpus and Project Gutenberg, the CommonCrawl web archive, Wikipedia, social media platforms like Reddit, code repositories like GitHub, and news articles.",
-  "response_time": 2.1179990768432617,
-  "timestamp": "2025-03-13T17:43:09.691098"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 118,
-  "section_index": 24,
-  "question": "How does the masking mechanism prevent the decoder from \"peeking\" into the future?",
-  "response": "The decoder uses \"masked\" self-attention to prevent attending to future positions in the output sequence during training. This is achieved by applying a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, which forces the softmax function to assign zero probability to these future positions. This ensures predictions are made only based on information available up to the current time step.",
-  "response_time": 1.7850496768951416,
-  "timestamp": "2025-03-13T17:39:47.194269"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 545,
-  "section_index": 109,
-  "question": "Outline the process of retrieval and generation during the runtime phase of a RAG application.",
-  "response": "During runtime in a Retrieval-Augmented Generation (RAG) application, the process involves two key steps: retrieval and generation. First, based on the user's query, the system retrieves the most relevant data chunks from the Vector Store, using similarity search based on embeddings. Then, the retrieved data is incorporated into a prompt along with the user's query, augmenting the prompt. Finally, this augmented prompt is fed to the LLM, enabling it to generate a response grounded in the retrieved context.",
-  "response_time": 1.9523508548736572,
-  "timestamp": "2025-03-13T18:33:23.513887"
-}

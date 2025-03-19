@@ -1,8 +1,0 @@
-{
-  "question_id": 66,
-  "section_index": 14,
-  "question": "What is the core innovation of the Transformer model, and how does it differ from the approach used by RNNs?",
-  "response": "The core innovation of the Transformer model lies in its use of self-attention, which allows the model to consider the relationships between all words in a sequence simultaneously. This is unlike RNNs, which process sequences sequentially. The Transformer architecture addresses the shortcomings of RNNs by enabling parallel processing of sequence elements, significantly speeding up training and mitigating the vanishing gradient problem. The attention mechanism within Transformers addresses the limitations of RNNs by handling long-range dependencies, enabling parallel training, and calculating dynamic attention weights.",
-  "response_time": 1.549290418624878,
-  "timestamp": "2025-03-13T17:33:19.449040"
-}

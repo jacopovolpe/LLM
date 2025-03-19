@@ -1,8 +1,0 @@
-{
-  "question_id": 282,
-  "section_index": 57,
-  "question": "How do decoder-only transformers handle tasks like summarization and question answering, which require conditional generation based on input prompts?",
-  "response": "Decoder-only transformers are well-suited for autoregressive tasks like text generation. In these models, text generation is achieved token by token, with each new token predicted based on the preceding tokens in the sequence. For tasks such as summarization and question answering, the input prompt and the generated text are treated as a single continuous sequence. This allows the model to implicitly encode the prompt's meaning while simultaneously decoding it into generated text, eliminating the need for a separate encoder block. The self-attention mechanism within decoder layers is crucial for context building, and a causal (unidirectional or forward) mask is applied to ensure that each token attends only to previous tokens, mimicking the natural flow of language generation.",
-  "response_time": 2.212233066558838,
-  "timestamp": "2025-03-13T18:00:20.003846"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 80,
-  "section_index": 16,
-  "question": "How does the field of NLP differ from the field of Linguistics, despite both dealing with language?",
-  "response": "While both Natural Language Processing and Linguistics deal with language, their primary focus differs. Linguistics studies the nature of language, exploring its structure, meaning, and usage, and computational linguistics uses computational methods to analyze linguistic phenomena. NLP, on the other hand, focuses on developing computational methods to process and utilize human language, applying linguistic insights to build practical applications like machine translation and text summarization.",
-  "response_time": 1.782790184020996,
-  "timestamp": "2025-03-13T17:35:02.041107"
-}

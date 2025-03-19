@@ -1,8 +1,0 @@
-{
-  "question_id": 490,
-  "section_index": 98,
-  "question": "What is the purpose of using a system prompt like \"You are a helpful and knowledgeable assistant who answers questions accurately and concisely\"?",
-  "response": "System prompts are important because they provide instructions to the AI model before any user interactions. They establish the initial context and desired behavior for the LLM, shaping its subsequent responses. In essence, system prompts guide the model on how to respond and what it should focus on, potentially specifying the desired level of detail, formality, or creativity. For example, a system prompt might instruct the model to be a helpful and knowledgeable assistant who answers questions accurately and concisely or to act as an IT support assistant specializing in troubleshooting software and hardware issues, responding politely and guiding users through step-by-step solutions.",
-  "response_time": 1.9167301654815674,
-  "timestamp": "2025-03-13T18:26:26.063053"
-}

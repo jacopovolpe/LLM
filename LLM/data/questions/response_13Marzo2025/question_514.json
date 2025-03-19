@@ -1,8 +1,0 @@
-{
-  "question_id": 514,
-  "section_index": 103,
-  "question": "Why might dedicated tokenizers be necessary in more complex tokenization scenarios?",
-  "response": "Tokenization involves breaking down text into individual units, and while using whitespace as delimiters might seem simple, it's often inadequate. More sophisticated methods are needed for languages without clear word boundaries and for handling punctuation and numbers correctly. A good tokenizer should be able to separate elements like \"51\" and \".\" in a sentence such as \"Leonardo da Vinci began painting the Mona Lisa at the age of 51.\". Therefore, dedicated tokenizers, employing techniques like regular expressions, are preferred over general-purpose ones for complex natural language processing tasks.",
-  "response_time": 1.9027984142303467,
-  "timestamp": "2025-03-13T18:29:25.082913"
-}

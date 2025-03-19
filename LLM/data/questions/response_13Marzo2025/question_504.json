@@ -1,8 +1,0 @@
-{
-  "question_id": 504,
-  "section_index": 101,
-  "question": "Why is using whitespace as a delimiter for tokenization insufficient, and what challenges does it present?",
-  "response": "Whitespace-based tokenization is inadequate because it doesn't work for languages without clear word boundaries, such as Chinese. Furthermore, handling punctuation and numbers requires more sophisticated methods than simply using whitespace. A good tokenizer should correctly separate \"51\" and \".\" in a sentence like \"Leonardo da Vinci began painting the Mona Lisa at the age of 51\".",
-  "response_time": 1.956726312637329,
-  "timestamp": "2025-03-13T18:28:14.488183"
-}

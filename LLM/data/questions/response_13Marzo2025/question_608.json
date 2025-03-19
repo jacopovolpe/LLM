@@ -1,8 +1,0 @@
-{
-  "question_id": 608,
-  "section_index": 122,
-  "question": "What is rule-based filtering and how does it contribute to LLM safety?",
-  "response": "Rule-based filters mitigate risks and enhance safety in Large Language Models (LLMs) by employing predefined rules that block or modify specific outputs based on keywords, regular expressions, or other criteria. This technique is a simple and efficient method for basic content filtering. For example, rule-based filters can block offensive terms or filter sensitive information using regular expressions. Integrating rule-based filtering with external validation and fine-tuning creates a layered approach to ensuring LLM safety and reliability.",
-  "response_time": 1.7700703144073486,
-  "timestamp": "2025-03-13T18:41:45.047227"
-}

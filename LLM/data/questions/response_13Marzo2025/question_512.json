@@ -1,8 +1,0 @@
-{
-  "question_id": 512,
-  "section_index": 103,
-  "question": "What is the primary benefit of case folding, and what is a potential drawback?",
-  "response": "Case folding reduces vocabulary size by converting all text to lowercase, which improves matching and recall. However, it can conflate words with different meanings, such as \"US\" versus \"us\". Named Entity Recognition (NER) is needed to preserve meaningful capitalization for proper nouns.",
-  "response_time": 1.6452529430389404,
-  "timestamp": "2025-03-13T18:29:08.665920"
-}

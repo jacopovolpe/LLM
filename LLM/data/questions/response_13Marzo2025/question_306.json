@@ -1,8 +1,0 @@
-{
-  "question_id": 306,
-  "section_index": 62,
-  "question": "What is the core objective function used in pre-training GPT models?",
-  "response": "GPT models are pre-trained using a next-token prediction objective, which is also known as autoregressive language modeling. This training strategy involves predicting the next word (or token) in a sequence, effectively learning contextual relationships and linguistic patterns. The prediction is sequential, proceeding from left to right.",
-  "response_time": 1.7077879905700684,
-  "timestamp": "2025-03-13T18:03:27.585746"
-}

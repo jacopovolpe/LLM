@@ -1,8 +1,0 @@
-{
-  "question_id": 658,
-  "section_index": 132,
-  "question": "Name three applications of text classification.",
-  "response": "Text classification has diverse applications, including spam filtering, intent detection for understanding user requests in chatbots and virtual assistants, and language detection. Other applications include content moderation for identifying inappropriate content, product categorization, author attribution for determining the likely author of a text, content recommendation, ad click prediction, job matching, and legal case classification.",
-  "response_time": 1.6473133563995361,
-  "timestamp": "2025-03-13T18:48:03.528104"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 600,
-  "section_index": 120,
-  "question": "Beyond content filtering and domain restriction, suggest another potential type of guardrail implementation and explain its purpose.",
-  "response": "Beyond content filtering and domain restriction, guardrail implementations include ethical and operational guardrails. Ethical guardrails address concerns related to bias, misinformation, and fairness, promoting responsible AI practices. Operational guardrails control outputs to align with specific business rules, user objectives, or application requirements. Techniques for adding guardrails to LLMs include rule-based filters, fine-tuning with custom data, prompt engineering, external validation layers, and real-time monitoring and feedback. Frameworks like Guardrails AI, LangChain, and OpenAI Moderation can simplify the implementation of guardrails.",
-  "response_time": 1.8077976703643799,
-  "timestamp": "2025-03-13T18:40:39.186142"
-}

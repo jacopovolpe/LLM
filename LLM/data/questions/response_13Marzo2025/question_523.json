@@ -1,8 +1,0 @@
-{
-  "question_id": 523,
-  "section_index": 105,
-  "question": "What is the inherent challenge in PoS tagging and why does it arise?",
-  "response": "Part-of-Speech (PoS) tagging, which assigns grammatical labels to tokens, is inherently ambiguous because words can have multiple possible tags depending on the context. Algorithms use dictionaries, statistical models, and contextual information to disambiguate and assign the most likely tags.",
-  "response_time": 1.5322973728179932,
-  "timestamp": "2025-03-13T18:30:36.035684"
-}

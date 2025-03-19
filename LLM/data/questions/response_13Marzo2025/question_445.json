@@ -1,8 +1,0 @@
-{
-  "question_id": 445,
-  "section_index": 89,
-  "question": "If a task requires a high degree of specificity, how might the length of the prefix in Prefix Tuning be adjusted, and what would be the trade-off?",
-  "response": "In Prefix Tuning, the length of the prefix sequence impacts the trade-off between task-specific expressiveness and parameter efficiency. The length of the prefix sequence controls the trade-off between task-specific expressiveness and parameter efficiency.",
-  "response_time": 1.7612614631652832,
-  "timestamp": "2025-03-13T18:20:48.044592"
-}

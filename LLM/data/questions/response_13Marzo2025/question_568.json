@@ -1,8 +1,0 @@
-{
-  "question_id": 568,
-  "section_index": 114,
-  "question": "Explain the role of Proximal Policy Optimization (PPO) in the reinforcement learning fine-tuning stage of RLHF.",
-  "response": "In the reinforcement learning fine-tuning stage of RLHF, Proximal Policy Optimization (PPO) is used to optimize the LLM, guiding it to produce outputs that align with human-defined quality metrics as captured by the reward model. This iterative process refines the LLM by generating responses to prompts, scoring these responses using the trained reward model, and then updating the LLM's parameters to maximize the expected reward. This effectively teaches the LLM to generate higher-quality outputs according to human preferences.",
-  "response_time": 1.9570307731628418,
-  "timestamp": "2025-03-13T18:36:25.428287"
-}

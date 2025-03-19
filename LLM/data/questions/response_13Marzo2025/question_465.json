@@ -1,8 +1,0 @@
-{
-  "question_id": 465,
-  "section_index": 93,
-  "question": "How can prompt engineering techniques like retrieval augmented generation (RAG) enhance the capabilities of LLMs and what benefits do they offer?",
-  "response": "Retrieval Augmented Generation (RAG) enhances Large Language Model (LLM) performance by addressing limitations such as knowledge cutoff, inability to access external information, and handling private data. RAG achieves this by enriching LLMs with access to external and private data sources, broadening their knowledge beyond the training data and enabling them to work with sensitive data securely. RAG applications involve two key stages: indexing (offline) and retrieval and generation (runtime). During indexing, data is loaded from various sources, split into smaller chunks, and stored in a Vector Store as vector embeddings to enable efficient retrieval. At runtime, the system retrieves relevant data chunks from the Vector Store based on the user's query and incorporates this data into a prompt, which is then fed to the LLM to generate a more informed and contextually appropriate response. The advantages of using RAG include grounding responses in specific, relevant information and broadening the LLM's knowledge base.",
-  "response_time": 2.457824945449829,
-  "timestamp": "2025-03-13T18:23:22.171684"
-}

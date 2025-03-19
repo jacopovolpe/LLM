@@ -1,8 +1,0 @@
-{
-  "question_id": 232,
-  "section_index": 47,
-  "question": "In what scenario is only the encoder of a transformer necessary even when dealing with a sequence-to-sequence task?",
-  "response": "An encoder-only transformer architecture is sufficient for sequence-to-sequence tasks when the input and output sequences have the same length. In this scenario, the output vectors are derived directly from the encoder, allowing for direct loss computation. Examples of such tasks include part-of-speech tagging or named entity recognition. The encoder is also sufficient for sequence-to-single value tasks like sequence classification, where the output is a single value. In this case, a special `[CLS]` token is prepended to the input sequence, and its corresponding output vector represents the entire sequence, used for computing the loss function. Sentiment analysis is a typical example of such a task.",
-  "response_time": 1.9779906272888184,
-  "timestamp": "2025-03-13T17:54:10.658254"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 93,
-  "section_index": 19,
-  "question": "What is the purpose of Masked Multi-Head Attention within the Transformer architecture?",
-  "response": "Masked Multi-Head Attention is used during the decoder's training process to ensure it only considers preceding words when generating the *i*-th output word, preventing it from \"peeking\" into the future. This is achieved by masking the attention scores, effectively setting the scores corresponding to future positions to negative infinity, which forces the softmax function to assign zero probability to these future positions.",
-  "response_time": 1.5869600772857666,
-  "timestamp": "2025-03-13T17:36:29.444042"
-}

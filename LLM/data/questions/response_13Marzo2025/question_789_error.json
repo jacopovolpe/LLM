@@ -1,7 +1,0 @@
-{
-  "question_id": 789,
-  "section_index": 158,
-  "question": "Explain the role of backpropagation in training an RNN-based language model.",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:07:25.370160"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 125,
-  "section_index": 25,
-  "question": "Can you explain how the \"focus\" aspect of attention works in the context of encoder-decoder models?",
-  "response": "In encoder-decoder models, the attention mechanism enables the decoder to \"focus\" on specific parts of the input sequence when generating each output token. This is achieved through encoder-decoder attention, where the queries come from the decoder and the keys and values are derived from the encoder's output. This mechanism allows the decoder to attend to the relevant parts of the encoder's output when generating each word in the output sequence, leading to improved performance, especially in tasks like machine translation.",
-  "response_time": 1.8643734455108643,
-  "timestamp": "2025-03-13T17:40:38.658262"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 647,
-  "section_index": 130,
-  "question": "Which specific datasets are used as examples in this lesson on text classification?",
-  "response": "The Reuters 21578 dataset is provided as a real-world example of multi-class and multi-label text classification, containing news articles classified into 90 distinct categories. For training Large Language Models (LLMs), the text mentions several datasets, including BookCorpus, Project Gutenberg, CommonCrawl, and Wikipedia. Other sources include social media platforms like Reddit, code repositories like GitHub, news articles, and various web sources.",
-  "response_time": 1.7974350452423096,
-  "timestamp": "2025-03-13T18:46:37.932704"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 246,
-  "section_index": 50,
-  "question": "What is the purpose of the `[CLS]` token in BERT?",
-  "response": "The `[CLS]` token, which is prepended to every input sequence in BERT, serves as an aggregate representation of the entire sequence. After the input is processed, the final hidden state of BERT corresponding to the `[CLS]` token captures the overall meaning and context of the sequence. This embedding is then used for downstream tasks like classification. For single-sentence classification tasks, such as sentiment analysis, the `[CLS]` embedding is directly fed into a classifier. In sentence-pair tasks, like question answering or paraphrase detection, the `[CLS]` embedding represents the relationship between the two sentences.",
-  "response_time": 1.9236383438110352,
-  "timestamp": "2025-03-13T17:55:53.828267"
-}

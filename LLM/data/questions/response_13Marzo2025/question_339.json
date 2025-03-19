@@ -1,8 +1,0 @@
-{
-  "question_id": 339,
-  "section_index": 68,
-  "question": "Name two common optimizers used for training models like LLaMA.",
-  "response": "LLaMA, like GPT, undergoes pre-training using autoregressive language modeling. This involves training the model to predict the next token in a sequence. The training process minimizes cross-entropy loss, typically using optimizers like SGD or Adam, along with techniques such as gradient clipping, mixed precision training, learning rate schedules, and weight decay.",
-  "response_time": 1.6070568561553955,
-  "timestamp": "2025-03-13T18:07:23.539248"
-}

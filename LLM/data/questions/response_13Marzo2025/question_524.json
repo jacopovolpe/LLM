@@ -1,8 +1,0 @@
-{
-  "question_id": 524,
-  "section_index": 105,
-  "question": "What methods do algorithms employ to overcome the ambiguity in PoS tagging?",
-  "response": "Algorithms address the inherent ambiguity in Part-of-Speech (PoS) tagging by using dictionaries, statistical models, and contextual information to disambiguate and assign the most likely tags. NLTK offers pre-trained PoS tagging models.",
-  "response_time": 1.5849802494049072,
-  "timestamp": "2025-03-13T18:30:43.084833"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 595,
-  "section_index": 119,
-  "question": "How can the effectiveness of different guardrail implementation techniques be evaluated?",
-  "response": "To evaluate the performance of guardrail deployment strategies, it's important to use appropriate metrics. For multi-class and multi-label problems, micro average, macro average, weighted average, and samples average are used. Micro average calculates metrics globally, considering the total true positives, false negatives, and false positives across all classes, making it sensitive to class imbalance. Macro average computes the metric for each class independently and then averages the results, treating all classes equally. Weighted average averages the metric for each class, weighted by the number of true instances for each class, balancing the influence of different class sizes. Samples average calculates metrics at the instance level, averaging the performance across individual samples, which is relevant for multi-label classification.",
-  "response_time": 1.9433104991912842,
-  "timestamp": "2025-03-13T18:39:58.928767"
-}

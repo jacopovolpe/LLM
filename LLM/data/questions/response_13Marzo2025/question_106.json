@@ -1,8 +1,0 @@
-{
-  "question_id": 106,
-  "section_index": 22,
-  "question": "What is the primary function of the Transformer's Encoder?",
-  "response": "The primary function of the Transformer's Encoder component is to transform the input sequence into a contextualized representation. It consists of stacked identical blocks, each containing multi-head self-attention and a feed-forward layer. The encoder processes all input tokens in parallel. Positional encodings are incorporated to provide information about the position of each word in the sequence, as self-attention mechanisms don't inherently account for word order. Each encoder block maintains the same output dimensionality as the input, which allows for stacking multiple encoder blocks, enabling the network to learn hierarchical representations of the input sequence.",
-  "response_time": 1.636970043182373,
-  "timestamp": "2025-03-13T17:38:17.349487"
-}

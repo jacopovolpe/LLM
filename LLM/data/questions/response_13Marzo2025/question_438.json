@@ -1,8 +1,0 @@
-{
-  "question_id": 438,
-  "section_index": 88,
-  "question": "What is the role of the pre-trained model when using adapters?",
-  "response": "After pre-training, LLMs can be adapted to specific downstream tasks through fine-tuning. Fine-tuning adjusts the pre-trained model's weights using a smaller, task-specific dataset and gradient descent. This can involve fine-tuning the entire model, specific layers or utilizing parameter-efficient methods like adapters.",
-  "response_time": 1.8322248458862305,
-  "timestamp": "2025-03-13T18:19:52.919718"
-}

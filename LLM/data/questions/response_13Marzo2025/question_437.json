@@ -1,8 +1,0 @@
-{
-  "question_id": 437,
-  "section_index": 88,
-  "question": "How do adapters achieve a balance between performance and efficiency in model training?",
-  "response": "Adapters are small, pluggable modules integrated within the Transformer architecture. They introduce task-specific parameters while keeping the original model parameters frozen, achieving a balance between performance and efficiency. Adapters are trained to learn task-specific representations, while the pre-trained model provides a robust and general foundation. This modularity also facilitates multi-task learning.",
-  "response_time": 1.937809705734253,
-  "timestamp": "2025-03-13T18:19:45.946476"
-}

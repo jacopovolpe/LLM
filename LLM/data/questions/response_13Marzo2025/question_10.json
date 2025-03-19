@@ -1,8 +1,0 @@
-{
-  "question_id": 10,
-  "section_index": 2,
-  "question": "What specific abilities related to NLP system design and implementation will students develop, including tools and frameworks they will gain experience with?",
-  "response": "Students will develop skills in the design and implementation of NLP systems based on LLMs, integrating existing technologies and tools, including hands-on experience with popular libraries and frameworks like HuggingFace Transformers, along with practical project work to solidify the learned concepts.",
-  "response_time": 1.3868987560272217,
-  "timestamp": "2025-03-13T17:26:18.623989"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 35,
-  "section_index": 6,
-  "question": "How does the fixed size of the context vector in an RNN contribute to its limitations in retaining information from earlier parts of a long sequence?",
-  "response": "Recurrent Neural Networks (RNNs) face limitations in handling long sequences due to the vanishing gradient problem and their difficulty in retaining information from earlier stages. The vanishing gradient problem arises during backpropagation through time (BPTT), where gradients diminish exponentially, making it difficult to learn long-range dependencies. RNNs also struggle to retain information from earlier stages of long sequences, as information is gradually lost, making it difficult to understand context over extended spans of text. This is typically represented by a context vector, which has a fixed size and thus cannot effectively store information from arbitrarily long sequences.",
-  "response_time": 2.1291027069091797,
-  "timestamp": "2025-03-13T17:29:30.052657"
-}

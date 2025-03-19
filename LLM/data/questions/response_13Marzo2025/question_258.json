@@ -1,8 +1,0 @@
-{
-  "question_id": 258,
-  "section_index": 52,
-  "question": "What is the typical loss function used during the fine-tuning process of BERT?",
-  "response": "When fine-tuning BERT for specific downstream tasks, the process involves minimizing the cross-entropy loss between predicted and actual labels for the given task.",
-  "response_time": 1.4191460609436035,
-  "timestamp": "2025-03-13T17:57:25.470994"
-}

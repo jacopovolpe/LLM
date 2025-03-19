@@ -1,8 +1,0 @@
-{
-  "question_id": 390,
-  "section_index": 78,
-  "question": "What is the expected output format when fine-tuning T5 for a question-answering task using the provided example prefix?",
-  "response": "Fine-tuning T5 adapts the pre-trained model for specific downstream tasks while maintaining the text-to-text paradigm, where all inputs and outputs are treated as text strings. Task-specific prefixes guide the model. For question answering, the prefix and format would be: `question: <question> context: <context>` → `<answer>`.",
-  "response_time": 1.7323367595672607,
-  "timestamp": "2025-03-13T18:13:53.410550"
-}

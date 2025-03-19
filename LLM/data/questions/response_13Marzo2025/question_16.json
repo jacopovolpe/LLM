@@ -1,8 +1,0 @@
-{
-  "question_id": 16,
-  "section_index": 4,
-  "question": "What is the title of the textbook mentioned in the text?",
-  "response": "The textbook mentioned is titled *Natural Language Processing in Action: Understanding, analyzing, and generating text with Python* by H. Lane, C. Howard, and H. M. Hapke. It is published by Manning. A second edition is expected in fall 2024, with an early access version available online.",
-  "response_time": 1.4391660690307617,
-  "timestamp": "2025-03-13T17:27:10.620766"
-}

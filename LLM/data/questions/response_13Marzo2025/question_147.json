@@ -1,8 +1,0 @@
-{
-  "question_id": 147,
-  "section_index": 30,
-  "question": "How do encoder-only models like BERT capture contextual information differently than traditional sequential models?",
-  "response": "BERT captures rich contextual information from both the left and right sides of a word, significantly improving language understanding, while sequential models process the input sequence sequentially. This bidirectional understanding makes BERT ideal for tasks like sentence classification, question answering, and named entity recognition. The attention mechanism in BERT allows it to handle long-range dependencies, enable parallel training, and calculate dynamic attention weights, addressing the limitations of Recurrent Neural Networks (RNNs).",
-  "response_time": 1.7678301334381104,
-  "timestamp": "2025-03-13T17:43:31.572440"
-}

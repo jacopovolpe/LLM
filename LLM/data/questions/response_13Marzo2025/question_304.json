@@ -1,8 +1,0 @@
-{
-  "question_id": 304,
-  "section_index": 61,
-  "question": "Approximately how many tokens are used in the vocabulary of GPT-2?",
-  "response": "GPT-2 has a vocabulary size of approximately 50,000 tokens.",
-  "response_time": 1.3232219219207764,
-  "timestamp": "2025-03-13T18:03:11.046068"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 180,
-  "section_index": 36,
-  "question": "How can Gradio be used to build interactive demos showcasing Hugging Face models?",
-  "response": "Gradio simplifies the creation and hosting of interactive demos for machine learning models, providing a user-friendly interface for building demos quickly. You can install Gradio using `conda install gradio`. hf.space offers free hosting for Gradio demos, making it easy to share your work. For more details and examples, you can refer to [https://bit.ly/34wESgd](https://bit.ly/34wESgd).",
-  "response_time": 1.6983964443206787,
-  "timestamp": "2025-03-13T17:47:39.794295"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 683,
-  "section_index": 137,
-  "question": "Explain the process of label encoding and why one-hot encoding is particularly useful for multi-label classification.",
-  "response": "Label encoding converts class labels into a numerical format suitable for machine learning algorithms. One-hot encoding is often used for multi-label classification, creating a binary vector for each class.",
-  "response_time": 1.8216094970703125,
-  "timestamp": "2025-03-13T18:51:00.884108"
-}

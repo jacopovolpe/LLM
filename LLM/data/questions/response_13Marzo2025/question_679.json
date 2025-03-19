@@ -1,8 +1,0 @@
-{
-  "question_id": 679,
-  "section_index": 136,
-  "question": "How many different news categories are present in the Reuters 21578 dataset?",
-  "response": "The Reuters 21578 dataset contains news articles classified into 90 distinct categories.",
-  "response_time": 1.39963698387146,
-  "timestamp": "2025-03-13T18:50:31.683163"
-}

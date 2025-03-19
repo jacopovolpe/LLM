@@ -1,8 +1,0 @@
-{
-  "question_id": 548,
-  "section_index": 110,
-  "question": "Explain the concept of \"Chainable Components\" in LangChain and its significance in building complex applications.",
-  "response": "LangChain is a framework designed to streamline the development of LLM-powered applications. It provides modular components for integrating LLMs into various workflows, connects to diverse resources (LLMs, data sources, and external tools), and supports a wide range of applications like chatbots, document search, RAG, question answering, data processing, and information extraction. LangChain offers a mix of open-source and commercially available components. LangChain's components can be chained together to create complex and sophisticated application logic.",
-  "response_time": 1.8840937614440918,
-  "timestamp": "2025-03-13T18:33:47.096592"
-}

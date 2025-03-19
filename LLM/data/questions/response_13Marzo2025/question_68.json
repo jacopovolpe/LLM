@@ -1,8 +1,0 @@
-{
-  "question_id": 68,
-  "section_index": 14,
-  "question": "Why are positional encodings necessary in Transformer models, and what role do they play in tasks like translation and grammar parsing?",
-  "response": "Positional encodings are necessary because the attention mechanism in Transformers is order-agnostic. They add position-specific information to the input embeddings, utilizing periodic functions like sine and cosine to create unique representations for each position. This ensures the model can differentiate between sequences with the same words in different orders, which is crucial for tasks where word order is essential, such as machine translation and grammar parsing.",
-  "response_time": 1.7707056999206543,
-  "timestamp": "2025-03-13T17:33:30.059667"
-}

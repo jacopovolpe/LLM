@@ -1,8 +1,0 @@
-{
-  "question_id": 556,
-  "section_index": 112,
-  "question": "What is the primary benefit of separating the lesson notes from the extensive excerpts of \"Natural Language Processing in Action, Second Edition\"?",
-  "response": "Crafting effective prompts is crucial for successful LLM interaction, and the following guidelines provide practical advice for writing prompts that elicit desired outputs. It's recommended to start with simple prompts, adding elements gradually while iterating and refining to improve results. Use clear, specific instructions (e.g., \"Write,\" \"Classify,\" \"Summarize\") at the beginning of prompts. Be detailed and descriptive to achieve better outcomes. Consider using examples to guide the model’s output because few-shot learning, where examples are provided within the prompt, can significantly improve the model's performance on specific tasks. It's important to balance detail and length carefully, as excessive information can reduce effectiveness, and experiment to find the ideal format.",
-  "response_time": 2.2491798400878906,
-  "timestamp": "2025-03-13T18:34:49.877151"
-}

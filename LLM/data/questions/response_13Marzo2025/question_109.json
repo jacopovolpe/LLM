@@ -1,8 +1,0 @@
-{
-  "question_id": 109,
-  "section_index": 22,
-  "question": "How does the encoder's architecture enable the learning of hierarchical representations?",
-  "response": "The Transformer's Encoder processes the input sequence to generate a contextualized representation for each word. Because self-attention mechanisms don't inherently account for word order, the encoder incorporates positional encoding, typically by adding sinusoidal functions to the input embeddings. Each encoder block consists of a multi-head self-attention layer followed by Add & Norm and Feed Forward layers. The encoder's design, where each block maintains the same output dimensionality as the input, allows for stacking multiple encoder blocks, enabling the network to learn hierarchical representations of the input sequence.",
-  "response_time": 1.5241940021514893,
-  "timestamp": "2025-03-13T17:38:37.464617"
-}

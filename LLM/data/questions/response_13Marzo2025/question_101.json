@@ -1,8 +1,0 @@
-{
-  "question_id": 101,
-  "section_index": 21,
-  "question": "What is the primary limitation of single-head self-attention that multi-head attention aims to address?",
-  "response": "The limitation of single-head self-attention is addressed by multi-head attention. Multi-head attention employs multiple \"heads,\" each with its own set of learned weight matrices, allowing the model to attend to different aspects of the input sequence simultaneously. Each head performs a scaled dot-product attention operation, and the results from these parallel computations are then concatenated and transformed through another linear layer, combining the various perspectives offered by the different heads into a unified representation. This allows the model to capture a richer understanding of the relationships within the sequence compared to a single-head approach.",
-  "response_time": 2.0740835666656494,
-  "timestamp": "2025-03-13T17:37:35.479402"
-}

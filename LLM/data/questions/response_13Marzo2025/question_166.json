@@ -1,8 +1,0 @@
-{
-  "question_id": 166,
-  "section_index": 34,
-  "question": "What are the two primary methods for adapting pre-trained LLMs to specific downstream tasks?",
-  "response": "After pre-training, Large Language Models (LLMs) can be adapted to specific downstream tasks using two primary techniques: fine-tuning and prompting. Fine-tuning adjusts the pre-trained model's weights using a smaller, task-specific dataset and gradient descent. Prompting, on the other hand, involves crafting specific input instructions to guide the model's output without modifying its parameters.",
-  "response_time": 1.677070140838623,
-  "timestamp": "2025-03-13T17:45:55.582120"
-}

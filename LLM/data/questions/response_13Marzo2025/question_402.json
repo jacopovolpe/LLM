@@ -1,8 +1,0 @@
-{
-  "question_id": 402,
-  "section_index": 81,
-  "question": "How will the chatbot differentiate between questions within the scope of the NLP and LLM course and those outside its purview?",
-  "response": "The chatbot for the NLP and LLM 2024/2025 course is designed to discern questions outside the course's scope using a robust context recognition mechanism. The evaluation of the chatbot's precision includes assessing how accurately it identifies and handles out-of-context questions, such as \"Who is the king of Spain?\".",
-  "response_time": 1.9260399341583252,
-  "timestamp": "2025-03-13T18:15:16.184266"
-}

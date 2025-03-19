@@ -1,8 +1,0 @@
-{
-  "question_id": 470,
-  "section_index": 94,
-  "question": "According to the provided examples, what is the primary difference between a \"bad\" prompt and a \"good\" prompt?",
-  "response": "Effective prompts differ from ineffective ones in several key ways. Firstly, effective prompts use clear and specific instructions, such as \"Write,\" \"Classify,\" or \"Summarize,\" right at the beginning. They are also detailed and descriptive, providing sufficient context and specifying the desired format or length. Secondly, good prompts may include examples to guide the model’s output, a technique known as few-shot learning. Lastly, they strike a balance between detail and length, avoiding excessive information that can reduce effectiveness.\n\nFor example, instead of a bad prompt like \"Summarize this article,\" a good prompt would be \"Generate a 100-word summary of this research article, focusing on the main findings.\" Similarly, instead of \"Write an apology email to a client,\" a better prompt would be \"Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate.\"",
-  "response_time": 2.5281522274017334,
-  "timestamp": "2025-03-13T18:23:55.336526"
-}

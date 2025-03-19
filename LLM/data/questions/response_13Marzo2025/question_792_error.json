@@ -1,7 +1,0 @@
-{
-  "question_id": 792,
-  "section_index": 159,
-  "question": "How are the training samples extracted and used to train the RNN in this example?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:07:50.588414"
-}

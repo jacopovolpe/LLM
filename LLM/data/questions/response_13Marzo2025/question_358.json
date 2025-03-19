@@ -1,8 +1,0 @@
-{
-  "question_id": 358,
-  "section_index": 72,
-  "question": "Beyond using the Hugging Face `Trainer`, what alternative training approaches are suggested for fine-tuning language models, and why might exploring these alternatives be beneficial?",
-  "response": "The document discusses several alternative fine-tuning strategies that address the limitations of full fine-tuning by updating only a subset of the model's parameters. These include Parameter-Efficient Fine-Tuning (PEFT), which encompasses techniques like LoRA, Adapters, and Prefix-Tuning, offering a balance between performance and efficiency. Instruction Fine-Tuning focuses on aligning the LLM with specific instructions or prompts, making it more responsive and adaptable to diverse user queries. Reinforcement Learning from Human Feedback (RLHF) combines supervised learning with reinforcement learning to train LLMs to generate outputs that align with human preferences and values, crucial for developing chatbots and other interactive AI applications. The TRL (Transformer Reinforcement Learning) library is designed specifically for training Transformer language models using reinforcement learning and provides tools for implementing the key stages of RLHF, from supervised fine-tuning (SFT) and reward model training (RM) to Proximal Policy Optimization (PPO).",
-  "response_time": 2.1227023601531982,
-  "timestamp": "2025-03-13T18:09:53.293986"
-}

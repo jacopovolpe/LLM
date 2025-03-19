@@ -1,8 +1,0 @@
-{
-  "question_id": 614,
-  "section_index": 123,
-  "question": "In the provided Guardrails AI code example, what is the role of the `rules.yaml` file?",
-  "response": "The `rules.yaml` file, when used within the Guardrails AI framework, provides functionalities for validating outputs against predefined guidelines, formatting outputs according to specified structures, and filtering out unsafe content.",
-  "response_time": 1.438873291015625,
-  "timestamp": "2025-03-13T18:42:28.672360"
-}

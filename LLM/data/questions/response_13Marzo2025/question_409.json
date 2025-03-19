@@ -1,8 +1,0 @@
-{
-  "question_id": 409,
-  "section_index": 82,
-  "question": "What level of understanding is expected regarding the chosen tools and models?",
-  "response": "For the NLP and LLM 2024/2025 course project, students can use any tools and technologies discussed during the course, including both modern Large Language Model (LLM) based approaches and traditional Natural Language Processing (NLP) techniques. It is important to have a thorough understanding of the chosen tools and models, demonstrating the ability to explain their workings, limitations, and integration within the chatbot's architecture, including familiarity with the codebase and the underlying model's functionalities.",
-  "response_time": 2.1002228260040283,
-  "timestamp": "2025-03-13T18:16:12.642832"
-}

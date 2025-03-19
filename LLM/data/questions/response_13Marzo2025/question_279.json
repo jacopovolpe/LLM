@@ -1,8 +1,0 @@
-{
-  "question_id": 279,
-  "section_index": 56,
-  "question": "What are the limitations of using decoder-only transformers for text generation?",
-  "response": "Decoder-only transformers, while versatile, have limitations. They process tokens sequentially, building context as they progress, which can be a bottleneck compared to models that process the entire sequence in parallel.",
-  "response_time": 1.291128158569336,
-  "timestamp": "2025-03-13T18:00:01.720846"
-}

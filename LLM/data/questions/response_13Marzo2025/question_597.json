@@ -1,8 +1,0 @@
-{
-  "question_id": 597,
-  "section_index": 120,
-  "question": "How do guardrails contribute to building trust and reliability in LLMs?",
-  "response": "Guardrails are essential mechanisms and policies that govern the behavior of LLMs, acting as a safety net to ensure that the model's responses are safe, accurate, relevant, and aligned with desired ethical and operational guidelines. The benefits of guardrails include mitigating risks by preventing the generation of harmful, biased, or inaccurate outputs, enforcing ethical standards by aligning responses with ethical guidelines, meeting operational objectives by maintaining control over LLM outputs, and building trust and reliability by demonstrating responsible AI practices. There are different types of guardrails, including safety guardrails that focus on preventing harmful or offensive content, domain-specific guardrails that restrict responses to defined knowledge areas, ethical guardrails that address concerns related to bias, misinformation, and fairness, and operational guardrails that control outputs to align with specific business rules, user objectives, or application requirements.",
-  "response_time": 2.2263295650482178,
-  "timestamp": "2025-03-13T18:40:15.526401"
-}

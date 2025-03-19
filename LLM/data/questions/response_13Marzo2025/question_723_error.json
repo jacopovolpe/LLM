@@ -1,7 +1,0 @@
-{
-  "question_id": 723,
-  "section_index": 145,
-  "question": "Considering the limitations of TF-IDF, why does it remain a useful tool in applications like information retrieval and text classification?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:56:52.377341"
-}

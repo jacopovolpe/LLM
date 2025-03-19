@@ -1,8 +1,0 @@
-{
-  "question_id": 218,
-  "section_index": 44,
-  "question": "How would you install the Gradio library?",
-  "response": "To install Gradio, you can use the command `conda install gradio`.",
-  "response_time": 1.6585497856140137,
-  "timestamp": "2025-03-13T17:52:20.638622"
-}

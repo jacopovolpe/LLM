@@ -1,8 +1,0 @@
-{
-  "question_id": 427,
-  "section_index": 86,
-  "question": "How does Low-Rank Adaptation (LoRA) achieve efficient fine-tuning with minimal parameter updates?",
-  "response": "Low-Rank Adaptation (LoRA) achieves parameter-efficient fine-tuning by learning a low-rank decomposition of the weight updates, denoted as Δ*W*, instead of directly modifying the pre-trained model's weight matrices *W*. This update is represented as the product of two low-rank matrices, *A* (m×r) and *B* (r×n), where *r* is the rank, significantly smaller than the dimensions *m* and *n* of *W*. During fine-tuning, the effective weight matrix *W'* is computed as the sum of the original weights *W* and the low-rank update Δ*W*, such that *W'* = *W* + Δ*W*. The original weights *W* remain frozen, preserving the general knowledge acquired during pre-training, while the low-rank matrices *A* and *B* encode the task-specific knowledge, requiring significantly fewer parameters than updating the full weight matrix. During inference, the low-rank update can be efficiently applied to the frozen weights, ensuring fast and memory-efficient deployment.",
-  "response_time": 2.400981903076172,
-  "timestamp": "2025-03-13T18:18:34.177924"
-}

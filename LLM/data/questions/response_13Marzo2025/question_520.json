@@ -1,8 +1,0 @@
-{
-  "question_id": 520,
-  "section_index": 104,
-  "question": "Considering the trade-off between accuracy and computational cost, when might stemming be preferred over lemmatization?",
-  "response": "Stemming is a suitable text normalization technique when computational efficiency is more important than high accuracy. While stemming is efficient at reducing words to their root form by removing prefixes and suffixes, it can produce non-words. Lemmatization, on the other hand, is more accurate but computationally slower because it uses dictionaries and morphological analysis to determine a word's canonical form, always resulting in a valid word.",
-  "response_time": 1.7394988536834717,
-  "timestamp": "2025-03-13T18:30:12.146561"
-}

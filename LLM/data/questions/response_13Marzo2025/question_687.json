@@ -1,8 +1,0 @@
-{
-  "question_id": 687,
-  "section_index": 138,
-  "question": "In a scenario with significant class imbalance, why might the micro average be a less suitable metric compared to the weighted average?",
-  "response": "When evaluating classification models on imbalanced datasets, the weighted average is often a better metric than the micro average because it averages the metric for each class, weighted by the number of true instances (support) for each class, balancing the influence of different class sizes. The micro average, on the other hand, calculates metrics globally by considering the total true positives, false negatives, and false positives across all classes, making it sensitive to class imbalance.",
-  "response_time": 1.889087438583374,
-  "timestamp": "2025-03-13T18:51:22.727379"
-}

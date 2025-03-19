@@ -1,8 +1,0 @@
-{
-  "question_id": 244,
-  "section_index": 49,
-  "question": "How are tokens converted into input for the BERT model?",
-  "response": "In BERT, also known as Bidirectional Encoder Representations from Transformers, the input text undergoes tokenization, where it is broken down into individual units or tokens. Each of these tokens is then assigned a unique numerical identifier. The tokens are then represented as dense vectors in a continuous Euclidean space through input embedding, which captures semantic relationships between words, placing similar words closer together. Since the attention mechanism is order-agnostic, positional encodings are added to the input embeddings to provide information about the position of each token in the sequence, enabling the model to understand word order. BERT employs the WordPiece tokenizer, which breaks words into subwords, allowing it to handle out-of-vocabulary words and efficiently represent a wide range of vocabulary with a smaller vocabulary size. Special tokens like `[CLS]` and `[SEP]` are also used, with `[CLS]` at the beginning of each sequence for classification tasks and `[SEP]` to separate sentences or mark the end of a sentence. Each token is converted into a numerical ID corresponding to its position in the BERT vocabulary, serving as the input to the model.",
-  "response_time": 2.3683314323425293,
-  "timestamp": "2025-03-13T17:55:42.476040"
-}

@@ -1,7 +1,0 @@
-{
-  "question_id": 790,
-  "section_index": 158,
-  "question": "How does the temperature hyperparameter influence the text generation process, and what are the effects of high and low temperatures?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:07:34.332032"
-}

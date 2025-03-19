@@ -1,8 +1,0 @@
-{
-  "question_id": 561,
-  "section_index": 113,
-  "question": "What is Reinforcement Learning from Human Feedback (RLHF)?",
-  "response": "Reinforcement Learning from Human Feedback (RLHF) is a technique used to optimize Large Language Models (LLMs) by using human feedback to guide the learning process. It bridges the gap between objective model performance metrics and subjective human evaluations of desirable language generation, aligning model outputs with human values, preferences, and communication norms.\n\nThe typical RLHF workflow involves three stages. First, an initial LLM is fine-tuned on a dataset of prompts and corresponding human-generated responses in a process called Supervised Fine-Tuning (SFT). This instills a basic understanding of desired behavior in the model. Next, a separate reward model is trained to score the quality of LLM-generated outputs. This model learns from human feedback, typically in the form of comparisons or rankings of different outputs for the same prompt. Finally, the initial LLM is further fine-tuned using reinforcement learning algorithms, guided by the reward model. The LLM learns to generate outputs that maximize the reward score, effectively aligning its behavior with human preferences.",
-  "response_time": 2.180405378341675,
-  "timestamp": "2025-03-13T18:35:25.901274"
-}

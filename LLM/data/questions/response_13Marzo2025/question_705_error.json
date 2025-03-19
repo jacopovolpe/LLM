@@ -1,7 +1,0 @@
-{
-  "question_id": 705,
-  "section_index": 141,
-  "question": "What information does the Seaborn heatmap of the confusion matrix provide about the classifier's performance on positive and negative reviews?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:53:53.267747"
-}

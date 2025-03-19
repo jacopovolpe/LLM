@@ -1,7 +1,0 @@
-{
-  "question_id": 704,
-  "section_index": 141,
-  "question": "How does one-hot encoding prepare the sentiment labels for use in the machine learning model?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:53:43.554407"
-}

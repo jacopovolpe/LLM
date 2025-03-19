@@ -1,8 +1,0 @@
-{
-  "question_id": 543,
-  "section_index": 109,
-  "question": "Explain the three main steps involved in the indexing stage of RAG and their significance.",
-  "response": "The indexing stage in Retrieval Augmented Generation (RAG) consists of three main steps: loading, splitting (or chunking), and storing (vectorization). First, data is loaded from various sources like files, websites, and databases using specialized loaders. Second, long documents are divided into smaller chunks for efficient searching and to fit within the LLM's context window. Finally, these chunks are stored in a Vector Store after being converted into vector representations (embeddings) to enable semantic search.",
-  "response_time": 2.098667860031128,
-  "timestamp": "2025-03-13T18:33:11.214978"
-}

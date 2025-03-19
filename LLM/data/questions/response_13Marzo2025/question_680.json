@@ -1,8 +1,0 @@
-{
-  "question_id": 680,
-  "section_index": 136,
-  "question": "Where can further statistical information regarding the Reuters 21578 dataset be found?",
-  "response": "The Reuters 21578 dataset is a real-world example of multi-class and multi-label text classification, containing news articles classified into 90 distinct categories. Articles in this dataset can belong to multiple categories, making it a multi-label dataset. The dataset also exhibits imbalanced classes, meaning that the distribution of documents across categories is uneven, and it contains documents with variable lengths. Additional dataset statistics can be found at https://martin-thoma.com/nlp-reuters/.",
-  "response_time": 1.852804183959961,
-  "timestamp": "2025-03-13T18:50:40.006509"
-}

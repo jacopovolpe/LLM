@@ -1,8 +1,0 @@
-{
-  "question_id": 444,
-  "section_index": 89,
-  "question": "What is the relationship between the length of the prefix sequence and the expressiveness and efficiency of Prefix Tuning?",
-  "response": "In Prefix Tuning, the length of the prefix sequence controls the trade-off between task-specific expressiveness and parameter efficiency.",
-  "response_time": 1.5015244483947754,
-  "timestamp": "2025-03-13T18:20:38.455897"
-}

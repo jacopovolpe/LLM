@@ -1,8 +1,0 @@
-{
-  "question_id": 670,
-  "section_index": 134,
-  "question": "Why is binary classification considered a special case of single-label classification?",
-  "response": "Binary classification is a special case of single-label classification. It involves assigning each item to one of two classes, simplifying the problem to a yes/no decision regarding a single category.",
-  "response_time": 1.6709883213043213,
-  "timestamp": "2025-03-13T18:49:24.863449"
-}

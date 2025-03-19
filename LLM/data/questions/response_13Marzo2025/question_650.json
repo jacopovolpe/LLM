@@ -1,8 +1,0 @@
-{
-  "question_id": 650,
-  "section_index": 130,
-  "question": "Which Python library's documentation is recommended as a further reading resource?",
-  "response": "For further information on the libraries and techniques used in this lesson, you can refer to the Pandas Docs at https://pandas.pydata.org/docs/user_guide/, the Scikit-Learn Docs at https://scikit-learn.org/stable/user_guide.html, and the Seaborn Docs at https://seaborn.pydata.org/api.html. The Gensim documentation is also a helpful resource and can be found at https://radimrehurek.com/gensim/auto_examples/index.html#documentation. For a complete understanding of the topics discussed, referring to \"Natural Language Processing in Action: Understanding, analyzing, and generating text with Python,\" Chapter 6 is recommended.",
-  "response_time": 2.1303420066833496,
-  "timestamp": "2025-03-13T18:47:01.796535"
-}

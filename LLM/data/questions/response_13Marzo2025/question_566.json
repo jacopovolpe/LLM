@@ -1,8 +1,0 @@
-{
-  "question_id": 566,
-  "section_index": 114,
-  "question": "What are the three main stages involved in the typical RLHF workflow, and what is the purpose of each stage?",
-  "response": "Reinforcement Learning from Human Feedback (RLHF) is a technique used to optimize Large Language Models (LLMs) by incorporating human feedback into the learning process. This helps align model outputs with human values, preferences, and communication norms. The RLHF workflow consists of three main stages. First, **Supervised Fine-tuning (SFT)** involves fine-tuning an initial LLM on a dataset of prompts and human-generated responses to instill a basic understanding of desired behavior. Second, **Reward Model Training** involves training a separate reward model to score the quality of LLM-generated outputs based on human feedback, typically in the form of comparisons or rankings. Third, **Reinforcement Learning Fine-tuning** involves further fine-tuning the initial LLM using reinforcement learning algorithms, guided by the reward model, to generate outputs that maximize the reward score and align with human preferences. The purpose of RLHF is to address the limitations of traditional LLM training, which often relies on large text corpora and can lead to factually incorrect, biased, or unsafe outputs. By directly incorporating human judgment, RLHF results in models that are not only proficient in generating text but also better aligned with human expectations regarding safety, ethical considerations, and overall user satisfaction.",
-  "response_time": 2.505415916442871,
-  "timestamp": "2025-03-13T18:36:07.278610"
-}

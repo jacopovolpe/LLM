@@ -1,8 +1,0 @@
-{
-  "question_id": 53,
-  "section_index": 11,
-  "question": "What type of functions are used in positional encodings?",
-  "response": "Positional encodings utilize periodic functions, specifically sine and cosine, to create unique representations for each position.",
-  "response_time": 1.3321998119354248,
-  "timestamp": "2025-03-13T17:31:44.057409"
-}

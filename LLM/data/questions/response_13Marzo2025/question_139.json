@@ -1,8 +1,0 @@
-{
-  "question_id": 139,
-  "section_index": 28,
-  "question": "How does Byte Pair Encoding (BPE) contribute to the efficiency of Transformers in handling large vocabularies?",
-  "response": "Byte Pair Encoding (BPE) improves the efficiency of Transformer models when dealing with large vocabularies by representing words as subword units. This technique balances word-level and character-level representations, breaking down words into smaller, meaningful sub-units (tokens) based on their frequency in the training data. BPE helps reduce the vocabulary size compared to character-level tokenization, making training more efficient. It also handles morphology and new words effectively and provides robust out-of-vocabulary handling by decomposing unknown words into subwords or characters.",
-  "response_time": 1.8582415580749512,
-  "timestamp": "2025-03-13T17:42:27.639388"
-}

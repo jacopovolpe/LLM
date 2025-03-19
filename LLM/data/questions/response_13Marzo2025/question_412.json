@@ -1,8 +1,0 @@
-{
-  "question_id": 412,
-  "section_index": 83,
-  "question": "How is \"Relevance\" different from \"Coherence\" in the context of evaluating chatbot responses?",
-  "response": "In the chatbot evaluation procedure for the NLP and LLM 2024/2025 course project, relevance, fluency, and coherence are key evaluation criteria. Relevance assesses whether the chatbot's answer directly addresses the specific query, focusing on its ability to understand the question's intent and retrieve the correct information. Coherence, on the other hand, examines whether the response exhibits a logical flow and internal consistency, evaluating the overall structure and organization of the answer.",
-  "response_time": 1.7738192081451416,
-  "timestamp": "2025-03-13T18:16:33.041866"
-}

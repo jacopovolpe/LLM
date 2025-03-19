@@ -1,8 +1,0 @@
-{
-  "question_id": 309,
-  "section_index": 62,
-  "question": "What specific techniques are employed during training to improve stability and generalization of the model?",
-  "response": "Fine-tuning is a method used to tailor a pre-trained Large Language Model (LLM) to a specific task or domain by further training it on a dataset relevant to the target application. There are several types of fine-tuning, including full fine-tuning, parameter-efficient fine-tuning (PEFT), and instruction fine-tuning. Full fine-tuning updates all the parameters of the pre-trained LLM, which can lead to high accuracy but also has drawbacks such as high computational cost and overfitting risk, especially with small datasets. Parameter-Efficient Fine-Tuning (PEFT) encompasses techniques like LoRA, Adapters, and Prefix-Tuning, offering a balance between performance and efficiency. Instruction fine-tuning focuses on aligning the LLM with specific instructions or prompts, making it more responsive and adaptable to diverse user queries. Reinforcement Learning from Human Feedback (RLHF) combines supervised learning with reinforcement learning to train LLMs to generate outputs that align with human preferences and values. RLHF allows for continuous improvement by incorporating new human feedback as the model evolves, improves alignment with human intent and promotes ethical responses.",
-  "response_time": 2.380722761154175,
-  "timestamp": "2025-03-13T18:03:52.477747"
-}

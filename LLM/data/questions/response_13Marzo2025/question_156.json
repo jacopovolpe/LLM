@@ -1,8 +1,0 @@
-{
-  "question_id": 156,
-  "section_index": 32,
-  "question": "What are the primary self-supervised learning methods used in pre-training Large Language Models (LLMs)?",
-  "response": "Large language models are pre-trained using self-supervised learning on massive text datasets. This eliminates the need for extensive manual labeling. The primary self-supervised learning techniques include autoencoding models like BERT, which use Masked Language Modeling (MLM) to foster a bidirectional understanding of language by predicting masked words. Autoregressive models, such as GPT, use Causal Language Modeling (CLM) to predict the next word in a sequence, making them well-suited for text generation. Seq2seq models use Span Corruption to reconstruct corrupted sections of text, combining comprehension and generation capabilities. The flexibility to combine different pre-training tasks contributes significantly to the versatility of LLMs.",
-  "response_time": 1.8120052814483643,
-  "timestamp": "2025-03-13T17:44:38.022113"
-}

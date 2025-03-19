@@ -1,8 +1,0 @@
-{
-  "question_id": 103,
-  "section_index": 21,
-  "question": "What is the purpose of using multiple \"heads\" in multi-head attention?",
-  "response": "Multi-head attention offers several advantages over single-head attention mechanisms. By employing multiple \"heads,\" each with its own set of learned weight matrices, the model can attend to different aspects of the input sequence simultaneously. Each head performs a scaled dot-product attention operation, and the results from these parallel computations are then concatenated and transformed through another linear layer. This allows the model to capture a richer understanding of the relationships within the sequence compared to a single-head approach.",
-  "response_time": 1.742767333984375,
-  "timestamp": "2025-03-13T17:37:52.934018"
-}

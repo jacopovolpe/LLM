@@ -1,8 +1,0 @@
-{
-  "question_id": 511,
-  "section_index": 103,
-  "question": "What are some common delimiters besides whitespace that regular expressions can handle during tokenization?",
-  "response": "Besides whitespace, characters like tabs (`\\t`), newlines (`\\n`), returns (`\\r`), and punctuation can also serve as delimiters when using regular expressions for tokenization.",
-  "response_time": 1.6199908256530762,
-  "timestamp": "2025-03-13T18:29:03.179437"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 230,
-  "section_index": 46,
-  "question": "How is Named Entity Recognition performed using BERT?",
-  "response": "BERT, or Bidirectional Encoder Representations from Transformers, leverages the encoder part of the transformer architecture and is particularly effective for Named Entity Recognition (NER) tasks. BERT understands bidirectional context, considering both preceding and succeeding words to grasp the meaning of a word in a sentence. After pre-training, BERT is fine-tuned for NER by adding task-specific layers on top of the encoder output, minimizing the cross-entropy loss between predicted and actual labels. The Hugging Face tutorial provides practical guidance on using BERT for NER, recommending exploration of different BERT versions and fine-tuning lightweight versions when possible.",
-  "response_time": 1.9168343544006348,
-  "timestamp": "2025-03-13T17:53:56.146492"
-}

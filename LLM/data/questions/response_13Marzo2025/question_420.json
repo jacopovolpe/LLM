@@ -1,8 +1,0 @@
-{
-  "question_id": 420,
-  "section_index": 84,
-  "question": "What are some specific examples of when you might choose to use Instruction Fine-Tuning over other methods?",
-  "response": "Instruction fine-tuning is preferred when you want to enhance an LLM's ability to understand and respond to user instructions. This is achieved by training the LLM on a dataset of (instruction, input, output) triples, which improves its ability to generalize to new instructions and generate more accurate and contextually appropriate responses. Instruction fine-tuning is useful in real-world applications because it allows the LLM to interpret user intent and generate appropriate outputs.",
-  "response_time": 1.9799866676330566,
-  "timestamp": "2025-03-13T18:17:41.171087"
-}

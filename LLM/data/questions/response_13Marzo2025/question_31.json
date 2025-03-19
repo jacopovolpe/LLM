@@ -1,8 +1,0 @@
-{
-  "question_id": 31,
-  "section_index": 6,
-  "question": "What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during training?",
-  "response": "The vanishing gradient problem in Recurrent Neural Networks (RNNs) primarily arises during backpropagation through time (BPTT). As gradients are propagated back through the network, they can diminish exponentially, making it difficult to learn long-range dependencies in the data. This is due to the repeated multiplication of small derivative values during BPTT, which effectively prevents the network from adjusting its weights based on earlier parts of the sequence.",
-  "response_time": 1.6432836055755615,
-  "timestamp": "2025-03-13T17:28:57.344777"
-}

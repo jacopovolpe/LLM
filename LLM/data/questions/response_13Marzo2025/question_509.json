@@ -1,8 +1,0 @@
-{
-  "question_id": 509,
-  "section_index": 102,
-  "question": "How does a binary Bag-of-Words representation differ from a standard BoW representation?",
-  "response": "The Bag-of-Words (BoW) model represents text as a vector of word counts, disregarding word order and grammar. There are different variations of this model. The **Standard BoW** sums the one-hot vectors, resulting in a vector representing the count of each word in the vocabulary within the document. On the other hand, **Binary BoW** combines one-hot vectors using the OR operation. The resulting vector indicates the presence (1) or absence (0) of each word in the vocabulary within the document, disregarding its frequency.",
-  "response_time": 1.8357012271881104,
-  "timestamp": "2025-03-13T18:28:48.876361"
-}

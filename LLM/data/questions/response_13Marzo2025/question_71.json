@@ -1,8 +1,0 @@
-{
-  "question_id": 71,
-  "section_index": 15,
-  "question": "What is Natural Language Processing (NLP)?",
-  "response": "Natural Language Processing, or NLP, is a field that resides at the intersection of computer science and linguistics, as noted by Christopher Manning. It encompasses the methods that enable computers to access and process human language, according to Jacob Eisenstein. Behrooz Mansouri states that NLP empowers computers to understand natural language and perform tasks like translation, summarization, and question answering, mimicking human language capabilities. More broadly, NLP is a subfield of AI and computer science that translates natural language into a computationally usable format, enabling computers to learn from and generate text. Experts like John Searle and Ginni Rometty emphasize its central role in artificial intelligence, with Searle calling natural language \"the most important part of Artificial Intelligence\" and Rometty highlighting its role in enabling computers to understand and produce human language. Dan Jurafsky acknowledges that natural language processing is one of the most important fields in artificial intelligence and also one of the most difficult.",
-  "response_time": 2.004598617553711,
-  "timestamp": "2025-03-13T17:33:49.245144"
-}

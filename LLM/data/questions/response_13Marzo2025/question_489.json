@@ -1,8 +1,0 @@
-{
-  "question_id": 489,
-  "section_index": 98,
-  "question": "If you wanted an LLM to provide detailed and creative responses, what kind of instructions would you include in the system prompt?",
-  "response": "System prompts are instructions given to the AI model before any user interaction. They are used to establish the initial context and desired behavior for the LLM, shaping its subsequent responses. System prompts can establish the assistant's behavior, context, and tone, and guide the model on how to respond and what it should focus on. For example, a system prompt could be \"You are a helpful and knowledgeable assistant who answers questions accurately and concisely,\" which promotes helpful and concise responses. Alternatively, \"You are an IT support assistant specializing in troubleshooting software and hardware issues. Respond politely and guide users through step-by-step solutions\" establishes a specific persona and response style for IT support. Another example is \"You are a friendly and engaging AI who responds in a warm and conversational tone, keeping responses lighthearted and approachable,\" which encourages a casual and friendly conversational style.",
-  "response_time": 2.109941005706787,
-  "timestamp": "2025-03-13T18:26:20.638277"
-}

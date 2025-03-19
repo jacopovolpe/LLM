@@ -1,8 +1,0 @@
-{
-  "question_id": 483,
-  "section_index": 97,
-  "question": "Which two sections of the referenced material contain examples related to prompt design for NLP tasks?",
-  "response": "\".\n\nIn-context learning is a powerful capability of LLMs where they learn to perform a task by interpreting and leveraging information provided directly within the prompt, without requiring updates to their internal parameters. A prompt context for in-context learning may specify reference material, input-output pairs, step-by-step instructions, clarifications, and templates.",
-  "response_time": 2.504704236984253,
-  "timestamp": "2025-03-13T18:25:39.719390"
-}

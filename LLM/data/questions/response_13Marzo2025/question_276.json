@@ -1,8 +1,0 @@
-{
-  "question_id": 276,
-  "section_index": 56,
-  "question": "What are the key differences between the architectures of GPT and LLAMA, both being decoder-only transformers?",
-  "response": "Both GPT and LLaMA are decoder-only transformer models, but there are key architectural differences. GPT-1 has 117 million parameters, distributed across 12 decoder blocks with 768-dimensional embeddings and 12 attention heads per block. GPT-2's XL version has 1.5 billion parameters, comprising 48 decoder blocks with 1600-dimensional embeddings and 25 attention heads per block. GPT-3 has 175 billion parameters organized into 96 decoder blocks with 12,288-dimensional embeddings and 96 attention heads per block. Although detailed architectural information for GPT-4 is not publicly available, it introduced multi-modal capabilities, processing both image and text inputs, and showcased enhanced reasoning and broader general knowledge.\n\nThe LLaMA family includes LLaMA-7B, LLaMA-13B, LLaMA-30B, and LLaMA-65B. LLaMA-7B uses 32 decoder blocks with 32 attention heads and 4096-dimensional embeddings. LLaMA-13B employs 40 decoder blocks with 40 attention heads and 5120-dimensional embeddings. LLaMA-30B incorporates 60 decoder blocks with 40 attention heads and 6656-dimensional embeddings. LLaMA-65B utilizes 80 decoder blocks with 64 attention heads and 8192-dimensional embeddings.\n\nA further difference lies in positional encodings: LLaMA employs relative positional encodings, while some other transformer models, including earlier GPT versions, use absolute positional encodings.",
-  "response_time": 3.0924630165100098,
-  "timestamp": "2025-03-13T17:59:39.367479"
-}

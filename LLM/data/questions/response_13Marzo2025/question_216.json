@@ -1,8 +1,0 @@
-{
-  "question_id": 216,
-  "section_index": 44,
-  "question": "What is the primary purpose of using Gradio?",
-  "response": "Gradio is a library that simplifies the creation and hosting of interactive demos for machine learning models. It provides a user-friendly interface for building demos quickly and offers free hosting for Gradio demos on hf.space, making it easy to share your work.",
-  "response_time": 1.3206982612609863,
-  "timestamp": "2025-03-13T17:52:04.955862"
-}

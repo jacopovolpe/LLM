@@ -1,8 +1,0 @@
-{
-  "question_id": 643,
-  "section_index": 129,
-  "question": "What metric is used to determine the relevance of a document to a query in this context?",
-  "response": "In information retrieval, a relevance metric is used for document retrieval, and cosine similarity is a common and effective choice. Cosine similarity measures the cosine of the angle between two vectors, focusing on direction and ignoring magnitude. It ranges from -1 to 1, where 1 indicates perfect similarity, 0 indicates no similarity, and -1 indicates perfect dissimilarity.",
-  "response_time": 1.579253911972046,
-  "timestamp": "2025-03-13T18:46:06.687173"
-}

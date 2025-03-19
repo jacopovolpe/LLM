@@ -1,8 +1,0 @@
-{
-  "question_id": 487,
-  "section_index": 98,
-  "question": "How can system prompts influence the behavior and responses of an LLM?",
-  "response": "System prompts significantly impact the behavior, outputs, and response generation of large language models (LLMs). They are instructions provided to the AI model before any user interactions, establishing the initial context and desired behavior. System prompts can establish the assistant's behavior, context, tone, and any special instructions, which sets the overall persona and style of the LLM's responses. They also guide the model on how to respond and what it should focus on, including specifying the desired level of detail, formality, or creativity. For example, a system prompt like \"You are a helpful and knowledgeable assistant who answers questions accurately and concisely\" promotes helpful and concise responses.",
-  "response_time": 2.052031993865967,
-  "timestamp": "2025-03-13T18:26:05.534184"
-}

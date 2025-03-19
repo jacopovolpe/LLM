@@ -1,8 +1,0 @@
-{
-  "question_id": 78,
-  "section_index": 16,
-  "question": "How do Natural Language Understanding (NLU) and Natural Language Generation (NLG) contribute to the overall functionality of NLP?",
-  "response": "Natural Language Processing (NLP) encompasses methods that enable computers to access and process human language. Within NLP, Natural Language Understanding (NLU) transforms human language into a machine-readable format by extracting meaning, analyzing context, and recognizing intent. This transformation often involves creating numerical representations called embeddings, used by applications like search engines, email clients, and social media platforms. Natural Language Generation (NLG), another key aspect of NLP, focuses on generating human-like text. It involves constructing coherent and contextually relevant text from numerical representations for tasks such as machine translation, text summarization, and dialogue processing. Therefore, NLU enables computers to understand, and NLG allows them to generate human-like text, both of which are essential for NLP to mimic human language capabilities.",
-  "response_time": 2.02824330329895,
-  "timestamp": "2025-03-13T17:34:47.768030"
-}

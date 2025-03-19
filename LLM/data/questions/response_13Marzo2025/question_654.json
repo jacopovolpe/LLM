@@ -1,8 +1,0 @@
-{
-  "question_id": 654,
-  "section_index": 131,
-  "question": "What are some potential real-world applications of text classification beyond topic labeling and sentiment analysis?",
-  "response": "Text classification has many real-world applications beyond topic labeling and sentiment analysis. Some of these applications include spam filtering, intent detection for chatbots, language detection, content moderation for identifying inappropriate content, product categorization, author attribution, content recommendation, ad click prediction, job matching, and legal case classification. Text classification is also used in healthcare for analyzing patient records and aiding in diagnosis, in finance for fraud detection, and in document routing.",
-  "response_time": 1.9109361171722412,
-  "timestamp": "2025-03-13T18:47:30.907368"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 475,
-  "section_index": 95,
-  "question": "What is the instruction in Example 2?",
-  "response": "In Example 2, the instruction is: \"Answer the question based on the context below. Keep the answer short and concise. Respond \"Unsure about answer\" if not sure.\"",
-  "response_time": 1.9643900394439697,
-  "timestamp": "2025-03-13T18:24:33.814244"
-}

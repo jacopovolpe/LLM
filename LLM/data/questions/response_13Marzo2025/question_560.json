@@ -1,8 +1,0 @@
-{
-  "question_id": 560,
-  "section_index": 112,
-  "question": "What is the suggested resource for obtaining a more in-depth understanding of the topics covered in the lesson notes?",
-  "response": "To deepen your understanding of the topics covered in these lessons, consider exploring these resources: The Pandas Docs at https://pandas.pydata.org/docs/user_guide/, the Scikit-Learn Docs at https://scikit-learn.org/stable/user_guide.html, and the Seaborn Docs at https://seaborn.pydata.org/api.html. You can also refer to \"Natural Language Processing in Action: Understanding, analyzing, and generating text with Python,\" Chapter 6, and the Gensim documentation available at https://radimrehurek.com/gensim/auto_examples/index.html#documentation.",
-  "response_time": 2.1363511085510254,
-  "timestamp": "2025-03-13T18:35:19.377192"
-}

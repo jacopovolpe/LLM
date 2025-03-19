@@ -1,8 +1,0 @@
-{
-  "question_id": 248,
-  "section_index": 50,
-  "question": "In sentence-pair tasks, what does the `[CLS]` embedding represent?",
-  "response": "For sentence-pair tasks, such as question answering or paraphrase detection, BERT's `[CLS]` token embedding represents the relationship between the two sentences.",
-  "response_time": 1.4527113437652588,
-  "timestamp": "2025-03-13T17:56:10.045942"
-}

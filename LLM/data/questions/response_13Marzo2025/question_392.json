@@ -1,8 +1,0 @@
-{
-  "question_id": 392,
-  "section_index": 79,
-  "question": "Which T5 variant is specifically designed for instruction-following and what is its main limitation?",
-  "response": "Flan-T5 is a T5 variant designed for instruction-following. Its primary limitation is that it requires carefully crafted task-specific prompts.",
-  "response_time": 1.8162753582000732,
-  "timestamp": "2025-03-13T18:14:08.078612"
-}

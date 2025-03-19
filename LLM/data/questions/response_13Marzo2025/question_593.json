@@ -1,8 +1,0 @@
-{
-  "question_id": 593,
-  "section_index": 119,
-  "question": "What are some examples of frameworks that can be used to implement guardrails for LLMs?",
-  "response": "Frameworks like Guardrails AI, LangChain, and OpenAI Moderation can simplify the implementation of guardrails. Guardrails AI offers tools for validation, formatting, and filtering LLM outputs. LangChain allows chaining prompts and integrating validation and filtering steps into the LLM workflow, and it is integrable with Guardrails AI. OpenAI Moderation is a pre-built API for detecting unsafe content, readily integrable with OpenAI LLMs.",
-  "response_time": 1.5972537994384766,
-  "timestamp": "2025-03-13T18:39:40.292087"
-}

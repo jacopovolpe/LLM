@@ -1,8 +1,0 @@
-{
-  "question_id": 585,
-  "section_index": 117,
-  "question": "Besides PPO, SFT, and RM, are any other functionalities or tools offered by TRL mentioned in the text?",
-  "response": "The Transformer Reinforcement Learning (TRL) library provides a comprehensive suite of tools for implementing the key stages of RLHF, from supervised fine-tuning (SFT) and reward model training (RM) to Proximal Policy Optimization (PPO). TRL seamlessly integrates with the Hugging Face Transformers library, simplifying the process of applying RLHF to existing Transformer models.",
-  "response_time": 2.057640790939331,
-  "timestamp": "2025-03-13T18:38:33.839476"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 674,
-  "section_index": 135,
-  "question": "How does TF-IDF contribute to text representation in machine learning?",
-  "response": "TF-IDF, or Term Frequency-Inverse Document Frequency, is a technique that enhances text representation by considering a term's prevalence across an entire corpus. It improves upon Term Frequency (TF) by reducing the weight of common words and increasing the weight of rare words, which are more likely to be informative. The Inverse Document Frequency (IDF) measures how unique a word is across the corpus. TF-IDF is calculated as the product of TF and IDF, and a high TF-IDF score indicates a term that is frequent within a document but rare across the corpus, suggesting high relevance to that document.",
-  "response_time": 2.1085007190704346,
-  "timestamp": "2025-03-13T18:49:49.296328"
-}

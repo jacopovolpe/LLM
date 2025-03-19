@@ -1,7 +1,0 @@
-{
-  "question_id": 722,
-  "section_index": 145,
-  "question": "While stemming and lemmatization can improve TF-IDF by grouping similar words, what are some drawbacks of these normalization techniques?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:56:41.982246"
-}

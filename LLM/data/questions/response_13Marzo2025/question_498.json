@@ -1,8 +1,0 @@
-{
-  "question_id": 498,
-  "section_index": 100,
-  "question": "What is the purpose of token normalization, and what techniques are commonly used for this process?",
-  "response": "Token normalization involves cleaning and standardizing tokens to improve the effectiveness of NLP tasks. Common techniques include using regular expressions to handle delimiters beyond whitespace, case folding to reduce vocabulary size by converting text to lowercase (though this can conflate words with different meanings), and stop word removal to eliminate frequent words that carry little semantic weight (but can sometimes discard important contextual information). Combining these techniques enhances basic text preprocessing.",
-  "response_time": 1.720107078552246,
-  "timestamp": "2025-03-13T18:27:30.408413"
-}

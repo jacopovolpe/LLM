@@ -1,7 +1,0 @@
-{
-  "question_id": 773,
-  "section_index": 155,
-  "question": "Describe the two inputs an RNN receives at each time step and how the initial hidden state is handled when processing the very first input.",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:04:53.999746"
-}

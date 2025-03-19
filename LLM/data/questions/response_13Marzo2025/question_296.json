@@ -1,8 +1,0 @@
-{
-  "question_id": 296,
-  "section_index": 60,
-  "question": "What is the core architecture that underlies the GPT family of models?",
-  "response": "GPT models are based on the decoder-only transformer architecture. Unlike the original transformer architecture, which utilizes both encoder and decoder components, GPT models only use the decoder part. This makes them well-suited for autoregressive tasks like text generation, where text is generated token by token, with each new token predicted based on the preceding tokens. The self-attention mechanism within the decoder layers is crucial for context building, using a causal mask to ensure each token attends only to previous tokens.",
-  "response_time": 1.6167571544647217,
-  "timestamp": "2025-03-13T18:02:06.859307"
-}

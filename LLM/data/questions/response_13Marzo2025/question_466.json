@@ -1,8 +1,0 @@
-{
-  "question_id": 466,
-  "section_index": 94,
-  "question": "What are the five key guidelines for writing effective prompts for LLMs?",
-  "response": "Crafting effective prompts for Large Language Models (LLMs) involves several key guidelines. It's best to start with simple prompts and gradually add elements, iterating and refining to improve results. Use clear, specific instructions at the beginning of prompts, such as \"Write,\" \"Classify,\" or \"Summarize,\" to explicitly state the desired task. Providing detailed and descriptive instructions leads to better outcomes, and using examples can guide the model's output through few-shot learning. Finally, it is important to balance detail and length carefully, experimenting to find the ideal format.",
-  "response_time": 1.738691806793213,
-  "timestamp": "2025-03-13T18:23:27.312745"
-}

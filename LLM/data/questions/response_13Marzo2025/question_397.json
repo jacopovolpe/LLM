@@ -1,8 +1,0 @@
-{
-  "question_id": 397,
-  "section_index": 80,
-  "question": "Besides providing implementation examples, what additional capability do the Hugging Face guides offer regarding pre-trained models, given sufficient resources?",
-  "response": "Hugging Face guides provide functionalities concerning pre-trained models such as access to a vast collection of ready-to-use models for various NLP tasks through the Model Hub, which is a core component of the Hugging Face ecosystem. The guides also provide strategies for model selection, which involves considering the task definition, utilizing filtering options based on task, license, language, and model size, reviewing the model's Git repository for release history, considering different model variants, evaluating models based on training datasets, and defining Key Performance Indicators (KPIs) for performance evaluation. The `pipeline()` function simplifies the process of using pre-trained models by encapsulating a model along with its pre-processing and post-processing steps.",
-  "response_time": 2.302793264389038,
-  "timestamp": "2025-03-13T18:14:43.915371"
-}

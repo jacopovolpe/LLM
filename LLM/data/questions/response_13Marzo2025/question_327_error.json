@@ -1,7 +1,0 @@
-{
-  "question_id": 327,
-  "section_index": 66,
-  "question": "How does the architecture of LLaMA-7B differ from that of LLaMA-65B, and what are the implications of these differences?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:05:55.990608"
-}

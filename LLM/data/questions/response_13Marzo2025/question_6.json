@@ -1,8 +1,0 @@
-{
-  "question_id": 6,
-  "section_index": 2,
-  "question": "What are the core challenges in Natural Language Processing (NLP) that students will learn about in this course?",
-  "response": "The course covers the basic concepts of Natural Language Processing (NLP), including its history, evolution, and core challenges such as ambiguity, variability, and knowledge dependence. The curriculum also addresses Natural Language Understanding (NLU) and Generation (NLG), statistical approaches to NLP, and Large Language Models (LLMs) based on Transformers. The course aims to equip students with a deep understanding of NLP and LLMs, enabling them to tackle real-world challenges in the field.",
-  "response_time": 1.6536834239959717,
-  "timestamp": "2025-03-13T17:25:47.601271"
-}

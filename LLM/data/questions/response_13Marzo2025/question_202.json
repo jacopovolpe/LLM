@@ -1,8 +1,0 @@
-{
-  "question_id": 202,
-  "section_index": 41,
-  "question": "What does a Hugging Face pipeline encapsulate?",
-  "response": "Hugging Face's `pipeline()` function simplifies the use of pre-trained models by encapsulating a model along with its pre-processing and post-processing steps. This abstraction allows users to directly input text and receive readily interpretable output.",
-  "response_time": 1.3916168212890625,
-  "timestamp": "2025-03-13T17:50:21.723406"
-}

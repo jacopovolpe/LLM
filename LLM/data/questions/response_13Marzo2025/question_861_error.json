@@ -1,7 +1,0 @@
-{
-  "question_id": 861,
-  "section_index": 171,
-  "question": "How can you enable the Rasa REST API?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:19:09.290946"
-}

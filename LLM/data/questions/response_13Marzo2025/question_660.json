@@ -1,8 +1,0 @@
-{
-  "question_id": 660,
-  "section_index": 132,
-  "question": "In the context of conversational AI, what role does text classification play?",
-  "response": "Text classification is crucial for intent recognition in conversational AI. In conversational AI systems, text classification helps in understanding the intention behind user input, which is essential for providing appropriate and relevant responses.",
-  "response_time": 1.6234655380249023,
-  "timestamp": "2025-03-13T18:48:19.995806"
-}

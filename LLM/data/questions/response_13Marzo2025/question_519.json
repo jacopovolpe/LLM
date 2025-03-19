@@ -1,8 +1,0 @@
-{
-  "question_id": 519,
-  "section_index": 104,
-  "question": "Name two commonly used stemming algorithms available in NLTK.",
-  "response": "The Porter Stemmer and the Snowball Stemmer are two commonly used stemming algorithms available in NLTK. The Snowball Stemmer has multilingual support.",
-  "response_time": 1.4274232387542725,
-  "timestamp": "2025-03-13T18:30:06.107548"
-}

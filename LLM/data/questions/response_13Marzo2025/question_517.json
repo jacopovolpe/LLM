@@ -1,8 +1,0 @@
-{
-  "question_id": 517,
-  "section_index": 104,
-  "question": "While stemming is known for its efficiency, what is its main drawback?",
-  "response": "Stemming, while efficient, has the disadvantage of potentially producing non-words when reducing words to their root form. It primarily focuses on morphological variations, often failing to capture synonyms with different roots. Moreover, it can inadvertently group words with similar spellings but different meanings.",
-  "response_time": 1.8180384635925293,
-  "timestamp": "2025-03-13T18:29:48.764887"
-}

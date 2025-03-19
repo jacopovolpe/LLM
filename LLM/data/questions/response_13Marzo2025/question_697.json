@@ -1,8 +1,0 @@
-{
-  "question_id": 697,
-  "section_index": 140,
-  "question": "How many movie reviews are included in the IMDB dataset mentioned?",
-  "response": "The IMDB dataset contains 50,000 movie reviews labeled as positive or negative.",
-  "response_time": 1.3081507682800293,
-  "timestamp": "2025-03-13T18:52:41.006898"
-}

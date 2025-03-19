@@ -1,8 +1,0 @@
-{
-  "question_id": 266,
-  "section_index": 54,
-  "question": "What are the key improvements introduced in RoBERTa compared to the original BERT model?",
-  "response": "RoBERTa is a variant of BERT that incorporates several improvements. These include an improved training methodology, the use of larger datasets, and the removal of the Next Sentence Prediction (NSP) task.",
-  "response_time": 1.4888811111450195,
-  "timestamp": "2025-03-13T17:58:25.508064"
-}

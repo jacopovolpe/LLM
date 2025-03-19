@@ -1,8 +1,0 @@
-{
-  "question_id": 682,
-  "section_index": 137,
-  "question": "How does TF-IDF vectorization represent text documents numerically, and what information does it capture?",
-  "response": "TF-IDF vectorization transforms text documents into numerical vectors, capturing the importance of words within a document and across the entire corpus. TF-IDF (Term Frequency-Inverse Document Frequency) improves upon Term Frequency (TF) by considering a term's prevalence across the entire corpus, reducing the weight of common words and increasing the weight of rare words that are more likely to be informative. It is calculated as the product of TF and IDF, where a high TF-IDF score indicates a term that is frequent within a document but rare across the corpus, suggesting high relevance to that document.",
-  "response_time": 2.364591360092163,
-  "timestamp": "2025-03-13T18:50:51.430984"
-}

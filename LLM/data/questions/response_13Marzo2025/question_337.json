@@ -1,8 +1,0 @@
-{
-  "question_id": 337,
-  "section_index": 68,
-  "question": "What dataset was LLaMA trained on, and what are some examples of the data sources included within it?",
-  "response": "LLaMA models are trained on massive text datasets sourced from diverse public sources, including \"The Pile,\" Wikipedia, and Common Crawl. The datasets used for training LLMs typically include books from sources like BookCorpus and Project Gutenberg, the CommonCrawl web archive, Wikipedia, social media platforms like Reddit, code repositories such as GitHub, and news articles.",
-  "response_time": 1.6649110317230225,
-  "timestamp": "2025-03-13T18:07:10.577118"
-}

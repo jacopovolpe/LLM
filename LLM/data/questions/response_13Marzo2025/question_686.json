@@ -1,8 +1,0 @@
-{
-  "question_id": 686,
-  "section_index": 138,
-  "question": "What are the differences between micro and macro averaging for evaluating multi-class classifiers?",
-  "response": "For evaluating multi-class classification performance, micro-averaging and macro-averaging are two common methods. Micro-averaging calculates metrics globally by considering the total true positives, false negatives, and false positives across all classes and is sensitive to class imbalance. Macro-averaging computes the metric for each class independently and then averages the results, treating all classes equally, regardless of their size.",
-  "response_time": 1.763906478881836,
-  "timestamp": "2025-03-13T18:51:17.183306"
-}

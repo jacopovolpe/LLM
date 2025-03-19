@@ -1,8 +1,0 @@
-{
-  "question_id": 269,
-  "section_index": 54,
-  "question": "How does ELECTRA's pre-training approach differ from BERT's?",
-  "response": "ELECTRA employs a more efficient pre-training method using a replaced token detection task, whereas BERT uses Masked Language Modeling (MLM) and Next Sentence Prediction (NSP) for pre-training. In Masked Language Modeling, a percentage of input tokens are randomly masked, and the model is trained to predict these masked tokens based on the surrounding context. Next Sentence Prediction involves training the model to predict whether two given sentences are consecutive in the original text.",
-  "response_time": 1.6325607299804688,
-  "timestamp": "2025-03-13T17:58:46.820144"
-}

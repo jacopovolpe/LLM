@@ -1,8 +1,0 @@
-{
-  "question_id": 174,
-  "section_index": 35,
-  "question": "Which prominent models are briefly overviewed in this lesson on Hugging Face?",
-  "response": "The Hugging Face course or lesson being discussed provides an overview of several prominent pre-trained transformer models. These include BERT (Bidirectional Encoder Representations from Transformers) and its variants like RoBERTa, ALBERT, DistilBERT, TinyBERT, ELECTRA, and multilingual BERT (mBERT). Domain-specific variants such as SciBERT, BioBERT, ClinicalBERT, FinBERT, and LegalBERT are also mentioned. Additionally, the course discusses the T5 model, which is an Encoder-Decoder Transformer.",
-  "response_time": 2.1075124740600586,
-  "timestamp": "2025-03-13T17:46:54.818684"
-}

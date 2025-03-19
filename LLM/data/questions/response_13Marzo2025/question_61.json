@@ -1,8 +1,0 @@
-{
-  "question_id": 61,
-  "section_index": 13,
-  "question": "What is the primary purpose of self-attention in processing sequential data like sentences?",
-  "response": "The self-attention mechanism is a core component of the Transformer model and plays a crucial role in capturing relationships between words within a sentence. It allows the model to weigh the importance of different words in the input sequence when encoding a specific word, helping it understand the relationships between words in the same sentence. For instance, in the sentence \"The animal didn’t cross the street because it was too wide,\" self-attention helps the model associate \"it\" with \"the street\" rather than \"the animal.\" Multi-head attention enhances this by employing multiple \"heads,\" each with its own set of learned weight matrices, allowing the model to attend to different aspects of the input sequence simultaneously. Each head performs a scaled dot-product attention operation, and the results from these parallel computations are then concatenated and transformed through another linear layer, combining the various perspectives into a unified representation.",
-  "response_time": 2.1374151706695557,
-  "timestamp": "2025-03-13T17:32:41.244606"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 393,
-  "section_index": 79,
-  "question": "How does ByT5 handle text differently than other T5 variants, and what is the consequence of this approach?",
-  "response": "ByT5 and other T5 variants differ in their text handling approaches, leading to specific consequences. ByT5 foregoes tokenization, which allows it to handle noisy and unstructured text effectively, while other variants like mT5, Flan-T5, T5-3B/11B, UL2, Multimodal T5, and Efficient T5 use tokenization. A consequence of ByT5's approach is that it can be slower due to byte-level processing.",
-  "response_time": 1.7372019290924072,
-  "timestamp": "2025-03-13T18:14:14.961967"
-}

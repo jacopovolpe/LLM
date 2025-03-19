@@ -1,8 +1,0 @@
-{
-  "question_id": 307,
-  "section_index": 62,
-  "question": "How does the sequential nature of next-token prediction contribute to GPT's understanding of language?",
-  "response": "GPT models are pre-trained using a next-token prediction objective, which is also known as autoregressive language modeling. This training strategy involves predicting the next word (or token) in a sequence, effectively learning contextual relationships and linguistic patterns. The prediction is sequential, proceeding from left to right. The training process utilizes massive and diverse datasets derived from internet text, allowing the model to absorb a wide range of linguistic structures and topical information. In decoder-only transformers, the core principle behind text generation is autoregression. This means generating text token by token, where each new token is predicted based on the preceding tokens in the sequence. The input prompt and the generated text are treated as a single continuous sequence, enabling the model to implicitly \"encode\" the prompt's meaning while simultaneously \"decoding\" it into generated text.",
-  "response_time": 2.140495538711548,
-  "timestamp": "2025-03-13T18:03:35.851508"
-}

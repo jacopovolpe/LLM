@@ -1,8 +1,0 @@
-{
-  "question_id": 423,
-  "section_index": 85,
-  "question": "What are the main disadvantages of employing a full fine-tuning approach?",
-  "response": "Full fine-tuning, while potentially leading to high accuracy, has significant drawbacks. These include high computational costs, as updating all parameters requires substantial resources and training time. Also, with small datasets, full fine-tuning can lead to overfitting, where the model performs well on the training data but poorly on unseen data.",
-  "response_time": 1.694018840789795,
-  "timestamp": "2025-03-13T18:18:02.571206"
-}

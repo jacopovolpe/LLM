@@ -1,8 +1,0 @@
-{
-  "question_id": 263,
-  "section_index": 53,
-  "question": "Despite its state-of-the-art performance, what computational challenges does using BERT present?",
-  "response": "Despite its strengths, BERT has limitations, including requiring substantial computational resources for pre-training and fine-tuning, especially for larger models. The large model size can also pose challenges for deployment on resource-constrained devices. While transfer learning reduces data requirements, fine-tuning still needs labeled data, which can be expensive to acquire.",
-  "response_time": 1.6374049186706543,
-  "timestamp": "2025-03-13T17:58:03.501027"
-}

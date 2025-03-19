@@ -1,8 +1,0 @@
-{
-  "question_id": 170,
-  "section_index": 34,
-  "question": "What is the key advantage of prompting over fine-tuning in terms of model flexibility?",
-  "response": "Both prompting and fine-tuning are methods used to adapt Large Language Models (LLMs), but they offer different degrees of flexibility. Fine-tuning tailors a pre-trained LLM to a specific task or domain by further training it on a dataset relevant to the target application, allowing the model to specialize its knowledge and improve its performance on the downstream task. Types of fine-tuning include full fine-tuning, parameter-efficient fine-tuning (PEFT) encompassing techniques like LoRA, Adapters, and Prefix-Tuning, instruction fine-tuning, and reinforcement learning from human feedback (RLHF). Instruction fine-tuning enhances the ability of LLMs to understand and respond to user instructions by training them on a dataset of (instruction, input, output) triples. This improves the model's ability to generalize to new instructions and generate more accurate and contextually appropriate responses.\n\nPrompt engineering, on the other hand, is a discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. It involves understanding how to instruct LLMs in a way that elicits the desired response, accounting for their capabilities and limitations.",
-  "response_time": 2.200749635696411,
-  "timestamp": "2025-03-13T17:46:23.838684"
-}

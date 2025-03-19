@@ -1,8 +1,0 @@
-{
-  "question_id": 649,
-  "section_index": 130,
-  "question": "What specific aspects of text classification are covered in this lesson?",
-  "response": "Text classification is covered in this lesson, including topic labeling and sentiment analysis. The lesson also discusses machine learning-based classification, which involves converting text into a numerical vector format, training a model using a labeled dataset, and applying the trained model to classify new documents. The Reuters 21578 dataset is presented as a real-world example of multi-class and multi-label text classification. The course content also includes text classification and clustering using TF-IDF vectors, as well as neural networks for text analysis, including CNNs, recurrent networks, and LSTMs. Furthermore, the course covers encoder-only models for sentence classification and named entity recognition.",
-  "response_time": 2.059011936187744,
-  "timestamp": "2025-03-13T18:46:54.497063"
-}

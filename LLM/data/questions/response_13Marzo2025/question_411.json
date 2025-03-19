@@ -1,8 +1,0 @@
-{
-  "question_id": 411,
-  "section_index": 83,
-  "question": "What are the two phases of the chatbot evaluation process and how do they differ in terms of their objectives and the criteria used?",
-  "response": "The chatbot evaluation process consists of two phases conducted by the course instructors before the project discussion. The first phase assesses the chatbot in real-time using a pre-determined set of questions related to the course content, focusing on relevance, fluency, and coherence. Relevance checks if the chatbot's answer directly addresses the query. Fluency evaluates if the response is grammatically correct, well-structured, and easy to understand. Coherence examines if the response exhibits a logical flow and internal consistency.\n\nThe second phase uses a different set of pre-defined questions to evaluate robustness and precision. Robustness assesses the chatbot's ability to handle adversarial or misleading prompts designed to test its resilience and ability to maintain context. Precision evaluates how accurately the chatbot identifies and handles out-of-context questions. The final project grade will be based on the chatbot's performance across all these evaluation criteria, and the detailed report will also be considered in the overall assessment.",
-  "response_time": 2.365335702896118,
-  "timestamp": "2025-03-13T18:16:27.146435"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 124,
-  "section_index": 25,
-  "question": "What would be the impact on the decoder's performance if it didn't have access to the encoder's output through attention?",
-  "response": "I am sorry, but the provided text does not contain information about how removing the attention mechanism between the encoder and decoder in a sequence-to-sequence model affects the decoder's performance.",
-  "response_time": 1.500950574874878,
-  "timestamp": "2025-03-13T17:40:32.047710"
-}

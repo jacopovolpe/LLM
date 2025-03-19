@@ -1,8 +1,0 @@
-{
-  "question_id": 434,
-  "section_index": 87,
-  "question": "During inference, how does LoRA ensure efficient deployment in terms of speed and memory usage?",
-  "response": "During inference with LoRA, the low-rank update can be efficiently applied to the frozen weights, ensuring fast and memory-efficient deployment. This parameter efficiency is one of the key benefits of LoRA.",
-  "response_time": 1.4358024597167969,
-  "timestamp": "2025-03-13T18:19:27.799642"
-}

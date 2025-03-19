@@ -1,8 +1,0 @@
-{
-  "question_id": 576,
-  "section_index": 116,
-  "question": "What does RLHF stand for in the context of OpenAI's language models?",
-  "response": "Reinforcement Learning from Human Feedback (RLHF) is a technique used to optimize Large Language Models (LLMs) by using human feedback to guide the learning process. The goal of RLHF is to align model outputs with human values, preferences, and communication norms. OpenAI's GPT-3.5 and GPT-4 are examples of successful applications of RLHF, leading to enhanced alignment with user instructions, fewer unsafe outputs, and more human-like interactions.",
-  "response_time": 1.6517949104309082,
-  "timestamp": "2025-03-13T18:37:28.833351"
-}

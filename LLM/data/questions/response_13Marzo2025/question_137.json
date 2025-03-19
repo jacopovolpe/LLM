@@ -1,8 +1,0 @@
-{
-  "question_id": 137,
-  "section_index": 28,
-  "question": "Why is the scalability of the Transformer architecture considered a significant advantage, particularly in the context of large language models?",
-  "response": "The Transformer architecture's scalability, stemming from the lack of recurrence and the parallelizable nature of attention computations, is instrumental in the development of large language models. This scalability allows Transformers to be scaled to much larger datasets and model sizes than RNNs or CNNs.",
-  "response_time": 1.5806100368499756,
-  "timestamp": "2025-03-13T17:42:11.721686"
-}

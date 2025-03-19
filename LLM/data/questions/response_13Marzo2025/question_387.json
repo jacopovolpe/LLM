@@ -1,8 +1,0 @@
-{
-  "question_id": 387,
-  "section_index": 78,
-  "question": "How does the text-to-text paradigm simplify the fine-tuning process in T5?",
-  "response": "The text-to-text paradigm in T5 streamlines the fine-tuning process by treating all inputs and outputs as text strings, simplifying the adaptation process. Task-specific prefixes guide the model, for example, `summarize: <document>` for summarization, `translate English to French: <text>` for translation, and `question: <question> context: <context>` for question answering.",
-  "response_time": 1.7012555599212646,
-  "timestamp": "2025-03-13T18:13:31.673081"
-}

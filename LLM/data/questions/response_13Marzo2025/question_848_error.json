@@ -1,7 +1,0 @@
-{
-  "question_id": 848,
-  "section_index": 168,
-  "question": "What is the purpose of the command `pip install rasa`?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T19:16:58.458120"
-}

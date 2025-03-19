@@ -1,8 +1,0 @@
-{
-  "question_id": 277,
-  "section_index": 56,
-  "question": "How does a decoder-only transformer architecture function in the context of text generation?",
-  "response": "Decoder-only transformers are particularly well-suited for autoregressive tasks, especially text generation. Unlike the original transformer architecture, they utilize only the decoder part, simplifying the model and streamlining the process of generating text sequentially. The core principle is autoregression, where text is generated token by token, with each new token predicted based on the preceding tokens in the sequence. A causal (unidirectional or forward) mask is applied to the self-attention mechanism within decoder layers, ensuring that each token attends only to previous tokens, mimicking the natural flow of language generation and preventing the model from \"looking ahead\".",
-  "response_time": 1.8202033042907715,
-  "timestamp": "2025-03-13T17:59:47.169444"
-}

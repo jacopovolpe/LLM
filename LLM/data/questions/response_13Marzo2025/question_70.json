@@ -1,8 +1,0 @@
-{
-  "question_id": 70,
-  "section_index": 14,
-  "question": "How do the combined mechanisms of BPE, self-attention, and positional encoding contribute to the effectiveness of Transformers in handling long sequences and capturing complex relationships between words?",
-  "response": "Transformers effectively handle long sequences and capture complex relationships between words through a combination of Byte Pair Encoding (BPE), self-attention, and positional encoding. BPE is a subword tokenization technique that represents rare or unseen words as combinations of more frequent subword units, which helps in handling large vocabularies efficiently. The self-attention mechanism allows the model to weigh the importance of different parts of the input sequence when processing each word, capturing long-range dependencies more effectively than recurrent networks. Positional encodings compensate for the lack of inherent positional information in self-attention, allowing the model to account for word order in the input sequence. The attention mechanism dynamically assigns weights to different parts of the input sequence, focusing on the most relevant information for the given task.",
-  "response_time": 2.088277816772461,
-  "timestamp": "2025-03-13T17:33:41.466277"
-}

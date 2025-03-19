@@ -1,8 +1,0 @@
-{
-  "question_id": 219,
-  "section_index": 44,
-  "question": "What is emphasized about Gradio's user interface?",
-  "response": "Gradio simplifies the creation and hosting of interactive demos for machine learning models by providing a user-friendly interface for building demos quickly. Also, hf.space offers free hosting for Gradio demos, making it easy to share your work. Gradio can be installed using `conda install gradio`, and further details and examples can be found at [https://bit.ly/34wESgd](https://bit.ly/34wESgd).",
-  "response_time": 1.8282201290130615,
-  "timestamp": "2025-03-13T17:52:27.634583"
-}

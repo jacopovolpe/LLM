@@ -1,8 +1,0 @@
-{
-  "question_id": 252,
-  "section_index": 51,
-  "question": "How does the dynamic masking strategy enhance the performance of BERT's MLM task?",
-  "response": "In BERT's pre-training phase, Masked Language Modeling (MLM) involves randomly masking a percentage of input tokens and training the model to predict these masked tokens based on the surrounding context. Variations in masking strategies, such as dynamic masking where the masked tokens change during training epochs, further improve the robustness of the learned representations. This bidirectional training approach enables BERT to learn deep contextual representations.",
-  "response_time": 1.778578519821167,
-  "timestamp": "2025-03-13T17:56:42.337780"
-}

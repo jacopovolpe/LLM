@@ -1,8 +1,0 @@
-{
-  "question_id": 394,
-  "section_index": 79,
-  "question": "If computational resources are limited, which of the listed T5 variants would be most suitable and why?",
-  "response": "The Efficient T5 variant is designed for resource-constrained NLP, offering a lightweight and fast inference, but with a performance trade-off compared to larger models.",
-  "response_time": 1.7749505043029785,
-  "timestamp": "2025-03-13T18:14:22.274058"
-}

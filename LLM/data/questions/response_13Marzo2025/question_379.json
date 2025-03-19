@@ -1,8 +1,0 @@
-{
-  "question_id": 379,
-  "section_index": 76,
-  "question": "What is the purpose of the `<eos>` token in T5?",
-  "response": "In the Text-to-Text Transfer Transformer (T5) model, the `<eos>` token signals the end of a sequence.",
-  "response_time": 1.4886388778686523,
-  "timestamp": "2025-03-13T18:12:33.044191"
-}

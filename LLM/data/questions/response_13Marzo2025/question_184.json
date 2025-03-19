@@ -1,8 +1,0 @@
-{
-  "question_id": 184,
-  "section_index": 37,
-  "question": "What are the three key functionalities provided by the `transformers` library for working with transformer models?",
-  "response": "The Hugging Face `transformers` library offers pipelines, tokenizers, and model architectures as building blocks for working with transformer models. It supports both PyTorch and TensorFlow as backend deep learning frameworks.",
-  "response_time": 1.316166639328003,
-  "timestamp": "2025-03-13T17:48:09.882927"
-}

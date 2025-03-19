@@ -1,7 +1,0 @@
-{
-  "question_id": 739,
-  "section_index": 148,
-  "question": "What problem does \"Subsampling Frequent Tokens\" address during the training of Word2Vec models?",
-  "error": "429 Resource has been exhausted (e.g. check quota).",
-  "timestamp": "2025-03-13T18:59:23.041068"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 268,
-  "section_index": 54,
-  "question": "What techniques are employed by DistilBERT and TinyBERT to reduce model size and increase inference speed?",
-  "response": "DistilBERT and TinyBERT are BERT variants designed for smaller model size and faster inference. DistilBERT achieves this through knowledge distillation, while TinyBERT is even smaller and faster, optimized for resource-constrained environments. These models utilize model compression techniques to improve inference speed.",
-  "response_time": 1.4646344184875488,
-  "timestamp": "2025-03-13T17:58:38.541314"
-}

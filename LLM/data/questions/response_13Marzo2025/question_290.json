@@ -1,8 +1,0 @@
-{
-  "question_id": 290,
-  "section_index": 58,
-  "question": "What is the key distinction between bidirectional and unidirectional self-attention in Transformers?",
-  "response": "Bidirectional self-attention, as used in encoder-only models like BERT, processes the entire input sequence simultaneously, capturing contextual information from both preceding and following words. This allows the model to understand the context of each word in relation to all other words in the sequence.\n\nUnidirectional (masked or causal) self-attention, used in decoder-only models like GPT, processes the input sequence sequentially, predicting the next word based only on the preceding context. Masking prevents the model from \"peeking\" at future tokens during training, ensuring that the prediction for each word is based only on the words that come before it.\n\nIn essence, bidirectional attention considers the entire sequence context, while unidirectional attention only considers the past context for each word.",
-  "response_time": 2.122907876968384,
-  "timestamp": "2025-03-13T18:01:23.950271"
-}

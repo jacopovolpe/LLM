@@ -1,8 +1,0 @@
-{
-  "question_id": 79,
-  "section_index": 16,
-  "question": "What are the different levels of ambiguity that pose challenges for NLP, and can you provide examples for each?",
-  "response": "Ambiguity poses a significant hurdle for NLP, and natural language's richness and inherent ambiguity create various challenges. There are different levels of ambiguity, including lexical ambiguity, where words have multiple meanings, like \"I saw bats.\" Syntactic ambiguity arises when there are different ways to parse a sentence structure, such as \"Call me a cab.\" NLP also faces challenges in interpreting partial information and resolving pronoun references, as well as dealing with contextual ambiguity, where the surrounding context influences meaning.",
-  "response_time": 1.7350013256072998,
-  "timestamp": "2025-03-13T17:34:53.650773"
-}

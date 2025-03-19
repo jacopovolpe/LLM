@@ -1,8 +1,0 @@
-{
-  "question_id": 228,
-  "section_index": 46,
-  "question": "What is the architectural structure of an encoder-only Transformer?",
-  "response": "Encoder-only transformers are a type of transformer architecture used for specific NLP tasks where the input and output sequences have the same length or where the output is a single value. These transformers leverage only the encoder part of the original transformer architecture. For sequence-to-sequence tasks of the same length, the output vectors are derived directly from the encoder, enabling direct loss computation, as seen in part-of-speech tagging or named entity recognition. For sequence classification tasks, a special `[CLS]` token is prepended, and its corresponding output vector represents the entire sequence, used for computing the loss function, as in sentiment analysis. BERT (Bidirectional Encoder Representations from Transformers) is a prominent example of an encoder-only transformer, known for its ability to understand bidirectional context by considering both preceding and succeeding words.",
-  "response_time": 2.0469248294830322,
-  "timestamp": "2025-03-13T17:53:39.745050"
-}

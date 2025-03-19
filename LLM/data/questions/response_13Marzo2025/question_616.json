@@ -1,8 +1,0 @@
-{
-  "question_id": 616,
-  "section_index": 124,
-  "question": "What factors should be considered when choosing guardrail techniques for a specific application?",
-  "response": "When selecting guardrail techniques for a specific application, it's important to consider the following: Choose appropriate techniques based on your application and objectives, start with simpler techniques and add complexity incrementally, review the documentation of chosen frameworks to understand their functionalities and limitations, study existing examples provided in framework documentation to learn from practical implementations, and integrate the chosen guardrail techniques and frameworks into your project to ensure responsible LLM usage.\n\nSeveral techniques can be employed individually or in combination to implement robust guardrails for LLMs, including rule-based filters, fine-tuning with custom data, prompt engineering, external validation layers, and real-time monitoring and feedback. Combining multiple techniques often yields the most robust safeguards. For instance, integrating rule-based filtering with external validation and fine-tuning creates a layered approach to ensuring LLM safety and reliability.",
-  "response_time": 2.09328293800354,
-  "timestamp": "2025-03-13T18:42:39.476757"
-}

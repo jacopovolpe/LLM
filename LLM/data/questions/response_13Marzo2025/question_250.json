@@ -1,8 +1,0 @@
-{
-  "question_id": 250,
-  "section_index": 50,
-  "question": "What information does the final hidden state corresponding to the `[CLS]` token capture?",
-  "response": "After BERT processes the input, the final hidden state corresponding to the `[CLS]` token captures the overall meaning and context of the sequence. This embedding is then used for downstream tasks like classification. For sentence-pair tasks, the `[CLS]` embedding represents the relationship between the two sentences.",
-  "response_time": 1.6081421375274658,
-  "timestamp": "2025-03-13T17:56:26.470874"
-}

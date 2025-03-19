@@ -1,8 +1,0 @@
-{
-  "question_id": 369,
-  "section_index": 74,
-  "question": "Describe the function of the decoder and how it utilizes the encoded information to generate the output sequence.",
-  "response": "The decoder in sequence-to-sequence models generates the output sequence one element at a time, using the contextualized representation produced by the encoder. At each step, it considers the encoder's output and the previously generated words in the output sequence. The decoder block structure mirrors the encoder block, but it adds a second multi-head attention mechanism called encoder-decoder attention. This mechanism allows the decoder to attend to the relevant parts of the encoder's output when generating each word in the output sequence. The final layer of the decoder is a linear layer followed by a softmax function, which projects the decoder's output to the vocabulary size, producing a probability distribution over all possible words for the next position in the output sequence. The word with the highest probability is then selected as the output for that time step.\n\nEncoder-Decoder Attention bridges the encoder and decoder, enabling the decoder to leverage the contextualized information encoded by the encoder. In this mechanism, the queries come from the decoder, while the keys and values are derived from the encoder's output, allowing the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence.",
-  "response_time": 2.4305810928344727,
-  "timestamp": "2025-03-13T18:11:13.769732"
-}

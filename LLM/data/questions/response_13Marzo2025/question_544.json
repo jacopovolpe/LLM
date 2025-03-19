@@ -1,8 +1,0 @@
-{
-  "question_id": 544,
-  "section_index": 109,
-  "question": "What are Vector Stores and how do they facilitate semantic search within a RAG system?",
-  "response": "Vector Stores are specialized databases designed for storing and retrieving vector embeddings, which are mathematical representations of text that capture semantic relationships between words and phrases. Similar concepts have similar vector representations. Vector stores enable semantic search, where retrieval is based on the meaning of the query and the indexed data, rather than just keyword matching. This allows for more accurate and relevant retrieval of information in RAG systems.",
-  "response_time": 1.7150912284851074,
-  "timestamp": "2025-03-13T18:33:17.921309"
-}

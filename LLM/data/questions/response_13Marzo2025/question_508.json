@@ -1,8 +1,0 @@
-{
-  "question_id": 508,
-  "section_index": 102,
-  "question": "What crucial information is lost when using the BoW representation, and why is this information important?",
-  "response": "The Bag-of-Words (BoW) model, while memory-efficient, has a key limitation: it loses word order information. This can be crucial for understanding meaning, as the arrangement of words significantly impacts the overall message conveyed by a text. Furthermore, the distance between any two one-hot vectors is always the same in BoW, failing to capture semantic relationships between words.",
-  "response_time": 2.125689744949341,
-  "timestamp": "2025-03-13T18:28:43.341836"
-}

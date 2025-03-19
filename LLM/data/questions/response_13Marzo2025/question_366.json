@@ -1,8 +1,0 @@
-{
-  "question_id": 366,
-  "section_index": 74,
-  "question": "What is the primary purpose of an Encoder-Decoder Transformer architecture, and what kind of tasks is it designed for?",
-  "response": "The Encoder-Decoder Transformer architecture is designed for sequence-to-sequence tasks. The encoder processes the entire input sequence, generating a set of contextualized representations. The decoder then generates the output sequence one element at a time, using the encoder's output and the previously generated words. At each step, the decoder considers the encoder's output and the previously generated words in the output sequence. This process repeats until an end-of-sequence token is generated, signaling the completion of the output sequence.",
-  "response_time": 1.6058130264282227,
-  "timestamp": "2025-03-13T18:10:47.680875"
-}

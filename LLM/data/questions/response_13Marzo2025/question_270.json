@@ -1,8 +1,0 @@
-{
-  "question_id": 270,
-  "section_index": 54,
-  "question": "Beyond NLP, in what other fields have transformer-based models inspired by BERT been applied, and what are some examples?",
-  "response": "BERT's influence extends beyond NLP, inspiring transformer-based models in computer vision, such as Vision Transformers, Swin Transformers, and Masked Auto Encoders (MAE).",
-  "response_time": 1.7047531604766846,
-  "timestamp": "2025-03-13T17:58:54.062654"
-}

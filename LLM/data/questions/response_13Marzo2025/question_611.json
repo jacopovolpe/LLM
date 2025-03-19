@@ -1,8 +1,0 @@
-{
-  "question_id": 611,
-  "section_index": 123,
-  "question": "What are the primary functionalities offered by the Guardrails AI framework for managing LLM outputs?",
-  "response": "Guardrails AI offers functionalities for validating outputs against predefined guidelines, formatting outputs according to specified structures, and filtering out unsafe content.",
-  "response_time": 1.409329891204834,
-  "timestamp": "2025-03-13T18:42:06.863132"
-}

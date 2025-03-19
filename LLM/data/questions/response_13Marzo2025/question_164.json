@@ -1,8 +1,0 @@
-{
-  "question_id": 164,
-  "section_index": 33,
-  "question": "What are some specific techniques used for quality filtering in the context of LLM training data?",
-  "response": "Quality filtering is an essential data pre-processing step when training Large Language Models (LLMs). It involves removing low-quality, noisy, or irrelevant text using heuristics, regular expressions, or machine learning classifiers. This ensures data quality, improves model performance, and mitigates potential biases and harmful outputs.",
-  "response_time": 1.5013065338134766,
-  "timestamp": "2025-03-13T17:45:40.115691"
-}

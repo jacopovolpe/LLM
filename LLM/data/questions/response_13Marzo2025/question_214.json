@@ -1,8 +1,0 @@
-{
-  "question_id": 214,
-  "section_index": 43,
-  "question": "If computational resources are limited, which of the mentioned models might be a more practical choice, and why?",
-  "response": "When computational resources are limited, several machine learning models offer practical solutions due to their efficiency. LLaMA-7B is optimized for resource-constrained environments, offering high efficiency and lower latency, making it suitable for smaller-scale NLP deployments and mobile devices. DistilBERT and TinyBERT, variants of BERT, are also designed for resource-constrained environments, providing smaller model sizes and faster inference. Parameter-Efficient Fine-Tuning (PEFT) methods like Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning reduce the computational and storage burden, making fine-tuning large LLMs feasible in such environments. LoRA, for instance, learns a low-rank decomposition of the weight update, allowing efficient fine-tuning with minimal parameter updates. Adapters are small, task-specific modules inserted within Transformer layers, enabling fine-tuning without modifying the original model weights. Prefix Tuning prepends a sequence of trainable prefix tokens to the input sequence, guiding the model's attention mechanism without altering the original weights.",
-  "response_time": 2.4764301776885986,
-  "timestamp": "2025-03-13T17:51:53.118184"
-}

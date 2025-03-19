@@ -1,8 +1,0 @@
-{
-  "question_id": 485,
-  "section_index": 97,
-  "question": "Which NLP task involves condensing longer texts into shorter versions?",
-  "response": "Text summarization is an NLP task that condenses longer texts into shorter, coherent summaries.",
-  "response_time": 1.5685412883758545,
-  "timestamp": "2025-03-13T18:25:52.179932"
-}

@@ -1,8 +1,0 @@
-{
-  "question_id": 388,
-  "section_index": 78,
-  "question": "If you were to fine-tune T5 for a sentiment classification task, provide an example of a suitable prefix and the expected output format.",
-  "response": "To fine-tune the T5 model for sentiment classification, you would maintain the text-to-text paradigm. An example of a task-specific prefix would be `sentiment: <text>`, and the expected output format would be `<sentiment_label>`.",
-  "response_time": 1.7255873680114746,
-  "timestamp": "2025-03-13T18:13:38.954989"
-}

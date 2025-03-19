@@ -1,8 +1,0 @@
-{
-  "question_id": 37,
-  "section_index": 7,
-  "question": "How does the Transformer architecture achieve parallel processing of sequence elements, and what benefits does this offer?",
-  "response": "The Transformer model architecture enables parallel computation across sequence elements through its self-attention mechanism. Unlike recurrent neural networks (RNNs) that process sequences sequentially, self-attention allows the model to consider relationships between all words in a sequence simultaneously. The advantages of this parallel processing include reduced training time and the ability to handle long-range dependencies more effectively.",
-  "response_time": 1.543412685394287,
-  "timestamp": "2025-03-13T17:29:40.910722"
-}

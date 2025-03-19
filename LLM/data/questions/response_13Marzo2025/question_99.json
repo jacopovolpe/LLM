@@ -1,8 +1,0 @@
-{
-  "question_id": 99,
-  "section_index": 20,
-  "question": "How does Masked Multi-Head Attention differ from regular Multi-Head Attention, and why is it used in the Decoder?",
-  "response": "Multi-Head Attention allows a model to consider the relationships between different words in a sequence when processing each word, employing multiple \"heads,\" each with its own set of learned weight matrices, allowing the model to attend to different aspects of the input sequence simultaneously. It incorporates Add & Norm (skip connections and layer normalization) and Feed Forward layers.\n\nMasked Multi-Head Attention is crucial for training the decoder. During the generation of the *i*-th output word, the decoder should only consider the preceding words (positions 1 to *i-1*) and not \"peek\" into the future. This is achieved by applying a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, forcing the softmax function to assign zero probability to these future positions. A key difference from the encoder's self-attention is the \"masked\" self-attention within the decoder. This mask prevents the decoder from attending to future positions in the output sequence during training, ensuring that predictions are made only based on the information available up to the current time step.",
-  "response_time": 2.6094181537628174,
-  "timestamp": "2025-03-13T17:37:19.737204"
-}

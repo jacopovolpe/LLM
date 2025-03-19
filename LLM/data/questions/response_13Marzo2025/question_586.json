@@ -1,8 +1,0 @@
-{
-  "question_id": 586,
-  "section_index": 118,
-  "question": "What are the key differences between the PPOTrainer and the RewardTrainer in the TRL library?",
-  "response": "The Transformer Reinforcement Learning (TRL) library is designed for training Transformer language models using reinforcement learning and provides tools for implementing RLHF. The library includes the PPOTrainer and RewardTrainer classes. You can explore the TRL library on Hugging Face and pay close attention to the PPOTrainer and RewardTrainer.\n\n*   **PPOTrainer**: You can find more information on this trainer at this link: [https://huggingface.co/docs/trl/v0.7.8/ppo_trainer](https://huggingface.co/docs/trl/v0.7.8/ppo_trainer)\n*   **RewardTrainer**: You can find more information on this trainer at this link: [https://huggingface.co/docs/trl/v0.7.8/reward_trainer](https://huggingface.co/docs/trl/v0.7.8/reward_trainer)",
-  "response_time": 2.484184980392456,
-  "timestamp": "2025-03-13T18:38:43.933011"
-}

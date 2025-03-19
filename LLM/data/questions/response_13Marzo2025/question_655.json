@@ -1,8 +1,0 @@
-{
-  "question_id": 655,
-  "section_index": 131,
-  "question": "What are some common challenges or limitations encountered in text classification, and how can they be addressed?",
-  "response": "Common challenges in text classification include imbalanced classes, variable document length, and the limitations of TF-IDF in capturing semantic relationships. Imbalanced classes, where some categories have significantly more examples than others, pose a challenge for model training and require careful consideration during evaluation. Variable document length requires appropriate handling during vectorization. TF-IDF relies on exact word matching, meaning documents with similar meanings but different wording will have distinct TF-IDF vector representations; techniques like stemming and lemmatization can help address this issue by grouping similar words under a single token, though these methods are not without their shortcomings, such as limited synonym grouping and the potential for misgrouping.\n\nWord embeddings address the limitations of Bag-of-Words by representing words as dense vectors in a continuous vector space, designed to capture semantic relationships, placing words with similar meanings closer together. Word2Vec, GloVe, and FastText are alternatives for generating word embeddings. Contextualized embeddings like ELMo and BERT generate word vectors dynamically based on the surrounding context, addressing the limitations of static embeddings.",
-  "response_time": 2.4414665699005127,
-  "timestamp": "2025-03-13T18:47:39.693888"
-}

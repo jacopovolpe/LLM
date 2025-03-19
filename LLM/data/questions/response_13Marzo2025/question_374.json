@@ -1,8 +1,0 @@
-{
-  "question_id": 374,
-  "section_index": 75,
-  "question": "If computational resources are a major constraint, which T5 version would be the most suitable choice, and why?",
-  "response": "While the document indicates that larger T5 models generally perform better but require significantly more computational resources, it also mentions the existence of an \"Efficient T5\" variant designed for resource-constrained NLP. This variant is described as lightweight and fast for inference, but it involves a performance trade-off compared to larger models.",
-  "response_time": 1.9672532081604004,
-  "timestamp": "2025-03-13T18:11:52.611085"
-}
