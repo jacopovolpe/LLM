@@ -1,0 +1,8 @@
+{
+  "question_id": 229,
+  "section_index": 46,
+  "question": "How can BERT be practically applied to Token Classification tasks?",
+  "response": "Bidirectional Encoder Representations from Transformers, or BERT, can be practically applied to token classification tasks. The document specifically mentions the use of BERT for Named Entity Recognition (NER). The general process involves fine-tuning BERT for specific downstream tasks by adding task-specific layers on top of the encoder output, minimizing the cross-entropy loss between predicted and actual labels. A Hugging Face tutorial provides practical guidance on using BERT for token classification and NER, suggesting exploration of different BERT versions, testing with custom prompts and public datasets like CoNLL-2003, and fine-tuning lightweight BERT versions when resources permit.",
+  "response_time": 2.021244764328003,
+  "timestamp": "2025-03-13T17:53:46.678274"
+}

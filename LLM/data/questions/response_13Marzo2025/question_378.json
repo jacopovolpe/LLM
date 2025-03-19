@@ -1,0 +1,8 @@
+{
+  "question_id": 378,
+  "section_index": 76,
+  "question": "What is the role of the unigram language model in the T5 tokenizer's training process?",
+  "response": "The T5 tokenizer is trained using a unigram language model. This model selects subwords to maximize the likelihood of the training data, which allows for a more compact vocabulary while still capturing a rich representation of the language.",
+  "response_time": 1.5926542282104492,
+  "timestamp": "2025-03-13T18:12:24.039219"
+}

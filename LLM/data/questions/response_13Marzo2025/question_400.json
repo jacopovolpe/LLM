@@ -1,0 +1,8 @@
+{
+  "question_id": 400,
+  "section_index": 80,
+  "question": "How should the chatbot designed for the final project handle queries that fall outside the scope of the course content?",
+  "response": "The chatbot for the NLP and LLM 2024/2025 course should be able to identify and handle out-of-context questions accurately. For example, when asked \"Who is the king of Spain?\", the chatbot should recognize that the question is outside the course's scope and respond appropriately, indicating its inability to address unrelated topics. This requires implementing a robust context recognition mechanism.",
+  "response_time": 1.8968830108642578,
+  "timestamp": "2025-03-13T18:15:06.446234"
+}

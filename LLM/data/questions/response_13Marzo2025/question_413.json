@@ -1,0 +1,8 @@
+{
+  "question_id": 413,
+  "section_index": 83,
+  "question": "Provide an example of a question that would effectively test the \"Robustness\" of a chatbot, and explain why.",
+  "response": "A chatbot question designed to evaluate robustness is \"Are you sure?\". This type of question is effective because it tests the chatbot's resilience and ability to maintain context when faced with adversarial or misleading prompts.",
+  "response_time": 1.6670644283294678,
+  "timestamp": "2025-03-13T18:16:42.198195"
+}

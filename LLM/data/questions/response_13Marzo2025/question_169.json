@@ -1,0 +1,8 @@
+{
+  "question_id": 169,
+  "section_index": 34,
+  "question": "How does prompting guide a pre-trained LLM's output for a specific task?",
+  "response": "Prompt engineering plays a crucial role in influencing the output of pre-trained Large Language Models (LLMs) for specific tasks. It is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. Prompt engineering bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs by instructing them in a way that elicits the desired response, accounting for their capabilities and limitations. The goals of prompt engineering are to enhance the understanding of the capabilities and limitations of LLMs, improve LLM performance on a broad range of tasks, help in interfacing with LLMs and integrating them with other tools, and enable new capabilities, such as augmenting LLMs with domain knowledge and external resources through techniques like retrieval augmented generation (RAG).",
+  "response_time": 1.9386816024780273,
+  "timestamp": "2025-03-13T17:46:18.417610"
+}

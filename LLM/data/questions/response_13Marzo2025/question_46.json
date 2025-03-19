@@ -1,0 +1,8 @@
+{
+  "question_id": 46,
+  "section_index": 9,
+  "question": "What is the purpose of tokenization in Natural Language Processing (NLP)?",
+  "response": "Tokenization is a fundamental step in Natural Language Processing (NLP) that transforms text into a sequence of discrete units called tokens. These tokens can be words, sub-words, or characters, and are then mapped to unique numerical IDs, allowing the model to represent and process textual data in a structured manner.",
+  "response_time": 1.4801411628723145,
+  "timestamp": "2025-03-13T17:30:53.525020"
+}

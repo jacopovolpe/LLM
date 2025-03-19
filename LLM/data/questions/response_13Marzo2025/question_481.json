@@ -1,0 +1,8 @@
+{
+  "question_id": 481,
+  "section_index": 97,
+  "question": "What are the five NLP tasks for which examples are provided within specific sections of the referenced material?",
+  "response": "The course covers several NLP tasks, including: Text Summarization, which condenses longer texts into shorter summaries; Information Extraction, which retrieves specific information from a given text; Question Answering, which provides answers based on context or knowledge; Text Classification, which categorizes text into predefined categories; and Code Generation, which generates code in various programming languages based on natural language descriptions.",
+  "response_time": 1.6556954383850098,
+  "timestamp": "2025-03-13T18:25:25.250018"
+}

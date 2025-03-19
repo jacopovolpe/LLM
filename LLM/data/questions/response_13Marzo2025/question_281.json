@@ -1,0 +1,8 @@
+{
+  "question_id": 281,
+  "section_index": 57,
+  "question": "What architectural characteristic of decoder-only transformers makes them well-suited for autoregressive tasks like text generation?",
+  "response": "Decoder-only transformers are effective in autoregressive sequence generation tasks, such as text generation, due to their architectural design that includes causal (unidirectional) self-attention, also known as masked self-attention. This ensures that each token attends only to previous tokens, mimicking the natural flow of language generation and preventing the model from \"looking ahead\" at future tokens during training and generation. The decoder generates the output sequence one element at a time, considering the previously generated words. The self-attention mechanism within decoder layers is crucial for context building.",
+  "response_time": 2.075439929962158,
+  "timestamp": "2025-03-13T18:00:14.173337"
+}

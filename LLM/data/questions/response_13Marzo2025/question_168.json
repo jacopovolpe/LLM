@@ -1,0 +1,8 @@
+{
+  "question_id": 168,
+  "section_index": 34,
+  "question": "What are some of the different approaches within fine-tuning, regarding which parts of the model are adjusted?",
+  "response": "Fine-tuning techniques involve tailoring a pre-trained Large Language Model (LLM) to a specific task or domain by further training it on a relevant dataset. There are several types of fine-tuning, including full fine-tuning, parameter-efficient fine-tuning (PEFT), and instruction fine-tuning.\n\nFull fine-tuning updates all the parameters of the pre-trained LLM, potentially leading to high accuracy but also high computational cost and risk of overfitting.\n\nParameter-Efficient Fine-Tuning (PEFT) methods, like LoRA, Adapters, and Prefix-Tuning, modify only a small fraction of the model's parameters, reducing computational burden. LoRA (Low-Rank Adaptation) injects trainable rank decomposition matrices into each layer, updating the weight matrix W' as the sum of the original weights W and the low-rank update ΔW, which is the product of two low-rank matrices A and B. Adapters are small, task-specific modules inserted within the Transformer layers, enabling fine-tuning without modifying the original model weights. Prefix Tuning prepends a sequence of trainable prefix vectors to the input sequence, guiding the model's attention mechanism without altering the original weights.\n\nInstruction fine-tuning trains LLMs on a dataset of (instruction, input, output) triples, improving the model's ability to generalize to new instructions and generate contextually appropriate responses.",
+  "response_time": 2.5238637924194336,
+  "timestamp": "2025-03-13T17:46:11.893183"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 8,
+  "section_index": 2,
+  "question": "Describe the Transformer architecture and its key components, including self-attention mechanisms, and explain the advantages it offers compared to Recurrent Neural Networks (RNNs) and Long Short-Term Memory networks (LSTMs).",
+  "response": "The Transformer architecture offers several advantages over Recurrent Neural Networks (RNNs), including Long Short-Term Memory (LSTM) networks, particularly through its self-attention mechanism. Self-attention allows the model to weigh the importance of different parts of the input sequence when processing each word, capturing long-range dependencies more effectively than RNNs, which can struggle with vanishing gradients over long sequences. Furthermore, the Transformer's lack of recurrence and the parallelizable nature of attention computations enable it to scale to much larger datasets and model sizes, a significant advantage over RNNs. While LSTMs were designed to mitigate the vanishing gradient problem in RNNs, Transformers offer a more direct solution by enabling parallel processing and handling long-range dependencies through the attention mechanism.",
+  "response_time": 2.3218514919281006,
+  "timestamp": "2025-03-13T17:26:03.584014"
+}

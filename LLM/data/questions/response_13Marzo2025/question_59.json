@@ -1,0 +1,8 @@
+{
+  "question_id": 59,
+  "section_index": 12,
+  "question": "What is the significance of the encoder blocks being \"identical\"?",
+  "response": "The encoder in a Transformer model transforms the input sequence into a contextualized representation. It consists of stacked identical blocks, each containing multi-head self-attention and a feed-forward layer. The encoder processes all input tokens in parallel, which is a key advantage over sequential RNNs.",
+  "response_time": 1.7716968059539795,
+  "timestamp": "2025-03-13T17:32:27.019564"
+}

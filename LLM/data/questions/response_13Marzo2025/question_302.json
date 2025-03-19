@@ -1,0 +1,8 @@
+{
+  "question_id": 302,
+  "section_index": 61,
+  "question": "How does Byte-Pair Encoding balance word-level and character-level representations?",
+  "response": "Byte Pair Encoding (BPE) is a subword tokenization technique often used with transformers to efficiently handle large vocabularies. It allows the model to represent rare or unseen words as combinations of more frequent subword units.",
+  "response_time": 1.452883243560791,
+  "timestamp": "2025-03-13T18:02:55.834197"
+}

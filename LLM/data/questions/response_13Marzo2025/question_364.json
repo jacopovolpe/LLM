@@ -1,0 +1,8 @@
+{
+  "question_id": 364,
+  "section_index": 73,
+  "question": "How can the T5 model be effectively applied to summarization tasks, and what are the potential challenges?",
+  "response": "T5 is a language model developed by Google Research that uses an encoder-decoder transformer architecture. A defining characteristic of T5 is that it frames all tasks as text-to-text problems. For example, to perform summarization, the model uses the prefix `summarize: <document>` to produce `<summary>`.\n\nWhile T5 is effective, TF-IDF, a tool used for gauging term importance, has limitations when it comes to capturing semantic relationships because it relies on exact word matching. Techniques like stemming and lemmatization can help address this issue by grouping similar words under a single token; however, these methods are not without their shortcomings, such as limited synonym grouping and the potential for misgrouping.",
+  "response_time": 2.044243097305298,
+  "timestamp": "2025-03-13T18:10:35.196421"
+}

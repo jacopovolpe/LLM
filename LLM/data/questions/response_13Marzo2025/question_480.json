@@ -1,0 +1,8 @@
+{
+  "question_id": 480,
+  "section_index": 96,
+  "question": "How does prompt engineering leverage in-context learning to efficiently guide LLMs?",
+  "response": "Prompt engineering is a discipline focused on developing and optimizing prompts to effectively use Large Language Models (LLMs) for diverse applications and research areas. It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. The goals of prompt engineering are to enhance understanding of the capabilities and limitations of LLMs, improve LLM performance on a broad range of tasks, help interfacing with LLMs and integrating with other tools, and enable new capabilities, such as augmenting LLMs with domain knowledge and external resources.",
+  "response_time": 1.7509715557098389,
+  "timestamp": "2025-03-13T18:25:15.725324"
+}

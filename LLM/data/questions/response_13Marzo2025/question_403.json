@@ -1,0 +1,8 @@
+{
+  "question_id": 403,
+  "section_index": 81,
+  "question": "What technical mechanism is crucial for enabling the chatbot to recognize and respond appropriately to out-of-scope questions?",
+  "response": "The project goal is to develop a chatbot for the NLP and LLM 2024/2025 course that can accurately answer questions about course material, schedule, assignments, instructors, resources, and administrative details. The chatbot should also be able to recognize and appropriately respond to questions outside the course's scope. The deliverables include the complete chatbot code and a detailed report explaining design choices, methodologies, and chosen technologies. The chatbot's ability to handle out-of-context questions will be evaluated based on precision. The chatbot must accurately identify and handle questions outside of the defined scope.",
+  "response_time": 2.7442097663879395,
+  "timestamp": "2025-03-13T18:15:22.631515"
+}

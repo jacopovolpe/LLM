@@ -1,0 +1,8 @@
+{
+  "question_id": 702,
+  "section_index": 141,
+  "question": "Besides an MLP, what other machine learning algorithms would be suitable for this sentiment classification task?",
+  "response": "Besides Multilayer Perceptron (MLP), other suitable algorithms can be used for sentiment classification. The provided context mentions using the IMDB dataset, containing 50,000 movie reviews labeled as positive or negative, for sentiment analysis tasks. The context also mentions TF-IDF vectorization. However, it does not explicitly list alternative algorithms.",
+  "response_time": 1.8172881603240967,
+  "timestamp": "2025-03-13T18:53:24.557420"
+}

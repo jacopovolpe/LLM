@@ -1,0 +1,8 @@
+{
+  "question_id": 225,
+  "section_index": 45,
+  "question": "How does this lesson specifically focus on encoder-only transformers in contrast to the broader Transformer architecture discussed in previous contexts?",
+  "response": "Encoder-only transformers are a specific type of transformer architecture, where only the encoder component is utilized, as opposed to the full transformer architecture which includes both encoder and decoder components. This makes them suitable for tasks where the input and output sequences are of the same length, such as part-of-speech tagging or named entity recognition, or when the output is a single value, such as in sequence classification tasks like sentiment analysis. In the latter case, a special `[CLS]` token is added to the input, and its corresponding output vector represents the entire sequence for loss computation.",
+  "response_time": 1.7375190258026123,
+  "timestamp": "2025-03-13T17:53:17.341091"
+}

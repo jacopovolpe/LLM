@@ -1,0 +1,8 @@
+{
+  "question_id": 7,
+  "section_index": 2,
+  "question": "Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation (NLG) and how they relate to representing meaning and context in textual data.",
+  "response": "Natural Language Understanding (NLU) focuses on enabling computers to understand human language, while Natural Language Generation (NLG) deals with generating human-like text. NLU transforms human language into a machine-readable format through processes like meaning extraction, contextual analysis, and intent recognition. This often involves creating numerical representations called embeddings. NLG, on the other hand, constructs coherent and contextually relevant text from numerical representations, which is useful for machine translation, text summarization, dialogue processing, and content creation.",
+  "response_time": 1.8211467266082764,
+  "timestamp": "2025-03-13T17:25:55.235874"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 247,
+  "section_index": 50,
+  "question": "How is the `[CLS]` token used for single-sentence classification tasks like sentiment analysis?",
+  "response": "The `[CLS]` token, which is prepended to every input sequence in BERT, serves as an aggregate representation of the entire sequence. After processing the input, BERT's final hidden state corresponding to the `[CLS]` token captures the overall meaning and context of the sequence. For single-sentence classification tasks like sentiment analysis, the `[CLS]` embedding is directly fed into a classifier.",
+  "response_time": 1.5049383640289307,
+  "timestamp": "2025-03-13T17:56:01.458880"
+}

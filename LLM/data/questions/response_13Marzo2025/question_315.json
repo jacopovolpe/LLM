@@ -1,0 +1,8 @@
+{
+  "question_id": 315,
+  "section_index": 63,
+  "question": "If you were developing a virtual personal assistant, what role would fine-tuning play in its development?",
+  "response": "Fine-tuning is important because it allows tailoring a pre-trained LLM to a specific task or domain, such as creating a virtual personal assistant. Pre-trained LLMs have broad knowledge, but fine-tuning enables them to acquire specialized knowledge relevant to the specific application. Fine-tuning improves the accuracy and relevance of LLM outputs, so a model fine-tuned for use as a virtual personal assistant will generate more accurate and relevant responses than a general-purpose model. Also, fine-tuning enables LLMs to achieve good performance even with smaller, focused datasets.",
+  "response_time": 1.8570129871368408,
+  "timestamp": "2025-03-13T18:04:37.004551"
+}

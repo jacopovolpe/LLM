@@ -1,0 +1,8 @@
+{
+  "question_id": 362,
+  "section_index": 73,
+  "question": "How does the T5 model differ from other transformer models, and what are some of its notable variants?",
+  "response": "T5, or Text-to-Text Transfer Transformer, is an encoder-decoder transformer model that frames all tasks as text-to-text problems. The T5 model comes in different sizes, including T5-Small, T5-Base, T5-Large, T5-XL, and T5-XXL, which vary in the number of encoder blocks, attention heads, embedding dimensionality, and decoder blocks.\n\nCompared to other transformer architectures, T5 combines encoder and decoder components making it suitable for tasks requiring mapping input sequences to output sequences, such as machine translation. Encoder-only models like BERT excel at text representation by processing the entire input sequence simultaneously, capturing contextual information, while decoder-only models like GPT are specialized for text generation, predicting the next word based on the preceding context.\n\nSeveral T5 variants have been developed, including mT5, which supports 101 languages for multilingual NLP; Flan-T5, which is designed for instruction-following; ByT5, which handles noisy and unstructured text without tokenization; T5-3B/11B, high-capacity models for complex tasks; UL2, which is versatile across different tasks; Multimodal T5, which processes both text and image inputs; and Efficient T5, which is lightweight and fast for resource-constrained NLP.",
+  "response_time": 2.8962435722351074,
+  "timestamp": "2025-03-13T18:10:21.169983"
+}

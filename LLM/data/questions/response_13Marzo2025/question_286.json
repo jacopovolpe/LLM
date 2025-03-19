@@ -1,0 +1,8 @@
+{
+  "question_id": 286,
+  "section_index": 58,
+  "question": "What is the primary difference in architecture between Encoder-only and Decoder-only Transformers?",
+  "response": "Encoder-only transformers, such as BERT, and decoder-only transformers, such as GPT, differ in their architecture, training objective, context processing, use cases, attention type, and output. Encoder-only transformers utilize only encoder blocks and employ bidirectional self-attention, processing the entire input sequence simultaneously. Their training objective is Masked Language Modeling (MLM), where the model predicts masked tokens based on the surrounding context. This allows for rich contextual understanding and makes them suitable for tasks like text classification, Named Entity Recognition (NER), and question answering. They typically generate contextualized embeddings for each input token.\n\nDecoder-only transformers use only decoder blocks and employ causal (unidirectional) self-attention, processing tokens sequentially from left to right. They are trained using Autoregressive Language Modeling to predict the next token in a sequence. This sequential processing builds up context as it progresses, making them ideal for generative tasks like text generation, story generation, code generation, and translation. They produce sequential token generation.",
+  "response_time": 2.231381416320801,
+  "timestamp": "2025-03-13T18:00:49.350529"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 47,
+  "section_index": 9,
+  "question": "What are the discrete units created during tokenization called?",
+  "response": "The individual components or segments resulting from the process of tokenization are referred to as tokens. Tokens can be words, punctuation marks, emojis, numbers, sub-words, or phrases.",
+  "response_time": 1.6177399158477783,
+  "timestamp": "2025-03-13T17:31:02.522925"
+}

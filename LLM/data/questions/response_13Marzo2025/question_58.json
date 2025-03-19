@@ -1,0 +1,8 @@
+{
+  "question_id": 58,
+  "section_index": 12,
+  "question": "How does the encoder's parallel processing of input tokens contrast with the operation of RNNs?",
+  "response": "Transformers, unlike Recurrent Neural Networks (RNNs), use an attention mechanism that enables parallel processing of the input sequence, significantly reducing training time. In contrast, RNNs process sequences sequentially.",
+  "response_time": 1.4118120670318604,
+  "timestamp": "2025-03-13T17:32:17.995908"
+}

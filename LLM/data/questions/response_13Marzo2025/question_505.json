@@ -1,0 +1,8 @@
+{
+  "question_id": 505,
+  "section_index": 101,
+  "question": "What example is given to illustrate the limitations of simple whitespace-based tokenization, and what type of tokenizers are mentioned as more robust alternatives?",
+  "response": "Whitespace tokenization, which uses whitespace as delimiters, is inadequate for languages without clear word boundaries and struggles with punctuation and numbers. Regular expressions and specialized tokenizers offer more robust alternatives for handling complex scenarios like abbreviations, numbers, and special symbols. T5 utilizes a SentencePiece tokenizer with a vocabulary size of 32,000 tokens. SentencePiece is a subword tokenizer that creates a balance between character and word-level tokenization, efficiently handling rare words and out-of-vocabulary terms by breaking words into subword units and using a unigram language model.",
+  "response_time": 1.8223612308502197,
+  "timestamp": "2025-03-13T18:28:19.571602"
+}

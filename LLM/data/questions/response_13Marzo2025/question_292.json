@@ -1,0 +1,8 @@
+{
+  "question_id": 292,
+  "section_index": 59,
+  "question": "How are decoder-only transformers utilized in conversational AI applications?",
+  "response": "Decoder-only transformers are ideal for generative tasks like text generation, story generation, code generation, and translation. They are also used in conversational AI to power chatbots and virtual assistants that engage in real-time dialogue and respond dynamically to user input.",
+  "response_time": 1.3917334079742432,
+  "timestamp": "2025-03-13T18:01:38.897303"
+}

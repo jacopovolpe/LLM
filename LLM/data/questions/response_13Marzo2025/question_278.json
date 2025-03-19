@@ -1,0 +1,8 @@
+{
+  "question_id": 278,
+  "section_index": 56,
+  "question": "What are the practical applications of text generation using models like GPT and LLAMA?",
+  "response": "Text generation has a wide array of applications, including machine translation, question answering, automatic summarization, text completion, dialogue systems, and creative writing, such as generating poems, scripts, and stories.\n\nLLaMA and GPT are decoder-only transformer models well-suited for text generation. LLaMA models come in various sizes, including 7B, 13B, 30B, and 65B parameters, while GPT models range from 117M to over 175B parameters in the case of GPT-3, with potentially larger versions existing. LLaMA is designed for efficient training, while GPT models, especially larger ones, are very resource-intensive. LLaMA is open-sourced under specific licenses, while GPT is primarily accessed through OpenAI's commercial API. LLaMA emphasizes responsible use, while GPT's broader commercial use raises ethical concerns. LLaMA is targeted towards academic research and custom deployments, while GPT is readily available via API for various commercial applications.",
+  "response_time": 2.426077365875244,
+  "timestamp": "2025-03-13T17:59:53.700351"
+}

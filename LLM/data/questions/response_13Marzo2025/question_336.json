@@ -1,0 +1,8 @@
+{
+  "question_id": 336,
+  "section_index": 68,
+  "question": "What is the primary training objective used in pre-training LLaMA?",
+  "response": "During the pre-training phase, LLaMA, like GPT, employs autoregressive language modeling as its training objective, meaning it predicts the next token in a sequence. The training process involves minimizing cross-entropy loss, typically using optimizers like SGD or Adam with gradient clipping and other optimization techniques such as mixed precision training, learning rate schedules, and weight decay.",
+  "response_time": 3.7568087577819824,
+  "timestamp": "2025-03-13T18:07:02.432320"
+}

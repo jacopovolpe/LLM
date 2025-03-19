@@ -1,0 +1,8 @@
+{
+  "question_id": 644,
+  "section_index": 129,
+  "question": "How are search results ranked based on the calculated similarity scores?",
+  "response": "Search result ranking in a basic search engine is based on the cosine similarity between the query vector and the document vectors. Documents are ranked according to this similarity, with the most similar documents presented first. The process involves creating a TF-IDF matrix for all documents, processing the user's query to create its TF-IDF vector, calculating the cosine similarity between the query vector and all document vectors, and finally, ranking the documents based on their cosine similarity to the query.",
+  "response_time": 1.7704498767852783,
+  "timestamp": "2025-03-13T18:46:15.470902"
+}

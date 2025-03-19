@@ -1,0 +1,8 @@
+{
+  "question_id": 633,
+  "section_index": 127,
+  "question": "Why might you disable components like named entity recognition when processing a large corpus for TF-IDF calculations?",
+  "response": "When calculating TF-IDF on a large corpus, disabling Named Entity Recognition (NER) can improve processing efficiency. Efficient processing of large corpora often involves optimizing code by disabling unnecessary components of NLP pipelines, such as named entity recognition or parsing, when dealing solely with TF or TF-IDF.",
+  "response_time": 1.483649492263794,
+  "timestamp": "2025-03-13T18:44:53.847712"
+}

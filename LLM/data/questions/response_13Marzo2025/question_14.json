@@ -1,0 +1,8 @@
+{
+  "question_id": 14,
+  "section_index": 3,
+  "question": "What is \"Retrieval Augmented Generation\" and how does it enhance the capabilities of Large Language Models?",
+  "response": "Retrieval Augmented Generation (RAG) addresses the limitations of Large Language Models (LLMs) by enriching them with access to external and private data sources. LLMs have limitations such as a knowledge cutoff, inability to access external information, and challenges in handling private data. RAG overcomes these by allowing AI applications to leverage the power of LLMs while grounding their responses in specific, relevant information, broadening their knowledge beyond the training data and enabling them to work with sensitive data securely.\n\nRAG applications involve two key stages: indexing and retrieval & generation. The indexing stage, which is done offline, involves loading data from various sources, splitting long documents into smaller chunks, and storing the data chunks in a Vector Store as vector embeddings to enable semantic search. During runtime, the system retrieves relevant data chunks from the Vector Store based on the user's query, incorporates the retrieved data into a prompt, and feeds this augmented prompt to the LLM to generate a response grounded in the retrieved context.",
+  "response_time": 2.247816324234009,
+  "timestamp": "2025-03-13T17:26:52.289799"
+}

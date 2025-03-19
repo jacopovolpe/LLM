@@ -1,0 +1,8 @@
+{
+  "question_id": 513,
+  "section_index": 103,
+  "question": "How can stop word removal negatively impact the meaning of a sentence?",
+  "response": "Removing stop words can negatively impact sentence meaning because these words, while common, often play a crucial role in sentence structure and conveying relationships between words.",
+  "response_time": 1.4167401790618896,
+  "timestamp": "2025-03-13T18:29:15.860535"
+}

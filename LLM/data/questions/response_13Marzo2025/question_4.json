@@ -1,0 +1,8 @@
+{
+  "question_id": 4,
+  "section_index": 1,
+  "question": "What are some of the practical skills students will develop in this course?",
+  "response": "This course, Natural Language Processing and Large Language Models, aims to equip students with the ability to design and implement an NLP system based on LLMs, integrating existing technologies and tools. This involves hands-on experience with popular libraries and frameworks like HuggingFace Transformers, along with practical project work to solidify the learned concepts.",
+  "response_time": 1.5971851348876953,
+  "timestamp": "2025-03-13T17:25:32.982309"
+}

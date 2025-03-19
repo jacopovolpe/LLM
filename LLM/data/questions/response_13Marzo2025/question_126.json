@@ -1,0 +1,8 @@
+{
+  "question_id": 126,
+  "section_index": 26,
+  "question": "What is the purpose of the linear layer in the decoder output process?",
+  "response": "In sequence-to-sequence models, the final layer of the decoder is a linear layer followed by a softmax function. This projects the decoder's output to the vocabulary size, producing a probability distribution over all possible words for the next position in the output sequence. The word with the highest probability is then selected as the output for that time step.",
+  "response_time": 1.459667682647705,
+  "timestamp": "2025-03-13T17:40:44.704913"
+}

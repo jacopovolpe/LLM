@@ -1,0 +1,8 @@
+{
+  "question_id": 30,
+  "section_index": 5,
+  "question": "What specific topic is covered in Lesson 9 of the course?",
+  "response": "Lesson 9 focuses on Transformers. It begins by addressing the limitations of Recurrent Neural Networks (RNNs), such as vanishing gradients, slow training, and limited long-term memory, which motivated the development of Transformers. The core components of the Transformer model are then detailed, with a focus on the mechanism of self-attention. The Transformer architecture, introduced by Google Brain in 2017, revolutionized NLP by enabling parallel processing, speeding up training, and mitigating the vanishing gradient problem. The number of layers traversed is independent of the sequence length, contributing to its efficiency and ability to handle long-range dependencies.",
+  "response_time": 1.5803101062774658,
+  "timestamp": "2025-03-13T17:28:50.071425"
+}

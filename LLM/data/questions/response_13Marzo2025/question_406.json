@@ -1,0 +1,8 @@
+{
+  "question_id": 406,
+  "section_index": 82,
+  "question": "What are students permitted to use for their projects?",
+  "response": "Students are allowed to utilize any tools and technologies discussed during the course, encompassing both modern Large Language Model (LLM) based approaches and traditional Natural Language Processing (NLP) techniques. A hybrid approach, combining LLMs for certain functionalities and classic NLP methods for others, is encouraged. Students can incorporate pre-existing LLMs and other models, either directly or with modifications. The Hugging Face ecosystem, including the Hugging Face Hub, is a central hub for NLP resources. The Hub provides access to pre-trained models, datasets, and educational resources. Key open-source libraries include `datasets`, `transformers`, and `evaluate`. The `datasets` library simplifies downloading and managing datasets, while `transformers` provides the building blocks for working with transformer models. The `evaluate` library facilitates the computation of various evaluation metrics for assessing model performance. The course materials are available on the university's e-learning platform at [https://elearning.unisa.it/](https://elearning.unisa.it/).",
+  "response_time": 2.2801129817962646,
+  "timestamp": "2025-03-13T18:15:44.965935"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 157,
+  "section_index": 32,
+  "question": "How does Masked Language Modeling (MLM) contribute to a bidirectional understanding of language in LLMs?",
+  "response": "Masked Language Modeling (MLM) is a self-supervised pre-training technique used in autoencoding models like BERT, where the model is trained to predict masked words in a sentence based on the surrounding context. This approach fosters a bidirectional understanding of language in Large Language Models (LLMs).",
+  "response_time": 1.6460587978363037,
+  "timestamp": "2025-03-13T17:44:45.623288"
+}

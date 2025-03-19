@@ -1,0 +1,8 @@
+{
+  "question_id": 146,
+  "section_index": 30,
+  "question": "What is the key advantage of transformers in NLP compared to previous architectures?",
+  "response": "The Transformer architecture presents several advantages over traditional recurrent and convolutional models for sequence-to-sequence tasks. A key innovation is the self-attention mechanism, which allows the model to weigh the importance of different parts of the input sequence when processing each word. This captures long-range dependencies more effectively than recurrent networks, which can struggle with vanishing gradients over long sequences. The lack of recurrence and the parallelizable nature of attention computations enable Transformers to be scaled to much larger datasets and model sizes than RNNs or CNNs, which has been instrumental in the development of large language models. The consistent input and output dimensions of Transformer layers facilitate stacking multiple layers, enabling the model to learn increasingly complex representations of the input data. Positional encodings compensate for the lack of inherent positional information in self-attention, allowing the model to account for word order in the input sequence.",
+  "response_time": 2.140392541885376,
+  "timestamp": "2025-03-13T17:43:26.258591"
+}

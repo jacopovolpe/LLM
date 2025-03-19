@@ -1,0 +1,8 @@
+{
+  "question_id": 367,
+  "section_index": 74,
+  "question": "How does the attention mechanism in Transformers contribute to handling long-range dependencies within sequences, and how does this contrast with RNNs?",
+  "response": "The attention mechanism in Transformer models addresses the limitations of Recurrent Neural Networks (RNNs) in handling long sequences by enabling parallel training and calculating dynamic attention weights. Unlike RNNs, which process data sequentially and struggle with vanishing gradients, the attention mechanism allows the model to consider relationships between words regardless of their distance in the sequence. This is achieved by dynamically assigning weights to different parts of the input sequence, focusing on the most relevant information for the given task. The Transformer architecture enables parallel processing of sequence elements, significantly speeding up training and mitigating the vanishing gradient problem, because the number of layers traversed is independent of the sequence length.\n\nIn terms of memory, RNNs struggle to retain information from earlier stages of the sequence when processing long sequences, while Transformers, through self-attention, weigh the importance of different parts of the input sequence when processing each word, capturing long-range dependencies more effectively. Computationally, RNNs process data sequentially, which prevents leveraging the parallel processing capabilities of modern GPUs, resulting in slower training times. Transformers, on the other hand, enable parallel processing of the input sequence, significantly reducing training time.",
+  "response_time": 2.540510654449463,
+  "timestamp": "2025-03-13T18:10:53.667416"
+}

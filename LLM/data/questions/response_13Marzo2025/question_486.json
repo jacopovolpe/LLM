@@ -1,0 +1,8 @@
+{
+  "question_id": 486,
+  "section_index": 98,
+  "question": "What is the primary difference between system prompts and user prompts?",
+  "response": "System prompts and user prompts differ fundamentally in their purpose and function. System prompts are instructions provided to the AI model *before* any user interactions, establishing the initial context, desired behavior, tone, and any special instructions for the LLM, shaping its subsequent responses. On the other hand, user prompts are provided during the interaction.",
+  "response_time": 1.5317935943603516,
+  "timestamp": "2025-03-13T18:25:57.909732"
+}

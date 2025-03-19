@@ -1,0 +1,8 @@
+{
+  "question_id": 182,
+  "section_index": 37,
+  "question": "Where can one find educational resources provided by Hugging Face for learning about NLP and their tools?",
+  "response": "Hugging Face provides educational resources through the education toolkit available at [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit).",
+  "response_time": 1.4746832847595215,
+  "timestamp": "2025-03-13T17:47:52.416855"
+}

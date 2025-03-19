@@ -1,0 +1,8 @@
+{
+  "question_id": 90,
+  "section_index": 18,
+  "question": "What are some key milestones in the development of deep learning for NLP from 2010 onwards?",
+  "response": "From 2010 to the present, the deep learning era has significantly advanced Natural Language Processing (NLP). This period saw the widespread adoption of LSTM and Convolutional Neural Network (CNN) architectures. Word2Vec revolutionized word embedding learning in 2013. Sequence-to-sequence models, which introduced the encoder-decoder framework, emerged in 2014. The Transformer architecture, with its attention mechanism, greatly improved NLP capabilities in 2017. The evolution led to Large Language Models (LLMs), which are now used in text generation, translation, chatbots, code generation, question answering, and summarization. Multimodal LLMs, capable of processing images, text, audio, and video, have also emerged, enabling applications like image captioning and speech-to-text conversion.",
+  "response_time": 2.0293831825256348,
+  "timestamp": "2025-03-13T17:36:07.983979"
+}

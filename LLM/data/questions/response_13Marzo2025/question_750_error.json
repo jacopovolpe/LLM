@@ -1,0 +1,7 @@
+{
+  "question_id": 750,
+  "section_index": 150,
+  "question": "What challenge associated with static embeddings do contextualized embeddings mitigate regarding out-of-vocabulary words?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:01:12.769593"
+}

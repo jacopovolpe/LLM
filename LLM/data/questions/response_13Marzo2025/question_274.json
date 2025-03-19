@@ -1,0 +1,8 @@
+{
+  "question_id": 274,
+  "section_index": 55,
+  "question": "Which specific decoder-only transformer models are mentioned and compared in Lesson 14?",
+  "response": "Lesson 14 explicitly mentions GPT and LLaMA as examples of successful decoder-only transformers and offers a comparative analysis between them.",
+  "response_time": 1.3293664455413818,
+  "timestamp": "2025-03-13T17:59:23.658290"
+}

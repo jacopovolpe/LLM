@@ -1,0 +1,8 @@
+{
+  "question_id": 699,
+  "section_index": 140,
+  "question": "Why does the balanced class distribution of the dataset simplify evaluation?",
+  "response": "The IMDB dataset, containing 50,000 movie reviews labeled as positive or negative, is commonly used for sentiment analysis tasks, and its balanced class distribution simplifies evaluation.",
+  "response_time": 1.437675952911377,
+  "timestamp": "2025-03-13T18:52:56.098293"
+}

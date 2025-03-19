@@ -1,0 +1,8 @@
+{
+  "question_id": 110,
+  "section_index": 22,
+  "question": "Why is it significant that the encoder blocks maintain the same input and output dimensionality?",
+  "response": "Maintaining consistent input and output dimensionality in the encoder blocks of a Transformer model is important because it allows for stacking multiple encoder blocks. The output of one block becomes the input to the next, enabling the network to learn hierarchical representations of the input sequence.",
+  "response_time": 1.5474152565002441,
+  "timestamp": "2025-03-13T17:38:44.646110"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 32,
+  "section_index": 6,
+  "question": "How does the sequential nature of RNNs impact their training speed, particularly when dealing with long sequences?",
+  "response": "RNNs process data sequentially, meaning they handle one input at a time. This sequentiality prevents the network from leveraging the parallel processing capabilities of modern GPUs, resulting in significantly slower training times, especially for long sequences. The network must complete processing 𝑥𝑖−1 before starting on 𝑥𝑖, creating a bottleneck.",
+  "response_time": 1.728971242904663,
+  "timestamp": "2025-03-13T17:29:04.008495"
+}

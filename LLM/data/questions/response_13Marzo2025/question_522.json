@@ -1,0 +1,8 @@
+{
+  "question_id": 522,
+  "section_index": 105,
+  "question": "Why is PoS tagging important for tasks like lemmatization and parsing?",
+  "response": "Part-of-Speech (PoS) tagging assigns grammatical labels, such as noun, verb, or adjective, to tokens. This provides valuable information about sentence structure and word function, which is crucial for tasks like lemmatization and parsing. PoS tagging helps disambiguate words with multiple possible tags depending on the context, allowing for more accurate lemmatization and parsing. For example, lemmatization uses PoS tags to determine a word's canonical form (lemma), considering its part of speech, and parsing benefits from the structural information provided by PoS tags to analyze the syntactic dependencies within a sentence.",
+  "response_time": 2.125161647796631,
+  "timestamp": "2025-03-13T18:30:28.690181"
+}

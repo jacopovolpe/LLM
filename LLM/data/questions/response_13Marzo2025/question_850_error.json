@@ -1,0 +1,7 @@
+{
+  "question_id": 850,
+  "section_index": 168,
+  "question": "What does the `rasa init` command generate when creating a new Rasa project?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:17:21.956275"
+}

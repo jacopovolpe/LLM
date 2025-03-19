@@ -1,0 +1,8 @@
+{
+  "question_id": 138,
+  "section_index": 28,
+  "question": "Explain the role of positional encodings in the Transformer architecture and why they are necessary.",
+  "response": "Positional encodings are crucial in the Transformer architecture because the attention mechanism, while powerful, doesn't inherently consider word order. These encodings address this limitation by adding position-specific information to the input embeddings, utilizing periodic functions like sine and cosine to create unique representations for each position. This ensures that the model differentiates between sequences with the same words in different orders. Since the attention mechanism is order-agnostic, positional encodings are added to the input embeddings to provide information about the position of each token in the sequence, enabling the model to understand word order. The omission of recurrence in Transformers necessitates positional encodings to incorporate word order information. These encodings are crucial for tasks where word order is essential, like translation and grammar parsing.",
+  "response_time": 1.8002510070800781,
+  "timestamp": "2025-03-13T17:42:19.688439"
+}

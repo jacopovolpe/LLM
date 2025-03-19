@@ -1,0 +1,8 @@
+{
+  "question_id": 227,
+  "section_index": 46,
+  "question": "How does BERT, as a Bidirectional Encoder Representation from Transformers, function differently from other transformer models?",
+  "response": "BERT, introduced by Google in 2018, is an encoder-only transformer model, while other transformer models can be decoder-only (like GPT) or have an encoder-decoder architecture. BERT leverages bidirectional self-attention, processing the entire input sequence simultaneously to capture context from both directions. It is pre-trained using Masked Language Modeling (MLM), where the model predicts masked tokens based on surrounding context. BERT is primarily suited for tasks requiring understanding of the entire input sequence, such as text classification, Named Entity Recognition (NER), and question answering. In contrast, decoder-only transformers employ causal (unidirectional) self-attention, processing tokens sequentially from left to right, conditioning each prediction on previous tokens, and are ideal for generative tasks like text generation, story generation, code generation, and translation.",
+  "response_time": 2.0391807556152344,
+  "timestamp": "2025-03-13T17:53:34.111752"
+}

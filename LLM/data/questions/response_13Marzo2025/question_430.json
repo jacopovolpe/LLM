@@ -1,0 +1,8 @@
+{
+  "question_id": 430,
+  "section_index": 86,
+  "question": "Which popular libraries provide implementations of PEFT methods like LoRA, Adapters, and Prefix Tuning?",
+  "response": "Parameter-Efficient Fine-Tuning (PEFT) methods are implemented in libraries like Hugging Face Transformers and `peft`. PEFT techniques include Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning. LoRA injects trainable rank decomposition matrices into each layer of the Transformer model. Adapters are small, task-specific modules inserted within the Transformer layers. Prefix Tuning prepends a sequence of trainable prefix tokens to the input sequence.",
+  "response_time": 1.875013828277588,
+  "timestamp": "2025-03-13T18:18:56.752812"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 240,
+  "section_index": 48,
+  "question": "How is BERT adapted for specific tasks after pre-training?",
+  "response": "After pre-training, BERT is fine-tuned for specific downstream tasks by adding task-specific layers on top of the encoder output. The pre-trained weights can be either frozen or further updated during fine-tuning. The process involves minimizing the cross-entropy loss between predicted and actual labels for the given task, allowing BERT's general language understanding to adapt to specific application domains. The `[CLS]` token's representation is crucial during fine-tuning as it gets specifically trained to capture the nuances required for the target task.",
+  "response_time": 1.7553520202636719,
+  "timestamp": "2025-03-13T17:55:14.324229"
+}

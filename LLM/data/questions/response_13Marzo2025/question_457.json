@@ -1,0 +1,8 @@
+{
+  "question_id": 457,
+  "section_index": 92,
+  "question": "What are some common prompt engineering techniques?",
+  "response": "Prompt engineering is a new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. It helps bridge the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. The goals of prompt engineering are to enhance the understanding of the capabilities and limitations of LLMs, improve LLM performance on a broad range of tasks, help interfacing with LLMs and integrating with other tools, and enable new capabilities, such as augmenting LLMs with domain knowledge and external resources. The lesson plan includes an introduction to prompt engineering, prompt engineering techniques, and prompt testing.",
+  "response_time": 1.8312299251556396,
+  "timestamp": "2025-03-13T18:22:18.398348"
+}

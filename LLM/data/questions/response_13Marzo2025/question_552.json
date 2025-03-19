@@ -1,0 +1,8 @@
+{
+  "question_id": 552,
+  "section_index": 111,
+  "question": "How does using a `PromptTemplate` improve interactions with LLMs compared to directly providing a query string?",
+  "response": "This set of documents provides information on Reinforcement Learning from Human Feedback (RLHF), elements of a prompt, in-context learning, prompts and NLP tasks, system prompts, prompt engineering techniques, representing text, and Retrieval Augmented Generation (RAG).\n\nA well-structured prompt typically comprises an instruction, context, input data, and an output indicator. In-context learning allows LLMs to perform tasks by leveraging information provided directly within the prompt, specifying reference material, input-output pairs, step-by-step instructions, clarifications, and templates. Prompts can be designed for various NLP tasks, including text summarization, information extraction, question answering, text classification, and code generation. System prompts, provided before user interactions, establish the initial context and desired behavior for the LLM.\n\nRAG addresses LLM limitations like knowledge cutoff and inability to access external information by enriching them with external and private data sources. RAG applications involve indexing (offline) and retrieval and generation (runtime). The indexing stage includes loading data, splitting it into chunks, and storing it in a Vector Store. Vector Stores are specialized databases for storing and retrieving vector embeddings, enabling semantic search. The runtime process involves retrieving relevant data chunks, augmenting the prompt, and LLM generation.",
+  "response_time": 2.7884185314178467,
+  "timestamp": "2025-03-13T18:34:17.887940"
+}

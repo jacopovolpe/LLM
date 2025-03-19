@@ -1,0 +1,8 @@
+{
+  "question_id": 503,
+  "section_index": 101,
+  "question": "Beyond words, what other elements can be considered tokens in NLP, and why are they significant?",
+  "response": "In Natural Language Processing (NLP), a token is the smallest meaningful unit of text that an NLP system considers. Besides words, tokens can also include punctuation marks, emojis, numbers, sub-words, and phrases. Punctuation marks are important for disambiguation and understanding sentence structure. Emojis convey emotional information. Numbers can represent quantities or other numerical data. Sub-words can help with handling out-of-vocabulary words and capturing morphological information. Phrases represent multi-word expressions that function as a single unit.",
+  "response_time": 2.0210514068603516,
+  "timestamp": "2025-03-13T18:28:04.858259"
+}

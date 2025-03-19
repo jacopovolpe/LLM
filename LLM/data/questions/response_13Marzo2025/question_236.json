@@ -1,0 +1,8 @@
+{
+  "question_id": 236,
+  "section_index": 48,
+  "question": "What is the core architectural component that BERT utilizes from the Transformer model?",
+  "response": "BERT leverages the encoder part of the transformer architecture. The encoder transforms the input sequence into a contextualized representation and consists of stacked identical blocks, each containing multi-head self-attention and a feed-forward layer. The encoder processes all input tokens in parallel. BERT's key strength lies in its ability to understand bidirectional context using bidirectional self-attention, meaning it considers both preceding and succeeding words to understand the meaning of a word within a sentence.",
+  "response_time": 1.8544249534606934,
+  "timestamp": "2025-03-13T17:54:41.407205"
+}

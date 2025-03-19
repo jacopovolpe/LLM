@@ -1,0 +1,8 @@
+{
+  "question_id": 634,
+  "section_index": 127,
+  "question": "Explain the difference between Euclidean Distance and Cosine Similarity in the context of document comparison.",
+  "response": "Euclidean distance and cosine similarity are both used to calculate document similarity within the Vector Space Model (VSM), but they have key differences. Euclidean distance measures the straight-line distance between two document vectors, but it's sensitive to the magnitude of the vectors and less commonly used in NLP. Cosine similarity, on the other hand, measures the cosine of the angle between two vectors, focusing on their direction and ignoring magnitude; it ranges from -1 to 1, where 1 indicates perfect similarity, 0 indicates no similarity, and -1 indicates perfect dissimilarity, though this is generally not encountered with TF-based representations. Cosine similarity is more effective for normalized text representations and is widely used in NLP.",
+  "response_time": 2.017120122909546,
+  "timestamp": "2025-03-13T18:45:01.976820"
+}

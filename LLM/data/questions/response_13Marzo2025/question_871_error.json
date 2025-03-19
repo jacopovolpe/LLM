@@ -1,0 +1,7 @@
+{
+  "question_id": 871,
+  "section_index": 173,
+  "question": "What are some of the messaging platforms that Rasa supports connectors for?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:20:47.600229"
+}

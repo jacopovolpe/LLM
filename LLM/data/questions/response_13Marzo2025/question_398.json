@@ -1,0 +1,8 @@
+{
+  "question_id": 398,
+  "section_index": 80,
+  "question": "What specific type of transformer architecture is highlighted as being central to the practical applications explored in the Hugging Face resources?",
+  "response": "Hugging Face provides tools and resources for various transformer architectures used in practical applications. Encoder-decoder transformers are designed for sequence-to-sequence tasks like translation and summarization, and they leverage the attention mechanism. Encoder-only transformers, like BERT, are suitable for tasks such as token classification, named entity recognition, and sequence classification. The `transformers` library offers building blocks for working with these models, including pipelines, tokenizers, and model architectures, supporting both PyTorch and TensorFlow. The Hugging Face Hub hosts a wide variety of pre-trained models readily available for various NLP tasks.",
+  "response_time": 1.9472908973693848,
+  "timestamp": "2025-03-13T18:14:50.568780"
+}

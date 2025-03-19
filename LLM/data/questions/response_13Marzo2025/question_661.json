@@ -1,0 +1,8 @@
+{
+  "question_id": 661,
+  "section_index": 133,
+  "question": "What is the objective of text classification given a set of documents *D* and a set of predefined classes *C*?",
+  "response": "Text classification is the process of assigning predefined categories to text documents based solely on their content, without considering metadata. A classifier function, denoted as *F*: *D* x *C* → {True, False}, determines whether a document dᵢ belongs to class cⱼ, assigning a Boolean value accordingly. This is distinct from document classification, which considers metadata, and document clustering, which discovers categories from unlabeled data. Text classification is used in spam detection, sentiment analysis, topic categorization, and intent recognition in conversational AI. There are different types of classification, including single-label, where each document belongs to only one class; binary, a special case of single-label with two classes; and multi-label, where a document can belong to multiple classes simultaneously.",
+  "response_time": 1.9807729721069336,
+  "timestamp": "2025-03-13T18:48:25.758386"
+}

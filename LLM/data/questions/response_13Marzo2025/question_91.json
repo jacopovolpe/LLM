@@ -1,0 +1,8 @@
+{
+  "question_id": 91,
+  "section_index": 19,
+  "question": "What are the key components of the Transformer architecture discussed in Lesson 10?",
+  "response": "Lesson 10 delves into the inner workings of the Transformer architecture, focusing on key components. These components include Multi-Head Attention, the Encoder and Decoder structures, Masked Multi-Head Attention, Encoder-Decoder Attention, and the Output. The lesson also covers the overall Transformer pipeline.",
+  "response_time": 1.4371497631072998,
+  "timestamp": "2025-03-13T17:36:16.423927"
+}

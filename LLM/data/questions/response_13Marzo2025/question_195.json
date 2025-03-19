@@ -1,0 +1,8 @@
+{
+  "question_id": 195,
+  "section_index": 39,
+  "question": "How does the concept of \"streaming\" within the `datasets` library contribute to efficient data processing?",
+  "response": "The `datasets` library in the Hugging Face ecosystem simplifies accessing datasets, including large ones, by offering features like streaming. Streaming allows processing data in smaller chunks, which reduces memory requirements.",
+  "response_time": 1.5354173183441162,
+  "timestamp": "2025-03-13T17:49:30.520744"
+}

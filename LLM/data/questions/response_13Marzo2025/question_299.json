@@ -1,0 +1,8 @@
+{
+  "question_id": 299,
+  "section_index": 60,
+  "question": "How does the scale of GPT-3, in terms of parameters, compare to GPT-2, and what are some of the notable advancements in capabilities demonstrated by GPT-3?",
+  "response": "GPT-2 has 1.5 billion parameters in its XL version, distributed across 48 decoder blocks with 1600-dimensional embeddings and 25 attention heads per block. GPT-3 represents a substantial leap in scale, featuring 175 billion parameters organized into 96 decoder blocks with 12,288-dimensional embeddings and 96 attention heads per block. GPT-3 demonstrates impressive capabilities in language understanding, code generation, and even rudimentary reasoning tasks.",
+  "response_time": 1.8062021732330322,
+  "timestamp": "2025-03-13T18:02:31.534307"
+}

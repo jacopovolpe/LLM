@@ -1,0 +1,8 @@
+{
+  "question_id": 537,
+  "section_index": 108,
+  "question": "How does LangChain facilitate the development of RAG systems?",
+  "response": "LangChain is a framework designed to streamline the development of LLM-powered applications, including Retrieval Augmented Generation (RAG) systems. It provides modular components for integrating LLMs into various workflows and connects to diverse resources, such as LLMs like OpenAI and HuggingFace, data sources like Slack and Notion, and external tools. LangChain's components can be chained together to create complex application logic, making it suitable for applications like RAG, chatbots, document search, question answering, data processing, and information extraction. It offers a mix of open-source and commercially available components.",
+  "response_time": 1.8011515140533447,
+  "timestamp": "2025-03-13T18:32:26.078990"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 283,
+  "section_index": 57,
+  "question": "Explain the core principle of autoregression in the context of text generation using decoder-only transformers.",
+  "response": "In decoder-only transformers, autoregression is the core principle behind text generation. Text is generated token by token, with each new token predicted based on the preceding tokens in the sequence. The input prompt and the generated text are treated as a single continuous sequence, which allows the model to implicitly \"encode\" the prompt's meaning while simultaneously \"decoding\" it into generated text. This unified approach eliminates the need for a separate encoder block.",
+  "response_time": 1.7361524105072021,
+  "timestamp": "2025-03-13T18:00:27.007943"
+}

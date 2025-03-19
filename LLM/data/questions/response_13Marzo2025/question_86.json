@@ -1,0 +1,8 @@
+{
+  "question_id": 86,
+  "section_index": 18,
+  "question": "What impact did the ALPAC Report (1966) have on machine translation research?",
+  "response": "The ALPAC Report of 1966 recommended a shift away from fully automated machine translation toward tools that assist human translators. This contributed to reduced research funding and the first AI winter.",
+  "response_time": 1.7207505702972412,
+  "timestamp": "2025-03-13T17:35:41.297432"
+}

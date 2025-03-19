@@ -1,0 +1,8 @@
+{
+  "question_id": 462,
+  "section_index": 93,
+  "question": "How does understanding the limitations of LLMs, such as biases and factual inaccuracies, contribute to effective prompt engineering?",
+  "response": "Prompt engineering can be improved by enhancing the understanding of the capabilities and limitations of LLMs, including recognizing their weaknesses, such as potential biases and factual inaccuracies.",
+  "response_time": 1.5525953769683838,
+  "timestamp": "2025-03-13T18:22:58.803778"
+}

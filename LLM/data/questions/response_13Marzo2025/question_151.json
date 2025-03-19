@@ -1,0 +1,8 @@
+{
+  "question_id": 151,
+  "section_index": 31,
+  "question": "What are the key differences in NLP approaches before and after the introduction of Large Language Models (LLMs)?",
+  "response": "The advent of Large Language Models (LLMs) has significantly transformed Natural Language Processing (NLP) methodologies. LLMs, which are based on the Transformer architecture, utilize vast datasets and immense computational resources to perform various NLP tasks, including text generation, translation, chatbots, code generation, question answering, and summarization. The Transformer architecture, with its self-attention mechanism, allows the model to weigh the importance of different parts of the input sequence, capturing long-range dependencies more effectively than recurrent networks. This scalability, combined with innovations like Byte Pair Encoding (BPE) and positional encodings, has led to significant performance improvements in various NLP tasks. The shift from traditional statistical methods to deep learning approaches, particularly with the Transformer architecture, marks a paradigm shift in NLP, enabling more complex and human-like text processing capabilities.",
+  "response_time": 2.295970916748047,
+  "timestamp": "2025-03-13T17:44:00.642455"
+}

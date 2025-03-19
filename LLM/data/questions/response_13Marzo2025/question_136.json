@@ -1,0 +1,8 @@
+{
+  "question_id": 136,
+  "section_index": 28,
+  "question": "How does the self-attention mechanism in Transformers address the limitations of recurrent networks in handling long-range dependencies?",
+  "response": "The Transformer architecture, particularly its self-attention mechanism, addresses the limitations of Recurrent Neural Networks (RNNs) and LSTMs in handling long sequences by enabling parallel processing and mitigating the vanishing gradient problem. Unlike RNNs that process data sequentially, self-attention allows the model to consider relationships between all words in a sequence simultaneously, enabling parallel training. This parallel processing significantly speeds up training and helps to alleviate the vanishing gradient issue, as the number of layers traversed is independent of the sequence length. Furthermore, the attention mechanism dynamically assigns weights to different parts of the input sequence, focusing on the most relevant information and effectively capturing long-range dependencies, regardless of their distance in the sequence.",
+  "response_time": 2.530163288116455,
+  "timestamp": "2025-03-13T17:42:03.856396"
+}

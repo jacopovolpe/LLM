@@ -1,0 +1,8 @@
+{
+  "question_id": 696,
+  "section_index": 140,
+  "question": "What is the IMDB dataset typically used for?",
+  "response": "The IMDB dataset, which contains 50,000 movie reviews labeled as positive or negative, is commonly used for sentiment analysis tasks. Its balanced class distribution simplifies evaluation. You can download the dataset from Kaggle.",
+  "response_time": 1.420588493347168,
+  "timestamp": "2025-03-13T18:52:32.517553"
+}

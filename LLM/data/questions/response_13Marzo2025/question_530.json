@@ -1,0 +1,8 @@
+{
+  "question_id": 530,
+  "section_index": 106,
+  "question": "What programming language is spaCy primarily designed for, and is it open-source or proprietary?",
+  "response": "spaCy is a powerful open-source Python library for advanced NLP.",
+  "response_time": 1.5654916763305664,
+  "timestamp": "2025-03-13T18:31:28.990568"
+}

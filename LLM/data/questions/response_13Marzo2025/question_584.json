@@ -1,0 +1,8 @@
+{
+  "question_id": 584,
+  "section_index": 117,
+  "question": "Which reinforcement learning algorithm is explicitly mentioned as being implemented in TRL?",
+  "response": "The Transformer Reinforcement Learning (TRL) library provides tools for implementing key stages of RLHF, including Proximal Policy Optimization (PPO).",
+  "response_time": 1.6450209617614746,
+  "timestamp": "2025-03-13T18:38:24.557039"
+}

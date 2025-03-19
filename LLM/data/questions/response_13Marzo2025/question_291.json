@@ -1,0 +1,8 @@
+{
+  "question_id": 291,
+  "section_index": 59,
+  "question": "What are some examples of textual content that can be created using decoder-only transformers for text generation?",
+  "response": "Decoder-only transformers are versatile and can be applied to various tasks. They are capable of creating different forms of textual content, ranging from news articles and stories to creative writing and poetry.",
+  "response_time": 1.601693868637085,
+  "timestamp": "2025-03-13T18:01:33.517877"
+}

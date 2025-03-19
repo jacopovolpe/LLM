@@ -1,0 +1,8 @@
+{
+  "question_id": 267,
+  "section_index": 54,
+  "question": "How does ALBERT address the computational demands of BERT?",
+  "response": "ALBERT, or A Lite BERT, reduces the computational requirements of BERT through parameter reduction techniques, making it more efficient.",
+  "response_time": 1.3811466693878174,
+  "timestamp": "2025-03-13T17:58:33.274600"
+}

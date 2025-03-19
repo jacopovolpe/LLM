@@ -1,0 +1,8 @@
+{
+  "question_id": 368,
+  "section_index": 74,
+  "question": "Explain the role of the encoder in an Encoder-Decoder Transformer. What transformation does it perform on the input sequence?",
+  "response": "The encoder in an Encoder-Decoder Transformer model transforms the input sequence into a contextualized representation. The encoder consists of stacked identical blocks, each containing multi-head self-attention and a feed-forward layer. The encoder processes all input tokens in parallel. Because self-attention mechanisms don't inherently account for word order, the encoder incorporates positional encoding, typically achieved by adding sinusoidal functions to the input embeddings, providing information about the position of each word in the sequence. Each encoder block consists of a multi-head self-attention layer followed by the Add & Norm and Feed Forward layers. This architecture allows the encoder to process each word in the context of all other words in the input sequence, including itself. The encoder's design, where each block maintains the same output dimensionality as the input, allows for stacking multiple encoder blocks, where the output of one block becomes the input to the next, enabling the network to learn hierarchical representations of the input sequence.",
+  "response_time": 2.2437522411346436,
+  "timestamp": "2025-03-13T18:11:03.814126"
+}

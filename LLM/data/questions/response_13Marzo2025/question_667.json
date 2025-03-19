@@ -1,0 +1,8 @@
+{
+  "question_id": 667,
+  "section_index": 134,
+  "question": "How does binary classification differ from single-label classification?",
+  "response": "Binary classification is a specific type of single-label classification. In binary classification, there are only two possible classes, simplifying the problem to a yes/no decision about a single category. Single-label classification, on the other hand, assigns each document to exactly one class, and is most appropriate when categories are mutually exclusive.",
+  "response_time": 1.9317600727081299,
+  "timestamp": "2025-03-13T18:49:05.989262"
+}

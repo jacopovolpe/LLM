@@ -1,0 +1,8 @@
+{
+  "question_id": 381,
+  "section_index": 77,
+  "question": "What are the key differences between T5's span corruption and BERT's masked language modeling (MLM)?",
+  "response": "T5 employs a denoising autoencoder objective called span corruption during pre-training, while BERT uses masked language modeling (MLM). In span corruption, T5 masks random spans of text and trains the model to reconstruct the original text. For example, given the original input \"The quick brown fox jumps over the lazy dog,\" the corrupted input might be \"The quick `<extra_id_0>` jumps `<extra_id_1>` dog,\" and the target output would be `<extra_id_0>` brown fox `<extra_id_1>` over the lazy. BERT, on the other hand, masks individual tokens instead of spans.",
+  "response_time": 2.115483522415161,
+  "timestamp": "2025-03-13T18:12:49.114360"
+}

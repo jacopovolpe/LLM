@@ -1,0 +1,8 @@
+{
+  "question_id": 25,
+  "section_index": 4,
+  "question": "What benefit does accessing the early access version provide?",
+  "response": "RAG addresses the limitations of LLMs, such as knowledge cutoff, inability to access external information, and handling private data, by enriching them with external and private data sources. RAG applications involve two key stages: indexing (offline) and retrieval and generation (runtime). The indexing stage includes loading data from various sources, splitting long documents into smaller chunks, and storing the data chunks in a Vector Store after converting them into vector representations (embeddings). Vector Stores are specialized databases that enable semantic search. The runtime process involves retrieving relevant data chunks from the Vector Store based on the user's query, incorporating the retrieved data into a prompt, and then feeding this augmented prompt to the LLM to generate a response grounded in the retrieved context.\n\nLangChain is a framework designed to streamline the development of LLM-powered applications by providing modular components for integrating LLMs into various workflows, connecting to diverse resources, and chaining components together to create complex application logic. Key components of LangChain include prompt templates, LLMs, chat models, example selectors, output parsers, document loaders, vector stores, retrievers, and agents.",
+  "response_time": 2.218627691268921,
+  "timestamp": "2025-03-13T17:28:17.252110"
+}

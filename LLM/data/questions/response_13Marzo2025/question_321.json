@@ -1,0 +1,8 @@
+{
+  "question_id": 321,
+  "section_index": 65,
+  "question": "What distinguishes Codex from other GPT variants and what development tool does it power?",
+  "response": "Codex is a variant of GPT that has been fine-tuned for coding tasks. It powers tools like GitHub Copilot, assisting developers with code generation and completion.",
+  "response_time": 1.4779555797576904,
+  "timestamp": "2025-03-13T18:05:14.961950"
+}

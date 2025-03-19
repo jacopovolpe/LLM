@@ -1,0 +1,7 @@
+{
+  "question_id": 815,
+  "section_index": 163,
+  "question": "If a TOD system needs to access external data for a user query, which module is responsible for this interaction?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:11:36.750254"
+}

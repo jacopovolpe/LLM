@@ -1,0 +1,8 @@
+{
+  "question_id": 542,
+  "section_index": 109,
+  "question": "Describe the two key stages of a typical RAG application and their purpose.",
+  "response": "RAG applications involve two key stages: indexing, which is an offline process, and retrieval and generation, which occurs at runtime. During indexing, data from various sources is ingested and prepared for efficient retrieval by transforming it into a searchable format. In the retrieval and generation stage, the system retrieves relevant information from the indexed data based on a user's query. This retrieved context is then integrated into a prompt that is fed to the LLM, which generates a more informed and contextually appropriate response.",
+  "response_time": 2.269803285598755,
+  "timestamp": "2025-03-13T18:33:05.898122"
+}

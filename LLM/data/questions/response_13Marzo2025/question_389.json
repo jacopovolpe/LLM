@@ -1,0 +1,8 @@
+{
+  "question_id": 389,
+  "section_index": 78,
+  "question": "How does T5 use prefixes to guide the model towards performing a specific downstream task?",
+  "response": "T5 uses task-specific prefixes to guide the model towards the desired output format. For example, the prefix \"summarize:\" is used for summarization tasks, \"translate English to French:\" for translation tasks, and \"question:  context:\" for question answering tasks. These prefixes are prepended to the input text, and the entire sequence is fed into the T5 model.",
+  "response_time": 2.1284873485565186,
+  "timestamp": "2025-03-13T18:13:46.390674"
+}

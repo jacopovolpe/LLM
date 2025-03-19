@@ -1,0 +1,8 @@
+{
+  "question_id": 301,
+  "section_index": 61,
+  "question": "What is the primary tokenization method used by GPT models?",
+  "response": "GPT models utilize Byte-Pair Encoding (BPE) for tokenization, which is a subword tokenization technique. BPE balances word-level and character-level representations by breaking down words into smaller, meaningful sub-units (tokens) based on their frequency in the training data. This approach allows for a more efficient representation of both common and infrequent words and handles out-of-vocabulary words gracefully by decomposing them into known subwords. For example, GPT-2 utilizes a vocabulary of around 50,000 tokens.",
+  "response_time": 1.7192249298095703,
+  "timestamp": "2025-03-13T18:02:46.449257"
+}

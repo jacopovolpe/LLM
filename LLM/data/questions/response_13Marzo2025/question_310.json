@@ -1,0 +1,8 @@
+{
+  "question_id": 310,
+  "section_index": 62,
+  "question": "Explain the concept of cross-entropy loss and its role in the training of GPT models.",
+  "response": "GPT models are pre-trained using a next-token prediction objective, also known as autoregressive language modeling. During training, the models predict the next word (or token) in a sequence, learning contextual relationships and linguistic patterns. This training involves minimizing cross-entropy loss, using optimizers like Adam, and incorporating techniques like learning rate schedules and large batch sizes to enhance training stability and generalization.",
+  "response_time": 1.6247293949127197,
+  "timestamp": "2025-03-13T18:03:57.769105"
+}

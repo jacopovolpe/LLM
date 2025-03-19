@@ -1,0 +1,8 @@
+{
+  "question_id": 38,
+  "section_index": 7,
+  "question": "Explain how the Transformer's architecture handles long-range dependencies within sequences.",
+  "response": "The Transformer architecture addresses the limitations of Recurrent Neural Networks (RNNs) by enabling parallel processing of sequence elements, which significantly speeds up training and mitigates the vanishing gradient problem. Unlike RNNs, the number of layers traversed in a Transformer is independent of the sequence length, contributing to its efficiency and ability to handle long-range dependencies. The attention mechanism within Transformers allows the model to consider relationships between words regardless of their distance in the sequence and enables parallel training. Moreover, the attention mechanism dynamically assigns weights to different parts of the input sequence, focusing on the most relevant information for the given task. The self-attention mechanism allows the model to consider the relationships between all words in a sequence simultaneously, contrasting with RNNs, which process sequences sequentially.",
+  "response_time": 1.9673283100128174,
+  "timestamp": "2025-03-13T17:29:49.846268"
+}

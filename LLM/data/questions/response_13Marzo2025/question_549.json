@@ -1,0 +1,8 @@
+{
+  "question_id": 549,
+  "section_index": 110,
+  "question": "Name three key components of LangChain and briefly describe their function.",
+  "response": "LangChain is a framework that helps develop applications powered by language models. It includes modular components for integrating LLMs into various workflows and connects to resources like OpenAI, HuggingFace, Slack, and Notion. LangChain's components can be chained together to create complex application logic for use cases like chatbots, document search, and question answering.\n\nThree key components of LangChain are:\n\n*   **Prompt Templates:** These provide standardized formats for structuring prompts, enabling dynamic and reusable interaction with LLMs, and support both string and message list formats.\n*   **LLMs:** These enable integration with various third-party LLMs, allowing for seamless switching and experimentation with different models.\n*   **Chains:** Chains enable the sequential execution of multiple steps in an NLP pipeline.",
+  "response_time": 2.73909068107605,
+  "timestamp": "2025-03-13T18:33:56.539368"
+}

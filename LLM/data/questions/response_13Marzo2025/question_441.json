@@ -1,0 +1,8 @@
+{
+  "question_id": 441,
+  "section_index": 89,
+  "question": "What are the parameters optimized in Prefix Tuning, and where are they placed in relation to the input sequence?",
+  "response": "In Prefix Tuning, a small set of continuous prefix vectors are optimized. These prefix vectors are prepended to the input sequence. By prepending these vectors, the model's attention mechanism is guided, allowing it to adapt to different tasks without modifying the underlying model weights.",
+  "response_time": 2.38783597946167,
+  "timestamp": "2025-03-13T18:20:13.923311"
+}

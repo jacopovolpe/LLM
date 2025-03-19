@@ -1,0 +1,8 @@
+{
+  "question_id": 253,
+  "section_index": 51,
+  "question": "What is the purpose of the Next Sentence Prediction (NSP) task in BERT's pre-training?",
+  "response": "During BERT's pre-training phase, Next Sentence Prediction (NSP) is employed to teach the model about inter-sentence relationships by training it to predict whether two given sentences are consecutive in the original text. Although its effectiveness has been debated, and some subsequent models like RoBERTa have omitted it, it aims to teach the model about inter-sentence relationships.",
+  "response_time": 1.6367626190185547,
+  "timestamp": "2025-03-13T17:56:49.276345"
+}

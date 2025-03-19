@@ -1,0 +1,8 @@
+{
+  "question_id": 181,
+  "section_index": 37,
+  "question": "What are the four main components available through the Hugging Face Hub?",
+  "response": "The Hugging Face Hub is a central component of the Hugging Face ecosystem, which can be accessed at [https://huggingface.co/](https://huggingface.co/). It provides access to pre-trained models, a diverse range of datasets, a platform for showcasing interactive demos and sharing code called Spaces, and educational resources which can be found at [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit).",
+  "response_time": 1.790311336517334,
+  "timestamp": "2025-03-13T17:47:45.119156"
+}

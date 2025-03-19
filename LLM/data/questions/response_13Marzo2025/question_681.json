@@ -1,0 +1,8 @@
+{
+  "question_id": 681,
+  "section_index": 137,
+  "question": "What is the purpose of splitting the dataset into training and testing sets in corpus management for text classification?",
+  "response": "Data splitting, which involves dividing a dataset into training and testing sets, is a standard practice in corpus management for text classification. This allows for evaluating a model's performance on unseen data.",
+  "response_time": 1.7319116592407227,
+  "timestamp": "2025-03-13T18:50:45.700836"
+}

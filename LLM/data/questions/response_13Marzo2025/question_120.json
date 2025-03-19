@@ -1,0 +1,8 @@
+{
+  "question_id": 120,
+  "section_index": 24,
+  "question": "How does the softmax function contribute to ensuring the decoder only attends to past positions?",
+  "response": "In the decoder, masked multi-head attention is used to prevent the decoder from attending to future positions in the output sequence during training. This ensures that predictions are made only based on the information available up to the current time step. This masking is achieved by applying a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, which forces the softmax function to assign zero probability to these future positions. The final layer of the decoder is a linear layer followed by a softmax function, which projects the decoder's output to the vocabulary size, producing a probability distribution over all possible words for the next position in the output sequence.",
+  "response_time": 2.2988688945770264,
+  "timestamp": "2025-03-13T17:40:02.083716"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 602,
+  "section_index": 121,
+  "question": "How does fine-tuning with custom data help in adding guardrails to LLMs, and how does it differ from rule-based filtering?",
+  "response": "Fine-tuning LLMs with custom datasets is a technique for adding guardrails by training the model on curated datasets tailored to specific domains or applications. This adjusts the model's internal weights, guiding it towards generating more desirable outputs. The benefits of fine-tuning include domain specialization, enhanced accuracy and relevance, and effective utilization of smaller datasets. However, full fine-tuning can be computationally expensive and carries a risk of overfitting, where the model performs well on training data but poorly on unseen data. Rule-based filters, on the other hand, are predefined rules that block or modify specific outputs based on keywords, regular expressions, or other criteria, offering a simple and efficient technique for basic content filtering. Combining multiple techniques, such as integrating rule-based filtering with external validation and fine-tuning, often yields the most robust safeguards.",
+  "response_time": 2.476240396499634,
+  "timestamp": "2025-03-13T18:40:54.194089"
+}

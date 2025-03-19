@@ -1,0 +1,8 @@
+{
+  "question_id": 318,
+  "section_index": 64,
+  "question": "In what ways does the lack of true understanding in GPT models manifest, and what potential issues can arise from this limitation?",
+  "response": "GPT models, while generating fluent and coherent text, often lack genuine understanding of the underlying concepts, which can lead to factually incorrect or nonsensical output. This absence of true understanding is one of the limitations of GPT models.",
+  "response_time": 1.6050233840942383,
+  "timestamp": "2025-03-13T18:04:57.769885"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 241,
+  "section_index": 49,
+  "question": "What is the primary tokenization method used by BERT and how does it function?",
+  "response": "BERT uses the WordPiece tokenizer, a subword tokenization method. This method breaks words into smaller units (subwords), which helps BERT handle out-of-vocabulary words and represent a wide range of vocabulary efficiently with a smaller vocabulary size. Common words are treated as single tokens, while rarer words are split into constituent subwords. For example, \"unhappiness\" could be tokenized into \"un,\" \"happy,\" and \"##ness,\" where \"##\" signifies a subword continuing a previous word. Each token is then converted into a numerical ID corresponding to its position in the BERT vocabulary, which serves as the input to the model. BERT also uses special tokens such as `[CLS]` at the beginning of each sequence for classification tasks and `[SEP]` to separate sentences or mark the end of a sentence.",
+  "response_time": 1.9321048259735107,
+  "timestamp": "2025-03-13T17:55:20.380086"
+}

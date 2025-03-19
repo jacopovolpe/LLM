@@ -1,0 +1,8 @@
+{
+  "question_id": 94,
+  "section_index": 19,
+  "question": "How do the Encoder and Decoder structures interact within the Transformer during the processing of input sequences?",
+  "response": "The Transformer processes sequential data in a pipeline where the encoder first processes the entire input sequence, generating contextualized representations. Then, the decoder generates the output sequence one element at a time, considering the encoder's output and previously generated words at each step. The encoder-decoder attention mechanism bridges the encoder and decoder, enabling the decoder to leverage the contextualized information encoded by the encoder, using queries from the decoder and keys/values from the encoder's output.",
+  "response_time": 1.6028530597686768,
+  "timestamp": "2025-03-13T17:36:38.395585"
+}

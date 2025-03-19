@@ -1,0 +1,8 @@
+{
+  "question_id": 525,
+  "section_index": 105,
+  "question": "What does NLTK offer for PoS tagging?",
+  "response": "NLTK offers pre-trained Part-of-Speech (PoS) tagging models. PoS tagging assigns grammatical labels like noun, verb, or adjective to tokens, which provides valuable information about sentence structure and word function.",
+  "response_time": 1.6802024841308594,
+  "timestamp": "2025-03-13T18:30:51.492726"
+}

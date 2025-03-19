@@ -1,0 +1,8 @@
+{
+  "question_id": 554,
+  "section_index": 111,
+  "question": "What is the advantage of using chains in LangChain?",
+  "response": "LangChain's components can be chained together to create complex and sophisticated application logic. Chains enable the sequential execution of multiple steps in an NLP pipeline. For example, the pipe operator can connect a prompt template to an LLM, creating a chain.",
+  "response_time": 1.56211256980896,
+  "timestamp": "2025-03-13T18:34:36.943934"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 194,
+  "section_index": 39,
+  "question": "Where can you find the GLUE benchmark dataset on the Hugging Face platform?",
+  "response": "The GLUE benchmark dataset is available on the Hugging Face Hub at the following URL: [https://huggingface.co/datasets/nyu-mll/glue](https://huggingface.co/datasets/nyu-mll/glue).",
+  "response_time": 1.4251940250396729,
+  "timestamp": "2025-03-13T17:49:22.533669"
+}

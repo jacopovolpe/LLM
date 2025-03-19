@@ -1,0 +1,8 @@
+{
+  "question_id": 316,
+  "section_index": 64,
+  "question": "How does the broad knowledge base of GPT models contribute to their ability to engage with diverse topics?",
+  "response": "GPT models are pre-trained on massive and diverse datasets derived from internet text, allowing them to absorb a wide range of linguistic structures and topical information. GPT-1 was trained on BookCorpus, while subsequent versions like GPT-2 and GPT-3 utilized larger datasets like WebText and a combination of sources including Common Crawl, Books, and Wikipedia. This pre-training enables them to perform various natural language tasks with remarkable proficiency, even without task-specific training. The broad knowledge base acquired during pre-training equips GPT models with the ability to engage with diverse topics.",
+  "response_time": 1.8388779163360596,
+  "timestamp": "2025-03-13T18:04:44.064258"
+}

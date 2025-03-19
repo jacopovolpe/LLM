@@ -1,0 +1,8 @@
+{
+  "question_id": 235,
+  "section_index": 47,
+  "question": "Give an example of a task where an encoder-only transformer utilizing a `[CLS]` token would be suitable.",
+  "response": "Encoder-only transformer models are well-suited for tasks like sequence classification where the output is a single value. For these tasks, a special `[CLS]` token is prepended to the input sequence, and its corresponding output vector (𝑧₁) represents the entire sequence, used for computing the loss function. Sentiment analysis is a typical example of such a task.",
+  "response_time": 1.6260123252868652,
+  "timestamp": "2025-03-13T17:54:34.902158"
+}

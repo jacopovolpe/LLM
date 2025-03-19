@@ -1,0 +1,8 @@
+{
+  "question_id": 45,
+  "section_index": 8,
+  "question": "How does the decoder prevent \"peeking\" at future tokens during training, and why is this important?",
+  "response": "The decoder in a Transformer model prevents information leakage from future tokens during training by using masked self-attention. This masking mechanism is crucial for autoregressive language modeling because, during the generation of the *i*-th output word, the decoder should only consider the preceding words (positions 1 to *i-1*) and not \"peek\" into the future. This is achieved by applying a mask to the attention scores, effectively setting the scores corresponding to future positions to negative infinity, which forces the softmax function to assign zero probability to these future positions. This ensures that predictions are made only based on the information available up to the current time step.",
+  "response_time": 1.8475892543792725,
+  "timestamp": "2025-03-13T17:30:45.989971"
+}

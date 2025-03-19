@@ -1,0 +1,7 @@
+{
+  "question_id": 876,
+  "section_index": 174,
+  "question": "What is the purpose of the `domain.yml` file in a Rasa chatbot?",
+  "error": "429 Resource has been exhausted (e.g. check quota).",
+  "timestamp": "2025-03-13T19:21:36.299978"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 428,
+  "section_index": 86,
+  "question": "In what scenarios are Adapters particularly beneficial, and how do they facilitate multi-task learning?",
+  "response": "Adapter layers are particularly useful for multi-task learning. They are small, task-specific modules inserted within the Transformer layers, enabling fine-tuning without modifying the original model weights. This modularity allows a single model to be adapted to various tasks by switching between different adapter modules. Adapters are trained to learn task-specific representations, while the pre-trained model provides a robust and general foundation.",
+  "response_time": 1.7773988246917725,
+  "timestamp": "2025-03-13T18:18:42.258534"
+}

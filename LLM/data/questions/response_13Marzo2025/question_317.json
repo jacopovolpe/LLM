@@ -1,0 +1,8 @@
+{
+  "question_id": 317,
+  "section_index": 64,
+  "question": "Why is careful prompt crafting crucial for eliciting desired responses from GPT models?",
+  "response": "Prompt engineering is a relatively new discipline focused on developing and optimizing prompts to effectively use LLMs for diverse applications and research areas. It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. Crafting effective prompts is crucial for successful LLM interaction, and it involves understanding how to instruct LLMs in a way that elicits the desired response, accounting for their capabilities and limitations. By carefully structuring prompts, LLM performance can be improved on a broad range of tasks. The quality of generated text is heavily dependent on the input prompt; therefore, carefully crafted prompts are crucial for eliciting desired responses.",
+  "response_time": 1.8273558616638184,
+  "timestamp": "2025-03-13T18:04:50.643057"
+}

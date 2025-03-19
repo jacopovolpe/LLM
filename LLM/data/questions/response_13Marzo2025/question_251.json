@@ -1,0 +1,8 @@
+{
+  "question_id": 251,
+  "section_index": 51,
+  "question": "What is the primary goal of the Masked Language Modeling (MLM) pre-training task in BERT?",
+  "response": "Masked Language Modeling (MLM) is a self-supervised pre-training method used in models like BERT. In MLM, the model is trained to predict masked words in a sentence based on the surrounding context, fostering a bidirectional understanding of language. This means BERT considers both preceding and succeeding words to understand the meaning of a word within a sentence.",
+  "response_time": 1.7821030616760254,
+  "timestamp": "2025-03-13T17:56:35.370776"
+}

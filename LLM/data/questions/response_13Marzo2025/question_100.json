@@ -1,0 +1,8 @@
+{
+  "question_id": 100,
+  "section_index": 20,
+  "question": "Explain the purpose and mechanism of Encoder-Decoder Attention in a Transformer.",
+  "response": "Encoder-Decoder Attention serves as a bridge between the encoder and decoder in the Transformer architecture. Its purpose is to enable the decoder to leverage the contextualized information encoded by the encoder, allowing the decoder to focus on the relevant parts of the input sequence when generating each word in the output sequence. Mechanistically, the queries in this attention mechanism come from the decoder, while the keys and values are derived from the encoder's output.",
+  "response_time": 1.5412728786468506,
+  "timestamp": "2025-03-13T17:37:25.501585"
+}

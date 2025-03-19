@@ -1,0 +1,8 @@
+{
+  "question_id": 375,
+  "section_index": 75,
+  "question": "What is the relationship between the number of encoder/decoder blocks, attention heads, embedding dimensionality, and the model's performance and resource requirements?",
+  "response": "I'm sorry, but the provided documents do not contain information about how the number of encoder and decoder blocks, the number of attention heads, and embedding dimensionality affect the performance and computational resource requirements of sequence-to-sequence models, particularly Transformers.",
+  "response_time": 1.7268593311309814,
+  "timestamp": "2025-03-13T18:11:58.604851"
+}

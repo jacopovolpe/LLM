@@ -1,0 +1,8 @@
+{
+  "question_id": 311,
+  "section_index": 63,
+  "question": "How does fine-tuning improve the performance of a pre-trained GPT model?",
+  "response": "Fine-tuning tailors GPT models for specific tasks by training them on smaller, labeled datasets curated for the target application. This adapts the pre-trained knowledge to the specific nuances of the downstream task, leading to improved performance.",
+  "response_time": 1.5142550468444824,
+  "timestamp": "2025-03-13T18:04:06.640617"
+}

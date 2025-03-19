@@ -1,0 +1,8 @@
+{
+  "question_id": 129,
+  "section_index": 26,
+  "question": "What role does the softmax function play in generating the output word?",
+  "response": "In the context of the decoder, the final layer consists of a linear layer followed by a softmax function. This projects the decoder's output to the vocabulary size, creating a probability distribution over all possible words for the next position in the output sequence. The word with the highest probability is then selected as the output for that time step.",
+  "response_time": 1.593259572982788,
+  "timestamp": "2025-03-13T17:41:07.110817"
+}

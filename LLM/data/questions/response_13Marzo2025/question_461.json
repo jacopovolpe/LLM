@@ -1,0 +1,8 @@
+{
+  "question_id": 461,
+  "section_index": 93,
+  "question": "What is Prompt Engineering and what role does it play in interacting with Large Language Models (LLMs)?",
+  "response": "Prompt engineering is a relatively new discipline focused on developing and optimizing prompts to effectively use Large Language Models (LLMs) for diverse applications and research areas. It bridges the gap between human intention and machine interpretation, allowing users to effectively leverage the power of LLMs. This involves understanding how to instruct LLMs in a way that elicits the desired response, accounting for their capabilities and limitations. The goals of prompt engineering are to enhance understanding of the capabilities and limitations of LLMs, improve LLM performance on a broad range of tasks such as question answering and arithmetic reasoning, help interfacing with LLMs and integrating with other tools, and enable new capabilities, such as augmenting LLMs with domain knowledge and external resources.",
+  "response_time": 1.9406654834747314,
+  "timestamp": "2025-03-13T18:22:50.805234"
+}

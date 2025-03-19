@@ -1,0 +1,8 @@
+{
+  "question_id": 536,
+  "section_index": 108,
+  "question": "What is RAG and what are its key components?",
+  "response": "Retrieval-Augmented Generation (RAG) addresses the limitations of Large Language Models (LLMs) by enriching them with access to external and private data sources. This allows AI applications to leverage the power of LLMs while grounding their responses in specific, relevant information, broadening their knowledge beyond the training data and enabling them to work with sensitive data securely. RAG applications involve two key stages: indexing and retrieval and generation.\n\nThe indexing stage, which is done offline, consists of loading data from various sources, splitting long documents into smaller chunks for efficient search and to fit within the LLM's context window, and storing the data chunks in a Vector Store by converting them into vector representations (embeddings) that capture their semantic meaning.\n\nThe retrieval and generation stage happens at runtime. Based on the user's query, the system retrieves the most relevant data chunks from the Vector Store using similarity search based on embeddings. The retrieved data is then incorporated into a prompt along with the user's query, and this augmented prompt is fed to the LLM, enabling it to generate a response grounded in the retrieved context.",
+  "response_time": 2.6535816192626953,
+  "timestamp": "2025-03-13T18:32:18.184424"
+}

@@ -1,0 +1,8 @@
+{
+  "question_id": 289,
+  "section_index": 58,
+  "question": "For what types of tasks are Encoder-only Transformers best suited, and why?",
+  "response": "Encoder-only transformer models, such as BERT, are most effective when the natural language processing task requires understanding the entire input sequence simultaneously. This bidirectional understanding, where the model considers both preceding and succeeding words, makes them ideal for tasks like sequence classification, question answering, and named entity recognition. They excel at text representation by capturing contextual information from both directions. Some specific examples of tasks well-suited for encoder-only transformers include part-of-speech tagging, named entity recognition, sequence classification, and sentiment analysis.",
+  "response_time": 2.005936622619629,
+  "timestamp": "2025-03-13T18:01:16.985071"
+}

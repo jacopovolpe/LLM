@@ -1,0 +1,8 @@
+{
+  "question_id": 107,
+  "section_index": 22,
+  "question": "How does the Transformer's Encoder address the limitation of self-attention with respect to word order?",
+  "response": "The Transformer's Encoder incorporates positional encoding to address the limitation of self-attention mechanisms in capturing word order information. Because self-attention mechanisms don't inherently account for word order, the encoder incorporates positional encoding, typically achieved by adding sinusoidal functions to the input embeddings. This provides information about the position of each word in the sequence.",
+  "response_time": 1.5999624729156494,
+  "timestamp": "2025-03-13T17:38:22.078086"
+}

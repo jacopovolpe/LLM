@@ -1,0 +1,8 @@
+{
+  "question_id": 92,
+  "section_index": 19,
+  "question": "How does the Multi-Head Attention mechanism contribute to the Transformer's ability to process sequential data?",
+  "response": "Multi-head attention enhances the processing of sequential data by allowing the model to attend to different aspects of the input sequence simultaneously. It employs multiple \"heads,\" each with its own set of learned weight matrices, performing a scaled dot-product attention operation. The results from these parallel computations are then concatenated and transformed through a linear layer, combining the various perspectives offered by the different heads into a unified representation. Multi-head attention captures a richer understanding of the relationships within the sequence compared to a single-head approach. Just like single-head attention, multi-head attention incorporates Add & Norm (skip connections and layer normalization) and Feed Forward layers. The Add & Norm component normalizes the output, stabilizing training and providing a regularization effect, while the residual connections (Add) help mitigate vanishing gradients, which is crucial for training deep networks. The Feed Forward layers introduce non-linear transformations, enabling the model to learn complex, non-linear relationships between words in the sequence.",
+  "response_time": 2.024519681930542,
+  "timestamp": "2025-03-13T17:36:22.536505"
+}

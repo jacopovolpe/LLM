@@ -1,0 +1,8 @@
+{
+  "question_id": 158,
+  "section_index": 32,
+  "question": "What distinguishes autoregressive models like GPT, trained using Causal Language Modeling (CLM), from autoencoding models like BERT, trained using MLM?",
+  "response": "BERT, introduced by Google in 2018, is an encoder-only transformer model that leverages bidirectional context. It comes in different sizes such as BERT-base (12 encoder blocks, 110M parameters) and BERT-large (24 encoder blocks, 340M parameters). BERT employs bidirectional self-attention, processing the entire input sequence simultaneously to capture context from both directions and is suited for tasks requiring understanding of the entire input sequence, such as text classification, Named Entity Recognition (NER), and question answering. BERT is pre-trained using Masked Language Modeling (MLM), where the model randomly masks tokens in the input and trains to predict the masked tokens based on surrounding context. The model uses WordPiece tokenization, breaking words into subwords, and special tokens like `[CLS]` at the beginning of each sequence and `[SEP]` to separate sentences. The `[CLS]` token serves as an aggregate representation of the entire sequence.\n\nGPT, on the other hand, is a decoder-only transformer model that employs causal (unidirectional) self-attention, processing tokens sequentially from left to right, conditioning each prediction on previous tokens. It is ideal for generative tasks like text generation, story generation, code generation, and translation. GPT is trained using Autoregressive Language Modeling, where the model is trained to predict the next token in a sequence, given the preceding tokens.",
+  "response_time": 2.6662607192993164,
+  "timestamp": "2025-03-13T17:44:53.646323"
+}
