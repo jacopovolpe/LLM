@@ -80,8 +80,3 @@ for i in indices[0]:
 FAISS è un potente strumento per la ricerca di similarità in embedding testuali, rendendo possibili applicazioni avanzate nell'NLP. Grazie alla sua efficienza, è usato in motori di ricerca semantica, chatbot e sistemi di raccomandazione testuale. L'integrazione con modelli come BERT e Sentence Transformers lo rende una scelta eccellente per chi lavora con grandi corpus di testo.
 
 <----------section---------->
-
-
-
-<----------section---------->
-
