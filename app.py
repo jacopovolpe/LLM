@@ -5,21 +5,15 @@ from LLM.Assistant import Assistant
 
 app = Flask(__name__)
 
-
-JV_GEMINI_TOKEN  = "AIzaSyArDcTFUTzztpgCIlogXSYQwBhUieZxv7Y"
-RS_GEMINI_TOKEN  = "AIzaSyAS0kVBJkyFyosoCwqAQyJM0ElyKEzrmgM"
-EZ_GEMINI_TOKEN  = "AIzaSyAVi3tobZhK9uBL-eGyXUcCnRTiEPChsF4"
-VM_GEMINI_TOKEN  = "AIzaSyD22Kr3nfSrvkE45KJlbIZHLuTA_cYuBYM"
-VM_GEMINI_TOKEN2 = "AIzaSyAfNu529ZSMYVc2cPrCzaPi5XKlWpi09X0"
-JV_COHERE_TOKEN  = "XjJ6nkqZabaMHpq4aehIfyyksudq5LSm80QvUqcV"
-RS_COHERE_TOKEN  = "t1GNKsIULpTSgepiuMsOtGicLqpTgVMX5UNnpiMg"
+GEMINI_TOKEN = "INSERISCI_TOKEN_QUI"
+COHERE_TOKEN = "INSERISCI_TOKEN_QUI"
 
 assistant =  Assistant(faiss_index="LLM/data/faiss_index/ALL__22_03_2025__BGE-M3__MAX_INNER_PRODUCT",
                        embedding_model="BAAI/bge-m3",
                        generation_model1="GEMINI",
-                       token1=VM_GEMINI_TOKEN2,
+                       token1=GEMINI_TOKEN,
                        generation_model2="COMMAND_R_PLUS", 
-                       token2=RS_COHERE_TOKEN,
+                       token2=COHERE_TOKEN,
                        log_file="LLM/data/logs/assistant.log")
 
 #---------------------------------------------------------------------------------------------------------------------#
