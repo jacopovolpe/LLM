@@ -1,0 +1,1207 @@
+=== Extracted text from PDF ===
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 11
+From Transformers 
+to LLMs
+Nicola Capuano and Antonio Greco
+DIEM –University of Salerno
+
+Outline
+•Transformers for text representation and 
+generation
+•Paradigm shift in NLP
+•Pre-training of LLMs
+•Datasets and data pre-processing
+•Using LLMs after pre-training
+Transformers for text 
+representation and 
+generation
+Transformers for text representation
+and generation
+
+Transformers for text representation
+and generation
+Transformers for text representation
+and generation
+
+Transformers for text representation
+and generation
+
+Transformers for text representation
+and generation
+
+Transformers for text representation
+and generation
+
+Transformers for text representation
+and generation
+
+Paradigm shift in NLP
+Paradigm shift in NLP
+
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+Paradigm shift in NLP
+
+Pre-training of LLMs
+Self supervised pre-training
+• Pre-training a large language model is done in a self-
+supervised way, meaning it is trained with unlabeled 
+data which is just text from the internet. 
+• There is no need to assign labels on the dataset. No 
+supervision? Create supervised tasks and solve them.
+
+Self supervised pre-training
+• Autoencoding models consist only of an encoder and
+typically predict the masked word from the every
+preceding and following words in the sentence,
+therefore it is bi-directional. The model has the
+knowledge of the entire context.
+
+Masked Language Modeling
+• Input text with randomly masked tokens is fed into a Transformer
+encoder to predict the masked tokens.
+• As illustrated in the figure, an original text sequence “I”, “love”,
+“this”, “red”, “car” is prepended with the “<cls>” token, and the
+“<mask>” token randomly replaces “love”; then the cross-entropy
+loss between the masked token “love” and its prediction is to be
+minimized during pre-training.
+
+Self supervised pre-training
+• Autoregressive models consist only of a decoder and
+predict the masked word from the preceding words.
+Thus, autoregressive models are great at
+autocompleting a sentence, which is what happens in
+text generation models.
+
+Next Token Prediction
+• Any text can be used for this pre-training task, which only
+requires the prediction of the next word in the sequence.
+
+Self supervised pre-training
+• In training seq2seq models, random sequences of input
+are masked and replaced with a unique token sentinel.
+The output is the sentinel token followed by the
+predicted tokens. In summary, seq2seq models both
+need to understand the context and generate a text.
+
+Span corruption
+• In the original text, some words are dropped out with a
+unique sentinel token. Words are dropped out
+independently uniformly at random. The model is
+trained to predict basically sentinel tokens to delineate
+the dropped out text.
+
+Summary on pre-training
+• Pre-training tasks can be invented flexibly and effective
+representations can be derived from a flexible regime of pre-
+training tasks.
+• Different NLP tasks seem to be highly transferable,
+producing effective representations that form a general
+model which can serve as the backbone for many specialized
+models.
+• With Self-Supervised Learning the models seem to be able to
+learn from generating the language itself, rather than from
+any specific task.
+• Language Model can be used as a Knowledge Base, namely a
+generatively pretrained model may have a decent zero-shot
+performance on a range of NLP tasks.
+Datasets and data pre-
+processing
+Datasets
+• Training LLMs require vast amounts of text data, and
+the quality of this data significantly impacts LLM
+performance.
+• Pre-training on large-scale corpora provides LLMs with
+a fundamental understanding of language and some
+generative capability.
+• Pre-training data sources are diverse, commonly
+incorporating web text, conversational data, and books
+as general pre-training corpora.
+• Leveraging diverse sources of text data for LLM training
+can significantly enhance the model’s generalization
+capabilities.
+Datasets
+
+Datasets - Books
+• Two commonly utilized books datasets for LLMs
+training are BookCorpus and Gutenberg.
+• These datasets include a wide range of literary genres,
+including novels, essays, poetry, history, science,
+philosophy, and more.
+• Widely employed by numerous LLMs, these datasets
+contribute to the models’ pre-training by exposing
+them to a diverse array of textual genres and subject
+matter, fostering a more comprehensive understanding
+of language across various domains.
+• Book Corpus includes 800 million words.
+Datasets - CommonCrawl
+• CommonCrawl manages an accessible repository of
+web crawl data, freely available for utilization by
+individuals and organizations.
+• This repository encompasses a vast collection of data,
+comprising over 250 billion web pages accumulated
+over a span of 16 years.
+• This continuously expanding corpus is a dynamic
+resource, with an addition of 3–5 billion new web pages
+each month.
+• However, due to the presence of a substantial amount
+of low-quality data in web archives, preprocessing is
+essential when working with CommonCrawl data.
+Datasets - Wikipedia
+• Wikipedia, the free and open online encyclopedia
+project, hosts a vast repository of high-quality
+encyclopedic content spanning a wide array of topics.
+• The English version of Wikipedia, including 2,500 million
+words, is extensively utilized in the training of many
+LLMs, serving as a valuable resource for language
+understanding and generation tasks.
+• Additionally, Wikipedia is available in multiple
+languages, providing diverse language versions that can
+be leveraged for training in multilingual environments.
+Datasets used in popular LLMs
+
+Data pre-processing
+• Once an adequate corpus of data is collected, the
+subsequent step is data preprocessing, whose quality
+directly impacts the model’sperformance and security.
+• The specific preprocessing steps involve filtering low-
+quality text, including eliminating toxic and biased
+content to ensure the model aligns with human ethical
+standards.
+• It also includes deduplication, removing duplicates in
+the training set, and excluding redundant content in the
+test set to maintain the sample distribution balance.
+• Privacy scrubbing is applied to ensure the model’s
+security, preventing information leakage or other
+privacy-related concerns.
+Quality filtering
+• Filtering low-quality data is typically done using
+heuristic-based methods or classifier-based methods.
+• Heuristic methods involve employing manually defined
+rules to eliminate low-quality data. For instance, rules
+could be set to retain only text containing digits, discard
+sentences composed entirely of uppercase letters, and
+remove files with a symbol and word ratio exceeding
+0.1, and so forth.
+• Classifier-based methods involve training a classifier on
+a high-quality dataset to filter out low-quality datasets.
+Deduplication
+• Language models may sometimes repetitively generate
+the same content during text generation, potentially
+due to a high degree of repetition in the training data.
+• Extensive repetition can lead to training instability,
+resulting in a decline in the performance of LLMs.
+• Additionally, it is crucial to consider avoiding dataset
+contamination by removing duplicated data present in
+both the training and test set.
+Privacy scrubbing
+• LLMs, as text-generating models, are trained on diverse
+datasets, which may pose privacy concerns and the risk
+of inadvertent information disclosure.
+• It is imperative to address privacy concerns by
+systematically removing any sensitive information. This
+involves employing techniques such as anonymization,
+redaction, or tokenization to eliminate personally
+identifiable details, geolocation, and confidential data.
+• By carefully scrubbing the dataset of such sensitive
+content, researchers and developers can ensure that the
+language models trained on these datasets uphold
+privacy standards and mitigate the risk of unintentional
+disclosure of private information.
+Filtering out toxic and biased text
+• In the preprocessing steps of language datasets, a
+critical consideration is the removal of toxic and biased
+content to ensure the development of fair and unbiased
+language models.
+• This involves implementing robust content moderation
+techniques, such as employing sentiment analysis, hate
+speech detection, and bias identification algorithms.
+• By leveraging these tools, it is possible to systematically
+identify and filter out text that may perpetuate harmful
+stereotypes, offensive language, or biased viewpoints.
+Using LLMs after
+pre-training
+Using LLMs after pre-training
+
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 11
+From Transformers 
+to LLMs
+Nicola Capuano and Antonio Greco
+DIEM –University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 11
+From Transformers
+
+to LLMs
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+° Transformers for text representation and
+generation
+
+® Paradigm shift in NLP
+® Pre-training of LLMs i000
+
+* Datasets and data pre-processing o——.
+
+® Using LLMs after pre-training ®
+
+Transformers for text
+representation and
+generation
+
+\
+
+Transformers for text representation
+
+and generation
+
+Output
+Probabilities
+
+Add & Norm
+
+Multi-Head
+
+Feed Attention
+Forward , 4 Nx
+N Add & Norm
+x Add & Norm Masked
+Multi- Head Multi-Head
+Attention Attention
+a a a a
+Positional Positional
+Encoding @ L 0 @ Encoding
+
+Output
+Embedding
+
+Input
+Embedding
+
+Inputs Outputs
+(shifted right)
+
+Transformers for text representation
+and generation
+
+Output
+Probabilities
+
+Multi-Head
+Attention
+
+Masked
+Multi-Head
+Attention
+a a
+
+Positional Positional
+Encoding ® 0 0 @ Encoding
+Input Output
+Embedding Embedding
+
+Inputs Outputs
+(shifted right)
+
+Input — input tokens
+
+Output — hidden states
+
+Transformers for text representation
+
+and generation
+
+Output
+Probabilities
+
+Add & Norm
+
+Feed
+Forward
+
+Add & Norm
+Multi-Head
+Attention
+
+Add & Norm
+Masked
+
+Add & Norm
+
+Multi-Head Multi-Head
+Attention Attention
+
+Positional Positional
+
+Encoding @ 0 0 @ Encoding
+Input Output
+
+Embedding Embedding
+
+Inputs Outputs
+(shifted right)
+
+Input — output tokens and hidden states*
+Output — output tokens
+
+Input — input tokens
+Output — hidden states
+Model can see all timesteps
+
+Does not usually output tokens, so no
+inherent auto-regressivity
+
+Add & Norm
+Multi-Head
+Attention
+a ay
+
+Positional
+Encoding
+
+O+
+Input
+Embedding
+
+Inputs
+
+Output
+Probabilities
+
+Masked
+Multi-Head
+Attention
+
+Positional
+
+0 @ Encoding
+
+Output
+Embedding
+
+Outputs
+(shifted right)
+
+Transformers for text representation
+and generation
+
+Input — output tokens and hidden states*
+Output — output tokens
+Model can only see previous timesteps
+
+Model is auto-regressive with previous
+timesteps’ outputs
+
+Input — input tokens
+Output — hidden states
+
+Model can see all timesteps
+
+Does not usually output tokens, so no
+
+inherent auto-regressivity
+
+Can also be adapted to generate tokens
+by appending a module that maps
+hidden state dimensionality to vocab size)
+
+Positional
+Encoding
+
+Transformers for text representation
+
+and generation
+
+Output
+Probabilities
+
+Add & Norm
+Multi-Head
+Attention
+
+Add & Norm
+
+Masked
+Multi-Head
+Attention
+
+Feed
+Forward
+
+Add & Norm
+Multi-Head
+Attention
+a ay
+
+Positional
+WKHe |
+SG 0 CY Encoding
+Input Output
+Embedding Embedding
+
+Inputs Outputs
+
+(shifted right)
+
+Input — output tokens and hidden states*
+Output — output tokens
+Model can only see previous timesteps
+
+Model is auto-regressive with previous
+timesteps’ outputs
+
+Can also be adapted to generate hidden
+states by looking before token outputs
+
+BERT
+Oct 2018
+
+and generation
+
+Output
+Probabilities
+
+Add & Norm
+
+Multi-Head
+Attention
+
+Add & Norm
+
+Feed
+Forward
+
+Add & Norm
+Multi-Head
+Attention
+a a,
+
+Positional
+Encoding e Y
+Input
+Embedding
+
+Inputs
+
+Add & Norm
+Masked
+Multi-Head
+Attention
+
+Positional
+Encoding
+
+CO
+Output
+
+Embedding
+
+Outputs
+(shifted right)
+
+Transformers for text representation
+
+GPT
+Jun 2018
+
+BERT - 2018
+DistilBERT - 2019
+RoBERTa - 2019
+ALBERT - 2019
+ELECTRA - 2020
+DeBERTa - 2020
+
+\™N
+
+and generation
+
+Output
+Probabilities
+
+==)
+T5- 2019
+
+BART - 2019
+mT5 - 2021
+
+\__
+Positional Positional
+Encoding @ 0 ©
+Input Output
+Embedding Embedding
+Inputs Outputs
+(shifted right)
+
+Transformers for text representation
+
+GPT - 2018
+GPT-2 - 2019
+GPT-3 - 2020
+GPT-Neo - 2021
+GPT-3.5 (ChatGPT) - 2022
+LLaMA - 2023
+GPT-4 - 2023
+
+Paradigm shift in NLP
+
+\
+
+Paradigm shift in NLP
+
+Since LLMs
+
+Before LLMs
+
+Feature Engineering
+How do we design or select the best
+
+features for a task?
+
+Paradigm shift in NLP
+
+Before LLMs
+
+Feature Engineering
+How do we design or select the best
+
+features for a task?
+Model Selection
+Which model is best for which type of task?
+
+Paradigm shift in NLP
+
+Before LLMs Since LLMs
+
+Feature Engineering
+* How do we design or select the best
+features for a task?
+* Model Selection
+¢ Which model is best for which type of task?
+¢ Transfer Learning
+* Given scarce labeled data, how do we
+transfer knowledge from other domains?
+
+Paradigm shift in NLP
+
+Before LLMs Since LLMs
+
+Feature Engineering
+* How do we design or select the best
+features for a task?
+* Model Selection
+¢ Which model is best for which type of task?
+¢ Transfer Learning
+* Given scarce labeled data, how do we
+transfer knowledge from other domains?
+* Overfitting vs Generalization
+* How do we balance complexity and
+capacity to prevent overfitting while
+maintaining good performance?
+
+Paradigm shift in NLP
+
+Before LLMs Since LLMs
+Feature Engineering * Pre-training and Fine-tuning
+* How do we design or select the best * How do we leverage large scales of unlabeled
+features for a task? data out there previously under-leveraged?
+
+* Model Selection
+¢ Which model is best for which type of task?
+¢ Transfer Learning
+* Given scarce labeled data, how do we
+transfer knowledge from other domains?
+* Overfitting vs Generalization
+* How do we balance complexity and
+capacity to prevent overfitting while
+maintaining good performance?
+
+Paradigm shift in NLP
+
+Before LLMs Since LLMs
+Feature Engineering * Pre-training and Fine-tuning
+* How do we design or select the best * How do we leverage large scales of unlabeled
+features for a task? data out there previously under-leveraged?
+* Model Selection * Zero-shot and Few-shot learning
+* Which model is best for which type of task? * How can we make models perform on tasks they
+* Transfer Learning are not trained on?
+
+* Given scarce labeled data, how do we
+transfer knowledge from other domains?
+* Overfitting vs Generalization
+* How do we balance complexity and
+capacity to prevent overfitting while
+maintaining good performance?
+
+Paradigm shift in NLP
+
+Before LLMs Since LLMs
+Feature Engineering * Pre-training and Fine-tuning
+* How do we design or select the best * How do we leverage large scales of unlabeled
+features for a task? data out there previously under-leveraged?
+* Model Selection * Zero-shot and Few-shot learning
+* Which model is best for which type of task? * How can we make models perform on tasks they
+* Transfer Learning are not trained on?
+* Given scarce labeled data, how do we * Prompting
+transfer knowledge from other domains? * How do we make models understand their task
+* Overfitting vs Generalization simply by describing it in natural language?
+
+* How do we balance complexity and
+capacity to prevent overfitting while
+maintaining good performance?
+
+Before LLMs
+
+Feature Engineering
+features for a task?
+
+* Model Selection
+
+¢ Transfer Learning
+
+* Overfitting vs Generalization
+
+maintaining good performance?
+
+* How do we design or select the best
+
+¢ Which model is best for which type of task?
+
+* Given scarce labeled data, how do we
+transfer knowledge from other domains?
+
+* How do we balance complexity and
+capacity to prevent overfitting while
+
+Paradigm shift in NLP
+
+Since LLMs
+
+Pre-training and Fine-tuning
+* How do we leverage large scales of unlabeled
+data out there previously under-leveraged?
+Zero-shot and Few-shot learning
+* How can we make models perform on tasks they
+are not trained on?
+Prompting
+* How do we make models understand their task
+simply by describing it in natural language?
+Interpretability and Explainability
+* How can we understand the inner workings of
+our own models?
+
+Paradigm shift in NLP
+
+¢ What has caused this paradigm shift?
+
+¢ Problem in recurrent networks
+¢ Information is effectively lost during encoding of long sequences
+¢ Sequential nature disables parallel training and favors late timestep inputs
+
+¢ Solution: Attention mechanism
+¢ Handling long-range dependencies
+¢ Parallel training
+¢ Dynamic attention weights based on inputs
+
+Pre-training of LLMs
+
+\
+
+TEXT[(...
+TEXT[(...
+
+HT)
+
+GB-TB-PB
+of unstructured data
+
+\ N
+
+1-3% of
+original
+TEXT [ tokens
+TEXT [.
+TEXT [ v
+TEXT [
+TEXT [ ‘TEXT
+
+Model
+
+Token String
+* The’
+*_ teacher’
+*_teaches'
+*_the’
+
+*_ student’
+
+“Token
+
+37
+
+3145
+
+11749
+
+1236
+
+Self supervised pre-training
+
+Embedding /
+
+° Pre-training a large language model is done in a self-
+supervised way, meaning it is trained with unlabeled
+data which is just text from the internet.
+
+° There is no need to assign labels on the dataset. No
+Supervision? Create supervised tasks and solve them.
+
+Vector Representation
+
+{-0,0513,
+
+0.0230, ..
+
+{-0.0335,
+
+0.0484, ..
+
+{-0.0151,
+
+0.0309, ...
+
+{-0.0498,
+
+0.0275, ...
+
+[-0.0460,
+
+0.0545, ...
+
+-0.0584,
+J
+
+0.0167,
+
+J]
+
+-0.0516,
+
+)
+
+-0.0426,
+
+)
+
+0.0031,
+}
+
+Self supervised pre-training
+
+® Autoencoding models consist only of an encoder and
+typically predict the masked word from the every
+preceding and following words in the sentence,
+therefore it is bi-directional. The model has the
+knowledge of the entire context.
+
+Autoencoding: MLM Encoder-only Target
+
+The teacher
+
+The teacher
+<MASK> th --® teaches the
+Original text student student
+. Hie ater ; Decoder-only
+ae e Autoregressive: CLM
+studen
+The teacher ? _ | The teacher
+
+Seq-to-Seq: Spancorruption Encoder-Decoder
+
+--» <>
+<X> student | teaches |
+
+Masked Language Modeling
+
+° Input text with randomly masked tokens is fed into a Transformer
+encoder to predict the masked tokens.
+
+° As illustrated in the figure, an original text sequence “I”, “love”,
+“this”, “red”, “car” is prepended with the “<cls>" token, and the
+“<mask>” token randomly replaces “love”; then the cross-entropy
+loss between the masked token “love” and its prediction is to be
+
+minimized during pre-training.
+
+<cls> | love this red car
+
+Transformer encoder
+
+<cls> | <mask> this red car <cls> | <mask>this red car
+
+Attention input
+
+Self supervised pre-training
+
+° Autoregressive models consist only of a decoder and
+predict the masked word from the preceding words.
+Thus, autoregressive models are great at
+autocompleting a sentence, which is what happens in
+text generation models.
+
+Autoencoding: MLM Target
+
+Encoder-only
+
+The tea r The teacher
+<MASK> th --}F teaches the
+Original text student srusent
+\ The ater Decoder-only
+— = e Autoregressive: CLM
+studen
+The teacher
+7 T act teaches
+
+Seq-to-Seq: Spancorruption Encoder-Decoder
+
+== 4 <X> teaches the
+
+e teacher
+<X> student
+
+Next Token Prediction
+
+° Any text can be used for this pre-training task, which only
+requires the prediction of the next word in the sequence.
+
+Token
+Probabilities
+
+Predicted Next Token
+
+Output Token Embeddings
+
+Compute
+Loss
+
+Decoder-Only
+Transformer
+
+Self supervised pre-training
+
+° In training seq2zseq models, random sequences of input
+are masked and replaced with a unique token sentinel.
+The output is the sentinel token followed by the
+predicted tokens. In summary, seqzseq models both
+need to understand the context and generate a text.
+
+Autoencoding: MLM Target
+
+Encoder-only
+
+The tea r The teacher
+<MASK> th --}F teaches the
+
+Original text student student
+
+S ae ater Decoder-only
+CES = e Autoregressive: CLM
+studen
+The teacher
+
+The teacher? fFrc.-:*-- aod a
+
+Resied ri teaches
+
+-- <X> teaches the
+
+Span corruption
+
+® In the original text, some words are dropped out with a
+unique sentinel token. Words are dropped out
+independently uniformly at random. The model is
+trained to predict basically sentinel tokens to delineate
+the dropped out text.
+
+Original text
+Thank you fef inviting me to your party last week.
+
+Inputs
+Thank you <X> me to your party <Y> week.
+
+Targets
+<X> for inviting <Y> last <Z>
+
+Summary on pre-training
+
+Pre-training tasks can be invented flexibly and effective
+representations can be derived from a flexible regime of pre-
+training tasks.
+
+Different NLP tasks seem to be highly transferable,
+producing effective representations that form a general
+model which can serve as the backbone for many specialized
+models.
+
+With Self-Supervised Learning the models seem to be able to
+learn from generating the language itself, rather than from
+any specific task.
+
+Language Model can be used as a Knowledge Base, namely a
+generatively pretrained model may have a decent zero-shot
+performance on a range of NLP tasks.
+
+Datasets and data pre-
+processing
+
+\
+
+Datasets
+
+Training LLMs require vast amounts of text data, and
+the quality of this data significantly impacts LLM
+performance.
+
+Pre-training on large-scale corpora provides LLMs with
+a fundamental understanding of language and some
+generative capability.
+
+Pre-training data sources are diverse, commonly
+incorporating web text, conversational data, and books
+as general pre-training corpora.
+
+Leveraging diverse sources of text data for LLM training
+can significantly enhance the model’s generalization
+capabilities.
+
+Datasets
+
+Corpora Type Links
+BookCorpus [65] Books https: //github.com/soskek/bookcorpus
+Gutenberg [66] Books https: //www. gutenberg. org
+Books! [8] Books Not open source yet
+Books2 [8] Books Not open source yet
+CommonCrawl [67] CommonCrawl https: //commoncraw1. org
+C4 [68] CommonCrawl https: //www. tensorflow.org/datasets/catalog/c4
+CC-Stories [69] CommonCrawl Not open source yet
+CC-News [70] CommonCraw! https: //commoncrawl.org/blog/news-dataset-available
+
+RealNews [71] CommonCrawl https: //github.com/rowanz/grover/tree/master/realnews
+
+RefinedWeb [22] _CommonCrawl https: //huggingface.co/datasets/tiiuae/falcon-refinedweb
+WebtText Reddit Link Not open source yet
+OpenWebtext [73] Reddit Link https: //skylion007.github.io/OpenWebTextCorpus/
+PushShift.io [74] Reddit Link
+
+Wikipedia [75] Wikipedia https: //dumps.wikimedia.org/zhwiki/latest/
+
+Datasets - Books
+
+* Two commonly utilized books datasets for LLMs
+training are BookCorpus and Gutenberg.
+
+° These datasets include a wide range of literary genres,
+including novels, essays, poetry, history, science,
+philosophy, and more.
+
+* Widely employed by numerous LLMs, these datasets
+contribute to the models’ pre-training by exposing
+them to a diverse array of textual genres and subject
+matter, fostering a more comprehensive understanding
+of language across various domains.
+
+Book Corpus includes 800 million words.
+
+Datasets - CommoncCrawl
+
+CommonCrawl manages an accessible repository of
+web crawl data, freely available for utilization by
+individuals and organizations.
+
+This repository encompasses a vast collection of data,
+comprising over 250 billion web pages accumulated
+over a span of 16 years.
+
+This continuously expanding corpus is a dynamic
+resource, with an addition of 3—5 billion new web pages
+each month.
+
+However, due to the presence of a substantial amount
+of low-quality data in web archives, preprocessing is
+essential when working with CommonCrawIl data.
+
+Datasets - Wikipedia
+
+°* Wikipedia, the free and open online encyclopedia
+project, hosts a vast repository of high-quality
+encyclopedic content spanning a wide array of topics.
+
+° The English version of Wikipedia, including 2,500 million
+words, is extensively utilized in the training of many
+LLMs, serving as a valuable resource for language
+understanding and generation tasks.
+
+° Additionally, Wikipedia is available in multiple
+languages, providing diverse language versions that can
+be leveraged for training in multilingual environments.
+
+Datasets used in popular LLMs
+
+LLMs Datasets
+GPT-3 [8] CommonCrawl [67], WebText2 [8], Books! [8], Books2 [8], Wikipedia [75]
+LLaMA [9] CommonCrawl [67], C4 [68], Wikipedia [75], Github, Books, Arxiv, StackExchange
+PaLM [36] Social Media, Webpages, Books, Github, Wikipedia, News (total 780B tokens)
+T5 [68] C4 [68], WebText, Wikipedia, RealNews
+CodeGen [81] the Pile, BIGQUERY, BIGPYTHON
+CodeGeex [82] CodeParrot, the Pile, Github
+GLM 37] BooksCorpus, Wikipedia
+BLOOM [38] ROOTS
+OPT [83] BookCorpus, CCNews, CC-Stories, the Pile, Pushshift.io
+
+Data pre-processing
+
+Once an adequate corpus of data is collected, the
+subsequent step is data preprocessing, whose quality
+directly impacts the model’s performance and security.
+
+The specific preprocessing steps involve filtering low-
+quality text, including eliminating toxic and biased
+content to ensure the model aligns with human ethical
+standards.
+
+It also includes deduplication, removing duplicates in
+the training set, and excluding redundant content in the
+test set to maintain the sample distribution balance.
+
+Privacy scrubbing is applied to ensure the model's
+security, preventing information leakage or other
+rivacy-related concerns.
+
+Quality filtering
+
+® Filtering low-quality data is typically done using
+heuristic-based methods or classifier-based methods.
+
+® Heuristic methods involve employing manually defined
+rules to eliminate low-quality data. For instance, rules
+could be set to retain only text containing digits, discard
+sentences composed entirely of uppercase letters, and
+remove files with a symbol and word ratio exceeding
+0.1, and so forth.
+
+Classifier-based methods involve training a classifier on
+a high-quality dataset to filter out low-quality datasets.
+
+Deduplication
+
+* Language models may sometimes repetitively generate
+the same content during text generation, potentially
+due to a high degree of repetition in the training data.
+
+® Extensive repetition can lead to training instability,
+resulting in a decline in the performance of LLMs.
+
+* Additionally, it is crucial to consider avoiding dataset
+contamination by removing duplicated data present in
+both the training and test set.
+
+Privacy scrubbing
+
+° LLMs, as text-generating models, are trained on diverse
+datasets, which may pose privacy concerns and the risk
+of inadvertent information disclosure.
+
+°* It is imperative to address privacy concerns by
+systematically removing any sensitive information. This
+involves employing techniques such as anonymization,
+redaction, or tokenization to eliminate personally
+identifiable details, geolocation, and confidential data.
+
+° By carefully scrubbing the dataset of such sensitive
+content, researchers and developers can ensure that the
+language models trained on these datasets uphold
+privacy standards and mitigate the risk of unintentional
+disclosure of private information.
+
+Filtering out toxic and biased text
+
+°* In the preprocessing steps of language datasets, a
+critical consideration is the removal of toxic and biased
+content to ensure the development of fair and unbiased
+language models.
+
+This involves implementing robust content moderation
+techniques, such as employing sentiment analysis, hate
+speech detection, and bias identification algorithms.
+
+By leveraging these tools, it is possible to systematically
+identify and filter out text that may perpetuate harmful
+stereotypes, offensive language, or biased viewpoints.
+
+Using LLMs after
+
+pre-training
+
+\
+
+Fine-tuning
+* Gradient descent on weights to
+
+optimize performance on one
+task.
+
+¢ What to fine-tune?
+¢ Full network
+¢ Readout heads_ \ Parameter efficient
+e Adapters \eecr
+
+Change the model “itself”
+
+Using LLMs after pre-training
+
+Prompting
+
+¢ Design special prompt to cue /
+condition the network into
+specific mode to solve any
+tasks.
+
+* No parameter change. one
+model to rule them all.
+
+Change the way to use it.
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 11
+From Transformers
+
+to LLMs
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

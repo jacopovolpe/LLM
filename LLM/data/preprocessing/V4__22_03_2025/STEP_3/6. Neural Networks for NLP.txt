@@ -1,0 +1,561 @@
+## Lesson 6 ##
+
+Neural Networks for NLP
+
+This lesson delves into the application of neural networks within the field of Natural Language Processing (NLP), particularly focusing on Recurrent Neural Networks (RNNs) and their variants. The material is presented by Nicola Capuano and Antonio Greco from the Department of Enterprise Engineering (DIEM) at the University of Salerno, as part of the "Corso di Laurea Magistrale in Ingegneria Informatica" (Master's Degree in Computer Engineering).
+
+## Outline
+
+The lecture covers the following topics:
+
+*   **Recurrent Neural Networks (RNNs):** Introduction to the basic architecture and principles of RNNs.
+*   **RNN Variants:** Exploration of different types of RNNs like Bidirectional RNNs, Long Short-Term Memory (LSTM) networks, and Gated Recurrent Units (GRUs).
+*   **Building a Spam Detector:** Practical application of RNNs for classifying SMS messages as spam or not spam.
+*   **Introduction to Text Generation:** Overview of generative models and the use of RNNs for generating text.
+*   **Building a Poetry Generator:** Developing a poetry generator using RNNs, providing a hands-on experience with text generation.
+
+<----------section---------->
+
+## Recurrent Neural Networks
+
+### Neural Networks and NLP
+Neural networks are extensively employed in text processing tasks. However, standard feedforward neural networks have a significant limitation: they lack memory. Each input is processed independently, without any regard to previous inputs or the maintenance of a state. This means that to process a sequence of words (i.e., a text), the entire sequence must be presented to the network at once. The entire text is treated as a single, large data point. Examples of this approach include using Bag-of-Words (BoW) or Term Frequency-Inverse Document Frequency (TF-IDF) vectors to represent text, or averaging the word vectors of the text.
+
+### Neural Networks with Memory
+When humans read a text, they employ a different strategy:
+
+*   Sentences and words are processed sequentially, one at a time.
+*   The reader maintains a memory of what has been read previously.
+*   An internal model of the text is continuously updated as new information arrives.
+
+A Recurrent Neural Network (RNN) mimics this principle. It processes sequences of information by iterating through the elements of the sequence, such as the words of a text represented as word embeddings. An RNN maintains a state that contains information about what has been seen so far in the sequence. This state is updated at each step.
+
+<----------section---------->
+
+### Recurrent Neural Networks
+
+*   RNNs consist of feedforward network layers (circles in diagrams) composed of one or more neurons.
+*   The output of the hidden layer is passed to the output layer as in a typical feedforward network.
+*   Crucially, the output of the hidden layer is also fed back as input to the same hidden layer in the next time step, along with the normal input. This feedback loop is what gives RNNs memory.
+
+**CHAPTER 8 Loopy (recurrent) neural networks (RNNs)**
+
+One-dimensional convolutions offer a method for capturing relationships between tokens by examining windows of words. Pooling layers (discussed in a prior chapter) were designed to handle slight word order variations. RNNs offer a distinct approach by introducing the concept of memory. This memory enables the network to treat language not as a static chunk of data but as a sequence unfolding over time, token by token.
+
+<----------section---------->
+
+### Remembering with recurrent networks
+
+The words in a document are rarely independent of each other. The occurrence of one word often influences or is influenced by the occurrence of other words. For example, consider the following two sentences:
+
+"The stolen car sped into the arena."
+"The clown car sped into the arena."
+
+The reader's emotional response to these two sentences may differ significantly at the end, even though they share identical adjective, noun, verb, and prepositional phrase construction. The single adjective change early in the sentence profoundly affects the reader's inference about what is happening.
+
+The goal is to model this relationship—to understand how "arena" and even "sped" acquire slightly different connotations based on an adjective appearing earlier in the sentence, even if the adjective does not directly modify these words.
+
+If a model can "remember" what just happened the moment before (specifically, what happened at time step *t* when looking at time step *t+1*), it can capture patterns that emerge when certain tokens appear relative to others in a sequence. Recurrent neural networks (RNNs) allow neural networks to remember past words within a sentence.
+
+A single recurrent neuron in the hidden layer adds a recurrent loop that "recycles" the output of the hidden layer at time *t*. The output at time *t* is added to the next input at time *t+1*. This new input is processed by the network at time step *t+1* to create the output for that hidden layer at time *t+1*. That output at *t+1* is then recycled back into the input again at time step *t+2*, and so on.
+
+Figure 8.3 (not provided in text) depicts a Recurrent Neural Net.
+
+<sup>1</sup> In finance, dynamics, and feedback control, this is often called an auto-regressive moving average (ARMA) model: [https://en.wikipedia.org/wiki/Autoregressive\_model](https://en.wikipedia.org/wiki/Autoregressive_model).
+
+Figure 8.4 (not provided in text) depicts an Unrolled Recurrent Neural Net.
+
+<----------section---------->
+
+The unrolled representation helps to visualize how information flows through time, and is useful to understand backpropagation. Keep in mind that the three unfolded networks are snapshots of the same network with a single set of weights.
+
+Focusing on the original representation of an RNN before unrolling reveals the input-weight relationships, which are shown in Figures 8.5 and 8.6 (not provided in text).
+
+Each neuron in the hidden state has a set of weights applied to each element of each input vector, similar to a normal feedforward network. However, an RNN also has an additional set of trainable weights applied to the output of the hidden neurons from the previous time step. The network learns how much weight or importance to assign to the "past" events as a sequence is input token by token.
+
+**TIP:** The first input in a sequence has no "past," so the hidden state at *t* = 0 receives an input of 0 from its *t* - 1 self. Alternatively, the initial state value can be "filled" by passing related but separate samples into the network sequentially. The final output of each sample can be used as the *t* = 0 input for the next sample. Alternative "filling" approaches to preserve more information are covered in the section on statefulness later in the chapter.
+
+<----------section---------->
+
+Consider a set of labeled documents. Instead of passing the collection of word vectors into a convolutional neural network (CNN) all at once (as in a previous chapter, depicted in Figure 8.7, not provided), the sample is processed one token at a time, passing the tokens individually into the RNN (as depicted in Figure 8.8, not provided).
+
+The word vector for the first token is passed in, and the network produces an output. Then, the second token is passed in, along with the output from the first token. This process continues, with the third token passed in along with the output from the second token, and so on. The network maintains a concept of before and after, cause and effect, and some notion of time.
+
+Text: The clown car sped into the arena
+
+<----------section---------->
+
+### RNN Training
+
+Now the network is "remembering" something, but how does backpropagation work in this structure?
+
+### Backpropagation through time
+
+All the networks discussed so far have a target variable to aim for, and RNNs are no exception. However, there isn't a label for each token; there is only a single label for all the tokens in each sample text. The label corresponds to the entire sample document.
+
+Isadora Duncan
+
+**TIP:** Although tokens are discussed as the input to each time step, RNNs work identically with any time series data. The tokens can be discrete or continuous, such as readings from a weather station, musical notes, or characters in a sentence.
+
+Initially, the output of the network is examined at the last time step, and this output is compared to the label. The difference defines the error, which the network attempts to minimize. For a given data sample, it is broken into smaller pieces that are fed into the network sequentially. Instead of dealing with the output generated by any of these "subsamples" directly, it is fed back into the network.
+
+Only the final output matters, at least initially. Each token from the sequence is input into the network, and the loss is calculated based on the output from the last time step (token) in the sequence (as depicted in Figure 8.9, not provided).
+
+<----------section---------->
+
+### Forward pass
+
+Figure 8.10 (not provided in text)
+
+### Backpropagation
+
+### What are RNNs Good For?
+RNNs are suitable for processing short bits of text, such as individual sentences. RNNs allow ingesting an infinitely long sequence of text. Also, they can generate text for as long as needed. RNNs enable generative conversational chatbots and text summarizers that combine concepts from many different places within the documents.
+
+| Type          | Description                                                                   | Applications                                                                                                                                                                |
+| ------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| One to Many   | One input tensor used to generate a sequence of output tensors              | Generate chat messages, answer questions, describe images                                                                                                                   |
+| Many to One   | Sequence of input tensors gathered up into a single output tensor             | Classify or tag text according to its language, intent, or other characteristics                                                                                           |
+| Many to Many  | A sequence of input tensors used to generate a sequence of output tensors | Translate, tag, or anonymize the tokens within a sequence of tokens, answer questions, participate in a conversation                                                        |
+
+<----------section---------->
+
+The superpower of RNNs is that they process sequences of tokens or vectors, which is beneficial because one doesn't have to truncate and pad input text. An RNN can generate text sequences that go on indefinitely; you can set the conditions to terminate generation according to specified criteria.
+
+© Manning Publications Co. To comment go to liveBook Licensed to Nicola Capuano <nicola@capuano.biz>
+
+### RNNs for Text Generation
+When used for text generation:
+
+*   The output of each time step is as important as the final output.
+*   Error is captured and backpropagated at each step to adjust all network weights.
+
+In this scenario, each step is considered, so backpropagation occurs at every step through time.
+
+<----------section---------->
+
+BUT YOU DO CARE WHAT CAME OUT OF THE EARLIER STEPS
+
+Sometimes you may care about the entire sequence generated by each of the intermediate time steps. Figure 8.11 (not provided) shows a path for capturing the error at any given time step and carrying that backward to adjust all the weights of the network during backpropagation.
+
+This process is like normal backpropagation through time for *n* time steps. In this case, you're now backpropagating the error from multiple sources at the same time. The weight corrections are additive. Backpropagate from the last time step all the way to the first, summing up what you’ll change for each weight. Then do the same with the error calculated at the second-to-last time step and sum up all the changes all the way back to *t* =0. Repeat this process until you get all the way back down to time step 0 and then backpropagate it as if it were the only one in the world. Then apply the grand total of the updates to the corresponding hidden layer weights all at once.
+
+In figure 8.12 (not provided), the error is backpropagated from each output all the way back to t=0, and aggregated, before finally applying changes to the weights. With a standard feedforward network, the weights are updated only after the proposed change in the weights is calculated for the entire backpropagation step for that input (or set of inputs). In the case of an RNN, this backpropagation includes the updates all the way back to time *t* =0.
+
+<----------section---------->
+
+## RNN Variants
+
+### Bidirectional RNN
+
+A Bidirectional RNN has two recurrent hidden layers:
+
+*   One processes the input sequence forward.
+*   The other processes the input sequence backward.
+*   The output of those two are concatenated at each time step.
+
+By processing a sequence both ways, a bidirectional RNN can catch patterns that may be overlooked by a unidirectional RNN.
+
+*   Example: they wanted to pet the dog whose fur was brown
+
+Figure 8.13 (not provided) depicts a Bidirectional recurrent neural net.
+
+The basic idea is to arrange two RNNs side by side, passing the input into one as normal and the same input backward into the other net. The output of those two are then concatenated at each time step to the related (same input token) time step in the other network. The output of the final time step in the input is concatenated with the output generated by the same input token at the first time step of the backward net.
+
+**TIP:** Keras also has a `go_backwards` keyword argument. If this is set to `True`, Keras automatically flips the input sequences and inputs them into the network in reverse order. This is the second half of a bidirectional layer. A recurrent neural network (due to the vanishing gradients problem) is more receptive to data at the end of the sample than at the beginning. If samples are padded with `<PAD>` tokens at the end, the good information may be buried. `go_backwards` can be a quick way around this problem.
+
+<----------section---------->
+
+With these tools, one is well on the way to modeling language itself and how it's used. And with that deeper algorithmic understanding, you can generate new statements.
+
+Ahead of the Dense layer is a vector that is of shape (number of neurons x 1) coming out of the last time step of the Recurrent layer for a given input sequence. This vector is the parallel to the thought vector you got out of the convolutional neural network.
+
+In LSTMs, the rules governing the information stored in the state (memory) are trained neural nets themselves—therein lies the magic. They can be trained to learn what to remember, while the rest of the recurrent net learns to predict the target label! With a memory and state, you can begin to learn dependencies stretching across each data sample.
+
+With LSTMs, patterns that humans process subconsciously become available to your model. And with those patterns, you can generate novel text using those patterns.
+
+How does this work (see figure 9.1, not provided)?
+
+The memory state is affected by the input and affects the layer output just as in a normal recurrent net. That memory state persists across all the time steps of the time series (your sentence or document). So, each input can have an effect on the memory state as well as an effect on the hidden layer output. The memory state learns what to remember at the same time it learns to reproduce the output, using standard backpropagation!
+
+<----------section---------->
+
+### LSTM
+
+RNNs should theoretically retain information from inputs seen earlier, but they struggle to learn long-term dependencies. Vanishing Gradient: as more layers are added, as the network becomes difficult to train
+
+Long Short-Term Memory networks are designed to solve this problem:
+
+*   Introduces a state updated with each training example.
+*   The rules to decide what information to remember and what to forget are trained.
+
+Figure 9.2 (not provided) depicts an Unrolled LSTM network and its memory
+
+Figure 9.2 looks similar to a normal recurrent neural net. However, in addition to the activation output feeding into the next time-step version of the layer, you add a memory state that also passes through time steps of the network. At each time-step iteration, the hidden recurrent unit has access to the memory unit. The addition of this memory unit, and the mechanisms that interact with it, make this quite a bit different from a traditional neural network layer. It's possible to design a set of traditional recurrent neural network layers (a computational graph) that accomplishes all the computations that exist within an LSTM layer. An LSTM layer is just a highly specialized recurrent neural network.
+
+**TIP** In much of the literature, the "Memory State" block shown in figure 9.2 is referred to as an **LSTM cell** rather than an **LSTM neuron**, because it contains two additional neurons or gates just like a silicon computer memory cell. When an LSTM memory cell is combined with a sigmoid activation function to output a value to the next LSTM cell, this structure, containing multiple interacting elements, is referred to as an **LSTM unit**. Multiple LSTM units are combined to form an **LSTM layer**. The horizontal line running across the unrolled recurrent neuron in figure 9.2 is the signal holding the memory or state. It becomes a vector with a dimension for each LSTM cell as the sequence of tokens is passed into a multi-unit LSTM layer.
+
+LSTM allow past information to be reinjected later, thus fighting the vanishing-gradient problem
+
+<----------section---------->
+
+### GRU
+Gated Recurrent Unit (GRU) is an RNN architecture designed to solve the vanishing gradient problem
+
+#### Main Features
+*   Like LSTM, but with a simpler architecture
+*   GRU lacks a separate memory state, relying solely on the hidden state to store and transfer information across timesteps
+*   Fewer parameters than LSTM, making it faster to train and more computationally efficient
+*   The performance is comparable to LSTM, particularly in tasks with simpler temporal dependencies
+
+### Stacked LSTM
+Layering enhances the model’s ability to capture complex relationships
+
+Note: The output at each timestep serves as the input for the corresponding timestep in the next layer
+
+<----------section---------->
+
+Experiments are ever ongoing, and we encourage you to join the fun. The tools are all readily available, so finding the next newest greatest iteration is in the reach of all.
+
+#### Going deeper
+It’s convenient to think of the memory unit as encoding a specific representation of noun/verb pairs or sentence-to-sentence verb tense references, but that isn’t specifically what’s going on. It’s just a happy byproduct of the patterns that the network learns, assuming the training went well. Like in any neural network, layering allows the model to form more-complex representations of the patterns in the training data. LSTM layers can be stacked (see figure 9.13, not provided).
+
+Stacked layers are much more computationally expensive to train.
+
+```python
+from keras.models import Sequential
+from keras.layers import LSTM
+
+model = Sequential()
+model.add(LSTM(num_neurons, return_sequences=True, input_shape=X[0].shape))
+model.add(LSTM(num_neurons_2, return_sequences=True))
+```
+
+Each LSTM layer is a cell with its own gates and state vector.
+
+<----------section---------->
+
+## Building a Spam Detector
+### The Dataset
+Download the dataset from: [https://archive.ics.uci.edu/dataset/228/sms+spam+collection](https://archive.ics.uci.edu/dataset/228/sms+spam+collection)
+
+This dataset contains SMS messages labeled as either "spam" or "ham" (not spam).
+
+### Read the Dataset
+```python
+import pandas as pd
+
+df = pd.read_csv("datasets/sms_spam.tsv", delimiter='\t', header=None, names=['label', 'text'])
+print(df.head())
+```
+
+This code uses the pandas library to read the data from a tab-separated file ("sms_spam.tsv").  The `header=None` argument indicates that the file does not contain a header row, and `names=['label', 'text']` assigns the column names "label" and "text" to the SMS message labels and content, respectively. `print(df.head())` displays the first few rows of the dataframe to show the dataset's structure.
+
+### Tokenize and Generate WEs
+```python
+import spacy
+import numpy as np
+
+nlp = spacy.load('en_core_web_md')  # loads the medium model with 300-dimensional WEs
+
+# Tokenize the text and save the WEs
+corpus = []
+for sample in df['text']:
+    doc = nlp(sample, disable=["tagger", "parser", "attribute_ruler", "lemmatizer", "ner"])  # only tok2vec
+    corpus.append([token.vector for token in doc])
+
+# Pad or truncate samples to a fixed length
+maxlen = 50
+zero_vec = [0] * len(corpus[0][0])
+for i in range(len(corpus)):
+    if len(corpus[i]) < maxlen:
+        corpus[i] += [zero_vec] * (maxlen - len(corpus[i]))  # pad
+    else:
+        corpus[i] = corpus[i][:maxlen]  # truncate
+
+corpus = np.array(corpus)
+print(corpus.shape) # Expected output: (5572, 50, 300)
+```
+
+This section prepares the text data for use in a neural network.  It uses the spaCy library to tokenize the SMS messages and generate word embeddings. `nlp = spacy.load('en_core_web_md')` loads the 'en_core_web_md' model, which includes 300-dimensional word embeddings. The code then iterates through each SMS message (`df['text']`), tokenizes it using `nlp(sample)`, and extracts the word embedding vector (`token.vector`) for each token. Unnecessary pipeline components are disabled for efficiency. The resulting `corpus` is a list of lists, where each inner list contains the word embedding vectors for the tokens in an SMS message. A zero vector of the same dimension as word embeddings represents padding, to ensure that all input sequences have the same length.
+
+<----------section---------->
+
+### Split the dataset
+```python
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+
+# Encode the labels
+encoder = LabelEncoder()
+labels = encoder.fit_transform(df['label'])
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(corpus, labels, test_size=0.2)
+
+print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+# Expected output: ((4457, 50, 300), (1115, 50, 300), (4457,), (1115,))
+```
+
+This section splits the dataset into training and testing sets, which is standard practice in machine learning. `LabelEncoder` from scikit-learn is used to convert the string labels ("spam" and "ham") into numerical labels (0 and 1). Then, `train_test_split` is used to split both the features (word embeddings) and labels into training and testing sets, with 20% of the data allocated to the testing set.  The shapes of the resulting arrays are printed to verify the split.
+
+### Train an RRN model
+```python
+import keras
+
+model = keras.models.Sequential()
+
+model.add(keras.layers.Input(shape=(X_train.shape[1], X_train.shape[2])))
+model.add(keras.layers.SimpleRNN(64))
+model.add(keras.layers.Dropout(0.3))
+model.add(keras.layers.Dense(1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.summary()
+
+history = model.fit(X_train, y_train, batch_size=512, epochs=20, validation_data=(X_test, y_test))
+```
+
+<----------section---------->
+
+This section builds and trains a simple RNN model using Keras.  The model consists of an input layer, a `SimpleRNN` layer with 64 units, a `Dropout` layer with a rate of 0.3 (to prevent overfitting), and a `Dense` output layer with a sigmoid activation function (for binary classification). `model.compile` configures the training process, specifying the binary cross-entropy loss function, the Adam optimizer, and the accuracy metric. `model.fit` trains the model on the training data for 20 epochs, using a batch size of 512, and monitors the performance on the test data during training. The training history is saved in the `history` variable.
+
+### Plot the Training History
+```python
+from matplotlib import pyplot as plt
+
+def plot(history, metrics):
+    fig, axes = plt.subplots(1, len(metrics), figsize=(15, 5))
+    for i, metric in enumerate(metrics):
+        ax = axes[i]
+        ax.plot(history.history[metric], label='Train') # Corrected line
+        ax.plot(history.history['val_' + metric], label='Validation') # Corrected line
+        ax.set_title(f'Model {metric.capitalize()}')
+        ax.set_ylabel(metric.capitalize())
+        ax.set_xlabel('Epoch')
+        ax.legend(loc='upper left')
+        ax.grid()
+    plt.tight_layout()
+    plt.show()
+
+plot(history, ['loss', 'accuracy'])
+```
+
+This section defines a `plot` function to visualize the training history.  The function takes the training history and a list of metrics as input. It creates subplots for each metric, plotting the training and validation performance over epochs. The plots include titles, labels, legends, and grids for better readability.
+
+<----------section---------->
+
+### Report and Confusion Matrix
+```python
+from sklearn.metrics import classification_report, confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def print_report(model, X_test, y_test, encoder):
+    y_pred = model.predict(X_test).ravel()
+    y_pred_class = (y_pred > 0.5).astype(int)  # convert probabilities to classes
+
+    y_pred_lab = encoder.inverse_transform(y_pred_class)
+    y_test_lab = encoder.inverse_transform(y_test)
+    print(classification_report(y_test_lab, y_pred_lab, zero_division=0))
+
+    cm = confusion_matrix(y_test_lab, y_pred_lab)
+    plt.figure(figsize=(6, 5))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                xticklabels=encoder.classes_, yticklabels=encoder.classes_)
+    plt.xlabel('Predicted Labels')
+    plt.ylabel('True Labels')
+    plt.title('Confusion Matrix')
+    plt.show()
+
+print_report(model, X_test, y_test, encoder)
+```
+
+This section defines a `print_report` function to evaluate the trained model on the test data.  It first makes predictions using `model.predict` and converts the predicted probabilities to class labels (0 or 1) by applying a threshold of 0.5.  Then, it generates a classification report using `classification_report` from scikit-learn, which includes precision, recall, F1-score, and support for each class. Finally, it generates a confusion matrix using `confusion_matrix` and visualizes it as a heatmap using seaborn, providing insights into the model's performance in terms of true positives, true negatives, false positives, and false negatives.
+
+<----------section---------->
+
+### Using RNN Variants
+*   Bi-directional RRN:
+    `model.add(keras.layers.Bidirectional(keras.layers.SimpleRNN(64)))`
+*   LSTM:
+    `model.add(keras.layers.LSTM(64))`
+*   Bi-directional LSTM:
+    `model.add(keras.layers.Bidirectional(keras.layers.LSTM(64)))`
+*   GRU:
+    `model.add(keras.layers.GRU(64))`
+*   Bi-directional GRU:
+    `model.add(keras.layers.Bidirectional(keras.layers.GRU(64)))`
+
+This section demonstrates how to replace the basic `SimpleRNN` layer with different RNN variants. It highlights the syntax for using Bidirectional RNNs, LSTMs, Bidirectional LSTMs, GRUs, and Bidirectional GRUs in Keras.
+
+### Using Ragged Tensors
+A Ragged Tensor is a tensor that allows rows to have variable lengths
+
+*   Useful for handling data like text sequences, where each input can have a different number of elements (e.g., sentences with varying numbers of words)
+*   Avoids the need for padding/truncating sequences to a fixed length
+*   Reduces overhead and improves computational efficiency by directly handling variable-length data
+*   Available in TensorFlow since version 2.0
+*   In PyTorch, similar functionality is provided by Packed Sequences
+
+<----------section---------->
+
+```python
+import tensorflow as tf
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(corpus, labels, test_size=0.2)
+
+# Convert sequences into RaggedTensors to handle variable-length inputs
+X_train_ragged = tf.ragged.constant(X_train)
+X_test_ragged = tf.ragged.constant(X_test)
+
+# Build the model
+model = keras.models.Sequential()
+model.add(keras.layers.Input(shape=(None, 300), ragged=True))
+model.add(keras.layers.SimpleRNN(64))
+model.add(keras.layers.Dropout(0.3))
+model.add(keras.layers.Dense(1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.summary()
+
+# Train the model using RaggedTensors
+history = model.fit(X_train_ragged, y_train, batch_size=512, epochs=20,
+                    validation_data=(X_test_ragged, y_test))
+plot(history, ['loss', 'accuracy'])
+print_report(model, X_test_ragged, y_test, encoder)
+```
+
+This section shows how to use Ragged Tensors in TensorFlow to handle variable-length input sequences without padding.  `tf.ragged.constant` converts the data into Ragged Tensors. The model is then built with an input layer that specifies `ragged=True`. The rest of the model architecture remains the same.  `model.fit` is used to train the model on the Ragged Tensors.
+
+<----------section---------->
+
+## Intro to Text Generation
+
+### Generative Models
+A class of NLP models designed to generate new text:
+
+*   … that is coherent and syntactically correct
+*   ... based on patterns and structures learned from text corpora
+
+#### Generative vs Discriminative
+
+*   Discriminative models are mainly used to classify or predict categories of data
+*   Generative models can produce new and original data
+
+RNN can be used to generate text
+
+*   Transformers are better (we will discuss them later)
+
+This section introduces the concept of generative models in NLP, contrasting them with discriminative models.  Generative models aim to produce new data (e.g., text), while discriminative models focus on classifying data. RNNs can be used for text generation, though Transformers are now the preferred architecture for this task.
+
+### Applications
+*   Machine Translation: Automatically translating text from one language to another
+*   Question Answering: Generating answers to questions based on a given context
+*   Automatic Summarization: Creating concise summaries of longer texts
+*   Text Completion: Predicting and generating the continuation of a given text
+*   Dialogue Systems: Creating responses in conversational agents and chatbots
+*   Creative Writing: Assisting in generating poetry, stories, and other creative texts
+
+This section outlines several applications of text generation models, including machine translation, question answering, automatic summarization, text completion, dialogue systems, and creative writing.
+
+<----------section---------->
+
+### Language Model
+A mathematical model that determine the probability of the next token given the previous ones
+
+*   It captures the statistical structure of the language (latent space)
+*   Once created, can be sampled to generate new sequences
+*   An initial string of text (conditioning data) is provided
+*   The model generates a new token
+*   The generated token is added to the input data
+*   the process is repeated several times
+*   This way, sequences of arbitrary length can be generated
+
+This section describes language models, which are fundamental to text generation. A language model assigns probabilities to sequences of words, allowing it to predict the next token given the preceding tokens. The model captures the statistical structure of the language and can be sampled to generate new sequences of arbitrary length.
+
+### LM Training
+At each step, the RNN receives a token extracted from a sentence in the corpus and produces an output
+
+The output is compared with the expected token (the next one in the sentence)
+The comparison generates an error, which is used to update the weights of the network via backpropagation
+
+*   Unlike traditional RNNs, where backpropagation occurs only at the end of the sequence, errors are propagated at each step
+
+In language model training, the RNN receives a token from the corpus and predicts the next token. The error between the predicted and actual next token is used to update the network's weights via backpropagation at each step.
+
+<----------section---------->
+
+So the first thing you need to do is adjust your training set labels. The output vector will be measured not against a given classification label but against the one-hot encoding of the next character in the sequence.
+
+Figure 9.10 (not provided) depicts Next word prediction
+
+Figure 9.11 (not provided) depicts Next character prediction
+
+### Sampling
+#### During utilization:
+
+*   Discriminative models always select the most probable output based on the given input
+*   Generative models sample from the possible alternatives:
+*   Example: if a word has a probability of 0.3 of being the next word in a sentence, it will be chosen approximately 30% of the time
+
+**Temperature:** a parameter (T) used to regulate the randomness of sampling
+
+*   A low temperature (T<1) makes the model more deterministic
+*   A high temperature (T>1) makes the model more creative
+
+<----------section---------->
+
+### Temperature
+
+q'<sub>i</sub> = exp(log(p<sub>i</sub>) / T) / Σ exp(log(p<sub>j</sub>) / T)
+
+Where:
+
+*   p<sub>i</sub> is the original probability distribution
+*   p<sub>i</sub> is the probability of token i
+*   T > 0 is the chosen temperature
+*   q' is the new distribution affected by the temperature
+
+This section introduces the concept of temperature in sampling from a language model. The temperature parameter controls the randomness of the generated text. A lower temperature makes the model more deterministic, while a higher temperature makes it more creative (but potentially less coherent). The equation provided shows how the temperature parameter affects the probability distribution.
+
+Higher temperatures result in sampling distributions of higher entropy that will generate more surprising and unstructured generated data, whereas a lower temperature will result in less randomness and much more predictable generated data (see figure 8.2, not provided).
+
+#### Implementing character-level LSTM text generation
+To illustrate the concepts, a Keras implementation of character-level LSTM text generation will be presented.
+
+#### PREPARING THE DATA
+The initial step involves downloading the corpus and converting the text to lowercase.
+
+<----------section---------->
+
+```python
+import keras
+import numpy as np
+
+path = keras.utils.get_file(
+    'nietzsche.txt',
+    origin='https://s3.amazonaws.com/text-datasets/nietzsche.txt')
+text = open(path).read().lower()
+print('Corpus length:', len(text))
+```
+
+This code snippet downloads the text of Nietzsche's writings from a specified URL using `keras.utils.get_file`, opens the file, converts the text to lowercase, and prints the length of the corpus. This serves as the foundational dataset for training a language model that captures the style and topics characteristic of Nietzsche's writing.
+
+## Building a Poetry Generator
+
+### Leopardi Poetry Generator
+*   Download the corpus from [https://elearning.unisa.it/](https://elearning.unisa.it/)
+
+```python
+# Load the corpus
+with open('datasets/leopardi.txt', 'r') as f:
+    text = f.read()
+
+# Get the unique characters in the corpus
+chars = sorted(list(set(text)))
+char_indices = dict((c, i) for i, c in enumerate(chars))
+indices_char = dict((i, c) for i, c in enumerate(chars))
+
+print("Corpus length: {}; total chars: {}".format(len(text),

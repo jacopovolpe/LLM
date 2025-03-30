@@ -1,0 +1,191 @@
+# Natural Language Processing and Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering)
+
+Lesson 17: Fine Tuning
+
+Nicola Capuano and Antonio Greco
+
+DIEM – University of Salerno
+
+This lesson will cover fine-tuning techniques for Large Language Models (LLMs), focusing on adapting pre-trained models to specific tasks. We will explore various methods, including full fine-tuning, parameter-efficient fine-tuning (PEFT), and instruction fine-tuning. These methods allow us to leverage the power of LLMs while addressing the challenges of computational cost and overfitting.
+
+<----------section---------->
+
+## Outline
+
+*   Types of fine tuning
+*   Parameter Efficient Fine Tuning (PEFT)
+*   Instruction Fine-Tuning
+
+This outline presents the key topics that will be discussed in this lesson on fine-tuning LLMs. First, we will explore the different types of fine-tuning approaches, including traditional full fine-tuning and more recent parameter-efficient techniques. Then, we will focus on Parameter-Efficient Fine-Tuning (PEFT), which allows efficient adaptation of LLMs to specific tasks. Finally, we will delve into Instruction Fine-Tuning, which enhances the ability of models to follow user instructions.
+
+<----------section---------->
+
+## Types of fine tuning
+
+Fine-tuning refers to the process of taking a pre-trained Large Language Model (LLM) and further training it on a specific task using a task-specific dataset. This adaptation allows the model to specialize its knowledge and improve performance on the target task. Pre-trained LLMs have already learned general language patterns and relationships from vast amounts of data, and fine-tuning leverages this existing knowledge to achieve better results with less training data and computational resources than training a model from scratch.
+
+**Why Fine-Tune?**
+
+*   Specialize LLMs for domain-specific tasks: Fine-tuning allows you to adapt a general-purpose LLM to a specific domain (e.g., medical, legal, financial). This specialization improves the model's understanding of domain-specific terminology and nuances, leading to more accurate and relevant results.
+*   Improve accuracy and relevance for specific applications: By training on a dataset relevant to a specific application, fine-tuning can significantly boost the accuracy and relevance of the LLM's outputs. For example, a sentiment analysis model fine-tuned on customer reviews will likely perform better than a general-purpose sentiment analysis model.
+*   Optimize performance on small, focused datasets: Fine-tuning is particularly useful when you have a limited amount of task-specific data. The pre-trained LLM provides a strong foundation, and fine-tuning allows you to adapt it to your specific dataset without requiring a massive amount of training data.
+<----------section---------->
+
+### Pros and cons of full fine tuning
+
+Full Fine-Tuning involves updating all the parameters of a pre-trained LLM during the fine-tuning process. This approach allows the model to fully leverage its capacity to achieve high accuracy on specific tasks.
+
+**Pros:**
+
+*   High Accuracy: Full fine-tuning can potentially achieve the highest accuracy for a specific task because it allows the model to fully adapt its parameters to the task-specific data.
+
+**Cons:**
+
+*   Computational Expense: Updating all model parameters is computationally expensive, especially for large LLMs. It requires significant GPU resources and time.
+*   Risk of Overfitting: Full fine-tuning can lead to overfitting, especially when the task-specific dataset is small. Overfitting occurs when the model learns the training data too well, resulting in poor performance on unseen data.
+
+<----------section---------->
+
+### Other types of fine tuning
+
+Besides full fine-tuning, several other approaches aim to address its limitations and provide more efficient ways to adapt LLMs to specific tasks.
+
+*   Parameter-Efficient Fine-Tuning (PEFT): Updates only a subset of the parameters.
+    *   Examples: LoRA, Adapters.
+*   Instruction Fine-Tuning: Used to align models with task instructions or prompts (user queries) enhancing usability in real-world applications.
+*   Reinforcement Learning from Human Feedback (RLHF): Combines supervised learning with reinforcement learning, rewarding models when they generate user-aligned outputs.
+
+These alternative techniques offer various trade-offs between computational cost, memory usage, and performance. PEFT methods reduce the number of trainable parameters, while instruction fine-tuning and RLHF focus on aligning the model's behavior with user expectations and preferences.
+
+<----------section---------->
+
+## Parameter efficient fine tuning (PEFT)
+
+Parameter-Efficient Fine-Tuning (PEFT) is a collection of techniques designed to fine-tune large pre-trained models, such as LLMs, in a computationally efficient manner. These methods aim to achieve comparable performance to full fine-tuning while requiring significantly fewer trainable parameters. This is particularly important for LLMs, which often have billions or even trillions of parameters, making full fine-tuning computationally prohibitive.
+
+### Parameter-Efficient Fine-Tuning
+
+Parameter-Efficient Fine-Tuning (PEFT) is a strategy developed to fine-tune large-scale pre-trained models, such as LLMs, in a computationally efficient manner while requiring fewer learnable parameters compared to standard fine-tuning methods.
+PEFT methods are especially important in the context of LLMs due to their massive size, which makes full fine-tuning computationally expensive and storage-intensive.
+PEFT is ideal for resource-constrained settings like edge devices or applications with frequent model updates.
+These techniques are supported and implemented in Hugging Face transformers and, in particular, in the `peft` library.
+
+PEFT addresses the challenges of fine-tuning massive LLMs by introducing techniques that selectively update only a small subset of the model's parameters. This dramatically reduces the computational cost and memory footprint of fine-tuning, making it feasible to adapt LLMs to various tasks even with limited resources.
+
+<----------section---------->
+
+### PEFT techniques
+
+Several PEFT techniques have emerged, each with its own approach to reducing the number of trainable parameters. Here are a few prominent examples:
+
+*   Low-Rank Adaptation (LoRA): Approximates weight updates by learning low-rank matrices, performing a small parameterized update of the weight matrices in the LLM. It is highly parameter-efficient and widely adopted for adapting LLMs.
+*   Adapters: They are small and trainable modules inserted within the transformer layers of the LLM, that allow to keep the pre-trained model's original weights frozen.
+*   Prefix Tuning: Learns a set of continuous task-specific prefix vectors for attention layers, keeping the original model parameters frozen.
+
+These techniques share the goal of reducing the computational burden of fine-tuning by selectively updating only a fraction of the model's parameters. This enables efficient adaptation of LLMs to specific tasks while preserving the pre-trained knowledge embedded in the original model.
+
+<----------section---------->
+
+## Low-Rank Adaptation (LoRA)
+
+LoRA focuses on modifying the weight matrices of the pre-trained model by adding a low-rank decomposition. This approach assumes that the changes required to adapt the model for a new task lie within a low-dimensional subspace.
+
+*   LoRA assumes that the changes required to adapt a pre-trained model for a new task lie in a low-dimensional subspace.
+*   Instead of fine-tuning all the parameters of the model, LoRA modifies only a small, trainable set of low-rank matrices that approximate these task-specific changes.
+    1.  **Base Model:** A pre-trained transformer model is represented by its weight matrices W.
+    2.  **Low-Rank Decomposition:** Instead of directly modifying W, LoRA decomposes the weight update into two low-rank matrices:
+
+        ΔW = A × B
+
+        *   A is a low-rank matrix (m × r)
+        *   B is another low-rank matrix (r × n)
+        *   r is the rank, which is much smaller than m or n, making A and B parameter-efficient.
+    3.  **Weight Update:** The effective weight during fine-tuning becomes:
+
+        W' = W + ΔW = W + A × B
+
+LoRA introduces minimal overhead by only training the low-rank matrices A and B, while the original weight matrices (W) remain frozen. This significantly reduces the number of trainable parameters and the risk of overfitting.
+
+<----------section---------->
+
+### How LoRA works
+
+*   **Freezing Pre-Trained Weights:** LoRA keeps the original weight matrices W of the LLM frozen during fine-tuning. Only the parameters in A and B are optimized for the new task (the pre-trained knowledge is preserved).
+*   **Injecting Task-Specific Knowledge:** The low-rank decomposition A × B introduces minimal additional parameters (less than 1% of the original model parameters) while allowing the model to learn task-specific representations.
+*   **Efficiency:** The number of trainable parameters is proportional to r × (m + n), which is significantly smaller than the full m × n weight matrix.
+*   **Inference Compatibility:** During inference, the modified weights W' = W + A × B can be directly used, making LoRA-compatible models efficient for deployment.
+
+The original weights of the LLM are frozen which allows the model to retain general-purpose knowledge learned during pre-training. The efficiency is a result of the low-rank matrices. During inference, the modified weights can be directly used without needing to calculate the low-rank matrices.
+
+<----------section---------->
+
+## Adapters
+
+Adapters are small, task-specific neural modules inserted within the transformer layers of the LLM. These modules are trainable, while the original pre-trained model parameters remain frozen during fine-tuning.
+
+*   Adapters are lightweight, task-specific neural modules inserted between the layers of a pre-trained transformer block.
+*   These modules are trainable, while the original pre-trained model parameters remain frozen during fine-tuning.
+*   Adapters require training only the small fully connected layers, resulting in significantly fewer parameters compared to full fine-tuning.
+*   Since the base model remains frozen, the general-purpose knowledge learned during pre-training is preserved.
+
+The adapter modules typically consist of a few fully connected layers with a bottleneck architecture, which further reduces the number of trainable parameters. By strategically inserting these small modules within the transformer layers, the model can learn task-specific representations without modifying the core knowledge embedded in the pre-trained weights.
+
+<----------section---------->
+
+## Prefix tuning
+
+Prefix tuning offers an alternative to modifying the LLM's internal weights. Instead, it introduces and optimizes a sequence of trainable "prefix" tokens prepended to the input.
+
+*   Instead of modifying the LLM's internal weights, prefix tuning introduces and optimizes a sequence of trainable "prefix" tokens prepended to the input.
+*   These prefixes guide the LLM's attention and output generation, enabling task-specific adaptations with minimal computational and storage overhead.
+*   The input sequence is augmented with a sequence of prefix embeddings:
+
+    Modified Input: \[Prefix] + \[Input Tokens]
+
+    *   **Prefix:** A sequence of *m* trainable vectors of size *d*, where *d* is the model's embedding dimensionality.
+    *   **Input Tokens:** The original token embeddings from the input sequence.
+*   Prefix embeddings influence attention by being prepended to the keys (K) and values (V), conditioning how the model attends to the input tokens.
+*   Only the prefix embeddings are optimized during fine-tuning. Backpropagation updates the prefix parameters to align the model's outputs with task-specific requirements.
+*   *m* controls the trade-off between task-specific expressiveness and parameter efficiency. Longer prefixes can model more complex task-specific conditioning but may increase memory usage.
+
+By optimizing these prefix embeddings, the model can adapt its behavior to the specific task without modifying the original LLM's parameters. This approach is particularly parameter-efficient, as the number of trainable parameters is determined by the length of the prefix sequence and the embedding dimensionality of the model.
+
+<----------section---------->
+
+## Instruction fine tuning
+
+Instruction fine-tuning is a specialized approach for adapting large language models (LLMs) to better understand and respond to user instructions. It focuses on aligning the model's behavior with human expectations and natural language queries.
+
+*   Instruction fine-tuning is a specialized approach for adapting large language models (LLMs) to better understand and respond to user instructions.
+*   This fine-tuning process involves training the model on a curated dataset of task-specific prompts paired with corresponding outputs.
+*   The objective is to improve the model's ability to generalize across a wide variety of instructions, enhancing its usability and accuracy in real-world applications.
+*   By training on human-like instructions, the model becomes more aligned with user expectations and natural language queries.
+
+This is achieved by training the model on a carefully constructed dataset of task-specific prompts paired with corresponding outputs.
+
+<----------section---------->
+
+### How instruction fine tuning works
+
+*   A diverse set of instructions and outputs is compiled. Each example consists of:
+    *   **Instruction:** A clear, human-readable prompt (e.g., "Summarize the following text in one sentence").
+    *   **Context (optional):** Background information or data required to complete the task.
+    *   **Output:** The expected response to the instruction.
+*   The LLM, pre-trained on a general corpus, is fine-tuned using the instruction-response pairs. During training, the model learns to:
+    *   Recognize the intent of the instruction.
+    *   Generate outputs that are coherent, accurate, and contextually appropriate.
+*   The dataset may include examples from various domains and task types. This diversity ensures the model can generalize beyond the specific examples it has seen during fine-tuning.
+
+The goal is for the LLM to learn to follow a broad range of human instructions. The added context provides the LLM background to appropriately respond. The diversity in the training ensures the model can perform a number of tasks.
+
+In addition to the concepts explored in the main text, consider the following information:
+
+**Data Augmentation**
+In the context of NLP, data augmentation is even trickier than in image processing due to the lack of direct mathematical equivalents to affine transformations that work so effectively for images. However, various NLP augmentation approaches have been developed that are effective in practice, such as:
+
+1. Appending word salad (random words) to the beginning and/or end of labeled examples.
+2. Synonym substitution.
+3. Introducing common typographical errors and misspellings.
+4. Case folding to imitate the informal lowercase style of text messages.

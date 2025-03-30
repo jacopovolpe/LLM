@@ -1,0 +1,80 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 10: Transformers II**
+
+Nicola Capuano and Antonio Greco
+
+DIEM – University of Salerno
+
+
+### Outline
+
+* Multi-Head Attention
+* Encoder Output
+* Decoder
+* Masked Multi-Head Attention
+* Encoder-Decoder Attention
+* Output
+* Transformer’s Pipeline
+
+
+### Multi-head Attention
+
+By using different self-attention heads, it is possible to encode different meanings of the context. Several scaled-dot product attention computations are performed in parallel using different weight matrices. The results are concatenated row-by-row, forming a larger matrix (with the same number of rows *m*). This matrix is finally multiplied by a final weight matrix. This scheme is called multi-head attention.
+
+The outputs of the heads are concatenated and then multiplied by an additional weight matrix to combine several representations at the same network level.  Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this possibility.
+
+
+Multi-Head Attention utilizes Add & Norm (skip connections) and Feed Forward layers.  The Add & Norm layers normalize the output (mean 0, standard deviation 1), stabilizing training and providing a regularization effect. The residual connections (Add) help avoid vanishing gradients, enabling the training of deeper networks.  The Feed Forward layers introduce non-linearity to model complex relationships.
+
+
+### Transformer’s Encoder
+
+The Transformer’s Encoder is used for computing a representation of the input sequence. It uses an additive positional encoding to deal with the order-agnostic nature of the self-attention. It also uses residual connections to foster gradient flow, and normalization layers to stabilize network training. A Position-Wise Feed-Forward layer adds non-linearity. This process is applied to each sequence element independently.
+
+Since each encoder produces an output with the same dimensionality as the input, it is possible to stack an arbitrary number of encoder blocks. The output of the first block is fed to the second block (no word embeddings), and so on.
+
+
+### Decoder
+
+The Decoder uses the information contained in the intermediate representation *z<sub>1</sub>,...,z<sub>t</sub>* to generate the output sequence *y<sub>1</sub>,...,y<sub>m</sub>*. The Decoder works sequentially; at each step, the decoder uses *z<sub>1</sub>,...,z<sub>t</sub>* and *y<sub>1</sub>,...,y<sub>i-1</sub>* to generate *y<sub>i</sub>*.
+
+The decoder is made of a sequence of decoder blocks with the same structure. The original paper used 6 decoder blocks.  In addition to the same modules used in the encoder block, the decoder blocks add an attention module where the keys and values are taken from the encoder’s intermediate representation *z<sub>1</sub>,...,z<sub>t</sub>*.  The self-attention module is slightly modified to ensure that the query at position *i* only uses the values at positions 1,...*i*.  This is referred to as "masked" self-attention.
+
+On top of the last decoder block, the decoder adds a linear layer and a softmax activation function to compute the probability of the next output element *y<sub>i</sub>*. Thus, the last layer has a number of neurons corresponding to the cardinality of the output set.
+
+
+### Masked Multi-Head Attention
+
+Masked Multi-Head Attention ensures that the model does not peek into the future during training.  Outputs at time *T* should only attend to outputs up to time *T-1*. This is achieved by masking the attention values for future time steps.
+
+
+### Encoder-Decoder Attention
+
+Encoder-Decoder Attention allows the decoder to attend to the encoder's output. The queries come from the decoder inputs, while the keys and values come from the encoder outputs. Every decoder block receives the same final encoder output.
+
+
+### Output
+
+The final decoder output is passed through a linear layer (whose weights are often tied with the input embedding matrix) and a softmax function to produce the output probabilities.
+
+
+### Transformer’s Pipeline
+
+The Transformer pipeline involves encoding the input sequence using the encoder, and then decoding it sequentially using the decoder. The decoder uses both the encoder output and the previously generated output tokens to generate the next token.  This process is repeated until an end-of-sequence token is generated.
+
+
+[https://poloclub.github.io/transformer-explainer/](https://poloclub.github.io/transformer-explainer/)
+
+
+**Natural Language Processing and Large Language Models**
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 10: Transformers II**
+
+Nicola Capuano and Antonio Greco
+
+DIEM – University of Salerno

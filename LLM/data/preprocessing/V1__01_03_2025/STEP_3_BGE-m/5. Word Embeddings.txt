@@ -1,0 +1,153 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 5: Word Embeddings**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This document provides an enhanced version of the original lesson materials, expanding on key concepts and providing additional context for improved clarity and understanding.
+
+<----------section---------->
+
+### Introduction to Word Embeddings and Their Significance
+
+This lesson explores the evolution of text representation in Natural Language Processing (NLP), moving from basic term frequency methods like TF-IDF to the more nuanced world of word embeddings.  Word embeddings offer a powerful way to capture the semantic meaning of words, enabling a deeper understanding of text and facilitating more complex NLP tasks.
+
+<----------section---------->
+
+### Limitations of TF-IDF
+
+While TF-IDF is a valuable tool for gauging term importance within a document, it has limitations when it comes to capturing semantic relationships. TF-IDF relies on exact word matching, meaning documents with similar meanings but different wording will have distinct TF-IDF vector representations.
+
+**Examples:**
+
+* The movie was amazing and exciting.
+* The film was incredible and thrilling.
+* The team conducted a detailed analysis of the data and found significant correlations between variables.
+* The group performed an in-depth examination of the information and discovered notable relationships among factors.
+
+**Term Normalization:**
+
+Techniques like stemming (reducing words to their root form) and lemmatization (finding the dictionary form of a word) can help address this issue by grouping similar words under a single token. However, these methods are not without their shortcomings:
+
+**Disadvantages:**
+
+* **Limited Synonym Grouping:** Stemming and lemmatization primarily focus on morphological variations, often failing to capture synonyms with different roots.
+* **Potential for Misgrouping:** They can inadvertently group words with similar spellings but different meanings.
+* **Example (Leading):** _She is leading the project_ vs _The plumber leads the pipe_.
+* **Example (Bat):** _The bat flew out of the cave_ vs _He hit the ball with a bat_.
+
+
+**TF-IDF Applications:**
+
+Despite its limitations, TF-IDF remains effective for various NLP applications:
+
+* **Information Retrieval (Search Engines):** Identifying relevant documents based on keyword searches.
+* **Information Filtering (Document Recommendation):** Suggesting documents similar to those a user has previously interacted with.
+* **Text Classification:** Categorizing documents based on their content.
+
+However, tasks requiring a deeper understanding of semantics necessitate more advanced techniques:
+
+* **Text Generation (Chatbots):** Creating human-like text responses.
+* **Automatic Translation:** Converting text from one language to another while preserving meaning.
+* **Question Answering:** Providing accurate answers to questions posed in natural language.
+* **Paraphrasing and Text Rewriting:** Rephrasing text while maintaining the original meaning.
+
+
+<----------section---------->
+
+### Bag-of-Words (Recap)
+
+The Bag-of-Words model represents words as one-hot vectors, where each word is assigned a unique index in the vocabulary. This representation suffers from several drawbacks:
+
+* **Lack of Semantic Representation:** The distance between any two one-hot vectors is always the same, failing to capture semantic relationships between words.
+* **Inefficiency:** One-hot vectors are sparse, requiring significant memory and processing resources, especially for large vocabularies.
+* **Example:**  In a vocabulary of *n* words, each word is represented by a vector of length *n* with only one non-zero element. This leads to high dimensionality and sparsity.
+
+
+<----------section---------->
+
+### Word Embeddings: A Semantic Approach
+
+Word embeddings address the limitations of Bag-of-Words by representing words as dense vectors in a continuous vector space. These vectors are designed to capture semantic relationships, placing words with similar meanings closer together.
+
+**Key Features:**
+
+* **Dense Representation:** Embeddings use significantly fewer dimensions than the vocabulary size, resulting in more compact representations.
+* **Semantic Encoding:**  The position of a word vector in the vector space reflects its meaning, enabling semantic reasoning.
+
+**Example:**
+
+* Apple = (0.25,0.16)
+* Banana = (0.33,0.10)
+* King = (0.29,0.68)
+* Queen = (0.51,0.71)
+
+
+**Word Embedding Properties:**
+
+* **Vector Arithmetic:**  Word embeddings allow for semantic reasoning through vector operations.  For example, `king - man + woman ≈ queen`.
+* **Semantic Queries:** Enable searching for words based on their meaning rather than exact spelling.  `wv['famous'] + wv['European'] + wv['woman'] + wv['physicist'] ≈ wv['Marie_Curie']`.
+* **Analogies:**  Facilitate answering analogy questions by leveraging semantic relationships. `wv['Marie_Curie'] – wv['science'] + wv['music'] ≈ wv['Ludwig_van_Beethoven']`.
+
+**Visualizing Word Embeddings:**
+
+Dimensionality reduction techniques like Principal Component Analysis (PCA) can be used to visualize word embeddings in a lower-dimensional space, revealing semantic clusters.
+
+
+<----------section---------->
+
+### Learning Word Embeddings: Word2Vec
+
+Word2Vec, introduced by Google in 2013, is a neural network-based method for generating word embeddings using unsupervised learning on large text corpora.  The core idea is that words appearing in similar contexts tend to have similar meanings.
+
+**Word2Vec Architectures:**
+
+* **Continuous Bag-of-Words (CBOW):** Predicts a target word given its surrounding context words.  Suitable for frequent words and large datasets.
+* **Skip-Gram:** Predicts surrounding context words given a target word.  Effective for small corpora and rare terms.
+
+**Word2Vec Improvements:**
+
+* **Frequent Bigrams:**  Treating frequent word pairs as single tokens to improve representation of compound terms.
+* **Subsampling Frequent Tokens:** Reducing the influence of common words (like stop words) during training.
+* **Negative Sampling:**  Improving training efficiency by updating only a small subset of weights for each training example.
+
+
+<----------section---------->
+
+### Word2Vec Alternatives
+
+* **GloVe (Global Vectors for Word Representation):**  Uses matrix factorization techniques for faster training and comparable accuracy.
+* **FastText:**  Leverages subword information, making it effective for rare words, morphologically rich languages, and handling misspellings.
+
+<----------section---------->
+
+
+### Static vs. Contextualized Embeddings
+
+* **Static Embeddings (Word2Vec, GloVe, FastText):** Each word has a single, fixed vector representation, regardless of context. This can be problematic for polysemous words (words with multiple meanings) and doesn't capture semantic drift (changes in word meaning over time). They can also perpetuate biases present in the training data.  Handling out-of-vocabulary words is a challenge.
+* **Contextualized Embeddings (ELMo, BERT):** Generate word vectors dynamically based on the surrounding context, addressing the limitations of static embeddings.
+
+
+<----------section---------->
+
+### Working with Word Embeddings
+
+Libraries like Gensim and spaCy provide tools for loading pre-trained word embeddings, calculating word similarity, and performing vector arithmetic.  Gensim also supports training custom word embedding models.
+
+
+<----------section---------->
+
+### References and Further Readings
+
+* "Natural Language Processing in Action: Understanding, analyzing, and generating text with Python," Chapter 6.
+* Gensim documentation: [https://radimrehurek.com/gensim/auto_examples/index.html#documentation](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)
+
+
+<----------section---------->
+
+
+### Conclusion
+
+This enhanced lesson provides a comprehensive overview of word embeddings, covering their advantages over traditional methods, different learning algorithms, and practical applications. By understanding the principles and techniques presented here, you can leverage the power of word embeddings to build more sophisticated and effective NLP systems.

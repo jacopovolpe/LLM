@@ -1,0 +1,145 @@
+**Natural Language Processing and Large Language Models**
+
+*Corso di Laurea Magistrale in Ingegneria Informatica*
+Lesson 0 - Course Introduction
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+This document outlines the objectives, topics, and practical aspects of a master-level course focused on Natural Language Processing (NLP) and Large Language Models (LLM), instructed by Nicola Capuano and Antonio Greco at the University of Salerno. The course aims to provide students with a solid understanding of NLP fundamentals and equip them with the skills to design and implement LLM-based systems.
+
+<----------section---------->
+
+**Objectives**
+
+The course has the following objectives.
+
+**Knowledge:**
+
+*   **Basic Concepts of Natural Language Processing (NLP):** The course will introduce the fundamental principles of NLP, including its history, evolution, and core tasks. NLP is a field of computer science focused on enabling computers to understand, interpret, and generate human language. It combines computational linguistics with statistical, machine learning, and deep learning models.
+*   **Natural Language Understanding and Generation:**  Students will learn about the two primary branches of NLP: Natural Language Understanding (NLU), which focuses on enabling machines to comprehend the meaning of text, and Natural Language Generation (NLG), which deals with creating human-readable text from structured data or internal representations. NLU involves tasks such as semantic search, text alignment, paraphrase recognition, intent classification, and authorship attribution. NLG involves tasks such as synonym substitution, question answering, spelling and grammar correction, and casual conversation.
+*   **Statistical Approaches to NLP:** The course will cover traditional statistical methods used in NLP, such as n-grams, Hidden Markov Models (HMMs), and Conditional Random Fields (CRFs).  These techniques rely on analyzing large amounts of text data to identify patterns and relationships between words and phrases.
+*   **Large Language Models (LLM) based on Transformers:** A significant portion of the course will be dedicated to LLMs, particularly those based on the Transformer architecture.  Transformers have revolutionized NLP due to their ability to process sequential data in parallel and capture long-range dependencies in text. Key components like self-attention, multi-head attention, and positional encoding will be explored.
+*   **NLP Applications with LLM:** Students will explore various real-world applications of NLP powered by LLMs.  These applications include machine translation, text summarization, question answering, chatbot development, sentiment analysis, and content generation.
+*   **Prompt Engineering and Fine Tuning of LLM:**  The course will provide training on how to effectively interact with LLMs through prompt engineering and how to customize pre-trained models for specific tasks via fine-tuning. Prompt engineering involves designing effective input prompts to elicit desired responses from LLMs. Fine-tuning involves further training a pre-trained LLM on a smaller, task-specific dataset to improve its performance on a particular application.
+
+**Abilities:**
+
+*   **Design and Implementation of a NLP System based on LLMs:** Students will gain the practical skills necessary to design and build complete NLP systems using LLMs. This includes integrating existing technologies and tools from libraries like Hugging Face, PyTorch, and TensorFlow to create solutions for real-world problems.
+
+<----------section---------->
+
+**Fundamentals of NLP**
+
+*   **Basic Concepts, Evolution, and Applications of NLP:**  This section will provide a comprehensive overview of NLP, including its definition, historical development, and the diverse range of applications across various industries, such as healthcare, finance, marketing, and education.
+*   **Representing Text: Tokenization, Stemming, Lemmatization, POS tagging:** Students will learn how to convert raw text into a format suitable for machine processing. This involves:
+    *   **Tokenization:**  Breaking down text into individual units or tokens (words, subwords, or characters).
+    *   **Stemming:** Reducing words to their root form by removing suffixes (e.g., "running" becomes "run").
+    *   **Lemmatization:** Converting words to their dictionary form (lemma) based on context (e.g., "better" becomes "good").
+    *   **Part-of-Speech (POS) Tagging:** Assigning grammatical tags (noun, verb, adjective, etc.) to each word in a sentence.
+*   **Math with Words: Bag of Words, Vector Space Model, TF-IDF, Search Engines:**  This section will explore methods for representing text numerically, enabling mathematical operations and analysis:
+    *   **Bag of Words (BoW):**  Representing a document as an unordered collection of words and their frequencies, disregarding grammar and word order.
+    *   **Vector Space Model (VSM):** Representing documents as vectors in a high-dimensional space, where each dimension corresponds to a word or term.
+    *   **TF-IDF (Term Frequency-Inverse Document Frequency):** A weighting scheme that measures the importance of a word in a document relative to its frequency across a collection of documents.
+    *   **Search Engines:** How the above methods are practically used for indexing and retrieving information
+*   **Text Classification: Topic Labelling, Sentiment Analysis:**  Students will learn how to categorize and classify text documents:
+    *   **Topic Labelling:** Assigning relevant topics or categories to documents based on their content.
+    *   **Sentiment Analysis:** Determining the emotional tone or subjective opinion expressed in a text (positive, negative, or neutral).
+*   **Word Embeddings: Word2Vec, CBOW, Skip-Gram, GloVe, FastText:** This section will introduce techniques for representing words as dense vectors in a continuous space, capturing semantic relationships between words:
+    *   **Word2Vec:** A neural network-based method for learning word embeddings from large corpora. It includes two main architectures:
+        *   **CBOW (Continuous Bag of Words):** Predicts a target word based on its surrounding context words.
+        *   **Skip-Gram:** Predicts surrounding context words based on a target word.
+    *   **GloVe (Global Vectors for Word Representation):** A matrix factorization-based method that combines global word co-occurrence statistics with local context information to learn word embeddings.
+    *   **FastText:** An extension of Word2Vec that incorporates subword information (character n-grams) to handle out-of-vocabulary words and improve performance on morphologically rich languages.
+*   **Neural Networks for NLP: RNN, LSTM, GRU, CNN, Introduction to Text Generation:**  The course will cover the use of neural networks for various NLP tasks:
+    *   **RNN (Recurrent Neural Network):** A type of neural network designed for processing sequential data, where the output of each step is fed back into the input of the next step, enabling the network to maintain a memory of past inputs.
+    *   **LSTM (Long Short-Term Memory):** A specialized type of RNN that addresses the vanishing gradient problem by introducing memory cells and gates to regulate the flow of information, allowing the network to capture long-range dependencies in text.
+    *   **GRU (Gated Recurrent Unit):** A simplified version of LSTM with fewer parameters, offering similar performance while being computationally more efficient.
+    *   **CNN (Convolutional Neural Network):** Neural Networks that use convolutional layers. In NLP they are typically used for feature extraction, identifying patterns in text, and text classification.
+    *   **Introduction to Text Generation:** Generating new text with models.
+*   **Information Extraction: Parsing, Named Entity Recognition:** Students will learn how to extract structured information from unstructured text:
+    *   **Parsing:** Analyzing the grammatical structure of a sentence to identify its constituent parts and their relationships.
+    *   **Named Entity Recognition (NER):** Identifying and classifying named entities in text, such as people, organizations, locations, and dates.
+*   **Question Answering and Dialog Engines (chatbots):** This section will explore the development of systems that can answer questions posed in natural language and engage in conversations: Question answering systems and dialogue engines (chatbots) are designed to understand questions and answer them in a cohesive way.
+
+<----------section---------->
+
+**Transformers**
+
+*   **Self-Attention, Multi-Head Attention, Positional Encoding, Masking:** This section will delve into the core mechanisms of the Transformer architecture:
+    *   **Self-Attention:** A mechanism that allows the model to attend to different parts of the input sequence when processing each element, capturing relationships between words and phrases.
+    *   **Multi-Head Attention:** An extension of self-attention that uses multiple attention heads to capture different aspects of the relationships between words.
+    *   **Positional Encoding:** Adding information about the position of words in the sequence to the input embeddings, since the Transformer architecture does not inherently capture sequential information.
+    *   **Masking:** Preventing the model from attending to certain parts of the input sequence, such as future tokens in a language modeling task.
+*   **Encoder and Decoder of a Transformer:** The course will explain the roles of the encoder and decoder components in a Transformer model:
+    *   **Encoder:** Processes the input sequence and generates a contextualized representation of each word.
+    *   **Decoder:** Generates the output sequence based on the encoder's representation and the previously generated tokens.
+*   **Introduction to HuggingFace:** The use of the HuggingFace library will be introduced for easy usage of available models.
+*   **Encoder-Decoder or Seq2Seq models (translation and summarization):**  Students will learn about sequence-to-sequence models based on the Transformer architecture and their applications in machine translation and text summarization. These models consist of an encoder that processes the input sequence and a decoder that generates the output sequence.
+*   **Encoder-only Models (sentence classification and named entity recognition):**  The course will cover models that use only the encoder part of the Transformer architecture for tasks such as sentence classification and named entity recognition.
+*   **Decoder-only Models (text generation):**  Students will learn about models that use only the decoder part of the Transformer architecture for text generation tasks, such as language modeling and chatbot development.
+*   **Definition and training of a Large Language Model:** The creation of a Large Language Model will be discussed, including the data needed to train and model one.
+
+<----------section---------->
+
+**Prompt Engineering**
+
+*   **Zero-shot and Few-shot Prompting:**
+    *   **Zero-shot Prompting:** Designing prompts that allow the LLM to perform a task without any prior training or examples.
+    *   **Few-shot Prompting:** Providing a small number of examples in the prompt to guide the LLM's behavior and improve its performance.
+*   **Chain-of-Thought, Self-Consistency, Prompt Chaining:** Prompt engineering techniques.
+    *   **Chain-of-Thought:** Prompts where the model is encouraged to show each step it is taking when generating output.
+    *   **Self-Consistency:** Uses a variety of reasoning paths and picks the most consistent answer.
+    *   **Prompt Chaining:** Breaking down a complex task into smaller subtasks and using the output of one prompt as the input to the next.
+*   **Role Prompting, Structured Prompts, System Prompts:**
+    *   **Role Prompting:** Instructing the LLM to adopt a specific persona or role to guide its responses.
+    *   **Structured Prompts:** Formatting the prompt in a specific way to provide more context and structure to the LLM.
+    *   **System Prompts:** Providing high-level instructions to the LLM to guide its overall behavior and objectives.
+*   **Retrieval Augmented Generation:** Combining a retrieval mechanism with a generative model to improve the accuracy and reliability of generated text. This involves retrieving relevant information from a knowledge base or external source and using it to inform the generation process.
+
+<----------section---------->
+
+**LLM Fine Tuning**
+
+*   **Feature-Based Fine Tuning:** Extracting features from the pre-trained LLM and training a separate model on those features for a specific task.
+*   **Parameter Efficient Fine Tuning and Low Rank Adaptation:**  Techniques for fine-tuning LLMs with a limited number of trainable parameters, reducing the computational cost and memory requirements. Low-Rank Adaptation (LoRA) falls into this category, decomposing weight updates and significantly reducing the number of parameters.
+*   **Reinforcement Learning with Human Feedback:** Training LLMs using reinforcement learning, where the reward signal is based on human feedback. This allows the model to learn from human preferences and improve its ability to generate high-quality, human-aligned text.
+
+<----------section---------->
+
+**Textbook**
+
+H. Lane, C. Howard, H. M. Hapke. *Natural Language Processing IN ACTION: Understanding, analyzing, and generating text with Python*. Manning, 2019.
+
+Second Edition in fall 2024. Early Access version available online: [https://www.manning.com/books/natural-language-processing-in-action-second-edition](https://www.manning.com/books/natural-language-processing-in-action-second-edition)
+
+The primary textbook for this course is "Natural Language Processing in Action" by H. Lane, C. Howard, and H. M. Hapke, published by Manning in 2019. A second edition is scheduled for release in Fall 2024, with an early access version available online. This book provides a practical introduction to NLP concepts and techniques using Python.
+
+<----------section---------->
+
+**Further Info**
+
+**Teachers**
+
+*   Nicola Capuano
+    DIEM, FSTEC-05P02007
+    ncapuano@unisa.it
+    089 964292
+*   Antonio Greco
+    DIEM, FSTEC-05P01036
+    agreco@unisa.it
+    089 963003
+
+The course instructors are Nicola Capuano and Antonio Greco, both affiliated with DIEM (Department of Industrial Engineering and Mathematics) at the University of Salerno. Contact information, including email addresses and phone numbers, is provided for each instructor.
+
+**Online Material**
+
+*   [https://elearning.unisa.it/](https://elearning.unisa.it/)
+
+Additional course materials, including lecture notes, assignments, and announcements, will be available on the University of Salerno's e-learning platform.
+
+**Exam**
+
+*   Realization of a project work
+*   Oral exam (including the discussion of the project work)
+
+The course assessment will consist of a project and an oral exam. The project involves the design and implementation of an NLP system based on LLMs. The oral exam will cover the course content, including a discussion of the project work. This structure ensures that the students obtain both theoretical knowledge and practical application.

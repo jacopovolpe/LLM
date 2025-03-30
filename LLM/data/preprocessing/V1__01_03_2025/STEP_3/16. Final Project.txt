@@ -1,0 +1,38 @@
+### Final Project Guidelines: Building a Conversational Chatbot for the NLP and LLM Course
+
+This document outlines the final project for the Master's Degree in Computer Engineering course on Natural Language Processing (NLP) and Large Language Models (LLMs). The project involves designing and implementing a chatbot specifically tailored to answer questions related to this course.  This document details the project's objectives, permissible tools and technologies, and the evaluation criteria.
+
+<----------section---------->
+
+### Project Goal
+
+The primary objective is to develop a chatbot capable of answering questions pertaining to the NLP and LLM 2024/2025 course content. This includes specific topics covered in lectures and broader information such as instructor details, recommended reading materials, and course logistics.  Crucially, the chatbot should be designed to accurately identify and appropriately respond to out-of-context queries, indicating its inability to address topics beyond the course's scope. The deliverables for this project consist of the chatbot's source code and a comprehensive report detailing the design and implementation choices.
+
+<----------section---------->
+
+### Permitted Tools and Technologies
+
+Students have the flexibility to utilize any tools and technologies introduced throughout the course. This encompasses both modern LLM-based approaches and traditional NLP techniques.  Hybrid solutions, integrating both classic and contemporary methods, are encouraged, provided the rationale behind these choices is thoroughly justified in the project report.  Leveraging pre-trained LLMs and other available models is permissible, either directly or with modifications. However, groups must possess a deep understanding of their chosen tools and models and be prepared to discuss all aspects of their implementation.
+
+<----------section---------->
+
+### Chatbot Evaluation Procedure
+
+The chatbot's performance will be assessed by the course instructors through a series of real-time interactions using predefined question sets.  The evaluation will be conducted in two phases:
+
+**Phase 1: Core Functionality**
+
+This phase focuses on the chatbot's ability to answer course-related questions effectively.  The following criteria will be considered:
+
+* **Relevance:**  Does the chatbot's response directly address the question posed?
+* **Fluency:**  Is the generated text grammatically correct, readable, and natural-sounding?
+* **Coherence:** Does the response exhibit a logical flow and maintain internal consistency?
+
+**Phase 2: Robustness and Precision**
+
+This phase assesses the chatbot's ability to handle challenging scenarios and stay within its defined scope. The following criteria will be evaluated:
+
+* **Robustness:**  Can the chatbot withstand adversarial or misleading questions, such as those designed to test its confidence or manipulate its responses?
+* **Precision:** How effectively does the chatbot identify and handle out-of-context questions, demonstrating its ability to remain focused on the course domain?
+
+The final grade will be based on the chatbot's overall performance across all these aspects.  The evaluation will assess not only the accuracy of the responses but also the chatbot's ability to maintain a consistent and appropriate conversational experience.

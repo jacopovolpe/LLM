@@ -1,0 +1,52 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 22: Guardrails for LLMs**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction to Guardrails for Large Language Models
+
+Large Language Models (LLMs) possess remarkable text generation capabilities, but their outputs can sometimes be unpredictable, inaccurate, or even harmful.  Guardrails are essential mechanisms implemented to control and regulate LLM behavior, ensuring the generated content aligns with safety, ethical, and operational guidelines. These safeguards enhance the trustworthiness and reliability of LLMs, paving the way for responsible real-world applications.  This lesson explores the various types of guardrails, techniques for their implementation, popular frameworks, and best practices for developing robust LLM applications.
+
+<----------section---------->
+
+### Types of Guardrails and Their Importance
+
+Different types of guardrails address specific concerns related to LLM outputs.  Safety guardrails prevent the generation of harmful or offensive content, protecting users from exposure to inappropriate material. Domain-specific guardrails restrict the LLM’s responses to specific knowledge domains, ensuring accurate and relevant outputs within a defined area of expertise. Ethical guardrails tackle issues like bias, misinformation, and fairness, promoting responsible AI usage. Finally, operational guardrails align the LLM's outputs with specific business or user objectives, maximizing the model's utility for practical applications.
+
+<----------section---------->
+
+### Techniques for Implementing Guardrails
+
+Several techniques can be employed to effectively implement guardrails in LLMs. Rule-based filters use predefined rules to block or modify certain outputs.  This can involve keyword blocking, regular expression matching, or other pattern-based filtering techniques. Fine-tuning with custom datasets involves training the model on curated data to adjust its internal parameters, leading to outputs that align with specific guidelines. Prompt engineering involves carefully crafting input prompts to guide the LLM's behavior and encourage desired responses. External validation layers utilize external systems or APIs to post-process LLM outputs, offering additional checks for safety, accuracy, and other criteria. Real-time monitoring and feedback systems continuously monitor LLM outputs, identifying and flagging potentially problematic content for human review or automated intervention.
+
+<----------section---------->
+
+### Detailed Examination of Guardrail Techniques
+
+**Rule-based Filters:** These filters offer a straightforward approach for basic content filtering. They can be implemented with techniques ranging from simple keyword lists to more complex regular expressions that capture variations and misspellings. While efficient, they might not be sufficient for handling more nuanced or context-dependent situations.
+
+**Fine-tuning with Custom Data:** This technique empowers developers to tailor LLM behavior to specific domains or applications. By training the model on carefully curated datasets, developers can influence the LLM's responses, ensuring accuracy and adherence to domain-specific guidelines.
+
+**Prompt Engineering:**  This technique involves skillfully crafting prompts that clearly communicate the desired output characteristics to the LLM. By incorporating explicit instructions and constraints within the prompt, developers can effectively guide the LLM’s generation process.
+
+**External Validation Layers:** These layers add a crucial post-processing step to the LLM pipeline. By integrating external resources like toxicity detection APIs or fact-checking services, developers can further enhance the reliability and safety of the LLM’s outputs.
+
+**Real-time Monitoring and Feedback:** Continuous monitoring provides an essential mechanism for detecting and addressing unexpected or problematic outputs.  Human-in-the-loop systems or automated anomaly detection methods can flag potentially harmful content, enabling swift intervention and continuous improvement of the LLM’s performance.
+
+<----------section---------->
+
+### Frameworks and Tools for Implementing Guardrails
+
+Several frameworks and tools simplify the implementation of guardrails.  Guardrails AI offers a dedicated library with features for validation, formatting, and filtering LLM outputs. LangChain provides a flexible framework for chaining prompts, integrating external tools, and implementing filtering mechanisms. OpenAI Moderation API offers pre-built functionality for detecting unsafe content.  These tools provide developers with accessible solutions for implementing robust guardrails and enhancing the safety and reliability of LLM applications. They offer pre-defined rulesets and customizable options for tailoring safeguards to specific needs.
+
+<----------section---------->
+
+### Best Practices and Advanced Techniques
+
+Combining multiple techniques is often the most effective approach. Layering rule-based filters with external validation and fine-tuning provides comprehensive protection against various potential issues.  Red teaming, involving adversarial testing by dedicated individuals, can uncover vulnerabilities and strengthen the robustness of implemented guardrails.  Leveraging advanced techniques like fuzzy matching and semantic analysis in rule-based filters can enhance their ability to capture variations and context-dependent issues.  Continuously iterating and refining guardrails based on feedback and ongoing monitoring ensures that LLM applications remain safe and reliable over time.  Incentivizing user feedback through bug bounty programs can provide valuable insights and accelerate the identification of potential weaknesses.

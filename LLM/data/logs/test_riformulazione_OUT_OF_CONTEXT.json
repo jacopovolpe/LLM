@@ -1,0 +1,370 @@
+[
+    {
+        "domanda": "What is the capital of France?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the capital of France?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who won the last Super Bowl?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who won the last Super Bowl?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you cook a Margherita pizza?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How do you cook a Margherita pizza? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the average temperature on Mars?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the average temperature on Mars? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who wrote 'Pride and Prejudice'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who wrote 'Pride and Prejudice'?' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best exercise to train biceps?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the best exercise to train biceps? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How much does a ticket to Disneyland cost?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How much does a ticket to Disneyland cost?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the latest iPhone model released?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the latest iPhone model released?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you say 'good morning' in Japanese?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How do you say 'good morning' in Japanese? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who directed the movie 'Inception'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who directed the movie 'Inception'?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the recipe for tiramisu?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the recipe for tiramisu?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you obtain American citizenship?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How do you obtain American citizenship?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the symptoms of seasonal flu?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the symptoms of seasonal flu? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who is the current president of the United States?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who is the current president of the United States?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I book a flight to Tokyo?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I book a flight to Tokyo?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the difference between a dolphin and a whale?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the difference between a dolphin and a whale?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I invest in the stock market?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I invest in the stock market?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most titled football team in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the most titled football team in the world? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who discovered penicillin?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who discovered penicillin?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best science fiction movie of 2024?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the best science fiction movie of 2024?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the fastest way to lose weight?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the fastest way to lose weight?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you play chess?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How do you play chess?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who invented the steam engine?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who invented the steam engine? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Where is the Grand Canyon located?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where is the Grand Canyon located?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most listened song on Spotify?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the most listened song on Spotify?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I learn to play the guitar?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I learn to play the guitar? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who won the Nobel Prize in Literature in 2023?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who won the Nobel Prize in Literature in 2023? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you tie a tie?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How do you tie a tie? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the difference between a virus and a bacterium?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the difference between a virus and a bacterium? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best-selling book of all time?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the best-selling book of all time? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the formula for speed?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the formula for speed? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I start meditating?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I start meditating?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the best restaurants in Rome?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the best restaurants in Rome?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you make homemade bread?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How do you make homemade bread? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who is the founder of Tesla?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who is the founder of Tesla?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the benefits of yoga?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the benefits of yoga?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the smartest dog breed?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the smartest dog breed?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I improve my memory?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I improve my memory?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Where is the Great Wall of China located?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where is the Great Wall of China located?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the difference between green tea and black tea?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the difference between green tea and black tea? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I quit smoking?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I quit smoking? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who wrote '1984'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who wrote '1984'? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the deepest lake in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the deepest lake in the world? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I save more money each month?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I save more money each month? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the signs of the zodiac?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the signs of the zodiac? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who invented the Internet?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who invented the Internet? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the official currency of Japan?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the official currency of Japan?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I improve my posture?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I improve my posture?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the largest planet in the solar system?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the largest planet in the solar system?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the most spoken languages in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the most spoken languages in the world? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who discovered America?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who discovered America? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How do you prepare a Mojito cocktail?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How do you prepare a Mojito cocktail?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the causes of climate change?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the causes of climate change? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who is the highest paid soccer player in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who is the highest paid soccer player in the world?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most populous city on Earth?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the most populous city on Earth? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I improve my productivity?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I improve my productivity?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Where is the Colosseum located?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where is the Colosseum located?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the benefits of meditation?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the benefits of meditation? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who painted the Mona Lisa?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who painted the Mona Lisa?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the longest river in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the longest river in the world? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I learn a new language quickly?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I learn a new language quickly? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who wrote 'The Little Prince'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who wrote 'The Little Prince'? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the symptoms of a panic attack?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the symptoms of a panic attack?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I increase my self-esteem?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I increase my self-esteem? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best way to relax after a stressful day?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What is the best way to relax after a stressful day? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who invented the radio?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who invented the radio? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the best smartphones of 2025?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the best smartphones of 2025?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I improve my diet?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I improve my diet?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most active volcano in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the most active volcano in the world?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the best tourist destinations for 2025?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the best tourist destinations for 2025?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who discovered gravity?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' Who discovered gravity? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the difference between a psychologist and a psychiatrist?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the difference between a psychologist and a psychiatrist?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I make friends more easily?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I make friends more easily? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most popular color in interior design?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the most popular color in interior design?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Where is the Eiffel Tower located?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where is the Eiffel Tower located?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I protect my online data?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I protect my online data?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who wrote 'The Lord of the Rings'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who wrote 'The Lord of the Rings'?' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most innovative technology of 2025?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the most innovative technology of 2025?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the best action movies of all time?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' What are the best action movies of all time? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I improve my posture while working?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I improve my posture while working?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best video game released this year?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the best video game released this year?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the difference between a star and a planet?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the difference between a star and a planet?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the best books to read in 2025?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the best books to read in 2025?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I better organize my time?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION '' How can I better organize my time? '' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the largest number ever discovered?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the largest number ever discovered?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who won the Oscar for Best Picture in 2024?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who won the Oscar for Best Picture in 2024?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I start an online business?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I start an online business?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What are the healthiest foods?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What are the healthiest foods?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the most visited city in the world?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the most visited city in the world?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "Who wrote 'Don Quixote'?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Who wrote 'Don Quixote'?' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How can I sleep better at night?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''How can I sleep better at night?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the best advice for success in life?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What is the best advice for success in life?'' does not relate to LLMs or NLP."
+    }
+]

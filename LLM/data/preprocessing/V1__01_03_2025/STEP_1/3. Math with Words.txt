@@ -1,0 +1,935 @@
+=== Extracted text from PDF ===
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 3Math with WordsNicola Capuano and Antonio GrecoDIEM – University of Salerno
+Outline•Term Frequency•Vector Space Model•TF-IDF•Building a Search Engine
+Term Frequency
+Bag of WordsA vector space model of text•One-hot encode each word in a text and combine one-hot vectors•Binary BoW: one-hot vectors are combined with the OR operation•Standard BoW: one-hot vectors are summed•Term Frequency (TF): number of occurrences of each word in the textAssumption: •The more times a word occurs, the more meaning it contributes to that document
+Calculating TF
+Limits of TFExample:•In document A the word dog appears 3 times•In document B the word dog appears 100 timesIs the word dog more important for document A or B?Additional information:•Document A is a 30-word email to a veterinarian•Document B is the novel War & Peace (approx. 580,000 words)Is the word dog more important for document A or B?
+Normalized TFNormalized (weighted) TF is the word count normalized by the document length•TF (dog, documentA) = 3/30 = 0.1•TF (dog, documentB) = 100/580000 = 0.00017
+Vector Space Model
+NL TK CorporaNatural Language Toolkit includes several text corpora •They can be used to train and test NLP algorithms•It has a package to easily access corpus data•https://www.nltk.org/howto/corpus.html Reuters 21578 corpus•Widely used for NLP and text classification•It contains thousands of news published by Reuters in 1986•News are categorized into 90 different topics
+Using Reuters 21578 
+…
+Using Reuters 21578 
+Most relevant words in the first news
+Corpus Processing
+
+Corpus ProcessingThis in inefficient!
+spaCy extract a lot of information from text •POS, lemmas, …•But we only need tokenization here!
+Corpus Processing (Optimization)When you call nlp on a text, spaCy:•first tokenizes the text to produce a Doc object•The Doc is then processed in several steps (pipeline)
+We must remove these steps from the pipeline
+Corpus Processing (Optimization)
+Corpus ProcessingTerm-Document Matrix•Rows represent documents•Columns represent terms from the vocabulary•Elements can be TF, normalized TF, ... (other options later)
+
+Vector Space ModelMathematical representation of documents as vectors in a multidimensional space•Each dimension of the space represents a word•Built from a term-document matrix2D Example: with normalized TF•We are considering a vocabulary of just 2 words (w1 and w2)
+ TF of w1
+TF of w2
+1
+Document SimilarityEuclidean Distance:•Sensitive to the magnitude of the vectors•The direction of the vectors captures the relative importance of terms and is more informative than their magnitude•Less commonly used in NLP
+TF of w1
+TF of w2
+1
+Document SimilarityCosine Similarity:•Measures the cosine of the angle between two vectors•Focuses on the direction of the vectors, ignoring their magnitude•Effective for normalized text representations•Widely used in NLP
+TF of w1
+TF of w2
+1θ
+!"#$,&=()!(+)=
+!=#!"#$$!%(norm)=$-&$&
+Properties of Cosine SimilarityCosine similarity is a value between -1 and 11: The vectors point in the same direction across all dimensions•Documents use the same words in similar proportion, likely talking about the same thing0: The vectors are orthogonal in all dimensions•Documents share no words, likely discussing completely different topics-1: The vectors point in opposite directions across all dimensions•Impossible with TF (counts of words cannot be negative)•Can happen with other word representations (discussed later)
+Calculate Cosine Similarity
+Try also with other documents
+TF-IDF
+Inverse Document FrequencyTF does not consider the uniqueness of the word across the corpus•Common words (the, is, and …) appear frequently in many documents, contributing little to distinguishing one document from another•Specific terms relevant to the subject matter of the corpus may also be frequent but still not useful for differentiating documents•In a corpus about astronomy, terms like planet or star would be common and non-discriminatoryInverse Document Frequency (IDF) addresses this by measuring the importance of each word in relation to the entire corpus
+Inverse Document FrequencyIDF increases the weight of words that are rare across documents and decreases the weight of words that are common
+Note:
+TF-IDFTerm Frequency – Inverse Document Frequency is the product of TF and IDF•TF gives more importance to the words that are more frequent in the document•IDF gives more weightage to the words that are less frequent in the corpus•High TF-IDF indicates a term that is frequent in a document but rare in the corpus, making it significant for that document•Low TF-IDF Indicates a term that is infrequent in the document or common in the corpus, making it less significant for that document
+TF-IDF: Example•Document A: Jupiter is the largest planet•Document B: Mars is the fourth planet from the sum
+
+Zipf’s LawObserves patterns in word frequency distribution in natural languages•Named after linguist George Kingsley Zipf•Frequency of a word is inversely proportional to its rank in a frequency table!"=$"%Where:•f(r) is the frequency of the word at rank r•K is a constant•r is the rank of the word•αdetermines the shape of the distribution which is approximately equals to 1
+Zipf’s LawMeaning: •The most common word appears approximately:•Twice as often as the second most common word•Three times as often as the third most common word•And so on …Implications:•A small set of highly frequent words dominate word usage•Majority of words are relatively rare with low frequencies•Using the logarithm in IDF mitigates the influence of rare words•This results in a more uniformly distributed TF-IDF score
+Zipf’s Law: Example
+TheBrown corpusconsists of 1 million words (500 samples of 2000+ words each) of running text of edited English prose printed in the United States during the year 1961 and it was revised and amplified in 1979.
+Calculating TF-IDF
+Compare with TF matrix
+Using Scikit-LearnScikit-learn is a popular library for machine learning•pip install scikit-learn •The TfidfVectorizer class does tokenization, omits punctuation, and computes the tf-idf scores all in one
+TF-IDF Alternatives
+
+TF-IDF Alternatives
+Building a Search Engines
+Building a Search EngineTF-IDF matrices have been the mainstay of information retrieval (search) for decadesProcess:•Tokenize all documents and create a TF-IDF matrix•Prompt the user to input a query•Treat the query as a document and calculate its TF-IDF vector•Note: Ensure the query’s vocabulary matches that of the TF-IDF matrix. Any additional words in the query are ignored•Calculate the cosine similarity between the query vector and all rows (documents) in the TF-IDF matrix•Identify and the document(s) with the highest similarity to the query
+Example
+
+More on Search EnginesNote: real search engines do not compare the query with all indexed documents•An inverted index is used to map each word in the vocabulary to all documents containing that word•The documents that contain at least one word from the query are extracted from the index•The TF-IDF vector of the query is compared only with that of the extracted documents
+ReferencesNatural Language Processing IN ACTIONUnderstanding, analyzing, and generating text with Python Chapter 3
+Further Readings…•Scikit-Learn Documentationhttps://scikit-learn.org/stable/user_guide.html •NL TK Corpora How-Tohttps://www.nltk.org/howto/corpus.html 
+Natural Language Processing and Large Language ModelsCorso di Laurea Magistrale in Ingegneria Informatica Lesson 3Math with WordsNicola Capuano and Antonio GrecoDIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 3
+
+Math with Words
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+* Term Frequency
+* Vector Space Model
+° TF-IDF
+
+* Building a Search Engine
+
+Term Frequency
+
+Bag of Words
+
+A vector space model of text
+
+® One-hot encode each word in a text and combine one-hot vectors
+® Binary BoW: one-hot vectors are combined with the OR operation
+°® Standard BoW: one-hot vectors are summed
+
+° Term Frequency (TF): number of occurrences of each word in the text
+
+Assumption:
+
+°® The more times a word occurs, the more meaning it contributes to
+that document
+
+Calculating TF
+
+# Extract tokens
+sentence = "The faster Harry got to the store, the faster Harry, the faster, would get home."
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+doc = nlp(sentence)
+
+tokens =|[tok. lower_ for tok in doc if not tok.is_stop and not tok.is_punct]
+
+tokens
+
+{'faster', 'harry', ‘'got', ‘store', 'faster', 'harry', 'faster', 'home']
+
+# Build BoW with word count
+
+import collections
+
+bag_of_words = collections.Counter(tokens) # counts the elements of a list
+bag_of_words
+
+Counter({'faster': 3, 'harry': 2, 'got': 1, 'store': 1, 'home': 1})
+
+# Most common words
+bag_of_words.most_common(2) # most common 2 words
+
+(('faster', 3), (‘harry', 2)]
+
+Limits of TF
+
+Example:
+°® Indocument A the word dog appears 3 times
+
+® In document B the word dog appears 100 times
+
+Is the word dog more important for document A or B?
+
+Additional information:
+® Document A is a 30-word email to a veterinarian
+
+°® Document B is the novel War & Peace (approx. 580,000 words)
+
+NN the word dog more important for document A or B?
+
+Normalized TF
+
+Normalized (weighted) TF is the word count normalized
+by the document length
+
+° TF (dog, document,) = 3/30 = 0.1
+° TF (dog, documents) = 100/580000 = 0.00017
+
+import pandas as pd
+
+counts = pd.Series(bag_of_words) # from dict to Pandas Series
+counts / counts.sum() # calculate TF
+
+faster @.375
+harry @.250
+got @.125
+store @.125
+home @.125
+dtype: float64
+
+Vector Space Model
+
+NLTK Corpora
+
+Natural Language Toolkit includes several text corpora
+® They can be used to train and test NLP algorithms
+® It has a package to easily access corpus data
+
+° https://www.nitk.org/howto/corpus.html
+
+Reuters 21578 corpus
+
+REUTERS
+
+® Widely used for NLP and text classification
+® It contains thousands of news published by Reuters in 1986
+
+° News are categorized into 90 different topics
+
+Using Reuters 21578
+
+import nltk
+
+nltk.download('reuters') # download the reuters corpus
+ids = nltk.corpus. reuters. fileids() # ids of the documents
+sample = nltk.corpus.reuters.raw(ids[@]) # first document
+
+print(len(ids), "samples.\n") # number of documents
+print (sample)
+
+Taiwan had a trade trade surplus of 15.6 billion dlrs last
+year, 95 pct of it with the U.S.
+
+The surplus helped swell Taiwan's foreign exchange reserves
+to 53 billion dlrs, among the world's largest.
+
+“We must quickly open our markets, remove trade barriers and
+cut import tariffs to allow imports of U.S. Products, if we
+want to defuse problems from possible U.S. Retaliation," said
+Paul Sheen, chairman of textile exporters &lt;Taiwan Safe Group>.
+
+A senior official of South Korea's trade promotion
+association said the trade dispute between the U.S. And Japan
+might also lead to pressure on South Korea, whose chief exports
+are similar to those of Japan.
+
+Last year South Korea had a trade surplus of 7.1 billion
+dirs with the U.S., Up from 4.9 billion dlrs in 1985.
+
+In Malaysia, trade officers and businessmen said tough
+curbs against Japan might allow hard-hit producers of
+semiconductors in third countries to expand their sales to the
+U.S.
+
+Using Reuters 21578
+
+doc = nlp(sample)
+
+tokens =|[tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+
+bag_of_words = collections.Counter(tokens)
+counts = pd.Series(bag_of_words).sort_values(ascending=False) # sorted series
+counts = counts / counts.sum() # calculate TF
+
+print(counts.head(1@) )
+
+ues. 0.039627
+said 0.037296
+
+trade @.034965 .
+japan 0.027972 Most relevant words in
+dirs 0.013986 .
+
+exports 0.013986 the first news
+
+tariffs @.011655
+
+imports @.011655
+
+billion 0.011655
+
+electronics @. 009324
+dtype: float64
+
+Corpus Processing
+
+ids_subset = ids[:100] # to speed-up we consider only the first 10@ elements
+counts_list = []
+
+for i, id in enumerate(ids_subset):
+sample = nltk.corpus.reuters. raw( id)
+doc = nlp(sample)
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+bag_of_words = collections.Counter(tokens)
+counts = pd.Series(bag_of_words).sort_values(ascending=False)
+counts_list.append(counts / counts.sum())
+print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+pd.DataFrame(counts_list) # list of series to dataframe
+= df.fillna(®) # change NaNs to 0
+
+Sample 100 of 100 processed.
+
+u.s. said trade japan dlrs exports tariffs imports billion electronics ...
+0 0.039627 0.037296 0.034965 0.027972 0.013986 0.013986 0.011655 0.011655 0.011655 0.009324
+1 0.000000 0.042254 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+2 0.000000 0.033333 0.008333 0.016667 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+3 0.000000 0.027523 0.018349 0.000000 0.000000 0.009174 0.000000 0.018349 0.055046 0.000000
+4 0.000000 0.028302 0.000000 0.000000 0.018868 0.018868 0.000000 0.000000 0.000000 0.000000
+
+100 rows x 3089 columns
+
+Corpus Processing
+
+ids_subset = ids[:100] # to speed-up we consider only the first 100 elements
+counts_list = []
+
+for i, id in enumerate(ids 4ubset):
+
+sample = nltk.corpus.y -
+This in inefficient!
+
+tokens = [tok. lower_ ° °
+bag_of_words = collectio -Counter(tokens)
+counts = pd.Series(bag_of_words).sort_values(ascending=False)
+
+counts_list.append(counts / counts.sum())
+
+print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+ot tok.is_punct and not tok.is_space]
+
+df = pd.DataFrame(counts_list) # list of series to dataframe
+df = df.fillna(®) # change NaNs to 0
+df
+
+spaCy extract a lot of information from text
+
+* POS, lemmas,
+YY
+
+When you call nlp ona text, spaCy:
+
+But we only need tokenization here!
+
+Corpus Processing (Optimization)
+
+° first tokenizes the text to produce a Doc object
+
+® The Doc is then processed in several steps (pipeline)
+
+ee ee Or) Ci
+
+eee
+
+# Show the current pipeline components
+print (nlp.pipe_names)
+
+['tok2vec', 'tagger', 'parser', ‘attribute_ruler', 'lemmatizer', '‘ner']
+
+We must remove these steps from the pipeline
+
+Corpus Processing (Optimization)
+
+ids_subset = ids # we now consoder all elements
+counts_list = []
+
+for i, id in enumerate(ids_subset):
+sample = nltk.corpus.reuters. raw(id)
+doc = nlp(sample, disable=["tok2vec", "tagger", “parser", “attribute_ruler", “lemmatizer", "ner"]) #
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+bag_of_words = collections.Counter(tokens)
+counts = pd.Series(bag_of_words).sort_values(ascending=False)
+counts_list.append(counts / counts.sum())
+print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+df = pd.DataFrame(counts_list) # list of series to dataframe
+
+df.fillna(®) # change NaNs to @
+
+Sample 100 of 100 processed.
+
+u.s. said trade japan dlrs exports tariffs imports billion electronics
+0 0.039627 0.037296 0.034965 0.027972 0.013986 0.013986 0.011655 0.011655 0.011655 0.009324
+1 0.000000 0.042254 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+2 0.000000 0.033333 0.008333 0.016667 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+3 0.000000 0.027523 0.018349 0.000000 0.000000 0.009174 0.000000 0.018349 0.055046 0.000000
+4 0.000000 0.028302 0.000000 0.000000 0.018868 0.018868 0.000000 0.000000 0.000000 0.000000
+
+10788 rows x 49827 columns
+
+Corpus Processing
+
+Term-Document Matrix
+°® Rows represent documents
+* Columns represent terms from the vocabulary
+
+°® Elements can be TF, normalized TF, ... (other options later)
+
+Sample 100 of 100 processed.
+u.s. said trade japan dlrs exports tariffs imports billion electronics
+
+0.039627 0.037296 0.034965 0.027972 0.013986 0.013986 0.011655 0.011655 0.011655 0.009324
+0.000000 0.042254 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+0.000000 0.033333 0.008333 0.016667 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+0.000000 0.027523 0.018349 0.000000 0.000000 0.009174 0.000000 0.018349 0.055046 0.000000
+0.000000 0.028302 0.000000 0.000000 0.018868 0.018868 0.000000 0.000000 0.000000 0.000000
+
+0.000000 0.000000
+0.000000 0.008403
+0.000000 0.000000
+0.000000 0.000000
+99 0.000000 0.050000
+
+100 rows x 3089 columns
+
+Vector Space Model
+
+Mathematical representation of documents as vectors in
+a multidimensional space
+
+® Each dimension of the space represents a word
+
+© Built from aterm-document matrix
+
+2D Example:
+
+. . doc_0 ~(0.1, 0.17)
+with normalized TF |
+°® Weare considering s
+
+a vocabulary of just 2 |
+2 words (w, and w.) doc. 1 ~(0.056, 0.056) |
+doc_2 ~(0.056, 0)
+-0.05 0.05 0.10 0.15 0.20
+TF of w,
+—0.05 -
+
+Document Similarity
+
+Euclidean Distance:
+° Sensitive to the magnitude of the vectors
+
+° The direction of the vectors captures the relative importance of
+terms and is more informative than their magnitude
+
+°® Less commonly
+
+used in NLP
+doc_0 ~(0.1, 0.17)
+A = (4, Qo, ..-, 4) ;
+N 4
+& / |
+—_ )
+B = (b,, by, ..., b,) ue y
+doc_1 ~(0.056, 0.056) 4
+doc_2 ~(0.056, 0)
+-0.05 0.05 0.10 0.15 0.20
+TF of w,
+
+Document Similarity
+
+Cosine Similarity:
+®* Measures the cosine of the angle between two vectors
+° Focuses on the direction of the vectors, ignoring their magnitude
+
+° Effective for normalized text representations
+
+°® Widely used in NLP —
+
+sim(A, B) = cos(@) = o15{ doc_0 ~(0.1, 0.17) |
+
+= Avs z 0.10 |
+iAlIB| :
+
+doc_1 ~(0.056, 0.056) 4
+
+2
+i
+
+doc_2 ~(0.056, 0)
+
+(norm)
+
+Properties of Cosine Similarity
+
+Cosine similarity is a value between -1 and 1
+1: The vectors point inthe same direction across all dimensions
+°* Documents use the same words in similar proportion, likely talking
+about the same thing
+o: The vectors are orthogonal in all dimensions
+°* Documents share no words, likely discussing completely different
+topics
+-1: The vectors point in opposite directions across all dimensions
+° Impossible with TF (counts of words cannot be negative)
+
+® Can happen with other word representations (discussed later)
+
+Calculate Cosine Similarity
+
+import numpy as np
+
+def sim(veci, vec2):
+
+dot_product = np.dot(vecl, vec2)
+norm_vec1 = np. linalg.norm(vec1)
+norm_vec2 = np. linalg.norm(vec2)
+return dot_product / (norm_vec1 * norm_vec2)
+
+# Example:
+
+print(sim(df.iloc[0], df.iloc[1]))
+Mint(sim(df.iloc[@], df.iloc[2]))
+
+print(sim(df.iloc[3], df.iloc[3]))
+
+®.14261893769917347
+®.2365347461078053
+1.0
+
+# Compare TF matrix subset (documents ® and 1)
+
+df.loc[[®, 1], (df.loc[@] > 0) & (df
+
+said min year pct
+0 0.037296 0.002331 0.009324 0.004662
+1 0.042254 0.028169 0.014085 0.056338
+
+TF-IDF
+
+sloc[1] > 0)]
+
+Try also with other documents
+
+36 government
+
+0.002331
+0.014085
+
+0.002331
+
+0.014085
+
+Inverse Document Frequency
+
+TF does not consider the uniqueness of the word across
+the corpus
+* Common words (the, is, and ...) appear frequently in many
+
+documents, contributing little to distinguishing one document
+from another
+
+° Specific terms relevant to the subject matter of the corpus may
+also be frequent but still not useful for differentiating documents
+
+® Inacorpus about astronomy, terms like planet or star would be
+common and non-discriminatory
+Inverse Document Frequency (IDF) addresses this by
+measuring the importance of each word in relation to
+the entire corpus
+
+Inverse Document Frequency
+
+IDF increases the weight of words that are rare across
+documents and decreases the weight of words that are
+common
+
+Joa idf(t, D) = log N
+
+tf(t,d) = —“"“ —, aN
+Merea fra \{d:d<€ Dandt € d}|
+
+Jia is the raw count of a term in a document, i.e., the number of times that term ¢ occurs in document d.
+N: total number of documents in the corpus N = |D|
+
+|{d € D: t € d}| : number of documents where the term t appears (i.e., tf(t, d) # 0).
+
+Note: If the term is not in the corpus, this will lead to a division-by-zero. It is therefore common
+to adjust the numerator 1 + N and denominator to 1 + |{d € D:t € d}|.
+
+TF-IDF
+
+Term Frequency — Inverse Document Frequency is the
+product of TF and IDF
+
+° TF gives more importance to the words that are more frequent in the
+document
+
+° IDF gives more weightage to the words that are less frequent in the
+corpus
+
+tfidf(t, d, D) = t£(t, d) - idf(t, D)
+
+° High TF-IDF indicates aterm that is frequent in a document but rare
+in the corpus, making it significant for that document
+
+° Low TF-IDF Indicates a term that is infrequent in the document or
+\ common in the corpus, making it less significant for that document
+
+TF-IDF: Example
+
+* Document A: Jupiter is the largest planet
+
+°* Document B: Mars is the fourth planet from the sum
+
+| «| In(2/1) = 0.69 0.138
+
+ae ao |
+
+ee
+LL
+EL
+[aa [anon]
+Pe enone
+
+Zipf’s Law
+
+Observes patterns in word frequency distribution in
+natural languages
+
+° Named after linguist George Kingsley Zipf
+
+® Frequency of a word is inversely proportional to its rank ina
+frequency table
+
+K
+
+fM= ra
+
+Where:
+° fir) is the frequency of the word at rank r
+°® Kisaconstant
+° risthe rank of the word
+
+* adetermines the shape of the distribution which is approximately equals to 1
+
+Zipf’s Law
+
+Meaning:
+
+° The most common word appears approximately:
+° Twice as often as the second most common word
+° Three times as often as the third most common word
+
+© Andsoon...
+
+Implications:
+
+° Asmall set of highly frequent words dominate word usage
+
+° Majority of words are relatively rare with low frequencies
+
+® Using the logarithm in IDF mitigates the influence of rare words
+
+\
+
+This results in a more uniformly distributed TF-IDF score
+
+Zipf’s Law: Example
+
+Zipf plot for Brown corpus tokens
+Sry u oT 7 TTT
+
+7]
+
+Absolute frequency of token
+
+10
+
+10° fl arene arr perenne ran A
+10° 107 10? 10° 104 10°
+Frequency rank of token
+
+The Brown corpus consists of 1 million words (Soo samples of 2000+ words
+each) of running text of edited English prose printed in the United States
+during the year 1961 and it was revised and amplified in 1979.
+
+Calculating TF-IDF
+
+# Calculate IDF vector # Calculate TF-IDF matrix
+
+n_docs = df.shape[@] tfidf = df.mul(idf.values, axis='columns')
+count_docs = (df > @).sum() tfidf
+idf = np.log1@(n_docs / count_docs)
+
+idf.sort_values(ascending=False) u.s. said trade japan dlrs exports tariffs ...
+
+: 0.029511 0.004877 0.027828 0.023885 0.007114 0.013986 0.014241
+asian 2.000000
+exaggerated 2.000000 0.000000 0.005525 0.000000 0.000000 0.000000 0.000000 0.000000
+
+refute 2.000000 0.000000 0.004359 0.006632 0.014231 0.000000 0.000000 0.000000
+man 2.000000
+laying 2.900000 0.000000 0.003599 0.014603 0.000000 0.000000 0.009174 0.000000
+
+ee 0.000000 0.003701 0.000000 0.000000 0.009597 0.018868 0.000000
+pet 0.494850
+year @.408935
+min 0.366532
+> 0.292430
+said 0.130768
+Length: 3089, dtype: floate4 Compare with TF matrix
+
+u.s. said trade japan dlrs exports tariffs ...
+0 0.039627 0.037296 0.034965 0.027972 0.013986 0.013986 0.011655
+1 0.000000 0.042254 0.000000 0.000000 0.000000 0.000000 0.000000
+2 0.000000 0.033333 0.008333 0.016667 0.000000 0.000000 0.000000
+3 0.000000 0.027523 0.018349 0.000000 0.000000 0.009174 0.000000
+
+4 0.000000 0.028302 0.000000 0.000000 0.018868 0.018868 0.000000
+
+Using Scikit-Learn
+
+Scikit-learn is a popular library for machine learning
+* pip install scikit-learn
+
+° The TfidfVectorizer class does tokenization, omits punctuation, and
+computes the tf-idf scores all in one
+
+# Calculating TF-IDF matrix with scikit-learn
+
+# pip install scikit-learn
+
+from sklearn. feature_extraction.text import TfidfVectorizer
+
+corpus = [nltk.corpus.reuters.raw(id) for id in nltk.corpus. reuters. fileids()]
+vectorizer = TfidfVectorizer(min_df = 1) # min_df = 1 to consider all words
+vectorizer = vectorizer.fit(corpus) # fit the vectorizer on the corpus
+
+vectors = vectorizer.transform(corpus) # generates the TF-IDF matrix
+print(vectors.todense() )
+
+{(@. Q. e. «ss Q. Q. ]
+{@. Q. Q. ee Q. Q. ]
+[0. Q. Q. ee 0. Q. ]
+io. Q. 0. ee Q. Q. ]
+0. Q. e. ae. Q Q. Q. ]
+a. @.18232755 @. Q i‘) @ })
+TF-IDF Alternatives
+
+None Wij = fi
+
+TFIDF wy = log (fi) x log(*)
+
+TFICF wy = log(f;) x log(+*)
+
+okani BM25 we fi og N-nj+0.5
+
+apl yO TO
+P "  0.5+1.5x4 +f; fyt 0.5
+j-
+
+i N
+(0.5+0.5x 2.) log (qj)
+
+vw; = ——
+ij N
+EY, [(0.540.5% 52 ) log) }*
+N
+(log(fj) +1.0) log(-)
+Wi =
+
+0.8+0.2xfx
+
+TF-IDF Alternatives
+
+= P(ti|cj)
+MI wy = log P(t) P(c)
+PosMl Wi = max(0, MI)
+
+TTest i Pao
+Sixf
+LingBa Wij = Exh
+
+wy =—1x log x
+
+log fi +1
+ii = Jog nj+1
+
+Ww
+
+Building a
+Search Engines
+
+retrieval (search) for decades
+
+Process:
+
+Prompt the user to input a query
+
+additional words in the query are ignored
+
+(documents) in the TF-IDF matrix
+
+Example
+
+from sklearn.metrics.pairwise import cosine_similarity
+query = "OPEC oil production"
+
+# Transform the query to a TF-IDF vector
+q_vect = vectorizer.transform( [query] )
+
+# Calculate cosine similarity between the query
+# and all documents
+similarities = cosine_similarity(q_vect, vectors).flatten()
+
+# Get the indices of the most similar documents
+# in descending order
+similar_docs_indices = similarities.argsort()[::-1]
+
+# Print the top 5 most similar documents
+for i in similar_docs_indices[:5]:
+print("Document: {}, Similarity: {:.4f}\n".\
+format(i, similarities [i] ))
+print(corpus[i] [:500], "\n")
+print("-" * 70, "\n")
+
+# query
+# query
+
+“South China economy"
+“Credit card price"
+= "New York stock exchange"
+
+Building a Search Engine
+
+TF-IDF matrices have been the mainstay of information
+
+Tokenize all documents and create a TF-IDF matrix
+
+Treat the query as a document and calculate its TF-IDF vector
+
+° Note: Ensure the query’s vocabulary matches that of the TF-IDF matrix. Any
+
+Calculate the cosine similarity between the query vector and all rows
+
+Identify and the document(s) with the highest similarity to the query
+
+Document: 5252, Similarity: 0.5781
+
+OPEC MAY HAVE TO MEET TO FIRM PRICES — ANALYSTS
+OPEC may be forced to meet before a
+scheduled June session to readdress its production cutting
+agreement if the organization wants to halt the current slide
+in oil prices, oil industry analysts said.
+
+"The movement to higher oil prices was never to be as easy
+as OPEC thought. They may need an emergency meeting to sort out
+the problems," said Daniel Yergin, director of Cambridge Energy
+Research Associates, CERA.
+
+Analysts and
+
+Document: 7661, Similarity: 0.5140
+
+SAUDI OIL MINISTER SEES NO NEED TO ALTER OPEC PACT
+Saudi Arabian Oil Minister Hisham Nazer
+said OPEC's December agreement to stabilise oil prices at 18
+dlrs a barrel was being implemented satisfactorily and there
+was no immediate need to change it.
+
+Nazer, in an interview with Reuters and the television news
+agency Visnews, said Saudi Arabia was producing around three
+mln barrels per day (bpd) of crude oil, well below its OPEC
+quota.
+
+Saudi Arabia, the world's largest oil
+
+Document: 7736, Similarity: 0.5037
+
+SAUDI OIL MINISTER SEES NO NEED TO ALTER PACT
+Saudi Arabian 0il Minister Hisham Nazer
+said OPEC's December agreement to stabilize oil prices at 18
+dlrs a barrel was being implemented satisfactorily and there
+was no immediate need to change it.
+
+Nazer, in an interview with Reuters and the television news
+agency Visnews, said Saudi Arabia was producing around three
+mln barrels per day (bpd) of crude oil, well below its OPEC
+quota.
+
+Saudi Arabia, the world's largest oil expo
+
+Document: 1010, Similarity: 0.4831
+
+KUWAITI DAILY SAYS OPEC CREDIBILITY AT STAKE
+OPEC's credibility faces fresh scrutiny
+in coming weeks amid signs of a significant rise in supplies of
+oil to international oil markets, the Kuwait daily al—Qabas
+said.
+
+In an article headlined, "Gulf oil sources say Middle East
+production up 1.4 mln bpd," it warned OPEC's official prices
+could face fresh pressure from international oil companies
+seeking cheaper supplies.
+
+It did not say whether only OPEC or both OPEC and othe
+
+More on Search Engines
+
+Note: real search engines do not compare the query
+with all indexed documents
+
+° An inverted index is used to map each word in the vocabulary to all
+documents containing that word
+
+°® The documents that contain at least one word from the query are
+extracted from the index
+
+Te D it #1 D it #2
+° The TF-IDF vector of the ll _ _
+
+best
+
+query is compared only
+with that of the extracted
+
+carbonara Xx
+
+delicious Xx
+
+documents
+
+pasta x
+pesto
+
+recipe xX
+
+th
+
+with
+
+x<
+
+References
+
+Natural Language Processing INACTION
+
+Understanding, analyzing, and generating text with Python - Natural
+Chapter 3 jg, Language
+
+4 Processing
+
+» IN ACTION
+
+Further Readings...
+
+® Scikit-Learn Documentation
+https://scikit-learn.org/stable/user_quide.html
+
+°* NLTK Corpora How-To
+https://www.nitk.org/howto/corpus.html
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 3
+
+Math with Words
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

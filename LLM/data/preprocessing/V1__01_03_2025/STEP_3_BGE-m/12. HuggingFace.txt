@@ -1,0 +1,119 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 12: HuggingFace**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+This lesson provides an introduction to the Hugging Face ecosystem, a central hub for Natural Language Processing (NLP) resources, focusing on its practical application within an Informatics Engineering Master's program. We'll cover the core components of the Hugging Face Hub, setting up a development environment, utilizing pipelines for streamlined model usage, strategies for model selection, a brief overview of prominent models, and finally, building web demos with Gradio.
+
+<----------section---------->
+
+**Outline**
+
+* Overview of the Hugging Face Ecosystem
+* Setting up Your Development Environment
+* Utilizing Pipelines for Model Interaction
+* Strategies for Model Selection
+* Overview of Common NLP Models
+* Building Interactive Demos with Gradio
+
+<----------section---------->
+
+**Overview of the Hugging Face Ecosystem**
+
+Hugging Face offers a comprehensive suite of tools and resources for NLP practitioners.  The platform revolves around the Hugging Face Hub, a centralized repository and platform accessible at [https://huggingface.co/](https://huggingface.co/). The Hub provides access to:
+
+* **Pre-trained Models:** A vast collection of ready-to-use models for various NLP tasks.
+* **Datasets:**  A diverse range of datasets suitable for training and evaluating NLP models.
+* **Spaces:**  A platform for showcasing interactive demos and sharing code.
+* **Educational Resources:**  The [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit) provides curated materials for workshops, courses, and self-learning.
+
+This ecosystem is powered by several key open-source libraries:
+
+* **`datasets`:** Simplifies downloading and managing datasets from the Hub. It supports features like streaming for handling large datasets efficiently.
+* **`transformers`:** Provides the building blocks for working with transformer models, including pipelines, tokenizers, and model architectures.  This library supports both PyTorch and TensorFlow as backend deep learning frameworks.
+* **`evaluate`:** Facilitates the computation of various evaluation metrics for assessing model performance.
+
+
+<----------section---------->
+
+**Hugging Face – Model Hub:** [https://huggingface.co/models](https://huggingface.co/models)
+
+The Model Hub is a core component of the Hugging Face ecosystem, hosting a wide variety of pre-trained models readily available for various NLP tasks.  These models are categorized and easily searchable, allowing users to find the best fit for their specific needs.
+
+<----------section---------->
+
+**Hugging Face - Datasets:**
+
+* **Diversity and Accessibility:** The Hub ([https://hf.co/datasets](https://hf.co/datasets)) hosts approximately 3000 open-source and free-to-use datasets spanning various domains.
+* **`datasets` Library:** The `datasets` library simplifies accessing these datasets, including large ones, by offering features like streaming, which allows processing data in smaller chunks, reducing memory requirements.
+* **Dataset Cards:** Each dataset is accompanied by a detailed card containing documentation, including a summary, dataset structure, usage examples, and other relevant information.
+* **Example:** The GLUE benchmark dataset is available at [https://huggingface.co/datasets/nyu-mll/glue](https://huggingface.co/datasets/nyu-mll/glue).
+
+
+<----------section---------->
+
+**Setting up Your Development Environment**
+
+Several options exist for setting up your development environment:
+
+* **Google Colab:**  The simplest approach, leveraging Google Colab's cloud-based environment.  Install the `transformers` library using `!pip install transformers`.  This installs a lightweight version. For the full version with all dependencies, use  `!pip install transformers[sentencepiece]`. The `sentencepiece` library is often required for subword tokenization.
+
+* **Virtual Environment (Recommended for Local Development):**
+    * **Anaconda:**  Download and install Anaconda ([https://www.anaconda.com/download](https://www.anaconda.com/download)). Anaconda simplifies package management and environment creation.
+    * **Create Environment:** `conda create --name nlpllm` creates a new conda environment named "nlpllm".
+    * **Activate Environment:** `conda activate nlpllm` activates the created environment.
+    * **Install `transformers`:**  `conda install transformers[sentencepiece]` installs the `transformers` library with necessary dependencies.
+
+* **Hugging Face Account:**  Creating a Hugging Face account is recommended for seamless integration with the Hub and access to various features.
+
+
+<----------section---------->
+
+**Utilizing Pipelines for Model Interaction**
+
+Hugging Face's `pipeline()` function simplifies the process of using pre-trained models.  A pipeline encapsulates a model along with its pre-processing and post-processing steps. This abstraction allows users to directly input text and receive readily interpretable output.  The Hub hosts thousands of pre-trained models, making it easy to experiment with different models and tasks.
+
+
+<----------section---------->
+
+**Strategies for Model Selection**
+
+Choosing the right model involves careful consideration of various factors:
+
+* **Task Definition:** Clearly define the task (e.g., text classification, summarization, translation). Different tasks require models with specific architectures and training data.  Distinguish between extractive summarization (selecting existing sentences) and abstractive summarization (generating new sentences).
+* **Filtering and Sorting:** Utilize the Hugging Face Hub's filtering options to narrow down models based on task, license, language, and model size. Sort by popularity and recent updates.
+* **Version Control:** Review the model's Git repository for its release history, providing insights into its development and stability.
+* **Model Variants:** Consider different model variants (e.g., varying sizes, fine-tuned versions) to balance performance and resource constraints.
+* **Datasets and Examples:** Evaluate models based on the specific datasets they were trained and fine-tuned on. Examine provided examples to assess their suitability.
+* **Performance Evaluation:** Define Key Performance Indicators (KPIs) relevant to your task and rigorously test the selected models on your own data or a representative subset.
+
+
+<----------section---------->
+
+**Overview of Common NLP Models**
+
+The original text lists several prominent NLP models:  Pythia, Dolly, GPT-3.5, OPT, BLOOM, GPT-Neo/X, FLAN, BART, T5, and BERT.  These models vary in size (parameter count), architecture, and intended use cases. The parameter count gives a general indication of the model's complexity and computational requirements.
+
+<----------section---------->
+
+**Building Interactive Demos with Gradio**
+
+Gradio simplifies the creation and hosting of interactive demos for machine learning models:
+
+* **Ease of Use:** Gradio provides a user-friendly interface for building demos quickly.
+* **Free Hosting:** hf.space offers free hosting for Gradio demos, making it easy to share your work.
+* **Installation:**  Install Gradio using `conda install gradio`.
+* **Further Information:** Refer to [https://bit.ly/34wESgd](https://bit.ly/34wESgd) for more details and examples.
+
+
+<----------section---------->
+
+**Additional Context (Transformer Architecture and Training):**
+
+The original text also included detailed information about the Transformer architecture, encompassing the encoder-decoder structure, attention mechanisms, and masking in the decoder.  It further discussed training transformers for translation tasks, including data preparation using the `datasets` library, tokenization with Byte-Pair Encoding (BPE), and fine-tuning pre-trained models using the `Trainer` class from the `transformers` library.  This contextual information is crucial for understanding the underlying mechanisms of the models available on the Hugging Face Hub and effectively utilizing them for various NLP tasks.  It also highlighted the importance of using established data structures and APIs for consistency and avoiding bugs. It briefly touched upon the computational advantages of using GPUs for training transformers and provided insights into causal and bidirectional language models, referencing models like BERT and GPT. Finally, it explained how to deploy a question-answering app using Streamlit and Hugging Face Spaces, offering practical advice on building user interfaces and sharing your applications.

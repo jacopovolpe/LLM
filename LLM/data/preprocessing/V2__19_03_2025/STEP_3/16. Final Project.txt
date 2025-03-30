@@ -1,0 +1,48 @@
+**Natural Language Processing and Large Language Models**
+
+This document outlines the final project for the "Natural Language Processing (NLP) and Large Language Models (LLM)" course, part of the Master's Degree in Computer Engineering (Ingegneria Informatica). The project is supervised by Nicola Capuano and Antonio Greco from DIEM (Department of Information Engineering and Mathematics) at the University of Salerno. The course material and assignment details pertain to the 2024/2025 academic year.
+
+Outline:
+*   Goal of the project.
+*   Tools to use for the project.
+*   Chatbot evaluation procedure.
+
+<----------section---------->
+
+**Goal of the Project**
+
+The primary objective of this project is to develop a chatbot capable of answering questions related to the NLP and LLM course offered in the 2024/2025 academic year. The chatbot's knowledge base should extend beyond the specific topics covered in lectures to include general course information. This encompasses details such as the course instructors, recommended textbooks, and other pertinent administrative details.
+
+A critical requirement is that the chatbot must exclusively address questions relevant to the course. It should be able to identify questions that fall outside the scope of the course material or general course information. When presented with an out-of-context question, the chatbot should respond by stating that it is not enabled to provide answers on topics outside the defined context of interest. This functionality helps to ensure the chatbot remains a focused and reliable resource for course-related inquiries.
+
+Project deliverables will include:
+
+1.  **The Code:** The complete source code of the chatbot, demonstrating its functionality and implementation.
+2.  **A Detailed Report:** A comprehensive report that thoroughly describes the design, architecture, and implementation of the chatbot solution. This report should provide detailed insights into the chosen methodologies, algorithms, and technologies used in the development process. It will also detail the rationale behind key design decisions and how the chatbot effectively meets the project goals.
+
+<----------section---------->
+
+**Tools to Use for the Project**
+
+Students have the freedom to select any tool or technology discussed during the course. This includes both traditional NLP techniques and more recent advancements associated with Large Language Models (LLMs). The project encourages a flexible approach, allowing students to combine different tools and techniques to achieve the desired outcome.
+
+Students are free to use any tool or technology analyzed in the course, both the more recent ones associated with LLMs and the more classic ones of NLP. To achieve the required result, the students can develop parts of the chatbot with LLMs and other parts with more classic tools, with total freedom of choice as long as the various solutions identified are justified in the final report. Any LLM or other already available model can be used with or without modifications, as long as the groups are fully familiar with the tools they used and are able to answer questions about every aspect of the code and models.
+
+Students can implement different components of the chatbot using LLMs and more conventional NLP tools, as long as these choices are well-justified in the final report. Students are allowed to leverage existing models (LLMs or other pre-trained models), with or without modifications, provided they possess a thorough understanding of the tools and can address questions about all aspects of the code and models used. This ensures students not only build a functional chatbot but also gain a deep understanding of the technologies employed.
+
+<----------section---------->
+
+**Chatbot Evaluation Procedure**
+
+The evaluation of the chatbot will occur before the project discussion and will be conducted in real-time by the course instructors. The instructors will interact with the chatbot using a predefined set of questions about the course, evaluating the responses based on the following criteria:
+
+*   **Relevance:** This criterion assesses whether the generated text accurately and directly answers the posed question. A relevant response provides information that is pertinent to the query and avoids extraneous or unrelated content.
+*   **Fluency:** Fluency refers to the readability and grammatical correctness of the chatbot's output. A fluent response is easy to understand, uses proper grammar and sentence structure, and exhibits a natural flow of language.
+*   **Coherence:** Coherence evaluates the logical consistency and flow of the chatbot's responses. A coherent answer presents information in a structured and logical manner, ensuring that the different parts of the response connect smoothly and make sense as a whole.
+
+Following the initial evaluation, the course instructors will conduct a second set of tests to assess the chatbot's ability to handle specific challenges:
+
+*   **Robustness:** Robustness measures the chatbot's resilience to adversarial or misleading prompts. It checks the system's ability to maintain correct and appropriate responses even when faced with ambiguous, deceptive, or leading questions (e.g., "Are you sure?").
+*   **Precision:** Precision, in this context, refers to the chatbot's ability to accurately identify and reject out-of-context questions. This includes questions unrelated to the course content or general information (e.g., "Who is the king of Spain?").
+
+The course instructors will assign a grade to the chatbot's performance based on these evaluation aspects.

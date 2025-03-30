@@ -1,0 +1,928 @@
+=== Extracted text from PDF ===
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 10
+Transformers II
+Nicola Capuano and Antonio Greco
+DIEM –University of Salerno
+
+Outline
+•Multi-Head Attention
+•Encoder Output
+•Decoder
+•Masked Multi-Head Attention
+•Encoder-Decoder Attention
+•Output
+•Transformer’s pipeline
+Multi-head attention
+Multi-head Attention
+• By using different self attention heads 
+it is possible to encode different
+meanings of the context:
+• Several scaled-dot product attention
+computations are performed in 
+parallel (using different weight 
+matrices)
+• The results are concatenated row-by-
+row forming a larger matrix (with the 
+same number of rows m)
+• This matrix is finally multiplied by a 
+final weight matrix
+• This scheme is called multi-head
+attention
+Multi-head Attention
+one head two heads
+Multi-head Attention
+• The outputs of 
+the heads are 
+concatenated 
+and then are 
+multiplied by an 
+additional weight 
+matrix to 
+combine several 
+representations 
+at the same 
+network level.
+Multi-head attention allows the model 
+to jointly attend to information from different 
+representation subspaces at different positions. 
+With a single attention head, averaging inhibits this 
+possibility.
+Multi-head Attention
+
+Add (skip connections) & 
+Norm
+Add & Norm
+
+Feed Forward
+Feed Forward
+
+Transformer’s Encoder
+Transformer’sEncoder
+• Used for computing a representation 
+of the input sequence
+• Uses an additive positional encoding 
+to deal with the order-agnostic nature 
+of the self-attention
+• Uses residual connection to foster the 
+gradients flow
+• Adopts normalization layers to 
+stabilize the network training
+• Position-Wise Feed-Forward layer to 
+add non-linearity
+• Applied to each sequence element 
+independently
+
+Transformer’sEncoder
+• Since each encoder 
+produces an output whose 
+dimensionality is the same 
+of the input, it is possible to 
+stack an arbitrary number of 
+encoder’s blocks.
+• The output of the first block 
+is fed to the second block 
+(no word embeddings) and 
+so on. 
+
+Decoder
+Decoder
+• The Decoder uses the 
+information contained in the 
+intermediate representation
+𝑧1,…,𝑧𝑡 to generate the 
+output sequence 𝑦1,…,𝑦𝑚
+• The Decoder works 
+sequentially; at each step 
+the decoder uses 𝑧1,…,𝑧𝑡
+and 𝑦1,…,𝑦𝑖−1 to generate 𝑦𝑖
+
+Decoder
+• The decoder is made of a sequence of 
+decoder blocks having the same
+structure
+• The original paper used 6 decoder 
+blocks
+• The decoder blocks, in addition to the 
+same modules used in the encoder 
+block, add an attention module
+where the keys and values are taken
+from the encoder’s intermediate 
+representation 𝑧1,…,𝑧𝑡
+• Also, the self-attention module is
+slightly modified so as to ensure that
+the query at position i only uses the 
+values at positions 1,…,i
+
+Decoder
+
+Decoder
+
+Decoder
+
+Decoder
+• On top of the last decoder 
+block, the decoder adds an 
+additional linear layer and a 
+softmax activation function, 
+for computing the probability 
+of the next output element 𝑦𝑖
+• Thus, the last layers has a 
+number of neurons 
+corresponding to the 
+cardinality of the output set
+
+Masked Multi-Head 
+Attention
+Output embedding
+
+Masked Multi-Head Attention
+
+Masked Multi-Head Attention
+
+Masked Multi-Head Attention
+
+Masked Multi-Head Attention
+
+Masked Multi-Head Attention
+
+Encoder Decoder 
+Attention
+Encoder Decoder Attention
+
+Encoder Decoder Attention
+
+Encoder Decoder Attention
+
+Output
+Linear
+
+Softmax
+
+Transformer’s pipeline
+Transformer’spipeline
+
+Transformer’spipeline
+
+Transformer’spipeline
+https://poloclub.github.io/transformer-explainer/
+
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+ 
+Lesson 10
+Transformers II
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 10
+Transformers Il
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+® Multi-Head Attention
+* Encoder Output
+® Decoder
+
+® Masked Multi-Head Attention ratty
+
+® Encoder-Decoder Attention @
+
+* Output oO
+
+. . Y —.
+® Transformer’s pipeline
+
+Multi-head attention
+
+\
+
+Multi-head Attention
+
+° By using different self attention heads
+it is possible to encode different
+meanings of the context:
+
+———EEs
+Scaled Dot-Product
+Attention 4
+
+\
+
+° Several scaled-dot product attention
+computations are performed in
+parallel (using different weight
+matrices)
+
+° The results are concatenated row-by-
+row forming a larger matrix (with the
+same number of rows m)
+
+° This matrix is finally multiplied by a
+final weight matrix
+
+° This scheme is called multi-head
+
+attention V K Q
+
+Multi-head Attention
+
+Wy V Vo
+
+4
+
+one head two heads
+
+X
+Thinking
+
+X we Q Machines ae
+
+i ATTENTION HEAD #0 ATTENTION HEAD #1
+x = 7
+Qo Qi
+Ao Wo® Wie
+
+X Wk K
+me: -s & :
+
+X
+
+Multi-head Attention
+
+X WoO
+° The outputs of fr Co” of
+the heads are ; Wi0 ,
+| Ty ww Ky
+concatenated oe : . )
+and then are
+multiplied by an R me vs
+additional weight coo Wey Qe
+matrix to cco FH vy i
+combine several
+representations
+at the same Multi-head attention allows the model
+network level. to jointly attend to information from different
+
+representation subspaces at different positions.
+With a single attention head, averaging inhibits this
+possibility.
+
+Multi-head Attention
+
+: Add & Norm
+
+RI xdp
+Add & Norm
+Multi-Head
+Attention
+
+RIxd
+
+Z,
+
+a)
+CONCAT
+d, — Amodel
+OR
+
+Multi Head Attention : Z
+
+RE X4model
+
+Add (skip connections) &
+Norm
+
+\
+
+Input
+
+Normalization(Z)
+- Mean 0, Std dev 1
+- Stabilizes training
+
+*« Regularization effect
+
+ce
+
+Add & Norm
+
+Norm(Z)
+
+Add -> Residuals
+
+¢ Avoid vanishing gradients
+
+* Train deeper networks
+
+Add & Norm
+
+Feed
+Forward
+
+Add & Norm
+Multi-Head
+Attention
+SE a,
+
+Feed Forward
+
+\
+
+Feed Forward
+Add Norm
+
+Feed Forward
+
+Feed Forward
+
+t
+
+©)
+
+Residuals
+
+Norm(Z)
+
+Non Linearity
+Complex Relationships
+
+Learn from each other
+
+FFN
+(2 layer MLP)
+
+Add & Norm
+Feed
+Forward
+
+| Add & Norm |
+
+Multi-Head
+Attention
+
+Transformer
+block
+
+Output
+Embeddings
+
+Input
+Embeddings
+
+Transftormer’s Encoder
+
+\
+
+Transformer’s Encoder
+
+Add & Norm
+Feed
+Forward
+
+Used for computing a representation
+of the input sequence
+
+Uses an additive positional encoding
+to deal with the order-agnostic nature
+of the self-attention
+
+Uses residual connection to foster the
+gradients flow
+
+Adopts normalization layers to Positional A> _ 4s
+AF os Encoding es
+stabilize the network training 1
+npu
+
+Inputs
+
+Position-Wise Feed-Forward layer to
+add non-linearity
+
+° Applied to each sequence element
+independently
+
+° The output of the first block
+
+Transformer’s Encoder
+
+Encoder
+
+° Since each encoder ENCODER
+produces an output whose
+
+dimensionality is the same .
+of the input, it is possible to ;
+Input to Encoder;,;
+ENCODER |
+Output from Encoder;
+ENCODER
+
+stack an arbitrary number of
+encoder’s blocks.
+
+is fed to the second block
+(no word embeddings) and
+so on.
+
+
+
+° The Decoder uses the
+information contained in the
+intermediate representation
+Z1, +, Zz to generate the
+output sequence yj, ..., Vin
+
+° The Decoder works
+sequentially; at each step
+the decoder uses Z), ..., Z¢
+and yz, yj-1 to generate y;
+
+Decoder
+
+Output
+Probabilities
+
+Add & Norm
+Multi-Head
+Attention
+
+ms
+Add & Norm
+Masked
+Multi-Head
+Attention
+
+Positional
+
+© ae Encoding
+Output
+Embedding
+
+Outputs
+(shifted right)
+
+Decoder
+
+° The decoder is made of a sequence of ——
+
+. utpu
+decoder blocks having the same Probabilities
+structure
+
+° The original paper used 6 decoder
+
+blocks
+
+° The decoder blocks, in addition to the
+same modules used in the encoder
+block, add an attention module
+where the keys and values are taken
+from the encoder’s intermediate
+representation Zj, ...,Z¢
+
+Multi-Head
+Attention
+
+Add & Norm
+Masked
+Multi-Head
+Attention
+SE a,
+
+Positional
+° Also, the self-attention module is 2-0) encoding
+. “c Outpu
+slightly modified so as to ensure that
+the query at position i only uses the A
+utputs
+
+values at positions 1,...,i (shifted right)
+
+Decoder
+
+Output to next block
+
+Feed-forward
+network @
+Multi-headec
+attention
+
+Encoder output (Z;,...,Z;)
+
+Input from previous block
+
+Decoder
+
+Output to next block
+
+Feed-forward
+network
+Multi-headed
+attention
+
+Encoder output (Z;,...,Z;)
+Viasked multi-
+headed attention
+
+ele
+
+Input from previous block
+
+*“——————-__ "Masked" self-attention:
+for each query, does not
+use the keys/values at
+successive positions in the
+sequence
+
+Decoder
+
+Output to next block
+
+Feed-forward
+network
+Multi-headed
+attention
+
+| Encoder output (Z;,...,Z;)
+
+headed attention Attention module using the
+outputs of the encoder as
+
+keys/values
+
+Input from previous block
+
+Decoder
+
+* On top of the last decoder
+block, the decoder adds an
+additional linear layer anda
+softmax activation function,
+for computing the probability
+of the next output element y;
+
+° Thus, the last layers has a
+number of neurons
+corresponding to the
+cardinality of the output set
+
+Output
+Probabilities
+
+Multi-Head
+Attention
+
+Masked
+Multi-Head
+Attention
+SE a,
+
+Output
+Embedding
+
+Outputs
+(shifted right)
+
+Masked Multi-Head
+Attention
+
+\
+
+Output embedding
+
+EEE Pt | | Pt
+
+EEE PT | Pt EREEE
+
+t t t t t t t
+Embedding Layer + Positional Encoding
+
+t t t t t t t
+-<sos> Icha einen apfel_—gegessen—<e0s>_
+t
+
+Tokenizer
+
+t
+
+Ich have einen apfel gegessen
+
+Positional
+oY Encoding
+
+Output
+Embedding
+
+Outputs
+(shifted right)
+
+Masked Multi-Head Attention
+
+Outputs at time T should only pay attention to outputs
+
+until time T-1
+
+Masked Multi-Head Attention
+
+Mask the available attention values ?
+
+Masked Multi-Head Attention
+
+A
+'
+'
+x<
+©
+8 :
+~
+q—
+(e)
+YN
+
+Masked Multi-Head Attention
+
+RIxT RTxT
+| | | [| | | | | |
+| | | | | | | |
+GG) -_ -
+|_| a
+QKT Attention Mask: M Masked Attention
+
+Masked Multi Head Attention : Z’
+
+Masked Multi-Head Attention
+
+RIxtT RIxd
+Pt ERE
+P| @ | { { {|
+on || {|
+
+a EERE
+
+|| |} ft
+Masked Attention Values
+
+Masked Multi Head Attention : Z’
+
+Encoder Decoder
+Attention
+
+\
+
+Encoder Decoder Attention
+
+Encoder Decoder Attention ?
+
+t
+
+Norm(Z’)
+
+Encoder Self Attention
+1. Queries from Encoder Inputs
+2. Keys from Encoder Inputs
+3. Values from Encoder Inputs
+Decoder Masked Self Attention
+Queries from Decoder Inputs
+
+1.
+2. Keys from Decoder Inputs
+3. Values from Decoder Inputs
+
+Encoder Decoder Attention ?
+
+Encoder Decoder Attention
+
+Add & Norm
+
+Add & Norm
+
+Multi-Head
+Attention
+
+Add & Norm
+
+Masked
+Multi-Head
+Attention
+= =
+
+Encoder Decoder Attention
+
+Encoder Decoder
+
+Keys from Encoder Outputs Queries from Decoder Inputs
+Values from Encoder Outputs
+
+Add & Norm
+
+NOTE: Every decoder block receives the same FINAL encoder output
+
+Add & Norm
+
+Multi-Head
+Attention
+
+pg
+Add & Norm
+
+Masked
+Multi-Head
+Attention
+SS Es
+
+
+
+Linear
+
+. . . . Output
+Linear weights are often tied with Probabilities
+
+V dno e . H Hy
+Re model input embedding matrix
+
+EERE
+Rta Xdmodel Senne
+|] | ft |
+
+|| | | |
+softmax (x)
+
+Final Decoder Output RXV Linear
+
+Softmax
+
+Output
+Probabilities
+
+Output Probabilities
+
+V
+
+1; REE
+ERE
+
+Rta xV
+
+Transformer’s pipeline
+
+\
+
+Transformer’s pipeline
+
+Decoding time step:(1) 2 345 6 OUTPUT
+
+ENCODER : DECODER
+
+ENCODER DECODER
+
+WITH TIME
+CITT) (Cit) CLIT)
+
+EMBEDDING
+
+SIGNAL
+EMBEDDINGS
+
+Je suis étudiant
+
+Transformer’s pipeline
+
+Decoding time step: 1(2)3 456 OUTPUT
+
+Kencdec Vencdec Linear + Softmax
+
+ENCODERS DECODERS
+
+EMBEDDING t 4 4 ,
+witHtiMe CLOUD CLO OTT coo
+SIGNAL
+EMBEDDING ET LS coo
+Je suis étudiant PREVIOUS
+
+OUTPUTS
+
+TRANSFORMER EXPLAINER
+
+Art
+
+ificial
+Intelligence
+is
+transforming
+
+the
+
+h
+
+2 |
+
+Pi) <x fO] <I [0] <I 10) <I] =
+
+<|
+
+ttps:
+
+Art
+
+ificial
+Intelligence
+is
+
+transforming
+the
+
+Art
+ificial
+Intelligence
+
+1S
+transforming
+the
+
+Art
+ificial
+Intelligence
+
+1s
+transforming
+the
+
+tb Oa al
+
+Value
+
+loclub.
+
+Attention
+
+Artificial Intelligence is transforming the world
+
+Head 1 of 12
+
+Transformer's p
+
+Art
+
+ificial
+Intelligence
+is
+transforming
+
+the
+
+Generate
+
+peline
+
+Temperature @.2
+
+Transformer
+Blocks
+
+way
+world
+lives
+field
+future
+
+the
+workplace
+industry
+entire
+human
+business
+workforce
+work
+
+US
+
+ithub.io/transformer-explainer
+
+wes 29.92%
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 10
+Transformers Il
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

@@ -1,0 +1,782 @@
+**Original Text:**
+Natural Language Processing and Large Language Models. Corso di Laurea Magistrale in Ingegneria Informatica. Lesson 8: Building a Chatbot. Nicola Capuano and Antonio Greco, DIEM – University of Salerno.
+
+**Exercise: Building a Pizzeria Chatbot**
+
+Develop a chatbot to assist with pizzeria operations. Users can:
+
+*   Request the pizzeria's menu.
+*   Order a pizza that is available on the menu (just one pizza, no beverage).
+*   Upon order confirmation, the bot will log the date, the user ID, and the kind of ordered pizza (use a custom action).
+*   The bot has a web-based GUI.
+
+Hint: Start with a dummy bot.
+
+Example conversation:
+
+User: Can I have the menu?
+Bot: What kind of pizza would you like? We have Parenti, Pepperoni, Vegetarian...
+User: Pepperoni
+Bot: You want a Pepperoni pizza. Is that correct?
+User: Yes
+Bot: Great! Your Pepperoni pizza is on its way!
+
+**Hints**
+
+Start with a dummy bot:
+
+```bash
+mkdir pizzaBot
+cd pizzaBot
+rasa init --no-prompt
+```
+
+Configure and run the REST and the Actions servers:
+
+```bash
+rasa run --cors "*"
+rasa run actions
+```
+
+Use a Web frontend like:
+
+[https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0](https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0)
+
+**Enhanced Text:**
+
+This document outlines the requirements for building a pizzeria chatbot as part of the "Natural Language Processing and Large Language Models" course (Corso di Laurea Magistrale in Ingegneria Informatica), specifically Lesson 8 on chatbot development. The course is instructed by Nicola Capuano and Antonio Greco from DIEM at the University of Salerno.
+
+The exercise focuses on creating a chatbot capable of assisting with basic pizzeria operations. The core functionalities include menu requests and pizza ordering.
+
+Key requirements for the Pizzeria Chatbot:
+
+*   **Menu Request:** The chatbot should be able to provide the pizzeria's menu upon user request.
+*   **Pizza Ordering:** Users should be able to order one pizza at a time (without beverages) from the available menu.
+*   **Order Logging:** Upon confirmation of an order, the chatbot must log the date, user ID, and type of pizza ordered using a custom action. This highlights the need for custom actions to extend the chatbot's capabilities beyond basic responses.
+*   **Web-based GUI:** The chatbot should have a web-based graphical user interface (GUI), implying the need for a front-end to interact with the bot.
+
+To help students get started, the instructions suggest creating a basic "dummy bot" first. This iterative approach simplifies the development process by allowing students to gradually add complexity.
+
+Example Conversation:
+
+This provides a basic flow of interaction:
+
+User: Can I have the menu?
+Bot: What kind of pizza would you like? We have Parenti, Pepperoni, Vegetarian...
+User: Pepperoni
+Bot: You want a Pepperoni pizza. Is that correct?
+User: Yes
+Bot: Great! Your Pepperoni pizza is on its way!
+
+This example demonstrates the chatbot's ability to understand user requests, present menu options, confirm orders, and provide feedback.
+
+Practical Hints:
+
+The following hints provide a starting point for setting up the development environment using Rasa, a popular open-source conversational AI framework.
+
+1.  Setting up the project:
+
+```bash
+mkdir pizzaBot
+cd pizzaBot
+rasa init --no-prompt
+```
+
+These commands create a project directory named "pizzaBot," navigate into it, and initialize a basic Rasa project without prompting for user input during initialization.
+
+2. Configuring and Running the Servers:
+
+```bash
+rasa run --cors "*"
+rasa run actions
+```
+
+The `rasa run --cors "*"` command starts the Rasa server, enabling Cross-Origin Resource Sharing (CORS) from any origin, which is useful for development. `rasa run actions` starts the action server, allowing the execution of custom actions (like logging order details).
+
+3. Using a Web Frontend:
+
+The instructions suggest using a web frontend like the Chatbot Widget from JiteshGaikwad (version Widget2.0). The link to the GitHub repository is: [https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0](https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0). This widget allows developers to quickly integrate a chat interface into their web applications.
+
+<----------section---------->
+
+**Original Text:**
+fly. When you need to inspire students and keep them engaged. Teachers do
+this naturally, by adjusting what they say and how they say it based on
+feedback on how well the student understand what they are saying. And
+teachers think about more than just "delivering a message." They must think
+up new ideas and approaches, on the fly as students pose interesting new
+questions. Inspiring students' curiosity with Socratic questions and being
+responsive to their changing needs is a full-time job.
+It is virtually impossible to build a rule-based system that captures all the
+things that teachers do to help students learn and grow. Students' needs are
+too diverse and dynamic. This is why hybrid chatbots that integrate LLMs
+have become the preferred way build production chatbots in virtually every
+domain. An LLM can confidently and convincingly chat with your users on
+virtually any topic. The key is to harness this power smartly, so that it doesn’t
+mislead your users, or worse.
+
+**Enhanced Text:**
+
+The ability to adapt and inspire is crucial, especially in education. Teachers naturally adjust their communication based on student understanding. This involves not just delivering a message, but also adapting to new ideas and questions in real-time. Stimulating curiosity through methods like Socratic questioning and responding to changing student needs is a demanding task.
+
+Creating a rule-based system to fully replicate a teacher's capabilities is extremely difficult due to the diversity and dynamism of student needs. This is why hybrid chatbots, which integrate Large Language Models (LLMs), are increasingly favored for building production chatbots across various domains. LLMs can engage in confident and convincing conversations on virtually any topic. However, the key is to leverage this power wisely, ensuring accuracy and avoiding misleading or harmful information. This highlights the importance of responsible AI development and deployment, especially in sensitive areas like education. The need for inspiring students, posing Socratic questions, and being responsive to evolving needs underscores the complexities involved in teaching and the potential benefits of AI-assisted learning, provided it's implemented thoughtfully.
+
+<----------section---------->
+
+**Original Text:**
+12.5 Chatbot frameworks
+In each of the previous chapters, you’ve learned a new technique for
+processing text to understand what the user is saying. And in this chapter,
+you’ve learned four approaches to generating text for a chatbot to use in its
+response to the user. You’ve already assembled a few chatbots from these
+NLU and NLG algorithms to understand the advantages and disadvantages of
+each of these algorithms. Now you have the knowledge you need to use a
+chatbot framework
+ smartly. A chatbot framework is an application and a
+software library that abstracts away some of these detailed decisions you
+need to make when building a dialog engine for your chatbot. A framework
+gives you a way to specify your chatbot’s behavior in 
+domain-specific
+language
+ that it can later interpret and 
+run
+ so that your chatbot replies the
+way you intended.
+Most chatbot frameworks use a declarative programming language to specify
+a bot’s behavior and some even give you a graphical user interface to
+program your bot. There are no-code chatbot frameworks that abstract the
+declarative chatbot programming language with an interactive graphical
+representation of the dialog graph or flow diagram that you can modify with
+your mouse. These no-code frameworks usually include a dialog engine that
+can execute your chatbot without you ever having to see or edit the
+underlying data. In the impact world, an open source platform sponsored by
+UNICEF, RapidPro,
+[
+34
+]
+ served as a core for several chatbot platforms, such as
+Weni, Textit and Glific, that are all used for impact purposes. In RapidPro,
+you can build your dialogs in a graphical user interface. You can also easily
+import and export the content using open standard file formats which is
+helpful when you want to translate the content from one natural language to
+another for a multilingual chatbot. ManyChat and Landbot are two closed
+source no-code chatbot builders that have similar functionality.
+But if you’ve read this far, you probably have ideas for more sophisticated
+chatbots than what’s possible in a no-code platform. So you will probably
+need a chatbot programming language to make your vision a reality. Of
+course, you can specify your bot "stack" in Python by directly employing the
+skills you learned in this book. But if you want to build a scalable and
+maintainable chatbot you’ll need a chatbot framework that uses a chatbot
+design language or data structure that you understand. You want a language
+that makes sense to you so that you can quickly get the conversation design
+you have in your head embedded in a working chatbot. In this section, you
+will learn of several different frameworks that can help you make your
+chatbot dreams come true.
+
+**Enhanced Text:**
+
+After acquiring techniques for processing text to understand user input and generating chatbot responses, you can effectively utilize chatbot frameworks. These frameworks abstract away intricate details involved in building a dialog engine, enabling you to define chatbot behavior using domain-specific languages that the system can interpret and execute, ensuring the chatbot replies as intended.
+
+Most chatbot frameworks utilize declarative programming languages to specify bot behavior, with some even offering graphical user interfaces (GUIs) for programming. No-code chatbot frameworks abstract the declarative language into interactive graphical representations of dialog graphs, which can be modified using a mouse. These frameworks usually include a dialog engine that allows chatbot execution without direct manipulation of the underlying data.
+
+For example, RapidPro, an open-source platform sponsored by UNICEF, has served as a core for several chatbot platforms used for impactful applications, such as Weni, Textit, and Glific. RapidPro allows building dialogs within a GUI and supports importing/exporting content in open standard file formats, simplifying the creation of multilingual chatbots. Closed-source no-code chatbot builders like ManyChat and Landbot offer similar functionalities.
+
+However, more sophisticated chatbot ideas may require capabilities beyond no-code platforms, necessitating the use of a dedicated chatbot programming language. While Python can be used directly by leveraging the skills learned throughout this book, building scalable and maintainable chatbots benefits from using a framework with a chatbot design language or data structure that is easily understood. The goal is to utilize a language that facilitates quickly translating conversation designs into a working chatbot.
+
+<----------section---------->
+
+**Original Text:**
+Using the tools described here, you can build a bot that can serve you (and
+maybe a few friends, or even more people if you’re lucky) if deployed on a
+server or in a cloud. However, if you want to build a chatbot that servers
+hundreds or thousands of users, you need a more robust, scalable system.
+Luckily, there are frameworks available that allow you to focus on building
+your bot while taking care of the challenges that come with the need to build
+a production-grade system. We will now discuss three popular open-source
+Python chatbot frameworks for building chatbots with configurable NLP
+capabilities: Rasa, LangChain, and qary.
+12.5.1 Building an intent-based chatbot with Rasa
+Rasa is an open-source conversational framework that started back in 2016
+and today is used to create thousands of bots in various languages around the
+world. Unlike many commercial frameworks, that create a drag-and-drop
+interface to create the dialog trees we discussed in the previous section,
+RASA took a radically different approach to organizing multi-step
+conversations.
+The basic units of a conversation in RASA are a user intent and a bot action -
+which can be as simple as a pre-programmed utterance or a complex action
+programmed in Python that results in interaction with other systems - such as
+saving or retrieving data from a database, or invoking a Web API. By
+chaining these building blocks into sequences - called Stories - RASA allows
+you to pre-program dialog scenarios in a streamlined way. All this
+information is stored in YAML files (YAML stands for Yet Another Markup
+Language), each type of components in its own file.
+But enough with the theoretical explanation - let’s get your hands dirty and
+build your first RASA chatbot. First, let’s decide what dialog we want to
+implement - based on our conversation diagram for the math tutor bot, let’s
+implement the following short dialog:
+USER: Hello
+BOT: Well, hello there. Thanks for checking out Rori, a math tutor chatbot. Chatting with Rori helps students improve their math skills. And it's fun too!
+BOT: Are you a parent (or guardian) or are you a student?
+USER: I'm a parent.
+BOT: For your child to use Rori, we need permission from the parent or guardian. Do you agree to give your child permission to chat with Rori on this Whatsapp number?
+USER: I agree
+BOT: Thank you for giving permission for your child to chat with Rori.
+When your child is ready to start, please give them this phone and have them type "ready".
+To create your bot, you will need to install 
+rasa
+ package (if you’re working
+in 
+nlpia2
+ environment, it is already installed when you install the project).
+Then, you can go to the directory you want to create the project in and run in
+your command line:
+$ rasa init
+The installation wizard will guide you through creating a new project and
+even offer you to train an initial model. Let it do that, and then you can even
+chat with a simple chatbot the wizard initialized for you.
+
+**Enhanced Text:**
+
+While tools mentioned previously can help build bots for personal use or small-scale deployments, a more robust and scalable system is required to serve hundreds or thousands of users. Fortunately, frameworks are available that allow developers to focus on building the bot's logic while handling the complexities of production-grade systems.
+
+This section discusses three popular open-source Python chatbot frameworks with configurable NLP capabilities: Rasa, LangChain, and qary.
+
+**Building an Intent-Based Chatbot with Rasa**
+
+Rasa is an open-source conversational AI framework that emerged in 2016 and is now used to create numerous bots in various languages worldwide. Unlike some commercial frameworks that use drag-and-drop interfaces for creating dialog trees, Rasa adopts a different approach for organizing multi-step conversations.
+
+The fundamental units of conversation in Rasa are user intents and bot actions. A bot action can be as simple as a pre-programmed utterance or a more complex Python script interacting with external systems like databases or web APIs. By linking these units into sequences called "Stories," Rasa enables streamlined pre-programming of dialog scenarios. All the relevant information is stored in YAML files (YAML stands for "Yet Another Markup Language"), with each component type residing in its own file.
+
+Now, let's move from theoretical explanations to practical application by building a Rasa chatbot. We will implement a dialog inspired by the math tutor bot example:
+
+USER: Hello
+BOT: Well, hello there. Thanks for checking out Rori, a math tutor chatbot. Chatting with Rori helps students improve their math skills. And it's fun too!
+BOT: Are you a parent (or guardian) or are you a student?
+USER: I'm a parent.
+BOT: For your child to use Rori, we need permission from the parent or guardian. Do you agree to give your child permission to chat with Rori on this Whatsapp number?
+USER: I agree
+BOT: Thank you for giving permission for your child to chat with Rori. When your child is ready to start, please give them this phone and have them type "ready".
+
+To begin, install the `rasa` package. If you're working within the `nlpia2` environment, it's likely already installed. Navigate to the desired project directory in your command line and run:
+
+```bash
+$ rasa init
+```
+
+The installation wizard will guide you through creating a new project and training an initial model. You can then interact with the basic chatbot that the wizard initializes.
+
+<----------section---------->
+
+**Original Text:**
+Let’s now dive into the structure of our project and understand how to build a
+dialog like you’ve just had. Here is the directory structure you should see in
+the project’s folder:
+├───.rasa
+│   └───cache
+│       ├───...
+├───actions
+│   └───__pycache__
+├───data
+├───models
+└───tests
+The directory we are most interested in is the 
+data
+ directory. It contains the
+files that define the data that is used to train the chatbot’s NLU model. First,
+there’s the 
+nlu.yml
+ file, which contains the intents and examples of user
+utterances that are used to train the intent recognition model. So let’s start
+creating the intents that are used in our dialog. For every intent you want to
+define, you need to provide a name and a list of examples of utterances that
+belong to this intent.
+For our short dialog, we need to understand the user’s greeting, their role
+(parent or student), and their agreement to give permission to their child to
+use the chatbot.
+version
+: 
+"
+3.1
+"
+nlu
+:
+- 
+intent: greet
+  
+examples
+: 
+|
+ - hey - hello - hi
+- 
+intent: parent
+ - I am a parent - Parent - I'm a mom to 12 year old
+- 
+intent: agree
+...
+Pretty straightforward, right? RASA will warn if you have too few examples
+for a particular intent, and recommends at least 7-10 utterance examples per
+intent.
+The next file you should look at is 
+domain.yml
+
+**Enhanced Text:**
+
+Let's explore the structure of the Rasa project to understand how to build such a dialog. The project directory structure typically looks like this:
+
+```
+├───.rasa
+│   └───cache
+│       ├───...
+├───actions
+│   └───__pycache__
+├───data
+├───models
+└───tests
+```
+
+The `data` directory is of particular interest, as it houses files that define the training data for the chatbot's Natural Language Understanding (NLU) model.
+
+The `nlu.yml` file contains the definitions for intents and examples of user utterances used to train the intent recognition model. Each intent requires a name and a list of example utterances.
+
+For our short dialog, we need to recognize the user's greeting, their role (parent or student), and their agreement to provide permission for their child to use the chatbot.
+
+```yaml
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+   - hey
+   - hello
+   - hi
+- intent: parent
+  examples: |
+   - I am a parent
+   - Parent
+   - I'm a mom to 12 year old
+- intent: agree
+  examples: |
+   - yes
+   - I agree
+   - sure
+   - ok
+...
+```
+
+Rasa will issue a warning if there are too few examples for a particular intent, recommending at least 7-10 utterance examples per intent to ensure good model performance. More examples will help the NLU model generalize to unseen user inputs.
+
+The next crucial file to examine is `domain.yml`.
+
+<----------section---------->
+
+**Original Text:**
+ in the main directory. Its first
+section is quite straightforward: it defines the intents from the 
+nlu.yml
+ file
+that the chatbot should be able to understand. Let’s add the intents we just
+defined to this part.
+version
+: 
+"
+3.1
+"
+intents
+:
+  - 
+greet
+  - 
+parent
+  - 
+agree
+...
+The next section includes the action the chatbot can take - in this simplest
+example, the pre-programmed utterances that the chatbot can use in the
+conversation.
+responses
+:
+  
+utter_welcome
+:
+  - 
+text: "Well, hello there. Thanks for checking out Rori, a math tutor chatbot. Chatting with Rori helps students improve their math skills. And it's fun too!"
+  
+utter_parent_or_student
+:
+  - 
+text: "Are you a parent (or guardian) or are you a student?"
+  
+utter_ask_permission
+:
+  - 
+text: "For your child to use Rori, we need permission from the parent or guardian. Do you agree to give your child permission to chat with Rori on this Whatsapp number?"
+  
+utter_permission_granted
+:
+  - 
+text: "Thank you for giving permission for your child to chat with Rori."
+  
+utter_invite_child
+:
+  - 
+text: "When your child is ready to start, please give them this phone and have them type *ready*."
+The 
+domain.yml
+ file concludes with chatbot configuration parameters, that
+we won’t deal with in this book. What’s more exciting, is the file 
+config.yml
+that allows you to configure all the components of your chatbot’s NLU
+pipeline. Let’s look at the pipeline that RASA loads for you by default:
+pipeline
+:
+  - 
+name: WhitespaceTokenizer
+  - 
+name: RegexFeaturizer
+  - 
+name: LexicalSyntacticFeaturizer
+  - 
+name: CountVectorsFeaturizer
+  - 
+name: CountVectorsFeaturizer
+    
+analyzer
+: 
+char_wb
+    
+min_ngram
+: 
+1
+    
+max_ngram
+: 
+4
+  - 
+name: DIETClassifier
+    
+epochs
+: 
+100
+    
+constrain_similarities
+: 
+true
+  - 
+name: EntitySynonymMapper
+  - 
+name: ResponseSelector
+    
+epochs
+: 
+100
+    
+constrain_similarities
+: 
+true
+  - 
+name: FallbackClassifier
+    
+threshold
+: 
+0.3
+    
+ambiguity_threshold
+: 
+0.1
+You can see that your NLU pipeline uses a tokenizer based on whitespaces,
+and quite a few different algorithms (featurizers) to turn the user’s utterance
+into a vector to be classified by the model. The CountVectorsFeaturizes is our
+old friend Bag of Words vectorizer, while others are additional enhancements
+helping the intent recognition (like RegexFeaturizer) or entity detection (like
+LexicalSyntacticFeaturizer).
+
+**Enhanced Text:**
+
+The `domain.yml` file, located in the main project directory, defines the chatbot's domain. The initial section specifies the intents that the chatbot is designed to recognize, referencing the intents defined in `nlu.yml`. Let's incorporate the intents we defined previously:
+
+```yaml
+version: "3.1"
+intents:
+  - greet
+  - parent
+  - agree
+...
+```
+
+The subsequent section outlines the actions the chatbot can perform. In this simple example, these actions consist of pre-programmed utterances:
+
+```yaml
+responses:
+  utter_welcome:
+  - text: "Well, hello there. Thanks for checking out Rori, a math tutor chatbot. Chatting with Rori helps students improve their math skills. And it's fun too!"
+
+  utter_parent_or_student:
+  - text: "Are you a parent (or guardian) or are you a student?"
+
+  utter_ask_permission:
+  - text: "For your child to use Rori, we need permission from the parent or guardian. Do you agree to give your child permission to chat with Rori on this Whatsapp number?"
+
+  utter_permission_granted:
+  - text: "Thank you for giving permission for your child to chat with Rori."
+
+  utter_invite_child:
+  - text: "When your child is ready to start, please give them this phone and have them type *ready*."
+```
+
+The `domain.yml` file also contains chatbot configuration parameters, which are not covered here. More interesting is the `config.yml` file, which allows configuring the various components of the chatbot's NLU pipeline. Here's the default pipeline that Rasa typically loads:
+
+```yaml
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 100
+    constrain_similarities: true
+  - name: FallbackClassifier
+    threshold: 0.3
+    ambiguity_threshold: 0.1
+```
+
+This pipeline utilizes a whitespace-based tokenizer, along with several algorithms (featurizers) that transform user utterances into numerical vectors for model classification. `CountVectorsFeaturizer` represents the familiar Bag of Words vectorizer, while others offer enhancements like `RegexFeaturizer` for intent recognition and `LexicalSyntacticFeaturizer` for entity detection.
+
+<----------section---------->
+
+**Original Text:**
+[
+35
+]
+ Finally, the main classifier RASA uses is
+DIETClassifier, which is a neural network model that combines intent
+recognition and entity detection in a single model.
+Of course, you don’t have to stick with the default components of the
+pipeline. For example, if you want to replace the BoW embeddings, RASA
+also offers to use pretrained embeddings from libraries like spaCy or
+HuggingFace Transformers. You can change single components inside of the
+pipeline, or build your own completely from scratch - RASA documentation
+even provides recommendations on how to create a pipeline based on your
+use case and training set.
+[
+36
+]
+Finally, the last important file we haven’t covered yet is the 
+stories.yml
+ file
+in the 
+data
+ folder. In this file, you can actually define a conversation
+scenario, by chaining intents and actions together. Let’s combine a simple
+story for the dialog we created above:
+- 
+story: onboarding parent
+  
+steps
+:
+  - 
+intent: greet
+  - 
+action: utter_welcome
+  - 
+action: utter_parent_or_student
+  - 
+intent: parent
+  - 
+action: utter_ask_permission
+  - 
+intent: agree
+  - 
+action: utter_permission_granted
+  - 
+action: utter_invite_child
+This story defines one possible conversational sequence between the chatbot
+and the user. If you want the conversation to follow a different route (for
+example, if the user of the phone is a child), you can define another story and
+add it to the 
+stories.yml
+ file. You can also interactively train your bot by
+running 
+rasa interactive
+ command in your shell. That would open a
+training interface that allows you to chat with your bot and define new
+intents, actions, and stories on the fly.
+One question you might be asking yourself - given all the ways people say
+things, how does the conversation engine decide what action to take at every
+turn? And how can you anticipate in advance all the ways that your users will
+use your chatbot? In chapter 10 you learned how LLMs can chat about
+virtually anything. But it’s not good enough to just redirect your users to
+some other corporation’s LLM interface. You will need to be able to integrate
+the chatbot into your existing NLP pipeline, such as the block diagram in
+Figure 12. 1
+. The LangChain package gives you a way to do exactly that.
+
+**Enhanced Text:**
+
+The primary classifier in Rasa is the DIETClassifier, a neural network model integrating both intent recognition and entity detection within a unified model. Footnote 35 in the original text likely links to more details on the NLU pipeline components.
+
+You're not limited to using the default components. Rasa allows replacing the Bag of Words embeddings with pre-trained embeddings from libraries like spaCy or Hugging Face Transformers. Individual components can be modified, or a custom pipeline can be built from scratch, with the Rasa documentation providing recommendations based on your specific use case and training data (Footnote 36).
+
+The `stories.yml` file, located in the `data` folder, is essential for defining conversation scenarios. It chains intents and actions together to create conversational flows. For our example dialog, a simple story might look like this:
+
+```yaml
+- story: onboarding parent
+  steps:
+  - intent: greet
+  - action: utter_welcome
+  - action: utter_parent_or_student
+  - intent: parent
+  - action: utter_ask_permission
+  - intent: agree
+  - action: utter_permission_granted
+  - action: utter_invite_child
+```
+
+This story outlines a single conversational sequence between the chatbot and the user. To accommodate different conversation paths (e.g., if the user is a child), additional stories can be added to the `stories.yml` file.
+
+Rasa also supports interactive training via the `rasa interactive` command, which launches a training interface for chatting with the bot and defining new intents, actions, and stories in real-time.
+
+A key question is how the conversation engine determines the appropriate action at each turn, considering the diverse ways users can express themselves. While Chapter 10 highlights the ability of Large Language Models (LLMs) to converse on virtually any topic, simply redirecting users to an external LLM interface is insufficient. Integrating LLMs into the existing NLP pipeline, as depicted in Figure 12.1, is critical. This is where the LangChain package comes into play.
+
+<----------section---------->
+
+**Original Text:**
+12.5.2 Adding LLMs to your chatbot with LangChain
+This is especially useful in education when you need to inspire students and
+keep them engaged. Teachers do this naturally, by adjusting what they say
+and how they say it based on feedback on how well the student understands
+what they are saying. And teachers think about more than just "delivering a
+message." They must think up new ideas and approaches, on the fly as
+students pose interesting new questions. Inspiring students' curiosity with
+Socratic questions and being responsive to their changing needs is a full-time
+job.
+It is virtually impossible to build a rule-based system that captures all the
+things that teachers do to help students learn and grow. Students' needs are
+too diverse and dynamic. This is why hybrid chatbots that integrate LLMs
+have become the preferred way build production chatbots in virtually every
+domain. An LLM can confidently and convincingly chat with your users on
+virtually any topic. The key is to harness this power smartly so that it doesn’t
+mislead your users, or worse.
+Let’s build a bot with one of the popular tools for creating generative
+chatbots - LangChain.
+[
+37
+]
+ Langchain is not quite a chatbot framework as are
+Rasa or Rapidpro. Rather, it’s a library that abstracts away the particular API
+of the LLM you want to use, allowing you to quickly experiment with
+different models and different approaches to using them. It also uses As there
+is currently no leading open-source framework leveraging LLMs, we hope
+the following section will give you a peek at one approach to building
+generative chatbots.
+LangChain heavily relies on APIs to function and even has a
+Javascript/Typescript SDK that makes it easier to use in web interfaces. This
+makes a lot of sense, as the large language models it uses are too compute-
+intensive and memory-intensive to run on a personal computer, or even
+closed-source. You probably heard of companies like OpenAI, Anthropic,
+and Cohere, that train their own large language models and expose their API
+as a paid service.
+Luckily, due to the power of the open-source community, you don’t need to
+pay for commercial models or own a powerful computer to experiment with
+LLMs. Several large companies that are committed to open-source have
+released the weights of their models to the public, and companies like
+HuggingFace host these models and provide an API to use them.
+For the bot we’ll be building in this chapter, let’s take the latest open-source
+LLM, LLama 2, that you met in Chapter 10. To use Llama 2 from your
+machine, you need a strong enough processor, and a lot of RAM. Serving up
+large language models can be complicated and expensive. One free service
+that makes this a little easier is called Replicate. Replicate.com gives you
+access to open-source models through a web API and only requires you to
+pay if you use it a lot. You can use any of Huggingface’s LLMs within
+Replicate as long as you can find their path and git commit hash.
+For the below code to run properly, you will need to create a GitHub account
+(unfortunately) and then use it to sign into Replicate. You can then create or
+renew your API token under your user profile on Replicate
+(
+https://replicate.com/account/api-tokens
+). Replicate requires you to use
+environment variables to store your API token. You can use
+dotenv.load_dotenv()
+ on your .env or you can set the variable directly
+using 
+os.environ
+, as you see here:
+
+**Enhanced Text:**
+
+**Adding LLMs to Your Chatbot with LangChain**
+
+Integrating Large Language Models (LLMs) into chatbots is particularly beneficial in education, where it's crucial to inspire and engage students. Teachers naturally adapt their communication based on student understanding and respond creatively to novel questions. This requires thinking beyond simply delivering a pre-scripted message. This adaptability and responsiveness is difficult to replicate with purely rule-based systems due to the diverse and dynamic nature of student needs.
+
+Hybrid chatbots, combining rule-based systems with LLMs, have emerged as a preferred approach for building production chatbots. LLMs offer confident and convincing conversation capabilities across a wide range of topics. However, it is imperative to harness this power responsibly, ensuring that users are not misled or harmed by inaccurate information.
+
+Let's explore how to build a chatbot using LangChain, a popular tool for creating generative chatbots (Footnote 37). LangChain is not a chatbot framework in the same vein as Rasa or RapidPro. Instead, it serves as a library that abstracts the specific APIs of LLMs, facilitating experimentation with different models and usage approaches. The Langchain homepage is located at: https://langchain.com/
+
+Given the computational demands of LLMs, LangChain relies heavily on APIs and includes a Javascript/Typescript SDK for easier integration into web interfaces. Companies like OpenAI, Anthropic, and Cohere train and offer API access to their LLMs as a paid service.
+
+However, the open-source community provides alternatives. Several large companies committed to open-source have released the weights of their models publicly. Hugging Face hosts these models and provides APIs for accessing them.
+
+For the chatbot we'll build, we'll utilize Llama 2, a prominent open-source LLM introduced in Chapter 10. Running Llama 2 requires a powerful processor and ample RAM. Replicate.com provides a free service to access open-source models through a web API, charging only for extensive usage. Hugging Face's LLMs are accessible within Replicate, provided you know their path and Git commit hash.
+
+To run the following code, you'll need a GitHub account for signing into Replicate. Then, create or renew your API token under your user profile on Replicate (https://replicate.com/account/api-tokens). Replicate requires storing your API token in an environment variable. You can either use `dotenv.load_dotenv()` on your `.env` file or set the variable directly using `os.environ`.
+
+<----------section---------->
+
+**Original Text:**
+>>> 
+from
+ 
+langchain.llms
+ 
+import
+ 
+Replicate
+>>> os.environ[
+"
+REPLICATE_API_TOKEN
+"
+] = 
+'
+<your_API_key_here>
+'
+>>> llm = Replicate(
+...     model=
+"
+a16z-infra/llama13b-v2-chat:
+"
+ +
+...     
+"
+df7690
+"
+,  # #1
+...     input={
+...         
+"
+temperature
+"
+: 
+0.5
+,
+...         
+"
+max_length
+"
+: 
+100
+,
+...         
+"
+top_p
+"
+: 
+1
+,
+...     })
+Now that you’

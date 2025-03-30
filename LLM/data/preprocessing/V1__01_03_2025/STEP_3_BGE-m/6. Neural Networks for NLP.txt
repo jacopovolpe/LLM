@@ -1,0 +1,223 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 6: Neural Networks for NLP**
+
+*Nicola Capuano and Antonio Greco*
+
+*DIEM – University of Salerno*
+
+<----------section---------->
+
+### Outline
+
+* Recurrent Neural Networks
+* RNN Variants
+* Building a Spam Detector
+* Intro to Text Generation
+* Building a Poetry Generator
+
+<----------section---------->
+
+### Recurrent Neural Networks
+
+#### Neural Networks and NLP
+
+Neural networks are widely used in text processing. A limitation of traditional feedforward networks is their lack of memory.  Each input is processed independently, without retaining any information from previous inputs.  This means that when processing text, a feedforward network must receive the entire sequence of words at once, treating the entire text as a single data point. This approach is commonly used with Bag-of-Words (BoW) or TF-IDF vectors, where text is represented as a fixed-length vector.  Another similar approach involves averaging the word embeddings of all the words in a text. However, these methods lose the sequential information inherent in language.
+
+#### Neural Networks with Memory
+
+Human text comprehension relies heavily on sequential processing and memory.  When reading, we process sentences and words one by one, retaining a memory of what we have read previously. This allows us to understand context and build a mental model of the text's meaning, continuously updating this model as new information is encountered.  Recurrent Neural Networks (RNNs) aim to mimic this process.  They iterate over the elements of a sequence (e.g., words in a text represented as word embeddings), maintaining an internal state that stores information about the preceding sequence. This “state” enables the network to consider past information when processing current input.
+
+
+#### Recurrent Neural Networks (Structure)
+
+RNNs utilize feedforward network layers (typically represented as circles in diagrams) which are composed of one or more neurons. The key difference from standard feedforward networks is the recurrent connection: the output of the hidden layer at each time step is not only sent to the output layer but is also fed back as input to the hidden layer at the *next* time step. This feedback loop allows the network to maintain its internal state and process sequential information.
+
+#### Unrolling the RNN
+
+"Unrolling" an RNN is a visualization technique that helps illustrate its operation over time.  Each time step is represented as a separate copy of the RNN cell, processing a new element in the sequence.  It is crucial to understand that the weights of the connections within the RNN cell are shared across all time steps. This weight sharing is a fundamental characteristic of RNNs, allowing them to learn general patterns from sequences of varying lengths.
+
+#### Inside the RNN
+
+At each time step *t*, the RNN receives two inputs: an input vector (representing the current word or token in the sequence) and the hidden vector (the network’s state) from the previous time step (t-1).  For the very first input (t=0), there is no previous hidden state, so the initial hidden state is typically initialized to a vector of zeros.  Inside the RNN cell, trainable weight matrices connect the input to the hidden layer, the hidden layer to the output layer, and the hidden layer to itself (this last connection constitutes the recurrent connection). These weight matrices are learned during training.
+
+#### Using RNNs with Text
+
+An RNN processes text sequentially, one token at a time. The output from each time step, representing the network’s understanding of the sequence up to that point, is fed back into the network as input for the next time step.  This mechanism allows the network to maintain a "memory" of the preceding context.  For tasks like text classification, typically only the final output of the RNN, after processing the entire sequence, is used for making the prediction.
+
+
+#### RNN Training
+
+RNNs are trained using a modified version of backpropagation called Backpropagation Through Time (BPTT). In BPTT, the error is calculated based on the final output of the network and then propagated back through all time steps, updating the shared weights at each step.  This allows the network to learn how its decisions at earlier time steps affected the final output.
+
+
+#### What are RNNs Good For?
+
+RNNs are well-suited for a variety of sequence processing tasks, which can be broadly categorized as:
+
+* **One-to-Many:**  One input generates a sequence of outputs (e.g., image captioning, music generation).
+* **Many-to-One:** A sequence of inputs produces a single output (e.g., sentiment classification, topic categorization).
+* **Many-to-Many:** A sequence of inputs generates a sequence of outputs (e.g., machine translation, speech recognition).
+
+A significant advantage of RNNs is their ability to handle variable-length text sequences naturally.  This eliminates the need for padding shorter sequences or truncating longer ones, preserving the integrity of the input data.
+
+
+#### RNNs for Text Generation
+
+When using RNNs for text generation, the output at each time step is significant. It represents the next predicted word in the sequence. The error is calculated and backpropagated at each step, influencing the network’s weights and enabling it to learn the statistical relationships between words in the training corpus.
+
+
+<----------section---------->
+
+
+#### RNN Variants
+
+Several variants of RNNs have been developed to address limitations and improve performance:
+
+* **Bidirectional RNN:** Processes the sequence both forward and backward.  The outputs from the forward and backward passes are concatenated at each time step.  This allows the network to capture information from both past and future context, which can be beneficial for tasks like named entity recognition and part-of-speech tagging.
+* **LSTM (Long Short-Term Memory):**  Addresses the vanishing gradient problem, a common issue in training RNNs where gradients become very small during backpropagation, hindering learning. LSTMs introduce a memory cell and gates (input, output, and forget gates) to control information flow and maintain long-term dependencies.
+* **GRU (Gated Recurrent Unit):** A simpler alternative to LSTM, also designed to mitigate the vanishing gradient problem. GRUs use update and reset gates to control the flow of information. They often achieve comparable performance to LSTMs with fewer parameters, making them computationally more efficient.
+* **Stacked LSTM/GRU:** Multiple LSTM or GRU layers can be stacked on top of each other. This allows the network to learn hierarchical representations of the sequence, with higher layers capturing more complex patterns.
+
+
+#### Using Ragged Tensors
+
+Ragged tensors are data structures designed to efficiently handle variable-length sequences, eliminating the need for padding. TensorFlow and similar deep learning frameworks provide support for ragged tensors. PyTorch offers similar functionality through Packed Sequences. These structures optimize memory usage and computational efficiency during training and inference.
+
+
+<----------section---------->
+
+### Building a Spam Detector
+
+This section requires an implementation of a spam detector using RNNs, ideally with code examples.  The original text does not provide details on this implementation.  A basic example using a simple RNN or LSTM to classify emails as spam or not spam based on their text content would be beneficial.
+
+```python
+# Example (Illustrative -  Requires further development)
+import torch
+import torch.nn as nn
+
+# Define the RNN model
+class SpamDetector(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.rnn = nn.LSTM(embedding_dim, hidden_dim)
+        self.fc = nn.Linear(hidden_dim, output_dim)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, text, text_lengths):
+        embedded = self.embedding(text)
+        packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, text_lengths, enforce_sorted=False)
+        packed_output, (hidden, cell) = self.rnn(packed_embedded)
+        output, output_lengths = nn.utils.rnn.pad_packed_sequence(packed_output)
+        hidden = hidden[-1, :, :] # get last hidden state
+        output = self.fc(hidden)
+        return self.sigmoid(output)
+
+# Example usage (Illustrative)
+vocab_size = 10000  # Replace with actual vocabulary size
+embedding_dim = 100
+hidden_dim = 256
+output_dim = 1 # Binary classification (spam/not spam)
+
+model = SpamDetector(vocab_size, embedding_dim, hidden_dim, output_dim)
+
+# ...  (Training loop and data preprocessing would go here)
+```
+
+<----------section---------->
+
+
+
+### Intro to Text Generation
+
+#### Generative Models
+
+Generative models are a class of machine learning models designed to learn the underlying distribution of a dataset and generate new data points that resemble the training data. Unlike discriminative models, which are used for classification or regression tasks, generative models are concerned with creating original data.  RNNs and Transformers are prominent examples of generative models used in NLP.
+
+
+#### Applications
+
+Text generation has a wide range of applications in various fields:
+
+* **Machine Translation:**  Generating text in a target language given text in a source language.
+* **Question Answering:** Generating answers to given questions.
+* **Automatic Summarization:**  Generating concise summaries of longer texts.
+* **Text Completion:**  Predicting the next words in a given text prompt.
+* **Dialogue Systems:** Generating responses in a conversational setting.
+* **Creative Writing:**  Generating poems, scripts, stories, and other forms of creative text.
+
+
+
+#### Language Model
+
+A language model (LM) assigns probabilities to sequences of words. It predicts the probability of the next word in a sequence given the preceding words.  This allows the model to capture the statistical structure of language, learning the likelihood of different word combinations. New text sequences are generated by sampling from this probability distribution, starting with a seed text and iteratively adding predicted tokens.
+
+
+#### LM Training
+
+An RNN-based language model is trained by feeding it sequences of tokens. At each time step, the RNN receives a token and predicts the next one in the sequence. The prediction is compared with the actual next token in the training data, and the error is backpropagated to update the network’s weights.  This process is repeated for each token in each sequence in the training corpus.
+
+
+
+#### Sampling
+
+Generative models employ sampling techniques to introduce randomness and diversity into the generated text.  Instead of always selecting the word with the highest predicted probability, the model samples from the probability distribution, allowing for less likely but potentially more creative or interesting word choices.
+
+
+
+#### Temperature
+
+Temperature (T) is a hyperparameter that controls the randomness of the sampling process.  It modifies the probability distribution before sampling:
+
+`q_i = exp(log(p_i) / T) / sum(exp(log(p_j) / T))`
+
+where `p_i` is the original probability of the i-th word and `q_i` is the modified probability after applying the temperature.
+
+* **Lower Temperatures (T < 1):** Make the model more deterministic, favoring words with higher probabilities. This results in more predictable and less diverse text.
+* **Higher Temperatures (T > 1):** Increase randomness and surprise, allowing the model to sample less likely words. This leads to more creative and diverse but potentially less coherent text.
+
+
+
+<----------section---------->
+
+### Building a Poetry Generator
+
+
+#### Leopardi Poetry Generator
+
+This example uses a corpus of Giacomo Leopardi's poetry to train a character-level language model.  This means that the RNN will process the text one character at a time, learning the statistical relationships between characters in Leopardi's writing style.
+
+#### Extract the Training Samples
+
+The corpus is divided into sequences of characters of a fixed length (maxlen). Each sequence serves as input to the RNN, and the next character in the corpus following the sequence is the target output.
+
+
+#### Build and Train the Model
+
+An LSTM model is trained to predict the next character in the sequence.  The choice of LSTM is motivated by its ability to capture long-term dependencies in sequential data, which is relevant for modeling the complexities of poetic language.
+
+```python
+# Example (Illustrative - Requires further development)
+import torch
+import torch.nn as nn
+
+class PoetryGenerator(nn.Module):
+  # ... (Define LSTM model similar to SpamDetector, but for character-level input)
+
+# ... (Training loop and data preprocessing, similar to SpamDetector example)
+```
+
+#### Generate a new Poetry
+
+Helper functions sample from the model's predictions at each character step and concatenate the sampled characters to generate new text, starting from a seed character or sequence. The temperature parameter controls the randomness of the generated poetry, as explained earlier.
+
+
+<----------section---------->
+
+
+### References
+
+* Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python (Chapters 8 and 9)

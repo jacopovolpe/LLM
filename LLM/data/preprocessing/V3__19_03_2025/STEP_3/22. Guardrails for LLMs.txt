@@ -1,0 +1,198 @@
+**Natural Language Processing and Large Language Models**
+
+Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering)
+Lesson 22
+Guardrails for LLMs
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+This material introduces the concept of guardrails for Large Language Models (LLMs), a crucial aspect of ensuring their safe and ethical deployment in real-world applications. The presentation is structured for a Computer Engineering master's level course, focusing on the importance of regulating LLM behavior to prevent harmful outputs and align responses with desired guidelines.
+
+Outline:
+*   Adding guardrails to LLMs
+*   Techniques for adding guardrails
+*   Frameworks for implementing guardrails
+
+<----------section---------->
+
+**Adding Guardrails to LLMs**
+
+**Guardrails:**
+
+Guardrails are mechanisms or policies implemented to control and regulate the behavior of Large Language Models (LLMs). The primary goal of these guardrails is to ensure that LLM outputs are safe, accurate, and appropriate for the context in which they are used. This involves preventing the generation of harmful, biased, or factually incorrect content, and also aligning the LLM's responses with established ethical and operational guidelines. By implementing guardrails, developers can enhance trust and reliability in LLMs, making them more suitable for deployment in sensitive real-world applications.
+
+They can:
+*   Prevent harmful, biased, or inaccurate outputs.
+*   Align responses with ethical and operational guidelines.
+*   Build trust and reliability for real-world applications.
+
+The significance of guardrails lies in the potential for LLMs to generate problematic content if left unchecked. Without these safeguards, LLMs might produce outputs that are offensive, perpetuate stereotypes, or disseminate misinformation. The implementation of guardrails is thus essential for mitigating these risks and ensuring that LLMs are used responsibly and ethically.
+
+Examples of Guardrails:
+*   Blocking harmful content
+*   Restricting outputs to specific domains.
+
+<----------section---------->
+
+**Types of Guardrails:**
+
+Guardrails can be categorized into several distinct types, each addressing specific aspects of LLM behavior:
+
+*   **Safety Guardrails:** These guardrails are designed to prevent the generation of content that is harmful or offensive. This includes blocking hate speech, violent content, and any material that could be considered discriminatory or abusive.
+*   **Domain-Specific Guardrails:** Domain-specific guardrails restrict the LLM's responses to particular areas of knowledge. This is useful in applications where the LLM should only provide information related to a specific subject, such as medical advice or legal information.
+*   **Ethical Guardrails:** Ethical guardrails focus on preventing bias, misinformation, and ensuring fairness in the LLM's outputs. These guardrails are crucial for maintaining ethical standards and avoiding the perpetuation of harmful stereotypes.
+*   **Operational Guardrails:** Operational guardrails are implemented to align LLM outputs with specific business or user objectives. This might involve limiting the length of responses, ensuring that the language used is appropriate for the target audience, or directing the LLM to focus on particular topics.
+
+<----------section---------->
+
+**Techniques for Adding Guardrails**
+
+**Techniques for adding guardrails:**
+*   Rule based filters
+*   Fine tuning with custom data
+*   Prompt Engineering
+*   External validation layers
+*   Real-time monitoring and feedback
+
+Several techniques can be employed to implement guardrails in LLMs. These techniques vary in complexity and effectiveness, and often a combination of methods is used to create robust safeguards.
+
+<----------section---------->
+
+**Rule-Based Filters:**
+
+Rule-based filters involve creating predefined rules to block or modify certain outputs from the LLM. These rules are typically based on specific keywords, phrases, or patterns that are considered undesirable.
+
+Examples:
+*   Keyword blocking (e.g., offensive terms).
+*   Regex-based patterns for filtering sensitive information.
+
+Rule-based filters are relatively simple to implement and can be very efficient for basic content filtering. They are particularly useful for blocking obvious instances of harmful or inappropriate language. However, they may not be effective against more subtle or nuanced forms of problematic content. This approach can also be used to specify general filter rules using languages similar to regular expressions through different open source tools.
+
+<----------section---------->
+
+**Fine-tuning with Custom Data:**
+
+Fine-tuning involves training the LLM on specific, curated datasets that are aligned with the desired guidelines. By adjusting the model's weights during this process, developers can influence the LLM to produce outputs that are more consistent with ethical and operational standards.
+
+Examples:
+*   Fine-tune for medical advice to restrict responses to accurate and safe recommendations.
+*   Fine-tune for question answering on the topics of the course.
+
+Fine-tuning is a more sophisticated technique than rule-based filters, as it involves modifying the LLM's underlying behavior. This can be particularly effective for ensuring that the LLM provides accurate and reliable information in specific domains. Also, it may help to make the system provide high reliability for use cases such as preventing providing legal or medical advice.
+
+<----------section---------->
+
+**Prompt Engineering:**
+
+Prompt engineering involves crafting or refining prompts to guide the LLM's behavior within desired boundaries. By carefully designing the input prompts, developers can influence the LLM to generate responses that are more aligned with ethical and operational guidelines.
+
+Examples:
+*   "Respond only with factual, non-controversial information."
+*   "Avoid speculative or unverifiable statements."
+
+Prompt engineering can be a powerful technique for steering the LLM towards desired outputs. However, it requires a deep understanding of how the LLM responds to different types of prompts, and it may not be effective in all situations.
+
+<----------section---------->
+
+**External Validation Layers:**
+
+External validation layers involve using additional systems or APIs to post-process the LLM's outputs. These systems can perform a variety of checks, such as toxicity detection or fact-checking, to ensure that the LLM's responses meet certain standards.
+
+Examples:
+*   Toxicity detection APIs.
+*   Fact-checking models.
+
+External validation layers allow for modular and scalable implementation of guardrails. This approach can be particularly useful for integrating advanced content moderation tools into the LLM workflow.
+
+<----------section---------->
+
+**Real-Time Monitoring and Feedback:**
+
+Real-time monitoring and feedback involve continuously monitoring the LLM's outputs for unsafe or incorrect content. Problematic outputs can be flagged or blocked in real-time, preventing them from being displayed to users.
+
+Tools:
+*   Human-in-the-loop systems.
+*   Automated anomaly detection.
+
+Real-time monitoring and feedback can be particularly effective for identifying and addressing issues as they arise. Human-in-the-loop systems involve having human moderators review the LLM's outputs, while automated anomaly detection systems use algorithms to identify unusual or potentially problematic content.
+
+<----------section---------->
+
+**Best Practices:**
+
+*   Combine multiple techniques for robust safeguards.
+*   Example: Rule-based filtering + External validation + Fine-tuning.
+
+To create robust safeguards for LLMs, it is often necessary to combine multiple techniques. For example, a system might use rule-based filters to block obvious instances of harmful language, external validation layers to check for toxicity and misinformation, and fine-tuning to align the LLM's behavior with ethical guidelines.
+
+<----------section---------->
+
+**Frameworks for Implementing Guardrails**
+
+Frameworks for implementing guardrails:
+*   The existing frameworks for implementing guardrails offer:
+    *   Easy integration with LLM APIs.
+    *   Predefined and customizable rulesets.
+*   Popular tools are:
+    *   Guardrails AI: A library for implementing safeguards.
+    *   LangChain: For chaining prompts and filtering outputs.
+    *   OpenAI Moderation: A prebuilt API to detect unsafe content.
+
+Several frameworks and tools are available to assist developers in implementing guardrails for LLMs. These tools offer features such as easy integration with LLM APIs and predefined, customizable rulesets.
+
+<----------section---------->
+
+**Guardrails AI:**
+*   [https://www.guardrailsai.com/](https://www.guardrailsai.com/)
+*   Validation: Ensures outputs are within specified guidelines.
+*   Formatting: Controls the output structure.
+*   Filters: Removes or blocks unsafe content.
+
+Guardrails AI is a library specifically designed for implementing safeguards in LLMs. It offers features such as validation to ensure that outputs meet specified guidelines, formatting to control the structure of the output, and filters to remove or block unsafe content. The Guardrails-AI package uses a new language called "RAIL" to specify guardrail rules. It is suggested that the RAIL language can be used to build a retrieval-augmented LLM that doesn’t fake its answers, falling back to an "I don’t know" response when the retrieved text fails to contain the answer to the question. However, it seems that the only validation filter that guardrails-ai seems to be doing is to check the format of the output.
+
+Example using Guardrails AI:
+```python
+from guardrails import Guard
+
+guard = Guard(rules="rules.yaml")
+response = guard(llm("Provide medical advice"))
+```
+
+<----------section---------->
+
+**Langchain:**
+
+*   Chains prompts with checks and filters.
+*   Verifies outputs against predefined criteria.
+*   Integrable with Guardrails:
+    *   [https://www.guardrailsai.com/docs/integrations/langchain](https://www.guardrailsai.com/docs/integrations/langchain)
+
+Langchain is a framework for chaining prompts and filtering outputs from LLMs. It allows developers to verify outputs against predefined criteria and can be integrated with Guardrails AI for enhanced safeguards. LangChain is better off for using some of the more standard Python templating systems: f-strings (format strings) or jinja2 templates.
+
+Example using Langchain:
+```python
+from langchain.prompts import PromptTemplate
+
+prompt = PromptTemplate(
+    input_variables=["question"],
+    template="Answer safely and factually: {question}"
+)
+```
+
+<----------section---------->
+
+**OpenAI Moderation:**
+
+OpenAI Moderation is a prebuilt API designed to detect unsafe content in LLM outputs. It provides a simple way to integrate content moderation into LLM applications.
+
+<----------section---------->
+
+**Try it yourself:**
+
+*   Evaluate which are the techniques to add guardrails that are more suited for your purposes
+*   A possible suggestion may be to proceed by incrementally add complexity to the guardrails if you are not able to achieve a satisfying result with a simpler approach
+*   Give a careful look to the documentation of the existing frameworks
+*   Study similar examples that are available in the documentation of existing frameworks
+*   Try to apply guardrails to your project
+
+To further harden NLP software and decrease the probability of LLM generating toxic text, users are encouraged to define bug bounties to reward users when they find a bug in the LLM or a gap in the guardrails. Conventional machine learning classifiers are a great option for detecting malicious intent or inappropriate content in LLM outputs, mainly when the bot must be prevented from providing regulated legal or medical advice. SpaCy's Matcher class, ReLM patterns, Eleuther AI’s LM evaluation harness package or the Guardrails-AI "rail" language are also useful tools to help specify general filter rules. Finally, red teaming can help building up a dataset of edge cases efficiently and improve the reliability of NLP pipeline quickly.

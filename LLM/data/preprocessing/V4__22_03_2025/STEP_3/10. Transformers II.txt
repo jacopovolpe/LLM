@@ -1,0 +1,310 @@
+### Lesson 10: Transformers II
+
+## Outline
+
+*   Multi-Head Attention
+*   Encoder Output
+*   Decoder
+*   Masked Multi-Head Attention
+*   Encoder-Decoder Attention
+*   Output
+*   Transformer’s pipeline
+
+This outline provides a structured overview of the topics discussed in the lesson. It begins with multi-head attention, a crucial component of the Transformer architecture, and then progresses through the encoder and decoder structures. Masked multi-head attention, encoder-decoder attention, and the final output layers are also covered, culminating in a comprehensive view of the Transformer pipeline. Each of these components plays a vital role in the model's ability to process and generate natural language.
+
+<----------section---------->
+
+## Multi-head attention
+
+### Multi-head Attention
+*   By using different self-attention heads, it is possible to encode different meanings of the context.
+*   Several scaled-dot product attention computations are performed in parallel (using different weight matrices).
+*   The results are concatenated row-by-row, forming a larger matrix (with the same number of rows m).
+*   This matrix is finally multiplied by a final weight matrix.
+*   This scheme is called multi-head attention.
+
+Multi-head attention enhances the model's capacity to capture diverse relationships within the input data. By employing multiple 'attention heads', the model can simultaneously focus on different aspects of the input, encoding richer contextual information. Each head performs a scaled-dot product attention calculation in parallel, using distinct weight matrices. The outputs from each head are then concatenated, creating a larger matrix that combines the diverse perspectives. Finally, this concatenated matrix is transformed by a final weight matrix, integrating the different attention perspectives into a unified representation.
+
+<----------section---------->
+
+### Multi-head Attention
+Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this possibility. The outputs of the heads are concatenated and then are multiplied by an additional weight matrix to combine several representations at the same network level.
+
+The benefit of multi-head attention lies in its ability to prevent the averaging effect that occurs in single-head attention. By attending to various representation subspaces, the model captures more nuanced relationships between words and their context. The subsequent concatenation and matrix multiplication steps serve to combine these diverse representations, enhancing the model's understanding of the input sequence at each layer. This contrasts with single-head attention, where crucial distinctions could be obscured by simply averaging the representations.
+
+<----------section---------->
+
+## Add & Norm
+
+### Add (skip connections) & Norm
+Input Normalization(Z)
+* Mean 0, Std dev 1
+* Stabilizes training
+* Regularization effect
+
+Add -> Residuals
+* Avoid vanishing gradients
+* Train deeper networks
+
+The "Add & Norm" component refers to the addition of skip (or residual) connections and normalization layers within the Transformer architecture. Input normalization, typically involving setting the mean to 0 and standard deviation to 1, stabilizes the training process and provides a regularization effect, improving generalization. The "Add" operation incorporates residuals or skip connections, which directly pass the input of a layer to its output. This technique helps to avoid vanishing gradients, facilitating the training of deeper networks and enabling the model to learn more complex representations.
+
+<----------section---------->
+
+## Feed Forward
+
+### Feed Forward
+Non Linearity. Complex Relationships. Learn from each other.
+
+FFN (2 layer MLP)
+
+The Feed Forward Network (FFN) introduces non-linearity into the Transformer model, enabling it to learn complex relationships within the data. This module typically consists of a two-layer Multi-Layer Perceptron (MLP). The non-linearity allows the model to capture intricate patterns and dependencies that linear models cannot represent. The two layers enable the neurons to learn from each other, further enhancing the model's ability to extract meaningful features.
+
+<----------section---------->
+
+## Transformer’s Encoder
+
+### Transformer’s Encoder
+Used for computing a representation of the input sequence. Uses an additive positional encoding to deal with the order-agnostic nature of the self-attention. Uses residual connection to foster the gradients flow. Adopts normalization layers to stabilize the network training. Position-Wise Feed-Forward layer to add non-linearity. Applied to each sequence element independently. Since each encoder produces an output whose dimensionality is the same of the input, it is possible to stack an arbitrary number of encoder’s blocks. The output of the first block is fed to the second block (no word embeddings) and so on.
+
+The Transformer's encoder is designed to generate a contextualized representation of the input sequence. To address the order-agnostic nature of the self-attention mechanism, positional encodings are added to the input embeddings. These encodings provide information about the position of each word in the sequence. Residual connections facilitate gradient flow during training, and normalization layers enhance training stability. A position-wise feed-forward network introduces non-linearity. Because the output of each encoder block has the same dimensionality as its input, encoder blocks can be stacked. The output of one encoder block is fed to the next, allowing for the creation of deep networks.
+
+<----------section---------->
+
+## Decoder
+
+### Decoder
+The Decoder uses the information contained in the intermediate representation *z*<sub>1</sub>,…,*z*<sub>*t*</sub> to generate the output sequence *y*<sub>1</sub>,…,*y*<sub>*m*</sub>. The Decoder works sequentially; at each step the decoder uses *z*<sub>1</sub>,…,*z*<sub>*t*</sub> and *y*<sub>1</sub>,…,*y*<sub>*i*-1</sub> to generate *y*<sub>*i*</sub>.
+
+The decoder's primary function is to generate the output sequence *y*<sub>1</sub>,…,*y*<sub>*m*</sub> by leveraging the intermediate representation *z*<sub>1</sub>,…,*z*<sub>*t*</sub> produced by the encoder. The decoder operates sequentially, generating one element of the output sequence at a time. At each step *i*, the decoder uses the encoder's output *z*<sub>1</sub>,…,*z*<sub>*t*</sub> and the previously generated elements of the output sequence *y*<sub>1</sub>,…,*y*<sub>*i*-1</sub> to predict the next element *y*<sub>*i*</sub>. This sequential process allows the model to capture dependencies between the output elements.
+
+<----------section---------->
+
+### Decoder
+The decoder is made of a sequence of decoder blocks having the same structure. The original paper used 6 decoder blocks. The decoder blocks, in addition to the same modules used in the encoder block, add an attention module where the keys and values are taken from the encoder’s intermediate representation *z*<sub>1</sub>,…,*z*<sub>*t*</sub>. Also, the self-attention module is slightly modified so as to ensure that the query at position i only uses the values at positions 1,…,i. On top of the last decoder block, the decoder adds an additional linear layer and a softmax activation function, for computing the probability of the next output element *y*<sub>*i*</sub>. Thus, the last layers has a number of neurons corresponding to the cardinality of the output set.
+
+Similar to the encoder, the decoder consists of a stack of identical decoder blocks. The original Transformer model utilized 6 such blocks. Each decoder block incorporates the same modules as the encoder block (multi-head attention, feed-forward networks, etc.) and also an attention module that attends to the encoder's output *z*<sub>1</sub>,…,*z*<sub>*t*</sub>. The self-attention mechanism within the decoder is modified to prevent the query at position *i* from attending to future positions (1,…,i only), ensuring causality in the output sequence generation. At the top of the stack, a linear layer and softmax function compute the probability distribution over the output vocabulary, predicting the next output element *y*<sub>*i*</sub>. The linear layer’s size matches the output vocabulary size.
+
+<----------section---------->
+
+## Masked Multi-Head Attention
+Masked Multi-Head Attention. Outputs at time T should only pay attention to outputs until time T-1. Mask the available attention values.
+*R<sup>IxT</sup>*
+*R<sup>TxT</sup>*
+Attention Mask: M
+Masked Attention Values
+
+Masked multi-head attention is a crucial modification to the standard multi-head attention mechanism, particularly within the decoder. Its purpose is to ensure that when generating an output sequence, the model only attends to previous outputs. At time *T*, the output should only depend on inputs up to time *T-1*. This is achieved by masking the attention values, preventing the model from "peeking" into the future. *R<sup>IxT</sup>* and *R<sup>TxT</sup>* likely refer to matrices involved in the attention calculation, and "M" represents the attention mask applied to the attention values. Masked attention ensures causality.
+
+<----------section---------->
+
+## Encoder Decoder Attention
+Keys from Encoder Outputs. Queries from Decoder Inputs. Values from Encoder Outputs. Every decoder block receives the same FINAL encoder output.
+
+Encoder-decoder attention bridges the encoder and decoder components of the Transformer model. In this mechanism, the keys and values are derived from the final encoder output, while the queries come from the decoder inputs. In other words, the decoder uses its current state (queries) to attend to the entire encoded input sequence (keys and values), allowing it to extract relevant information. An important aspect is that all decoder blocks receive the *same* final encoder output, enabling consistent information flow throughout the decoding process.
+
+<----------section---------->
+
+## Output
+
+### Output
+Linear. Linear weights are often tied with model input embedding matrix. Softmax.
+
+The output stage of the Transformer model typically involves a linear layer followed by a softmax function. The linear layer projects the decoder's final output into a vector space representing the output vocabulary. Interestingly, the weights of this linear layer are sometimes tied to the input embedding matrix, reducing the number of parameters and potentially improving generalization. The softmax function then transforms this vector into a probability distribution over the output vocabulary, enabling the model to predict the most likely next token.
+
+<----------section---------->
+
+## Transformer’s pipeline
+Decoding time step.
+
+ENCODER - DECODER.
+
+https://poloclub.github.io/transformer-explainer/
+
+The Transformer's pipeline encapsulates the entire process of sequence-to-sequence transformation, from encoding the input to decoding the output. At each decoding time step, the decoder utilizes the encoded representation and the previously generated outputs to predict the next element in the sequence. The core components are the encoder and decoder, working together to translate or transform the input sequence into the desired output sequence. The provided link (https://poloclub.github.io/transformer-explainer/) offers a visual and interactive explanation of the Transformer architecture, which enhances understanding of the pipeline's inner workings.
+
+<----------section---------->
+
+**Additional Context:**
+
+The additional context elaborates on customizing the Transformer model using the PyTorch library. Specifically, it focuses on extending the `torch.nn.TransformerDecoderLayer` and `torch.nn.TransformerDecoder` classes to output attention weights from the multi-head self-attention layer. It also touches on extending the `torch.nn.Transformer` class to build a translation model and the importance of positional encoding and mask preparation. The context includes code snippets for constructing custom decoder layers and decoders in PyTorch, as well as for setting up a custom translation Transformer model.
+
+```python
+from torch import Tensor
+from typing import Optional, Any
+import torch.nn as nn
+import math
+from einops import rearrange
+import torch
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+PAD_IDX = 1
+VOCAB_SIZE = 10000
+
+class CustomDecoderLayer(nn.TransformerDecoderLayer):
+    def forward(
+        self,
+        tgt: Tensor,
+        memory: Tensor,
+        tgt_mask: Optional[Tensor] = None,
+        memory_mask: Optional[Tensor] = None,
+        tgt_key_padding_mask: Optional[Tensor] = None,
+    ) -> Tensor:
+        """
+        Like decode but returns multi-head attention weights.
+        """
+        tgt2 = self.self_attn(
+            tgt, tgt, tgt, attn_mask=tgt_mask, key_padding_mask=tgt_key_padding_mask
+        )[0]
+        tgt = tgt + self.dropout1(tgt2)
+        tgt = self.norm1(tgt)
+        tgt2, attention_weights = self.multihead_attn(
+            tgt, memory, memory,  # #1
+            attn_mask=memory_mask,
+            key_padding_mask=None, #mem_key_padding_mask, # typo
+            need_weights=True
+        )
+        tgt = tgt + self.dropout2(tgt2)
+        tgt = self.norm2(tgt)
+        tgt2 = self.linear2(
+            self.dropout(self.activation(self.linear1(tgt))))
+        tgt = tgt + self.dropout3(tgt2)
+        tgt = self.norm3(tgt)
+        return tgt, attention_weights  # #2
+
+class CustomDecoder(nn.TransformerDecoder):
+    def __init__(self, decoder_layer, num_layers, norm=None):
+        super().__init__(
+            decoder_layer, num_layers, norm)
+
+    def forward(
+        self,
+        tgt: Tensor,
+        memory: Tensor,
+        tgt_mask: Optional[Tensor] = None,
+        memory_mask: Optional[Tensor] = None,
+        tgt_key_padding_mask: Optional[Tensor] = None
+    ) -> Tensor:
+        """
+        Like TransformerDecoder but cache multi-head attention
+        """
+        self.attention_weights = []  # #1
+        output = tgt
+        for mod in self.layers:
+            output, attention = mod(
+                output, memory, tgt_mask=tgt_mask,
+                memory_mask=memory_mask,
+                tgt_key_padding_mask=tgt_key_padding_mask)
+            self.attention_weights.append(attention) # #2
+
+        if self.norm is not None:
+            output = self.norm(output)
+
+        return output
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model=512, dropout=0.1, max_len=5000):
+        super().__init__()
+        self.dropout = nn.Dropout(p=dropout)
+        self.d_model = d_model
+        self.max_len = max_len
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0).transpose(0, 1)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        x = x + self.pe[:x.size(0), :]
+        return self.dropout(x)
+
+class TranslationTransformer(nn.Transformer):
+    def __init__(
+        self,
+        device=DEVICE,
+        src_vocab_size: int = VOCAB_SIZE,
+        src_pad_idx: int = PAD_IDX,
+        tgt_vocab_size: int = VOCAB_SIZE,
+        tgt_pad_idx: int = PAD_IDX,
+        max_sequence_length: int = 100,
+        d_model: int = 512,
+        nhead: int = 8,
+        num_encoder_layers: int = 6,
+        num_decoder_layers: int = 6,
+        dim_feedforward: int = 2048,
+        dropout: float = 0.1,
+        activation: str = "relu"
+    ):
+
+        decoder_layer = CustomDecoderLayer(
+            d_model, nhead, dim_feedforward,
+            dropout, activation)
+        decoder_norm = nn.LayerNorm(d_model)
+        decoder = CustomDecoder(
+            decoder_layer, num_decoder_layers,
+            decoder_norm)
+
+        super().__init__(
+            d_model=d_model, nhead=nhead,
+            num_encoder_layers=num_encoder_layers,
+            num_decoder_layers=num_decoder_layers,
+            dim_feedforward=dim_feedforward,
+            dropout=dropout, custom_decoder=decoder)
+
+        self.src_pad_idx = src_pad_idx
+        self.tgt_pad_idx = tgt_pad_idx
+        self.device = device
+
+        self.src_emb = nn.Embedding(
+            src_vocab_size, d_model)
+        self.tgt_emb = nn.Embedding(tgt_vocab_size, d_model)
+
+        self.pos_enc = PositionalEncoding(
+            d_model, dropout, max_sequence_length)
+        self.linear = nn.Linear(
+            d_model, tgt_vocab_size)
+
+    def _make_key_padding_mask(self, t, pad_idx):
+        mask = (t == pad_idx).to(self.device)
+        return mask
+
+    def prepare_src(self, src, src_pad_idx):
+        src_key_padding_mask = self._make_key_padding_mask(
+            src, src_pad_idx)
+        src = rearrange(src, 'N S -> S N')
+        src = self.pos_enc(self.src_emb(src)
+            * math.sqrt(self.d_model))
+        return src, src_key_padding_mask
+
+    def prepare_tgt(self, tgt, tgt_pad_idx):
+        tgt_key_padding_mask = self._make_key_padding_mask(
+            tgt, tgt_pad_idx)
+        tgt = rearrange(tgt, 'N T -> T N')
+        tgt_mask = self.generate_square_subsequent_mask(
+            tgt.shape[0]).to(self.device)
+        tgt = self.pos_enc(self.tgt_emb(tgt)
+            * math.sqrt(self.d_model))
+        return tgt, tgt_key_padding_mask, tgt_mask
+
+    def forward(self, src, tgt):
+        src, src_key_padding_mask = self.prepare_src(
+            src, self.src_pad_idx)
+        tgt, tgt_key_padding_mask, tgt_mask = self.prepare_tgt(
+            tgt, self.tgt_pad_idx)
+        memory_key_padding_mask = src_key_padding_mask.clone()
+        output = super().forward(
+            src, tgt, tgt_mask=tgt_mask,
+            src_key_padding_mask=src_key_padding_mask,
+            tgt_key_padding_mask=tgt_key_padding_mask,
+            memory_key_padding_mask=memory_key_padding_mask)
+        output = rearrange(output, 'T N E -> N T E')
+        return self.linear(output)
+
+    def init_weights(self):
+        def _init_weights(m):
+            if hasattr(m, 'weight') and m.weight.dim() > 1:
+                nn.init.xavier_uniform_(m.weight.data)
+        self.apply(_init_weights)
+
+```

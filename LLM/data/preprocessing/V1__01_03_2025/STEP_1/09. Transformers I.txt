@@ -1,0 +1,1173 @@
+=== Extracted text from PDF ===
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+Lesson 9
+Transformers I
+Nicola Capuano and Antonio Greco
+DIEM –University of Salerno
+
+Outline
+• Limitations of RNNs
+• Transformer
+• Transformer’s Input
+• Self Attention
+Limitations of RNNs
+Limitations of RNNs
+• RNNs lack of long-term memory (enc-dec models)
+• RNNs are extremely slow to train (for long series)
+• RNNs suffer of the vanishing gradient problem
+
+RNNs lack of long-term memory
+
+RNNs are extremely slow to train
+• Processing is inherently sequential
+• The network can not start processing 𝑥𝑖 until it has finished 
+with 𝑥𝑖−1
+• Thus the network cannot exploit the massive parallelism 
+available in a modern GPU!
+… is needed when processing this.This…
+RNNs suffer of the vanishing gradient 
+problem
+• The other problem is related to Vanishing gradient/exploding 
+gradient
+• During backpropagation through time (BPTT) the same 
+function F is traversed many times
+
+RNNs suffer of the vanishing gradient 
+problem
+• The other problem is related to Vanishing gradient/exploding 
+gradient
+• During backpropagation through time (BPTT) the same 
+function F is traversed many times
+• 𝜕𝐿𝑜𝑠𝑠
+𝜕ℎ0
+= 𝜕𝐿𝑜𝑠𝑠
+𝜕ℎ1
+∙ 𝜕𝐹
+𝜕ℎ0
+=𝜕𝐿𝑜𝑠𝑠
+𝜕ℎ2
+∙ 𝜕𝐹
+𝜕ℎ1
+∙ 𝜕𝐹
+𝜕ℎ0
+=𝜕𝐿𝑜𝑠𝑠
+𝜕ℎ3
+∙ 𝜕𝐹
+𝜕ℎ2
+∙ 𝜕𝐹
+𝜕ℎ1
+∙ 𝜕𝐹
+𝜕ℎ0
+=𝜕𝐿𝑜𝑠𝑠
+𝜕ℎ4
+∙ 𝜕𝐹
+𝜕ℎ3
+∙ 𝜕𝐹
+𝜕ℎ2
+∙ 𝜕𝐹
+𝜕ℎ1
+∙ 𝜕𝐹
+𝜕ℎ0
+=...
+The derivatives of F 
+are multiplied
+several times by 
+themselves…
+RNNs suffer of the vanishing gradient 
+problem
+• The other problem is related to Vanishing gradient/exploding 
+gradient
+• During backpropagation through time (BPTT) the same 
+function F is traversed many times
+• So, if the absolute value of the derivatives of F is small, in this 
+process it will become smaller and smaller… (vanishing 
+gradient)
+• … and if it is large, it will be come larger and larger (exploding 
+gradient), causing problems to the stability of the algorithm
+• Note: the problem is caused by the fact that we are 
+traversing many times (sequence length) the same layer
+Transformer
+Transformer
+• In 2017, a group of researchers at Google Brain proposed an 
+alternative model for processing sequential data
+• In this model, the elements of the sequence can be 
+processed in parallel
+• The number of layers traversed does not depend on the 
+length of the sequence (so, no problems with the gradient)
+• The model was introduced for language translation 
+(sequence to sequence with different lengths); so, it was 
+called Transformer.
+• Subsets of the model can be used for the other sequence 
+processing tasks
+Transformer
+
+Transformer
+• Input
+• Tokenization
+• Input embedding
+• Positional encoding
+• Encoder
+• Attention
+• Query
+• Key
+• Value
+• Self Attention
+• Multi-head Attention
+• Add & Norm
+• Feedforward
+• Decoder
+• Masked attention
+• Encoder decoder attention
+• Output
+Input
+Tokenization
+• Representation of text with a set of tokens
+• Each token is encoded with a unique id
+
+Tokenization
+
+Input embedding
+
+Input embedding
+• Embedding: a representation of a 
+symbol (word, character, sentence) 
+in a distributed low-dimensional 
+space of continuous-valued vectors
+• The tokens are projected in a 
+continuous euclidean space 
+• Correlations among words can be 
+visualized in the embedding space: 
+depending on the task, word 
+embedding can push two words 
+further away or keep them close 
+together.
+• Ideally, an embedding captures the 
+semantics of the input by placing 
+semantically similar inputs close 
+together in the embedding space.
+
+Positional encoding
+The importance of order
+• Q: With the encoding we have seen 
+so far, is it possible to discriminate 
+between sequences that only differ 
+in the order of the elements?
+• E.g., is it possible to differentiate 
+between "The student is eating an 
+apple" and "An apple is eating the 
+student"?
+
+The importance of order
+• Q: With the encoding we have seen 
+so far, is it possible to discriminate 
+between sequences that only differ 
+in the order of the elements?
+• E.g., is it possible to differentiate 
+between "The student is eating an 
+apple" and "An apple is eating the 
+student"?
+• A: No, because the output of the 
+attention module does not depend 
+on the order of its keys/values pairs
+• So how can we add the information 
+on the order of the sequence 
+elements?
+
+Positional encoding
+• The solution proposed by the authors of the Transformer model is to 
+add a slight perturbation to each element of the sequence, 
+depending on the position within the sequence
+• In this way, the same element appearing in different positions would 
+be encoded using slightly different vectors
+
+Positional encoding
+• The position encoding is represented by a set of 
+periodic functions
+• In particular, if 𝑑𝑚𝑜𝑑𝑒𝑙 is the size of the embedding, and 
+𝑝𝑜𝑠is the position of an element within the sequence, 
+the perturbation to component i of the embedding
+vector representing the element is:
+• The positional encoding is a vector with the same 
+dimension as the input embedding, so it can be added 
+on the input directly.
+
+Positional encoding
+
+Encoder
+Encoder
+• The Encoder transforms an input 
+sequence of vectors 𝑥1,…,𝑥𝑡
+into an intermediate 
+representation of the same
+length 𝑧1,…,𝑧𝑡
+• The vectors 𝑧1,…,𝑧𝑡 can be 
+generated in parallel
+• Each vector 𝑧𝑖 does not depend
+only on the corresponding 𝑥𝑖,but
+on the whole input sequence
+𝑥1,…,𝑥𝑡
+
+Encoder
+𝑥1,…,𝑥𝑡
+𝑧1,…,𝑧𝑡
+Encoder
+• The encoder is made of a 
+sequence of encoder blocks
+having the same structure
+• The original paper used 6 encoder 
+blocks
+• Each encoder block processes a 
+sequence using a combination of 
+the following mechanisms
+• Self-attention: a (multi-headed) 
+attention module where the same
+vectors are used as Q, K and V
+• A classical feed-forward layer applied
+separately to each element of the 
+sequence
+• Skip connections
+• Normalization
+
+Self attention
+Self Attention
+• Let us consider the sentence: 
+• The animal didn’t cross the street because it was too wide
+• What does it in this sentence refer to? 
+• Estimating self-attention in this sentence means to find the 
+words that one must consider first to find a better encoding 
+for the word it
+• Self-Attention estimate must be learned according to the 
+task we are facing
+Self Attention
+• How to compute the attention to give to each input element 
+when encoding the current word?
+
+Attention
+• In order to understand the self attention, we must first 
+introduce its fundamental building block: the attention 
+function
+• Informally, an attention function is used when the value to be 
+computed (in this case the embedding of a token in a certain 
+position considering the context of the sentence) depends on 
+a set of other values (in this case other tokens of the 
+sentence), and we want to give each time a different weight 
+(i.e. a different "level of attention") to each of the values 
+(how much each token is important to encode the current 
+token?)
+• The attention function depends on three elements, with a 
+terminology inherited from document retrieval: query, key, 
+value
+Attention
+• We have an input value 𝑞and we want to define some target 
+function 𝑓𝑇 𝑞
+• 𝑞 is called the query value in the attention terminology
+• In the general case, both 𝑞and 𝑓𝑇 𝑞 can be vectors
+• We want to express 𝑓𝑇 𝑞 as a function of a given set of elements
+𝑣1,…,𝑣𝑛
+• We want the "attention" given to each 𝑣𝑖 to be different depending
+on 𝑞
+• We assume that for each 𝑣𝑖 we have available an additional
+information 𝑘𝑖 that can be used to decide the "attention" to be 
+given to 𝑣𝑖
+• The elements 𝑣𝑖 are called values and the 𝑘𝑖 are called keys in the 
+attention terminology; both the values and the keys can be vectors
+Attention
+• A commonly adopted formulation of the problem is to 
+define the target function as:
+𝑓𝑇 𝑞 = 𝛼 𝑞,𝑘1 ∙𝑓𝑉 𝑣1 +⋯+𝛼 𝑞,𝑘𝑛 ∙𝑓𝑉 𝑣𝑛 =
+= ෍
+𝑖=1
+𝑛
+𝛼 𝑞,𝑘𝑖 ∙𝑓𝑉 𝑣𝑖
+Attention given to value 𝑣𝑖
+Attention
+• A commonly adopted formulation of the problem is to 
+define the target function as:
+𝑓𝑇 𝑞 = ෍
+𝑖=1
+𝑛
+𝛼 𝑞,𝑘𝑖 ∙𝑓𝑉 𝑣𝑖
+• 𝛼is our attention function
+• We want 𝛼and 𝑓𝑉 to be learned by our system
+• Tipically, 𝛼 𝑞,𝑘𝑖 ∈ [0,1]and σ𝑖 𝛼 𝑞,𝑘𝑖 = 1
+• Note: the value of the target function does not depend
+on the order of the key-value pairs (𝑘𝑖,𝑣𝑖)
+Self Attention
+• The Transformer architecture uses a particular
+definition of the attention function, based on linear 
+vector/matrix operations and the softmax function
+• This definition is
+• Differentiable, so it can be learned using Back Propagation
+• Efficient to compute
+• Easy to parallelize, since the attention for several query 
+vectors can be efficiently computed in parallel at the same
+time
+Self Attention
+• Input: three matrices Q, K, V
+• Q (m x dq) contains the query vectors (each row is a 
+query)
+• K (n x dk) contains the key vectors (each row is a key)
+• V (n x dv) contains the value vectors (each row is a value)
+• K and V must have the same number of rows
+Self Attention
+• If the query and the key are represented by vectors with 
+the same dimensionality, a matching score can be 
+provided by the scaled dot product of the two vectors 
+(cosine similarity)
+
+Self Attention
+• Step 0: Each element in the sequence is represented by 
+a numerical vector
+
+Self Attention
+• Step 1: the input 
+matrices are "projected" 
+onto a different
+subspace, by multiplying
+them (using row-by-
+column dot product) by 
+weight matrices
+• 𝑄′ = 𝑄 ∙𝑊𝑄
+• 𝐾′ = 𝐾 ∙𝑊𝐾
+• 𝑉′ = 𝑉 ∙𝑊𝑉
+Note: WQ and WK must
+have the same number of 
+columns
+These are the trainable weights:
+• WQ (dq x d’q)
+• WK (dk x d'k)
+• WV (dv x d'v)
+
+Self Attention
+• Step 1: Compute a key (K), a value (V) and a query (Q) as 
+linear function of each element in the sequence.
+Self Attention
+• Step 2: the attention matrix A is computed for each
+position by multiplying Q' and the transpose of K', 
+scaling by 1/ 𝑑′𝑘 and applying softmax to each of the 
+resulting rows
+•𝐴 = 𝑠𝑜𝑓𝑡𝑚𝑎𝑥 𝑄′∙𝐾′𝑇
+𝑑𝑘
+′
+A is a (m x n) matrix whose element 𝑎𝑖𝑗 = 𝛼(𝑞𝑖,𝑘𝑗)
+Softmax is applied to each row separately
+This scaling is used to avoid that
+the argument of softmax
+becomes too large with the 
+increase of the dimension d'k
+Self Attention
+• Step 2: Compute attention score for each position i as a softmax of 
+the scaled dot product of all the keys (bidirectional self-attention) 
+with Qi
+
+Self Attention
+• Final step: the target value is computed by row-by-
+column multiplication between A and V'
+• 𝑓𝑇(𝑄) = 𝐴∙𝑉′
+The result is a m x d'v matrix representing the target 
+function computed on the m queries in the input matrix Q.
+
+Self Attention
+• Step 3: Output representation for each position I, as a weighted 
+sum of values (each one multiplied by the related attention score)
+
+Self Attention
+
+Self Attention
+
+Natural Language Processing and 
+Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica
+ 
+Lesson 9
+Transformers I
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+=== Extracted Text from images (OCR) ===
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 9
+Transformers |
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno
+
+Outline
+
+® Limitations of RNNs
+
+° Transformer
+i
+
+VV
+0
+O
+
+* Transformer’s Input
+
+® Self Attention
+
+Limitations of RNNs
+
+\
+
+Limitations of RNNs
+
+® RNNs lack of long-term memory (enc-dec models)
+
+° RNNs are extremely slow to train (for long series)
+
+° RNNs suffer of the vanishing gradient problem
+
+Context vector (length: 5)
+
+RNNs lack of long-term memory
+
+Important
+Hn
+Unimportant
+Encoder Go |---| @1 || @2 |---| es |— 7] Gs |] Cs |=] Ce
+Decoder do —— d; ——— de —- ds
+
+|
+
+Knowledge is power <end>
+
+RNNs are extremely slow to train
+® Processing is inherently sequential
+
+°* The network can not start processing x; until it has finished
+
+® Thus the network cannot exploit the massive parallelism
+available in a modern GPU!
+
+This... ... ls needed when processing this.
+
+erre
+
+RNNs suffer of the vanishing gradient
+
+problem
+
+® The other problem is related to Vanishing gradient/exploding
+gradient
+
+* During backpropagation through time (BPTT) the same
+function F is traversed many times
+
+1
+Gradient back-
+J propagation
+4
+c oe
+o
+
+RNNs suffer of the vanishing gradient
+problem
+
+® The other problem is related to Vanishing gradient/exploding
+gradient
+
+* During backpropagation through time (BPTT) the same
+function F is traversed many times
+
+e OLOSS OLOSS _ OF __ OLOSS OF OF _ OLoss OF OF OF
+
+a ——aho_ dh, Oho  Ohz Ohy Oh, AN
+QF @F OF OF
+
+“Oh3 Ohy Oh, Oho J
+
+The derivatives of F
+are multiplied
+several times by
+themselves...
+
+RNNs suffer of the vanishing gradient
+problem
+
+The other problem is related to Vanishing gradient/exploding
+gradient
+
+During backpropagation through time (BPTT) the same
+function F is traversed many times
+
+So, if the absolute value of the derivatives of F is small, in this
+process it will become smaller and smaller... (vanishing
+gradient)
+
+...and if it is large, it will be come larger and larger (exploding
+gradient), causing problems to the stability of the algorithm
+
+Note: the problem is caused by the fact that we are
+traversing many times (sequence length) the same layer
+
+Transformer
+
+\
+
+Transformer
+
+In 2017, a group of researchers at Google Brain proposed an
+alternative model for processing sequential data
+
+In this model, the elements of the sequence can be
+processed in parallel
+
+The number of layers traversed does not depend on the
+length of the sequence (so, no problems with the gradient)
+
+The model was introduced for language translation
+(sequence to sequence with different lengths); so, it was
+called Transformer.
+
+Subsets of the model can be used for the other sequence
+processing tasks
+
+Transformer
+
+Next output y;
+
+Intermediate
+representation 2Z;, ..., 2;
+
+Encoder Decoder
+
+Input Sequence xj,...,X¢
+
+Previous outputs yj, ..., yj-4
+
+Transformer
+
+° Input
+
+°® Tokenization
+
+° Input embedding
+
+® Positional encoding
+°® Encoder
+
+° Attention
+Query
+Key
+Value
+Self Attention
+Multi-head Attention
+Add & Norm
+Feedforward
+°* Decoder
+
+° Masked attention
+
+° Encoder decoder attention
+
+* Output
+
+Output
+Probabilities
+
+Add & Norm
+
+Feed
+Forward
+
+Add & Norm
+
+Multi-Head
+Attention
+
+a,
+Add & Norm
+
+Add & Norm
+
+Feed
+Forward
+
+Nx | —-Caaga. Norm)
+Add & Norm Masked
+Multi- Head Multi-Head
+Attention Attention
+a a a
+
+Positional
+Encoding
+
+O+ D
+
+Input
+Embedding
+
+Inputs
+
+,
+Output
+Embedding
+
+Outputs
+(shifted right)
+
+Nx
+
+Positional
+es Encoding
+
+
+
+Tokenization
+
+* Representation of text with a set of tokens
+® Each token is encoded with a unique id
+
+Tokenization Token
+
+Tokens Vocab size
+method count
+Sent ‘The moon, Earth's only natural satellite, has been a subject of fascination 1 # sentences
+eee and wonder for thousands of years.’ in doc
+Word 'The', 'moon,', "Earth's", ‘only’, 'natural', 'satellite,", 'has', 'been’, 'a’, ‘subject’, 18 171K
+
+‘of, ‘fascination’, ‘and’, ‘wonder’, ‘for’, ‘thousands’, ‘of, 'years." (English’)
+
+‘The’, ‘moon’, uy ‘Earth’, ™ 's', ‘on’, ‘ly’, 'n', ‘atur', ‘al’, 's', ‘ate’, MI, ‘it’, 'e’" an
+'has', 'been’, ‘a’, 'subject'’, 'of, 'fascinat’, ‘ion’, ‘and’, 'w’, ‘on’, 'd', ‘er’, ‘for’, 'th’, 37 (varies)
+‘ous', ‘and’, 's’, ‘of’, 'y', ‘ears’, '."
+
+'T 'h', ‘e', ' ‘ 'm', ‘o'", ‘o', 'n', an ' ‘ 'E'" ‘a’, r', 't', 'h', ™ 's', ' ‘ ‘o', 'n', 1, 'y', ' ‘
+
+'n', ‘a’, 't 'u', r’, ‘a’, ', ' " 's', ‘a’, 't 'e’, ', T, i, 't, 'e’, m ' " 'h', ‘a’, 's', ' " 'b', 'e’, 52 +
+Character 'e', 'n', ' i ‘a’, ' i 's', 'u', 'b', 7; ‘e', te 't, ' a ‘o', f, ' ‘ f, ‘a’, 's', ice i, 'n', ‘a’ 't, 110 punctuation
+i, ‘o', 'n', 1 ‘ ‘a’, 'n', ‘d', ' ‘ 'W', ‘o', 'n', ‘d', 'e' r', ' ‘ f, ‘o', r', ' i 't', 'h', ‘o', 'u', 's', (English)
+
+‘a! 'n' ‘d' 's' mi ‘o' 'f ot 'y' ‘e' 'q' 'r' 's' aT
+
+©2023 Databricks Inc. — All rights reserved ‘Source: BBC.com
+
+Tokenization
+
+Positional
+
+Encoding @
+
+Input
+Embedding
+
+| ate an apple
+
+Input embedding
+
+Amodel
+EEEEE BEER BEER BEE Be
+t t t t t
+Embedding Layer
+t t t t t
+tate an apple <e0s>
+t
+
+Positional
+Input
+* Embedding
+
+| ate an apple Inputs
+
+Input embedding
+
+Embedding: a representation of a Con
+being home — transport age
+symbol (word, character, sentence)
+
+in a distributed low-dimensional dog os | oa | 04 | see os |
+ge: 0.6
+
+space of continuous-valued vectors
+
+seseees 0.6
+
+The tokens are projected ina pepe ee
+
+continuous euclidean space
+
+Correlations among words can be
+visualized in the embedding space: van
+depending on the task, word
+
+embedding can push two words word N-dimensional word vectors/embeddings
+further away or keep them close dog ¢
+together.
+
+‘puppy
+Ideally, an embedding captures the
+
+semantics of the input by placing
+
+semantically similar inputs close
+
+together in the embedding space. a
+
+©2023 Databricks Inc. — All rights reserved
+
+Positional encoding
+
+\
+
+The importance of order
+
+* Q: With the encoding we have seen
+so far, is it possible to discriminate
+between sequences that only differ
+in the order of the elements?
+
+. . , . Positional
+° E.g., is it possible to differentiate ise qe
+between "The student is eating an a
+Embedding
+
+apple" and "An apple is eating the
+student"?
+
+Inputs
+
+The importance of order
+
+* Q: With the encoding we have seen
+so far, is it possible to discriminate
+between sequences that only differ
+in the order of the elements?
+
+° E.g., is it possible to differentiate
+
+between "The student is eating an
+apple" and "An apple is eating the
+
+student"?
+° A: No, because the output of the Capea Ce
+attention module does not depend
+
+on the order of its keys/values pairs
+
+Inputs
+
+So how can we add the information
+on the order of the sequence
+elements?
+
+Positional encoding
+
+® The solution proposed by the authors of the Transformer model is to
+add a slight perturbation to each element of the sequence,
+depending on the position within the sequence
+
+° Inthis way, the same element appearing in different positions would
+be encoded using slightly different vectors
+
+CO-¢ PAL
+Input Output
+Embedding Embedding
+
+Input sequence Previous outputs
+
+Positional
+Encoding
+
+Positional
+Encoding
+
+Positional encoding
+
+° The position encoding is represented by a set of
+periodic functions
+
+° In particular, if dj,oqe) is the size of the embedding, and
+pos is the position of an element within the sequence,
+the perturbation to component i of the embedding
+vector representing the element is:
+
+PE (yos.21) = 8in(pos/100007"/ 4m")
+
+* The positional encoding is a vector with the same
+dimension as the input embedding, so it can be added
+on the input directly.
+
+Positional encoding
+
+Embedding Layer
+
+Tokenizer
+t
+
+| ate an apple
+
+t t t * * 2
+oT ae an) apple) (0085) Tokens
+t
+
+Final Input Embeddings
+
+Position Encodings
+
+Input Embeddings
+
+Positional @
+
+Encoding
+
+Inputs
+
+
+
+Encoder
+
+° The Encoder transforms an input
+sequence of vectors X1, ..., X¢
+into an intermediate
+representation of the same
+
+Add & Norm
+
+Feed
+Forward
+
+length 24, ...,Z¢
+Multi-Head
+® The vectors Z1,...,Z,¢ can be Attention
+
+= =
+generated in parallel
+
+® Each vector z; does not depend
+only on the corresponding x;, but
+on the whole input sequence
+
+Nyy oy Xt
+
+Encoder
+
+CONTEXTUALLY RICH EMBEDDINGS
+
+Encoder
+
+° The encoder is made of a
+sequence of encoder blocks
+having the same structure
+
+os | Add & Norm |
+° The original paper used 6 encoder =
+blocks
+® Each encoder block processes a
+sequence using a combination of Mult Head
+. . Attention
+the following mechanisms =m
+
+° Self-attention: a (multi-headed)
+attention module where the same
+vectors are used as O, K and V
+
+° Aclassical feed-forward layer applied
+separately to each element of the
+sequence
+
+° Skip connections
+
+°* Normalization
+
+Self attention
+
+\
+
+Self Attention
+
+Let us consider the sentence:
+© The animal didn’t cross the street because it was too wide
+
+What does it in this sentence refer to?
+
+® Estimating self-attention in this sentence means to find the
+words that one must consider first to find a better encoding
+for the word it
+
+Self-Attention estimate must be learned according to the
+task we are facing
+
+?
+
+Self Attention
+
+* How to compute the attention to give to each input element
+when encoding the current word?
+
+| The | - animal | didn't | | cross | | the | street | ‘because | it | | was | | too | | wide
+
+| The | animal _ | didn't | _ cross | | the | | street | ‘beacuse | it | | was | | too | wide |
+
+The | ~ animal | didn't | _ cross | | the - street ‘beacuse | it | | was | | too | wide ]
+
+Attention
+
+° In order to understand the self attention, we must first
+introduce its fundamental building block: the attention
+function
+
+Informally, an attention function is used when the value to be
+computed (in this case the embedding of a token in a certain
+position considering the context of the sentence) depends on
+a set of other values (in this case other tokens of the
+sentence), and we want to give each time a different weight
+(i.e. a different "level of attention") to each of the values
+(how much each token is important to encode the current
+token?)
+
+The attention function depends on three elements, with a
+terminology inherited from document retrieval: query, key,
+value
+
+Attention
+
+We have an input value gq and we want to define some target
+function fr(q)
+
+q is called the query value in the attention terminology
+In the general case, both q and f;(q) can be vectors
+
+We want to express f(q) as a function of a given set of elements
+V4) +) Vy
+
+We want the "attention" given to each v; to be different depending
+ong
+
+We assume that for each v; we have available an additional
+information k; that can be used to decide the "attention" to be
+given to v;
+
+The elements v; are called values and the k; are called keys in the
+attention terminology; both the values and the keys can be vectors
+
+Attention
+
+°* Acommonly adopted formulation of the problem is to
+define the target function as:
+
+fr(q) = a(¢,k1) + fu.) ++ + ag kn): fy) =
+
+1
+
+frp
+
+Attention given to value 1;
+
+Attention
+
+°* Acommonly adopted formulation of the problem is to
+define the target function as:
+
+n
+
+fr(q) = > aq kid: for(i
+
+l=1
+
+* ais our attention function
+
+° We want a and fy to be learned by our system
+° Tipically, a(q,k;) € [0,1] and); a(q,k;) =1
+
+* Note: the value of the target function does not depend
+on the order of the key-value pairs (k;, v;)
+
+Self Attention
+
+°* The Transformer architecture uses a particular
+definition of the attention function, based on linear
+vector/matrix operations and the softmax function
+° This definition is
+° Differentiable, so it can be learned using Back Propagation
+° Efficient to compute
+
+° Easy to parallelize, since the attention for several query
+vectors can be efficiently computed in parallel at the same
+time
+
+Self Attention
+
+° Input: three matrices QO, K, V
+
+°* O(m~x d,) contains the query vectors (each row is a
+query)
+
+* K(nxd,) contains the key vectors (each row is a key)
+
+V (n x d,) contains the value vectors (each row is a value)
+
+® KandV must have the same number of rows
+
+Self Attention
+
+° If the query and the key are represented by vectors with
+the same dimensionality, a matching score can be
+provided by the scaled dot product of the two vectors
+(cosine similarity)
+
+- Angle © close to @ - Angle ® close to 90 - Angle 6 close to 180
+- Cos(8) close to 1 - Cos(8) close to @ - Cos(@) close to -1
+- Similar vectors - Orthogonal vectors - Opposite vectors
+
+Self Attention
+
+* Step o: Each element in the sequence is represented by
+a numerical vector
+
+Self-attention
+
+input #1
+
+Self Attention
+
+une eens Senee
+° 1: the in
+step the put ; TTT TTL Seen
+matrices are "projected rT Tf TTT. See
+diff. aan rT TT aan
+onto a different 0 Project
+. . Input Embeddings Wo yections
+subspace, by multiplying PTT PTT. Pty
+them (using row-by- PTT PTT i
+lumnd duct) b Sann0 ann |
+column dot product) by TTT TTT aan
+weight matrices aan ann aes
+Input Embeddings Wx K Projections
+Eannn SEene
+rT Td. EERE
+° Q'=Q TTT. Eee
+TTT. Pt
+eK = =aan8 alee eal
+. W. V Projections
+Input Embeddings v
+° Vi=V
+
+These are the trainable weights:
+© Wa (dy X d’q)
+© Wx (di X dx)
+° Wy (d, X d')
+
+Note: W, and W, must
+have the same number of
+columns
+
+Self Attention
+
+* Step 1: Compute a key (K), a value (V) and a query (Q) as
+linear function of each element in the sequence.
+
+Self-atten tion
+
+Self Attention
+
+° Step 2: the attention matrix A is computed for each
+position by multiplying O' and the transpose of K’,
+
+scaling by 1/,/d’, and applying softmax to each of the
+resulting rows
+
+Q'-K'T This scaling is used to avoid that
+the argument of softmax
+
+becomes too large with the
+
+increase of the dimension d',
+
+° A =softmax
+di
+
+Softmax is applied to each row separately
+
+A is a(m xn) matrix whose element a;; = a(q;, k;)
+
+Self Attention
+
+° Step 2: Compute attention score for each position i as a softmax of
+the scaled dot product of all the keys (bidirectional self-attention)
+with O/
+
+Self Attention
+
+* Final step: the target value is computed by row-by-
+column multiplication between A and V'
+
+/
+°fr(Q)=A-V
+The result is am x d', matrix representing the target
+function computed on the m queries in the input matrix Q.
+
+Wo
+Wr
+
+Q
+*T
+x EEEEEE —> K = XWx r— K Joos V) = softmax( = “|
+Vv
+x =EEEEE => v= xwy —
+
+Self Attention
+
+° Step 3: Output representation for each position |, as a weighted
+sum of values (each one multiplied by the related attention score)
+
+po
+
+n
+multiplication [eo] oo [oo] multiplication [+0] +0] 00] multiplication
+
+output #1
+score
+
+Self Attention
+
+QK'
+
+Attention(Q, K, V) = softmax( )V
+V dk
+aik;' exp(q;k; |)
+
+a;,; = softmax(
+
+Vdy Vde es, exp(aq:k, | )
+
+RIX?
+
+Self Attention
+
+oe
+av $8
+Q\
+
+RE X4dmodet Rdmodet xT
+/— T RT x Amodel
+
+ERE ERE
+a | 22 eS
+softmax —
+aos | 227 _—
+
+Qprojection Ne K projection
+Vprojection
+
+Vding del
+
+Natural Language Processing and
+Large Language Models
+
+Corso di Laurea Magistrale in Ingegneria Informatica
+
+Lesson 9
+Transformers |
+
+Nicola Capuano and Antonio Greco
+
+DIEM — University of Salerno

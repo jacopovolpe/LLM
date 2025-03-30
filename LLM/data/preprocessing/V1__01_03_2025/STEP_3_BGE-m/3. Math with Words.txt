@@ -1,0 +1,214 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 3: Math with Words**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+This lesson explores fundamental mathematical concepts and techniques used to represent and analyze text in Natural Language Processing (NLP), focusing on methods that pave the way for working with Large Language Models. We will cover Term Frequency, the Vector Space Model, TF-IDF, and the basic principles of building a search engine.
+
+<----------section---------->
+
+### Term Frequency
+
+Term Frequency (TF) quantifies the importance of a word within a document based on its frequency of occurrence.  The underlying assumption is that words appearing more frequently are more central to the document's topic.  A common approach to represent text using TF is the Bag of Words (BoW) model.
+
+**Bag of Words (BoW):**
+
+The BoW model represents text as a vector of word counts, disregarding word order and grammar.  Different variations exist:
+
+* **One-hot Encoding:** Each word in the vocabulary is represented as a vector with a single '1' at the index corresponding to the word and '0' elsewhere.  These vectors are combined to represent a document.
+
+* **Binary BoW:** One-hot vectors are combined using the OR operation.  The resulting vector indicates the presence (1) or absence (0) of each word in the vocabulary within the document.
+
+* **Standard BoW:** One-hot vectors are summed.  The resulting vector represents the count of each word in the vocabulary within the document.
+
+* **Term Frequency (TF):**  While related to the Standard BoW, the TF specifically focuses on the raw counts of each word.
+
+
+**Python Example:**
+
+The following code snippet demonstrates how to extract tokens, build a BoW model, and calculate TF using the `spaCy` and `collections` libraries in Python:
+
+```python
+# Extract tokens
+sentence = "The faster Harry got to the store, the faster Harry, the faster, would get home."
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+doc = nlp(sentence)
+
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct]
+
+print(tokens)
+
+# Build BoW with word count
+
+import collections
+
+bag_of_words = collections.Counter(tokens) # counts the elements of a list
+print(bag_of_words)
+
+# Most common words
+print(bag_of_words.most_common(2)) # most common 2 words
+
+
+import pandas as pd
+
+counts = pd.Series(bag_of_words) # from dict to Pandas Series
+print(counts / counts.sum()) # calculate TF
+```
+
+**Limitations of TF:**
+
+Relying solely on raw word counts can be misleading.  A word appearing many times in a long document might not be as significant as the same word appearing fewer times in a short document.
+
+**Illustrative Example:**
+
+Consider two documents:
+
+* Document A: A 30-word email mentioning "dog" 3 times.
+* Document B: The novel *War & Peace* (approximately 580,000 words) mentioning "dog" 100 times.
+
+While "dog" appears more frequently in Document B, its relative importance is higher in Document A.
+
+
+### Normalized TF
+
+Normalized TF addresses the limitations of raw TF by dividing the word count by the total number of words in the document.
+
+* TF (dog, Document A) = 3/30 = 0.1
+* TF (dog, Document B) = 100/580000 = 0.00017
+
+This normalization provides a more accurate representation of a word's importance relative to the document length.
+
+
+<----------section---------->
+
+### Vector Space Model
+
+The Vector Space Model (VSM) represents documents as vectors in a multidimensional space, where each dimension corresponds to a term in the vocabulary. The values in each dimension typically represent the TF or normalized TF of the corresponding term in the document.  This allows for mathematical comparison of documents based on their vector representations.
+
+**NLTK Corpora:**
+
+The Natural Language Toolkit (NLTK) provides access to various text corpora useful for training and testing NLP algorithms.
+
+**Reuters 21578 Corpus:**
+
+This corpus contains thousands of categorized news articles, suitable for tasks like text classification.
+
+**Python Example (using Reuters 21578):**
+
+```python
+import nltk
+
+nltk.download('reuters') # download the reuters corpus
+ids = nltk.corpus.reuters.fileids() # ids of the documents
+sample = nltk.corpus.reuters.raw(ids[0]) # first document
+
+print(len(ids), "samples.\n") # number of documents
+print(sample)
+
+# ... (Further code examples for processing the corpus)
+```
+
+### Corpus Processing:
+
+Efficient processing of large corpora often involves optimizing code by disabling unnecessary components of NLP pipelines, such as named entity recognition or parsing when dealing solely with TF or TF-IDF.
+
+**Term-Document Matrix:**
+
+A term-document matrix is a mathematical representation of a corpus where rows represent documents and columns represent terms. Each cell contains the TF, normalized TF, or other relevant metric for a given term in a given document.  This matrix is the basis for building the VSM.
+
+### Document Similarity:
+
+VSM enables calculating document similarity using various metrics:
+
+* **Euclidean Distance:**  Measures the straight-line distance between two vectors.  Sensitive to vector magnitude and less commonly used in NLP.
+
+* **Cosine Similarity:** Measures the cosine of the angle between two vectors, focusing on direction and ignoring magnitude. More effective for normalized text representations and widely used in NLP.
+
+**Properties of Cosine Similarity:**
+
+Cosine similarity ranges from -1 to 1:
+
+* 1: Perfect similarity, indicating identical word usage proportions.
+* 0: No similarity, indicating no shared words.
+* -1: Perfect dissimilarity.  While theoretically possible, this is generally not encountered with TF-based representations.
+
+
+```python
+# ... (Code example for calculating cosine similarity)
+```
+
+
+<----------section---------->
+
+### TF-IDF
+
+TF-IDF (Term Frequency-Inverse Document Frequency) improves upon TF by considering a term's prevalence across the entire corpus.  It reduces the weight of common words and increases the weight of rare words that are more likely to be informative.
+
+**Inverse Document Frequency (IDF):**
+
+IDF measures how unique a word is across the corpus.
+
+**TF-IDF Calculation:**
+
+TF-IDF is calculated as the product of TF and IDF. A high TF-IDF score indicates a term that is frequent within a document but rare across the corpus, suggesting high relevance to that document.
+
+**Zipf’s Law:**
+
+Zipf’s Law describes the inverse relationship between a word's rank in a frequency table and its frequency of occurrence in natural language.  This principle influences the effectiveness of IDF.
+
+**Python Examples:**
+
+```python
+# ... (Code example for calculating TF-IDF)
+```
+
+**Using Scikit-Learn:**
+
+The `scikit-learn` library provides efficient implementations for calculating TF-IDF.
+
+```python
+# ... (Code example for calculating TF-IDF using scikit-learn)
+```
+
+**TF-IDF Alternatives:**  Other methods for weighting terms exist and might be more suitable for specific applications. Some examples include BM25, probabilistic models, and word embeddings.
+
+
+<----------section---------->
+
+### Building a Search Engine
+
+TF-IDF matrices form the foundation of many information retrieval systems.
+
+**Basic Search Engine Process:**
+
+1. **Create TF-IDF Matrix:** Tokenize and create a TF-IDF matrix for all documents in the corpus.
+2. **Process Query:** Tokenize the user's search query and create its TF-IDF vector.
+3. **Calculate Similarity:**  Calculate the cosine similarity between the query vector and all document vectors in the matrix.
+4. **Rank Results:** Rank documents based on their cosine similarity to the query, presenting the most similar documents first.
+
+```python
+# ... (Code example for building a basic search engine)
+```
+
+**Advanced Search Engines:**  Real-world search engines employ more sophisticated techniques like inverted indexes for efficiency, along with other ranking factors beyond TF-IDF.
+
+
+
+<----------section---------->
+
+### References and Further Readings
+
+* *Natural Language Processing in Action: Understanding, Analyzing, and Generating Text with Python*, Chapter 3
+* Scikit-Learn Documentation: [https://scikit-learn.org/stable/user_guide.html](https://scikit-learn.org/stable/user_guide.html)
+* NLTK Corpora How-To: [https://www.nltk.org/howto/corpus.html](https://www.nltk.org/howto/corpus.html)
+
+
+The provided additional context from the book goes into more detail about specific calculations and advanced concepts like smoothing and alternative TF-IDF scoring methods. It also discusses the limitations of simpler techniques and motivates the use of more advanced semantic analysis techniques in subsequent chapters.  While these details are valuable, they are beyond the scope of this introductory lesson.  The reader is encouraged to consult the references and further readings for a more in-depth understanding.

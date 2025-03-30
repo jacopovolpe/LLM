@@ -1,0 +1,53 @@
+## Natural Language Processing and Large Language Models
+
+**Master's Degree in Computer Engineering**
+
+**Lesson 13: Encoder-only Transformers**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction to Encoder-only Transformers
+
+Transformers are powerful neural network architectures designed for processing sequential data, particularly text. While the full transformer architecture includes both encoder and decoder components, some tasks benefit from using only the encoder.  The encoder's role is to transform an input sequence into a sequence of contextualized vector representations, capturing the meaning and relationships between elements. This makes encoder-only models suitable for tasks like sentence classification, named entity recognition, and generating contextualized word embeddings.  The choice between using a full transformer or an encoder-only model depends on the specific task.  Tasks requiring transformations between sequences of different lengths, like machine translation, necessitate the full architecture. However, when the input and output sequences share the same length, or when the output is a single value (e.g., classifying the sentiment of a sentence), the encoder alone suffices.
+
+<----------section---------->
+
+### Understanding the Encoder-only Architecture
+
+The encoder component of a transformer consists of multiple stacked layers, each comprising two sub-layers: a multi-head self-attention mechanism and a position-wise feed-forward network.  The self-attention mechanism allows the model to weigh the importance of different parts of the input sequence when generating a representation for each element.  This enables the model to capture long-range dependencies and contextual information effectively. The position-wise feed-forward network further processes the output of the self-attention layer.  A crucial aspect of transformers is positional encoding, which adds information about the position of each word in the input sequence. Since transformers process the entire sequence concurrently, unlike recurrent networks, positional encodings ensure that word order is considered.
+
+For tasks where the input and output sequences are of the same length, each output vector from the encoder directly corresponds to an input element, allowing for tasks like part-of-speech tagging or named entity recognition.  When a single output value is required (e.g., sentiment classification), a special token (often denoted as `[CLS]`) is prepended to the input sequence. The encoder's output corresponding to this special token serves as the aggregated representation of the entire input, which is then used for classification.
+
+
+<----------section---------->
+
+### BERT: A Powerful Encoder-only Model
+
+BERT (Bidirectional Encoder Representations from Transformers) is a prominent example of a pre-trained encoder-only transformer model. Its bidirectional nature allows it to consider both preceding and succeeding words when generating contextualized representations, leading to a richer understanding of language.  BERT comes in different sizes (e.g., BERT-base and BERT-large), with larger models generally offering better performance but requiring more computational resources.  BERT's pre-training involves two key tasks: Masked Language Modeling (MLM) and Next Sentence Prediction (NSP). MLM trains the model to predict randomly masked words within a sentence, fostering bidirectional context learning. NSP trains the model to determine whether two sentences are consecutive, promoting an understanding of inter-sentence relationships.  This pre-training on massive text corpora equips BERT with a strong foundation for various downstream NLP tasks.
+
+<----------section---------->
+
+### BERT Input Encoding and the [CLS] Token
+
+BERT utilizes a WordPiece tokenizer, which breaks words down into subword units.  This approach handles out-of-vocabulary words effectively and allows for a smaller vocabulary size. Special tokens like `[CLS]` (classification) and `[SEP]` (separator) are used to structure the input.  The `[CLS]` token is crucial for classification tasks; its corresponding output embedding serves as a summary representation of the entire input sequence.
+
+<----------section---------->
+
+### Fine-tuning BERT for Specific Tasks
+
+BERT's pre-trained weights can be fine-tuned for specific downstream tasks by adding task-specific layers and training on labeled data.  This transfer learning approach often yields significant performance gains compared to training models from scratch.  Fine-tuning adjusts the pre-trained weights, allowing BERT to specialize in the target task while leveraging its pre-existing language understanding.
+
+<----------section---------->
+
+### BERT Variants and Beyond
+
+Several BERT variants have emerged, each offering improvements or specializations.  RoBERTa, ALBERT, DistilBERT, and others optimize performance, reduce model size, or adapt to specific domains like scientific or biomedical text.  BERT's influence extends beyond text processing, inspiring similar transformer-based architectures in other fields like computer vision.
+
+<----------section---------->
+
+### Practical Application: Token Classification and Named Entity Recognition
+
+Token classification tasks, such as Named Entity Recognition (NER), involve assigning labels to individual tokens in a sequence.  NER aims to identify and classify named entities (e.g., persons, organizations, locations) within text.  Using pre-trained BERT models and the Hugging Face library provides a practical way to experiment with and fine-tune models for NER on public datasets.  This hands-on experience allows for exploring different BERT variants and evaluating their performance on real-world data.

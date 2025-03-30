@@ -1,0 +1,100 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 12: HuggingFace**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+**Outline**
+
+* Overview
+* Setup
+* Pipeline
+* Model Selection
+* Common Models
+* Gradio
+
+**Overview: Hugging Face**
+
+* [https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit) -  This toolkit provides resources for workshops, events, homework, or classes using open-source technologies like Transformers and Gradio.
+
+* The Hugging Face Hub ([https://huggingface.co/](https://huggingface.co/)) hosts:
+    * Models
+    * Datasets
+    * Spaces for demos and code
+
+* Key libraries include:
+    * `datasets`: Download datasets from the Hub.
+    * `transformers`: Work with pipelines, tokenizers, models, etc.
+    * `evaluate`: Compute evaluation metrics.
+    * These libraries can use PyTorch and TensorFlow.
+
+**Hugging Face – Model Hub:** [https://huggingface.co/models](https://huggingface.co/models)
+
+**Hugging Face - Datasets:**
+
+* The Hub ([https://hf.co/datasets](https://hf.co/datasets)) hosts around 3000 open-source and free-to-use datasets across multiple domains.
+* The open-source `datasets` library allows easy access to these datasets, including large ones, with features like streaming.
+* Each dataset has a card with documentation, including a summary, structure, and more.
+* Example: [https://huggingface.co/datasets/nyu-mll/glue](https://huggingface.co/datasets/nyu-mll/glue)
+
+**Setup:**
+
+* **Google Colab:**
+    * Using Colab is the simplest setup.
+    * `!pip install transformers`
+    * `import transformers` (Installs a light version of Transformers without specific ML frameworks like PyTorch or TensorFlow.)
+    * For the development version with all dependencies: `!pip install transformers[sentencepiece]`
+
+* **Virtual Environment:**
+    * Download and install Anaconda: [https://www.anaconda.com/download](https://www.anaconda.com/download)
+    * `conda create --name nlpllm`
+    * `conda activate nlpllm`
+    * `conda install transformers[sentencepiece]`
+
+* **Hugging Face Account:** Creating a Hugging Face account is recommended for accessing most functionalities.
+
+**Pipeline:**
+
+* The `transformers` library provides functionality to create and use models.
+* The Model Hub contains thousands of pre-trained models.
+* The `pipeline()` function connects a model with its preprocessing and postprocessing steps, allowing direct text input and intelligible output.
+
+**Model Selection:**
+
+* Consider your needs (e.g., extractive vs. abstractive summarization).
+* Filter models on the Hugging Face Hub by task, license, language, and size.
+* Sort by popularity and updates, and check the Git release history.
+* Pick appropriate model variants (different sizes, fine-tuned versions).
+* Consider examples and datasets, not just models.
+* Evaluate model performance based on specific tasks and datasets used for pre-training and fine-tuning.
+* Define KPIs and test on your data or users.
+
+
+**Common Models:**
+
+* Pythia (19M-12B parameters)
+* Dolly (12B parameters)
+* GPT-3.5 (175B parameters)
+* OPT (125M-175B parameters)
+* BLOOM (560M-176B parameters)
+* GPT-Neo/X (125M-20B parameters)
+* FLAN (80M-540B parameters)
+* BART (139M-406M parameters)
+* T5 (50M-11B parameters)
+* BERT (110M-345M parameters)
+
+**Gradio – Demos on the Web:**
+
+* Gradio simplifies building and hosting interactive demos for machine learning models.
+* Free hosting is available on hf.space.
+
+**Gradio – Build Your Demo:**
+
+* `conda install gradio`
+* [https://bit.ly/34wESgd](https://bit.ly/34wESgd)
+
+

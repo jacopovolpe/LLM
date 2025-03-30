@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+    <script defer src="{{ url_for('static', filename='improveHTML.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='chatbot.js') }}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chat about LLM</h1>
+            <a href="/logs" class="logs-btn" target="_blank">Logs</a>
+
+        </div>
+        <div class="chat-window" id="chat-box"></div>
+       
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Scrivi un messaggio...">
+            <button id="sendBtn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button id="startBtn"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+            <button id="resetBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</body>
+</html>

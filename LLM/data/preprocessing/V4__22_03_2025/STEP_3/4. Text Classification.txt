@@ -1,0 +1,119 @@
+## Lesson 4 ##
+
+Text Classification
+
+This document provides an outline and detailed explanation of text classification within the context of Natural Language Processing (NLP) and Large Language Models. It is part of a course on Ingegneria Informatica (Computer Engineering) at the University of Salerno. The material is presented by Nicola Capuano and Antonio Greco from the DIEM (Department of Industrial Engineering and Mathematics).
+
+**Outline**
+
+*   Text Classification: An introduction to the process of categorizing text documents.
+*   Topic Labelling Example: A practical demonstration of text classification using the Reuters news dataset.
+*   Sentiment Analysis Exercise: A hands-on exercise involving sentiment classification using the IMDB dataset.
+
+<----------section---------->
+
+**Text Classification**
+
+Text Classification is defined as the task of assigning predefined categories or labels to text documents. This process is based solely on the text content of the documents. Metadata or other attributes associated with the document are not considered, distinguishing it from document classification. Furthermore, the classes are predefined, differentiating it from document clustering where classes are discovered automatically.
+
+Common purposes for text classification include:
+
+*   Topic labeling: Identifying the main subject or theme of the text.
+*   Intent detection: Determining the user's intention behind a given text input, such as a query or command.
+*   Sentiment analysis: Ascertaining the emotional tone or attitude expressed in the text (e.g., positive, negative, neutral).
+
+<----------section---------->
+
+**Definition**
+
+To formally define text classification, consider the following:
+
+*   A set of documents: D = {d<sub>1</sub>, ..., d<sub>n</sub>}, where each d<sub>i</sub> represents a text document.
+*   A set of predefined classes: C = {c<sub>1</sub>, ..., c<sub>m</sub>}, where each c<sub>j</sub> represents a category or label.
+
+The goal of text classification is to find a classifier function:
+
+f: D x C -> {True, False}
+
+This function assigns a Boolean value (True or False) to each pair (d<sub>i</sub>, c<sub>j</sub>) ∈ D x C, indicating whether document d<sub>i</sub> belongs to class c<sub>j</sub> or not. The classifier function effectively makes a binary decision for each document-class combination.
+
+<----------section---------->
+
+**Types of Classification**
+
+Text classification can be further categorized into different types based on the number of classes a document can be assigned to:
+
+*   **Single-label:** Each document in the dataset D is assigned to only one class from the set of classes C. An example would be assigning a news article to one specific category such as 'sports' or 'politics'.
+
+*   **Binary:** This is a special case of single-label classification where the set of classes C contains only two classes. This simplifies the problem to a decision between a class and its complement (the other class). For example, classifying emails as either 'spam' or 'not spam'.
+
+*   **Multi-label:** In multi-label classification, each document can be assigned to multiple classes from the set C. An example is categorizing a news article into multiple categories such as 'business' and 'finance'. Multi-label classification can be approached by transforming it into a series of binary classification problems, one for each class.
+
+<----------section---------->
+
+**ML-Based Classification**
+
+Machine learning (ML) techniques are frequently employed in text classification. The general process involves:
+
+1.  **Training:** A machine learning model is trained on a set of annotated text documents. This training set contains documents that are already labelled with the correct categories.
+2.  **Annotation:** Each document in the training set is associated with one or more class labels, which serve as the ground truth for training the model.
+3.  **Prediction:** After the model is trained, it can predict the category (or categories) for new, unseen documents.
+4.  **Confidence Measure:** The classifier may provide a confidence measure, indicating the certainty of its prediction.
+5.  **Vector Representation:** A crucial step in preparing the text for a machine learning model is converting the text into a numerical vector representation. Techniques like TF-IDF (Term Frequency-Inverse Document Frequency) are often used for this purpose.
+
+<----------section---------->
+
+**Topic Labelling Example**
+
+**Classifying Reuters News**
+
+The Reuters-21578 dataset is a widely used benchmark dataset for text classification, particularly for topic labeling. Its characteristics are:
+
+*   Multi-class and multi-label: Documents can belong to multiple topics simultaneously.
+*   90 distinct classes: Covering a broad range of news topics.
+*   7,769 training documents, 3,019 test documents: Providing a sufficient amount of data for training and evaluating models.
+*   The number of words per document ranges from 93 to 1,263: Indicating variable document lengths.
+*   Skewness: The distribution of documents across classes is uneven:
+    *   Some classes have over 1,000 documents.
+    *   Other classes have fewer than 5 documents.
+    *   Most documents are assigned either one or two labels, while some documents are labeled with up to 15 categories, adding complexity to the classification task.
+
+Further statistics about the dataset are available at https://martin-thoma.com/nlp-reuters/.
+
+<----------section---------->
+
+**Corpus Management**
+
+This section demonstrates how to load and explore the Reuters dataset using the NLTK (Natural Language Toolkit) library in Python.
+
+```python
+import nltk
+from nltk.corpus import reuters
+
+nltk.download('reuters')
+
+ids = reuters.fileids()
+
+training_ids = [id for id in ids if id.startswith("training")]
+test_ids = [id for id in ids if id.startswith("test")]
+categories = reuters.categories()
+
+print("{} training items:".format(len(training_ids)), training_ids)
+print("{} test items:".format(len(test_ids)), test_ids)
+print("{} categories:".format(len(categories)), categories)
+
+print("\nCategories of '{}':".format(training_ids[0]), reuters.categories(training_ids[0]))
+print("Categories of '{}':".format(test_ids[2]), reuters.categories(test_ids[2]))
+print("Items within the category 'trade'", reuters.fileids('trade'))
+```
+
+The code performs the following actions:
+
+1.  Imports the necessary libraries: `nltk` for natural language processing and `reuters` corpus from `nltk.corpus`.
+2.  Downloads the Reuters corpus if it is not already present.
+3.  Retrieves the file identifiers (`fileids`) of all documents in the corpus.
+4.  Separates the file identifiers into training and test sets based on their prefixes ("training" and "test").
+5.  Retrieves the list of all categories in the corpus.
+6.  Prints the number of training items, test items, and categories, along with the lists themselves (truncated for brevity).
+7.  Shows the categories associated with specific documents from the training and test sets.
+8.  Lists the file identifiers that belong to the 'trade' category.

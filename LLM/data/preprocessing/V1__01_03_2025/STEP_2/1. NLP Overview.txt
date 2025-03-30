@@ -1,0 +1,185 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 1: NLP Overview**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* What is Natural Language Processing?
+* Applications of NLP
+* History of NLP
+
+### What is Natural Language Processing?
+
+#### NLP in the Press
+
+Recent news highlights the growing impact of NLP, with articles discussing powerful AI bots like ChatGPT, their potential to disrupt job markets, and their rapid advancements in artificial intelligence.  Microsoft co-founder Bill Gates even stated that ChatGPT "will change our world."
+
+#### Importance of NLP
+
+* "Natural language is the most important part of Artificial Intelligence." - John Searle, Philosopher
+* "Natural language processing is a cornerstone of artificial intelligence, allowing computers to read and understand human language, as well as to produce and recognize speech." - Ginni Rometty, IBM CEO
+* "Natural language processing is one of the most important fields in artificial intelligence and also one of the most difficult." - Dan Jurafsky, Professor of Linguistics and Computer Science at Stanford University
+
+#### Definitions
+
+* Natural language processing is the set of methods for making human language accessible to computers. (Jacob Eisenstein)
+* Natural language processing is the field at the intersection of computer science and linguistics. (Christopher Manning)
+* NLP aims to enable computers to understand natural language and perform tasks humans can do, such as translation, summarization, and question answering. (Behrooz Mansouri)
+* Natural language processing is an area of research in computer science and artificial intelligence concerned with processing natural languages like English or Mandarin. This processing generally involves translating natural language into data a computer can use to learn about the world. This understanding is sometimes used to generate natural language text that reflects that understanding. (Natural Language Processing in Action)
+
+
+#### Natural Language Understanding
+
+A subfield of NLP focused on transforming human language into a machine-processable format. This involves extracting meaning, context, and intent from text. Text is transformed into a numerical representation (embedding).  Embeddings are used by:
+
+* Search Engines: To interpret the meaning behind search queries.
+* Email Clients: To detect spam and classify emails.
+* Social Media: To moderate posts and understand user sentiment.
+* CRM Tools: To analyze customer inquiries and route them.
+* Recommender Systems: To suggest articles, products, or content.
+
+
+#### Natural Language Generation
+
+A subfield of NLP focused on generating human-like text.  This involves creating coherent, contextually appropriate text based on a numerical representation of the intended meaning and sentiment. Applications include:
+
+* Machine Translation: Translates text between languages.
+* Text Summarization: Creates concise summaries of long documents.
+* Dialogue Processing: Powers chatbots and virtual assistants.
+* Content Creation: Generates articles, reports, stories, poetry, etc.
+
+#### Example: Conversational Agents
+
+Conversational agents include speech recognition, language analysis, dialogue processing, information retrieval, and text-to-speech.  A classic example from film is the interaction between HAL and Dave in 2001: A Space Odyssey:
+
+> "Open the pod bay doors, Hal."
+>
+> "I’m sorry, Dave, I’m afraid I can’t do that."
+>
+> "What are you talking about, Hal?"
+>
+> "I know that you and Frank were planning to disconnect me, and I'm afraid that's something I cannot allow to happen."
+
+
+#### NLP is Hard
+
+Ambiguity is a major challenge in NLP. Consider the sentence: "I made her duck."  Possible interpretations include:
+
+* I cooked waterfowl for her.
+* I cooked waterfowl belonging to her.
+* I created a (plaster?) duck she owns.
+* I caused her to quickly lower her head or body.
+
+
+#### Ambiguity
+
+Natural language is rich and highly ambiguous. One input can have many meanings, and many inputs can have the same meaning. Levels of ambiguity include:
+
+* Lexical Ambiguity: Different meanings of words (e.g., "I saw bats.")
+* Syntactic Ambiguity: Different ways to parse a sentence (e.g., "Call me a cab.")
+* Interpreting Partial Information: How to interpret pronouns.
+* Contextual Information: The context can affect meaning.
+
+
+#### NLP and Linguistics
+
+NLP draws on various aspects of linguistics:
+
+* Phonetics: Understanding speech sounds.
+* Morphology:  Knowledge of word structure.
+* Syntax: Understanding sentence structure.
+* Semantics: Insight into meaning.
+* Pragmatics: Understanding how context influences meaning.
+
+
+#### NLP vs. Linguistics
+
+* **Linguistics:** Focuses on the study of language, exploring its structure, meaning, and use. It may employ computational methods as part of computational linguistics.
+* **NLP:** Focuses on providing computational capabilities that utilize human language. It designs and implements algorithms to understand and generate human language, applying results from linguistics to develop practical applications.
+
+
+### Applications of Natural Language Processing
+
+NLP has numerous applications across various sectors, including:
+
+* **Healthcare:** Processing patient data, assisting in diagnosis and treatment planning.
+* **Finance:** Analyzing market sentiment, managing risk, detecting fraud.
+* **E-commerce and Retail:** Personalized recommendations, improved search, customer service chatbots.
+* **Legal:** Automating document analysis, legal research, contract review.
+* **Customer Service:** Automating responses, guiding users, analyzing feedback.
+* **Education:** Automatic grading, learning tools, text summarization.
+* **Automotive:** Intelligent navigation systems and voice-activated controls.
+* **Technology:** Code generation, code completion, code review.
+* **Media and Entertainment:** Script generation, article writing, interactive storytelling.
+
+Other applications include search, autocompletion, spelling/grammar checking, chatbots, indexing, email filtering, text mining, knowledge extraction, legal inference, news event detection, plagiarism detection, sentiment analysis, behavior prediction, and creative writing.
+
+
+#### Hype Cycle
+
+The Gartner Hype Cycle for Emerging Technologies (2023) places several NLP-related areas, such as Generative AI and AI TRiSM, near the "Peak of Inflated Expectations."
+
+
+#### NLP Market
+
+NLP is a promising career option with growing demand. Employment is projected to grow 22% between 2020 and 2030. The NLP market is expected to reach \$18.9 billion by 2023 and continue to grow.
+
+
+### History of NLP
+
+#### First Steps of NLP
+
+NLP has a history of ups and downs, influenced by computational resources and changing approaches.  In the 1950s and 1960s, machine translation was the first major application. Early systems relied on dictionary lookup and simple rules, but their limitations in handling ambiguity led to the "ALPAC Report" in 1966, which slowed research funding.
+
+#### Generative Grammars
+
+Noam Chomsky's work on generative grammar in 1957 influenced NLP, but early translation systems struggled with the complexity of language.
+
+#### ALPAC Report (1966)
+
+The ALPAC report recommended shifting focus from fully automated machine translation to tools that assist human translators.  This contributed to the first AI winter.
+
+#### ELIZA
+
+ELIZA, a pioneering conversational agent created in the 1960s, simulated a psychotherapist. While demonstrating the potential of computer conversation, it relied on simple pattern matching and had limited capabilities.
+
+#### The Turing Test
+
+Proposed by Alan Turing in 1950, the Turing Test evaluates a machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human.  While it has sparked debate and seen some (controversial) successes, its limitations have led to a focus on other benchmarks.
+
+#### Rise of Symbolic Approaches (1970s-1980s)
+
+This era saw the development of rule-based systems and ontologies, primarily for expert systems and information retrieval. However, these systems lacked flexibility and scalability.
+
+#### Statistical Revolution (1990s)
+
+Increased computing power enabled statistical models learned from data to outperform rule-based systems.  Large corpora became crucial.  LSTM networks were invented.
+
+#### Advances in NLP (2000s)
+
+Neural networks and word embeddings gained prominence. Google Translate, a commercially successful statistical machine translation system, was launched in 2006.
+
+#### Deep Learning Era (2010s)
+
+LSTM and CNN architectures became widely used. Word2Vec (2013) enabled efficient learning of word embeddings. Sequence-to-sequence models (2014) introduced the encoder-decoder architecture. Virtual assistants like Siri, Cortana, Alexa, and Google Assistant emerged.  The Transformer architecture (2017), with its attention mechanism, revolutionized NLP.
+
+#### Large Language Models (LLMs)
+
+LLMs, leveraging vast data and computational resources, have become powerful tools for various NLP tasks, including text generation, translation, chatbots, code generation, question answering, and summarization.
+
+#### Multimodal LLMs
+
+These models integrate and process various data types, such as images, text, audio, and video, enabling applications like image captioning, text-to-image generation, and speech-to-text conversion.
+
+
+### References
+
+* _Natural Language Processing in Action: Understanding, analyzing, and generating text with Python_ (Chapter 1)
+
+

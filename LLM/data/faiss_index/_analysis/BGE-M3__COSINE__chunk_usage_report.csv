@@ -1,0 +1,1611 @@
+FAISS Index,Chunk,Size (chars),Usage Count,Top Question
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Transformers for text representation and generation**
+
+Transformers have revolutionized the field ...",4055,107,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Paradigm shift in NLP**
+
+The advent of Large Language Models (LLMs) has instigated a significant p...",3295,90,What underlying architecture of LLMs will be explored in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"different approaches; we show you techniques for both.
+
+In addition, deep learning and data-driven p...",8275,89,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Transformer**
+
+The Transformer architecture comprises several key components:
+
+*   Input: The raw ...",2818,88,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Additional Contextual Insights:**
+
+**Hardening NLP Software:** It is crucial to harden your NLP...",4732,70,"What are the different levels of ambiguity that pose challenges for NLP, and can you provide example..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Outline LESSON 9**
+
+This lesson will cover the following topics:
+
+*   Limitations of Recurrent Neu...",1178,68,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 5 ##
+
+Word embeddings
+
+This lesson focuses on word embeddings, a crucial technique in Natu...",1094,64,What are the core challenges in Natural Language Processing (NLP) that students will learn about in ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Encoder-only vs Decoder-only Transformers
+
+| Feature            | Encoder-Only Transformers (e.g....",1410,64,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Try it yourself
+
+*   **Study the `trl` library:** Explore the TRL library on Hugging Face to gain...",1263,62,What are the two components of the final evaluation for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Hugging Face Education Toolkit**
+
+The Hugging Face Education Toolkit is designed to help educators...",530,59,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Additional Context:**
+
+This section includes additional context gleaned from a practical example o...",6203,58,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**The Hugging Face Hub**
+
+The Hugging Face Hub ([https://huggingface.co/](https://huggingface.co/)) ...",973,58,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Transformer’s Encoder
+
+### Transformer’s Encoder
+Used for computing a representation of the input...",1375,58,Explain how the Transformer's architecture handles long-range dependencies within sequences.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Goal of the Project (Detailed):**
+
+The primary goal of this project is to develop a chatbot pro...",1261,56,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Additional Context
+
+Here is further relevant context to the topic covered.
+
+Popular sampling tech...",5570,54,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Prefix tuning
+
+*   Instead of modifying the LLM's internal weights, prefix tuning introduces and ...",2697,54,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Datasets and data pre-processing**
+
+**Datasets**
+
+*   Training LLMs requires vast amounts of text ...",4725,54,What is the title of the textbook mentioned in the text?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Contextual Enrichment: The Role of Chatbot Frameworks and LLMs**
+
+The exercise of creating a pizze...",1206,54,How do examples like ChatGPT demonstrate the potential impact of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"12.5.1 Building an intent-based chatbot with Rasa
+Rasa is an open-source conversational framework th...",4185,54,How does the Input Module utilize NLU and GUI elements to process user input?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 14 #
+
+## Outline
+The lecture covers the following key topics:
+
+*   **Decoder-only Transfor...",603,53,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Self-Attention and Context Understanding
+Decoder-only transformers utilize self-attention mechani...",1585,53,"Explain the concept of ""Self-Attention"" in the context of Transformers and how it differs from tradi..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Encoder-only Transformer
+*   The complete transformer architecture, encompassing both encoder and...",1871,53,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Large Language Models (LLM)
+
+After transformers, the next step was scaling...
+
+*   LLM leverage ...",534,53,What specific topics related to advancements in NLP and LLMs will be covered in the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 2 ##
+
+**Outline:**
+
+The lesson covers the following key areas:
+
+*   Tokenization: The proc...",566,52,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Hints and Implementation Details**
+
+To initiate the project, create the necessary directory and in...",1498,52,How would you install the Gradio library?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Leveraging Open-Source Python Chatbot Frameworks: Rasa, LangChain, and qary**
+
+Several popular ope...",2152,52,What are some of the core NLP functionalities provided by the spaCy library?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"1.11 Natural language IQ
+Like human brainpower, the power of an NLP pipeline cannot be easily
+gauged...",5688,51,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Deep Learning Era
+
+**Transformer (2017):**
+
+*   **Attention Is All You Need**
+*   Integration of...",839,51,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Decoder-only Transformer
+Decoder-only transformers are a specific type of transformer model that ...",1757,51,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LESSON 13 ##
+
+## Outline
+The lesson covers the following topics:
+*   Encoder-only transformer arc...",465,51,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Structured Prompting:**
+    *   Definition: Employs a semi-...",5474,50,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA Pre-training
+Like GPT models, LLaMA is pre-trained using an autoregressive language modelin...",819,50,Why is pre-training essential for Large Language Models (LLMs)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Fine-tuning
+*   BERT is pre-trained on general language data and then fine-tuned on specific...",1024,50,"For what types of NLP tasks are Seq2Seq models most suitable, and how do their encoder and decoder c..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"Lesson 17: Fine Tuning
+
+This lesson explores fine-tuning techniques for Large Language Models (LLMs)...",1169,49,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Transformer’s pipeline
+Decoding time step.
+
+ENCODER - DECODER.
+
+https://poloclub.github.io/transf...",777,49,"How does the Transformer architecture achieve parallel processing of sequence elements, and what ben..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Lesson 10: Transformers II
+
+## Outline
+
+*   Multi-Head Attention
+*   Encoder Output
+*   Decoder
+...",713,48,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Encoder-Decoder Transformer
+
+### Encoder-Decoder Transformer
+Encoder-Decoder Transformers represe...",663,48,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Directory Structure**
+Explanation of the key directories and files within a Rasa project:
+
+*   `ac...",1035,48,"In the provided Guardrails AI code example, what is the role of the `rules.yaml` file?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Lesson 21: Reinforcement Learning from Human Feedback**
+
+## Outline
+
+This lesson provides an overv...",688,47,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### PEFT techniques
+
+*   Low-Rank Adaptation (LoRA): Approximates weight updates by learning low-ran...",1466,47,How does the pre-training and fine-tuning paradigm in LLMs address the challenges of transfer learni...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Introduction to Hugging Face**
+
+The lesson starts with an introduction to Hugging Face, a prominen...",294,46,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Natural Language Understanding (NLU)
+
+NLU is a subfield of NLP dedicated to enabling machines to...",1515,46,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Other types of fine tuning
+
+*   Parameter-Efficient Fine-Tuning (PEFT): Updates only a subset of...",1400,45,"Explain the concept of ""Parameter Efficient Fine Tuning"" in the context of LLMs and why it's importa..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Pre-training of LLMs**
+
+Large Language Models (LLMs) heavily rely on unstructured data for pre-tra...",3284,44,Why is tokenization crucial for a model's understanding of text?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT
+*   BERT (Bidirectional Encoder Representations from Transformers) is a language model intro...",1308,44,How does Byte Pair Encoding (BPE) contribute to the efficiency of Transformer models in handling lar...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Workflow of RLHF
+
+The RLHF workflow typically consists of three main stages:
+
+1.  **Pre-trained ...",1380,44,How is the final output word selected for each time step?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Introduction to Rasa**
+This section provides an introduction to the Rasa framework.
+
+**Rasa Intro*...",319,44,"What programming language is spaCy primarily designed for, and is it open-source or proprietary?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 6 ##
+
+Neural Networks for NLP
+
+This lesson delves into the application of neural networks ...",1169,42,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 7 ##
+
+Dialog Engines
+
+This lesson focuses on dialog engines within the context of Natural ...",791,42,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 4 ##
+
+Text Classification
+
+This document provides an outline and detailed explanation of t...",759,42,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Additional Context:**
+
+The additional context elaborates on customizing the Transformer model usin...",6794,42,"Explain the concept of ""Self-Attention"" in the context of Transformers and how it differs from tradi..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Example: Conversational Agents
+
+Conversational agents (chatbots, virtual assistants) integrate s...",1062,42,How do examples like ChatGPT demonstrate the potential impact of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular GPT Variants
+Several variants of the GPT model have been developed to address specific ne...",3324,42,Why is it important to review a model's Git repository and release history?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Conversation Design**
+Effective conversation design is vital for creating useful and engaging chat...",880,42,"If you were developing a virtual personal assistant, what role would fine-tuning play in its develop..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"1.12 Test yourself
+Chapter 1 review questions
+Here are some review questions for you to test your un...",1402,41,What are the core challenges in Natural Language Processing (NLP) that students will learn about in ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Using LLMs after pre-training**
+
+*   **Fine-tuning:** Gradient descent on weights to optimize perf...",1081,41,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NATURAL LANGUAGE PROCESSING AND LARGE LANGUAGE MODELS**
+
+### General Information
+- **Program of St...",5412,40,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Transformers trl library
+
+### TRL: Transformer Reinforcement Learning
+
+*   **Overview:** TRL (Tra...",925,40,What are some of the practical skills students will develop in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Index Chunks**
+
+Embeddings are used to index text chunks, enabling semantic search and retrieval.
+...",1109,39,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Topic Labelling Example**
+
+**Classifying Reuters News**
+
+The Reuters-21578 dataset is a widely use...",1012,39,"Where can students find course materials, assignments, and announcements?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### LM Studio
+
+LM Studio: A Desktop Application for Local LLM Development and Experimentation.
+
+*...",450,39,How can pipelines be used for streamlined model usage within the Hugging Face ecosystem?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**ML-Based Classification**
+
+Machine learning (ML) techniques are frequently employed in text classi...",979,39,What are the key factors to consider when selecting a machine learning model for a specific task?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Introduction to Prompt Engineering
+
+**Prompt Engineering:** This is a relatively new discipli...",1447,38,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Learning Word Embeddings
+
+### Word2Vec
+Word embeddings was introduced by Google in 2013 in the fo...",829,38,When is the second edition of the textbook expected to be published?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Training Details
+*   **Loss Function:** Cross-entropy loss is used for predicting masked span...",740,38,What value is assigned to the attention scores corresponding to future positions by the masking proc...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – T5-3B and T5-11B
+T5-3B and T5-11B are larger versions of the original T5 w...",969,38,What is the key advantage of transformers in NLP compared to previous architectures?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Hugging Face – Model Hub Navigation**
+
+The Hugging Face Model Hub ([https://huggingface.co/models]...",219,38,What are the core components of the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Pre-training
+*   BERT is pre-trained using two self-supervised learning strategies:
+    *   ...",1807,37,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Strengths and Limitations
+*   **Strengths**
+    *   **Bidirectional Contextual Understanding...",1182,37,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA Variants and Use Cases
+
+| Model        | Parameters | Use Case                             ...",2217,37,"What are the different levels of ambiguity that pose challenges for NLP, and can you provide example..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Text Classification**
+
+Text Classification is defined as the task of assigning predefined categori...",812,37,How is the `[CLS]` token used for single-sentence classification tasks like sentiment analysis?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,Now you have the pieces that a HuggingFace training pipeline needs to know to start training (finetu...,10214,36,What underlying architecture of LLMs will be explored in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"Rasa is highlighted as a popular open-source framework for building TOD systems.
+[https://rasa.com/]...",901,36,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+The Transformer architecture uses a particular definition of the attention funct...",622,36,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Tasks to Enhance with RLHF
+
+RLHF can be applied to a wide range of NLP tasks to improve the qual...",904,36,What specific topics related to advancements in NLP and LLMs will be covered in the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Word Embeddings
+Word Embeddings: A technique for representing words with vectors (A.K.A. Word Vec...",1183,36,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA (Large Language Model Meta AI)
+The LLaMA (Large Language Model Meta AI) architecture is a f...",983,36,"How does the scalability of Transformers, combined with the parallelizability of attention, contribu..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA vs GPT
+
+| Aspect            | LLaMA                                                       |...",1404,36,Why is CommonCrawl data considered noisy and what steps are necessary to utilize it effectively for ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"```python
+# Step 1: Train your model on your favorite dataset using Supervised Fine-Tuning (SFT)
+fro...",1789,36,What is Parameter-Efficient Fine-Tuning (PEFT) and how does it work?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Decoder
+The decoder is made of a sequence of decoder blocks having the same structure. The origi...",1587,35,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT Pre-training
+GPT models undergo pre-training to learn language patterns and relationships fro...",1089,35,How do positional encodings help the model distinguish between sequences with the same words in diff...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - ALBERT
+*   ALBERT (A Lite BERT) was developed by Google Research in 2019....",1103,35,How do encoder-only models like BERT capture contextual information differently than traditional seq...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"12.5 Chatbot frameworks
+In each of the previous chapters, you’ve learned a new technique for
+process...",3357,35,How should the chatbot designed for the final project handle queries that fall outside the scope of ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rasa Intro (continued)**
+Additional key components of Rasa:
+
+*   **Actions:** Define what the bot ...",1018,35,"How is ""Relevance"" different from ""Coherence"" in the context of evaluating chatbot responses?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Types of fine tuning
+
+### Pros and cons of full fine tuning
+
+*   Fine-tuning refers to adapting a...",1655,34,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLP Pipeline**
+
+The Hugging Face Transformers library simplifies the creation and usage of NLP mod...",462,34,What are the contact details for Professor Nicola Capuano?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT (Generative Pre-trained Transformer)
+GPT is a type of decoder-only transformer model develope...",2114,34,Explain the autoregressive approach used by decoder-only models like GPT for text generation.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Training Datasets for GPT
+GPT models are trained on massive and diverse datasets sourced from a w...",1113,34,What are the primary sources of text data used for training Large Language Models (LLMs)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"12.1.2 Conversation design
+As chatbot technology gained more and more popularity in the last decade,...",4029,34,How should the chatbot designed for the final project handle queries that fall outside the scope of ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**LangChain:**
+
+*   Chains prompts with checks and filters. It allows developers to create comple...",975,34,What are the key components of a well-structured prompt?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Frameworks for Implementing Guardrails:**
+
+**Overview:** Existing frameworks for implementing g...",774,34,What are some potential challenges or limitations one might encounter when building a RAG with these...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rasa REST API**
+Rasa provides a REST endpoint for integration with external systems.
+
+*   You can ...",653,34,What is Rasa?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### In-Context Learning
+
+In-context learning is the ability of an LLM to perform tasks by leverag...",973,33,What underlying architecture of LLMs will be explored in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Deep Learning Era
+
+**2010's:**
+
+*   LSTM and CNN became widely adopted for NLP, providing powerf...",765,33,What specific topics related to advancements in NLP and LLMs will be covered in the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Input Embedding**
+
+*   Embedding: a representation of a symbol (word, character, sentence) in a di...",829,33,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Encoder**
+
+The encoder is made of a sequence of encoder blocks having the same structure. The orig...",866,33,What are the primary components of the encoder and decoder in a Transformer?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## T5
+
+### T5
+T5, which stands for Text-to-Text Transfer Transformer, is a language model developed ...",2161,33,"What is the significance of the encoder blocks being ""identical""?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Generate Knowledge Prompting:**
+    *   Definition: First p...",1181,33,"What role does prompting play in utilizing LLMs for various downstream tasks, and how does it differ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Hugging Face - Datasets Details**
+
+*   Each dataset in the Hub comes with a dataset card, similar ...",298,33,What are the core components of the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Types of Classification**
+
+Text classification can be further categorized into different types bas...",1009,33,Which specific datasets are used as examples in this lesson on text classification?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Datasets - Books**
+
+*   Two commonly utilized books datasets for LLMs training are BookCorpus and ...",3036,32,Who are the authors of the textbook?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Encoder Decoder Attention
+Keys from Encoder Outputs. Queries from Decoder Inputs. Values from Enc...",729,32,What are the primary components of the encoder and decoder in a Transformer?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Meta Meta Prompting:**
+    *   Definition: Utilizes LLMs to...",1911,32,"What role does prompting play in utilizing LLMs for various downstream tasks, and how does it differ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Adding Guardrails to LLMs:**
+
+**Guardrails Defined:** Guardrails are mechanisms or policies des...",1670,32,What is the primary purpose of using Gradio?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Tools to Use for the Project (Expanded):**
+
+Students have significant flexibility in selecting ...",1209,31,What are some of the practical skills students will develop in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Text Segmentation**
+
+Text segmentation is the process of dividing text into meaningful units. This...",984,31,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 3 ##
+
+## Outline
+
+This lesson covers the following topics:
+
+*   **Term Frequency:**  The b...",702,31,What is the title of the textbook mentioned in the text?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Continuous Bag-of-Word
+After the training is complete the output layer of the network is discard...",3803,31,What are the final two layers of the decoder and how do they contribute to generating the probabilit...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Task-Oriented Dialogue Systems**
+This section delves into the specifics of Task-Oriented Dialogue ...",1041,31,"In the context of conversational AI, what role does text classification play?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Instruction fine tuning
+
+*   Instruction fine-tuning is a specialized approach for adapting large...",1241,30,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA Input Encoding
+LLaMA models use Byte-Pair Encoding (BPE) as their input encoding method, ob...",747,30,How do positional encodings incorporate position-specific information into the input embeddings?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Case Study: GPT-3.5 and GPT-4
+
+*   **Application of RLHF:** Both GPT-3.5 and GPT-4, developed by...",827,30,Why is it important to review a model's Git repository and release history?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Loss Function and Optimization
+GPT models utilize specific loss functions, optimizers, and learni...",1202,30,What is the typical loss function used during the fine-tuning process of BERT?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – mT5
+mT5 (Multilingual T5) was developed to extend T5's capabilities to mul...",1337,30,Approximately how many tokens are used in the vocabulary of GPT-2?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Reinforcement Learning from Human Feedback (RLHF)
+
+### What is RLHF?
+
+Reinforcement Learning from...",1447,29,"What is ""Retrieval Augmented Generation"" and how does it enhance the capabilities of Large Language ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rasa Project**
+The structure and organization of a Rasa project:
+
+*   Most configuration and data ...",375,29,What are students permitted to use for their projects?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Improvements to Word2Vec
+**Subsampling Frequent Tokens**
+*   Common words (like stop-words) ofte...",1077,29,How can stop word removal negatively impact the meaning of a sentence?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 18 ##
+
+key concepts of Prompt Engineering, a crucial area within Natural Language Processi...",524,28,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Fine-Tuning with Custom Data:**
+
+**Definition:** Fine-tuning involves training the LLM on domai...",939,28,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Prompt Engineering:**
+
+**Definition:** Prompt engineering is the process of crafting or refinin...",887,28,"What are the key differences between Prompt Engineering and Fine Tuning of LLMs, and why are they im..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Additional Context from Haystack Documentation**
+
+The following information provides additional co...",4971,28,Where can you find the early access version of the second edition of the textbook?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Common NLP Models**
+
+The table below lists several common NLP models, along with their licenses, o...",2178,28,When is the second edition of the textbook expected to be released?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Advances in NLP
+
+**2000's**
+
+*   Increased Use of Neural Networks: Neural networks began to gain...",855,28,What specific topics related to advancements in NLP and LLMs will be covered in the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Autoregressive Text Generation
+In a decoder-only transformer, text generation is achieved through...",1345,28,"How does the decoder prevent ""peeking"" at future tokens during training, and why is this important?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Types of Guardrails:**
+
+*   **Safety Guardrails:** These are designed to prevent the generation...",1325,28,What ethical considerations are addressed through data pre-processing steps like privacy scrubbing a...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"12.1 Chatbots are everywhere
+Chatbots are everywhere. Here are some examples to help you dream up yo...",2950,28,Why is creating a virtual environment recommended for local development with transformer models?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – Flan-T5
+Flan-T5 is a fine-tuned version of T5 with instruction-tuning on a...",946,28,How does the availability of numerous pre-trained models on the Hub benefit users?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Term Frequency
+
+### Bag of Words (BoW)
+
+The Bag of Words model is a simplified representation of ...",1320,28,How does WordPiece tokenization handle out-of-vocabulary words?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**FAISS**
+
+### Introduzione
+FAISS (Facebook AI Similarity Search) è una libreria open-source svilupp...",5070,28,"In sentence-pair tasks, what does the `[CLS]` embedding represent?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Pros and Cons of RLHF
+
+**Pros:**
+
+*   **Iterative Improvement:** RLHF allows for iterative impro...",1426,28,What are the main disadvantages of employing a full fine-tuning approach?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### TF-IDF Applications
+TF-IDF is sufficient for many NLP applications:
+*   Information Retrieval (S...",974,28,How can the sentiment analysis tuning example provided in the TRL documentation be adapted for a dif...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Limitations of TF-IDF
+TF-IDF (Term Frequency-Inverse Document Frequency) is a traditional method ...",1230,28,How does the provided Python code snippet utilize the `spaCy` and `collections` libraries to calcula...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Definition**
+
+To formally define text classification, consider the following:
+
+*   A set of docume...",709,28,What specific aspects of text classification are covered in this lesson?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Natural Language Generation (NLG)
+
+NLG is the complementary subfield of NLP focused on creating ...",1146,27,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 22  ##
+
+**Outline:**
+
+*   Adding guardrails to LLMs
+*   Techniques for adding guardrails
+*...",144,27,What underlying architecture of LLMs will be explored in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Intro to Text Generation
+
+### Generative Models
+A class of NLP models designed to generate new te...",1526,27,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Practice on Token Classification and Named Entity Recognition
+*   Refer to the Hugging Face tutor...",1147,27,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Adding LLMs to your Chatbot with LangChain**
+
+Using Large Language Models, or LLMs, can be especia...",1648,27,"How does the scalability of Transformers, combined with the parallelizability of attention, contribu..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Variants Summary
+
+| Variant        | Purpose                    | Key Strengths              ...",1322,27,"What are the different levels of ambiguity that pose challenges for NLP, and can you provide example..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### System Prompts
+
+A system prompt is a configuration provided to the AI model before any user i...",964,27,What is the key advantage of prompting over fine-tuning in terms of model flexibility?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+
+### LLM Settings
+
+When designing prompts, you interact with the LLM via an API, where you can ad...",1325,27,"If using Anaconda, what command activates the newly created ""nlpllm"" environment?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Decoder-only Transformer Applications
+Decoder-Only Transformers have a wide array of real-world a...",1266,26,"Describe the differences between Encoder-only, Decoder-only, and Encoder-Decoder Transformer archite..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Word2Vec Alternatives
+
+### GloVe
+Global Vectors for Word Representation
+*   Introduced by researc...",793,26,"What is ""Retrieval Augmented Generation"" and how does it enhance the capabilities of Large Language ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Parameter efficient fine tuning (PEFT)
+
+### Parameter-Efficient Fine-Tuning
+
+*   Parameter-Effici...",1552,26,"Explain the concept of ""Parameter Efficient Fine Tuning"" in the context of LLMs and why it's importa..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Chatbot Evaluation Procedure (In-Depth):**
+
+The evaluation of the chatbots will consist of two ...",2120,26,What are the two components of the final evaluation for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT Fine-Tuning
+Fine-tuning adapts a pre-trained GPT model to perform specific tasks by training ...",1120,26,What ethical considerations are addressed through data pre-processing steps like privacy scrubbing a...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Preliminary Steps**
+
+Obtain a Hugging Face access token for using models hosted on the Hugging Fac...",1653,26,What are the core components of the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Chatbot Frameworks: An Abstraction Layer for Dialogue Engines**
+
+Chatbot frameworks serve as appli...",1800,26,What is emphasized about Gradio's user interface?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Guardrails AI:**
+
+*   **Website:** [https://www.guardrailsai.com/](https://www.guardrailsai.com...",913,26,"Considering the context of ""Guardrails for LLMs"", how does the TRL library contribute to building sa..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Natural Language Processing and Large Language Models**
+
+This material is part of Lesson 8, ""Build...",1790,25,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Introduction to RAG**
+
+**What is RAG?**
+
+Large Language Models (LLMs) possess the capability to re...",1107,25,"What is ""Retrieval Augmented Generation"" and how does it enhance the capabilities of Large Language ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Fine-tuning
+*   The output of the encoder is fed into an additional layer to solve a specifi...",756,25,What is the purpose of the linear layer in the decoder output process?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"Hint: Start with a dummy bot.
+
+Example conversation:
+
+User: Can I have the menu?
+Bot: What kind of p...",643,25,Where can you host Gradio demos for free?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rasa Basic Units**
+The fundamental components within the Rasa framework are:
+
+*   **Intents:** Rep...",513,25,"In Example 1, what is the input data?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## TF-IDF
+
+### Inverse Document Frequency
+
+Term Frequency (TF) alone does not account for the unique...",1166,25,"Why can relying solely on raw word counts for Term Frequency be misleading, and how does the illustr..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Transformer**
+
+In 2017, a group of researchers at Google Brain proposed an alternative model for p...",682,24,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Building a RAG with LangChain and HuggingFace**
+
+**Example Project**
+
+This project aims to build a...",943,24,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Summary on pre-training**
+
+*   Pre-training tasks can be invented flexibly, and effective represen...",1313,24,"Besides machine translation, what are some other NLP tasks where the Transformer architecture has de..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Low-Rank Adaptation (LoRA)
+
+*   LoRA assumes that the changes required to adapt a pre-trained mod...",2219,24,What are the two primary methods for adapting pre-trained LLMs to specific downstream tasks?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### How LoRA works
+
+*   **Freezing Pre-Trained Weights:** LoRA keeps the original weight matrices W ...",2085,24,What are the two primary methods for adapting pre-trained LLMs to specific downstream tasks?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – Efficient T5
+Efficient T5 Variants are optimized for efficiency in resourc...",761,24,"If computational resources are limited, which of the mentioned models might be a more practical choi..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – ByT5
+ByT5 (Byte-Level T5) processes text at the byte level instead of usin...",871,24,How does Byte-Pair Encoding balance word-level and character-level representations?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Importance of NLP
+
+The significance of NLP is further emphasized by quotes from prominent figure...",996,23,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Key Components (LangChain)**
+
+*   **Prompt Templates:** These are pre-defined text structures that...",1388,23,"Where can students find course materials, assignments, and announcements?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Recurrent Neural Networks
+
+### Neural Networks and NLP
+Neural networks are extensively employed i...",1349,23,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Bag of Words Representation**
+
+The Bag of Words (BoW) model is a way of representing text data whe...",1395,23,How are tokens represented for computational processing?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Bag-of-Words (BoW)**
+
+BoW representation addresses the storage challenges of one-hot encoding by c...",748,23,What is the ultimate outcome of the tokenization process in terms of data representation?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,So the first thing you need to do is adjust your training set labels. The output vector will be meas...,862,23,Which positions should the decoder consider when generating the *i*-th output word?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Practice on Text Generation
+For practical experience, the following resources are recommended:
+
+*...",919,23,How can a development environment be set up for using Hugging Face models?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Try It Yourself:**
+
+*   **Evaluate Techniques:** Determine which techniques for adding guardrai...",1009,23,What are some potential challenges or limitations one might encounter when building a RAG with these...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Pipeline Configuration**
+The `config.yml` file defines the NLU pipeline and the dialog policies us...",710,23,"In the provided Guardrails AI code example, what is the role of the `rules.yaml` file?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Applications of Natural Language Processing
+
+### NLP Killer Applications
+
+Key applications of NLP...",1018,22,"What are the names of the authors of the textbook ""Natural Language Processing in Action""?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Pre-training
+T5 is pre-trained using a denoising autoencoder objective called span-corruption...",1088,22,"How does the decoder prevent ""peeking"" at future tokens during training, and why is this important?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Vocabulary
+T5 employs a fixed vocabulary of 32,000 tokens. This vocabulary includes subwords,...",1182,22,How is the probability distribution over the output vocabulary calculated?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT Strengths
+GPT models exhibit several notable strengths due to their architecture and training...",1659,22,"Why is the scalability of the Transformer architecture considered a significant advantage, particula..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### How instruction fine tuning works
+
+*   A diverse set of instructions and outputs is compiled. Ea...",2415,22,What are the key considerations regarding datasets and data pre-processing for training LLMs?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Other BERT Variants
+*   CamemBERT: French language-focused BERT model.
+*   FinBERT: Optimized for...",612,22,"What distinguishes autoregressive models like GPT, trained using Causal Language Modeling (CLM), fro..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Using Reuters 21578 (TF Calculation)
+
+```python
+doc = nlp(sample)
+
+tokens = [tok.lower_ for tok ...",4226,22,What is the relationship between the length of the prefix sequence and the expressiveness and effici...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Installing Rasa**
+Instructions for setting up a Rasa development environment:
+
+Create and activate...",322,22,"What are the recommended environments for practicing the provided exercises, and how can they be set..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Retrieval and Generation**
+
+Given a user input query, the system retrieves the most relevant split...",1003,21,"What is ""Retrieval Augmented Generation"" and how does it enhance the capabilities of Large Language ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Multi-head Attention
+Multi-head attention allows the model to jointly attend to information from...",952,21,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Adapters
+
+*   Adapters are lightweight, task-specific neural modules inserted between the layers ...",1715,21,What was the initial purpose for which the Transformer architecture was designed?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Masked Multi-Head Attention
+Masked Multi-Head Attention. Outputs at time T should only pay attent...",876,21,"How does the decoder prevent ""peeking"" at future tokens during training, and why is this important?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LLAMA Training Process
+During pre-training, LLaMA uses specific methods to optimize its performan...",883,21,How can LLMs be effectively utilized after pre-training?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Pre-training Dataset
+T5 pre-training uses the C4 dataset (Colossal Clean Crawled Corpus), a m...",603,21,Why is CommonCrawl data considered noisy and what steps are necessary to utilize it effectively for ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Best Practices for Implementing Guardrails:**
+
+*   **Combine Multiple Techniques:** For robust ...",476,21,What are the potential benefits of implementing guardrails on LLMs?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**TOD System Architecture**
+The core components of a TOD system can be visualized as:
+
+*   **Input M...",1155,21,What are the main components and functionalities of a dialog engine?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Attention**
+
+In order to understand the self attention, we must first introduce its fundamental bu...",804,20,"Explain the concept of ""Self-Attention"" in the context of Transformers and how it differs from tradi..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Bag-of-Words (recap)
+Before diving into word embeddings, let's briefly recap the Bag-of-Words (Bo...",687,20,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Input Encoding
+T5 uses a specific method for encoding its input text, relying on the Sentence...",809,20,What are the discrete units created during tokenization called?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Multi-head attention
+
+### Multi-head Attention
+*   By using different self-attention heads, it is...",1120,20,What is the primary purpose of self-attention in processing sequential data like sentences?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Many Other Applications…
+
+NLP is pervasive and its applications are surprisingly diverse. A sear...",2509,20,Why is NLP considered a crucial field within Artificial Intelligence?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Vector Space Model
+
+The Vector Space Model (VSM) represents documents as vectors in a high-dimens...",1020,20,What are some key differences between the listed NLP models besides parameter count?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - mBERT
+*   mBERT, developed by Google, supports NLP tasks across languages...",596,20,"Beyond the architecture, what other aspects of BERT and its variants are covered in the provided ove..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Bag-of-Words (recap)
+With this encoding, the distance between any pair of vectors is always the s...",1063,20,How does Byte-Pair Encoding balance word-level and character-level representations?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 15 #
+
+## Encoder-Decoder Transformers
+Authored by Nicola Capuano and Antonio Greco, DIEM (...",392,19,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Skip-Gram
+Ten 5-gram examples from the sentence about Monet
+
+NOTE When you look at the structure...",3429,19,What is the title of the textbook mentioned in the text?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Statistical Revolution
+
+**1990's:**
+
+*   The computing power increased substantially, allowing f...",967,19,How has NLP developed historically?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Data pre-processing**
+
+*   Once an adequate corpus of data is collected, the subsequent step is da...",2936,19,What are the key considerations regarding datasets and data pre-processing for training LLMs?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT Limitations
+Despite their strengths, GPT models also have several limitations that should be ...",2065,19,Explain the autoregressive approach used by decoder-only models like GPT for text generation.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Gradio – Free Hosting on hf.space**
+
+Hugging Face provides free hosting for Gradio demos on hf.spa...",165,19,What are the core components of the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - RoBERTa
+*   RoBERTa (Robustly Optimized BERT Approach) was developed by F...",921,19,"Beyond the architecture, what other aspects of BERT and its variants are covered in the provided ove..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"2.  **LangChain:**
+
+    *   LangChain is a library designed to abstract the APIs of different LLMs, ...",1645,19,Name three examples of token attributes available in spaCy.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**More on Connectors**
+
+*   You can enable authentication for secure communication.
+*   You can use ...",571,19,"Besides PPO, SFT, and RM, are any other functionalities or tools offered by TRL mentioned in the tex..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Task Oriented Dialogue Examples:**
+These examples demonstrate the practical applications of TOD sy...",712,19,What is the primary focus of this document regarding dialogue systems?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Visualize Stories**
+Command to visualize the defined stories:
+
+```bash
+rasa visualize
+```
+
+This co...",705,19,What capabilities does Rasa offer for developing conversational AI assistants?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"Experiments are ever ongoing, and we encourage you to join the fun. The tools are all readily availa...",1040,18,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Limitations of RNNs**
+
+RNNs, while effective for processing sequential data, suffer from several l...",952,18,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Remembering with recurrent networks
+
+The words in a document are rarely independent of each othe...",1993,18,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,Consider a set of labeled documents. Instead of passing the collection of word vectors into a convol...,755,18,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Input Encoding
+*   **Splitting**: Sentences are split into tokens based on whitespace, punct...",1082,18,How are tokens represented for computational processing?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Deep Learning Era
+
+**Sequence-to-Sequence Models (2014):**
+
+*   Introduction of the encoder-deco...",771,18,What is the primary function of the encoder in this context?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LESSON 1 ##
+
+## What is Natural Language Processing?
+
+### NLP in the Press
+
+NLP is rapidly gainin...",1478,18,What is Natural Language Processing (NLP)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - ELECTRA
+*   ELECTRA (Efficiently Learning an Encoder that Classifies Toke...",1010,18,"How did ELIZA contribute to the field of NLP, and what were its limitations?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Prompt Testing
+
+**Prompt Testing:** Essential for achieving optimal responses across various ...",815,18,Why is it important to review a model's Git repository and release history?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Corpus Processing (Inefficiency)
+
+The previous code, while functional, is inefficient due to the...",2064,18,How is the `[CLS]` token used for single-sentence classification tasks like sentiment analysis?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Normalized TF
+
+To address the limitations of raw term frequency, we normalize it by the document...",1345,18,What is the relationship between the length of the prefix sequence and the expressiveness and effici...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Web-based Frontends**
+Methods for integrating a Rasa bot into a website:
+
+*   **Custom Implementat...",560,18,How does the document address integrating the discussed framework with web frontends?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 20 ##
+
+**Outline:**
+The lesson covers the following topics:
+*   Introduction to RAG
+*   In...",173,17,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Benefits of Span Prediction
+Predicting spans, rather than individual tokens, encourages the mode...",743,17,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU Pipeline - Tokenizers**
+
+*   `WhitespaceTokenizer`: Splits text into tokens based on whitespac...",621,17,What is the purpose of tokenization in Natural Language Processing (NLP)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Encoder**
+
+The Encoder transforms an input sequence of vectors $x_1, \dots, x_t$ into an intermedi...",540,17,What is the primary function of the encoder in this context?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Privacy scrubbing**
+
+*   LLMs, as text-generating models, are trained on diverse datasets, which m...",2140,17,What are the key considerations regarding datasets and data pre-processing for training LLMs?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Prompt Engineering Techniques
+you can use several prompt techniques to improve de capabilitie...",457,17,"What role does prompting play in utilizing LLMs for various downstream tasks, and how does it differ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### LLM Applications
+
+*   **Text Generation:** Producing articles, stories, and creative writing, en...",1032,17,How does Masked Language Modeling (MLM) contribute to a bidirectional understanding of language in L...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Practice on Translation and Summarization
+
+### Practice
+To gain practical experience with these m...",742,17,Which prominent models are briefly overviewed in this lesson on Hugging Face?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Elements of a Prompt
+
+A well-structured prompt typically includes these components:
+
+*   **In...",1838,17,"What is the purpose of the ""instruction"" component in the training data?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**nlu.yml**
+(See example content in later sections)
+
+*Note:* To train the model to recognize intents...",344,17,What is the instruction in Example 2?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Techniques for Adding Guardrails:**
+
+*   Rule-based filters
+*   Fine-tuning with custom data
+* ...",192,17,What are some common methods for adding guardrails to Large Language Models (LLMs)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rasa Intro - Sample Story**
+This demonstrates a simple story format within Rasa:
+
+```text
+## expla...",363,17,What is Rasa?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Positional Encoding**
+
+*   The position encoding is represented by a set of periodic functions.
+* ...",729,16,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## GPT Input Encoding: Byte-Pair Encoding (BPE)
+GPT models, including GPT-1, GPT-2, GPT-3, and later...",1300,16,How does Byte Pair Encoding (BPE) contribute to the efficiency of Transformer models in handling lar...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"12.1.1 Different chatbots, same tools
+As diverse as the chatbot examples in this section seem to be,...",1320,16,How do examples like ChatGPT demonstrate the potential impact of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### T5 Fine-tuning
+*   **Input and Output as Text:** Fine-tuning maintains the paradigm where both i...",860,16,What role does the softmax function play in generating the output word?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - DistilBERT
+*   DistilBERT (Distilled BERT) was developed by Hugging Face....",919,16,"Which Hugging Face library simplifies the process of downloading and processing datasets, and what k..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT `[CLS]` Token
+The `[CLS]` token is used differently for single-sentence and sentence-pair cl...",952,16,How can BERT be practically applied to Token Classification tasks?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Definitions
+
+Various definitions of NLP highlight its interdisciplinary nature and goals:
+
+*   *...",1536,15,What is the primary focus of this Natural Language Processing course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Skip-Gram
+Alternative training method for Word2Vec
+*   A neural network is trained to predict a ...",2389,15,When is the second edition of the textbook expected to be published?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Advantages of BPE
+The primary advantages of BPE (similar to WordPiece) are:
+
+*   **Flexibility:**...",759,15,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Input Encoding
+The advantages of WordPiece embedding are as follows:
+*   **Efficiency**: It ...",906,15,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Calculating TF
+
+Here's a Python example demonstrating how to calculate term frequency using the ...",2333,15,How is the probability distribution over the output vocabulary calculated?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Writing Good Prompts
+
+Effective prompt writing is an iterative process involving experimentat...",1305,15,Why is careful prompt crafting crucial for eliciting desired responses from GPT models?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"*   **Retrieval Augmented Generation (RAG):**
+    *   Definition: Combines retrieval techniques with...",537,14,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Recurrent Neural Networks
+
+*   RNNs consist of feedforward network layers (circles in diagrams) ...",908,14,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Term Normalization
+Term normalization techniques aim to address some of these limitations by gro...",1176,14,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Decoder
+
+### Decoder
+The Decoder uses the information contained in the intermediate representatio...",1011,14,What is the purpose of using periodic functions in creating positional encodings?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### CBOW vs Skip-Gram
+**CBOW**
+*   Higher accuracies for frequent words, much faster to train, suita...",677,14,How does Byte Pair Encoding (BPE) contribute to the efficiency of Transformer models in handling lar...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Continuous Bag-of-Word
+A neural network is trained to predict the central token of a context of ...",841,14,How is the probability distribution over the output vocabulary calculated?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Building a Spam Detector
+### The Dataset
+Download the dataset from: [https://archive.ics.uci.edu/...",2379,14,"How does the concept of ""streaming"" within the `datasets` library contribute to efficient data proce..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – Multimodal T5
+T5-Large Multimodal Variants combine T5 with vision capabili...",753,14,"How does the T5 model differ from other transformer models, and what are some of its notable variant..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**External Validation Layers:**
+
+**Definition:** External validation layers involve additional sy...",996,14,"Considering the context of ""Guardrails for LLMs"", how does the TRL library contribute to building sa..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 12 ##
+
+**Outline**
+
+The lecture covers the following topics:
+
+*   **Overview**: A general ...",464,13,Who are the instructors for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## LESSON 11 ##
+
+From Transformers to LLMs
+
+**Outline**
+
+*   Transformers for text representation an...",234,13,What underlying architecture of LLMs will be explored in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Language Model
+A mathematical model that determine the probability of the next token given the p...",1493,13,"What is ""Retrieval Augmented Generation"" and how does it enhance the capabilities of Large Language ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Visualizing Word Embeddings
+Google News Word2vec 300-D vectors projected onto a 2D map using PCA....",3066,13,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### FastText
+Introduced by Facebook researchers in 2017
+*   Based on sub-words, predicts the surroun...",880,13,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"The superpower of RNNs is that they process sequences of tokens or vectors, which is beneficial beca...",713,13,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Tokenization**
+
+*   Representation of text with a set of tokens: Tokenization is the process of br...",357,13,What is the purpose of tokenization in a Transformer model?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Word Embedding: Properties
+Word embeddings enable semantic text reasoning based on vector arithm...",499,13,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Token Normalization**
+
+Token normalization is the process of transforming tokens into a standard f...",1126,13,What is the purpose of tokenization in Natural Language Processing (NLP)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU Pipeline**
+The pipeline defines the sequence of components that process user messages:
+
+*   To...",672,13,What are the discrete units created during tokenization called?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**One-hot Vectors: Practical Limitations**
+
+The sparseness of one-hot vectors can lead to impractica...",885,13,How are tokens represented for computational processing?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Role Prompting:**
+    *   Definition: Asks the model to ass...",3273,13,What is the key advantage of prompting over fine-tuning in terms of model flexibility?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Model Selection Considerations**
+
+Model selection involves several steps:
+
+1.  **Task Identificati...",992,13,What strategies are employed for model selection within the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Reward Model
+
+*   **Inputs for Training:** Training a reward model requires specific inputs:
+   ...",1190,13,What are the key factors to consider when selecting a machine learning model for a specific task?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - TinyBERT
+*   TinyBERT was developed by Huawei.
+*   The main differences w...",891,13,"Beyond the architecture, what other aspects of BERT and its variants are covered in the provided ove..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Continuous Bag-of-Word
+Ten 5-gram examples from the sentence about Monet
+
+CONTINUOUS BAG-OF-WORD...",2549,13,"How does the ""Bag of Words"" approach represent textual information, and what are its limitations?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### LSTM
+
+RNNs should theoretically retain information from inputs seen earlier, but they struggle t...",2071,12,"Describe the Transformer architecture and its key components, including self-attention mechanisms, a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Fine-tuning with Proximal Policy Optimization (PPO)
+
+*   **Goal:** The overall objective is to a...",1051,12,"Explain the concept of ""Parameter Efficient Fine Tuning"" in the context of LLMs and why it's importa..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Final Project Overview**
+
+**Project Outline:**
+
+The project is structured around three key compone...",398,12,What are the two components of the final evaluation for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Positional Encoding**
+
+*   The solution proposed by the authors of the Transformer model is to add...",422,12,What is the purpose of tokenization in a Transformer model?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT Input Encoding
+*   BERT employs a WordPiece tokenizer for tokenization.
+*   **Subword-Based*...",1065,12,What are the discrete units created during tokenization called?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Applications by Business Sector
+
+NLP is utilized across various business sectors to improve effi...",3082,12,What are some of the applications of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"With these tools, one is well on the way to modeling language itself and how it's used. And with tha...",1433,12,What are the final two layers of the decoder and how do they contribute to generating the probabilit...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Bag-of-Words Overlap**
+
+Measuring the bag of words overlap for two texts…
+
+*   Word Overlap: Overl...",1750,12,How is the probability distribution over the output vocabulary calculated?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Training Policies - TED Policy**
+Assistant makes the decision on how to respond by learning from t...",683,12,How does the task definition influence the choice of model architecture and training data?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"#### Document Similarity: Cosine Similarity
+
+Cosine similarity is a more appropriate measure for tex...",956,12,Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demo...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Using RNN Variants
+*   Bi-directional RRN:
+    `model.add(keras.layers.Bidirectional(keras.layer...",1157,12,What are some practical applications or examples of using RLHF with the TRL library?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Domain File - Basic Responses**
+Example of defining basic responses in the `domain.yml` file:
+
+```...",448,12,"What components are typically used in the Output Modules (""Mouth"") to generate the system's response..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Using NLTK**
+
+The Natural Language Toolkit (NLTK) is a popular Python library for NLP.
+
+*   Instal...",934,11,Where can you find the early access version of the second edition of the textbook?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Installation (LangChain)**
+
+*   Install the core LangChain library:
+
+    ```bash
+    pip install l...",541,11,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### GRU
+Gated Recurrent Unit (GRU) is an RNN architecture designed to solve the vanishing gradient p...",684,11,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## History of NLP
+
+### First Steps of NLP
+
+NLP has experienced periods of rapid advancement and rela...",823,11,What are some of the applications of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Improvements to Word2Vec
+**Negative Sampling**
+*   Each training example causes the network to u...",947,11,How is the final output word selected for each time step?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Zero-Shot Prompting:**
+    *   Definition: A prompt that di...",671,11,How does the flexibility of combining different pre-training tasks enhance the versatility and zero-...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Corpus Management**
+
+This section demonstrates how to load and explore the Reuters dataset using t...",1602,11,What does NLTK offer for PoS tagging?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Domain File - List of Entities**
+
+```yaml
+entities:
+  - PERSON
+  - time
+  - membership_type
+  - pr...",519,11,"What is the purpose of Named Entity Recognition (NER) in spaCy, and what are some examples of entiti..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Corpus Processing: Term-Document Matrix
+
+The resulting DataFrame is a **Term-Document Matrix**.
+...",1172,11,How does the provided Python code snippet utilize the `spaCy` and `collections` libraries to calcula...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Domain File - List of Intents**
+
+```yaml
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - th...",460,11,How is intent classification typically approached in NLU?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU File**
+The NLU file (`nlu.yml`) is aimed at training the system to extract structured informat...",691,10,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## RNN Variants
+
+### Bidirectional RNN
+
+A Bidirectional RNN has two recurrent hidden layers:
+
+*   On...",1460,10,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### RNN Training
+
+Now the network is ""remembering"" something, but how does backpropagation work in t...",1330,10,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Meta Prompting:**
+    *   Definition: Guides the model thro...",1208,10,"What role does prompting play in utilizing LLMs for various downstream tasks, and how does it differ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### SKIP-GRAM VS. CBOW: WHEN TO USE WHICH APPROACH
+Mikolov highlighted that the skip-gram approach w...",603,10,What is the key advantage of BPE in handling out-of-vocabulary words?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Case Folding**
+
+Case folding is a token normalization technique that reduces all characters to low...",761,10,What are the benefits of using relative positional encodings as opposed to absolute positional encod...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stories File**
+Stories are training data to teach your assistant what it should do next based on t...",1317,10,"What is the purpose of the ""instruction"" component in the training data?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**RAG Concepts**
+
+A typical RAG application is structured around two principal components:
+
+*   **In...",733,10,What is RAG and what are its key components?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Static Embeddings
+Word2Vec, GloVe, FastText are Static Embeddings
+*   Each word is represented b...",299,10,What is the fundamental principle behind Word2Vec's ability to generate meaningful word embeddings?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Lesson 8 ##
+
+**Exercise: Building a Pizzeria Chatbot**
+
+Develop a chatbot to assist with pizzeria...",391,10,"According to the example response, what kind of data can the chatbot send back to the user besides t..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stemming and Lemmatization**
+
+Stemming and lemmatization are techniques to reduce words to their r...",771,9,"What are the differences between stemming and lemmatization, and why are they important preprocessin..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Popular T5 Variants – UL2
+UL2 (Unified Language Learning) is a general-purpose language model in...",835,9,When is the second edition of the textbook expected to be published?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Forward pass
+
+Figure 8.10 (not provided in text)
+
+### Backpropagation
+
+### What are RNNs Good Fo...",1788,9,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Prompts and NLP Tasks
+
+Prompts can be tailored to achieve various NLP tasks:
+
+*   **Text Summ...",3636,9,How can NLP be utilized in the healthcare sector to improve patient care and treatment?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Output
+
+### Output
+Linear. Linear weights are often tied with model input embedding matrix. Softm...",662,9,What are the final two layers of the decoder and how do they contribute to generating the probabilit...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Porter Stemmer**
+
+The Porter Stemmer is a widely used algorithm for stemming English words. It con...",604,9,How is the final output word selected for each time step?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Setup – Hugging Face Account**
+
+It is recommended to create a Hugging Face account, as many functi...",123,9,What are the core components of the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## BERT `[CLS]` Token
+*   In BERT, the `[CLS]` token is a special token added at the beginning of ea...",796,9,How can BERT be practically applied to Token Classification tasks?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Custom Actions**
+
+**Custom Actions**
+What do we want virtual assistants to do? The possibilities a...",735,9,"If you were developing a virtual personal assistant, what role would fine-tuning play in its develop..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"#### Properties of Cosine Similarity
+
+Cosine similarity produces a value between -1 and 1:
+
+*   **1:...",3033,9,Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demo...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Limits of TF
+
+Term Frequency alone has limitations in determining the importance of a word.
+
+**E...",622,9,"Why can relying solely on raw word counts for Term Frequency be misleading, and how does the illustr..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Semantic Queries
+Word embeddings allow for searching words or names by interpreting the semantic...",679,9,How are search results ranked based on the calculated similarity scores?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"ANTONIO GRECO 
+Antonio Greco graduated with honors in Computer Engineering in 2014 from the Universi...",5505,8,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Ambiguity
+
+Natural language is inherently ambiguous, leading to challenges in NLP.
+
+*   **One in...",1227,8,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Gradio – Example: News Summarizer**
+
+Gradio is used to create web demos.
+An example: a News Summar...",931,8,What benefit does accessing the early access version provide?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Tokenizer Improvement: Edge Cases**
+
+The below cases are common in text and highlight the complexi...",575,8,What is the purpose of tokenization in Natural Language Processing (NLP)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**What is a Token?**
+
+A token is a unit of text that is treated as a single, meaningful element. Tok...",1001,8,What are the discrete units created during tokenization called?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+If the query and the key are represented by vectors with the same dimensionality...",296,8,Why is the scaling factor (1/√dk) important in the scaled dot-product attention calculation?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### NLP and Linguistics
+
+NLP techniques draw upon various aspects of linguistics to better understan...",969,8,What are some of the applications of NLP?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### ELIZA
+
+A pioneering conversational agent.
+
+*   Created by Joseph Weizenbaum in the 1960s at MIT....",944,8,"How did ELIZA contribute to the field of NLP, and what were its limitations?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Additional Context:**
+fly. When you need to inspire students and keep them engaged. Teachers do
+th...",1005,8,Why is creating a virtual environment recommended for local development with transformer models?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Prompt Engineering Guide:** [https://www.promptingguide.ai/](https://www.promptingguide.ai/)
+
+*...",2671,8,What specific aspects of prompt engineering does the document claim to cover?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+### Writing Good Prompts - Examples
+
+This section illustrates the difference between poorly writt...",1812,8,How does iterating on prompts improve their effectiveness?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**One-hot Vectors: Features**
+
+One-hot vectors have positive and negative features.
+
+**Positive feat...",773,8,What are the main drawbacks of using one-hot vectors for representing words in a large corpus?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Document Similarity
+
+Once documents are represented as vectors, their similarity can be calculat...",958,8,Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demo...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Slots**
+Slots serve as your assistant's memory, allowing it to store important details and use the...",682,8,"What is the primary benefit of case folding, and what is a potential drawback?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Analogies
+Word embeddings enable answering analogy questions by leveraging their semantic relati...",675,8,How does lemmatization ensure that the reduced form of a word is always a valid dictionary word?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Custom RAG Chain**
+
+This section defines a custom RAG chain.
+
+```python
+from langchain_core.runnab...",497,8,What is RAG and what are its key components?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**More on Chains**
+
+LCEL (LangChain Expression Language) is a declarative syntax for building modula...",768,8,How does LangChain facilitate the development of RAG systems?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Predefined Chains**
+
+LangChain includes ready-to-use chains that handle common tasks with minimal ...",663,8,How does LangChain facilitate the development of RAG systems?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Prepare the Environment**
+
+To follow the practical exercises in this lesson, a suitable developmen...",1075,7,What type of practical project will students undertake in this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"The unrolled representation helps to visualize how information flows through time, and is useful to ...",1276,7,What role does backpropagation through time (BPTT) play in the vanishing gradient problem observed i...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Tokenizer**
+
+A basic approach to tokenization is to use whitespaces as the delimiter between words...",1157,7,What is the purpose of tokenization in Natural Language Processing (NLP)?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Putting All Together: Output**
+
+The DataFrame shows the binary BoW representation for each sentenc...",1613,7,How are tokens represented for computational processing?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Continuous Bag-of-Word
+|V| input and output neurons where V is the vocabulary
+n hidden neurons w...",451,7,What is the relationship between the linear layer and the input embedding matrix?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Temperature
+
+q'<sub>i</sub> = exp(log(p<sub>i</sub>) / T) / Σ exp(log(p<sub>j</sub>) / T)
+
+Where...",1249,7,How is the probability distribution over the output vocabulary calculated?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Chaining all Together**
+
+This demonstrates a complex chain where a prompt is generated, passed to ...",666,7,How is the final output word selected for each time step?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Gradio for Demos**
+
+Gradio is used to create web demos for machine learning models.
+
+*   **Steps I...",593,7,How can Gradio be used to build web demos for models from the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Gradio – Building a Demo Yourself**
+
+To build your own Gradio demo:
+
+1.  Install Gradio:
+
+    ```
+...",209,7,How can Gradio be used to build web demos for models from the Hugging Face Hub?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Setup – Virtual Environment**
+
+For a more controlled environment, a virtual environment using Anac...",517,7,What are the primary options available for establishing a development environment for working with t...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Additional Factors for Model Selection**
+
+*   Consider searching for examples and datasets, not ju...",397,7,What are the key factors to consider when selecting a machine learning model for a specific task?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Indexing**
+
+*   **Load:** The initial step in indexing involves loading data from its original sou...",969,7,"What are the three levels of text segmentation, and what are their characteristics?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU Pipeline - Classifiers**
+
+*   `DIETClassifier`: A multi-task transformer-based classifier for ...",689,7,How does spaCy facilitate the analysis of syntactic dependencies and named entities?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Vector Stores**
+
+Vector stores enable semantic search and retrieval by indexing and querying embed...",1304,7,What are Vector Stores and how do they facilitate semantic search within a RAG system?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Rules File**
+Rules are a way to describe short pieces of conversations that always go the same way...",577,7,What is rule-based filtering and how does it contribute to LLM safety?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Training Policies - Memoization Policy**
+Assistant makes the decision on how to respond by matchin...",442,7,"In the provided Guardrails AI code example, what is the role of the `rules.yaml` file?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"﻿NICOLA CAPUANO 
+Nicola Capuano is an Associate Professor at the Department of Information and Elect...",2884,6,In which department and university is this course offered?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Hype Cycle
+
+The Gartner Hype Cycle for Emerging Technologies (2023) positions NLP and related te...",1037,6,"What specific abilities related to NLP system design and implementation will students develop, inclu..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Using Reuters 21578
+
+```python
+import nltk
+
+nltk.download('reuters') # Download the reuters corp...",1842,6,Where can one access the early access version of the second edition?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 3: Output representation for each position I, as a weighted sum of values (...",286,6,What are the two components of the final evaluation for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 2: Compute attention score for each position i as a softmax of the scaled d...",335,6,What are the two components of the final evaluation for this course?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**RNNs Suffer from the Vanishing Gradient Problem**
+
+*   The problem is related to the Vanishing gra...",1623,6,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**RNNs Lack of Long-Term Memory**
+
+This refers to the difficulty RNNs have in capturing dependencies...",282,6,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"BUT YOU DO CARE WHAT CAME OUT OF THE EARLIER STEPS
+
+Sometimes you may care about the entire sequence...",1467,6,What role does backpropagation through time (BPTT) play in the vanishing gradient problem observed i...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Input**
+
+This section describes how the input data is prepared for the Transformer model.",91,6,What was the initial purpose for which the Transformer architecture was designed?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Indexing: Vector Stores**
+
+Vector stores are a special type of database designed for storing and i...",825,6,How does input embedding represent textual data and what is its significance?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Positional Encoding**
+
+This section addresses the crucial aspect of incorporating positional infor...",134,6,"Why are positional encodings necessary in a Transformer model, given its attention mechanism?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 2: the attention matrix A is computed for each position by multiplying Q' a...",894,6,"What are the three matrices used in the self-attention mechanism, and how are they derived?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Setup – Google Colab**
+
+Google Colab offers the simplest setup for running NLP code. It provides a...",540,6,What is the key advantage of transformers in NLP compared to previous architectures?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Task-Agnostic Meta Prompting:**
+    *   Definition: Achieve...",896,6,How does prompting guide a pre-trained LLM's output for a specific task?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Chain-of-Thought Prompting:**
+    *   Definition: Enhances ...",2976,6,How does iterating on prompts improve their effectiveness?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**RAG Prompt Template**
+
+This section defines a prompt template that integrates retrieved context wi...",863,6,What are the key components of a well-structured prompt?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Continuous bag of words vs. bag of words
+In previous chapters, we introduced the concept of a ba...",1062,6,"How does the ""Bag of Words"" approach represent textual information, and what are its limitations?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Vector Space Model
+
+The Vector Space Model (VSM) is a mathematical representation of documents a...",867,6,What are Vector Stores and how do they facilitate semantic search within a RAG system?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU File - Sample Lists of Utterances**
+
+```yaml
+nlu:
+  - intent: book_flight
+    examples: |
+    ...",819,6,"If *F*(d₃, c₂) = True, what does this imply about document d₃ and class c₂?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU File - Good Practices**
+
+*   Start with the smallest possible number of intents, focusing on c...",464,6,How could sentiment analysis be used to benefit a business?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Building a Chatbot with RASA**
+
+**Domain File**
+The domain file defines the knowledge base of the ...",497,6,What are the main components and functionalities of a dialog engine?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Custom Actions - Example**
+
+""Hey, what time is it in Amsterdam right now?""
+
+""It’s currently 15:01....",1385,6,"In the utterance ""What's the weather like tomorrow?"", which word would be recognized as a date entit..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**domain.yml - Session Configuration**
+Example of session configuration within the `domain.yml` file...",470,6,"What does the `domain.yml` file define in a Rasa project, and why is it considered a central configu..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**RNNs are Extremely Slow to Train**
+
+*   Processing is inherently sequential: The fundamental desig...",737,5,"How does the sequential nature of RNNs impact their training speed, particularly when dealing with l..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+*   Input: three matrices Q, K, V
+*   Q ($m \times d_q$) contains the query vect...",476,5,What is the primary purpose of self-attention in processing sequential data like sentences?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Feed Forward
+
+### Feed Forward
+Non Linearity. Complex Relationships. Learn from each other.
+
+FFN ...",583,5,"What is the core innovation of the Transformer model, and how does it differ from the approach used ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Raise of Symbolic Approaches
+
+**1970's and 1980's:**
+
+*   Programmers started creating structure...",993,5,How has NLP developed historically?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### NLP is Hard
+
+The complexities of NLP arise from the inherent ambiguities in human language:
+
+""I ...",819,5,"What are the different levels of ambiguity that pose challenges for NLP, and can you provide example..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Skip-Gram
+After the training is complete the output layer of the network is discarded. Only the ...",653,5,What are the final two layers of the decoder and how do they contribute to generating the probabilit...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Porter Stemmer (Continued)**
+
+Here are the remaining steps in the Porter Stemmer:
+
+*   Step 3: Rem...",1432,5,Which positions should the decoder consider when generating the *i*-th output word?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Rule-Based Filters:**
+
+**Definition:** Rule-based filters involve using predefined rules to blo...",902,5,What ethical considerations are addressed through data pre-processing steps like privacy scrubbing a...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Training Policies**
+Training policies are techniques your assistant uses to decide on how to respo...",510,5,How does the task definition influence the choice of model architecture and training data?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - SciBERT
+*   SciBERT is tailored for applications in scientific literature...",681,5,"What does pre-training entail in the context of BERT, and why is this step important?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Snowball Project**
+
+The Snowball project provides stemming algorithms for several languages.
+
+*   ...",1064,5,"What is the difference between stemming and lemmatization, and when might you choose one over the ot..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Corpus Processing (Optimization)
+
+```python
+ids_subset = ids # We now consider all elements
+coun...",2494,5,How does the provided Python code snippet utilize the `spaCy` and `collections` libraries to calcula...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Request and Response Format**
+Illustrative examples of the REST API's JSON request and response fo...",619,5,What file needs to be modified to enable the REST channel?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Setup Environment for NLP**
+
+The lesson proceeds to describe how to set up the working environment...",173,4,"What specific abilities related to NLP system design and implementation will students develop, inclu..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Add & Norm
+
+### Add (skip connections) & Norm
+Input Normalization(Z)
+* Mean 0, Std dev 1
+* Stabil...",820,4,What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during trai...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**The Importance of Order**
+
+*   Q: With the encoding we have seen so far, is it possible to discrim...",602,4,What limitation of the attention mechanism do positional encodings address?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Let us consider the sentence: ""The animal didn’t cross the street because it was...",657,4,What is the primary purpose of self-attention in processing sequential data like sentences?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+$Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$
+
+$a_{ij} = softmax(\fra...",400,4,"What are the three matrices used in the self-attention mechanism, and how are they derived?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Attention**
+
+$f_T(q) = \sum_{i=1}^{n} \alpha(q, k_i) \cdot f_V(v_i)$
+
+*   $\alpha$ is our attentio...",601,4,Describe the process of calculating attention weights using scaled dot-product attention.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### NLP Market
+
+NLP presents a promising career path due to:
+
+*   Growing demand for NLP application...",588,4,How can NLP be utilized in the healthcare sector to improve patient care and treatment?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Skip-Gram
+|V| input and output neurons where V is the vocabulary
+n hidden neurons where n is the...",924,4,How does the softmax function contribute to ensuring the decoder only attends to past positions?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - BioBERT
+*   BioBERT is widely adopted in the biomedical research field, a...",528,4,"Beyond the architecture, what other aspects of BERT and its variants are covered in the provided ove..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Word2Vec
+Idea: words with similar meanings are often found in similar contexts.
+*   Context: a s...",662,4,How does SentencePiece handle rare or out-of-vocabulary terms?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,This section builds and trains a simple RNN model using Keras.  The model consists of an input layer...,1623,4,"What is the purpose of the ""instruction"" component in the training data?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Using NLTK: Stop Words**
+
+NLTK provides stop-word lists for various languages.
+
+```python
+import n...",968,4,How can stop word removal negatively impact the meaning of a sentence?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Slots and Entities**
+Slots are defined in the domain file and are usually connected to entities, l...",698,4,How does spaCy facilitate the analysis of syntactic dependencies and named entities?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU File - Sample Extra Information**
+
+```yaml
+- lookup_table: city
+  examples: |
+    - New York
+ ...",557,4,"What is the purpose of Named Entity Recognition (NER) in spaCy, and what are some examples of entiti..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Querying the Vector Store**
+
+The vector store is used to search for chunks relevant to a user quer...",521,4,What are Vector Stores and how do they facilitate semantic search within a RAG system?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Introduction to Chains**
+
+Chains are a powerful concept in LangChain that enable the combination o...",766,4,"Explain the concept of ""Chainable Components"" in LangChain and its significance in building complex ..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"```python
+import tensorflow as tf
+
+# Split the dataset into training and testing sets
+X_train, X_tes...",1307,4,How can RLHF be implemented using the Transformers TRL library?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Training Policies - Rule Policy**
+Assistant makes the decision on how to respond based on rules de...",253,4,"In the provided Guardrails AI code example, what is the role of the `rules.yaml` file?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Report and Confusion Matrix
+```python
+from sklearn.metrics import classification_report, confusi...",1550,4,What is the purpose of a confidence score in the prediction phase of text classification?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Split the dataset
+```python
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_se...",1429,4,What is the role of a labeled dataset in training a machine learning model for text classification?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### NLP vs Linguistics
+
+**Linguistics:**
+
+*   Primarily focused on the study of language itself.
+*  ...",679,3,Explain the difference between Natural Language Understanding (NLU) and Natural Language Generation ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Final step: the target value is computed by row-by-column multiplication between...",419,3,"What are the three matrices used in the self-attention mechanism, and how are they derived?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 1: the input matrices are ""projected"" onto a different subspace, by multipl...",641,3,"What are the three matrices used in the self-attention mechanism, and how are they derived?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### How to deal with language ambiguity?
+
+This question became central to NLP research, prompting in...",166,3,"What are the different levels of ambiguity that pose challenges for NLP, and can you provide example..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"## Popular BERT Variants - ClinicalBERT
+*   ClinicalBERT is ideal for hospitals and healthcare provi...",524,3,Name three example tasks where fine-tuning BERT can be applied.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Virtual Assistants
+
+A Virtual Assistant performs a range of tasks or services based on user inpu...",725,3,"If you were developing a virtual personal assistant, what role would fine-tuning play in its develop..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stop Words**
+
+Stop words are common words that occur with high frequency but carry little informat...",1543,3,How does SentencePiece handle rare or out-of-vocabulary terms?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**NLU File - Entity Roles**
+Entity Roles allow you to add more details to your entities, giving the ...",535,3,"How is ""Relevance"" different from ""Coherence"" in the context of evaluating chatbot responses?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Self-Consistency Prompting:**
+    *   Definition: Employs a...",291,3,What is prompt engineering?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Binary BoW: Interpretation**
+
+The Binary BoW representation is useful for:
+
+*   Analyzing Word Usa...",330,3,"What crucial information is lost when using the BoW representation, and why is this information impo..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Binary BoW: Example**
+
+Generating a BoW vector for each text…
+
+```python
+import numpy as np
+import...",1325,3,Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demo...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Predefined RAG Chain**
+
+Instead of a custom chain, a predefined `RetrievalQA` chain can be used.
+
+...",417,3,How does LangChain facilitate the development of RAG systems?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Introduction to Chains**
+
+This section demonstrates how to refine the LLM output for future proces...",598,3,What values would you provide to the `input_variables` dictionary to ask about the winner of the UEF...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stories File - Good Practices**
+
+*   Start with common flows (happy paths) to establish core funct...",379,3,How could sentiment analysis be used to benefit a business?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Document Loaders**
+
+Document Loaders are LangChain components used to extract content from various...",738,3,What is the IMDB dataset typically used for?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"```python
+# actions.py
+from typing import Any, Text, Dict, List
+
+import arrow  # pip install arrow
+i...",315,3,What is the purpose of the `actions` directory in a Rasa project?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Slot Mappings**
+Slot mappings allow you to define how each slot will be filled in. They are applie...",581,3,"What is the purpose of the `session_config` section in the `domain.yml` file, and what do the `sessi..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stories File - OR Statements & Checkpoints**
+Advanced story features:
+
+```yaml
+stories:
+  - story:...",757,3,How do rules in `rules.yml` differ from stories in `stories.yml` in terms of their role in dialogue ...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Attention**
+
+A commonly adopted formulation of the problem is to define the target function as:
+
+$...",467,2,Describe the process of calculating attention weights using scaled dot-product attention.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 0: Each element in the sequence is represented by a numerical vector. This ...",247,2,How is the final output word selected for each time step?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Multimodal LLM
+
+Integrate and process multiple types of data
+
+*   **Video-to-Text:** Generating ...",602,2,How does the bidirectional nature of MLM contribute to BERT's understanding of context?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### The Turing Test
+
+**Successes with Turing test**
+
+*   A (controversial) success in 2014: a chatbo...",730,2,"Provide an example of a question that would effectively test the ""Robustness"" of a chatbot, and expl..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Self Attention**
+
+Step 1: Compute a key (K), a value (V) and a query (Q) as linear function of eac...",255,2,"In Example 1, what is the input data?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Binary BoW: Example**
+
+The following code demonstrates how to generate a vocabulary and create Bin...",899,2,Explain how the example corpus of sentences about Leonardo da Vinci and tennis could be used to demo...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Putting All Together**
+
+This example shows how to combine tokenization, case folding, and stop wor...",2003,2,"What is the primary benefit of case folding, and what is a potential drawback?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Stop Words: Considerations**
+
+Removing stop words isn't always beneficial.
+
+**Disadvantages:**
+
+* ...",1368,2,How can stop word removal negatively impact the meaning of a sentence?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**A Naive Stemmer**
+
+```python
+def simple_stemmer(word):
+    suffixes = ['ing', 'ly', 'ed', 'ious', ...",821,2,"While stemming is known for its efficiency, what is its main drawback?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Querying the RAG**
+
+The RAG system can now be used for question answering.
+
+```python
+query = """"""
+...",721,2,What is RAG and what are its key components?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"`
+
+**Real-Time Monitoring and Feedback:**
+
+**Definition:** Real-time monitoring and feedback involve...",658,2,"How can real-time monitoring and feedback improve the safety and accuracy of LLM outputs, and what a..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Attention**
+
+We have an input value $q$ and we want to define some target function $f_T(q)$. $q$ i...",864,2,What metric is used to determine the relevance of a document to a query in this context?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Multimodal LLM
+
+Integrate and process multiple types of data
+
+*   **Image-to-Text:** generating ...",619,2,Can a document dᵢ belong to multiple classes cⱼ  according to the provided definition of text classi...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Improvements to Word2Vec
+**Frequent Bigrams**
+*   Some words often occur in combination
+*   Elvi...",919,2,Provide an example of a scenario where multi-label classification would be appropriate.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Slot Mappings - Parameters**
+Key parameters to customize slot mappings:
+
+*   `intent`: Only applie...",416,2,Why should you use entities instead of creating separate intents?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Use Slots in Responses**
+You can create more dynamic responses by including slots in the responses...",423,2,"Explain how ""OR"" statements and checkpoints contribute to creating more complex and manageable conve..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### ALPAC Report
+
+**Automatic Language Processing Advisory Committee**
+
+*   Established to assess ad...",713,1,What impact did the ALPAC Report (1966) have on machine translation research?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Generative Grammars
+
+**1957: Chomsky’s Generative Grammar**
+
+*   Noam Chomsky's theory of genera...",703,1,What impact did the ALPAC Report (1966) have on machine translation research?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"### Prompt Engineering Techniques
+
+*   **Few-Shot Prompting:**
+    *   Definition: Involves includin...",1910,1,How can few-shot learning improve the performance of LLMs in responding to prompts?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Text Splitters**
+
+Text Splitters are LangChain components used to break large text documents into ...",843,1,"What are the three levels of text segmentation, and what are their characteristics?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Split Text in Chunks**
+
+This section demonstrates splitting text into smaller chunks using `Recurs...",653,1,"What are the three levels of text segmentation, and what are their characteristics?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Case Folding: Example**
+
+```python
+import re
+
+sentence = ""Leonardo was born in Vinci, Italy, in 14...",888,1,"What is the primary benefit of case folding, and what is a potential drawback?"
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Vector Store as a Retriever**
+
+For use in chains, the vector store must be wrapped within a retrie...",434,1,What are Vector Stores and how do they facilitate semantic search within a RAG system?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Prompt Templates**
+
+Prompt templates are pre-defined text structures that provide a consistent and...",934,1,What values would you provide to the `input_variables` dictionary to ask about the winner of the UEF...
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"```python
+import keras
+import numpy as np
+
+path = keras.utils.get_file(
+    'nietzsche.txt',
+    ori...",1070,1,What is the purpose of using a character-level language model in the Leopardi Poetry Generator?
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"Other example words:
+
+| Input          | Stem      |
+|----------------|-----------|
+| pronto        ...",333,1,Provide an example of an utterance and its corresponding intent classification.
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Domain File - Multiple Responses**
+Example of defining multiple response variations:
+
+```yaml
+resp...",371,1,"In the utterance ""What's the weather like tomorrow?"", which word would be recognized as a date entit..."
+/kaggle/working/22_03_2025__BGE-M3__MAX_INNER_PRODUCT,"**Domain File - Responses: Buttons and Images**
+Illustrating how to include interactive elements lik...",514,1,How do interactive elements like buttons and images enhance the user experience in a chatbot?

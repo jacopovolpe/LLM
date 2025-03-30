@@ -1,0 +1,55 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 17: Fine-Tuning**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction to Fine-Tuning
+
+Large Language Models (LLMs) possess impressive general language abilities, but their performance can be significantly enhanced when tailored for specific tasks. This specialization process is known as fine-tuning.  It involves further training a pre-trained LLM on a dataset curated for a particular application, allowing the model to adapt its knowledge and improve its performance on the target task.  Fine-tuning enables us to leverage the vast knowledge embedded within pre-trained LLMs while refining them for optimal performance in specialized domains. This process is crucial for achieving high accuracy, relevance, and efficiency in practical applications.
+
+<----------section---------->
+
+### Types of Fine-Tuning
+
+There are several approaches to fine-tuning, each with its own advantages and disadvantages. The most comprehensive method is **Full Fine-Tuning**, where all the model's parameters are updated during the training process. This allows the model to deeply integrate the task-specific knowledge, leading to potentially high accuracy. However, it comes with substantial computational costs and storage requirements, especially for massive LLMs. It also carries the risk of overfitting to the training data, especially if the dataset is small, which can hinder the model's ability to generalize to unseen examples.
+
+To address the limitations of full fine-tuning, **Parameter-Efficient Fine-Tuning (PEFT)** techniques have been developed. These methods focus on updating only a select subset of the model's parameters, drastically reducing computational and storage overhead.  This efficiency makes PEFT ideal for resource-constrained environments and scenarios requiring frequent model updates. Popular PEFT methods include Low-Rank Adaptation (LoRA), Adapters, and Prefix Tuning.
+
+Another crucial fine-tuning approach is **Instruction Fine-Tuning**.  This method trains the model on a dataset of instructions paired with their corresponding desired outputs. This teaches the model to interpret and follow instructions effectively, making it more adept at understanding and responding to user prompts in real-world applications. This alignment with human-like instructions significantly enhances the model's usability and general performance.
+
+Finally, **Reinforcement Learning from Human Feedback (RLHF)** further refines model behavior by incorporating human preferences.  This method combines supervised learning with reinforcement learning, where the model is rewarded for generating outputs aligned with user expectations. RLHF allows for continuous improvement based on human feedback, leading to models that are more helpful, harmless, and aligned with human values.
+
+
+<----------section---------->
+
+### Parameter-Efficient Fine-Tuning (PEFT) in Detail
+
+PEFT methods optimize the fine-tuning process by minimizing the number of trainable parameters. This is particularly beneficial with LLMs, as their immense size makes full fine-tuning computationally demanding.  PEFT enables developers to adapt these models to specific tasks efficiently, even with limited resources.  Libraries like Hugging Face Transformers and its `peft` library provide readily available implementations of these techniques.
+
+**Low-Rank Adaptation (LoRA)**: This technique exploits the observation that the changes needed to adapt a pre-trained model for a new task often reside within a low-dimensional subspace.  Instead of updating the entire weight matrix *W*, LoRA learns low-rank matrices *A* and *B* such that the weight update Δ*W* is approximated by their product: Δ*W* = *A* × *B*. This significantly reduces the number of trainable parameters, leading to faster training and reduced storage needs while maintaining performance comparable to full fine-tuning.
+
+**Adapters**: These are small, trainable modules inserted within the transformer layers of the LLM. By freezing the original LLM weights and training only the adapter parameters, this method preserves the pre-trained knowledge while enabling efficient adaptation to new tasks. The small size of the adapters minimizes the computational overhead associated with fine-tuning.
+
+**Prefix Tuning**:  This method introduces a set of trainable prefix vectors that are prepended to the input sequence. These prefixes guide the LLM's attention mechanism, effectively steering the model's behavior without modifying the original model weights.  The length of the prefix sequence controls the trade-off between task-specific expressiveness and parameter efficiency.
+
+
+<----------section---------->
+
+### Instruction Fine-Tuning Explained
+
+Instruction fine-tuning focuses on improving an LLM's ability to understand and respond to human-like instructions.  This involves training the model on a dataset of instruction-response pairs, enabling it to generalize to a wider range of instructions and improve its accuracy in practical applications.
+
+The training data typically consists of an **instruction**, optional **context** providing relevant background information, and the desired **output**.  The LLM learns to map instructions and context to appropriate outputs, enhancing its ability to handle diverse user queries and generate contextually relevant responses. The diversity of the training data plays a crucial role in ensuring the model's generalization capabilities.
+
+
+<----------section---------->
+
+### Conclusion
+
+Fine-tuning is essential for adapting the powerful, general capabilities of LLMs to specific tasks and domains.  The different types of fine-tuning offer various trade-offs between performance, computational cost, and storage requirements. Choosing the appropriate method depends on the specific application and available resources. PEFT techniques offer efficient alternatives to full fine-tuning, while instruction fine-tuning enhances the model's ability to interact effectively with human users through natural language instructions. By understanding these different fine-tuning strategies, we can effectively harness the potential of LLMs to solve a wide range of real-world problems.

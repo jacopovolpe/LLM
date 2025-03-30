@@ -1,0 +1,694 @@
+## Lesson 2 ##
+
+**Outline:**
+
+The lesson covers the following key areas:
+
+*   Tokenization: The process of breaking down text into smaller units (tokens).
+*   Bag of Words Representation: A method for representing text based on the frequency of words.
+*   Token Normalization: Techniques to standardize tokens for better analysis.
+*   Stemming and Lemmatization: Approaches to reduce words to their root form.
+*   Part of Speech Tagging: Identifying the grammatical role of each word.
+*   Introducing spaCy: An overview of the spaCy library, a powerful tool for NLP.
+
+<----------section---------->
+
+**Prepare the Environment**
+
+To follow the practical exercises in this lesson, a suitable development environment is required. Jupyter notebooks are recommended for their interactive nature.
+
+*   Install the Jupyter Extension for Visual Studio Code: This allows you to create and run Jupyter notebooks directly within Visual Studio Code.
+*   Install Jupyter: Use the command `pip install jupyter` to install the Jupyter package.
+*   Create and activate a virtual environment: This helps to isolate project dependencies.
+    *   `python -m venv .env`: Creates a virtual environment in the `.env` directory.
+    *   `source .env/bin/activate`: Activates the virtual environment (on Linux/macOS). On Windows, use `.env\Scripts\activate`.
+*   Alternative: Google Colab notebooks: <https://colab.research.google.com/>, which provides a cloud-based Jupyter notebook environment.
+
+The following Python packages are also needed for this section:
+
+*   `pip install numpy pandas`: Installs the `numpy` library for numerical computations and `pandas` for data manipulation and analysis.
+
+<----------section---------->
+
+**Text Segmentation**
+
+Text segmentation is the process of dividing text into meaningful units. This is a crucial step in NLP, as it prepares the text for further analysis. The segmentation process can be performed at different levels:
+
+*   Paragraph Segmentation: Dividing a document into individual paragraphs, often based on whitespace or specific formatting.
+*   Sentence Segmentation: Breaking a paragraph into individual sentences, typically using punctuation marks as delimiters.
+*   Word Segmentation: Dividing a sentence into individual words, typically using whitespace as a delimiter. This process faces challenges with languages that do not use spaces between words.
+
+**Tokenization**
+
+Tokenization is a specialized form of text segmentation. It involves breaking text into small units called tokens. Tokens are the fundamental building blocks for many NLP tasks. Tokenization involves identifying the elementary units within a text, so that the text is easier to process.
+
+<----------section---------->
+
+**What is a Token?**
+
+A token is a unit of text that is treated as a single, meaningful element. Tokens can be:
+
+*   Words: The most common type of token, representing individual words in the text.
+*   Punctuation Marks: Symbols that punctuate sentences, such as periods, commas, question marks, etc. These are often treated as separate tokens.
+*   Emojis: Visual symbols representing emotions or concepts. These have become increasingly important in modern text analysis.
+*   Numbers: Digits and numerical expressions. These can be important for certain types of analysis.
+*   Sub-words: Smaller units within words, such as prefixes (e.g., "re-", "pre-") or suffixes (e.g., "-ing", "-ed") that carry intrinsic meaning. Sub-word tokenization is particularly useful for handling rare words or words not seen during training.
+*   Phrases: Multi-word expressions treated as single units (e.g., "ice cream", "natural language processing"). These are often identified using techniques like n-gram analysis.
+
+<----------section---------->
+
+**Tokenizer**
+
+A basic approach to tokenization is to use whitespaces as the delimiter between words. This can be easily implemented using string splitting functions in programming languages. However, this approach has limitations.
+
+*   Languages with Continuous Orthographic Systems: This method is not suitable for languages like Chinese, Japanese, and Thai, which do not use spaces to separate words. These languages require more sophisticated segmentation techniques.
+
+```python
+sentence = "Leonardo da Vinci began painting the Mona Lisa at the age of 51."
+token_seq = sentence.split()
+print(token_seq)
+# Output: ['Leonardo', 'da', 'Vinci', 'began', 'painting', 'the', 'Mona', 'Lisa', 'at', 'the', 'age', 'of', '51.']
+```
+
+In the example above, the `split()` function separates the sentence into words based on whitespace. However, it fails to separate "51" and "." which ideally should be two tokens. Addressing punctuation and other challenges requires more advanced tokenization methods that are discussed later in the lesson. The simple approach provides a starting point to illustrate how more advanced algorithms can then address these situations.
+
+<----------section---------->
+
+**Bag of Words Representation**
+
+The Bag of Words (BoW) model is a way of representing text data when modeling text with machine learning algorithms. The BoW model is simple to understand and implement, and it offers a great deal of flexibility for customization.
+
+**Turning Words into Numbers**
+
+Machine learning models require numerical input data. Therefore, text must be converted into a numerical representation. The lesson will explore a few of these approaches.
+
+**One-hot Vectors**
+
+One-hot encoding is a basic way to turn words into numbers:
+
+*   Vocabulary: First, a vocabulary is created that lists all unique tokens that will be tracked.
+*   Representation: Each word is represented by a vector with all 0s except for a 1 corresponding to the index of the word in the vocabulary.
+
+```python
+import numpy as np
+import pandas as pd
+
+token_seq = ['Leonardo', 'da', 'Vinci', 'began', 'painting', 'the', 'Mona', 'Lisa', 'at', 'the', 'age', 'of', '51.']
+vocab = sorted(set(token_seq))
+onehot_vectors = np.zeros((len(token_seq), len(vocab)), int)
+
+for i, word in enumerate(token_seq):
+    onehot_vectors[i, vocab.index(word)] = 1
+
+df = pd.DataFrame(onehot_vectors, columns=vocab, index=token_seq)
+print(df)
+```
+
+This code creates a one-hot vector for each word in the `token_seq` based on the sorted unique tokens, `vocab`. Pandas DataFrame is used to provide a tabular view of the vectors.
+
+<----------section---------->
+
+**One-hot Vectors: Features**
+
+One-hot vectors have positive and negative features.
+
+**Positive features:**
+
+*   No information is lost: This allows you to reconstruct the original document from a table of one-hot vectors. With some additional book-keeping in a separate vector, you could even reconstruct the order of the words.
+
+**Negative Features:**
+
+*   One-hot vectors are super-sparse: This results in a large table even for a short sentence. Many of the entries in the matrix are zero which creates a sparse matrix.
+*   Large vocabulary size: A language vocabulary typically contains at least 20,000 common words. This grows to millions when you consider word variations (conjugations, plurals, etc.) and proper nouns (names of people, places, organizations, etc.).
+
+<----------section---------->
+
+**One-hot Vectors: Practical Limitations**
+
+The sparseness of one-hot vectors can lead to impractical storage requirements:
+
+Let's assume the following:
+
+*   A million tokens in your vocabulary.
+*   A small library of 3,000 short books with 3,500 sentences each and 15 words per sentence.
+
+Calculations:
+
+1.  Total number of tokens: 15 words/sentence * 3,500 sentences/book * 3,000 books = 157,500,000 tokens
+2.  Bits per token: Each token is represented by a one-hot vector of 1 million bits.
+3.  Total bits: 10<sup>6</sup> bits/token * 157,500,000 tokens = 157.5 x 10<sup>12</sup> bits
+4.  Storage in Terabytes: 157.5 x 10<sup>12</sup> bits / (8 bits/byte * 1024<sup>4</sup> bytes/TB) ≈ 17.9 TB
+
+As shown, one-hot encoding can lead to large memory requirements even for a relatively small dataset, thus not practical. This highlights the need for more efficient text representations.
+
+<----------section---------->
+
+**Bag-of-Words (BoW)**
+
+BoW representation addresses the storage challenges of one-hot encoding by creating a vector obtained by summing all the one-hot vectors of the words in the text.
+
+*   Representation: One bag (vector) for each sentence or short document.
+*   Compression: Compresses a document down to a single vector representing its essence. This compression occurs through vector addition.
+*   Lossy Transformation: You can't reconstruct the initial text from the BoW vector. The word order is lost.
+*   Binary BoW: Each word presence is marked as 1 or 0, regardless of its frequency. This is a simplification of the basic BoW where the absence or presence of a token is the only information used, and the count of tokens is not retained.
+
+<----------section---------->
+
+**Binary BoW: Example**
+
+The following code demonstrates how to generate a vocabulary and create Binary BoW vectors for a text corpus:
+
+Generating a vocabulary for a text corpus…
+
+```python
+sentences = [
+    "Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+    "Leonardo was born in Vinci, Italy, in 1452.",
+    "In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+    "Tennis is played on a rectangular court with a net in the middle.",
+    "The four Grand Slam tournaments are the most prestigious events in tennis.",
+    "A tennis match is typically played as a best of three or best of five sets."
+]
+
+all_words = " ".join(sentences).split()
+vocab = sorted(set(all_words))
+print(vocab)
+```
+
+This produces a sorted list of unique words present in the combined sentences. Punctuation marks attached to the end of the words are included in the tokens.
+
+<----------section---------->
+
+**Binary BoW: Example**
+
+Generating a BoW vector for each text…
+
+```python
+import numpy as np
+import pandas as pd
+
+sentences = [
+    "Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+    "Leonardo was born in Vinci, Italy, in 1452.",
+    "In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+    "Tennis is played on a rectangular court with a net in the middle.",
+    "The four Grand Slam tournaments are the most prestigious events in tennis.",
+    "A tennis match is typically played as a best of three or best of five sets."
+]
+
+all_words = " ".join(sentences).split()
+vocab = sorted(set(all_words))
+
+bags = np.zeros((len(sentences), len(vocab)), int)
+for i, sentence in enumerate(sentences):
+    for j, word in enumerate(sentence.split()):
+        bags[i, vocab.index(word)] = 1
+
+df = pd.DataFrame(bags, columns=vocab)
+print(df.transpose())
+```
+
+This code snippet initializes a matrix `bags` with dimensions corresponding to the number of sentences and the vocabulary size. It iterates through the sentences, marking the presence of each word in the corresponding BoW vector with a 1. Finally, it displays the BoW vectors in a transposed DataFrame.
+
+For display purposes only: The visualization is not typically how these vectors are employed but gives insight to the method.
+
+<----------section---------->
+
+**Binary BoW: Interpretation**
+
+The Binary BoW representation is useful for:
+
+*   Analyzing Word Usage: The example demonstrates how words are used in different sentences, which helps understanding context.
+*   Document Comparison: Overlap in word usage across sentences provides a way to compare and search for similar documents.
+
+<----------section---------->
+
+**Bag-of-Words Overlap**
+
+Measuring the bag of words overlap for two texts…
+
+*   Word Overlap: Overlap in words can provide an estimate of how similar two texts are.
+*   Meaning Similarity: Assuming word usage correlates with meaning, the overlap can indicate semantic similarity.
+
+A common method for measuring overlap is using the dot product of the BoW vectors.
+
+```python
+import numpy as np
+sentences = [
+    "Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+    "Leonardo was born in Vinci, Italy, in 1452.",
+    "In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+    "Tennis is played on a rectangular court with a net in the middle.",
+    "The four Grand Slam tournaments are the most prestigious events in tennis.",
+    "A tennis match is typically played as a best of three or best of five sets."
+]
+
+all_words = " ".join(sentences).split()
+vocab = sorted(set(all_words))
+
+bags = np.zeros((len(sentences), len(vocab)), int)
+for i, sentence in enumerate(sentences):
+    for j, word in enumerate(sentence.split()):
+        bags[i, vocab.index(word)] = 1
+
+print(np.dot(bags[0], bags[2])) #comparing sentence 0 and 2
+print(np.dot(bags[3], bags[5])) #comparing sentence 3 and 5
+```
+
+This example calculates the dot product between the BoW vectors of sentences to quantify their similarity. A higher dot product indicates greater overlap in word usage. For sentence 0 and 2, the dot product is higher since both talk about Leonardo da Vinci. For sentence 3 and 5, the dot product is lower, since these sentences have less similar topics. This dot product calculation can be useful, but also contains many false positive connections that can negatively impact the results if not treated with caution.
+
+<----------section---------->
+
+**Token Normalization**
+
+Token normalization is the process of transforming tokens into a standard form. This process can reduce the vocabulary size and improve the accuracy of NLP tasks.
+
+**Tokenizer Improvement**
+
+A simple whitespace-based tokenizer can be improved by handling:
+
+*   Whitespace Variations: Considering other whitespace characters like `\t` (tab), `\n` (newline), and `\r` (return).
+*   Punctuation: Removing punctuation marks (commas, periods, quotes, semicolons, dashes, etc.).
+
+This can be achieved using regular expressions:
+
+```python
+import re
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+print(token_seq)
+# Output: ['Leonardo', 'was', 'born', 'in', 'Vinci', 'Italy', 'in', '1452']
+```
+
+This example uses `re.split()` with a regular expression to split the sentence, handling multiple whitespace characters and common punctuation. Empty strings that come from having nothing between characters in the regular expression match are then filtered out.
+
+<----------section---------->
+
+**Tokenizer Improvement: Edge Cases**
+
+The below cases are common in text and highlight the complexity of tokenization. Regular expressions can be used, but quickly create large complex tokenizers.
+
+*   The company’s revenue for 2023 was $1,234,567.89.
+*   The CEO of the U.N. (United Nations) gave a speech.
+*   It’s important to know the basics of A.I. (Artificial Intelligence).
+*   He didn’t realize the cost was $12,345.67.
+*   Her new book, ‘Intro to NLP (Natural Language Processing)’, is popular.
+*   The temperature in Washington, D.C. can reach 100°F in the summer.
+
+<----------section---------->
+
+**Case Folding**
+
+Case folding is a token normalization technique that reduces all characters to lowercase.
+
+*   Examples:
+    *   Tennis → tennis
+    *   A → a
+    *   Leonardo → leonardo
+*   Also known as Case normalization
+
+**Advantages:**
+
+*   Improves Text Matching: Increases recall in search engines by treating different capitalization variants as the same. For instance, a search for "tennis" will also find documents containing "Tennis".
+
+**Disadvantages:**
+
+*   Loss of Distinction: Removes distinction between proper nouns and common nouns. This may be problematic if named entity recognition is needed in the system.
+*   Meaning Alteration: May change the original meaning (e.g., US → us). "US" refers to the United States, while "us" is a pronoun.
+<----------section---------->
+
+**Case Folding: Example**
+
+```python
+import re
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+token_seq = [x.lower() for x in token_seq] # case folding
+
+print(token_seq)
+# Output: ['leonardo', 'was', 'born', 'in', 'vinci', 'italy', 'in', '1452']
+```
+
+This code converts all tokens to lowercase, normalizing the casing. However, it eliminates capitalization that may be meaningful.
+Approaches to address this are:
+
+*   Normalize First Word: Normalize only the first word in the sentence. This will still cause problems if the first word is a proper noun.
+*   Detect Proper Nouns: Detect proper nouns before normalizing remaining words, but can require training a new model if named entity recognition is not already part of your process.
+
+<----------section---------->
+
+**Stop Words**
+
+Stop words are common words that occur with high frequency but carry little information about the meaning of a sentence. They often include articles, prepositions, conjunctions, and forms of the verb "to be".
+
+*   Filtering: These words can be filtered out to reduce noise and focus on more informative words.
+*   Example stop words: "a", "about", "after", "all", "also", "an", "and", "any", "are", etc.
+
+```python
+stop_words = [
+    "a", "about", "after", "all", "also", "an", "and", "any", "are", "as", "at", "be", "because",
+    "been", "but", "by", "can", "co", "corp", "could", "for", "from", "had", "has", "have", "he",
+    "her", "his", "if", "in", "inc", "into", "is", "it", "its", "last", "more", "most", "mr",
+    "mrs", "ms", "mz", "no", "not", "of", "on", "one", "only", "or", "other", "out", "over", "s",
+    "says", "she", "so", "some", "such", "than", "that", "the", "their", "there", "they", "this",
+    "to", "up", "was", "we", "were", "when", "which", "who", "will", "with", "would"
+]
+
+sentence = "Leonardo was born in Vinci, Italy, in 1452."
+token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+token_seq = [token for token in token_seq if token] # remove void tokens
+token_seq = [x.lower() for x in token_seq] # case folding
+token_seq = [x for x in token_seq if x not in stop_words] # remove stop words
+
+print(token_seq)
+# Output: ['leonardo', 'born', 'vinci', 'italy', '1452']
+```
+
+The code removes punctuation, performs case folding, and then filters out stop words from the token sequence.
+
+<----------section---------->
+
+**Stop Words: Considerations**
+
+Removing stop words isn't always beneficial.
+
+**Disadvantages:**
+
+*   Loss of Relational Information: Stop words can provide important relational information, even if they individually carry little meaning.
+
+*   Mark reported to the CEO → Mark reported CEO
+*   Suzanne reported as the CEO to the board → Suzanne reported CEO board
+
+The stop words "to", and "as" indicate the relationship between the CEO and the other people in the sentences.
+
+Here is a list of Italian stop words:
+
+a, affinché, agl’, agli, ai, al, all’, alla, alle, allo, anziché, avere, bensì, che, chi, cioè, come, comunque, con, contro, cosa, da, dacché, dagl’, dagli, dai, dal, dall’, dalla, dalle, dallo, degl’, degli, dei, del, dell’, delle, dello, di, dopo, dove, dunque, durante, e, egli, eppure, essere, essi, finché, fino, fra, giacché, gl’, gli, grazie, i, il, in, inoltre, io, l’, la, le, lo, loro, ma, mentre, mio, ne, neanche, negl’, negli, nei, nel, nell’, nella, nelle, nello, nemmeno, neppure, noi, nonché, nondimeno, nostro, o, onde, oppure, ossia, ovvero, per, perché, perciò, però, poiché, prima, purché, quand’anche, quando, quantunque, quasi, quindi, se, sebbene, sennonché, senza, seppure, si, siccome, sopra, sotto, su, subito, sugl’, sugli, sui, sul, sull’, sulla, sulle, sullo, suo, talché, tu, tuo, tuttavia, tutti, un, una, uno, voi, vostro
+
+<----------section---------->
+
+**Putting All Together**
+
+This example shows how to combine tokenization, case folding, and stop word removal into a complete preprocessing pipeline:
+
+```python
+import re
+import numpy as np
+import pandas as pd
+
+stop_words = [
+    "a", "about", "after", "all", "also", "an", "and", "any", "are", "as", "at", "be", "because",
+    "been", "but", "by", "can", "co", "corp", "could", "for", "from", "had", "has", "have", "he",
+    "her", "his", "if", "in", "inc", "into", "is", "it", "its", "last", "more", "most", "mr",
+    "mrs", "ms", "mz", "no", "not", "of", "on", "one", "only", "or", "other", "out", "over", "s",
+    "says", "she", "so", "some", "such", "than", "that", "the", "their", "there", "they", "this",
+    "to", "up", "was", "we", "were", "when", "which", "who", "will", "with", "would"
+]
+
+sentences = [
+    "Leonardo da Vinci began painting the Mona Lisa at the age of 51.",
+    "Leonardo was born in Vinci, Italy, in 1452.",
+    "In addition to being a painter, Leonardo da Vinci was also a skilled engineer.",
+    "Tennis is played on a rectangular court with a net in the middle.",
+    "The four Grand Slam tournaments are the most prestigious events in tennis.",
+    "A tennis match is typically played as a best of three or best of five sets."
+]
+
+def tokenize(sentence):
+    token_seq = re.split(r'[-\s.,;!?]+', sentence) # remove punctuation
+    token_seq = [token for token in token_seq if token] # remove void tokens
+    token_seq = [x.lower() for x in token_seq] # case folding
+    token_seq = [x for x in token_seq if x not in stop_words] # remove stop words
+    return token_seq
+
+tok_sentences = [tokenize(sentence) for sentence in sentences]
+all_tokens = [x for tokens in tok_sentences for x in tokens]
+vocab = sorted(set(all_tokens))
+
+bags = np.zeros((len(tok_sentences), len(vocab)), int)
+for i, sentence in enumerate(tok_sentences):
+    for j, word in enumerate(sentence):
+        bags[i, vocab.index(word)] = 1
+
+df = pd.DataFrame(bags, columns=vocab)
+print(df.transpose())
+```
+
+<----------section---------->
+
+**Putting All Together: Output**
+
+The DataFrame shows the binary BoW representation for each sentence after preprocessing. The columns are the unique tokens in the vocabulary, and the rows are the sentences. A '1' indicates the presence of a token in the sentence, and a '0' indicates its absence.
+
+```
+          0    1    2    3    4    5
+1452     0    1    0    0    0    0
+51       1    0    0    0    0    0
+addition 0    0    1    0    0    0
+age      1    0    0    0    0    0
+began    1    0    0    0    0    0
+being    0    0    1    0    0    0
+best     0    0    0    0    0    1
+born     0    1    0    0    0    0
+court    0    0    0    1    0    0
+da       1    0    1    0    0    0
+engineer 0    0    1    0    0    0
+events   0    0    0    0    1    0
+five     0    0    0    0    0    1
+four     0    0    0    0    1    0
+grand    0    0    0    0    1    0
+italy    0    1    0    0    0    0
+leonardo 1    1    1    0    0    0
+lisa     1    0    0    0    0    0
+match    0    0    0    0    0    1
+middle   0    0    0    1    0    0
+mona     1    0    0    0    0    0
+net      0    0    0    1    0    0
+painter  0    0    1    0    0    0
+painting 1    0    0    0    0    0
+played   0    0    0    1    0    1
+prestigious 0    0    0    0    1    0
+rectangular 0    0    0    1    0    0
+sets     0    0    0    0    0    1
+skilled  0    0    1    0    0    0
+slam     0    0    0    0    1    0
+tennis   0    0    0    0    1    1
+three    0    0    0    0    0    1
+tournaments 0    0    0    0    1    0
+typically 0    0    0    0    0    1
+vinci    1    1    0    0    0    0
+```
+
+<----------section---------->
+
+**Using NLTK**
+
+The Natural Language Toolkit (NLTK) is a popular Python library for NLP.
+
+*   Installation: `pip install nltk`
+*   Features: It includes refined tokenizers and stop-word lists for many languages.
+
+```python
+import nltk
+
+nltk.download('punkt') # download the Punkt tokenizer models
+text = "Good muffins cost $3.88\nin New York. Please buy me two of them.\n\nThanks."
+
+print(nltk.tokenize.word_tokenize(text)) # word tokenization
+print(nltk.tokenize.sent_tokenize(text)) # sentence tokenization
+```
+
+The `nltk.tokenize.word_tokenize()` function splits the text into words, and `nltk.tokenize.sent_tokenize()` splits the text into sentences. The `punkt` model must be downloaded to run the example.
+
+```
+['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York', '.', 'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']
+['Good muffins cost $3.88\nin New York.', 'Please buy me two of them.', 'Thanks.']
+```
+
+<----------section---------->
+
+**Using NLTK: Stop Words**
+
+NLTK provides stop-word lists for various languages.
+
+```python
+import nltk
+
+nltk.download('stopwords') # download the stop words corpus
+text = "This is an example sentence demonstrating how to remove stop words using NLTK."
+
+tokens = nltk.tokenize.word_tokenize(text)
+stop_words = set(nltk.corpus.stopwords.words('english'))
+filtered_tokens = [x for x in tokens if x not in stop_words]
+
+print("Original Tokens:", tokens)
+print("Filtered Tokens:", filtered_tokens)
+```
+
+This code downloads the English stop words corpus, tokenizes the text, and removes the stop words from the token list.
+The nltk.download('stopwords') line downloads the necessary data for stop word removal.
+
+```
+Original Tokens: ['This', 'is', 'an', 'example', 'sentence', 'demonstrating', 'how', 'to', 'remove', 'stop', 'words', 'using', 'NLTK', '.']
+Filtered Tokens: ['This', 'example', 'sentence', 'demonstrating', 'remove', 'stop', 'words', 'using', 'NLTK', '.']
+```
+
+<----------section---------->
+
+**Stemming and Lemmatization**
+
+Stemming and lemmatization are techniques to reduce words to their root form, which can improve generalization and reduce vocabulary size.
+
+**Stemming**
+
+Stemming identifies a common stem among various forms of a word.
+
+*   Example: "Housing" and "houses" share the same stem: "house".
+*   Function: Removes suffixes to group words with similar meanings under the same token (stem).
+*   Stem Imperfection: A stem isn’t required to be a properly spelled word. "Relational", "Relate", "Relating" all stem to "Relat".
+
+**Benefits:**
+
+*   Vocabulary Generalization: Helps generalize the vocabulary by treating different forms of the same word as the same.
+*   Information Retrieval: Improves recall by matching different forms of a query term.
+
+<----------section---------->
+
+**A Naive Stemmer**
+
+```python
+def simple_stemmer(word):
+    suffixes = ['ing', 'ly', 'ed', 'ious', 'ies', 'ive', 'es', 's', 'ment']
+    for suffix in suffixes:
+        if word.endswith(suffix):
+            return word[:-len(suffix)]
+    return word
+
+words = ["running", "happily", "stopped", "curious", "cries", "effective", "runs", "management"]
+print({simple_stemmer(word) for word in words})
+# Output: {'cur', 'runn', 'stopp', 'run', 'effect', 'manage', 'happi', 'cr'}
+```
+
+This is a basic example of a stemmer.
+
+*   Limitation: Doesn't handle exceptions, multiple suffixes, or words that require complex modifications.
+*   Accuracy: NPL libraries include more accurate stemmers. This example shows the basic method for shortening the token set with a custom set of rules that can be designed for a specific use case.
+
+<----------section---------->
+
+**Porter Stemmer**
+
+The Porter Stemmer is a widely used algorithm for stemming English words. It consists of a series of rules applied in stages to remove suffixes and reduce words to their stem. Here are a few of the steps:
+
+*   Step 1a: Remove 's' and 'es' endings
+    *   cats → cat, buses → bus
+*   Step 1b: Remove 'ed', 'ing', and 'at' endings
+    *   hoped → hope, running → run
+*   Step 1c: Change 'y' to 'i' if preceded by a consonant
+    *   happy → happi, cry → cri
+*   Step 2: Remove "nounifying" endings such as ational, tional, ence, and able
+    *   relational → relate, dependence → depend
+
+<----------section---------->
+
+**Porter Stemmer (Continued)**
+
+Here are the remaining steps in the Porter Stemmer:
+
+*   Step 3: Remove adjective endings such as icate, ful, and alize
+    *   duplicate → duplic, hopeful → hope
+*   Step 4: Remove adjective and noun endings such as ive, ible, ent, and ism
+    *   effective → effect, responsible → respons
+*   Step 5a: Remove stubborn e endings
+    *   probate → probat, rate → rat
+*   Step 5b: Reduce trailing double consonants ending in l to a single l
+    *   controlling → controll → control, rolling → roll → rol
+
+```python
+import nltk
+
+texts = [
+    "I love machine learning.",
+    "Deep learning is a subset of machine learning.",
+    "Natural language processing is fun.",
+    "Machine learning can be used for various tasks."
+]
+
+stemmed_texts = []
+stemmer = nltk.stem.PorterStemmer() # Initialize the Porter Stemmer
+
+for text in texts:
+    tokens = nltk.tokenize.word_tokenize(text.lower())
+    stemmed_tokens = [stemmer.stem(token) for token in tokens if token.isalpha()]
+    stemmed_texts.append(' '.join(stemmed_tokens))
+
+for text in stemmed_texts:
+    print(text)
+```
+
+```
+i love machin learn
+deep learn is a subset of machin learn
+natur languag process is fun
+machin learn can be use for variou task
+```
+
+The code demonstrates the use of the Porter Stemmer to reduce words to their stems. Tokens are lowercased and are required to be alpha characters, and then stemmed, ensuring consistent processing.
+
+<----------section---------->
+
+**Snowball Project**
+
+The Snowball project provides stemming algorithms for several languages.
+
+*   URL: <https://snowballstem.org/>
+
+Italian stemming examples:
+
+| Input           | Stem     |
+|-----------------|----------|
+| abbandonata     | abbandon |
+| abbandonate     | abbandon |
+| abbandonati     | abbandon |
+| abbandonato     | abbandon |
+| abbandonava     | abbandon |
+| abbandonera     | abbandon |
+| abbandoneranno  | abbandon |
+| abbandonerà      | abbandon |
+| abbandono        | abbandon |
+| abbandono        | abbandon |
+| abbaruffato      | abbaruff |
+| abbassamento     | abbass   |
+| abbassando       | abbass   |
+| abbassandola     | abbass   |
+| abbassandole     | abbass   |
+| abbassare        | abbass   |
+| abbassarono      | abbass   |
+
+The Italian stemming algorithm is supported in NLTK. The stemming done in Italian and many languages is not simple truncation, but contextual translation that leverages understanding of the structure of the language.
+
+```python
+import nltk
+nltk.download('punkt')
+stemmer = nltk.stem.PorterStemmer()
+```
+
+<----------section---------->
+
+Other example words:
+
+| Input          | Stem      |
+|----------------|-----------|
+| pronto         | pront     |
+| pronuncerà     | pronunc   |
+| pronuncia      | pronunc   |
+| pronunciamento | pronunc   |
+| pronunciare    | pronunc   |
+| pronunciarsi   | pronunc   |
+| pronunciata    | pronunc   |
+| pronunciate    | pronunc   |
+|

@@ -1,0 +1,468 @@
+Natural Language Processing and Large Language Models. Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering). Lesson 9: Transformers I. Presented by Nicola Capuano and Antonio Greco. DIEM – University of Salerno.
+
+**Outline**
+
+This lesson will cover the following topics:
+
+*   Limitations of Recurrent Neural Networks (RNNs)
+*   Introduction to the Transformer model
+*   Transformer Input mechanisms
+*   Self-Attention mechanism
+
+<----------section---------->
+
+**Limitations of RNNs**
+
+Recurrent Neural Networks (RNNs), while effective for sequential data processing, suffer from several limitations:
+
+*   RNNs have limited long-term memory capabilities, especially in encoder-decoder models.
+*   RNNs are slow to train, particularly for long sequences.
+*   RNNs are prone to the vanishing gradient problem.
+
+<----------section---------->
+
+**RNNs Lack of Long-Term Memory**
+
+Traditional RNNs, and especially encoder-decoder architectures, struggle to retain information over long sequences. The ability of an RNN to "remember" information from earlier time steps diminishes as the sequence length increases. This is because the information has to be passed through several layers, which can lead to loss of information.
+
+<----------section---------->
+
+**RNNs are Extremely Slow to Train**
+
+*   Processing in RNNs is inherently sequential.
+*   The network processes element $x_i$ only after processing $x_{i-1}$.
+*   This sequential nature prevents exploiting parallelism available in modern GPUs.
+
+The inherent sequential processing of RNNs is a bottleneck. The computation for the next element in the sequence cannot begin until the previous element has been processed. This contrasts sharply with models that can process the entire sequence in parallel, enabling significantly faster training times, especially on GPUs.
+
+<----------section---------->
+
+**RNNs Suffer from the Vanishing Gradient Problem**
+
+*   The vanishing/exploding gradient problem is a major challenge in training deep neural networks, including RNNs.
+*   During Backpropagation Through Time (BPTT), the same function *F* is repeatedly traversed.
+*   The gradient calculation involves repeated multiplication of derivatives:
+
+    $\frac{\partial Loss}{\partial h_0} = \frac{\partial Loss}{\partial h_1} \cdot \frac{\partial F}{\partial h_0} = \frac{\partial Loss}{\partial h_2} \cdot \frac{\partial F}{\partial h_1} \cdot \frac{\partial F}{\partial h_0} = \frac{\partial Loss}{\partial h_3} \cdot \frac{\partial F}{\partial h_2} \cdot \frac{\partial F}{\partial h_1} \cdot \frac{\partial F}{\partial h_0} = \frac{\partial Loss}{\partial h_4} \cdot \frac{\partial F}{\partial h_3} \cdot \frac{\partial F}{\partial h_2} \cdot \frac{\partial F}{\partial h_1} \cdot \frac{\partial F}{\partial h_0} = ...$
+
+The repeated multiplication of the same derivatives during backpropagation can lead to two problems:
+
+*   **Vanishing Gradient:** If the absolute value of the derivatives of *F* is small (less than 1), the product becomes progressively smaller, diminishing the gradient signal and hindering effective learning in earlier layers.
+*   **Exploding Gradient:** If the absolute value of the derivatives of *F* is large (greater than 1), the product grows exponentially, causing instability in the learning process.
+
+The core issue is the repeated traversal of the same layer (sequence length times) during backpropagation.
+
+<----------section---------->
+
+**Transformer**
+
+In 2017, researchers at Google Brain introduced the Transformer model as an alternative to RNNs for processing sequential data. A key advantage of the Transformer is its ability to process sequence elements in parallel. The number of layers traversed during computation doesn't depend on the sequence length, thereby mitigating gradient-related issues. Originally designed for language translation tasks (sequence-to-sequence with varying lengths), hence the name "Transformer." Subsets of the Transformer architecture can be adapted for other sequence processing tasks.
+
+<----------section---------->
+
+**Transformer**
+
+The Transformer architecture consists of the following key components:
+
+*   Input
+    *   Tokenization
+    *   Input Embedding
+    *   Positional Encoding
+*   Encoder
+    *   Attention Mechanisms
+        *   Query
+        *   Key
+        *   Value
+    *   Self-Attention
+    *   Multi-Head Attention
+    *   Add & Norm (Residual Connections and Layer Normalization)
+    *   Feedforward Network
+*   Decoder
+    *   Masked Attention (to prevent peeking ahead during training)
+    *   Encoder-Decoder Attention (to attend to the encoder's output)
+*   Output
+
+<----------section---------->
+
+**Input**
+
+The input to a Transformer model consists of a sequence of tokens, which are processed through tokenization, embedding, and positional encoding layers.
+
+<----------section---------->
+
+**Tokenization**
+
+*   Tokenization involves representing text as a sequence of tokens.
+*   Each token is assigned a unique ID.
+
+Tokenization is the process of breaking down raw text into smaller units (tokens) suitable for processing by the model. These tokens can be words, sub-words, or characters. Each token is then mapped to a unique integer ID, allowing the model to operate on numerical data.
+
+<----------section---------->
+
+**Input Embedding**
+
+*   Embedding: A representation of a symbol (word, character, sentence) in a distributed low-dimensional space of continuous-valued vectors.
+*   Tokens are projected into a continuous Euclidean space.
+*   Correlations among words are visualized in the embedding space, where semantically similar words are placed closer together.
+*   Ideally, an embedding captures the semantics of the input, reflecting the relationships between words.
+
+Input embedding transforms discrete tokens into continuous vector representations. This is crucial because neural networks perform better with continuous inputs. The embedding space aims to capture the semantic meaning of words, so that words with similar meanings are located close to each other in the embedding space. This allows the model to leverage semantic relationships when processing text.
+
+<----------section---------->
+
+**Positional Encoding**
+
+**The Importance of Order**
+
+*   Question: Can the encoding methods discussed so far differentiate between sequences that only differ in the element order?
+*   Example: Can the model distinguish between "The student is eating an apple" and "An apple is eating the student"?
+
+<----------section---------->
+
+**The Importance of Order**
+
+*   Question: With the encoding we have seen so far, is it possible to discriminate between sequences that only differ in the order of the elements?
+*   E.g., is it possible to differentiate between "The student is eating an apple" and "An apple is eating the student"?
+*   Answer: No, because the output of the attention module does not depend on the order of its keys/values pairs.
+*   Solution: Add information about the order of sequence elements.
+
+Without positional encoding, the Transformer treats all tokens as unordered sets, which is undesirable because word order is fundamental to meaning. For example, "dog bites man" has a very different meaning than "man bites dog." Therefore, the Transformer needs a mechanism to encode the position of each word in the sequence.
+
+<----------section---------->
+
+**Positional Encoding**
+
+*   The Transformer adds a slight perturbation to each sequence element based on its position.
+*   The same element appearing in different positions is encoded using slightly different vectors.
+
+Positional encoding provides information about the position of each token within the sequence. It injects information about the token order in the sentence by adding a position-dependent vector to the token embedding.
+
+<----------section---------->
+
+**Positional Encoding**
+
+*   Positional encoding is represented by a set of periodic functions.
+*   Given $d_{model}$ (the embedding size) and $pos$ (the element's position), the perturbation to component $i$ of the embedding vector is:
+
+    $PE_{(pos, 2i)} = sin(pos / 10000^{2i / d_{model}})$
+*   Positional encoding is a vector with the same dimension as the input embedding and can be directly added to the input embedding.
+
+The positional encoding function uses sine and cosine functions of different frequencies to create a unique positional vector for each token. The formula ensures that each position has a unique encoding and that the model can easily learn relative positions by attending to linear combinations of these encodings. The resulting positional encoding vector is then added to the input embedding vector, effectively injecting positional information into the token representation.
+
+<----------section---------->
+
+**Encoder**
+
+The Encoder transforms an input sequence of vectors $x_1, \dots, x_t$ into an intermediate representation of the same length $z_1, \dots, z_t$. The vectors $z_1, \dots, z_t$ are generated in parallel. Each vector $z_i$ depends on the entire input sequence $x_1, \dots, x_t$, not just the corresponding $x_i$.
+
+The encoder's role is to process the input sequence and create a context-aware representation of each token. Each token's representation incorporates information from all other tokens in the sequence, allowing the model to understand the relationships between words.
+
+<----------section---------->
+
+**Encoder**
+
+The encoder comprises a sequence of identical encoder blocks. The original paper used six encoder blocks. Each encoder block processes the sequence using:
+
+*   Self-attention: An attention module where the same vectors serve as Query (Q), Key (K), and Value (V).
+*   A feed-forward layer applied independently to each sequence element.
+*   Skip (Residual) connections
+*   Normalization
+
+Each encoder block refines the input representation through self-attention and a feed-forward network. Self-attention allows the model to weigh the importance of different tokens when processing each token. Skip connections and normalization help to stabilize training and improve model performance.
+
+<----------section---------->
+
+**Self Attention**
+
+Consider the sentence: "The animal didn’t cross the street because it was too wide." What does "it" refer to? Estimating self-attention in this sentence means finding the words that one must consider first to find a better encoding for the word "it." Self-Attention estimate must be learned according to the task we are facing.
+
+Self-attention is a crucial mechanism that allows the model to focus on the relevant parts of the input sequence when processing each token. It helps the model to resolve ambiguities, such as pronoun references, and to capture long-range dependencies between words.
+
+<----------section---------->
+
+**Self Attention**
+
+How to compute the attention to give to each input element when encoding the current word?
+
+The self-attention mechanism computes attention scores for each input element relative to the current word. These attention scores determine the weight given to each input element when encoding the current word.
+
+<----------section---------->
+
+**Attention**
+
+To understand self-attention, we first need to introduce its fundamental building block: the attention function. Informally, an attention function is used when the value to be computed (in this case, the embedding of a token in a certain position considering the context of the sentence) depends on a set of other values (in this case, other tokens of the sentence). We want to give a different weight (i.e., a different "level of attention") to each of the values (how much each token is important to encode the current token?). The attention function depends on three elements: query, key, and value. The terminology is inherited from document retrieval.
+
+The attention mechanism dynamically weighs the importance of different parts of the input sequence when processing each element. The weight assigned to each element is based on its relevance to the current element being processed.
+
+<----------section---------->
+
+**Attention**
+
+We have an input value *q* and want to define some target function $f_T(q)$. *q* is called the query value in the attention terminology. In the general case, both *q* and $f_T(q)$ can be vectors. We want to express $f_T(q)$ as a function of a given set of elements $v_1, \dots, v_n$. We want the "attention" given to each $v_i$ to be different depending on *q*. We assume that for each $v_i$ we have available an additional information $k_i$ that can be used to decide the "attention" to be given to $v_i$. The elements $v_i$ are called values and the $k_i$ are called keys in the attention terminology; both the values and the keys can be vectors.
+
+In the attention mechanism, the query (q) represents the element we're trying to encode. The keys (k) are associated with the values (v), and are used to determine the relevance of each value to the query. The attention weights are calculated based on the similarity between the query and each key. The target function $f_T(q)$ is computed as a weighted sum of the values, where the weights are the attention scores.
+
+<----------section---------->
+
+**Attention**
+
+A commonly adopted formulation of the problem is to define the target function as:
+
+$f_T(q) = \alpha(q, k_1) \cdot f_V(v_1) + \dots + \alpha(q, k_n) \cdot f_V(v_n) = \sum_{i=1}^{n} \alpha(q, k_i) \cdot f_V(v_i)$
+
+Where $\alpha$ is the attention given to value $v_i$.
+
+The target function $f_T(q)$ is calculated as a weighted sum of the values $v_i$. The weights $\alpha(q, k_i)$ represent the attention given to each value, determined by the similarity between the query *q* and the corresponding key $k_i$. The function $f_V$ is applied to each value before weighting.
+
+<----------section---------->
+
+**Attention**
+
+$f_T(q) = \sum_{i=1}^{n} \alpha(q, k_i) \cdot f_V(v_i)$
+
+*   $\alpha$ is our attention function
+*   We want $\alpha$ and $f_V$ to be learned by our system
+*   Typically, $\alpha(q, k_i) \in [0, 1]$ and $\sum_{i} \alpha(q, k_i) = 1$
+*   Note: the value of the target function does not depend on the order of the key-value pairs $(k_i, v_i)$
+
+The attention function $\alpha$ and the value transformation function $f_V$ are learned during training. The attention weights are normalized (typically using a softmax function) to sum to 1, ensuring they represent probabilities. The target function's value is invariant to the order of the key-value pairs, highlighting the importance of the learned attention weights in capturing relevant relationships.
+
+<----------section---------->
+
+**Self Attention**
+
+The Transformer architecture uses a specific definition of the attention function, based on linear vector/matrix operations and the softmax function. This definition is:
+
+*   Differentiable, so it can be learned using Back Propagation
+*   Efficient to compute
+*   Easy to parallelize, since the attention for several query vectors can be efficiently computed in parallel at the same time
+
+The self-attention mechanism in the Transformer is designed to be differentiable, computationally efficient, and highly parallelizable. These properties make it well-suited for training large models on GPUs.
+
+<----------section---------->
+
+**Self Attention**
+
+*   Input: three matrices Q, K, V
+*   Q ($m \times d_q$) contains the query vectors (each row is a query)
+*   K ($n \times d_k$) contains the key vectors (each row is a key)
+*   V ($n \times d_v$) contains the value vectors (each row is a value)
+*   K and V must have the same number of rows
+
+The self-attention mechanism takes three input matrices: Query (Q), Key (K), and Value (V). The query matrix contains the vectors for which we want to compute the attention. The key matrix contains the vectors used to determine the attention weights. The value matrix contains the vectors that are weighted and summed to produce the output.
+
+<----------section---------->
+
+**Self Attention**
+
+If the query and the key are represented by vectors with the same dimensionality, a matching score can be provided by the scaled dot product of the two vectors (cosine similarity).
+
+The dot product between the query and key vectors provides a measure of similarity, which is then used to compute the attention scores. Scaling is applied to prevent excessively large values, which can lead to saturation of the softmax function.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 0: Each element in the sequence is represented by a numerical vector.
+
+This initial step involves transforming each token into a numerical vector representation, which is achieved through the embedding layer.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 1: the input matrices are "projected" onto a different subspace, by multiplying them (using row-by-column dot product) by weight matrices:
+
+*   $Q' = Q \cdot W^Q$
+*   $K' = K \cdot W^K$
+*   $V' = V \cdot W^V$
+
+These are the trainable weights:
+
+*   $W^Q (d_q \times d'_q)$
+*   $W^K (d_k \times d'_k)$
+*   $W^V (d_v \times d'_v)$
+
+Note: $W^Q$ and $W^K$ must have the same number of columns.
+
+The input matrices Q, K, and V are linearly transformed into different subspaces using weight matrices $W^Q$, $W^K$, and $W^V$, respectively. These weight matrices are learned during training, allowing the model to project the input into representations that are more suitable for computing attention.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 1: Compute a key (K), a value (V) and a query (Q) as linear function of each element in the sequence.
+
+The query, key, and value vectors are computed as linear transformations of the input embeddings. These vectors capture different aspects of the input and are used in the attention calculation.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 2: the attention matrix A is computed for each position by multiplying Q' and the transpose of K', scaling by $1 / \sqrt{d'_k}$ and applying softmax to each of the resulting rows:
+
+$A = softmax(\frac{Q' \cdot K'^T}{\sqrt{d'_k}})$
+
+A is a ($m \times n$) matrix whose element $a_{ij} = \alpha(q_i, k_j)$. Softmax is applied to each row separately. This scaling is used to avoid that the argument of softmax becomes too large with the increase of the dimension $d'_k$.
+
+The attention matrix A is computed by taking the dot product of the transformed query matrix Q' and the transpose of the transformed key matrix K'. The result is scaled by the square root of the key dimension to prevent the dot products from becoming too large, which can lead to saturation of the softmax function. The softmax function is then applied to each row of the scaled dot product to obtain the attention weights, which sum to 1 across each row.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 2: Compute attention score for each position i as a softmax of the scaled dot product of all the keys (bidirectional self-attention) with $Q_i$.
+
+The attention scores for each position i are calculated using the softmax of the scaled dot product of all the keys with the query vector $Q_i$. This bidirectional self-attention allows the model to consider the context of all words in the sentence when encoding each word.
+
+<----------section---------->
+
+**Self Attention**
+
+Final step: the target value is computed by row-by-column multiplication between A and V':
+
+$f_T(Q) = A \cdot V'$
+
+The result is a $m \times d'_v$ matrix representing the target function computed on the m queries in the input matrix Q.
+
+The target value is calculated as a weighted sum of the transformed value vectors V', where the weights are the attention scores in matrix A. This produces a new representation for each query, which incorporates information from all the values, weighted by their attention scores.
+
+<----------section---------->
+
+**Self Attention**
+
+Step 3: Output representation for each position I, as a weighted sum of values (each one multiplied by the related attention score)
+
+The final output representation for each position is obtained by taking a weighted sum of the value vectors. The weights are determined by the attention scores, which reflect the importance of each value in encoding the current position.
+
+<----------section---------->
+
+**Self Attention**
+
+$Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$
+
+$a_{ij} = softmax(\frac{q_i k_j}{\sqrt{d_k}}) = \frac{exp(q_i k_j)}{\sum_{s=1}^n exp(q_i k_s)}$
+
+This is the final formula summarizing the self-attention mechanism. The attention weights are computed using a scaled dot product between the query and key matrices, followed by a softmax function. The resulting attention matrix is then used to weight the value matrix, producing the output. The formula $a_{ij}$ shows how each element of the attention matrix is calculated using the softmax function.
+
+<----------section---------->
+When we were writing the first edition of this book, Hannes and Cole (the first edition coauthors) were already focused on the attention mechanism. It’s now been 6 years and attention is still the most researched topic in deep learning. The attention mechanism enabled a leap forward in capability for problems where LSTMs struggled:
+Conversation
+ — Generate plausible responses to conversational
+prompts, queries, or utterances.
+Abstractive summarization or paraphrasing
+:: Generate a new shorter
+wording of a long text summarization of sentences, paragraphs, and
+even several pages of text.
+Open domain question answering
+:: Answering a general question about
+anything the transformer has ever read.
+Reading comprehension question answering
+:: Answering questions
+about a short body of text (usually less than a page).
+Encoding
+:: A single vector or sequence of embedding vectors that
+represent the meaning of body of text in a vector space — sometimes
+called 
+task-independent sentence embedding
+.
+Translation and code generation
+ — Generating plausible software
+expressions and programs based on plain English descriptions of the
+program’s purpose.
+Self-attention is the most straightforward and common way to implement
+attention. It takes the input sequence of embedding vectors and puts them
+through linear projections. A linear projection is merely a dot product or
+matrix multiplication. This dot product creates key, value and query vectors.
+The query vector is used along with the key vector to create a context vector
+for the words' embedding vectors and their relation to the query. This context
+vector is then used to get a weighted sum of values. In practice, all these
+operations are done on sets of queries, keys, and values packed together in
+matrices, 
+Q
+, 
+K
+, and 
+V
+, respectively.
+There are two ways to implement the linear algebra of an attention algorithm:
+additive attention
+ or 
+dot-product attention
+. The one that was most effective in
+transformers is a scaled version of dot-production attention. For dot-product
+attention, the scalar products between the query vectors 
+Q
+ and the key vectors
+K
+, are scaled down based on how many dimensions there are in the model.
+This makes the dot product more numerically stable for large dimensional
+embeddings and longer text sequences. Here’s how you compute the self-
+attention outputs for the query, key, and value matrices 
+Q
+, 
+K
+, and 
+V
+.
+Equation 9.1 Self-attention outputs
+\[Attention(Q, K, V ) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V\]
+The high dimensional dot products create small gradients in the softmax due
+to the law of large numbers. To counteract this effect, the product of the
+query and key matrices is scaled by \(\frac{1}{\sqrt{d_{k}}}\). The softmax
+normalizes the resulting vectors so that they are all positive and sum to 1.
+This "scoring" matrix is then multiplied with the values matrix to get the
+weighted values matrix in figure 
+9.1
+.
+[
+12
+]
+ 
+[
+13
+]
+
+<----------section---------->
+
+**Self Attention and It's Linear Algebra**
+Self-attention is the most straightforward and common way to implement
+attention. It takes the input sequence of embedding vectors and puts them
+through linear projections. A linear projection is merely a dot product or
+matrix multiplication. This dot product creates key, value and query vectors.
+The query vector is used along with the key vector to create a context vector
+for the words' embedding vectors and their relation to the query. This context
+vector is then used to get a weighted sum of values. In practice, all these
+operations are done on sets of queries, keys, and values packed together in
+matrices, Q, K, and V, respectively.
+There are two ways to implement the linear algebra of an attention algorithm:
+additive attention
+ or 
+dot-product attention
+. The one that was most effective in
+transformers is a scaled version of dot-production attention. For dot-product
+attention, the scalar products between the query vectors 
+Q
+ and the key vectors
+K
+, are scaled down based on how many dimensions there are in the model.
+This makes the dot product more numerically stable for large dimensional
+embeddings and longer text sequences. Here’s how you compute the self-
+attention outputs for the query, key, and value matrices 
+Q
+, 
+K
+, and 
+V
+.
+
+Equation 9.1 Self-attention outputs
+\[Attention(Q, K, V ) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V\]
+The high dimensional dot products create small gradients in the softmax due
+to the law of large numbers. To counteract this effect, the product of the
+query and key matrices is scaled by \(\frac{1}{\sqrt{d_{k}}}\). The softmax
+normalizes the resulting vectors so that they are all positive and sum to 1.
+This "scoring" matrix is then multiplied with the values matrix to get the
+weighted values matrix in figure 
+9.1
+.

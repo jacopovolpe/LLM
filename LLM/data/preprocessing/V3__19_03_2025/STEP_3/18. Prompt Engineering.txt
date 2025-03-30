@@ -1,0 +1,644 @@
+### Natural Language Processing and Large Language Models: Prompt Engineering
+
+This material is from Lesson 18 of the "Corso di Laurea Magistrale in Ingegneria Informatica" (Master's Degree Course in Computer Engineering) at the DIEM (Department of Information Engineering and Mathematics) – University of Salerno. The lesson focuses on Prompt Engineering and is presented by Nicola Capuano and Antonio Greco.
+
+### Outline
+
+The lesson covers the following key areas:
+
+*   Introduction to Prompt Engineering
+*   Prompt Engineering Techniques
+*   Prompt Testing
+
+<----------section---------->
+
+### Introduction to Prompt Engineering
+
+**Prompt Engineering:** This relatively new field concentrates on the development and optimization of prompts. These prompts are designed to effectively utilize Large Language Models (LLMs) for a wide range of applications and research endeavors. Prompt engineering is vital because the quality and structure of a prompt significantly impact the LLM's output. A well-crafted prompt can elicit accurate, relevant, and creative responses, while a poorly designed prompt may lead to irrelevant or nonsensical results.
+
+**Goals:**
+
+*   **Enhance Understanding of LLM Capabilities and Limitations:** To gain insights into what LLMs can and cannot do. Understanding the boundaries helps in setting realistic expectations and designing appropriate applications. For example, knowing that an LLM struggles with complex arithmetic without specific prompting allows engineers to incorporate techniques to improve its performance in those areas.
+*   **Improve LLM Performance on a Broad Range of Tasks:** To optimize LLM performance across various tasks such as question answering, arithmetic reasoning, and more. By using effective prompt engineering, the performance in these different tasks can be improved.
+*   **Helps Interfacing with LLMs and Integrating with Other Tools:** To facilitate easier interaction with LLMs and seamless integration with other software tools and systems. This is important for creating comprehensive solutions where LLMs are a component.
+*   **Enables New Capabilities:** To unlock new functionalities, such as enriching LLMs with specific domain knowledge and external resources. For instance, prompt engineering can enable an LLM to access and use a specialized database to provide more informed responses in a particular field.
+
+<----------section---------->
+
+### Writing Good Prompts
+
+Creating effective prompts involves careful consideration and iterative refinement. Here are some guidelines:
+
+*   **Start Simple and Iterate:** Begin with basic prompts and gradually add elements, refining the prompt based on the results. This iterative approach allows for a systematic improvement of the prompt's effectiveness.
+*   **Use Clear, Specific Instructions:** Begin prompts with clear and direct commands such as "Write," "Classify," or "Summarize." This orients the LLM and sets the desired action.
+*   **Be Detailed and Descriptive:** Provide sufficient details to guide the LLM towards the desired output. The more descriptive the prompt, the better the LLM can understand the context and requirements.
+*   **Use Examples:** Include examples to illustrate the expected output format and content. Examples are powerful in-context learning tools that demonstrate the desired pattern.
+*   **Balance Detail and Length:** While detail is crucial, avoid excessive information that can reduce effectiveness. Experiment to find the ideal format; shorter prompts can sometimes be more effective than longer ones if they are precise.
+
+<----------section---------->
+
+### Writing Good Prompts - Examples
+
+Here are some examples contrasting ineffective ("Bad") and effective ("Good") prompts to highlight the importance of specificity:
+
+*   **Bad Prompt:** "Summarize this article."
+    *   **Good Prompt:** "Generate a 100-word summary of this research article, focusing on the main findings."
+*   **Bad Prompt:** "Write an apology email to a client."
+    *   **Good Prompt:** "Write a professional email to a client apologizing for a delayed shipment, offering a discount, and providing an updated delivery estimate."
+*   **Bad Prompt:** "Make this explanation easier to understand."
+    *   **Good Prompt:** "Rewrite this technical explanation in simpler language suitable for high school students."
+*   **Bad Prompt:** "Classify the following review."
+    *   **Good Prompt:** "Classify the following review as positive, neutral, or negative."
+*   **Bad Prompt:** "Tell me about exercise benefits."
+    *   **Good Prompt:** "List five health benefits of regular exercise, each with a short explanation of how it improves well-being."
+*   **Bad Prompt:** "Translate this sentence to French."
+    *   **Good Prompt:** "Translate the following English sentence into French, preserving the formal tone."
+
+<----------section---------->
+
+### Elements of a Prompt
+
+A well-structured prompt typically contains these elements:
+
+*   **Instruction:** The specific task to be performed. This is the command that tells the LLM what to do.
+*   **Context:** Additional information that helps the LLM generate better responses. This includes background details or any relevant data that steers the model.
+*   **Input Data:** The information that the LLM needs to process. This is the question, text, or data for which a response is required.
+*   **Output Indicator:** The desired type or format of the output. This guides the LLM on how to structure its response.
+
+**Example 1:**
+
+```
+Classify the text into neutral, negative or positive.
+Text: I think the vacation is okay.
+Sentiment: [Output Indicator]
+```
+
+*   Instruction: Classify the text...
+*   Input: I think the vacation is okay
+*   Output Indicator: Sentiment
+
+**Example 2:**
+
+```
+Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
+
+Question: What was OKT3 originally sourced from?
+Answer: [Output Indicator]
+```
+
+*   Instruction: Answer the question...
+*   Context: Teplizumab traces its roots...
+*   Input: What was OKT3 originally sourced from?
+*   Output Indicator: Answer
+
+<----------section---------->
+
+### In-Context Learning
+
+In-context learning refers to the ability of an LLM to perform a task by interpreting and leveraging the information provided within the prompt itself, without updating its internal parameters (i.e., without undergoing further training). This is a crucial aspect of prompt engineering, as it allows practitioners to guide the LLM's behavior through carefully designed prompts.
+
+A prompt context can include:
+
+*   **Reference Material:** Providing specific text or data that the LLM should use to perform the task. This is often used in question answering or summarization tasks.
+*   **Input-Output Pairs:** Including examples of the task to demonstrate the desired pattern or behavior. This is a key component of few-shot learning.
+*   **Step-by-Step Instructions:** Offering detailed guidance for completing the task. This is useful for complex reasoning tasks.
+*   **Clarifications:** Addressing any potential ambiguities in the task to ensure the LLM understands what is expected.
+*   **Templates:** Supplying structured formats or placeholders that the LLM should fill in. This can be useful for generating specific types of content, such as reports or emails.
+
+Prompt engineering heavily relies on in-context learning to guide and control the LLM's responses.
+
+<----------section---------->
+
+### Prompts and NLP Tasks
+
+Prompts can be designed to achieve various Natural Language Processing (NLP) tasks. Here are some examples:
+
+*   **Text Summarization:**
+    ```
+    Antibiotics are a type of medication used to treat bacterial infections. They work by either killing
+    the bacteria or preventing them from reproducing, allowing the body’s immune system to fight off the
+    infection. Antibiotics are usually taken orally in the form of pills, capsules, or liquid solutions,
+    or sometimes administered intravenously. They are not effective against viral infections, and using
+    them inappropriately can lead to antibiotic resistance.
+
+    Explain the above in one sentence:
+    ```
+
+    **Output:**
+
+    ```
+    Antibiotics are medications used to treat bacterial infections by either killing the bacteria or
+    stopping them from reproducing, but they are not effective against viruses and overuse can lead to
+    antibiotic resistance.
+    ```
+
+*   **Information Extraction:**
+    ```
+    Author-contribution statements and acknowledgements in research papers should state clearly and
+    specifically whether, and to what extent, the authors used AI technologies such as ChatGPT in the
+    preparation of their manuscript and analysis. They should also indicate which LLMs were used. This
+    will alert editors and reviewers to scrutinize manuscripts more carefully for potential biases,
+    inaccuracies and improper source crediting. Likewise, scientific journals should be transparent about
+    their use of LLMs, for example when selecting submitted manuscripts.
+
+    Mention the large language model based product mentioned in the paragraph above:
+    ```
+
+    **Output:**
+
+    ```
+    The large language model based product mentioned in the paragraph above is ChatGPT.
+    ```
+
+*   **Question Answering:**
+    ```
+    Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure
+    about answer" if not sure about the answer.
+
+    Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There,
+    scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the
+    molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986,
+    it was approved to help prevent organ rejection after kidney transplants, making it the first
+    therapeutic antibody allowed for human use.
+
+    Question: What was OKT3 originally sourced from?
+    ```
+
+    **Output:**
+
+    ```
+    Mice
+    ```
+
+*   **Text Classification:**
+    ```
+    Classify the text into neutral, negative or positive.
+    Text: I think the food was okay.
+    Sentiment:
+    ```
+
+    **Output:**
+
+    ```
+    Neutral
+    ```
+
+*   **Code Generation:**
+    ```
+    Write a JavaScript code that prompts the user to enter their name and then displays
+    a “Hello” message.
+    Output only the code, no additional comments.
+    ```
+
+    **Output:**
+
+    ```javascript
+    let name = prompt("What is your name?");
+    console.log(`Hello, ${name}!`);
+    ```
+
+*   **Reasoning:**
+    ```
+    What is 9,000 * 9,000?
+    ```
+
+    **Output:**
+
+    ```
+    81,000,000
+    ```
+    Note: despite advancements in mathematical capabilities, reasoning tasks remain challenging for LLMs...
+
+*   **Reasoning (Example of Failure):**
+    ```
+    The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1.
+    Answer:
+    ```
+
+    **Output:**
+
+    ```
+    No, the odd numbers in this group add up to an odd number: 119.
+    ```
+    That's incorrect! More advanced prompt engineering techniques are needed to obtain the correct answer... we will discuss them later.
+
+<----------section---------->
+
+### System Prompts
+
+A system prompt is a configuration that is provided to the AI model before any user interactions take place. It serves as the foundation for shaping the AI's behavior and responses.
+
+*   **Establishes Behavior, Context, Tone, and Instructions:** The system prompt sets the stage for how the AI should act, the context it should operate in, the tone it should adopt, and any special instructions it should follow.
+*   **Guides Responses and Focus:** It guides the model on how to respond to user input and what aspects it should prioritize.
+
+**Examples:**
+
+*   "You are a helpful and knowledgeable assistant who answers questions accurately and concisely."
+*   "You are an IT support assistant specializing in troubleshooting software and hardware issues. Respond politely and guide users through step-by-step solutions."
+*   "You are a friendly and engaging AI who responds in a warm and conversational tone, keeping responses lighthearted and approachable."
+
+<----------section---------->
+
+### Prompt Engineering Techniques
+
+*   **Zero-Shot Prompting:**
+    *   Definition: A prompt that directly instructs the model without including any examples or demonstrations.
+    *   Principle: Leverages the LLM's pre-existing knowledge and capabilities gained from large-scale training to perform tasks without explicit examples.
+    *   **Example:**
+        ```
+        Classify the text into neutral, negative or positive.
+        Text: I think the vacation is okay.
+        Sentiment:
+        ```
+
+        **Output:**
+        ```
+        Neutral
+        ```
+        The LLM already understands the concept of “sentiment” (that's the zero-shot capabilities at work).
+
+*   **Few-Shot Prompting:**
+    *   Definition: Involves including examples or demonstrations within the prompt to guide the model towards better performance.
+    *   Principle: Leverages in-context learning, where the LLM learns from the provided examples to generate more accurate responses.
+    *   **Example:**
+        ```
+        A "whatpu" is a small, furry animal native to Tanzania. An example of a sentence that uses the word whatpu is: We were traveling in Africa, and we saw these very cute whatpus.
+        To do a "farduddle" means to jump up and down really fast. An example of a sentence that uses the word farduddle is: When we won the game, we all started to farduddle in celebration.
+        ```
+
+    *   **Limitations:** Effective for many tasks but may struggle with complex reasoning.
+
+    *   **Zero-Shot Example:**
+        ```
+        The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1.
+        Answer:
+        ```
+
+        **Output:**
+        ```
+        Yes, the odd numbers in this group add up to 107, which is an even number.
+        ```
+        False! Let's try with few-shot prompting.
+
+    *   **Few-Shot Example:**
+        ```
+        The odd numbers in this group add up to an even number: 4, 8, 9, 15, 12, 2, 1.
+        A: The answer is False.
+        The odd numbers in this group add up to an even number: 17, 10, 19, 4, 8, 12, 24.
+        A: The answer is True.
+        The odd numbers in this group add up to an even number: 16, 11, 14, 4, 8, 13, 24.
+        A: The answer is True.
+        The odd numbers in this group add up to an even number: 17, 9, 10, 12, 13, 4, 2.
+        A: The answer is False.
+        The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1.
+        A:
+        ```
+
+        **Output:**
+        ```
+        The answer is True.
+        ```
+        False Again!
+
+*   **Chain-of-Thought Prompting:**
+    *   Definition: Enhances complex reasoning by guiding the model through intermediate reasoning steps.
+    *   Principle: Breaks down a complex problem into a series of smaller, more manageable steps, allowing the LLM to follow a logical chain of reasoning.
+
+    | Standard Prompting                                                                                                                                              | Chain-of-Thought Prompting                                                                                                                                                  |
+    | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?A: The answer is 11. | Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?A: 2 cans of tennis balls is 2*3=6 tennis balls.  Then he has 5+6=11 tennis balls. The answer is 11. |
+    | Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?A: The answer is 27.                           | Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?A: They had 23 apples, used 20, that means 23-20 = 3 apples remaining.  Then bought 6 more, so there are 3+6=9 apples. The answer is 9. |
+
+    *Combining it with few-shot prompting can yield better results on even more complex tasks.*
+
+    *   **Example:**
+        ```
+        The odd numbers in this group add up to an even number: 4, 8, 9, 15, 12, 2, 1.
+        A: Adding all the odd numbers (9, 15, 1) gives 25. The answer is False.
+        The odd numbers in this group add up to an even number: 17, 10, 19, 4, 8, 12, 24.
+        A: Adding all the odd numbers (17, 19) gives 36. The answer is True.
+        The odd numbers in this group add up to an even number: 16, 11, 14, 4, 8, 13, 24.
+        A: Adding all the odd numbers (11, 13) gives 24. The answer is True.
+        The odd numbers in this group add up to an even number: 17, 9, 10, 12, 13, 4, 2.
+        A: Adding all the odd numbers (17, 9, 13) gives 39. The answer is False.
+        The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1.
+        A:
+        ```
+
+        **Output:**
+        ```
+        Adding all the odd numbers (15, 5, 13, 7, 1) gives 41. The answer is False.
+        ```
+        Correct! Note: this is an emergent ability that arises with sufficiently large language models.
+
+*   **Self-Consistency Prompting:**
+    *   Definition: Employs an iterative chain-of-thought approach.
+    *   Principle: Repeats the question multiple times to generate a range of reasoning paths, selecting the most frequent answer as the final response.
+
+*   **Meta Prompting:**
+    *   Definition: Guides the model through the logical steps required to solve a problem without relying on specific content-based examples.
+    *   Principle: Focuses on the process rather than the content, allowing the LLM to apply a structured approach to problem-solving.
+    *   **Example:**
+        ```
+        Solve the quadratic equation 3x² + 4x - 5 = 0 by following these structured steps:
+        1. Identify and Set Up the Formula: Recognize that this is a quadratic equation in the form ax² + bx + c = 0.
+        2. Apply the Quadratic Formula: Use the quadratic formula x = (-b ± √(b² - 4ac)) / (2a) and substitute in the values.
+        3. Calculate the Discriminant: Find b² - 4ac, and interpret its value to determine the nature of the roots.
+        4. Solve for x: Perform the calculation for both + and - options in the formula to find the values of x.
+        5. Verify the Solution: Substitute each value of x back into the original equation to confirm it satisfies it.
+        6. Summarize the Results: State the final solution, listing both values of x and noting any observations about the nature of the roots.
+        ```
+
+*   **Task-Agnostic Meta Prompting:**
+    *   Definition: Achieves good results by simply asking the model to reason step-by-step, without specifying the content of each step.
+    *   Principle: Relies on the LLM's general reasoning abilities to structure its response in a logical and coherent manner.
+    *   **Example:**
+        ```
+        Problem Statement:
+        * Problem: [question to be answered]
+        Solution Structure:
+        * Begin the response with "Let’s think step by step."
+        * Follow with the reasoning steps, ensuring the solution process is broken down clearly and logically.
+        * End the solution with the final answer encapsulated in a LaTeX-formatted box, 4, for clarity and emphasis.
+        * Finally, state "The answer is [final answer to the problem].", with the final answer presented in LaTeX notation.
+        ```
+
+*   **Meta Meta Prompting:**
+    *   Definition: Utilizes LLMs to generate prompts that guide further tasks.
+    *   Principle: Automates the creation of effective prompts, allowing for more efficient and scalable prompt engineering.
+    *   **Example:**
+        *   **Prompt:**
+            ```
+            Create a detailed metaprompt to guide an AI in solving a differential equation. Your metaprompt
+            should focus on ensuring that the AI identifies the type of differential equation, selects the
+            appropriate method for solving it, and presents a clear, step-by-step solution. Include instructions
+
+            for verifying the solution and summarizing the results.
+            ```
+        *   **Output:**
+            ```
+            To solve this differential equation, follow these steps carefully:
+            1. Identify the Type: Begin by identifying the type of differential equation (e.g., first-order linear,
+            separable, homogeneous, etc.). Briefly explain how you recognized the type.
+
+            2. Apply an Appropriate Method: Based on the type, outline the most suitable method for
+            solving it (e.g., separation of variables, integrating factor, etc.). If there are multiple
+            approaches, describe why this particular method is the best choice.
+
+            3. Show Step-by-Step Solution: Work through the equation step-by-step, explaining each
+            manipulation and transformation in clear terms.
+
+            4. Verify Solution: Once you find the solution, verify it by differentiating the result and
+            substituting it back into the original equation to confirm it satisfies the differential equation.
+
+            5. Summarize the Solution: Finally, summarize the general or particular solution, highlighting
+
+            any constants or special conditions that apply.
+            ```
+
+*   **Prompt Chaining:**
+    *   Definition: Breaks down a complex task into different parts, each handled by a specific prompt.
+    *   Principle: Manages intricate queries by dividing them into manageable segments, using the output of one prompt as the input for the next.
+    *   **Example:**
+        ```
+        Extract any relevant quotes from the following text to answer the question "What was the main cause of the American Civil War?" [reference text follows]
+
+        "One of the biggest catalysts of the Civil War was the issue of slavery, particularly the Southerners’ desire to bring slavery into the territories."
+        "Tensions peaked when the Republican candidate Abraham Lincoln was elected president in 1860 with a platform opposing the extension of slavery into the territories, which isolated the South."
+
+        Using the extracted quotes and the full text, provide a detailed answer to the question "What was the main cause of the American Civil War?"
+        ```
+
+        **Output:**
+        ```
+        The main cause of the American Civil War was the issue of slavery and its potential expansion into new territories and states. The South insisted on bringing slavery into new territories, while the election of Abraham Lincoln with an anti-slavery platform isolated the Southern states, which feared losing the right to own slaves. The fundamental disagreement over slavery between the North and South was the key factor that ultimately led to the outbreak of the Civil War.
+        ```
+
+*   **Role Prompting:**
+    *   Definition: Asks the model to assume a specific role or persona.
+    *   Principle: Adjusts the tone, style, and depth of information provided based on the assigned role.
+    *   **Examples:**
+        *   Write a review of [pizza place]
+        *   You are a food critic writing for the Michelin Guide. Write a review of [pizza place]
+        *   You are a marketing expert. Draft an email to a client advising them about a delay in the delivery schedule due to logistical problems.
+        *   You are a customer service representative. Draft an email to a client advising them about a delay in the delivery schedule due to logistical problems.
+
+    *   **Example of Role Prompting effect:**
+        *   Without RP: Write a review of [pizza place]
+        *   With RP: You are a food critic writing for the Michelin Guide. Write a review of [pizza place]
+
+    *   **Example of Role Prompting effect (Marketing Expert):**
+        *   You are a marketing expert. Draft an email to a client advising them about a delay in the delivery schedule due to logistical problems. (focus on persuasion, positivity, and relationship)
+
+          ```
+          Subject: A Little More Wait for Your Wonderful Products
+
+          Dear [Client's Name],
+
+          We hope this message finds you buzzing with excitement for your upcoming
+          order! However, even the best-laid plans sometimes face unexpected
+          hiccups. We have hit a temporary logistics snag that will unfortunately
+          add a small wait time to your delivery.
+
+          While we understand this isn't ideal, we believe great things come to
+          those who wait, and your order is no exception. Rest assured, from the
+          moment we sort out this situation to the time your products reach you,
+          we're committed to ensuring that your experience is nothing short of
+          excellent.
+
+          Thank you for your patience and understanding. Stay tuned for more
+          updates, and please, don't hesitate to reach out if you have any questions
+          — we're always here.
+
+          Cheers, [Your Name]
+          ```
+
+    *   **Example of Role Prompting effect (Customer Service):**
+        *   You are a customer service representative. Draft an email to a client advising them about a delay in the delivery schedule due to logistical problems. (More relational and solution-oriented)
+
+          ```
+          Subject: Attention Required: Update on Your Order Status
+
+          Dear [Client's Name],
+
+          Greetings from [Your Company Name].
+
+          We wanted to inform you that, due to unforeseen logistical challenges,
+          there might be a delay in the delivery of your order. We understand that
+          this may cause some inconvenience, and we apologize sincerely.
+          Meanwhile, we are working tirelessly to resolve this and ensure your
+          delivery reaches you by [new estimated date]. We value your time and
+          patience greatly.
+
+          Please feel free to reach out if you have any questions or need further
+          information. Our team is always here to assist you.
+
+          Thank you for your understanding.
+
+          Best regards, [Your Name]
+          ```
+
+*   **Structured Prompting:**
+    *   Definition: Employs a semi-formal definition of instructions to help LLMs handle complex tasks more predictably.
+    *   Principle: Divides the prompt into sections and encodes it into a script, using delimiters to help LLMs recognize each part as distinct units of meaning.
+    *   Delimiters: Any unique character sequence that wouldn't normally appear together (e.g., `###`, `===`, `>>>`) or XML tags.
+    *   Rationale: LLMs are often trained on web content and have learned to recognize and understand this formatting.
+
+    *   **Example with custom delimiters:**
+        ```
+        Classify the sentiment of each conversation in <<<CONVERSATIONS>>> as ‘Positive’ or ‘Negative’. Give the sentiment classifications without any other preamble text.
+
+        ###EXAMPLE CONVERSATIONS
+        [Agent]: Good morning, how can I assist you today?
+        [Customer]: This product is terrible, nothing like what was advertised!
+        [Customer]: I’m extremely disappointed and expect a full refund.
+
+        [Agent]: Good morning, how can I help you today?
+        [Customer]: Hi, I just wanted to say that I’m really impressed with your product. It exceeded my expectations!
+        ###
+
+        ###EXAMPLE OUTPUTS
+        Negative
+        Positive
+        ###
+
+        <<<CONVERSATIONS>>>
+        [Agent]: Hello! Welcome to our support. How can I help you today?
+        [Customer]: Hi there! I just wanted to let you know I received my order, and it’s fantastic!
+        [Agent]: That’s great to hear! We’re thrilled you’re happy with your purchase. Is there anything else I can assist you with?
+        [Customer]: No, that’s it. Just wanted to give some positive feedback. Thanks for your excellent service!
+
+        [Agent]: Hello, thank you for reaching out. How can I assist you today?
+        [Customer]: I’m very disappointed with my recent purchase. It’s not what I expected at all.
+        [Agent]: I’m sorry to hear that. Could you please provide more details so I can help?
+        [Customer]: The product is of poor quality, and it arrived late. I’m really unhappy with this experience.
+        >>>
+        ```
+
+        **Output:**
+        ```
+        Positive
+        Negative
+        ```
+
+    *   **Example with XML tags:**
+        ```xml
+        <prompt>
+            <instruction>Classify the sentiment of the following conversations into one of two classes, using the examples given. Give the sentiment classifications without any other preamble text.</instruction>
+            <classes>
+                <positive>Positive</positive>
+                <negative>Negative</negative>
+            </classes>
+            <example-conversations>
+                <conversation>
+                    [Agent]: Good morning, how can I assist you today?
+                    [Customer]: This product is terrible, nothing like what was advertised!
+                    [Customer]: I’m extremely disappointed and expect a full refund.
+                </conversation>
+                <conversation>
+                    [Agent]: Good morning, how can I help you today?
+                    [Customer]: Hi, I just wanted to say that I’m really impressed with your product. It exceeded my expectations!
+                </conversation>
+            </example-conversations>
+            <example-classes>
+                <class>Negative</class>
+                <class>Positive</class>
+            </example-classes>
+            <conversations>
+                <conversation>
+                    [Agent]: Hello! Welcome to our support. How can I help you today?
+                    [Customer]: Hi there! I just wanted to let you know I received my order, and it’s fantastic!
+                    [Agent]: That’s great to hear! We’re thrilled you’re happy with your purchase. Is there anything else I can assist you with?
+                    [Customer]: No, that’s it. Just wanted to give some positive feedback. Thanks for your excellent service!
+                </conversation>
+                <conversation>
+                    [Agent]: Hello, thank you for reaching out. How can I assist you today?
+                    [Customer]: I’m very disappointed with my recent purchase. It’s not what I expected at all.
+                    [Agent]: I’m sorry to hear that. Could you please provide more details so I can help?
+                    [Customer]: The product is of poor quality, and it arrived late. I’m really unhappy with this experience.
+                </conversation>
+            </conversations>
+        </prompt>
+        ```
+
+        **Output:**
+        ```
+        Positive
+        Negative
+        ```
+
+*   **Structured Prompting with CO-STAR:**
+    *   Definition: The CO-STAR framework divides a prompt into specific sections to improve clarity and guide the LLM.
+    *   Principle: By structuring the prompt into Context, Objective, Style, Tone, Audience, and Response, the LLM can better understand the task and generate more appropriate and effective outputs.
+    *   Components:
+        *   **Context:** Background information on the task.
+        *   **Objective:** Clear definition of the task.
+        *   **Style:** Desired writing style.
+        *   **Tone:** Desired emotional context (e.g., formal, humorous, empathetic).
+        *   **Audience:** Intended recipients (experts, beginners, etc.).
+        *   **Response:** Defines the desired output format (text, list, table, JSON).
+
+*   **Generate Knowledge Prompting:**
+    *   Definition: First prompts the LLM to generate relevant knowledge related to a task, then incorporates that knowledge into the prompt along with the task description or question.
+    *   Principle: Leverages the LLM's capacity to generate supplementary knowledge beyond its base training domain. Useful when the LLM lacks the specific information required to directly answer a query.
+    *   **Example:**
+        ```
+        List and describe the key factors that influence the evolution of life in
+        environments with extreme gravitational forces, such as on a super-Earth
+        planet. Focus on biological, physiological, and ecological adaptations
+        that might arise in such conditions.
+
+        Using the adaptations and factors you described earlier, design a
+        hypothetical intelligent species that could evolve on a super-Earth planet
+        with extreme gravitational forces. Include details about their physical
+        structure, social behaviors, methods of tool use or communication, and how
+        their adaptations influence their culture or technology.
+        ```
+
+*   **Retrieval Augmented Generation (RAG):**
+    *   Definition: Combines retrieval techniques with text generation.
+    *   Principle: Addresses limitations in LLMs accessing updated or domain-specific data by using a search or retrieval system to find relevant documents or data, then using an LLM to generate responses conditioned on the retrieved data.
+    *   Components:
+        *   Retrieval System: Uses search engines or databases to find relevant documents.
+        *   LLM: Generates responses based on the retrieved data.
+
+<----------section---------->
+
+### Prompt Engineering Guide
+
+The Prompt Engineering Guide: [https://www.promptingguide.ai/](https://www.promptingguide.ai/)
+
+*   Tree of Thoughts
+*   Automatic Reasoning and Tool-use
+*   Automatic Prompt Engineer
+*   Active-Prompt
+*   Directional Stimulus Prompting
+*   Program-Aided Language Models
+*   …
+
+**Text-Base Prompt Tech. (List from figure 2.2)**
+
+|                     |                      |                      |                      |                      |
+| :------------------ | :------------------- | :------------------- | :------------------- | :------------------- |
+| **Zero-Shot**       | **Few-Shot**         | **Thought Generation** | **Decomposition**    | **Ensembling**       |
+| Emotion Prompting   | Exemplar Generation  | Chain-of-Thought(CoT) | DECOMP               | COSP                 |
+| Role Prompting      | Exemplar Ordering    | Zero-Shot CoT        | Faithful CoT         | DENSE                |
+| Style Prompting     | Exemplar Selection   | Analogical Prompting | Least-to-Most        | DiVeRSe              |
+| S2A                 | KNN                  | Step-Back Prompting  | Plan-and-Solve       | Max MutualInformation |
+| SimToM              | Vote-K               | Thread-of-Thought(ThoT) | Program-of-Thought | Meta-CoT             |
+| RaR                 | Prompt Mining        | Tab-CoT              | Recurs.-of-Thought | MoRE                 |
+| RE                  | SG-ICL               | Few-Shot CoT         | Skeleton-of-Thought | Self-Consistency     |
+| Self-Ask            |                      | Active-Prompt        | Tree-of-Thought      | USP                  |
+|                     |                      | Auto-CoT             |                      | Prompt Paraphrasing  |
+|                     |                      | Complexity-Based     |                      | Self-Criticism       |
+|                     |                      | Contrastive          |                      | Chain-of-Veriﬁcation|
+|                     |                      | Memory-of-Thought    |                      | Self-Calibration     |
+|                     |                      | Uncertainty-RoutedCoT|                      | Self-Reﬁne          |
+|                     |                      |                      |                      | Self-Veriﬁcation      |
+|                     |                      |                      |                      | ReverseCoT           |
+|                     |                      |                      |                      | Cumulative Reason    |
+
+<----------section---------->
+

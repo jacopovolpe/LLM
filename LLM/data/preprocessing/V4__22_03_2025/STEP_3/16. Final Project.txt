@@ -1,0 +1,55 @@
+**Final Project Overview**
+
+**Project Outline:**
+
+The project is structured around three key components:
+
+1.  **Goal of the project:** Defining the objective and scope of the chatbot.
+2.  **Tools to use for the project:** Specifying the acceptable technologies and methodologies.
+3.  **Chatbot evaluation procedure:** Establishing the metrics and methods for assessing the chatbot's performance.
+
+`<----------section---------->`
+
+**Goal of the Project (Detailed):**
+
+The primary goal of this project is to develop a chatbot proficient in answering questions related to the NLP and LLM course content for the 2024/2025 academic year. The chatbot's knowledge domain extends beyond the specific topics covered in class to include general course information. Examples include identifying course teachers, recommending textbooks, and providing other relevant details regarding the course structure and administration.
+
+A critical requirement is that the chatbot must **exclusively** address questions pertaining to the NLP and LLM course. It must accurately identify and reject out-of-context queries, responding appropriately that it is not authorized to provide information outside the designated scope. This capability ensures that the chatbot remains a focused and reliable resource for course-related inquiries.
+
+Project deliverables include:
+
+*   **Chatbot Code:** The complete source code of the implemented chatbot.
+*   **Report:** A comprehensive report detailing the design, implementation, and evaluation of the chatbot solution. The report should offer a detailed explanation of the chosen architecture, algorithms, and any specific techniques used to achieve the project goals.
+
+`<----------section---------->`
+
+**Tools to Use for the Project (Expanded):**
+
+Students have significant flexibility in selecting the tools and technologies for this project. They are encouraged to utilize any methods covered during the course. This includes both state-of-the-art LLM-based approaches and traditional NLP techniques.
+
+A blended approach is also acceptable, where some chatbot components are developed using LLMs, while others rely on more conventional NLP tools. Students can freely explore this hybrid approach, provided they thoroughly justify their choices and design decisions in the final report. The goal is to encourage thoughtful selection and integration of the most suitable tools for each specific task.
+
+Existing LLMs or other pre-trained models can be used, either with or without modifications. However, groups must demonstrate a thorough understanding of *all* tools and models incorporated into their chatbot. Students should be prepared to answer questions regarding every aspect of the code and models used, demonstrating their expertise in the technologies employed. This requirement ensures that students not only use the tools effectively but also gain a deep understanding of their inner workings.
+
+`<----------section---------->`
+
+**Chatbot Evaluation Procedure (In-Depth):**
+
+The evaluation of the chatbots will consist of two phases, both conducted in real-time during the project discussion. The course instructors will directly interact with each group's chatbot by posing a set of predefined questions.
+
+**Phase 1: Core Performance Evaluation**
+
+The initial evaluation will assess the chatbot's core capabilities using the following metrics:
+
+*   **Relevance:** This criterion evaluates whether the chatbot's generated text effectively answers the user's query. Does the response directly address the question and provide the needed information?
+*   **Fluency:** This metric assesses the readability and grammatical correctness of the chatbot's output. The generated text should be natural, well-structured, and free of grammatical errors.
+*   **Coherence:** This evaluates the logical flow and consistency of the chatbot's responses. The text should be internally consistent, and the sequence of statements should form a coherent whole.
+
+**Phase 2: Robustness and Precision Assessment**
+
+The second evaluation phase aims to test the chatbot's ability to handle challenging or ambiguous inputs and maintain accuracy:
+
+*   **Robustness:** This criterion assesses the chatbot's resilience to adversarial or misleading prompts. It tests the chatbot's ability to avoid being misled by prompts designed to trick or confuse it (e.g., questions containing statements like "Are you sure?"). The chatbot should maintain accuracy and avoid generating inappropriate responses, even when confronted with manipulative prompts.
+*   **Precision:** This evaluates the chatbot's ability to distinguish between in-context and out-of-context questions. Can the chatbot accurately identify and reject questions unrelated to the NLP and LLM course (e.g., "Who is the king of Spain?")?
+
+Based on the chatbot's performance across these aspects, the course instructors will assign a grade that reflects its overall quality and effectiveness. The grade will be determined holistically, considering the strengths and weaknesses demonstrated in each evaluation category.

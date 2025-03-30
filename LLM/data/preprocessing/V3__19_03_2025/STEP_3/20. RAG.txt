@@ -1,0 +1,713 @@
+**Natural Language Processing and Large Language Models**
+
+This lesson, Lesson 20 of the Corso di Laurea Magistrale in Ingegneria Informatica, focuses on Retrieval Augmented Generation (RAG). This is presented by Nicola Capuano and Antonio Greco, DIEM – University of Salerno. This lesson aims to provide an overview of RAG, introduce LangChain, and demonstrate how to build a RAG system using LangChain and Hugging Face.
+
+**Outline:**
+
+*   Introduction to RAG
+*   Introduction to LangChain
+*   Building a RAG with LangChain and HuggingFace
+
+<----------section---------->
+
+**Introduction to RAG**
+
+**What is RAG?**
+
+Large Language Models (LLMs) have demonstrated remarkable capabilities in reasoning across various topics. However, LLMs face certain limitations:
+
+*   Their knowledge is confined to the data they were trained on.
+*   They are unable to access information introduced after their training period (cutoff date).
+*   They cannot effectively reason about private or proprietary data that was not part of their training dataset.
+
+Retrieval Augmented Generation (RAG) addresses these limitations by augmenting LLMs with additional data. Essentially, RAG is a technique that enhances the knowledge base of LLMs, enabling them to reason about a broader range of information. This includes private data and information that emerged after the model's training cutoff date. This makes RAG a powerful technique for creating AI applications that are not limited by the inherent constraints of LLMs.
+
+<----------section---------->
+
+**RAG Concepts**
+
+A typical RAG application is structured around two primary components:
+
+*   **Indexing:** This component constitutes a pipeline responsible for ingesting data from a designated source and indexing it to facilitate efficient retrieval. The indexing process typically occurs offline, preparing the data for later use.
+*   **Retrieval and Generation:** This component operates in real-time, processing user queries to produce relevant answers.
+
+    *   It takes the user's query as input during runtime.
+    *   It retrieves relevant data from the index based on the query.
+    *   It formulates a prompt that combines the user's query with the retrieved data. This enriched prompt provides the LLM with the necessary context to generate a more informed answer.
+    *   It employs an LLM to generate an answer based on the combined query and retrieved data.
+
+<----------section---------->
+
+**Indexing**
+
+The indexing pipeline involves several steps to prepare data for retrieval:
+
+*   **Load:** The initial step is to load the data from its source. RAG frameworks offer document loaders compatible with a wide array of formats (e.g., PDF, CSV, HTML, JSON) and sources (e.g., file systems, the Web, databases).
+*   **Split:** Large documents are divided into smaller chunks. This splitting is crucial for two reasons:
+
+    *   Indexing: Smaller chunks are easier to search and manage within the index.
+    *   LLM Usage: Smaller chunks are more likely to fit within the model's context window, which is the limited amount of text an LLM can process at once.
+*   **Store:** The final step is to store and index these splits in a way that allows for efficient searching. Vector stores are frequently used for this purpose.
+
+<----------section---------->
+
+**Indexing: Vector Stores and Embeddings**
+
+Vector stores are used to store and index splits of data using vector representations, also known as embeddings.
+
+**Vector Stores:**
+
+These are specialized data stores designed to index and retrieve information based on embeddings.
+
+*   **Recap: Embeddings** Embeddings are vector representations that capture the semantic meaning of data. They translate text (or other data types) into numerical vectors, where similar meanings are located closer to each other in the vector space.
+*   **Advantage:** Vector stores enable information retrieval based on semantic similarity. This contrasts with traditional keyword-based searches, which rely on exact matches and can miss relevant information expressed using different wording.
+
+<----------section---------->
+
+**Retrieval and Generation**
+
+The retrieval and generation stage is where the RAG system actively responds to user input. Given a user's query, the system retrieves relevant splits (chunks of text) from the vector store. The LLM then uses these retrieved splits to formulate a response. The prompt provided to the LLM includes both the user's question and the relevant retrieved data, enabling the LLM to generate a more accurate and contextually relevant answer.
+
+<----------section---------->
+
+**Introduction to LangChain**
+
+**LangChain:**
+
+LangChain is a framework designed to simplify the development of applications powered by LLMs.
+
+*   It offers a comprehensive set of building blocks for integrating LLMs into diverse applications.
+*   It provides seamless connections to third-party LLMs (such as OpenAI and Hugging Face), data sources (like Slack or Notion), and external tools.
+*   It facilitates the chaining of different components, enabling the creation of complex and sophisticated workflows.
+*   It supports a wide range of use cases, including chatbots, document search, RAG systems, question answering, data processing, and information extraction.
+*   It includes both open-source and commercial components, offering flexibility for different development needs.
+
+<----------section---------->
+
+**Key Components of LangChain**
+
+LangChain offers a variety of components to facilitate LLM application development:
+
+*   **Prompt Templates:** These streamline the process of translating user input into instructions suitable for language models. They support both string and message list formats.
+*   **LLMs:** These are third-party language models that take strings or messages as input and return strings as output, acting as the core reasoning engine.
+*   **Chat Models:** These are specialized third-party models that handle sequences of messages as input and output, designed to manage conversational flow with distinct roles for each message.
+*   **Example Selectors:** These dynamically select and format concrete examples within prompts, improving model performance by providing relevant context.
+*   **Output Parsers:** These convert the text generated by models into structured formats (e.g., JSON, XML, CSV), with features for error correction and advanced parsing.
+*   **Document Loaders:** These tools extract content from various data sources, providing a standardized way to ingest data into the LangChain pipeline.
+*   **Vector Stores:** These systems store and retrieve unstructured documents and data using embedding vectors, enabling semantic search and retrieval.
+*   **Retrievers:** These interfaces allow for document and data retrieval from vector stores and other external sources, providing a consistent way to access information.
+*   **Agents:** These systems leverage LLMs for reasoning, enabling them to decide on actions based on user inputs. Agents provide a framework for building autonomous and adaptive applications.
+
+<----------section---------->
+
+**Installation of LangChain and Related Libraries**
+
+Before building a RAG application with LangChain, it's essential to install the necessary libraries:
+
+*   Install the core LangChain library:
+
+    ```bash
+    pip install langchain
+    ```
+*   Install community-contributed extensions for LangChain:
+
+    ```bash
+    pip install langchain_community
+    ```
+*   Install Hugging Face integration for LangChain:
+
+    ```bash
+    pip install langchain_huggingface
+    ```
+*   Install a library to load, parse, and extract text from PDF files:
+
+    ```bash
+    pip install pypdf
+    ```
+*   Install the FAISS vector store (CPU version):
+
+    ```bash
+    pip install faiss-cpu
+    ```
+
+<----------section---------->
+
+**Preliminary Steps: Access Token and Model License**
+
+Before querying an LLM model, you need to obtain a Hugging Face access token and accept the user license for the model.
+
+*   **Hugging Face Access Token:** This token is required to access and use models hosted on the Hugging Face Hub.
+*   **Mistral-7B-Instruct-v0.2 Model License:** To use the Mistral-7B-Instruct-v0.2 model, you must accept the user license agreement on the Hugging Face website: [https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
+
+<----------section---------->
+
+**Querying an LLM Model**
+
+This section demonstrates how to query a Large Language Model (LLM) using LangChain and Hugging Face. The example uses the Mistral-7B-Instruct-v0.2 model to answer a question about the FIFA World Cup.
+
+```python
+from langchain_huggingface import HuggingFaceEndpoint
+import os
+
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_TOKEN"
+
+llm = HuggingFaceEndpoint(
+    repo_id = "mistralai/Mistral-7B-Instruct-v0.2",
+    temperature = 0.1
+)
+
+query = "Who won the FIFA World Cup in the year 2006?"
+print(llm.invoke(query))
+```
+
+**Explanation:**
+
+1.  **Import Libraries:** Import necessary modules from `langchain_huggingface` and the `os` module for environment variables.
+2.  **Set API Token:** Sets the Hugging Face API token as an environment variable. Replace `"YOUR_API_TOKEN"` with your actual API token. Storing the API key as an environment variable is a more secure and flexible practice than hardcoding it directly into the script.
+3.  **Initialize LLM:** Creates an instance of `HuggingFaceEndpoint`, specifying the `repo_id` (the model to use) and `temperature` (controls the randomness of the output). A lower temperature (e.g., 0.1) results in more deterministic and predictable responses.
+4.  **Define Query:** Defines the question to be asked to the LLM.
+5.  **Invoke LLM:** Calls the `invoke` method on the `llm` object with the query. This sends the query to the LLM and retrieves the response.
+6.  **Print Response:** Prints the response from the LLM.
+
+**Example Response:**
+
+```
+The FIFA World Cup in the year 2006 was won by the Italian national football team. They defeated France in the final match held on July 9, 2006, at the Allianz Arena in Munich, Germany. The Italian team was coached by Marcello Lippi and was led by the legendary goalkeeper Gianluigi Buffon. The team's victory was significant as they had not won the World Cup since 1982. The final match ended in a 1-1 draw after extra time, and the Italians won the penalty shootout 5-3. The winning goal in the shootout was scored by Andrea Pirlo.
+```
+
+**Security Note:**
+
+The example highlights the importance of storing the Hugging Face API token in an environment variable for security reasons. This prevents the token from being exposed in the code.
+
+*   **macOS or Linux:**
+
+    ```bash
+    export HUGGINGFACEHUB_API_TOKEN="api_token"
+    ```
+*   **Windows with PowerShell:**
+
+    ```powershell
+    setx HUGGINGFACEHUB_API_TOKEN "api_token"
+    ```
+
+<----------section---------->
+
+**Prompt Templates**
+
+This section introduces the concept of prompt templates, which are predefined text structures used to create dynamic and reusable prompts for interacting with LLMs.
+
+```python
+from langchain.prompts import PromptTemplate
+
+template = "Who won the {competition} in the year {year}?"
+prompt_template = PromptTemplate(
+    template = template,
+    input_variables = ["competition", "year"]
+)
+
+query = prompt_template.invoke({"competition": "Davis Cup", "year": "2018"})
+answer = llm.invoke(query)
+
+print(answer)
+```
+
+**Explanation:**
+
+1.  **Import PromptTemplate:** Import the `PromptTemplate` class from `langchain.prompts`.
+2.  **Define Template:** Defines a template string with placeholders (`{competition}` and `{year}`). These placeholders will be replaced with actual values when the prompt is created.
+3.  **Create PromptTemplate Object:** Creates a `PromptTemplate` object, specifying the template string and the input variables. The `input_variables` list indicates which variables will be used to fill the placeholders in the template.
+4.  **Invoke PromptTemplate:** Calls the `invoke` method on the `prompt_template` object, providing a dictionary with the values for the input variables. This generates a complete prompt string.
+5.  **Query LLM:** Sends the generated prompt to the LLM using the `llm.invoke()` method.
+6.  **Print Answer:** Prints the LLM's response.
+
+**Example Response:**
+
+```
+The Davis Cup in the year 2018 was won by Croatia. They defeated France in the final held in Lille, France. The Croatian team was led by Marin Cilic and Borna Coric, while the French team was led by Jo-Wilfried Tsonga and Lucas Pouille. Croatia won the tie 3-2. This was Croatia's first Davis Cup title.
+```
+
+<----------section---------->
+
+**Introduction to Chains**
+
+Chains combine multiple steps in an NLP pipeline, where the output of each step serves as the input for the subsequent step. This is useful for automating complex tasks and integrating external systems.
+
+```python
+chain = prompt_template | llm
+answer = chain.invoke({"competition": "Davis Cup", "year": "2018"})
+
+print(answer)
+```
+
+**Explanation:**
+
+1.  **Define Chain:** This line uses the pipe operator `|` to create a chain that consists of two steps: the `prompt_template` and the `llm`. The output of the `prompt_template` (which is the formatted prompt string) will be passed as input to the `llm`.
+2.  **Invoke Chain:** Calls the `invoke` method on the `chain` object, providing a dictionary with the values for the input variables (`competition` and `year`). This executes the chain and returns the LLM's response.
+3.  **Print Answer:** Prints the LLM's response.
+
+**Example Response:**
+
+```
+The Davis Cup in the year 2018 was won by Croatia. They defeated France in the final held in Lille, France. The Croatian team was led by Marin Cilic and Borna Coric, while the French team was led by Jo-Wilfried Tsonga and Lucas Pouille. Croatia won the tie 3-2. This was Croatia's first Davis Cup title.
+```
+
+<----------section---------->
+
+**Refining LLM Output with Chains**
+
+This section demonstrates how to refine the LLM output for future processing by using a chain to extract specific information from the initial LLM response.
+
+```python
+followup_template = """
+task: extract only the name of the winning team from the following text
+output format: json without formatting
+
+example: {{"winner": "Italy"}}
+
+### {text} ###
+"""
+
+followup_prompt_template = PromptTemplate(
+    template = followup_template,
+    input_variables = ["text"]
+)
+
+followup_chain = followup_prompt_template | llm
+
+print(followup_chain.invoke({"text": answer}))
+```
+
+**Explanation:**
+
+1.  **Define Follow-up Template:** Defines a template string for the follow-up prompt. This template instructs the LLM to extract the name of the winning team from the input text and format the output as JSON.
+2.  **Create Follow-up PromptTemplate:** Creates a `PromptTemplate` object for the follow-up prompt, specifying the template string and the input variable (`text`).
+3.  **Define Follow-up Chain:** Creates a chain consisting of the `followup_prompt_template` and the `llm`.
+4.  **Invoke Follow-up Chain:** Calls the `invoke` method on the `followup_chain` object, providing a dictionary with the value for the `text` variable (which is the initial LLM response). This executes the follow-up chain and returns the refined LLM response.
+5.  **Print Refined Output:** Prints the refined LLM response, which is the name of the winning team in JSON format.
+
+**Example Response:**
+
+```json
+{"winner": "Croatia"}
+```
+
+<----------section---------->
+
+**Chaining All Together**
+
+This section shows how to chain multiple steps together into a single, complete pipeline, which enables the forwarding of the output of the previous step to the next step associated with a specific dictionary key.
+
+```python
+from langchain_core.runnables import RunnablePassthrough
+
+chain = (
+    prompt_template
+    | llm
+    | {"text": RunnablePassthrough()}
+    | followup_prompt_template
+    | llm
+)
+
+print(chain.invoke({"competition": "Davis Cup", "year": "2018"}))
+```
+
+**Explanation:**
+
+1.  **Import RunnablePassthrough:** Import the `RunnablePassthrough` class from `langchain_core.runnables`. This component passes its input directly as output, allowing you to chain operations that require access to the original input.
+2.  **Define Complete Chain:** This creates a chain that combines the prompt template, the LLM, a `RunnablePassthrough` component, the follow-up prompt template, and the LLM again.
+
+    *   `prompt_template`: Formats the initial prompt based on the input variables.
+    *   `llm`: Generates an answer based on the formatted prompt.
+    *   `{"text": RunnablePassthrough()}`: Creates a dictionary where the key `text` is associated with a `RunnablePassthrough` object. This passes the output of the previous step (the LLM's response) to the next step under the key `text`.
+    *   `followup_prompt_template`: Formats the follow-up prompt, using the LLM's response (passed as `text`) as input.
+    *   `llm`: Extracts the name of the winning team from the follow-up prompt.
+3.  **Invoke Complete Chain:** Calls the `invoke` method on the `chain` object, providing a dictionary with the values for the input variables (`competition` and `year`). This executes the entire chain and returns the final output.
+4.  **Print Final Output:** Prints the final output, which is the extracted name of the winning team in JSON format.
+
+**Example Response:**
+
+```json
+{"winner": "Croatia"}
+```
+
+<----------section---------->
+
+**More on Chains: LCEL and Predefined Chains**
+
+LCEL (LangChain Expression Language) is a powerful syntax for creating modular pipelines for chaining operations.
+
+*   **Pipe Syntax:** The `|` operator enables the seamless chaining of operations, allowing you to define complex workflows in a concise and readable manner.
+*   **Modular and Reusable Components:** LCEL promotes the creation of modular and reusable components, making it easier to build and maintain complex applications.
+*   **Branching Logic and Follow-up Queries:** LCEL supports branching logic and follow-up queries, enabling the creation of more dynamic and adaptive workflows.
+
+LangChain includes predefined chains for common tasks, such as question answering, document summarization, and conversational agents. These chains provide ready-to-use solutions that can be easily integrated into your applications. More information about LangChain can be found in the documentation: [https://python.langchain.com/docs/](https://python.langchain.com/docs/)
+
+<----------section---------->
+
+**Building a RAG with LangChain and Hugging Face: Example Project**
+
+This section outlines an example project demonstrating how to build a RAG system using LangChain and Hugging Face. The system will be able to answer queries on documents from the Census Bureau US, which collects statistics about the nation, its people, and its economy.
+
+The first step is to download the documents that will be indexed:
+
+```python
+from urllib.request import urlretrieve
+import os
+
+os.makedirs("us_census", exist_ok = True)
+
+files = [
+    "https://www.census.gov/content/dam/Census/library/publications/2022/demo/p70-178.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-017.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-016.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-015.pdf",
+]
+
+for url in files:
+    file_path = os.path.join("us_census", url.split("/")[-1])
+    urlretrieve(url, file_path)
+```
+
+**Explanation:**
+
+1.  **Import Libraries:** The code imports `urlretrieve` from `urllib.request` to download files and `os` to interact with the operating system.
+2.  **Create Directory:** It creates a directory named "us\_census" to store the downloaded files, using `os.makedirs` with `exist_ok=True` to prevent errors if the directory already exists.
+3.  **Define File URLs:** A list of URLs (`files`) is defined, each pointing to a PDF document on the Census Bureau website.
+4.  **Download Files:** The code iterates through each URL in the `files` list, constructs a local file path using `os.path.join`, and downloads the file using `urlretrieve`. The downloaded files are saved in the "us\_census" directory.
+
+<----------section---------->
+
+**Document Loaders in LangChain**
+
+LangChain provides a variety of document loaders that can extract content from diverse data sources. These loaders simplify the process of ingesting data into the RAG pipeline.
+
+*   `TextLoader`: Handles plain text files (.txt).
+*   `PyPDFLoader`: Extracts content from PDF documents.
+*   `CSVLoader`: Reads tabular data from CSV files.
+*   `WebBaseLoader`: Extracts content from web pages using their URLs.
+*   `WikipediaLoader`: Fetches content from Wikipedia pages.
+*   `SQLDatabaseLoader`: Queries SQL databases to load content.
+*   `MongoDBLoader`: Extracts data from MongoDB collections.
+*   `IMAPEmailLoader`: Loads emails from various providers using the IMAP protocol.
+*   `HuggingFaceDatasetLoader`: Fetches datasets from the Hugging Face datasets library.
+
+And many others. These loaders enable LangChain to ingest data from a wide range of sources, making it a versatile tool for building RAG systems.
+
+<----------section---------->
+
+**Extracting Content from PDFs with LangChain**
+
+This section demonstrates how to use LangChain to extract text content from PDF documents. It covers loading from a single PDF and loading multiple PDFs from a directory.
+
+**Extracting from a Single PDF:**
+
+```python
+from langchain_community.document_loaders import PyPDFLoader
+
+loader = PyPDFLoader("us_census/p70-178.pdf")
+doc = loader.load()
+print(doc[0].page_content[0:100]) # Print the first page (first 100 characters)
+```
+
+**Explanation:**
+
+1.  **Import PyPDFLoader:** Imports the `PyPDFLoader` class from `langchain_community.document_loaders`.
+2.  **Create Loader Instance:** Creates an instance of `PyPDFLoader`, specifying the path to the PDF document.
+3.  **Load Document:** Calls the `load` method on the `loader` object to load the PDF document. This returns a list of `Document` objects, where each `Document` represents a page in the PDF.
+4.  **Print Page Content:** Prints the first 100 characters of the first page of the document to display the extracted text.
+
+**Example Output:**
+
+```
+Occupation, Earnings, and Job
+Characteristics
+
+July 2022
+
+P70-178
+
+Clayton Gumber and Briana Sullivan
+```
+
+**Extracting from a Directory of PDFs:**
+
+```python
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+
+loader = PyPDFDirectoryLoader("./us_census/")
+docs = loader.load()
+
+print(docs[60].page_content[0:100]) # The 61st page (documents are concatenated)
+print('\n' + docs[60].metadata['source']) # The source of the page 61st page
+```
+
+**Explanation:**
+
+1.  **Import PyPDFDirectoryLoader:** Imports the `PyPDFDirectoryLoader` class from `langchain_community.document_loaders`.
+2.  **Create Loader Instance:** Creates an instance of `PyPDFDirectoryLoader`, specifying the path to the directory containing the PDF documents.
+3.  **Load Documents:** Calls the `load` method on the `loader` object to load all PDF documents in the directory. This returns a list of `Document` objects, where each `Document` represents a page in one of the PDF documents. The documents are concatenated in the order they are read from the directory.
+4.  **Print Page Content and Source:** Prints the first 100 characters of the 61st page (index 60) of the concatenated documents and the source file path of that page.
+
+**Example Output:**
+
+```
+U.S. Census Bureau 19
+
+insurance, can exacerbate the dif-
+ferences in monetary compensa -
+tion and w
+
+us_census/p70-178.pdf
+```
+
+<----------section---------->
+
+**Text Splitters in LangChain**
+
+LangChain provides components for breaking large text documents into smaller, more manageable chunks. These components are crucial for indexing and LLM processing.
+
+*   `CharacterTextSplitter`: Splits text into chunks based on character count.
+*   `RecursiveCharacterTextSplitter`: Splits text intelligently using hierarchical delimiters (e.g., paragraphs, sentences).
+*   `TokenTextSplitter`: Splits text based on token count rather than characters.
+*   `HTMLHeaderTextSplitter`: Splits HTML documents by focusing on headers (e.g., `<h1>`, `<h2>`).
+*   `HTMLSectionSplitter`: Divides HTML content into sections based on logical groupings or structural markers.
+*   `NLPTextSplitter`: Uses NLP techniques to split text into chunks based on semantic meaning.
+
+And many others. The choice of text splitter depends on the type of document and the desired chunking strategy.
+
+<----------section---------->
+
+**Splitting Text into Chunks**
+
+This section demonstrates how to split text into chunks using LangChain's `RecursiveCharacterTextSplitter`.
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 700,
+    chunk_overlap = 50,
+)
+
+chunks = text_splitter.split_documents(docs)
+
+print(chunks[0].page_content) # The first chunk
+```
+
+**Explanation:**
+
+1.  **Import RecursiveCharacterTextSplitter:** Imports the `RecursiveCharacterTextSplitter` class from `langchain.text_splitter`.
+2.  **Create Text Splitter Instance:** Creates an instance of `RecursiveCharacterTextSplitter`, specifying the `chunk_size` (maximum number of characters in each chunk) and `chunk_overlap` (number of overlapping characters between adjacent chunks).
+3.  **Split Documents:** Calls the `split_documents` method on the `text_splitter` object, passing the list of `Document` objects to be split. This returns a list of `Document` objects, where each `Document` represents a chunk of the original text.
+4.  **Print First Chunk:** Prints the content of the first chunk to display the result of the splitting process.
+
+**Example Output:**
+
+```
+Health Insurance Coverage Status and Type
+by Geography: 2021 and 2022
+
+American Community Survey Briefs
+ACSBR-015
+```
+
+<----------section---------->
+
+**Analyzing Chunking Results**
+
+This section shows how to analyze the impact of the text splitting process by printing the average document length before and after splitting.
+
+```python
+len_chunks = len(chunks)
+avg_docs = sum([len(doc.page_content) for doc in docs]) // len(docs)
+avg_chunks = sum([len(chunk.page_content) for chunk in chunks]) // len(chunks)
+
+print(f'Before split: {len(docs)} pages, with {avg_docs} average characters.')
+print(f'After split: {len(chunks)} chunks, with {avg_chunks} average characters.')
+```
+
+**Explanation:**
+
+1.  **Calculate Lengths:** Calculates the total number of chunks (`len_chunks`), the average number of characters per document before splitting (`avg_docs`), and the average number of characters per chunk after splitting (`avg_chunks`).
+2.  **Print Results:** Prints the calculated lengths to display the effect of the splitting process.
+
+**Example Output:**
+
+```
+Before split: 63 pages, with 3840 average characters.
+After split: 398 chunks, with 624 average characters.
+```
+
+<----------section---------->
+
+**Indexing Chunks with Embeddings**
+
+Embeddings are used to index text chunks, enabling semantic search and retrieval.
+
+*   We can use pre-trained embedding models from Hugging Face.
+*   Bi-Directional Generative Embeddings (BGE) models excel at capturing relationships between text pairs.
+*   `BAAI/bge-small-en-v1.5` is a lightweight embedding model from the Beijing Academy of Artificial Intelligence.
+*   Suitable for tasks requiring fast generation.
+
+[https://huggingface.co/BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
+
+```python
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
+import numpy as np
+
+embedding_model = HuggingFaceBgeEmbeddings(
+    model_name = "BAAI/bge-small-en-v1.5",
+    encode_kwargs = {'normalize_embeddings': True}  # useful for similarity tasks
+)
+
+# Embed the first document chunk
+sample_embedding = np.array(embedding_model.embed_query(chunks[0].page_content))
+
+print(sample_embedding[:5])
+print("\nSize: ", sample_embedding.shape)
+```
+
+**Explanation:**
+
+1.  **Import Libraries:** Imports the `HuggingFaceBgeEmbeddings` class from `langchain_community.embeddings` and the `numpy` library.
+2.  **Create Embedding Model Instance:** Creates an instance of `HuggingFaceBgeEmbeddings`, specifying the `model_name` and `encode_kwargs`. The `encode_kwargs` argument sets `'normalize_embeddings': True`, which is useful for similarity tasks.
+3.  **Embed Sample Chunk:** Calls the `embed_query` method on the `embedding_model` object to generate an embedding for the first document chunk. The embedding is then converted to a NumPy array.
+4.  **Print Embedding Information:** Prints the first five elements of the embedding and the size of the embedding vector.
+
+**Example Output:**
+
+```
+[-0.07508391 -0.01188472 -0.03148879  0.02940382  0.05034875]
+
+Size:  (384,)
+```
+
+<----------section---------->
+
+**Vector Stores: Choosing and Using FAISS**
+
+Vector stores enable semantic search and retrieval by indexing and querying embeddings of documents or text chunks. LangChain supports various vector stores:
+
+*   `FAISS`: Open-source library for efficient similarity search and clustering of dense vectors, ideal for local and small-to-medium datasets.
+*   `Chroma`: Lightweight and embedded vector store suitable for local applications with minimal setup.
+*   `Qdrant`: Open-source vector database optimized for similarity searches and nearest-neighbor lookup.
+*   `Pinecone`: Managed vector database offering real-time, high-performance semantic search with automatic scaling.
+
+And many others. The choice of vector store depends on the scale and performance requirements of the application.
+
+This example uses the Facebook AI Similarity Search (FAISS) library.
+
+```python
+from langchain_community.vectorstores import FAISS
+
+# Generate the vector store
+vectorstore = FAISS.from_documents(chunks, embedding_model)
+
+# Save the vector store for later use...
+vectorstore.save_local("faiss_index")
+
+# To load the vector store later...
+# loaded_vectorstore = FAISS.load_local("faiss_index", embedding_model)
+```
+
+**Explanation:**
+
+1.  **Import FAISS:** Imports the `FAISS` class from `langchain_community.vectorstores`.
+2.  **Generate Vector Store:** Creates a FAISS vector store from the document chunks and the embedding model. The `FAISS.from_documents` method generates embeddings for each chunk and indexes them in the vector store.
+3.  **Save Vector Store:** Saves the vector store to disk for later use. The `vectorstore.save_local` method persists the index and embeddings to files in the specified directory.
+4.  **Load Vector Store (Optional):** Shows how to load a previously saved vector store from disk. The `FAISS.load_local` method loads the index and embeddings from the files in the specified directory.
+
+<----------section---------->
+
+**Querying the Vector Store**
+
+This section demonstrates how to query the vector store to search for chunks relevant to a user query.
+
+```python
+query = """
+What were the trends in median household income across
+different states in the United States between 2021 and 2022.
+"""
+
+matches = vectorstore.similarity_search(query)
+
+print(f'There are {len(matches)} relevant chunks.\nThe first one is:\n')
+print(matches[0].page_content)
+```
+
+**Explanation:**
+
+1.  **Define Query:** Defines the user query as a string.
+2.  **Perform Similarity Search:** Calls the `similarity_search` method on the `vectorstore` object, passing the query as input. This method performs a semantic search in the vector store and returns a list of the most relevant document chunks.
+3.  **Print Results:** Prints the number of relevant chunks found and the content of the first chunk.
+
+**Example Output:**
+
+```
+There are 4 relevant chunks.
+The first one is:
+
+Comparisons
+The U.S. median household income
+```
+
+<----------section---------->
+
+**RAG Prompt Template**
+
+This section defines a prompt template that integrates the retrieved context with the user question. The prompt template is used to provide explicit instructions to the LLM on how to handle the provided information.
+
+```python
+template = """
+Use the following pieces of context to answer the question at the end.
+Please follow the following rules:
+1. If you don't know the answer, don't try to make up an answer. Just say "I can't find the final answer".
+2. If you find the answer, write the answer in a concise way with five sentences maximum.
+
+{context}
+
+Question: {question}
+
+Helpful Answer:
+"""
+
+from langchain.prompts import PromptTemplate
+prompt_template = PromptTemplate(template = template, input_variables = ["context", "question"])
+```
+
+**Explanation:**
+
+1.  **Define Template String:** Defines a template string that includes placeholders for the `context` (retrieved document chunks) and the `question` (user query). The template also provides instructions for the LLM on how to generate the answer.
+2.  **Create PromptTemplate Instance:** Creates an instance of `PromptTemplate`, specifying the template string and the input variables.
+
+<----------section---------->
+
+**Vector Store as a Retriever**
+
+To be used in chains, a vector store must be wrapped within a retriever interface. A retriever takes a text query as input and provides the most relevant information as output.
+
+```python
+# Create a retriever interface on top of the vector store
+retriever = vectorstore.as_retriever(
+    search_type = "similarity",  # use cosine similarity
+    search_kwargs = {"k": 3}  # use the top 3 most relevant chunks
+)
+```
+
+**Explanation:**
+
+1.  **Create Retriever:** Calls the `as_retriever` method on the `vectorstore` object to create a retriever interface.
+2.  **Configure Search:** Specifies the `search_type` as "similarity" (which uses cosine similarity) and the `search_kwargs` as `{"k": 3}` (which retrieves the top 3 most relevant chunks).
+
+<----------section---------->
+
+**Custom RAG Chain**
+
+This section defines a custom RAG chain that combines the retriever, prompt template, and LLM.
+
+```python
+from langchain_core.runnables import RunnablePassthrough
+
+# Helper function to concatenate the retrieved chunks
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for

@@ -1,0 +1,42 @@
+Natural Language Processing and Large Language Models. Corso di Laurea Magistrale in Ingegneria Informatica. Lesson 8: Building a Chatbot. Nicola Capuano and Antonio Greco, DIEM – University of Salerno.
+
+**Exercise: Building a Pizzeria Chatbot**
+
+Develop a chatbot to assist with pizzeria operations. Users can:
+
+*   Request the pizzeria's menu.
+*   Order a pizza that is available on the menu (just one pizza, no beverage).
+*   Upon order confirmation, the bot will log the date, the user ID, and the kind of ordered pizza (use a custom action).
+*   The bot has a web-based GUI.
+
+Hint: Start with a dummy bot.
+
+Example conversation:
+
+User: Can I have the menu?
+Bot: What kind of pizza would you like? We have Parenti, Pepperoni, Vegetarian...
+User: Pepperoni
+Bot: You want a Pepperoni pizza. Is that correct?
+User: Yes
+Bot: Great! Your Pepperoni pizza is on its way!
+
+**Hints**
+
+Start with a dummy bot:
+
+```bash
+mkdir pizzaBot
+cd pizzaBot
+rasa init --no-prompt
+```
+
+Configure and run the REST and the Actions servers:
+
+```bash
+rasa run --cors "*"
+rasa run actions
+```
+
+Use a Web frontend like:
+
+[https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0](https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0)

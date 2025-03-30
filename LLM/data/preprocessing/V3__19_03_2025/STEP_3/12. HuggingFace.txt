@@ -1,0 +1,183 @@
+**Natural Language Processing and Large Language Models**
+
+This material is designed for the "Corso di Laurea Magistrale in Ingegneria Informatica" (Master's Degree Course in Computer Engineering).
+
+Lesson 12 focuses on Hugging Face.
+
+Prepared by Nicola Capuano and Antonio Greco, DIEM – University of Salerno.
+
+`<----------section---------->`
+
+**Outline**
+
+This lesson will cover the following topics:
+
+*   Overview of Hugging Face
+*   Setting up the environment to use Hugging Face
+*   Using the `pipeline` function for quick NLP tasks
+*   Model selection from the Hugging Face Model Hub
+*   Commonly used models within Hugging Face
+*   Creating demos with Gradio
+
+`<----------section---------->`
+
+**Overview**
+
+**Hugging Face**
+
+Hugging Face provides tools and resources for Natural Language Processing (NLP). Their education toolkit, available on GitHub ([https://github.com/huggingface/education-toolkit](https://github.com/huggingface/education-toolkit)), is designed to help users prepare workshops, events, homework, or classes related to NLP. The toolkit’s content is self-contained and incorporates open-source technologies like Transformers and Gradio. Beyond tutorials, it offers resources for further exploration in Machine Learning (ML) and content design.
+
+`<----------section---------->`
+
+**Hugging Face Hub**
+
+The Hugging Face Hub ([https://huggingface.co/](https://huggingface.co/)) serves as a central repository for:
+
+*   **Models:** Pre-trained models for various NLP tasks.
+*   **Datasets:** Collections of data for training and evaluating models. The Hub ([https://hf.co/datasets](https://hf.co/datasets)) hosts around 3000 open-source datasets that are free to use in multiple domains. The open-source `datasets` library allows for easy access and use of these datasets, even very large ones, through features like streaming. Each dataset has a dataset card that documents its details, including a summary and structure. An example dataset is GLUE ([https://huggingface.co/datasets/nyu-mll/glue](https://huggingface.co/datasets/nyu-mll/glue)).
+*   **Spaces:** Platforms for hosting demos and code related to NLP projects.
+*   **Key Libraries:** The Hugging Face ecosystem includes several key libraries:
+    *   `datasets`: Used to download datasets from the Hub.
+    *   `transformers`: Provides tools to work with pipelines, tokenizers, models, and more.
+    *   `evaluate`: Used for computing evaluation metrics for models.
+
+These libraries are compatible with both PyTorch and TensorFlow, two popular machine-learning frameworks.
+
+`<----------section---------->`
+
+**Hugging Face – Model Hub**
+
+The Model Hub ([https://huggingface.co/models](https://huggingface.co/models)) can be navigated as demonstrated by Lysandre. When selecting a model, consider these factors:
+
+*   **Task:** Filter models by task to find models suited to your specific NLP application (e.g., summarization, text generation). An earthquake rattled Papua New Guinea, and the specified NLP task could be summarization.
+*   **Extractive vs. Abstractive Summarization:** Decide whether you need extractive summarization (selecting pieces of text) or abstractive summarization (generating new text).
+*   **License:** Ensure the model's license aligns with your usage requirements.
+*   **Language:** Filter by language to find models trained on your desired language.
+*    **Model Size:** Filter by model size based on hardware limits, cost constraints, or latency requirements. This is especially relevant when using only affordable hardware such as a laptop or free online GPU resources
+*   **Popularity and Updates:** Sort models by downloads, recent updates, and likes to find actively maintained and widely used models.
+*   **Release History:** Check the Git release history for the model to understand its development and updates. (e.g. github.com/google-research/bert/blob/master/README.md)
+*   **Model Variants:** Pick good variants of models for your task.
+    *   Different sizes of the same base model.
+    *   Fine-tuned variants of base models.
+
+`<----------section---------->`
+
+**Model Selection Considerations**
+
+When choosing a model, also consider:
+
+*   **Examples and Datasets:** Search for examples and datasets, not just models, to understand how the model performs in practical scenarios.
+*   **Task Specificity:** Determine if the model is good at everything or fine-tuned for a specific task.
+*   **Training Data:** Identify which datasets were used for pre-training and fine-tuning to understand the model's knowledge base.
+*   **Your Data and Users:** Ultimately, the model's performance depends on your specific data and user needs.
+    *   Define Key Performance Indicators (KPIs) to measure the model's success.
+    *   Test the model on your data or with your users to gather performance feedback.
+
+`<----------section---------->`
+
+**Setup**
+
+**Google Colab**
+
+Using a Colab notebook is the easiest way to get started. Colab notebooks allow you to run code directly in your browser.
+
+*   Install the Transformers library:
+    *   `!pip install transformers`
+*   Import the Transformers library:
+    *   `import transformers`
+
+This installs a lightweight version of Transformers without specific machine learning frameworks (PyTorch or TensorFlow). To install the development version with all dependencies:
+
+*   `!pip install transformers[sentencepiece]`
+
+`<----------section---------->`
+
+**Virtual Environment**
+
+1.  Download and install Anaconda: [https://www.anaconda.com/download](https://www.anaconda.com/download)
+2.  Create a new Anaconda environment:
+    *   `conda create --name nlpllm`
+3.  Activate the environment:
+    *   `conda activate nlpllm`
+4.  Install Transformers with SentencePiece:
+    *   `conda install transformers[sentencepiece]`
+
+`<----------section---------->`
+
+**Hugging Face Account**
+
+Having a Hugging Face account is recommended to use most of the functionalities. It's best to create one.
+
+`<----------section---------->`
+
+**Pipeline**
+
+The `pipeline()` function is the most basic object in the Hugging Face Transformers library.
+
+*   It connects a model with its preprocessing and postprocessing steps.
+*   It allows direct input of text and provides an understandable output.
+*   The Model Hub contains thousands of pretrained models available for download and use.
+
+`<----------section---------->`
+
+**Common Models**
+
+The following table lists some common models used in NLP:
+
+| Model              | License        | Organization | Year | Description                                                                        |
+| :----------------- | :------------- | :------------- | :--- | :--------------------------------------------------------------------------------- |
+| Pythia 19M-12B     | Apache 2.0     | EleutherAI   | 2023 | Series of 8 models for comparisons across sizes                                    |
+| Dolly 12B          | MIT            | Databricks   | 2023 | Instruction-tuned Pythia model                                                     |
+| GPT-3.5 175B       | Proprietary    | OpenAI       | 2022 | ChatGPT model option; related models GPT-1/2/3/4                                 |
+| OPT 125M-175B      | MIT            | Meta         | 2022 | Based on GPT-3 architecture                                                        |
+| BLOOM 560M - 176B  | RAIL v1.0       | Many groups  | 2022 | 46 languages                                                                     |
+| GPT-Neo/X 125M-20B | MIT / Apache 2.0 | EleutherAI   | 2021/2022 | Based on GPT-2 architecture                                                        |
+| FLAN 80M-540B      | Apache 2.0     | Google       | 2021 | Methods to improve training for existing architectures                            |
+| BART 139M-406M     | Apache 2.0     | Meta         | 2019 | Derived from BERT, GPT, others                                                     |
+| T5 50M-TIB         | Apache 2.0     | Google       | 2019 | 4 languages                                                                      |
+| BERT               | Apache 2.0     | Google       | 2018 | Early breakthrough                                                               |
+
+`<----------section---------->`
+
+**Gradio**
+
+Gradio is a tool for creating web demos for machine learning models.
+
+**Steps for Creating a Demo:**
+
+| Step                                | Framework           | Language |
+| :---------------------------------- | :------------------ | :------- |
+| 1. Train a model                    | TensorFlow/PyTorch | Python   |
+| 2. Containerize and deploy the model |                     | Python   |
+| 3. Store incoming samples          | Gradio              | Python   |
+| 4. Build an interactive front-end   |                     | Python   |
+
+**News Summarizer Example:**
+
+Gradio can be used to build a news summarizer that uses Hugging Face models to summarize articles.
+
+*   The summarizer uses the `bart-large-cnn` model by Facebook.
+*   Shorter articles generate faster summaries.
+
+**Example Usage:** Provide a URL, and the model will summarize the article.
+
+Examples:
+
+*   [https://www.technologyreview.com/2021/07/22/1029973/deepmind-alphafold-protein-folding-biology-disease-drugs-proteome/](https://www.technologyreview.com/2021/07/22/1029973/deepmind-alphafold-protein-folding-biology-disease-drugs-proteome/)
+*   [https://www.technologyreview.com/2021/07/21/1029860/disability-rights-employment-discrimination-ai-hiring/](https://www.technologyreview.com/2021/07/21/1029860/disability-rights-employment-discrimination-ai-hiring/)
+*   [https://www.technologyreview.com/2021/07/09/1028140/ai-voice-actors-sound-human/](https://www.technologyreview.com/2021/07/09/1028140/ai-voice-actors-sound-human/)
+
+`<----------section---------->`
+
+**Gradio – Free Hosting**
+
+Hugging Face offers free hosting for Gradio demos on hf.space. These spaces allow the community to share and discover machine learning applications.
+
+`<----------section---------->`
+
+**Building Demos**
+
+You can build your own demo with Gradio.
+
+*   Install Gradio: `conda install gradio`
+*   Refer to the provided link for a tutorial: [https://bit.ly/34wESgd](https://bit.ly/34wESgd)

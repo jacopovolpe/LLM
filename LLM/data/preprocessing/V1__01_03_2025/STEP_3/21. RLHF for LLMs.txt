@@ -1,0 +1,92 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 21: Reinforcement Learning from Human Feedback**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+Reinforcement Learning from Human Feedback (RLHF) is a powerful technique revolutionizing how we train and refine large language models (LLMs). This lesson delves into the intricacies of RLHF, exploring its underlying principles, workflow, advantages, and disadvantages.  We'll also introduce the Transformers TRL library, a practical tool for implementing RLHF, and guide you toward hands-on experimentation.
+
+<----------section---------->
+
+### What is RLHF and Why Use It?
+
+Imagine training a dog – you wouldn't just show it pictures of tricks; you'd reward good behavior and discourage unwanted actions.  RLHF applies this principle to LLMs. Instead of relying solely on massive datasets, it incorporates human feedback to guide the model towards desired behavior, like generating more helpful, harmless, and factually accurate responses. This process aligns the model's output with human values and preferences, leading to a more user-centric and ethically sound AI.  Traditional training methods can sometimes result in models that are technically proficient but lack the nuanced understanding of human communication.  RLHF bridges this gap, leading to LLMs that are not only powerful but also aligned with human expectations.
+
+<----------section---------->
+
+### The RLHF Workflow
+
+The RLHF process comprises three key stages:
+
+1. **Initial Language Model Training:**  The journey begins with a pre-trained LLM, such as BERT, GPT, or T5, which has already learned a broad understanding of language from a vast dataset. This foundational model serves as the starting point for refinement.
+
+2. **Reward Model Training:** This stage introduces a separate "reward model."  Think of this as the judge in a writing competition.  It's trained on a dataset of LLM outputs ranked by human evaluators based on criteria like helpfulness, accuracy, and safety.  The reward model learns to predict which responses humans would prefer, essentially mimicking human judgment.
+
+3. **Reinforcement Learning Fine-tuning:** In the final stage, the pre-trained LLM is fine-tuned using reinforcement learning algorithms, commonly Proximal Policy Optimization (PPO).  The LLM generates text, the reward model scores it, and the LLM adjusts its parameters to maximize its reward, similar to how a dog learns to perform tricks for treats.  This iterative process progressively refines the LLM's output, aligning it with human preferences.
+
+
+<----------section---------->
+
+### Components of RLHF
+
+The three core components of RLHF work together to achieve a refined LLM:
+
+* **Pre-trained Language Model:** This provides the foundational language understanding, having been trained on massive text corpora.
+* **Reward Model:**  This model, trained on human-ranked outputs, acts as a proxy for human judgment, guiding the fine-tuning process.
+* **Reinforcement Learning Algorithm (e.g., PPO):**  This algorithm uses the reward model's feedback to update the LLM's parameters, optimizing it for human preferences.
+
+
+<----------section---------->
+
+### Proximal Policy Optimization (PPO)
+
+PPO is a popular reinforcement learning algorithm used in RLHF. It iteratively updates the LLM's policy (how it generates text) to maximize rewards from the reward model. This iterative approach involves generating text samples, scoring them with the reward model, and then updating the LLM's internal parameters to improve future performance. This feedback loop continuously refines the LLM, making it more adept at generating desirable outputs.
+
+<----------section---------->
+
+### Advantages and Disadvantages of RLHF
+
+RLHF offers several compelling advantages:
+
+* **Iterative Improvement and Alignment:** The feedback loop allows continuous refinement, aligning the model closer to human expectations over time.
+* **Enhanced Ethical Responses and User Satisfaction:**  By incorporating human values, RLHF reduces the likelihood of harmful or biased outputs, leading to safer and more user-friendly interactions.
+
+However, challenges remain:
+
+* **Subjectivity and Scalability:** Human feedback can be inherently subjective and inconsistent.  Gathering large amounts of high-quality feedback can be resource-intensive.
+* **Reward Model Robustness:**  The effectiveness of RLHF heavily depends on the quality of the reward model.  A misaligned reward model can lead to suboptimal results.
+
+<----------section---------->
+
+### Applications of RLHF
+
+RLHF is enhancing a broad range of NLP tasks:
+
+* **Text Generation and Dialogue Systems:** Creating more engaging and coherent text, improving chatbot interactions.
+* **Language Translation and Summarization:** Increasing the accuracy and fluency of translations and creating more informative summaries.
+* **Question Answering and Sentiment Analysis:** Improving the precision of question answering and refining sentiment analysis for specific domains.
+* **Computer Programming:**  Assisting in code generation and software development.
+
+
+<----------section---------->
+
+### Case Study: GPT-3.5 and GPT-4
+
+OpenAI's GPT-3.5 and GPT-4 exemplify the power of RLHF.  These models demonstrate enhanced alignment with human preferences, producing fewer unsafe outputs and enabling more natural and human-like conversations.  This iterative improvement continues, with ongoing feedback loops further refining their performance.
+
+
+<----------section---------->
+
+### The Transformers TRL Library
+
+The TRL (Transformer Reinforcement Learning) library offers a powerful toolkit for implementing RLHF. It provides tools to train transformer language models with reinforcement learning, encompassing all stages, from supervised fine-tuning (SFT) and reward modeling (RM) to proximal policy optimization (PPO).  Its integration with Hugging Face Transformers simplifies the process, making RLHF more accessible to developers.
+
+<----------section---------->
+
+### Try it Yourself
+
+Explore the Transformers TRL library documentation and examples on Hugging Face to gain practical experience.  Focus on the `PPOTrainer` and `RewardTrainer` components. The provided examples on sentiment analysis tuning and detoxifying language models offer valuable starting points.  Apply RLHF to your own projects and experience its transformative potential.

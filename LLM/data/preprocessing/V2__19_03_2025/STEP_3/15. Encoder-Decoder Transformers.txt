@@ -1,0 +1,259 @@
+# Natural Language Processing and Large Language Models
+
+This material is from Lesson 15 of the Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering).
+
+## Encoder-Decoder Transformers
+
+Presented by Nicola Capuano and Antonio Greco from DIEM (Department of Industrial Engineering of Salerno), University of Salerno.
+
+### Outline
+
+This lesson will cover the following topics:
+
+*   Encoder-decoder transformer models: A deep dive into their architecture and function.
+*   T5: Exploring the Text-to-Text Transfer Transformer model in detail.
+*   Practice on translation and summarization: Hands-on exercises to apply the learned concepts.
+
+<----------section---------->
+
+## Encoder-Decoder Transformer
+
+### Encoder-Decoder Transformer Defined
+
+Encoder-Decoder Transformers represent a significant class of neural networks specifically engineered for sequence-to-sequence (seq2seq) tasks. These tasks involve transforming an input sequence into a different output sequence. Examples include machine translation (converting text from one language to another), text summarization (condensing a longer text into a shorter version), and speech recognition (converting audio into text). The encoder processes the input sequence and creates a contextual representation, which the decoder uses to generate the output sequence.
+
+<----------section---------->
+
+## T5
+
+### T5: Text-to-Text Transfer Transformer
+
+T5 (Text-to-Text Transfer Transformer) is a powerful language model conceived and developed by Google Research. Its architecture is fundamentally based on the encoder-decoder transformer structure, making it adept at a wide array of NLP tasks. The innovative aspect of T5 lies in its approach of framing all text-based problems as text-to-text problems, simplifying the fine-tuning and transfer learning processes.
+
+T5 is available in various sizes to accommodate diverse computational resource constraints. The model size influences its capacity to learn and generalize from data; larger models usually achieve higher accuracy but require more computational power and memory.
+
+<----------section---------->
+
+### T5 Model Sizes
+
+The following table illustrates the different sizes of the T5 model, including the number of encoder and decoder blocks, attention heads, and embedding dimensionality:
+
+| Version   | Encoder Blocks | Attention Heads | Decoder Blocks | Embedding Dimensionality | Parameters |
+| --------- | -------------- | --------------- | -------------- | ------------------------ |------------|
+| T5-Small  | 6              | 8               | 6              | 512                      | ~60 million|
+| T5-Base   | 12             | 12              | 12             | 768                      | ~220 million|
+| T5-Large  | 24             | 16              | 24             | 1024                     | ~770 million|
+| T5-XL     | 24             | 32              | 24             | 2048                     | ~3 billion |
+| T5-XXL    | 24             | 64              | 24             | 4096                     | ~11 billion|
+
+*   **Encoder Blocks:** The number of stacked encoder layers. More layers allow the model to capture more complex input patterns.
+*   **Attention Heads:** The number of independent attention mechanisms in each layer. More heads enable the model to attend to different parts of the input simultaneously.
+*   **Decoder Blocks:** The number of stacked decoder layers. Similar to encoder blocks, more layers enhance the model's ability to generate complex outputs.
+*   **Embedding Dimensionality:** The size of the vector representation used to represent each token in the input and output sequences. Higher dimensionality can capture more nuanced meanings.
+*   **Parameters**: Represents the total number of trainable parameters in the model.
+
+<----------section---------->
+
+### T5 Input Encoding
+
+T5 employs a SentencePiece tokenizer coupled with a custom vocabulary to convert input text into a numerical format suitable for the model.
+
+*   **Subword Units:** T5 utilizes a subword-based tokenizer leveraging the SentencePiece library. This approach strikes a balance between character-level and word-level tokenization. Subword tokenization offers the advantage of effectively handling rare words and unseen combinations, mitigating the out-of-vocabulary (OOV) problem by breaking words into smaller, meaningful units.
+*   **Unigram Language Model:** The SentencePiece tokenizer is trained using a unigram language model. This model selects subwords so as to maximize the likelihood of the training data, resulting in a vocabulary of the most frequently occurring and statistically significant subword units.
+
+<----------section---------->
+
+### T5 Vocabulary
+
+T5 uses a fixed vocabulary of 32,000 tokens, comprising subwords, whole words, and special tokens. This vocabulary size is carefully chosen to strike a balance between computational efficiency (smaller vocabularies) and expressive power (larger vocabularies).
+
+T5 introduces several special tokens in the vocabulary to guide the model in performing various tasks:
+
+*   `<pad>`: This is a padding token, employed to ensure that all sequences within a batch have identical lengths. This is crucial for efficient processing by the model.
+*   `<unk>`: The unknown token is used to represent words or subwords not found in the model's vocabulary. It handles out-of-vocabulary (OOV) cases gracefully.
+*   `<eos>`: This token marks the end of a sequence, whether it be an input or an output sequence. It signals to the model that the sequence is complete.
+*   `<sep>` and Task-Specific Prefixes: These are used to indicate the type of task that the model should perform. Examples include prefixes like "translate English to German:" or "summarize:". These prefixes instruct the model on how to process the input.
+
+<----------section---------->
+
+### T5 Pre-training
+
+T5 undergoes pre-training using a denoising autoencoder objective known as span-corruption. This technique is crucial for enabling the model to learn robust and generalizable representations.
+
+Span-corruption involves masking contiguous spans of text (rather than just individual tokens) within the input sequence. The model is then trained to predict these masked spans.
+
+*   **Input Corruption:** Random spans of text in the input are replaced with a unique `<extra_id_X>` token (e.g., `<extra_id_0>`, `<extra_id_1>`).
+*   **Original Input:** "The quick brown fox jumps over the lazy dog."
+*   **Corrupted Input:** "The quick `<extra_id_0>` jumps `<extra_id_1>` dog."
+*   **Target Output:** The model is trained to predict the original masked spans in sequential order.
+*   **Target Output:** `<extra_id_0>` brown fox `<extra_id_1>` over the lazy."
+
+This span-corruption technique necessitates that the model generate coherent text while simultaneously learning contextual relationships between tokens, making it effective at various NLP tasks.
+
+<----------section---------->
+
+### Span Prediction and Its Benefits
+
+Predicting spans, instead of isolated tokens, offers several advantages:
+
+*   **Global Context:** The model is forced to understand how different spans relate to the overall sentence or paragraph structure, enhancing its comprehension of global context.
+*   **Fluency and Cohesion:** Span prediction encourages the model to generate outputs that are not only accurate but also natural and coherent.
+*   **Task Versatility:** By mastering span prediction, the model is better prepared for a wide range of downstream tasks, including summarization, translation, and question answering.
+
+<----------section---------->
+
+### The C4 Dataset
+
+T5 is pre-trained on the C4 dataset (Colossal Clean Crawled Corpus), which is a massive collection of text derived from Common Crawl.
+
+*   **Size:** The C4 dataset contains approximately 750 GB of cleaned text, making it one of the largest datasets used for language model pre-training.
+*   **Cleaning:** Rigorous data cleaning techniques are applied to remove spam, duplicate text, and low-quality content. This ensures that the model is trained on high-quality data.
+*   **Versatility:** The dataset contains diverse text from numerous domains, helping the model generalize across a broad spectrum of topics and writing styles.
+
+<----------section---------->
+
+### Training Specifics
+
+*   **Loss Function:** Cross-entropy loss is used to measure the difference between the model's predictions and the actual masked spans, guiding the learning process.
+*   **Optimizer:** T5 utilizes the Adafactor optimizer, known for its memory efficiency and suitability for large-scale training.
+*   **Learning Rate Scheduling:** The learning rate is dynamically adjusted during training, starting with a warm-up phase (gradually increasing the learning rate) followed by an inverse square root decay (gradually decreasing the learning rate). This schedule helps the model converge effectively.
+
+<----------section---------->
+
+### T5 Fine-tuning
+
+*   **Input and Output as Text:** During fine-tuning, T5 continues to operate with text strings as both input and output, regardless of the specific task. This simplifies the fine-tuning process and leverages the model's pre-trained capabilities.
+*   **Example Tasks:**
+    *   **Summarization:**
+        *   Input: `summarize: <document>` → Output: `<summary>`
+    *   **Translation:**
+        *   Input: `translate English to French: <text>` → Output: `<translated_text>`
+    *   **Question Answering:**
+        *   Input: `question: <question> context: <context>` → Output: `<answer>`
+
+<----------section---------->
+
+### Popular T5 Variants – mT5
+
+mT5 (Multilingual T5) is designed to extend T5's capabilities across multiple languages, enabling multilingual NLP tasks.
+
+It was pre-trained on the multilingual Common Crawl dataset, which covers 101 languages.
+
+*   **Key Features:**
+    *   Maintains the text-to-text framework across different languages, ensuring consistent processing.
+    *   Eliminates the need for language-specific tokenization through the use of SentencePiece with a shared vocabulary across languages, simplifying multilingual processing.
+    *   Exhibits strong multilingual performance, particularly on cross-lingual tasks such as translation between languages it was not directly trained on.
+*   **Applications:**
+    *   Translation, multilingual summarization, and cross-lingual question answering.
+*   **Limitations:**
+    *   Larger model size due to the need to represent multiple languages within the vocabulary.
+    *   Performance can vary significantly across languages, favoring those with more representation in the training data. This highlights the importance of balanced datasets in multilingual models.
+
+<----------section---------->
+
+### Popular T5 Variants – Flan-T5
+
+Flan-T5 is a fine-tuned version of T5 that incorporates instruction-tuning on a diverse collection of tasks formatted as instructions.
+
+*   **Key Features:**
+    *   Improves generalization by training on datasets structured as instruction-response pairs, allowing the model to better understand and follow instructions.
+    *   Demonstrates enhanced zero-shot and few-shot learning capabilities compared to the original T5, making it suitable for tasks with limited training data.
+*   **Applications:**
+    *   Performs well in scenarios requiring generalization to unseen tasks, such as creative writing or complex reasoning.
+*   **Limitations:**
+    *   Requires careful task formulation to fully leverage its instruction-following capabilities, emphasizing the need for well-defined instructions.
+
+<----------section---------->
+
+### Popular T5 Variants – ByT5
+
+ByT5 (Byte-Level T5) processes text at the byte level instead of relying on subword tokenization.
+
+*   **Key Features:**
+    *   Avoids the need for tokenization, facilitating better handling of noisy, misspelled, or rare words that might not be present in a traditional vocabulary.
+    *   Functions effectively for languages with complex scripts or in low-resource scenarios where tokenization resources are limited.
+*   **Applications:**
+    *   Offers robustness for tasks involving noisy or unstructured text, such as OCR (Optical Character Recognition) or user-generated content.
+*   **Limitations:**
+    *   Significantly slower and more resource-intensive due to longer input sequences, as byte-level representation increases sequence length.
+
+<----------section---------->
+
+### Popular T5 Variants – T5-3B and T5-11B
+
+T5-3B and T5-11B are larger versions of the original T5, containing 3 billion and 11 billion parameters, respectively.
+
+*   **Key Features:**
+    *   Improved performance on complex tasks owing to the increased model capacity, enabling the model to capture more intricate relationships within the data.
+    *   Suitable for tasks necessitating deep contextual understanding and large-scale reasoning, such as advanced language generation or complex analysis.
+*   **Applications:**
+    *   Used in academic research and high-performance NLP applications where computational resources are less of a constraint.
+*   **Limitations:**
+    *   Computationally expensive for fine-tuning and inference, necessitating powerful hardware.
+    *   Memory requirements restrict their usability on standard hardware, limiting accessibility for some users.
+
+<----------section---------->
+
+### Popular T5 Variants – UL2
+
+UL2 (Unified Language Learning) is a general-purpose language model inspired by T5 but supporting a wider range of pretraining objectives.
+
+*   **Key Features:**
+    *   Combines diverse learning paradigms, including unidirectional, bidirectional, and sequence-to-sequence objectives, allowing for versatile learning.
+    *   Offers state-of-the-art performance across a variety of benchmarks, positioning it as a competitive model in the NLP landscape.
+*   **Applications:**
+    *   General-purpose NLP tasks, including both generation and comprehension, making it a versatile choice for different applications.
+*   **Limitations:**
+    *   Increased complexity due to the multiple pretraining objectives, complicating training and optimization.
+
+<----------section---------->
+
+### Popular T5 Variants – Multimodal T5
+
+T5-Large Multimodal Variants augment T5 with vision capabilities through the integration of additional modules for visual data processing.
+
+*   **Key Features:**
+    *   Processes both text and image inputs, enabling tasks like image captioning, visual question answering, and multimodal translation.
+    *   Often uses adapters or encodes visual features separately, allowing for flexibility in how visual information is incorporated.
+*   **Applications:**
+    *   Multimodal tasks combining vision and language, opening up new possibilities in AI applications.
+*   **Limitations:**
+    *   Computationally expensive due to the need to process multiple modalities, requiring specialized hardware.
+
+<----------section---------->
+
+### Popular T5 Variants – Efficient T5
+
+Efficient T5 Variants are optimized for performance in resource-constrained environments.
+
+*   **Examples:**
+    *   T5-Small/Tiny: Reduced parameter versions of T5 for lower memory and compute needs, suitable for deployment on edge devices.
+    *   DistilT5: A distilled version of T5, reducing the model size while retaining a significant portion of the performance, enhancing efficiency.
+*   **Applications:**
+    *   Real-time applications on edge devices or scenarios with limited computational resources, such as mobile or embedded systems.
+*   **Limitations:**
+    *   Some performance sacrifices are made in comparison to larger T5 models, necessitating a trade-off between efficiency and accuracy.
+
+<----------section---------->
+
+### T5 Variants Summary
+
+| Variant        | Purpose                    | Key Strengths                                | Limitations                                  |
+| -------------- | -------------------------- | -------------------------------------------- | --------------------------------------------- |
+| mT5            | Multilingual NLP           | Supports 101 languages                        | Uneven performance across languages           |
+| Flan-T5        | Instruction-following        | Strong generalization                         | Needs task-specific prompts                    |
+| ByT5           | No tokenization            | Handles noisy/unstructured text               | Slower due to byte-level inputs               |
+| T5-3B/11B      | High-capacity NLP          | Exceptional performance                      | High resource requirements                     |
+| UL2            | Unified objectives         | Versatility across tasks                      | Increased training complexity                  |
+| Multimodal T5  | Vision-language tasks      | Combines text and image inputs               | Higher computational cost                      |
+| Efficient T5   | Resource-constrained NLP   | Lightweight, faster inference                 | Reduced task performance                       |
+
+<----------section---------->
+
+## Practice on Translation and Summarization
+
+### Hands-on Practice
+
+Use the Hugging Face guides on translation ([https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt](https://huggingface.co/learn/nlp-course/chapter7/4?fw=pt)) and summarization ([https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt](https://huggingface.co/learn/nlp-course/chapter7/5?fw=pt)) to experiment with various models for these tasks.
+
+By following the guides, if time and computational resources are available, fine-tune one of the encoder-decoder models to enhance its performance on these specific tasks.

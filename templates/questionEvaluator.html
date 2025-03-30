@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="{{ url_for('static', filename='improveHTML.js') }}"></script>
+    <title>Valutazione Risposte AI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .btn-blue {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-blue:hover {
+            background-color: #2980b9;
+        }
+        .btn-blue:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .btn-green {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .btn-green:hover {
+            background-color: #27ae60;
+        }
+        .file-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .file-selector select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+            min-width: 200px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            background-color: #f8f9fa;
+        }
+        .card-title {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .question-card {
+            background-color: #e3f2fd;
+        }
+        .question-text {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .responses-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .response-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: border 0.3s;
+        }
+        .response-card.selected {
+            border: 2px solid #2ecc71;
+        }
+        .response-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .response-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 500px;
+            line-height: 1.5;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .results-section {
+            margin-top: 30px;
+        }
+        .selection-details {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .selection-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .status-message {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        @media (max-width: 1024px) {
+            .responses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Valutazione Risposte AI</h1>
+        
+        <div class="file-selector">
+            <select id="file-select">
+                <option value="">Seleziona un file di risposte...</option>
+            </select>
+            <button id="load-file-btn" class="btn btn-blue">Carica File</button>
+        </div>
+        
+        <div id="status-message" class="status-message" style="display: none;"></div>
+        
+        <div id="content" style="display: none;">
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-blue">Precedente</button>
+                <span id="question-counter">Domanda 1 di X</span>
+                <button id="next-btn" class="btn btn-blue">Successiva</button>
+            </div>
+            
+            <div class="card question-card">
+                <div class="card-header">
+                    <h3 class="card-title">Domanda</h3>
+                </div>
+                <div class="card-content">
+                    <p id="current-question" class="question-text"></p>
+                </div>
+            </div>
+            
+            <div id="responses-container" class="responses-grid">
+                <!-- Response cards will be generated here -->
+            </div>
+            
+            <div class="actions">
+                <button id="save-btn" class="btn btn-green">Salva risultati</button>
+                <button id="toggle-results-btn" class="btn btn-blue">Mostra report</button>
+            </div>
+            
+            <div id="results-section" class="results-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Report Risultati</h3>
+                    </div>
+                    <div class="card-content">
+                        <h4>Conteggio delle risposte migliori:</h4>
+                        <div id="counts-summary"></div>
+                        
+                        <h4 style="margin-top: 20px;">Dettaglio delle selezioni:</h4>
+                        <div id="selection-details" class="selection-details">
+                            <!-- Selection details will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementi DOM
+            const fileSelect = document.getElementById('file-select');
+            const loadFileBtn = document.getElementById('load-file-btn');
+            const statusMessage = document.getElementById('status-message');
+            const contentContainer = document.getElementById('content');
+            const questionCounter = document.getElementById('question-counter');
+            const currentQuestionElem = document.getElementById('current-question');
+            const responsesContainer = document.getElementById('responses-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const saveBtn = document.getElementById('save-btn');
+            const toggleResultsBtn = document.getElementById('toggle-results-btn');
+            const resultsSection = document.getElementById('results-section');
+            const countsSummary = document.getElementById('counts-summary');
+            const selectionDetails = document.getElementById('selection-details');
+            
+            // Stato dell'applicazione
+            let data = {};
+            let questions = [];
+            let currentQuestionIndex = 0;
+            let results = {};
+            let saved = true;
+            let currentFileName = '';
+            
+            // Inizializzazione: carica la lista di file disponibili
+            loadFileList();
+            
+            // Event listeners
+            loadFileBtn.addEventListener('click', loadSelectedFile);
+            prevBtn.addEventListener('click', goToPrevQuestion);
+            nextBtn.addEventListener('click', goToNextQuestion);
+            saveBtn.addEventListener('click', saveResults);
+            toggleResultsBtn.addEventListener('click', toggleResults);
+            
+            // Funzione per caricare la lista dei file
+            function loadFileList() {
+                // Simuliamo l'elenco dei file disponibili
+                // In una implementazione reale, dovresti creare un endpoint nel server Flask
+                // che restituisce l'elenco dei file disponibili
+                fetch('/list_response_files', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nel caricamento della lista dei file');
+                    }
+                    return response.json();
+                })
+                .then(files => {
+                    fileSelect.innerHTML = '<option value="">Seleziona un file di risposte...</option>';
+                    files.forEach(file => {
+                        const option = document.createElement('option');
+                        option.value = file;
+                        option.textContent = file;
+                        fileSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    showStatusMessage(error.message, 'error');
+                    
+                    // Utilizziamo alcuni file di esempio per scopi dimostrativi
+                    const demoFiles = ['responses1.json', 'responses2.json', 'responses3.json'];
+                    demoFiles.forEach(file => {
+                        const option = document.createElement('option');
+                        option.value = file;
+                        option.textContent = file;
+                        fileSelect.appendChild(option);
+                    });
+                });
+            }
+            
+            // Funzione per caricare il file selezionato
+            function loadSelectedFile() {
+                const fileName = fileSelect.value;
+                if (!fileName) {
+                    showStatusMessage('Seleziona un file prima di caricarlo.', 'error');
+                    return;
+                }
+                
+                currentFileName = fileName;
+                
+                fetch('/get_questions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ file_name: fileName })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nel caricamento del file');
+                    }
+                    return response.json();
+                })
+                .then(jsonData => {
+                    initializeData(jsonData);
+                    showStatusMessage(`File "${fileName}" caricato con successo.`, 'success');
+                    contentContainer.style.display = 'block';
+                })
+                .catch(error => {
+                    showStatusMessage(error.message, 'error');
+                    
+                    // Per scopi dimostrativi, carica dati di esempio
+                    const demoData = {
+                        "Why is NLP considered a crucial field within Artificial Intelligence?": {
+                            "Assistant1": "Natural Language Processing (NLP) is considered a crucial subfield of Artificial Intelligence (AI) because it bridges the gap between human language and computer understanding. Experts like John Searle emphasize the fundamental importance of human language understanding for achieving true AI. Ginni Rometty, former IBM CEO, underscores NLP's practical applications in enabling human-computer communication, highlighting its role as a cornerstone of AI. Dan Jurafsky notes that NLP is one of the most important and difficult fields in AI. NLP empowers computers to understand natural language and perform tasks like translation, summarization, and question answering, mimicking human language capabilities. The transformative potential of NLP is evident in AI-powered tools like ChatGPT, which have sparked discussions about their impact on job markets and information access. The recent surge in media attention surrounding powerful AI bots like ChatGPT underscores the transformative potential of NLP and its capacity to reshape industries and our daily lives.",
+                            "Assistant2": "Natural Language Processing (NLP) is considered a crucial subfield of Artificial Intelligence (AI) because it bridges the gap between human language and computer understanding. Experts like John Searle, Ginni Rometty, and Dan Jurafsky emphasize its central role, with Searle stating that \"Natural language is the most important part of Artificial Intelligence.\" Rometty highlights NLP's role in enabling computers to understand human language and produce speech, while Jurafsky acknowledges the significant technical challenges in developing effective NLP systems. NLP empowers computers to understand natural language and perform tasks like translation, summarization, and question answering, mimicking human language capabilities. It translates natural language into a computationally usable format, enabling computers to learn from and generate text. The recent rise of AI-powered tools like ChatGPT underscores NLP's transformative potential and its capacity to reshape industries and daily life, as also noted by Bill Gates.",
+                            "Assistant3": "Natural Language Processing (NLP) is a critical component and important area of study in Artificial Intelligence (AI) because it bridges the gap between human language and computer understanding. Experts like John Searle consider natural language the most important part of AI, emphasizing the necessity of human language understanding for achieving true AI. Ginni Rometty highlights NLP as a cornerstone of AI, enabling computers to understand and produce human language. Dan Jurafsky acknowledges that NLP is one of the most important and most difficult fields in AI. NLP empowers computers to understand natural language and perform tasks like translation, summarization, and question answering, mimicking human language capabilities.",
+                            "BEST": null
+                        }
+                    };
+                    initializeData(demoData);
+                    showStatusMessage('Caricati dati di esempio per dimostrazione.', 'success');
+                    contentContainer.style.display = 'block';
+                });
+            }
+            
+            // Funzione per inizializzare i dati
+            function initializeData(jsonData) {
+                data = jsonData;
+                questions = Object.keys(jsonData);
+                
+                // Inizializza i risultati
+                results = {};
+                questions.forEach(question => {
+                    results[question] = jsonData[question].BEST;
+                });
+                
+                currentQuestionIndex = 0;
+                updateUI();
+            }
+            
+            // Funzione per mostrare messaggi di stato
+            function showStatusMessage(message, type) {
+                statusMessage.textContent = message;
+                statusMessage.className = 'status-message status-' + type;
+                statusMessage.style.display = 'block';
+                
+                // Nascondi il messaggio dopo 3 secondi
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Funzione per aggiornare l'interfaccia utente
+            function updateUI() {
+                if (questions.length === 0) return;
+                
+                // Aggiorna navigazione
+                questionCounter.textContent = `Domanda ${currentQuestionIndex + 1} di ${questions.length}`;
+                prevBtn.disabled = currentQuestionIndex === 0;
+                nextBtn.disabled = currentQuestionIndex === questions.length - 1;
+                
+                // Aggiorna la domanda corrente
+                const currentQuestion = questions[currentQuestionIndex];
+                currentQuestionElem.textContent = currentQuestion;
+                
+                // Aggiorna le risposte
+                responsesContainer.innerHTML = '';
+                const currentResponses = data[currentQuestion];
+                
+                Object.entries(currentResponses)
+                    .filter(([key]) => key !== 'BEST')
+                    .forEach(([assistant, response]) => {
+                        const isSelected = results[currentQuestion] === assistant;
+                        
+                        const responseCard = document.createElement('div');
+                        responseCard.className = `card response-card ${isSelected ? 'selected' : ''}`;
+                        responseCard.dataset.assistant = assistant;
+                        
+                        improvedResponse = improveHTML(response);
+
+                        responseCard.innerHTML = `
+                            <div class="card-header response-card-header">
+                                <h3 class="card-title">${assistant}</h3>
+                                <button class="btn ${isSelected ? 'btn-green' : 'btn-blue'} select-btn">
+                                    ${isSelected ? 'Selezionato' : 'Seleziona'}
+                                </button>
+                            </div>
+                            <div class="card-content response-content">
+                                <p>${improvedResponse}</p>
+                            </div>
+                        `;
+                        
+                        responsesContainer.appendChild(responseCard);
+                        
+                        // Aggiungi event listener al pulsante di selezione
+                        const selectBtn = responseCard.querySelector('.select-btn');
+                        selectBtn.addEventListener('click', () => selectBest(assistant));
+                    });
+                
+                // Aggiorna il pulsante di salvataggio
+                saveBtn.textContent = saved ? '✓ Salvato' : 'Salva risultati';
+                
+                // Aggiorna il report dei risultati
+                updateResultsReport();
+            }
+            
+            // Funzione per selezionare la risposta migliore
+            function selectBest(assistant) {
+                results[questions[currentQuestionIndex]] = assistant;
+                saved = false;
+                updateUI();
+            }
+            
+            // Funzione per navigare alla domanda precedente
+            function goToPrevQuestion() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    updateUI();
+                }
+            }
+            
+            // Funzione per navigare alla domanda successiva
+            function goToNextQuestion() {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    updateUI();
+                }
+            }
+            
+            // Funzione per salvare i risultati
+            function saveResults() {
+                // Aggiorna l'oggetto data con i nuovi valori BEST
+                Object.keys(results).forEach(question => {
+                    if (data[question]) {
+                        data[question].BEST = results[question];
+                    }
+                });
+                
+                // Invia i dati aggiornati al server
+                fetch('/save_questions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        file_name: currentFileName,
+                        data: data
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nel salvataggio dei dati');
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    saved = true;
+                    showStatusMessage('Risultati salvati con successo.', 'success');
+                    updateUI();
+                })
+                .catch(error => {
+                    showStatusMessage(error.message, 'error');
+                    console.log('Per scopi dimostrativi, consideriamo i dati salvati');
+                    saved = true;
+                    updateUI();
+                });
+            }
+            
+            // Funzione per mostrare/nascondere i risultati
+            function toggleResults() {
+                const isVisible = resultsSection.style.display !== 'none';
+                resultsSection.style.display = isVisible ? 'none' : 'block';
+                toggleResultsBtn.textContent = isVisible ? 'Mostra report' : 'Nascondi report';
+            }
+            
+            // Funzione per aggiornare il report dei risultati
+            function updateResultsReport() {
+                // Conteggio delle risposte selezionate per ogni assistente
+                const counts = { Assistant1: 0, Assistant2: 0, Assistant3: 0, null: 0 };
+                Object.values(results).forEach(value => {
+                    if (value in counts) {
+                        counts[value]++;
+                    } else if (value === null) {
+                        counts.null++;
+                    }
+                });
+                
+                // Aggiorna il riepilogo dei conteggi
+                countsSummary.innerHTML = `
+                    <p><strong>Assistant1:</strong> ${counts.Assistant1} risposte</p>
+                    <p><strong>Assistant2:</strong> ${counts.Assistant2} risposte</p>
+                    <p><strong>Assistant3:</strong> ${counts.Assistant3} risposte</p>
+                    <p><strong>Non selezionate:</strong> ${counts.null} domande</p>
+                `;
+                
+                // Aggiorna i dettagli delle selezioni
+                selectionDetails.innerHTML = '';
+                Object.entries(results).forEach(([question, best]) => {
+                    const item = document.createElement('div');
+                    item.className = 'selection-item';
+                    item.innerHTML = `
+                        <p><strong>${question.substring(0, 60)}...</strong></p>
+                        <p>Migliore: ${best || 'Non selezionato'}</p>
+                    `;
+                    selectionDetails.appendChild(item);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

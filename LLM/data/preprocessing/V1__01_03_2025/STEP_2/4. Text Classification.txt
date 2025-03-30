@@ -1,0 +1,113 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica - Lesson 4: Text Classification**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+**Outline**
+
+* Text Classification
+* Topic Labelling Example
+* Sentiment Analysis Exercise
+
+**Text Classification**
+
+Text classification is the process of assigning one or more classes to a text document for various purposes, such as topic labeling, intent detection, and sentiment analysis.  The classification relies solely on the text content; other attributes of the document (metadata) are disregarded. This distinguishes it from document classification.  Furthermore, the classes are predefined, differentiating it from document clustering.
+
+**Definition**
+
+Given a set of documents *D* = {d₁, …, dₙ} and a set of predefined classes *C* = {c₁, …, cₘ}, text classification finds a classifier function:
+
+*F*: *D* x *C* → {True, False}
+
+that assigns a Boolean value (True or False) to each pair (dᵢ, cⱼ) ∈ *D* x *C*.
+
+**Types of Classification**
+
+* **Single-label:** Assigns each document in *D* to only one class in *C*.
+* **Binary:**  A special case of single-label classification where *C* has only two classes. Classification becomes a decision between a class and its complement.
+* **Multi-label:** Assigns each document to a variable number of classes in *C*. This can be reduced to a series of binary decisions.
+
+**ML-Based Classification**
+
+A machine learning model is trained on a set of annotated text documents. Each document in the training set is associated with one or more class labels. After training, the model can predict the category (or categories) for a new document. The classifier may also provide a confidence measure. A vector representation of documents, such as TF-IDF, must be used.
+
+**Topic Labelling Example: Classifying Reuters News**
+
+The Reuters 21578 dataset is multi-class and multi-label, containing 90 distinct classes, 7,769 training documents, and 3,019 test documents. The number of words per document ranges from 93 to 1,263.  There is a significant skew: some classes have over 1,000 documents while others have fewer than 5. Most documents are assigned either one or two labels, with some having up to 15 categories.  More statistics are available at https://martin-thoma.com/nlp-reuters/.
+
+**Corpus Management (Code Example Included in Original Submission)**
+
+**Process**
+
+1. Extract training and test samples and their corresponding labels.
+2. Create the TF-IDF matrices for the training and test sets.
+3. Transform label lists into a binary matrix for the training and test sets using one-hot encoding.
+4. Train a classifier (e.g., an MLP). A sample consists of the TF-IDF vector of a text and its binary label.
+5. Test the classifier.
+
+**Pre-Processing (Code Example Included in Original Submission)**
+
+*`fit_transform` combines two sequential steps: fitting and then transforming.*
+
+**MLP Classifier Training (Code Example and Graph Included in Original Submission)**
+
+**Testing Metrics**
+
+* **Micro Average:** The average metric across all classes, considering the total number of true positives, false negatives, and false positives.
+* **Macro Average:** Calculates the metric independently for each class and then takes the unweighted mean of these values.
+* **Weighted Average:** Computes the weighted average of the metric, where the weight is the support (number of true instances) of each class.
+* **Samples Average:** Computes the average of the metrics for each sample (instance) rather than for each class. This is used in multi-label classification where each instance can belong to multiple classes.
+
+**Testing Results (Code Example and Output Included in Original Submission)**
+
+**Sentiment Analysis Exercise**
+
+Sentiment analysis is the process of identifying and categorizing opinions expressed in text.  Applications include:
+
+* **Business:** Analyzing customer feedback and product reviews.
+* **Finance:** Predicting market trends based on investor sentiment.
+* **Politics:** Analyzing public opinion.
+
+Sentiment analysis can be viewed as a text classification problem: given a text, classify it as positive, negative, or neutral.
+
+**IMDB Dataset**
+
+The IMDB dataset contains 50,000 highly polarized reviews from the Internet Movie Database (50% negative, 50% positive).  Download the CSV from Kaggle: https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+**Exercise**
+
+Build a classifier for movie reviews that determines the polarity (positive or negative) of a given review. Train the classifier on the IMDB dataset (80% training, 20% testing). Show and plot the metrics and the confusion matrix.
+
+**Suggestions**
+
+* One-hot encode the labels: (1,0) = negative, (0,1) = positive using `OneHotEncoder`.
+* To reduce the TF-IDF matrix, consider only words that appear in at least 5 documents.
+* Use `confusion_matrix` to build the confusion matrix.
+* Use a Seaborn heatmap to plot the confusion matrix (`pip install seaborn`; https://seaborn.pydata.org/generated/seaborn.heatmap.html).
+
+**Exercise Results (Code Example, Graphs, and Output Included in Original Submission)**
+
+
+**Text Classification Applications**
+
+* Topic Labelling
+* Sentiment Analysis
+* Spam Filtering
+* Intent Detection
+* Language Detection
+* Content Moderation
+* Product Categorization
+* Author Attribution
+* Content Recommendation
+* Ad Click Prediction
+* Job Matching
+* Legal Case Classification
+
+**Further Readings**
+
+* Pandas Docs: https://pandas.pydata.org/docs/user_guide/
+* Scikit-Learn Docs: https://scikit-learn.org/stable/user_guide.html
+* Seaborn Docs: https://seaborn.pydata.org/api.html

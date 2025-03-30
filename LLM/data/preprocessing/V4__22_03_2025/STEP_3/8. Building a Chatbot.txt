@@ -1,0 +1,736 @@
+## Lesson 8 ##
+
+**Exercise: Building a Pizzeria Chatbot**
+
+Develop a chatbot to assist with pizzeria operations. Users can:
+
+*   Request the pizzeria's menu.
+*   Order a pizza that is available on the menu (just one pizza, no beverage).
+*   Upon order confirmation, the bot will log the date, the user ID, and the kind of ordered pizza (use a custom action).
+*   The bot has a web-based GUI.
+
+<----------section---------->
+
+Hint: Start with a dummy bot.
+
+Example conversation:
+
+User: Can I have the menu?
+Bot: What kind of pizza would you like? We have Parenti, Pepperoni, Vegetarian...
+User: Pepperoni
+Bot: You want a Pepperoni pizza. Is that correct?
+User: Yes
+Bot: Great! Your Pepperoni pizza is on its way!
+
+**Hints**
+
+Start with a dummy bot:
+
+```bash
+mkdir pizzaBot
+cd pizzaBot
+rasa init --no-prompt
+```
+
+Configure and run the REST and the Actions servers:
+
+```bash
+rasa run --cors "*"
+rasa run actions
+```
+
+Use a Web frontend like:
+
+[https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0](https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0)
+
+<----------section---------->
+
+**Additional Context:**
+fly. When you need to inspire students and keep them engaged. Teachers do
+this naturally, by adjusting what they say and how they say it based on
+feedback on how well the student understand what they are saying. And
+teachers think about more than just "delivering a message." They must think
+up new ideas and approaches, on the fly as students pose interesting new
+questions. Inspiring students' curiosity with Socratic questions and being
+responsive to their changing needs is a full-time job.
+It is virtually impossible to build a rule-based system that captures all the
+things that teachers do to help students learn and grow. Students' needs are
+too diverse and dynamic. This is why hybrid chatbots that integrate LLMs
+have become the preferred way build production chatbots in virtually every
+domain. An LLM can confidently and convincingly chat with your users on
+virtually any topic. The key is to harness this power smartly, so that it doesn’t
+mislead your users, or worse.
+
+<----------section---------->
+
+12.5 Chatbot frameworks
+In each of the previous chapters, you’ve learned a new technique for
+processing text to understand what the user is saying. And in this chapter,
+you’ve learned four approaches to generating text for a chatbot to use in its
+response to the user. You’ve already assembled a few chatbots from these
+NLU and NLG algorithms to understand the advantages and disadvantages of
+each of these algorithms. Now you have the knowledge you need to use a
+chatbot framework
+ smartly. A chatbot framework is an application and a
+software library that abstracts away some of these detailed decisions you
+need to make when building a dialog engine for your chatbot. A framework
+gives you a way to specify your chatbot’s behavior in 
+domain-specific
+language
+ that it can later interpret and 
+run
+ so that your chatbot replies the
+way you intended.
+Most chatbot frameworks use a declarative programming language to specify
+a bot’s behavior and some even give you a graphical user interface to
+program your bot. There are no-code chatbot frameworks that abstract the
+declarative chatbot programming language with an interactive graphical
+representation of the dialog graph or flow diagram that you can modify with
+your mouse. These no-code frameworks usually include a dialog engine that
+can execute your chatbot without you ever having to see or edit the
+underlying data. In the impact world, an open source platform sponsored by
+UNICEF, RapidPro,
+[
+34
+]
+ served as a core for several chatbot platforms, such as
+Weni, Textit and Glific, that are all used for impact purposes. In RapidPro,
+you can build your dialogs in a graphical user interface. You can also easily
+import and export the content using open standard file formats which is
+helpful when you want to translate the content from one natural language to
+another for a multilingual chatbot. ManyChat and Landbot are two closed
+source no-code chatbot builders that have similar functionality.
+But if you’ve read this far, you probably have ideas for more sophisticated
+chatbots than what’s possible in a no-code platform. So you will probably
+need a chatbot programming language to make your vision a reality. Of
+course, you can specify your bot "stack" in Python by directly employing the
+skills you learned in this book. But if you want to build a scalable and
+maintainable chatbot you’ll need a chatbot framework that uses a chatbot
+design language or data structure that you understand. You want a language
+that makes sense to you so that you can quickly get the conversation design
+you have in your head embedded in a working chatbot. In this section, you
+will learn of several different frameworks that can help you make your
+chatbot dreams come true.
+Using the tools described here, you can build a bot that can serve you (and
+maybe a few friends, or even more people if you’re lucky) if deployed on a
+server or in a cloud. However, if you want to build a chatbot that servers
+hundreds or thousands of users, you need a more robust, scalable system.
+Luckily, there are frameworks available that allow you to focus on building
+your bot while taking care of the challenges that come with the need to build
+a production-grade system. We will now discuss three popular open-source
+Python chatbot frameworks for building chatbots with configurable NLP
+capabilities: Rasa, LangChain, and qary.
+
+<----------section---------->
+
+12.5.1 Building an intent-based chatbot with Rasa
+Rasa is an open-source conversational framework that started back in 2016
+and today is used to create thousands of bots in various languages around the
+world. Unlike many commercial frameworks, that create a drag-and-drop
+interface to create the dialog trees we discussed in the previous section,
+RASA took a radically different approach to organizing multi-step
+conversations.
+The basic units of a conversation in RASA are a user intent and a bot action -
+which can be as simple as a pre-programmed utterance or a complex action
+programmed in Python that results in interaction with other systems - such as
+saving or retrieving data from a database, or invoking a Web API. By
+chaining these building blocks into sequences - called Stories - RASA allows
+you to pre-program dialog scenarios in a streamlined way. All this
+information is stored in YAML files (YAML stands for Yet Another Markup
+Language), each type of components in its own file.
+But enough with the theoretical explanation - let’s get your hands dirty and
+build your first RASA chatbot. First, let’s decide what dialog we want to
+implement - based on our conversation diagram for the math tutor bot, let’s
+implement the following short dialog:
+USER: Hello
+BOT: Well, hello there. Thanks for checking out Rori, a math tutor chatbot. Chatting with Rori helps students improve their math skills. And it's fun too!
+BOT: Are you a parent (or guardian) or are you a student?
+USER: I'm a parent.
+BOT: For your child to use Rori, we need permission from the parent or guardian. Do you agree to give your child permission to chat with Rori on this Whatsapp number?
+USER: I agree
+BOT: Thank you for giving permission for your child to chat with Rori.
+When your child is ready to start, please give them this phone and have them type "ready".
+To create your bot, you will need to install 
+rasa
+ package (if you’re working
+in 
+nlpia2
+ environment, it is already installed when you install the project).
+Then, you can go to the directory you want to create the project in and run in
+your command line:
+$ rasa init
+The installation wizard will guide you through creating a new project and
+even offer you to train an initial model. Let it do that, and then you can even
+chat with a simple chatbot the wizard initialized for you.
+Let’s now dive into the structure of our project and understand how to build a
+dialog like you’ve just had. Here is the directory structure you should see in
+the project’s folder:
+├───.rasa
+│   └───cache
+│       ├───...
+├───actions
+│   └───__pycache__
+├───data
+├───models
+└───tests
+The directory we are most interested in is the 
+data
+ directory. It contains the
+files that define the data that is used to train the chatbot’s NLU model. First,
+there’s the 
+nlu.yml
+ file, which contains the intents and examples of user
+utterances that are used to train the intent recognition model. So let’s start
+creating the intents that are used in our dialog. For every intent you want to
+define, you need to provide a name and a list of examples of utterances that
+belong to this intent.
+For our short dialog, we need to understand the user’s greeting, their role
+(parent or student), and their agreement to give permission to their child to
+use the chatbot.
+version
+: 
+"
+3.1
+"
+nlu
+:
+- 
+intent: greet
+  
+examples
+: 
+|
+ - hey - hello - hi
+- 
+intent: parent
+ - I am a parent - Parent - I'm a mom to 12 year old
+- 
+intent: agree
+...
+Pretty straightforward, right? RASA will warn if you have too few examples
+for a particular intent, and recommends at least 7-10 utterance examples per
+intent.
+The next file you should look at is 
+domain.yml
+account. When text message chatbots came onto the scene most continued to
+follow this dark pattern of non-cooperative conversation, trying your patience
+and preventing you from creating cost for the business. The more advanced
+NLP skills you have learned in this book now give you the power to build
+chatbots that can simulate intelligent conversation and do useful work for you
+and your organization.
+The chatbot boom is not over yet. You are about to learn all the ways they
+can be used to improve your life or your business.
+
+<----------section---------->
+
+12.1 Chatbots are everywhere
+Chatbots are everywhere. Here are some examples to help you dream up your
+own projects.
+Virtual assistants
+: Dicio (Google Assistant), Lyra (Siri) and MyCroft
+(Alexa) can help you accomplish small tasks such as checking the
+weather, calling a friend, launching an app, setting a reminder, playing
+music, or turning on the lights.
+Entertainment
+: Chatbots in video games and websites promoting movies
+are often used to keep you engaged in a fictional storyline. You can
+measure how well an entertainment chatbot is doing by how long the
+user is willing to interact with the chatbot and how often they suspend
+their disbelief that they are interacting with a human.
+Healthcare
+: Depending on the regulations in your country, chatbots can
+often answer your health-related questions, schedule an appointment for
+you, or even give a preliminary diagnosis. Mental health chatbots, such
+as Woebot 
+[
+4
+]
+ and Wysa,
+[
+5
+]
+ even provide therapeutic exercises that can
+decrease depression and anxiety.
+[
+6
+]
+Impact
+: Nonprofits and social businesses use chatbots to help people in
+need. Often they leverage popular messaging channels like SMS and
+WhatsApp to reach people in underserved communities where mobile
+messaging is their main access to the Internet.
+Operations (ChatOps)
+: Businesses often use chatbots to increase team
+productivity and job satisfaction. You can build chatbots that interact
+with you on Telegram or WhatsApp to help you monitor and control
+your software. And, if you’re lucky, your boss at work might use a
+chatbot to onboard and train you, or even publicly recognize you when
+you help a teammate learn something new.
+Advertisement and Sales
+: Search engines on corporate websites often
+use chatbots to steer you towards advertisements and products they want
+you to purchase or promote. Behind the scenes these bots are often used
+to distract and 
+engage
+ you on (anti)social networks.
+Customer (dis)service
+: Machines have been replacing humans at
+customer service call centers and chat message interfaces for decades.
+Most large corporations do not allow you to interact with a human until
+you first satisfy their chatbot gatekeepers.
+The authors of this book founded Tangible AI to help nonprofits,
+governments, and individual makers create impact chatbots.
+[
+7
+]
+ Impact
+chatbots help people in underserved communities, from new immigrants in
+the United States to teens in the Global South. We’ve built chatbots that help
+people learn math, overcome imposter syndrome, learn new languages, evade
+human traffickers, and even start a small business in a developing country. A
+contributing author and Tangible AI volunteer, Vishvesh Bhat, has even
+founded a startup of his own to build a chatbot that helps US college students
+learn and reason about their course material.
+[
+8
+]
+Next, you will learn how to build your own chatbots to bring a positive
+impact to your community or business.
+[
+9
+]
+ 
+[
+10
+]
+
+<----------section---------->
+
+12.1.1 Different chatbots, same tools
+As diverse as the chatbot examples in this section seem to be, they all
+leverage the same NLP tools and techniques that you have learned in this
+book. All the previous chapters have been building up your skills and toolbox
+so you can assemble a chatbot. Here are some of the NLP skills you’ve
+learned that will help you build chatbots:
+Chapter 6
+: Embedding words and phrases into semantic vectors (from
+Chapter 6) to recognize a chatbot user’s intent
+Chapter 8
+: Creating more meaningful embedding vectors of chat
+messages using LSTMs and language models such as BERT.
+Chapter 9
+: Translating between languages to help your users interact
+with your chatbot in their native language.
+Chapter 10
+: Semantic search and automatic text generation to respond to
+chat messages without having to craft responses by hand.
+Chapter 11
+: Extracting relationships between real-world entities from
+text to help your chatbot reason about a users' requests and maintain the
+conversation context.
+Figure 
+Figure 12. 1
+ shows how all these pieces fit together to create a
+chatbot.
+Figure 12.1 Chatbot flow diagram
+Before you jump into assembling a chatbot system from all these tools and
+libraries, you need to think about what you want your chatbot to talk about.
+You need to design a conversation.
+
+<----------section---------->
+
+12.1.2 Conversation design
+As chatbot technology gained more and more popularity in the last decade, so
+did the field of conversation design. Conversation design is a branch of user
+interaction (UI) design that deals specifically with designing engaging
+dialogs. This section will help you get started, and when you’re ready to dive
+deeper you can dig into more detailed resources wuch as as Andrew Freed’s
+excellent 
+Conversational AI
+ book.
+[
+11
+]
+For every chatbot project you will work your way through four stages:
+1
+. 
+Define your chatbot’s goal and the problem it solves. What does success
+look like? How will you tell when your chatbot is doing a good job?
+2
+. 
+Think about your users. Who will benefit from using your chatbot?
+What do they need? Where will your users be when they use your
+chatbot? What triggered them to engage in the conversation?
+3
+. 
+Draft an imaginary conversation between the user and your chatbot. This
+is called the "happy path" or "happy conversation." You might even go
+as far as "act it out" with a colleague or a friend.
+4
+. 
+Diagram a conversation tree. After drafting several happy conversations
+with your chatbot, you will notice patterns that you can generalize from
+to create a 
+conversation diagram
+ — a flow chart showing several
+possible conversations between the user and the chatbot.
+5
+. 
+Choose the NLP algorithms from Figure 
+Figure 12. 1
+ that you or your
+teammates will need to implement in software in order for your chatbot
+to generate responses at every branch in your dialog tree.
+Think about the example of a math tutor bot. The goal is pretty clear, you
+want to teach math to middle school children. However, when you start
+thinking about the users in step 2, you realize that you cannot assume that the
+child would be the person contacting your bot first. This is what the Rori
+project experienced in low-income countries, where young children rarely
+own a phone. Your younger users will often borrow someone else’s phone or
+computer. So your chatbot may not be able to send homework reminders or
+other push notifications to the users' phone.
+Another important thing to consider when dealing with children is that you
+need to obtain a parent or guardian’s consent before allowing your chatbot to
+interact directly with a child. You will need to comply will all the child
+protection laws in the countries where your chatbot will be used, including
+mandatory reporting of 
+safeguarding disclosures
+ by your users. If a child
+mentions that they are being abused or are considering self-harm you will
+want to detect and report those disclosures. No matter what your chatbot’s
+goals are, when your users indicate that they may be in danger, you will want
+your chatbot to detect and report these interactions to you or the appropriate
+authorities. So your math tutor chatbot will need an intent classifier that can
+categorize the messages your users send to the chatbot. The open source
+MathText
+[
+12
+]
+ and 
+Maitag
+[
+13
+]
+ projects give you pretrained mulitlabel classifiers
+and labeled datasets for intent recognition, including the intents required for
+the Rori project.
+expressions find the closest grammar matches among a list of possible
+grammar rules (regular expressions) instead of exact matches by ignoring
+some maximum number of insertion, deletion, and substitution errors.
+However, expanding the breadth and complexity of behaviors for pattern-
+matching chatbots requires a lot of difficult human development work. Even
+the most advanced grammar-based chatbots, built and maintained by some of
+the largest corporations on the planet (Google, Amazon, Apple, Microsoft),
+remain in the middle of the pack for depth and breadth of chatbot IQ.
+A lot of powerful things can be done with shallow NLP. And little, if any,
+human supervision (labeling or curating of text) is required. Often a machine
+can be left to learn perpetually from its environment (the stream of words it
+can pull from Twitter or some other source).
+[
+67
+]
+ We show you how to do this
+in Chapter 6.
+
+<----------section---------->
+
+1.11 Natural language IQ
+Like human brainpower, the power of an NLP pipeline cannot be easily
+gauged with a single IQ score without considering multiple "smarts"
+dimensions. A common way to measure the capability of a robotic system is
+along the dimensions of behavior complexity and the degree of human
+supervision required. But for a natural language processing pipeline, the goal
+is to build systems that fully automate the processing of natural language,
+eliminating all human supervision (once the model is trained and deployed).
+So a better pair of IQ dimensions should capture the breadth and depth of the
+complexity of the natural language pipeline.
+A consumer product chatbot or virtual assistant like Alexa or Allo is usually
+designed to have extremely broad knowledge and capabilities. However, the
+logic used to respond to requests tends to be shallow, often consisting of a set
+of trigger phrases that all produce the same response with a single if-then
+decision branch. Alexa (and the underlying Lex engine) behave like a single
+layer, flat tree of (if, elif, elif, …) statements.
+[
+68
+]
+ Google Dialogflow (which
+was developed independently of Google’s Allo and Google Assistant) has
+similar capabilities to Amazon Lex, Contact Flow, and Lambda, but without
+the drag-and-drop user interface for designing your dialog tree.
+On the other hand, the Google Translate pipeline (or any similar machine
+translation system) relies on a deep tree of feature extractors, decision trees,
+and knowledge graphs connecting bits of knowledge about the world.
+Sometimes these feature extractors, decision trees, and knowledge graphs are
+explicitly programmed into the system, as in Figure 1.5. Another approach
+rapidly overtaking this "hand-coded" pipeline is the deep learning data-driven
+approach. Feature extractors for deep neural networks are learned rather than
+hard-coded, but they often require much more training data to achieve the
+same performance as intentionally designed algorithms.
+You will use both approaches (neural networks and hand-coded algorithms)
+as you incrementally build an NLP pipeline for a chatbot capable of
+conversing within a focused knowledge domain. This will give you the skills
+you need to accomplish the natural language processing tasks within your
+industry or business domain. Along the way you will probably get ideas
+about how to expand the breadth of things this NLP pipeline can do. Figure
+1.6 puts the chatbot in its place among the natural language processing
+systems that are already out there. Imagine the chatbots you have interacted
+with. Where do you think they might fit in a plot like this? Have you
+attempted to gauge their intelligence by probing them with difficult questions
+or something like an IQ test? Try asking a chatbot something ambiguous that
+requires common sense logic and the ability to ask clarifying questions, such
+as "What’s larger, the sun or a nickel?"
+[
+69
+]
+ you will get a chance to do exactly
+that in later chapters, to help you decide how your chatbot stacks up against
+some of the others in this diagram.
+Figure 1.9 2D IQ of some natural language processing systems
+As you progress through this book, you will be building the elements of a
+chatbot. Chatbots require all the tools of NLP to work well:
+Feature extraction (usually to produce a vector space model)
+Information extraction to be able to answer factual questions
+Semantic search to learn from previously recorded natural language text
+or dialog
+Natural language generation to compose new, meaningful statements
+Machine learning gives us a way to trick machines into behaving as if we had
+spent a lifetime programming them with hundreds of complex regular
+expressions or algorithms. We can teach a machine to respond to patterns
+similar to the patterns defined in regular expressions by merely providing it
+examples of user statements and the responses we want the chatbot to mimic.
+And the "models" of language, the FSMs, produced by machine learning, are
+much better. They are less picky about mispelings and typoz.
+And machine learning NLP pipelines are easier to "program." We do not
+have to anticipate every possible use of symbols in our language. We just
+have to feed the training pipeline with examples of the phrases that match and
+with example phrases that do not match. As long as we label the example
+phrases during training so that the chatbot knows which is which, it will learn
+to discriminate between them. And there are even machine learning
+approaches that require little if any "labeled" data.
+We have given you some exciting reasons to learn about natural language
+processing. You want to help save the world, do you not? And we have
+attempted to pique your interest with some practical NLP applications that
+are revolutionizing the way we communicate, learn, do business, and even
+think. It will not be long before you are able to build a system that
+approaches human-like conversational behavior. And you should be able to
+see in upcoming chapters how to train a chatbot or NLP pipeline with any
+domain knowledge that interests you — from finance and sports to
+psychology and literature. If you can find a corpus of writing about it, then
+you can train a machine to understand it.
+This book is about using machine learning to build smart text-reading
+machines without you having to anticipate all the ways people can say things.
+Each chapter incrementally improves on the basic NLP pipeline for the
+chatbot introduced in this chapter. As you learn the tools of natural language
+processing, you will be building an NLP pipeline that can not only carry on a
+conversation but help you accomplish your goals in business and in life.
+
+<----------section---------->
+
+1.12 Test yourself
+Chapter 1 review questions
+Here are some review questions for you to test your understanding:
+1
+. 
+Why is NLP considered to be a core enabling feature for AGI (human-
+like AI)?
+2
+. 
+Why do advanced NLP models tend to show significant discriminatory
+biases?
+3
+. 
+How is it possible to create a prosocial chatbot using training data from
+sources that include antisocial examples?
+4
+. 
+What are 4 different approaches or architectures for building a chatbot?
+5
+. 
+How is NLP used within a search engine?
+6
+. 
+Write a regular expression to recognize your name and all the variations
+on its spelling (including nicknames) that you’ve seen.
+7
+. 
+Write a regular expression to try to recognize a sentence boundary
+(usually a period ("."), question mark "?", or exclamation mark "!")
+tip
+Active learning, quizzing yourself with questions such as these, is a fast way
+to gain deep understanding of any new topic. It turns out, this same approach
+is effective for machine learning and model evaluation as well.footnote:
+[Suggested answers are provided within the Python packages 
+nlpia
+(
+https://gitlab.com/tangibleai/nlpia
+) and 
+qary
+(
+https://gitlab.com/tangibleai/qary
+) where they are used to evaluate advanced
+NLP models for reading comprehension and question answering. Pooja Sethi
+will share active learning NLP insights on Substack
+(
+https://activelearning.substack.com
+) and github (
+<----------section---------->
+**Natural Language Processing and Large Language Models**
+
+This material is part of Lesson 8, "Building a Chatbot," within the "Corso di Laurea Magistrale in Ingegneria Informatica" (Master's Degree Course in Computer Engineering) at DIEM – University of Salerno. The lesson is instructed by Nicola Capuano and Antonio Greco.
+
+**Exercise: Developing a Pizzeria Chatbot**
+
+The primary task is to create a chatbot designed to streamline and enhance the operations of a pizzeria. The chatbot will enable users to interact with the pizzeria through a web-based Graphical User Interface (GUI) with the following functionalities:
+
+*   **Menu Requests:** Users can ask the chatbot to provide the pizzeria's menu.
+*   **Pizza Orders:** Users can order a pizza, but only one pizza per order is permitted. Beverage ordering is excluded in this simplified version.
+*   **Order Logging:** After an order is confirmed, the chatbot must log essential details including the date of the order, the user's identification (user ID), and the specific type of pizza ordered. This logging function should be implemented using a custom action to provide flexibility and extensibility.
+*   **Web-Based GUI:** The chatbot must be accessible through a web-based GUI for ease of use and broad accessibility.
+
+It's recommended to begin with a basic "dummy bot" to establish the foundational structure, then add functionality incrementally.
+
+**Example Conversation:**
+
+The following is a sample dialogue demonstrating the expected interaction flow between a user and the chatbot:
+
+User: Can I have the menu?
+
+Bot: What kind of pizza would you like? We have Parenti, Pepperoni, Vegetarian...
+
+User: Pepperoni
+
+Bot: You want a Pepperoni pizza. Is that correct?
+
+User: Yes
+
+Bot: Great! Your Pepperoni pizza is on its way!
+
+<----------section---------->
+**Hints and Implementation Details**
+
+To initiate the project, create the necessary directory and initialize a Rasa project:
+
+```bash
+mkdir pizzaBot
+cd pizzaBot
+rasa init --no-prompt
+```
+
+This series of commands first creates a directory named `pizzaBot`, then navigates into it. Inside this directory, `rasa init --no-prompt` initializes a new Rasa project without prompting for user input. This is a quick way to set up the basic project structure. Rasa is an open-source conversational AI framework, which is helpful when building a chatbot with configurable NLP capabilities.
+
+Next, configure and run the REST and Actions servers:
+
+```bash
+rasa run --cors "*"
+rasa run actions
+```
+
+The first command, `rasa run --cors "*"`, starts the Rasa server with Cross-Origin Resource Sharing (CORS) enabled for all origins. This setting is mainly for development purposes to allow web frontends hosted on different domains to communicate with the Rasa server. The second command, `rasa run actions`, launches the actions server. This server executes custom Python code (actions) which are used to extend the bot's functionality, such as logging the order details in this scenario.
+
+To create the web frontend of this project, consider using a web widget such as the one available at:
+
+[https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0](https://github.com/JiteshGaikwad/Chatbot-Widget/tree/Widget2.0)
+
+This widget provides a ready-made interface that can be integrated with the Rasa chatbot.
+
+<----------section---------->
+**Contextual Enrichment: The Role of Chatbot Frameworks and LLMs**
+
+The exercise of creating a pizzeria chatbot highlights practical applications of Natural Language Processing (NLP) and the utilization of chatbot frameworks. Building functional and engaging chatbots requires careful consideration of several factors, including the user's intent, the bot's responses, and the overall conversational flow.
+
+Chatbot frameworks are designed to abstract away many of the complexities involved in creating a dialog engine, allowing developers to focus on designing the bot's behavior in a domain-specific language.
+
+As the included context emphasizes, teachers inspire students using feedback on how well the student understands the material. They also think up new ideas as students pose interesting new questions. Students' needs are diverse and dynamic. Due to this fact, hybrid chatbots integrating Large Language Models (LLMs) have become a better method for creating production chatbots in all domains. LLMs are proficient and convincing in their ability to converse with users on virtually any topic. However, the key is to control this power intelligently to prevent misleading or harmful interactions.
+
+<----------section---------->
+**Chatbot Frameworks: An Abstraction Layer for Dialogue Engines**
+
+Chatbot frameworks serve as application and software libraries designed to simplify the process of building dialogue engines for chatbots. These frameworks abstract detailed decisions, offering a way to specify chatbot behavior using domain-specific languages that can be interpreted and executed. This allows chatbots to respond in a manner consistent with the designer's intent.
+
+Most chatbot frameworks rely on declarative programming languages to define a bot's behavior, and some offer graphical user interfaces (GUIs) for programming. No-code chatbot frameworks further simplify this by abstracting the declarative language with interactive graphical representations of dialog graphs, allowing modifications via mouse interactions. These frameworks often include a dialog engine that can execute the chatbot without requiring direct manipulation of the underlying data.
+
+Examples of chatbot frameworks include RapidPro, sponsored by UNICEF, which has served as the foundation for platforms like Weni, Textit, and Glific, all utilized for impactful applications. RapidPro offers a GUI for building dialogs and supports importing and exporting content using open standard file formats, facilitating multilingual chatbot development. Other closed-source no-code builders with similar functionality include ManyChat and Landbot.
+
+However, for more sophisticated chatbot designs, a chatbot programming language becomes necessary to realize complex visions. While Python can be used directly, a chatbot framework that uses a dedicated design language or data structure is essential for building scalable and maintainable chatbots. A suitable language allows developers to quickly translate conversation designs into working chatbots.
+
+<----------section---------->
+**Leveraging Open-Source Python Chatbot Frameworks: Rasa, LangChain, and qary**
+
+Several popular open-source Python chatbot frameworks provide configurable NLP capabilities, enabling developers to build production-grade systems while focusing on the bot's core functionality.
+
+1.  **Rasa:**
+
+    *   Rasa is an open-source conversational framework used to create thousands of bots in multiple languages.
+    *   It structures conversations using user intents and bot actions, which can range from simple pre-programmed utterances to complex Python code interacting with external systems like databases or web APIs.
+    *   Dialog scenarios are pre-programmed by chaining these building blocks into sequences called "Stories," stored in YAML files.
+
+    To create a Rasa chatbot, install the Rasa package and initialize a project:
+
+    ```bash
+    pip install rasa # If not already installed
+    rasa init
+    ```
+
+    The installation wizard guides you through creating a new project and training an initial model.
+
+    The key directories in a Rasa project include:
+
+    *   `.rasa/`: Contains cached data.
+    *   `actions/`: Contains Python code for custom actions.
+    *   `data/`: Holds training data, including NLU data and dialog stories.
+    *   `models/`: Stores trained models.
+    *   `tests/`: Contains test cases for the chatbot.
+
+    The `data` directory is central to training the chatbot. It includes:
+
+    *   `nlu.yml`: Defines user intents and example utterances.
+    *   `domain.yml`: Specifies the chatbot's domain, including intents, entities, slots, and responses.
+    *   `stories.yml`: Defines conversation flows (stories) by chaining intents and actions.
+    *   `config.yml`: Configures the NLU pipeline, specifying components for tokenization, featurization, and intent classification.
+
+    Example `nlu.yml` content:
+
+    ```yaml
+    version: "3.1"
+    nlu:
+    - intent: greet
+      examples: |
+       - hey
+       - hello
+       - hi
+    - intent: parent
+      examples: |
+       - I am a parent
+       - Parent
+       - I'm a mom to 12 year old
+    - intent: agree
+      examples: |
+       - yes
+       - I agree
+    ```
+<----------section---------->
+2.  **LangChain:**
+
+    *   LangChain is a library designed to abstract the APIs of different LLMs, facilitating experimentation with various models and usage approaches.
+    *   It relies heavily on APIs and provides a JavaScript/TypeScript SDK for web interfaces.
+    *   LangChain's core concept is the "Chain," a callable interface that implements a series of calls to components, including other Chains.
+    * LLMs can be used to generate additional content for students that may help them get through difficult spots in their learning. LLMs are very reliable when you use them for the kinds of things you will need them to do when rewording your dialog content: summarization, paraphrasing and correcting grammar. And you can often even improve on the LLM reliability (predictability) on these tasks by reducing the size of the LLM. This has the additional benefit of reducing your LLM latency and expense. This is because your use case and the kinds of statements you have designed into your chatbot are probably very generic and commonplace — the kinds of word patterns that would be very well-represented in the smaller LLM training sets.
+
+    To use LangChain, a prompt template is created to wrap boilerplate text around user messages, simplifying interaction with the Chain. A `Memory` object stores conversation history, with options like `ConversationBufferMemory`, `ConversationKGMemory`, and `ConversationSummaryMemory` available.
+
+3.  **qary:**
+
+    * This platform helps the user extract URLs, named entities, or taboo words from both the user text and the bot-generated text. ConvoHub community also exists as part of qary.ai.
+
+<----------section---------->
+**Adding LLMs to your Chatbot with LangChain**
+
+Using Large Language Models, or LLMs, can be especially useful in an educational setting to inspire and engage students. Teachers modify what they say based on feedback from students. Also, teachers come up with new approaches and ideas when students ask new questions. Teachers inspire students' curiosity with Socratic questions.
+It is virtually impossible to build a system that captures all of the things that teachers do to help students grow. This is why hybrid chatbots with LLMs are the preferred method build chatbots in every domain.
+
+The most powerful thing about LLMs is that they can chat with your users on virtually any topic. The challenge is to make sure that LLMs don't mislead your users.
+
+One tool for creating generative chatbots is LangChain. Langchain is a library that abstracts away the particular API of the LLM you want to use, allowing you to quickly experiment with different models and different approaches to using them. LangChain relies on APIs to function and has a Javascript/Typescript SDK that makes it easier to use in web interfaces. Large language models are too compute-intensive and memory-intensive to run on a personal computer, or even closed-source.
+
+To use Llama 2 from your machine, you need a strong enough processor, and a lot of RAM. One free service
+that makes this a little easier is called Replicate. Replicate.com gives you access to open-source models through a web API. To run the code properly, you will need to create a GitHub account and then use it to sign into Replicate. You can then create or renew your API token under your user profile

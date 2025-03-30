@@ -1,0 +1,81 @@
+# Natural Language Processing and Large Language Models
+## Corso di Laurea Magistrale in Ingegneria Informatica
+### Lesson 10: Transformers II
+**Nicola Capuano and Antonio Greco**
+**DIEM – University of Salerno**
+
+## Outline
+
+*   Multi-Head Attention
+*   Encoder Output
+*   Decoder
+*   Masked Multi-Head Attention
+*   Encoder-Decoder Attention
+*   Output
+*   Transformer’s pipeline
+
+## Multi-head attention
+
+### Multi-head Attention
+*   By using different self attention heads it is possible to encode different meanings of the context.
+*   Several scaled-dot product attention computations are performed in parallel (using different weight matrices).
+*   The results are concatenated row-by-row forming a larger matrix (with the same number of rows m).
+*   This matrix is finally multiplied by a final weight matrix.
+*   This scheme is called multi-head attention.
+
+### Multi-head Attention
+Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this possibility. The outputs of the heads are concatenated and then are multiplied by an additional weight matrix to combine several representations at the same network level.
+
+## Add & Norm
+
+### Add (skip connections) & Norm
+Input Normalization(Z)
+* Mean 0, Std dev 1
+* Stabilizes training
+* Regularization effect
+
+Add -> Residuals
+* Avoid vanishing gradients
+* Train deeper networks
+
+## Feed Forward
+
+### Feed Forward
+Non Linearity. Complex Relationships. Learn from each other.
+
+FFN (2 layer MLP)
+
+## Transformer’s Encoder
+
+### Transformer’s Encoder
+Used for computing a representation of the input sequence. Uses an additive positional encoding to deal with the order-agnostic nature of the self-attention. Uses residual connection to foster the gradients flow. Adopts normalization layers to stabilize the network training. Position-Wise Feed-Forward layer to add non-linearity. Applied to each sequence element independently. Since each encoder produces an output whose dimensionality is the same of the input, it is possible to stack an arbitrary number of encoder’s blocks. The output of the first block is fed to the second block (no word embeddings) and so on.
+
+## Decoder
+
+### Decoder
+The Decoder uses the information contained in the intermediate representation *z*<sub>1</sub>,…,*z*<sub>*t*</sub> to generate the output sequence *y*<sub>1</sub>,…,*y*<sub>*m*</sub>. The Decoder works sequentially; at each step the decoder uses *z*<sub>1</sub>,…,*z*<sub>*t*</sub> and *y*<sub>1</sub>,…,*y*<sub>*i*-1</sub> to generate *y*<sub>*i*</sub>.
+
+### Decoder
+The decoder is made of a sequence of decoder blocks having the same structure. The original paper used 6 decoder blocks. The decoder blocks, in addition to the same modules used in the encoder block, add an attention module where the keys and values are taken from the encoder’s intermediate representation *z*<sub>1</sub>,…,*z*<sub>*t*</sub>. Also, the self-attention module is slightly modified so as to ensure that the query at position i only uses the values at positions 1,…,i. On top of the last decoder block, the decoder adds an additional linear layer and a softmax activation function, for computing the probability of the next output element *y*<sub>*i*</sub>. Thus, the last layers has a number of neurons corresponding to the cardinality of the output set.
+
+## Masked Multi-Head Attention
+Masked Multi-Head Attention. Outputs at time T should only pay attention to outputs until time T-1. Mask the available attention values.
+*R<sup>IxT</sup>*
+*R<sup>TxT</sup>*
+Attention Mask: M
+Masked Attention Values
+
+## Encoder Decoder Attention
+Keys from Encoder Outputs. Queries from Decoder Inputs. Values from Encoder Outputs. Every decoder block receives the same FINAL encoder output.
+
+## Output
+
+### Output
+Linear. Linear weights are often tied with model input embedding matrix. Softmax.
+
+## Transformer’s pipeline
+Decoding time step.
+
+ENCODER - DECODER.
+
+https://poloclub.github.io/transformer-explainer/

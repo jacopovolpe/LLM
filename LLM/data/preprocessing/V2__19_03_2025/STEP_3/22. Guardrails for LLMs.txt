@@ -1,0 +1,210 @@
+**Natural Language Processing and Large Language Models**
+
+Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering)
+Lesson 22
+Guardrails for LLMs
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+This lesson focuses on implementing guardrails for Large Language Models (LLMs), which are crucial for ensuring their safe, accurate, and ethical deployment in real-world applications. The lesson is presented by Nicola Capuano and Antonio Greco from DIEM at the University of Salerno.
+
+Outline:
+*   Adding guardrails to LLMs
+*   Techniques for adding guardrails
+*   Frameworks for implementing guardrails
+
+<----------section---------->
+
+**Adding Guardrails to LLMs**
+
+Guardrails:
+
+Guardrails are mechanisms or policies implemented to control and regulate the behavior of LLMs. These mechanisms are essential to ensure that the LLMs generate responses that are safe, accurate, and context-appropriate. They provide a safety net that prevents unintended or harmful outputs.
+
+Key functions of guardrails:
+
+*   **Prevent harmful, biased, or inaccurate outputs:** Guardrails help filter and block the generation of toxic, discriminatory, or factually incorrect content.
+*   **Align responses with ethical and operational guidelines:** They ensure that LLMs adhere to predefined ethical standards and business rules.
+*   **Build trust and reliability for real-world applications:** By ensuring consistent and reliable performance, guardrails foster user trust and confidence in the use of LLMs.
+
+Examples of Guardrails:
+
+*   **Blocking harmful content:** Implementing filters to prevent the generation of hate speech, offensive language, or other inappropriate material.
+*   **Restricting outputs to specific domains:** Limiting the LLM's responses to predefined knowledge areas to avoid irrelevant or inaccurate information.
+
+<----------section---------->
+
+**Types of Guardrails:**
+
+Various types of guardrails can be implemented to address specific concerns and objectives:
+
+*   **Safety Guardrails:** These guardrails are designed to prevent the generation of harmful or offensive content. They focus on eliminating outputs that could be harmful, discriminatory, or otherwise inappropriate.
+*   **Domain-Specific Guardrails:** These guardrails restrict the LLM’s responses to specific knowledge areas. They are useful in applications where the LLM needs to provide information only within a predefined scope, ensuring accuracy and relevance.
+*   **Ethical Guardrails:** Ethical guardrails are aimed at avoiding bias, misinformation, and ensuring fairness in the LLM's outputs. These guardrails address ethical concerns such as fairness, transparency, and accountability.
+*   **Operational Guardrails:** Operational guardrails limit the LLM's outputs to align with specific business or user objectives. These guardrails ensure that the LLM's responses are consistent with the intended application and user expectations.
+
+<----------section---------->
+
+**Techniques for Adding Guardrails**
+
+Multiple techniques can be employed to implement effective guardrails for LLMs:
+
+*   Rule-based filters
+*   Fine-tuning with custom data
+*   Prompt Engineering
+*   External validation layers
+*   Real-time monitoring and feedback
+
+<----------section---------->
+
+**Rule-based filters:**
+
+Rule-based filters involve defining predefined rules to block or modify certain outputs.
+
+*   These rules are typically based on patterns, keywords, or regular expressions that identify undesirable content.
+*   Examples:
+    *   **Keyword blocking:** Filtering offensive or prohibited terms.
+    *   **Regex-based patterns:** Filtering sensitive information, such as personal identification numbers or credit card numbers.
+*   Rule-based filters are simple and efficient for basic content filtering, providing a straightforward way to enforce content policies.
+
+<----------section---------->
+
+**Fine-tuning with custom data:**
+
+Fine-tuning involves training the model on domain-specific, curated datasets.
+
+*   This technique allows for adjusting the model's weights to produce outputs that are aligned with predefined guidelines.
+*   Examples:
+    *   Fine-tuning for medical advice: Restricting responses to accurate and safe recommendations based on established medical knowledge.
+    *   Fine-tuning for question answering: Training the model on course-specific materials to enhance the relevance and accuracy of responses.
+
+<----------section---------->
+
+**Prompt Engineering:**
+
+Prompt engineering involves crafting or refining prompts to guide the LLM's behavior within desired boundaries.
+
+*   By carefully designing prompts, it is possible to influence the LLM's outputs and steer them toward safer and more appropriate responses.
+*   Examples:
+    *   "Respond only with factual, non-controversial information."
+    *   "Avoid speculative or unverifiable statements."
+
+<----------section---------->
+
+**External validation layers:**
+
+External validation layers involve additional systems or APIs that post-process the model's outputs.
+
+*   These layers can perform various checks and validations to ensure that the responses meet predefined criteria.
+*   Examples:
+    *   Toxicity detection APIs: Identifying and flagging toxic or offensive content in the LLM’s responses.
+    *   Fact-checking models: Verifying the accuracy and validity of the information provided by the LLM.
+*   External validation layers allow for modular and scalable implementation of guardrails.
+
+<----------section---------->
+
+**Real-time monitoring and feedback:**
+
+Real-time monitoring and feedback involve continuously monitoring outputs for unsafe or incorrect content.
+
+*   This technique allows for immediate detection and flagging of problematic outputs.
+*   Tools:
+    *   Human-in-the-loop systems: Involving human reviewers to assess and validate the LLM's responses in real-time.
+    *   Automated anomaly detection: Using algorithms to identify unusual or unexpected patterns in the LLM's outputs.
+
+<----------section---------->
+
+**Best practices:**
+
+To ensure robust safeguards, it is recommended to combine multiple techniques.
+
+*   Example:
+    *   Rule-based filtering + External validation + Fine-tuning: Using a combination of rule-based filters, external validation layers, and fine-tuning to provide a comprehensive set of guardrails.
+
+<----------section---------->
+
+**Frameworks for Implementing Guardrails**
+
+Existing frameworks for implementing guardrails offer several benefits:
+
+*   Easy integration with LLM APIs.
+*   Predefined and customizable rulesets.
+
+Popular tools include:
+
+*   Guardrails AI: A library for implementing safeguards.
+*   LangChain: For chaining prompts and filtering outputs.
+*   OpenAI Moderation: A prebuilt API to detect unsafe content.
+
+<----------section---------->
+
+**Guardrails AI:**
+
+*   [https://www.guardrailsai.com/](https://www.guardrailsai.com/)
+*   Key features:
+    *   **Validation:** Ensures outputs are within specified guidelines.
+    *   **Formatting:** Controls the output structure.
+    *   **Filters:** Removes or blocks unsafe content.
+
+Example using Guardrails AI:
+```python
+from guardrails import Guard
+
+guard = Guard(rules="rules.yaml")
+response = guard(llm("Provide medical advice"))
+```
+
+<----------section---------->
+
+**Langchain:**
+
+*   Chains prompts with checks and filters.
+*   Verifies outputs against predefined criteria.
+*   Integrable with Guardrails:
+    *   [https://www.guardrailsai.com/docs/integrations/langchain](https://www.guardrailsai.com/docs/integrations/langchain)
+
+Example using Langchain:
+```python
+from langchain.prompts import PromptTemplate
+
+prompt = PromptTemplate(
+    input_variables=["question"],
+    template="Answer safely and factually: {question}"
+)
+```
+
+<----------section---------->
+
+**Try it yourself:**
+
+*   Evaluate which techniques to add guardrails are more suited for your purposes.
+*   A possible suggestion may be to proceed by incrementally adding complexity to the guardrails if you are not able to achieve a satisfying result with a simpler approach.
+*   Give a careful look to the documentation of the existing frameworks.
+*   Study similar examples that are available in the documentation of existing frameworks.
+*   Try to apply guardrails to your project.
+
+<----------section---------->
+
+**Additional Context and Best Practices for Hardening NLP Software and LLMs:**
+
+The information provided in the original text emphasizes the importance of guardrails in ensuring the safety, accuracy, and ethical behavior of LLMs. However, additional context and best practices can further enhance the effectiveness of these guardrails. Below are several recommendations based on industry practices and expert insights.
+
+1.  **Bug Bounties**: Consider implementing bug bounties to reward users who identify bugs or gaps in your LLM's guardrails. This proactive approach can incentivize users to help improve the system's security and reliability.
+2.  **Open Source Filter Rules**: If using an open-source framework, allow users to submit filter rules. This collaborative approach can leverage community knowledge to enhance the robustness of the guardrails.
+3.  **Real-Time Unit Tests**: Think of your filters as real-time unit tests. Guardrails-ai, for example, provides rule templates that can be configured for your specific needs.
+4.  **Machine Learning Classifiers**: Implement conventional machine learning classifiers to detect malicious intent or inappropriate content in LLM outputs. These models can generalize from examples to provide high reliability.
+5.  **Custom Machine Learning Models**: Use custom machine learning models to protect your LLM from prompt injection attacks and other adversarial techniques. This approach is particularly useful for preventing legal or medical advice generation, which is strictly regulated in many countries.
+6.  **Fuzzy Regular Expressions**: Employ fuzzy regular expressions to detect bad messages, even with misspellings or transliterations. This can help avoid the "whack-a-mole" effect of manually creating individual statements for every possible attack vector. Tools like SpaCy's Matcher class, ReLM, Eleuther AI’s LM evaluation harness, and the Python fuzzy regular expression package can be beneficial.
+7.  **Rule-Based Pipelines with SpaCy**: Use SpaCy as the primary tool for building NLP guardrails and rule-based pipelines. Its flexibility and power make it suitable for creating effective content filters.
+8.  **Guardrails-AI Limitations**: Be aware that while Guardrails-AI can be useful, it may not completely prevent LLMs from going off the rails. Look for additional filters and rules to monitor LLM responses and prevent inappropriate content.
+9.  **Python Templating Systems**: For expressive templating, use standard Python templating systems like f-strings or jinja2 templates instead of RAIL. LangChain also offers example LLM prompt templates.
+10. **SpaCy Matcher for Taboo Words**: Configure a SpaCy Matcher to avoid taboo words or names. This can involve substituting more meaningful synonyms or euphemisms or avoiding competitor mentions. The ability to detect and replace specific terms ensures more controlled and appropriate content generation.
+11. **Red Teaming**: Implement a red teaming approach to test and improve the reliability of your NLP pipeline. This involves having a team attempt to bypass or disable the guardrails, helping identify vulnerabilities and improve the system's robustness.
+12. **Llama 2**: Use Llama 2, Vicuna, and Falcon for open-source models that are performant and can be downloaded and run in a reasonable amount of time. These open-source models allow for community-driven improvements and transparency.
+13. **AI Ethics and Safety**: Recognize the difference between AI ethics and AI safety. Focus on both immediate harm caused by algorithms (AI ethics) and long-term existential risks posed by superintelligent machines (AI safety).
+14. **Explainable AI**: Implement explainable AI to create algorithms that can explain how and why they make decisions. This can help create more ethical and safe AI by providing insights into the decision-making process.
+15. **Guardrails-AI package**: Make sure you’ve installed the `guardrails-ai` package not the `guardrails` package. You can use `pip` or `conda` or your favorite Python package manager:
+
+```bash
+$ pip install guardrails-ai
+```

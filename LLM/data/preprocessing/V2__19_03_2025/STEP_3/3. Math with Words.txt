@@ -1,0 +1,650 @@
+# Natural Language Processing and Large Language Models
+
+This lesson explores fundamental concepts in Natural Language Processing (NLP) and how they are applied, particularly concerning Large Language Models (LLMs). We will cover methods for representing text numerically, which is essential for enabling computers to process and understand human language.
+
+Corso di Laurea Magistrale in Ingegneria Informatica. Lesson 3: Math with Words. Nicola Capuano and Antonio Greco. DIEM – University of Salerno.
+
+## Outline
+
+This lesson will cover the following topics:
+
+*   **Term Frequency (TF):** A basic measure of how often a word appears in a document.
+*   **Vector Space Model (VSM):** Representing documents as vectors in a multi-dimensional space, enabling mathematical operations.
+*   **TF-IDF:** Term Frequency-Inverse Document Frequency, which refines TF by considering a word's importance across the entire corpus.
+*   **Building a Search Engine:** Application of TF-IDF and vector space models to create a basic search engine.
+
+<----------section---------->
+
+## Term Frequency
+
+Term Frequency (TF) is a foundational concept in NLP. It quantifies how many times a term (word) appears within a document. The underlying assumption is that the more often a word occurs in a document, the more relevant it is to the document's content.
+
+### Bag of Words
+
+The Bag of Words (BoW) model simplifies text into a numerical representation suitable for machine learning algorithms. The BoW model represents text as an unordered collection of words, disregarding grammar and word order but keeping track of word frequencies.
+
+*   **One-Hot Encoding:** The initial step involves converting each word into a one-hot vector, a vector with all zero values except for a single one, indicating the presence of that word.
+
+*   **Binary BoW:** In this version, the one-hot vectors are combined using the OR operation. The resulting vector indicates whether a word is present (1) or absent (0) in the text, without counting occurrences.
+
+*   **Standard BoW:** Here, one-hot vectors are summed together. Each position in the resulting vector represents a word, and its value indicates the number of times that word appears in the text.
+
+*   **Term Frequency (TF):** The number of times each word occurs in the text.
+
+**Assumption:** The core idea is that the more a word appears in a document, the more meaning it contributes.
+
+### Calculating TF
+
+The following Python code demonstrates how to calculate term frequency using the `spaCy` library:
+
+```python
+# Extract tokens
+sentence = "The faster Harry got to the store, the faster Harry, the faster, would get home."
+
+import spacy
+nlp = spacy.load("en_core_web_sm") # load the language model
+doc = nlp(sentence)
+
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct]
+
+tokens
+```
+
+**Explanation:**
+
+1.  **Import spaCy:** The `spaCy` library is imported for NLP tasks.
+2.  **Load Language Model:** The `en_core_web_sm` language model is loaded. This model provides tokenization, part-of-speech tagging, and other NLP functionalities.
+3.  **Tokenization:** The sentence is processed using `nlp(sentence)` to create a `Doc` object, which contains the tokenized words.
+4.  **Token Extraction:** A list comprehension is used to extract the tokens. Each token is converted to lowercase (`tok.lower_`), and stop words (common words like "the", "is") and punctuation marks are excluded.
+
+```
+{'faster', 'harry', 'got', 'store', 'faster', 'harry', 'faster', 'home'}
+```
+
+This output shows the extracted tokens after removing stop words and punctuation.
+
+```python
+# Build BoW with word count
+import collections
+
+bag_of_words = collections.Counter(tokens) # counts the elements of a list
+bag_of_words
+```
+
+**Explanation:**
+
+1.  **Import `collections.Counter`:** The `Counter` class from the `collections` module is imported. It's used for counting the frequency of each token.
+2.  **Build Bag of Words:** `collections.Counter(tokens)` creates a dictionary-like object that counts the occurrences of each token in the `tokens` list.
+
+```
+Counter({'faster': 3, 'harry': 2, 'got': 1, 'store': 1, 'home': 1})
+```
+
+This output shows the word counts. For example, "faster" appears 3 times, and "harry" appears 2 times.
+
+```python
+# Most common words
+bag_of_words.most_common(2) # most common 2 words
+```
+
+**Explanation:**
+
+1.  **`most_common(2)` Method:** The `most_common(2)` method returns the two most frequent words and their counts.
+
+```
+(('faster', 3), ('harry', 2))
+```
+
+This indicates that "faster" is the most common word (3 times), and "harry" is the second most common (2 times).
+
+<----------section---------->
+
+### Limits of TF
+
+Term Frequency alone has limitations in determining the importance of a word:
+
+**Example:**
+
+*   In document A, the word "dog" appears 3 times.
+*   In document B, the word "dog" appears 100 times.
+
+Based on raw TF, it seems "dog" is more important for document B. But we need more context.
+
+**Additional information:**
+
+*   Document A is a 30-word email to a veterinarian.
+*   Document B is the novel War & Peace (approx. 580,000 words).
+
+Now, with the document lengths, we can see that "dog" is proportionally more important to the shorter document A.
+
+**Analysis:**
+
+The raw count of a word is not always indicative of its importance. Longer documents will naturally have higher word counts. To address this, we use normalized TF.
+
+### Normalized TF
+
+Normalized (weighted) TF is the word count divided by the total number of words in the document, giving a proportional measure:
+
+*   TF (dog, document A) = 3/30 = 0.1
+*   TF (dog, document B) = 100/580000 = 0.00017
+
+This normalization reveals that "dog" is relatively more important in document A (0.1) than in document B (0.00017).
+
+```python
+import pandas as pd
+
+counts = pd.Series(bag_of_words) # from dict to Pandas Series
+counts / counts.sum() # calculate TF
+```
+
+**Explanation:**
+
+1.  **Convert to Pandas Series:** The `bag_of_words` dictionary is converted into a Pandas Series for easier manipulation.
+2.  **Calculate Normalized TF:** `counts / counts.sum()` divides each word count by the total number of words in the sentence, thus normalizing the term frequencies.
+
+```
+faster    0.375
+harry     0.250
+got       0.125
+store     0.125
+home      0.125
+dtype: float64
+```
+
+This shows the normalized term frequencies for each word in the example sentence.  "faster" accounts for 37.5% of the words, and "harry" accounts for 25%.
+
+<----------section---------->
+
+## Vector Space Model
+
+The Vector Space Model (VSM) provides a mathematical framework for representing documents as vectors in a high-dimensional space. Each dimension corresponds to a term (word), and the value in that dimension represents the term's importance in the document.
+
+### NLTK Corpora
+
+The Natural Language Toolkit (NLTK) is a Python library for working with human language data. It includes several text corpora:
+
+*   **Purpose:** These corpora are used to train and test NLP algorithms.
+*   **Accessibility:** NLTK provides a package to easily access corpus data.
+*   **Documentation:** [https://www.nltk.org/howto/corpus.html](https://www.nltk.org/howto/corpus.html) offers instructions for using the NLTK corpora.
+
+### Reuters 21578 corpus
+
+The Reuters-21578 corpus is a widely used dataset for NLP and text classification:
+
+*   **Application:** Used extensively for NLP research and text classification tasks.
+*   **Content:** Contains thousands of news articles published by Reuters in 1986.
+*   **Categories:** News articles are categorized into 90 different topics.
+
+### Using Reuters 21578
+
+The following code shows how to access and process the Reuters 21578 corpus using NLTK:
+
+```python
+import nltk
+
+nltk.download('reuters') # download the reuters corpus
+ids = nltk.corpus.reuters.fileids() # ids of the documents
+sample = nltk.corpus.reuters.raw(ids[0]) # first document
+
+print(len(ids), "samples.\n") # number of documents
+print(sample)
+```
+
+**Explanation:**
+
+1.  **Import NLTK:** The `nltk` library is imported.
+2.  **Download Reuters Corpus:** `nltk.download('reuters')` downloads the Reuters corpus if it's not already present.
+3.  **Get Document IDs:** `nltk.corpus.reuters.fileids()` retrieves a list of IDs for all documents in the corpus.
+4.  **Access First Document:** `nltk.corpus.reuters.raw(ids[0])` accesses the raw text content of the first document in the corpus.
+5.  **Print Information:** The number of documents and the content of the first document are printed.
+
+```
+Taiwan had a trade trade surplus of 15.6 billion dlrs last
+year, 95 pct of it with the U.S.
+
+The surplus helped swell Taiwan's foreign exchange reserves
+to 53 billion dlrs, among the world's largest.
+
+“We must quickly open our markets, remove trade barriers and
+cut import tariffs to allow imports of U.S. Products, if we
+want to defuse problems from possible U.S. Retaliation," said
+Paul Sheen, chairman of textile exporters <Taiwan Safe Group>.
+
+A senior official of South Korea's trade promotion
+association said the trade dispute between the U.S. And Japan
+might also lead to pressure on South Korea, whose chief exports
+are similar to those of Japan.
+
+Last year South Korea had a trade surplus of 7.1 billion
+dirs with the U.S., Up from 4.9 billion dlrs in 1985.
+
+In Malaysia, trade officers and businessmen said tough
+curbs against Japan might allow hard-hit producers of
+semiconductors in third countries to expand their sales to the
+U.S.
+```
+
+This output is the raw text of the first news article in the Reuters corpus.
+
+### Using Reuters 21578
+
+The following code preprocesses the sample text and calculates term frequencies:
+
+```python
+doc = nlp(sample)
+
+tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+
+bag_of_words = collections.Counter(tokens)
+counts = pd.Series(bag_of_words).sort_values(ascending=False) # sorted series
+counts = counts / counts.sum() # calculate TF
+
+print(counts.head(10))
+```
+
+**Explanation:**
+
+1.  **Process with spaCy:** The sample text is processed using `nlp(sample)`.
+2.  **Tokenization:** A list comprehension extracts tokens, converts them to lowercase, and removes stop words, punctuation, and whitespace.
+3.  **Build Bag of Words:** `collections.Counter(tokens)` creates a Counter object to count token occurrences.
+4.  **Calculate and Sort TF:** The token counts are converted to a Pandas Series, sorted in descending order, and then normalized to calculate term frequencies.
+5.  **Print Top 10:** The top 10 most frequent words and their normalized frequencies are printed.
+
+```
+u.s.          0.039627
+said         0.037296
+trade        0.034965
+japan        0.027972
+dlrs         0.013986
+exports      0.013986
+tariffs      0.011655
+imports      0.011655
+billion      0.011655
+electronics    0.009324
+dtype: float64
+```
+
+This output shows the most relevant words in the first news article, based on normalized term frequency.
+
+### Corpus Processing
+
+The following code processes the first 100 documents of the Reuters corpus to create a term-document matrix:
+
+```python
+ids_subset = ids[:100] # to speed-up we consider only the first 100 elements
+counts_list = []
+
+for i, id in enumerate(ids_subset):
+    sample = nltk.corpus.reuters.raw(id)
+    doc = nlp(sample)
+    tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+    bag_of_words = collections.Counter(tokens)
+    counts = pd.Series(bag_of_words).sort_values(ascending=False)
+    counts_list.append(counts / counts.sum())
+    print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+df = pd.DataFrame(counts_list) # list of series to dataframe
+df = df.fillna(0) # change NaNs to 0
+```
+
+**Explanation:**
+
+1.  **Subset of Document IDs:** `ids[:100]` selects the first 100 document IDs for processing.
+2.  **Iterate Through Documents:** A loop iterates through each document ID.
+3.  **Process Each Document:**
+    *   The raw text is retrieved using `nltk.corpus.reuters.raw(id)`.
+    *   The text is processed using `nlp(sample)`.
+    *   Tokens are extracted, converted to lowercase, and filtered to remove stop words, punctuation, and whitespace.
+    *   A bag of words is created using `collections.Counter(tokens)`.
+    *   Term frequencies are calculated and sorted.
+    *   The term frequencies are appended to `counts_list`.
+4.  **Create DataFrame:** `pd.DataFrame(counts_list)` converts the list of Series into a DataFrame, where each row represents a document and each column represents a term.
+5.  **Fill NaN Values:** `df.fillna(0)` replaces NaN values with 0, ensuring a complete numerical representation.
+
+```
+Sample 100 of 100 processed.
+```
+
+This message confirms that all 100 documents have been processed.
+
+```python
+df
+```
+
+```
+      u.s.      said     trade     japan      dlrs   exports   tariffs   imports   billion  electronics  ...
+0   0.039627  0.037296  0.034965  0.027972  0.013986  0.013986  0.011655  0.011655  0.011655     0.009324  ...
+1   0.000000  0.042254  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+2   0.000000  0.033333  0.008333  0.016667  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+3   0.000000  0.027523  0.018349  0.000000  0.000000  0.009174  0.000000  0.018349  0.055046     0.000000  ...
+4   0.000000  0.028302  0.000000  0.000000  0.018868  0.018868  0.000000  0.000000  0.000000     0.000000  ...
+..       ...       ...       ...       ...       ...       ...       ...       ...       ...          ...  ...
+
+[100 rows x 3089 columns]
+```
+
+The resulting DataFrame `df` represents the term-document matrix.  Each row is a document, each column is a term, and each value is the normalized term frequency.
+
+<----------section---------->
+
+### Corpus Processing
+
+The initial corpus processing code is inefficient due to the full spaCy pipeline being run for each document. spaCy extracts a lot of information (POS tags, lemmas, etc.) that is unnecessary for simple tokenization.
+```python
+ids_subset = ids[:100] # to speed-up we consider only the first 100 elements
+counts_list = []
+
+for i, id in enumerate(ids_subset):
+    sample = nltk.corpus.reuters.raw(id)
+    doc = nlp(sample)
+    tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+    bag_of_words = collections.Counter(tokens)
+    counts = pd.Series(bag_of_words).sort_values(ascending=False)
+    counts_list.append(counts / counts.sum())
+    print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+df = pd.DataFrame(counts_list) # list of series to dataframe
+df = df.fillna(0) # change NaNs to 0
+df
+```
+#### spaCy Pipeline Components
+
+When you call `nlp` on a text, spaCy performs several steps:
+
+1.  **Tokenization:** The text is tokenized into a `Doc` object.
+2.  **Pipeline Processing:** The `Doc` object is then processed through a pipeline of components.
+
+```python
+# Show the current pipeline components
+print(nlp.pipe_names)
+```
+
+```
+['tok2vec', 'tagger', 'parser', 'attribute_ruler', 'lemmatizer', 'ner']
+```
+
+The output shows the default spaCy pipeline components: `tok2vec`, `tagger`, `parser`, `attribute_ruler`, `lemmatizer`, and `ner`. Each of these performs a specific NLP task, but for simple tokenization, they are unnecessary.
+
+<----------section---------->
+
+### Corpus Processing (Optimization)
+
+To optimize the process, we can disable the unnecessary pipeline components, focusing solely on tokenization:
+
+```python
+ids_subset = ids # we now consider all elements
+counts_list = []
+
+for i, id in enumerate(ids_subset):
+    sample = nltk.corpus.reuters.raw(id)
+    # disable=["tok2vec", "tagger", “parser", “attribute_ruler", “lemmatizer", "ner"]
+    doc = nlp(sample, disable=["tok2vec", "tagger", "parser", "attribute_ruler", "lemmatizer", "ner"])
+    tokens = [tok.lower_ for tok in doc if not tok.is_stop and not tok.is_punct and not tok.is_space]
+    bag_of_words = collections.Counter(tokens)
+    counts = pd.Series(bag_of_words).sort_values(ascending=False)
+    counts_list.append(counts / counts.sum())
+    print("\rSample {} of {} processed.".format(i + 1, len(ids_subset)), end="") # print the state
+
+df = pd.DataFrame(counts_list) # list of series to dataframe
+df = df.fillna(0) # change NaNs to 0
+```
+
+**Explanation:**
+
+1.  **Disable Pipeline Components:** The `nlp(sample, disable=["tok2vec", "tagger", "parser", "attribute_ruler", "lemmatizer", "ner"])` line disables all components except the tokenizer.
+2.  **Process All Documents:** `ids_subset = ids` now processes all documents in the corpus.
+3. The rest of the code remains the same, but now it will execute much faster because it skips all the processing stages.
+
+```
+Sample 10788 of 10788 processed.
+```
+This message confirms that all documents have been processed.
+```python
+df
+```
+
+```
+         u.s.      said     trade     japan      dlrs   exports   tariffs   imports   billion  electronics  ...
+0   0.039627  0.037296  0.034965  0.027972  0.013986  0.013986  0.011655  0.011655  0.011655     0.009324  ...
+1   0.000000  0.042254  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+2   0.000000  0.033333  0.008333  0.016667  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+3   0.000000  0.027523  0.018349  0.000000  0.000000  0.009174  0.000000  0.018349  0.055046     0.000000  ...
+4   0.000000  0.028302  0.000000  0.000000  0.018868  0.018868  0.000000  0.000000  0.000000     0.000000  ...
+..       ...       ...       ...       ...       ...       ...       ...       ...       ...          ...  ...
+
+[10788 rows x 49827 columns]
+```
+
+The resulting DataFrame `df` now contains the term-document matrix for all 10788 documents, significantly increasing the vocabulary size and showcasing the scalability of the optimized approach.
+
+### Corpus Processing
+
+#### Term-Document Matrix
+
+The resulting `DataFrame` is a **Term-Document Matrix**:
+
+*   **Rows:** Represent documents in the corpus.
+*   **Columns:** Represent unique terms (words) from the vocabulary.
+*   **Elements:** Contain the term frequency (TF) or other weighting schemes for each term in each document.
+
+```python
+df
+```
+
+```
+         u.s.      said     trade     japan      dlrs   exports   tariffs   imports   billion  electronics  ...
+0   0.039627  0.037296  0.034965  0.027972  0.013986  0.013986  0.011655  0.011655  0.011655     0.009324  ...
+1   0.000000  0.042254  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+2   0.000000  0.033333  0.008333  0.016667  0.000000  0.000000  0.000000  0.000000  0.000000     0.000000  ...
+3   0.000000  0.027523  0.018349  0.000000  0.000000  0.009174  0.000000  0.018349  0.055046     0.000000  ...
+4   0.000000  0.028302  0.000000  0.000000  0.018868  0.018868  0.000000  0.000000  0.000000     0.000000  ...
+..       ...       ...       ...       ...       ...       ...       ...       ...       ...          ...  ...
+
+[10788 rows x 49827 columns]
+```
+
+<----------section---------->
+
+### Vector Space Model
+
+The Vector Space Model (VSM) represents documents as vectors in a multidimensional space.
+
+*   **Dimensions:** Each dimension corresponds to a term from the vocabulary.
+*   **Values:** The value in each dimension indicates the importance or frequency of that term in the document.
+*   **Building:** It is constructed from a term-document matrix.
+
+#### 2D Example: with normalized TF
+
+Consider a simplified vocabulary with just two words, w1 and w2.  We can visualize the documents as points in a 2D space.
+
+```
+doc_0 ~(0.1, 0.17)
+doc_1 ~(0.056, 0.056)
+doc_2 ~(0.056, 0)
+```
+
+![2d_example_vector_space.png](2d_example_vector_space.png)
+
+In this example, each document is a vector representing the normalized term frequencies of w1 and w2.
+
+<----------section---------->
+
+### Document Similarity
+
+To compare documents, we need a measure of similarity between their vector representations.
+
+#### Euclidean Distance
+
+*   **Sensitivity:** Highly sensitive to the magnitude of the vectors. Documents with higher term frequencies will have larger vector lengths, skewing the distance calculation.
+*   **Direction vs. Magnitude:** In text analysis, the direction of the vectors (relative importance of terms) is usually more informative than their magnitude.
+*   **Usage:** Less commonly used in NLP due to its sensitivity to magnitude.
+
+```
+doc_0 ~(0.1, 0.17)
+doc_1 ~(0.056, 0.056)
+doc_2 ~(0.056, 0)
+```
+
+![euclidean_distance.png](euclidean_distance.png)
+
+This illustrates how Euclidean distance measures the straight-line distance between document vectors, emphasizing magnitude differences.
+
+<----------section---------->
+
+#### Document Similarity
+
+##### Cosine Similarity
+
+*   **Definition:** Measures the cosine of the angle between two vectors.
+
+*   **Focus:** Concentrates on the direction of the vectors, ignoring their magnitude. It considers the orientation of the vectors in the vector space.
+
+*   **Effectiveness:** Effective for normalized text representations because it emphasizes the relative importance of terms.
+
+*   **Usage:** Widely used in NLP because of its robustness to document length.
+
+The formula for Cosine Similarity is:
+
+```
+sim(A, B) = cos(θ) = (A · B) / (|A| * |B|)
+```
+
+Where:
+
+*   `A · B` is the dot product of vectors A and B.
+*   `|A|` and `|B|` are the magnitudes (Euclidean norms) of vectors A and B.
+
+```
+doc_0 ~(0.1, 0.17)
+doc_1 ~(0.056, 0.056)
+doc_2 ~(0.056, 0)
+```
+
+![cosine_similarity.png](cosine_similarity.png)
+
+This illustrates how Cosine Similarity focuses on the angle between vectors, disregarding magnitude.
+
+#### Properties of Cosine Similarity
+
+Cosine similarity produces a value between -1 and 1:
+
+*   **1:** Vectors point in the same direction. The documents use the same words in similar proportions, indicating they likely discuss the same topic.
+*   **0:** Vectors are orthogonal (perpendicular). Documents share no common words, suggesting completely different topics.
+*   **-1:** Vectors point in opposite directions. This is impossible with TF (since word counts cannot be negative).  It can occur with other word representations (e.g., embeddings) where negative values are possible.
+
+#### Calculate Cosine Similarity
+
+```python
+import numpy as np
+
+def sim(vec1, vec2):
+    dot_product = np.dot(vec1, vec2)
+    norm_vec1 = np.linalg.norm(vec1)
+    norm_vec2 = np.linalg.norm(vec2)
+    return dot_product / (norm_vec1 * norm_vec2)
+
+# Example:
+print(sim(df.iloc[0], df.iloc[1]))
+print(sim(df.iloc[0], df.iloc[2]))
+print(sim(df.iloc[0], df.iloc[0]))
+```
+
+**Explanation:**
+
+1.  **Define Cosine Similarity Function:** The `sim(vec1, vec2)` function calculates the cosine similarity between two vectors.
+2.  **Calculate Dot Product:** `np.dot(vec1, vec2)` computes the dot product of the two vectors.
+3.  **Calculate Norms:** `np.linalg.norm(vec1)` and `np.linalg.norm(vec2)` compute the Euclidean norms (magnitudes) of the vectors.
+4.  **Compute Cosine Similarity:** The cosine similarity is calculated as the dot product divided by the product of the norms.
+
+```
+0.14261893769917347
+0.2365347461078053
+1.0
+```
+
+These values represent the cosine similarity between different documents in the corpus. A value of 1.0 indicates that the first document is perfectly similar to itself, as expected.
+
+```python
+# Compare TF matrix subset (documents 0 and 1)
+df.loc[[0, 1], (df.loc[0] > 0) & (df.loc[1] > 0)]
+```
+
+**Explanation:**
+
+1.  **Select Documents:** `df.loc[[0, 1]]` selects rows corresponding to documents 0 and 1.
+2.  **Select Common Terms:** `(df.loc[0] > 0) & (df.loc[1] > 0)` creates a boolean mask that identifies columns (terms) that have non-zero values in both documents 0 and 1.
+3.  **Display Result:** The code displays the term frequencies for the common terms in the selected documents.
+
+```
+       said      min      year       pct  government
+0  0.037296  0.002331  0.009324  0.004662    0.002331
+1  0.042254  0.028169  0.014085  0.056338    0.014085
+```
+
+This output displays the term frequencies of common terms between documents 0 and 1, helping to understand their similarity.
+
+```python
+# Try also with other documents
+```
+
+This is a comment encouraging further exploration with different document pairs to gain a better understanding of cosine similarity.
+
+<----------section---------->
+
+## TF-IDF
+
+Term Frequency-Inverse Document Frequency (TF-IDF) is a statistic that measures the importance of a term in a document relative to a collection of documents (corpus).
+
+### Inverse Document Frequency
+
+TF alone doesn't consider how unique a word is across the entire corpus.
+
+*   **Common Words:** Words like "the," "is," and "and" appear frequently in many documents, contributing little to differentiating documents.
+*   **Domain-Specific Terms:** Terms like "planet" or "star" might be common in a corpus about astronomy but still not useful for distinguishing different documents about astronomy.
+
+Inverse Document Frequency (IDF) addresses this by scaling down the weight of common words and scaling up the weight of rare words.
+
+### Inverse Document Frequency
+IDF increases the weight of rare words and decreases the weight of common words.  The IDF is calculated as:
+
+```
+idf(t, D) = log(N / |{d ∈ D: t ∈ d}|)
+```
+
+Where:
+
+*   N: total number of documents in the corpus (N = |D|).
+*   `|{d ∈ D: t ∈ d}|`: the number of documents where the term t appears (i.e., tf(t, d) != 0).  This counts how many documents contain the term.
+
+**Note:** If a term does not appear in any document in the corpus, the IDF calculation would result in division by zero, which is undefined. Therefore, a common adjustment is to add 1 to both the numerator and the denominator.
+The adjusted IDF formula is:
+```
+idf(t, D) = log((1 + N) / (1 + |{d ∈ D: t ∈ d}|))
+```
+
+### TF-IDF
+Term Frequency – Inverse Document Frequency combines TF and IDF to assess term importance.
+
+*   **TF:** Gives higher importance to words frequent in a specific document.
+*   **IDF:** Gives higher importance to words rare in the overall corpus.
+
+The TF-IDF score is calculated as:
+
+```
+tfidf(t, d, D) = tf(t, d) * idf(t, D)
+```
+
+*   **High TF-IDF:** Indicates a term is frequent in a document but rare in the corpus, making it significant for that document.
+*   **Low TF-IDF:** Indicates a term is infrequent in the document or common in the corpus, making it less significant.
+
+<----------section---------->
+
+### TF-IDF: Example
+
+*   Document A: Jupiter is the largest planet
+*   Document B: Mars is the fourth planet from the sun
+
+| Term      | Document A | Document B | df | idf      | TF-IDF (A) | TF-IDF (B) |
+| --------- | ---------- | ---------- | -- | -------- | ---------- | ---------- |
+| jupiter   | 1          | 0          | 1  | ln(2/1)=0.69 | 0.138      | 0          |
+| largest

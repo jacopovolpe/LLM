@@ -1,0 +1,371 @@
+**Lesson 21: Reinforcement Learning from Human Feedback**
+
+## Outline
+
+This lesson provides an overview of Reinforcement Learning from Human Feedback (RLHF), a powerful technique for improving large language models (LLMs). We will cover the following topics:
+
+*   **Reinforcement Learning from Human Feedback (RLHF):** An in-depth exploration of the concept, its benefits, and drawbacks.
+*   **Transformers `trl` library:** Introduction to the Transformers Reinforcement Learning library (`trl`) by Hugging Face, which provides tools for training LLMs with reinforcement learning.
+*   **Try it yourself:** Practical exercises and resources to help you implement RLHF in your own projects.
+
+<----------section---------->
+
+## Reinforcement Learning from Human Feedback (RLHF)
+
+### What is RLHF?
+
+Reinforcement Learning from Human Feedback (RLHF) is a technique used to fine-tune large language models (LLMs) by incorporating human feedback as a reward signal. Instead of relying solely on pre-training data, which may not always reflect human preferences, RLHF uses direct feedback from human evaluators to guide the model's learning process. This helps the LLM to generate responses that are more aligned with human values and expectations. In essence, human preferences become a crucial component of the model’s training.
+
+### Why RLHF?
+
+RLHF serves multiple purposes:
+
+*   **Grounding the LLM's Focus:** By incorporating human preferences, RLHF helps to steer the LLM's focus towards generating relevant and useful outputs. This is particularly important because LLMs trained on massive datasets can sometimes produce outputs that are factually incorrect, nonsensical, or irrelevant to the user's intent.
+*   **Enhancing Safety, Ethical Responses, and User Satisfaction:** RLHF can be used to improve the safety and ethical behavior of LLMs. By providing feedback on potentially harmful or biased outputs, human evaluators can help the model learn to avoid generating such responses in the future. This leads to increased user satisfaction and promotes responsible AI development. The aim is to guide the LLM towards providing more ethical and user-centric responses.
+
+<----------section---------->
+
+### Workflow of RLHF
+
+The RLHF workflow typically consists of three main stages:
+
+1.  **Pre-trained Language Model:** This is the foundation of the RLHF process. It is a large language model (LLM) that has been pre-trained on a massive dataset of text and code. Examples of such models include BERT, GPT, and T5. These models have learned to capture the statistical patterns and relationships in language, enabling them to generate coherent and contextually relevant text.
+2.  **Reward Model:** The reward model is a secondary model trained to predict a "reward" or score for LLM-generated outputs based on human feedback. It takes as input a prompt and a generated response, and outputs a scalar value representing how well the response aligns with human preferences. The reward model learns from human rankings or ratings of different responses to the same prompt.
+3.  **Fine-Tuning with Reinforcement Learning:** In this final stage, the pre-trained LLM is further optimized using reinforcement learning, guided by the reward model. The LLM generates responses to various prompts, and the reward model scores these responses. The LLM's parameters are then updated to maximize the reward scores, effectively teaching the LLM to generate outputs that are more aligned with human preferences. Algorithms like Proximal Policy Optimization (PPO) are commonly used during this phase.
+
+<----------section---------->
+
+### Reward Model
+
+*   **Inputs for Training:** Training a reward model requires specific inputs:
+    *   **Multiple LLM-Generated Outputs:** For a given prompt, the LLM generates several different possible outputs. This provides a range of responses for human evaluators to compare.
+    *   **Corresponding Human Rank Responses:** Human evaluators rank these generated outputs according to their preferences. This ranking provides the reward model with a clear signal of which outputs are considered better than others.
+
+*   **Goal of the Reward Model:** The main goal is to train a model that can accurately predict human preference scores for LLM outputs. This means the reward model should learn to assign higher scores to outputs that humans prefer and lower scores to outputs that humans dislike.
+
+*   **Methodology:** The reward model is trained using a ranking loss function. This loss function is designed to teach the model to differentiate between preferred and less preferred outputs. By minimizing the ranking loss, the reward model learns to assign scores that reflect human preferences. This loss encourages the reward model to correctly order outputs based on human rankings.
+
+<----------section---------->
+
+### Fine-tuning with Proximal Policy Optimization (PPO)
+
+*   **Goal:** The overall objective is to align the LLM’s outputs with human-defined quality metrics. This goes beyond simply generating grammatically correct or factually accurate text; it aims to produce responses that are helpful, informative, safe, and aligned with ethical guidelines.
+
+    1.  **Generate Responses:** The LLM is used to generate a variety of responses to different prompts.
+    2.  **Score Responses:** The reward model is used to score each generated response, providing a quantitative measure of its quality based on learned human preferences.
+    3.  **Update the LLM:** The LLM's parameters are updated to maximize the reward scores assigned by the reward model. This is typically done using a reinforcement learning algorithm such as Proximal Policy Optimization (PPO), which helps to ensure stable and efficient learning. PPO limits how much the policy (LLM) can change in a single update step, preventing drastic shifts in behavior and improving training stability.
+
+<----------section---------->
+
+### Pros and Cons of RLHF
+
+**Pros:**
+
+*   **Iterative Improvement:** RLHF allows for iterative improvement of the LLM by continuously collecting human feedback as the model evolves. This feedback can be used to update the reward model and fine-tune the LLM, leading to progressively better performance.
+*   **Improved Alignment:** The technique enables the generation of responses that are more closely aligned with human intent, values, and preferences, leading to more useful and satisfying interactions.
+*   **Ethical Responses:** RLHF can help reduce the generation of harmful, biased, or inappropriate outputs, promoting more responsible and ethical AI behavior.
+*   **User-Centric Behavior:** The process allows for tailoring interactions to user preferences, creating a more personalized and engaging experience.
+
+**Cons:**
+
+*   **Subjectivity:** Human feedback is inherently subjective and can vary widely depending on the evaluator's background, biases, and personal preferences.
+*   **Scalability:** Collecting a sufficient amount of high-quality human feedback can be a resource-intensive and time-consuming process.
+*   **Reward Model Robustness:** If the reward model is misaligned with human preferences or contains biases, it can lead to suboptimal fine-tuning of the LLM, potentially degrading performance or introducing undesirable behaviors. It is crucial to ensure the reward model is accurate and reliable.
+
+<----------section---------->
+
+### Tasks to Enhance with RLHF
+
+RLHF can be applied to a wide range of NLP tasks to improve the quality and alignment of LLM outputs:
+
+*   **Text Generation:** Enhancing the quality, coherence, and creativity of text generated by LLMs.
+*   **Dialogue Systems:** Improving the fluency, engagement, and helpfulness of dialogue systems and chatbots.
+*   **Language Translation:** Increasing the accuracy and naturalness of language translations.
+*   **Summarization:** Raising the standard and relevance of summaries produced by LLMs.
+*   **Question Answering:** Increasing the accuracy and reliability of question answering systems.
+*   **Sentiment Analysis:** Improving the accuracy of sentiment identification, particularly for specific domains or businesses.
+*   **Computer Programming:** Speeding up and improving software development by using RLHF to guide LLMs in code generation and debugging tasks.
+
+<----------section---------->
+
+### Case Study: GPT-3.5 and GPT-4
+
+*   **Application of RLHF:** Both GPT-3.5 and GPT-4, developed by OpenAI, have been fine-tuned using RLHF to enhance their performance and alignment with human values.
+*   **OpenAI's Achievements:** OpenAI reports that RLHF has enabled them to achieve:
+    *   Enhanced alignment with user intent
+    *   Fewer unsafe or inappropriate outputs
+    *   More human-like and engaging interactions.
+*   **Real-World Applications:** These models are widely used in real-world applications such as ChatGPT, demonstrating the practical benefits of RLHF.
+*   **Continuous Improvement:** The models are continuously improved through the incorporation of additional human feedback, showcasing the iterative nature of RLHF. This demonstrates that even state-of-the-art models can be improved iteratively.
+
+<----------section---------->
+
+## Transformers trl library
+
+### TRL: Transformer Reinforcement Learning
+
+*   **Overview:** TRL (Transformer Reinforcement Learning) is a full-stack library designed to facilitate the training of transformer language models with reinforcement learning. It provides a comprehensive set of tools covering all stages of the RLHF process.
+*   **Key Steps:** The library supports the following key steps:
+    *   **Supervised Fine-tuning (SFT):** Fine-tuning a pre-trained LLM on a specific dataset using supervised learning.
+    *   **Reward Modeling (RM):** Training a reward model to predict human preferences for LLM outputs.
+    *   **Proximal Policy Optimization (PPO):** Optimizing the LLM's policy using the PPO algorithm, guided by the reward model.
+*   **Integration:** TRL is seamlessly integrated with the Hugging Face `transformers` library, making it easy to use with a wide range of pre-trained models and datasets.
+
+<----------section---------->
+
+## Try it yourself
+
+*   **Study the `trl` library:** Explore the TRL library on Hugging Face to gain a deeper understanding of its capabilities and functionalities:  [https://huggingface.co/docs/trl/v0.7.8/index](https://huggingface.co/docs/trl/v0.7.8/index)
+*   **Key Components:** Pay close attention to the following key components:
+    *   `PPOTrainer`: Learn how to use the `PPOTrainer` class to fine-tune LLMs using the PPO algorithm: [https://huggingface.co/docs/trl/v0.7.8/ppo_trainer](https://huggingface.co/docs/trl/v0.7.8/ppo_trainer)
+    *   `RewardTrainer`: Understand how to train a reward model using the `RewardTrainer` class: [https://huggingface.co/docs/trl/v0.7.8/reward_trainer](https://huggingface.co/docs/trl/v0.7.8/reward_trainer)
+*   **Examples:** Examine the provided examples that align with your objectives:
+    *   Sentiment analysis tuning: [https://huggingface.co/docs/trl/v0.7.8/sentiment_tuning](https://huggingface.co/docs/trl/v0.7.8/sentiment_tuning)
+    *   Detoxifying a Large Language Model with PPO: [https://huggingface.co/docs/trl/v0.7.8/detoxifying_a_lm](https://huggingface.co/docs/trl/v0.7.8/detoxifying_a_lm)
+*   **Apply RLHF:** Try to implement RLHF in your own projects to gain hands-on experience with the technique.
+
+<----------section---------->
+
+```python
+# Step 1: Train your model on your favorite dataset using Supervised Fine-Tuning (SFT)
+from trl import SFTTrainer
+
+trainer = SFTTrainer(
+    model_name="facebook/opt-350m", # Specify the base language model
+    dataset_text_field="text", # The field in your dataset containing the text data
+    max_seq_length=512, # Maximum sequence length for training
+    train_dataset=dataset, # Your training dataset
+)
+trainer.train() # Start the training process
+
+# Step 2: Train a reward model
+from trl import RewardTrainer
+
+trainer = RewardTrainer(
+    model=model, # The language model to be used for reward scoring
+    tokenizer=tokenizer, # The tokenizer for the language model
+    train_dataset=dataset, # Your training dataset for the reward model
+)
+trainer.train() # Train the reward model
+
+# Step 3: Further optimize the SFT model using the rewards from the reward model and PPO algorithm
+from trl import PPOConfig, PPOTrainer
+
+config = PPOConfig() # Configuration for the PPO algorithm
+trainer = PPOTrainer(
+    config=config, # Pass the PPO configuration
+    model=model, # The language model to be optimized
+    tokenizer=tokenizer, # The tokenizer for the language model
+    query_dataloader=query_dataloader, # Dataloader for generating query prompts
+)
+
+for query in query_dataloader: # Iterate through the query prompts
+    response = model.generate(query) # Generate a response from the language model
+    reward = reward_model(response) # Get the reward score from the reward model
+    trainer.step(query, response, reward) # Perform a PPO step to update the language model
+```
+
+This code provides a basic template for implementing RLHF using the `trl` library. You will need to adapt it to your specific use case by providing your own datasets, models, and configurations.
+
+<----------section---------->
+
+## Additional Context
+
+Here is further relevant context to the topic covered.
+
+Popular sampling techniques that are often used in practice are top-k sampling and nucleus sampling. We won’t discuss all of them here - you can read more about them in HuggingFace’s excellent guide.
+[
+26
+]
+Let’s try to generate text using nucleus sampling method. In this method, instead of choosing among the K most likely words, the model looks at the smallest set of words whose cumulative probability is smaller than p. So if there are only a few candidates with large probabilities, the "nucleus" would be smaller, than in the case of larger group of candidates with smaller probabilities. Note that because sampling is probabilistic, the generated text will be different for you - this is not something that can be controlled with a random seed.
+
+Listing 10.7 Generating text using nucleus sampling method
+```python
+>>> nucleus_sampling_args = {
+...    'do_sample': True,
+...    'max_length': 50,
+...    'top_p': 0.92
+... }
+>>> print(generate(prompt='NLP is a', **nucleus_sampling_args))
+```
+NLP is a multi-level network protocol, which is one of the most well-documented protocols for managing data transfer protocols. This is useful if one can perform network transfers using one data transfer protocol and another protocol or protocol in the same chain.
+OK. This is better, but still not quite what you were looking for. Your output still uses the same words too much (just count how many times "protocol" was mentioned!) But more importantly, though NLP indeed can stand for Network Layer Protocol, it’s not what you were looking for. To get generated text that is domain-specific, you need to fine-tune our model - that means, to train it on a dataset that is specific to our task.
+
+### 10.1.7 Fine-tuning your generative model
+In your case, this dataset would be this very book, parsed into a database of lines. Let’s load it from nlpia2 repository. In this case, we only need the book’s text, so we’ll ignore code, headers, and all other things that will not be helpful for our generative model.
+Let’s also initialize a new version of our GPT-2 model for finetuning. We can reuse the tokenizer for GPT-2 we initialized before.
+
+Listing 10.8 Loading the NLPiA2 lines as training data for GPT-2
+```python
+>>> import pandas as pd
+>>> DATASET_URL = ('https://gitlab.com/tangibleai/nlpia2/'
+...     '-/raw/main/src/nlpia2/data/nlpia_lines.csv')
+>>> df = pd.read_csv(DATASET_URL)
+>>> df = df[df['is_text']]
+>>> lines = df.line_text.copy()
+```
+
+This will read all the sentences of natural language text in the manuscript for this book. Each line or sentence will be a different "document" in your NLP pipeline, so your model will learn how to generate sentences rather than longer passages. You want to wrap your list of sentences with a PyTorch Dataset class so that your text will be structured in the way that our training pipeline expects.
+
+Listing 10.9 Creating a PyTorch Dataset for training
+```python
+>>> from torch.utils.data import Dataset
+>>> from torch.utils.data import random_split
+>>> class NLPiADataset(Dataset):
+>>>     def __init__(self, txt_list, tokenizer, max_length=768):
+>>>         self.tokenizer = tokenizer
+>>>         self.input_ids = []
+>>>         self.attn_masks = []
+>>>         for txt in txt_list:
+>>>             encodings_dict = tokenizer(txt, truncation=True,
+...                 max_length=max_length, padding="max_length")
+>>>             self.input_ids.append(
+...                 torch.tensor(encodings_dict['input_ids']))
+>>>     def __len__(self):
+>>>         return len(self.input_ids)
+>>>     def __getitem__(self, idx):
+>>>         return self.input_ids[idx]
+```
+Now, we want to set aside some samples for evaluating our loss mid-training. Usually, we would need to wrap them in the DataLoader wrapper, but luckily, the Transformers package simplifies things for us.
+
+Listing 10.10 Creating training and evaluation sets for fine-tuning
+```python
+>>> dataset = NLPiADataset(lines, tokenizer, max_length=768)
+>>> train_size = int(0.9 * len(dataset))
+>>> eval_size = len(dataset) - train_size
+>>> train_dataset, eval_dataset = random_split(
+...     dataset, [train_size, eval_size])
+```
+
+Finally, you need one more Transformers library object - DataCollator. It dynamically builds batches out of our sample, doing some simple pre-prossesing (like padding) in the process. You’ll also define batch size - it will depend on the RAM of your GPU. We suggest starting from single-digit batch sizes and seeing if you run into out-of-memory errors.
+
+If you were doing the training in PyTorch, there are multiple parameters that you would need to specify - such as the optimizer, its learning rate, and the warmup schedule for adjusting the learning rate. This is how you did it in the previous chapters. This time, we’ll show you how to use the presets that transformers package offers in order to train the model as a part of Trainer class. In this case, we only need to specify the batch size and number of epochs! Easy-peasy.
+
+Listing 10.11 Defining training arguments for GPT-2 fine-tuning
+```python
+>>> from nlpia2.constants import DATA_DIR  # #1
+>>> from transformers import TrainingArguments
+>>> from transformers import DataCollatorForLanguageModeling
+>>> training_args = TrainingArguments(
+...    output_dir=DATA_DIR / 'ch10_checkpoints',
+...    per_device_train_batch_size=5,
+...    num_train_epochs=5,
+...    save_strategy='epoch'
+... )
+>>> collator = DataCollatorForLanguageModeling(
+...     tokenizer=tokenizer, mlm=False
+... )  # #2
+```
+
+<----------section---------->
+
+Now you have the pieces that a HuggingFace training pipeline needs to know to start training (finetuning) your model. The TrainingArguments and DataCollatorForLanguageModeling classes help you comply with the Hugging Face API and best practices. It’s a good pattern to follow even if you do not plan to use Hugging Face to train your models. This pattern will force you to make all your pipelines maintain a consistent interface. This allows you to train, test, and upgrade your models quickly each time you want to try out a new base model. This will help you keep up with the fast-changing world of open-source transformer models. You need to move fast to compete with the chickenized reverse centaur algorithms that BigTech is using to try to enslave you.
+
+The mlm=False (masked language model) setting is an especially tricky quirk of transformers. This is your way of declaring that the dataset used for training your model need only be given the tokens in the causal direction —  left to right for English. You would need to set this to True if you are feeding the trainer a dataset that has random tokens masked. This is the kind of dataset used to train bidirectional language models such as BERT.
+
+A causal language model is designed to work the way a neurotypical human brain model works when reading and writing text. In your mental model of the English language, each word is causally linked to the next one you speak or type as you move left to right. You can’t go back and revise a word you’ve already spoken … unless you’re speaking with a keyboard. And we use keyboards a lot. This has caused us to develop mental models where we can skip around left or right as we read or compose a sentence. Perhaps if we’d all been trained to predict masked-out words, like BERT was, we would have a different (possibly more efficient) mental model for reading and writing text. Speed reading training does this to some people as they learn to read and understand several words of text all at once, as fast as possible. People who learn their internal language models differently than the typical person might develop the ability to hop around from word to word in their mind, as they are reading or writing text. Perhaps the language model of someone with symptoms of dyslexia or autism is somehow related to how they learned the language. Perhaps the language models in neurodivergent brains (and speed readers) are more similar to BERT (bidirectional) rather than GPT (left-to-right).
+
+Now you are ready for training! You can use your collator and training args to configure the training and turn it loose on your data.
+
+Listing 10.12 Fine-tuning GPT-2 with HuggingFace’s Trainer class
+```python
+>>> from transformers import Trainer
+>>> ft_model = GPT2LMHeadModel.from_pretrained("gpt2")  # #1
+>>> trainer = Trainer(
+...        ft_model,
+...        training_args,
+...        data_collator=collator,       # #2
+...        train_dataset=train_dataset,  # #3
+...        eval_dataset=eval_dataset
+... )
+>>> trainer.train()
+```
+
+This training run can take a couple of hours on a CPU. So if you have access to a GPU you might want to train your model there. The training should run about 100x faster on a GPU.
+
+Of course, there is a trade-off in using off-the-shelf classes and presets — it gives you less visibility on how the training is done and makes it harder to tweak the parameters to improve performance. As a take-home task, see if you can train the model the old way, with a PyTorch routine.
+Let’s see how well our model does now!
+```python
+>>> generate(model=ft_model, tokenizer=tokenizer,
+...            prompt='NLP is')
+```
+NLP is not the only way to express ideas and understand ideas.
+
+OK, that looks like a sentence you might find in this book. Take a look at the results of the two different models together to see how much your fine-tuning changed the text the LLM will generate.
+```python
+>>> print(generate(prompt="Neural networks",
+...                   model=vanilla_gpt2,
+...                   tokenizer=tokenizer,
+...                   **nucleus_sampling_args))
+Neural networks in our species rely heavily on these networks to understand
+   their role in their environments, including the biological evolution of
+   language and communication...
+>>> print(generate(prompt="Neural networks",
+...                  model=ft_model,
+...                  tokenizer=tokenizer,
+...                  **nucleus_sampling_args))
+Neural networks are often referred to as "neuromorphic" computing because
+   they mimic or simulate the behavior of other human brains. footnote:[...
+```
+That looks like quite a difference! The vanilla model interprets the term 'neural networks' in its biological connotation, while the fine-tuned model realizes we’re more likely asking about artificial neural networks. Actually, the sentence that the fine-tuned model generated resembles closely a sentence from Chapter 7:
+
+Neural networks are often referred to as "neuromorphic" computing because they mimic or simulate what happens in our brains.
+
+There’s a slight difference though. Note the ending of "other human brains". It seems that our model doesn’t quite realize that it talks about artificial, as opposed to human, neural networks, so the ending doesn’t make sense. That shows once again that the generative model doesn’t really have a model of the world, or "understand" what it says. All it does is predict the next word in a sequence. Perhaps you can now see why even rather big language models like GPT-2 are not very smart and will often generate nonsense
+
+### 10.1.8 Nonsense (hallucination)
+As language models get larger, they start to sound better. But even the largest LLMs generate a lot of nonsense. The lack of "common sense" should be no surprise to the experts who trained them. LLMs have not been trained to utilize sensors, such as cameras and microphones, to ground their language models in the reality of the physical world. An embodied robot might be able to ground itself by checking its language model with what it senses in the real world around it. It could correct its common sense logic rules whenever the real world contradicts those faulty rules. Even seemingly abstract logical concepts such as addition have an effect in the real world. One apple plus another apple always produces two apples in the real world. A grounded language model should be able to count and do addition much better.
+
+Like a baby learning to walk and talk, LLMs could be forced to learn from their mistakes by allowing them to sense when their assumptions were incorrect. An embodied AI wouldn’t survive very long if it made the kinds of common sense mistakes that LLMs make. An LLM that only consumes and produces text on the Internet has no such opportunity to learn from mistakes in the physical world. An LLM "lives" in the world of social media, where fact and fantasy are often indistinguishable.
+
+So even the largest of the large, trillion-parameter transformers will generate nonsense responses. Scaling up the nonsense training data won’t help. The largest and most famous LLMs were trained on virtually the entire Internet and this only improves their grammar and vocabulary, not their reasoning ability. Some engineers and researchers describe this nonsensical text as hallucinating. But that’s a misnomer that can lead you astray in your quest to get something consistently useful out of LLMs. An LLM can’t even hallucinate because it can’t think, much less reason or have a mental model of reality.
+
+Hallucination happens when a human fails to separate imagined images or words from the reality of the world they live in. But an LLM has no sense of reality and has never lived in the real world. An LLM that you use on the Internet has never been embodied in a robot. It has never suffered from the consequences of mistakes. It can’t think, and it can’t reason. So it can’t hallucinate.
+
+LLMs have no concept of truth, facts, correctness, or reality. LLMs that you interact with online "live" in the unreal world of the Internet. Engineers fed them texts from both fiction and nonfiction sources. If you spend a lot of time probing what an LLM knows you will quickly get a feel for just how ungrounded models like ChatGPT are. At first, you may be pleasantly surprised by how convincing and plausible the responses to your questions are. And this may lead you to anthropomorphize it. And you might claim that its ability to reason was an "emergent" property that researchers didn’t expect. And you would be right. The researchers at BigTech have not even begun to try to train LLMs to reason. They hoped the ability to reason would magically emerge if they gave LLMs enough computational power and text to read. Researchers hoped to shortcut the need for AI to interact with the physical world by giving LLMs enough descriptions of the real world to learn from. Unfortunately, they also gave LLMs an equal or larger dose of fantasy. Most of the text found online is either fiction or intentionally misleading.
+
+So the researchers' hope for a shortcut was misguided. LLMs only learned what they were taught — to predict the most plausible next words in a sequence. By using the like button to nudge LLMs with reinforcement learning, BigTech has created a BS artist rather than the honest and transparent virtual assistant that they claimed to be building. Just as the like button on social media has turned many humans into sensational blow-hards, it has turned LLMs into "influencers" that command the attention of more than 100 million users. And yet LLMs have no ability or incentives (objective functions) to help them differentiate fact from fiction. To improve the machine’s answers' relevance and accuracy, you need to get better at grounding your models - have their answers based on relevant facts and knowledge.
+
+Luckily, there are time-tested techniques for incentivizing generative models for correctness. Information extraction and logical inference on knowledge graphs are very mature technologies. And most of the biggest and best knowledge bases of facts are completely open source. BigTech can’t absorb and kill them all. Though the open source knowledge base FreeBase has been
+
+<----------section---------->
+
+different approaches; we show you techniques for both.
+
+In addition, deep learning and data-driven programming (machine learning, or probabilistic language modeling) have rapidly diversified the possible applications for NLP and chatbots. This data-driven approach allows ever greater sophistication for an NLP pipeline by providing it with greater and greater amounts of data in the domain you want to apply it to. And when a new machine learning approach is discovered that makes even better use of this data, with more efficient model generalization or regularization, then large jumps in capability are possible.
+
+The NLP pipeline for a chatbot shown in Figure 1.4 contains all the building blocks for most of the NLP applications that we described at the start of this chapter. As in Taming Text, we break out our pipeline into four main subsystems or stages. In addition, we have explicitly called out a database to record data required for each of these stages and persist their configuration and training sets over time. This can enable batch or online retraining of each of the stages as the chatbot interacts with the world. We have also shown a "feedback loop" on our generated text responses so that our responses can be processed using the same algorithms used to process the user statements. The response "scores" or features can then be combined in an objective function to evaluate and select the best possible response, depending on the chatbot’s plan or goals for the dialog. This book is focused on configuring this NLP pipeline for a chatbot, but you may also be able to see the analogy to the NLP problem of text retrieval or "search," perhaps the most common NLP application. And our chatbot pipeline is certainly appropriate for the question-answering application that was the focus of Taming Text.
+
+The application of this pipeline to financial forecasting or business analytics may not be so obvious. But imagine the features generated by the analysis portion of your pipeline. These features of your analysis or feature generation can be optimized for your particular finance or business prediction. That way they can help you incorporate natural language data into a machine learning pipeline for forecasting. Despite focusing on building a chatbot, this book gives you the tools you need for a broad range of NLP applications, from search to financial forecasting.
+
+One processing element in Figure 1.4 that is not typically employed in search, forecasting, or question-answering systems is natural language generation. For chatbots, this is their central feature. Nonetheless, the text generation step is often incorporated into a search engine NLP application and can give such an engine a large competitive advantage. The ability to consolidate or summarize search results is a winning feature for many popular search engines (DuckDuckGo, Bing, and Google). And you can imagine how valuable it is for a financial forecasting engine to be able to generate statements, tweets, or entire articles based on the business-actionable events it detects in natural language streams from social media networks and news feeds.
+
+The next section shows how the layers of such a system can be combined to create greater sophistication and capability at each stage of the NLP pipeline.
+
+### 1.10 Processing in depth
+The stages of a natural language processing pipeline can be thought of as layers, like the layers in a feed-forward neural network. Deep learning is all about creating more complex models and behavior by adding additional processing layers to the conventional two-layer machine learning model architecture of feature extraction followed by modeling. In Chapter 5 we explain how neural networks help spread the learning across layers by backpropagating model errors from the output layers back to the input layers. But here we talk about the top layers and what can be done by training each layer independently of the other layers.
+
+Figure 1.8 Example layers for an NLP pipeline
+The top four layers in Figure 1.8 correspond to the first two stages in the chatbot pipeline (feature extraction and feature analysis) in the previous section. For example, part-of-speech tagging (POS tagging), is one way to generate features within the Analyze stage of our chatbot pipeline. POS tags are generated automatically by the default SpaCY pipeline, which includes all the top four layers in this diagram. POS tagging is typically accomplished with a finite state transducer like the methods in the nltk.tag package.
+
+The bottom two layers (Entity Relationships and a Knowledge Base) are used to populate a database containing information (knowledge) about a particular domain. And the information extracted from a particular statement or document using all six of these layers can then be used in combination with that database to make inferences. Inferences are logical extrapolations from a set of conditions detected in the environment, like the logic contained in the statement of a chatbot user. This kind of "inference engine" in the deeper layers of this diagram is considered the domain of artificial intelligence, where machines can make inferences about their world and use those inferences to make logical decisions. However, chatbots can make reasonable decisions without this knowledge database, using only the algorithms of the upper few layers. And these decisions can combine to produce surprisingly human-like behaviors.
+
+Over the next few chapters, we dive down through the top few layers of NLP. The top three layers are all that is required to perform meaningful sentiment analysis and semantic search and to build human-mimicking chatbots. In fact, it’s possible to build a useful and interesting chatbot using only a single layer of processing, using the text (character sequences) directly as the features for a language model. A chatbot that only does string matching and search is capable of participating in a reasonably convincing conversation if given enough example statements and responses.
+
+For example, the open source project ChatterBot simplifies this pipeline by merely computing the string "edit distance" (Levenshtein distance) between an input statement and the statements recorded in its database. If its database of statement-response pairs contains a matching statement, the corresponding reply (from a previously "learned" human or machine dialog) can be reused as the reply to the latest user statement. For this pipeline, all that is required is step 3 (Generate) of our chatbot pipeline. And within this stage, only a brute-force search algorithm is required to find the best response. With this simple technique (no tokenization or feature generation required), ChatterBot can maintain a convincing conversion as the dialog engine for Salvius, a mechanical robot built from salvaged parts by Gunther Cox.
+[
+65
+]
+Will is an open source Python chatbot framework by Steven Skoczen with a completely different approach.
+[
+66
+]
+Will can only be trained to respond to statements by programming it with regular expressions. This is the labor-intensive and data-light approach to NLP. This grammar-based approach is especially effective for question-answering systems and task-execution assistant bots, like Lex, Siri, and Google Now. These kinds of systems overcome the "brittleness" of regular expressions by employing "fuzzy regular expressions."footnote:[The Python regex package is backward compatible with re and adds fuzziness among other features. The regex will replace the re package in future Python versions
+(
+https://pypi.python.org/pypi/regex
+).
+Similarly TRE agrep, or "approximate grep," (
+https://github.com/laurikari/tre
+)
+is an alternative to the UNIX command-line application grep.] and other techniques for finding approximate grammar matches. Fuzzy regular expressions find the closest grammar matches among a list of possible grammar rules (regular expressions) instead of exact matches by ignoring social media. If you need it to respond in real-time, without continuous monitoring by humans, you will need to think about ways to prevent it from saying things that harm your business, your reputation, or your users. You’ll need to do more than simply connect your users directly to the LLM.
+

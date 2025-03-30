@@ -1,0 +1,101 @@
+## Natural Language Processing and Large Language Models: Prompt Engineering
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 18: Prompt Engineering**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+
+### Introduction to Prompt Engineering
+
+Prompt engineering is a rapidly evolving field crucial for harnessing the power of Large Language Models (LLMs).  It focuses on crafting and refining input prompts to effectively direct LLMs towards desired outputs across various applications and research domains.  This involves understanding how LLMs interpret language, their strengths and limitations, and tailoring prompts to elicit accurate, relevant, and creative responses.  Effective prompt engineering aims to optimize LLM performance for tasks like question answering, text summarization, translation, code generation, and much more. It bridges the gap between human intentions and machine interpretation, enabling seamless interaction with these powerful language models.
+
+<----------section---------->
+
+###  Goals of Prompt Engineering
+
+Prompt engineering serves several key purposes:
+
+* **Understanding LLM Capabilities and Limitations:**  By experimenting with different prompts, we gain insights into what LLMs can and cannot do.  This includes identifying their biases, understanding their reasoning abilities, and recognizing their susceptibility to generating inaccurate or misleading information.
+
+* **Improving LLM Performance:** Well-crafted prompts significantly impact LLM performance across a wide range of tasks.  Clear instructions, relevant context, and specific output formats guide the model towards producing desired results, minimizing ambiguity and improving accuracy.
+
+* **Facilitating Seamless Interaction:**  Prompt engineering simplifies the interaction between humans and LLMs.  It provides a structured way to communicate tasks and expectations, making it easier to integrate LLMs into various applications and workflows.
+
+* **Unlocking New Capabilities:** Advanced prompt engineering techniques enable the integration of domain-specific knowledge, external resources, and other tools, augmenting LLM capabilities and expanding their potential applications.
+
+<----------section---------->
+
+### Writing Effective Prompts
+
+Crafting effective prompts is an iterative process.  Start with simple prompts and progressively add complexity, refining them based on the model’s output.  Key principles include:
+
+* **Clarity and Specificity:** Use precise verbs like "write," "summarize," "translate," or "classify" at the beginning of the prompt to clearly define the task.
+
+* **Detailed Instructions:** Provide comprehensive instructions, specifying the desired format, length, and style of the output.  The more detail, the better the LLM can understand the intended outcome.
+
+* **Illustrative Examples:** Including examples within the prompt, especially for complex tasks, demonstrates the desired output format and guides the model towards producing similar results.
+
+* **Balancing Detail and Length:**  While detail is crucial, avoid excessively long prompts, which can confuse the model.  Experiment to find the optimal balance between providing sufficient information and maintaining conciseness.
+
+
+<----------section---------->
+
+### Elements of a Prompt
+
+A well-structured prompt typically comprises the following elements:
+
+* **Instruction:** The specific task or instruction for the LLM to perform (e.g., "Summarize this text," "Translate to French").
+
+* **Context:**  Background information or additional context relevant to the task, helping the model generate more accurate and informed responses.
+
+* **Input Data:** The text, code, or other data the model should process or use as input for the task.
+
+* **Output Indicator:** The desired output format, type, or style (e.g., "a list of five bullet points," "a paragraph of 100 words," "a JSON object").
+
+
+<----------section---------->
+
+### In-Context Learning
+
+In-context learning is a powerful capability of LLMs. It allows the model to perform tasks by leveraging information provided directly within the prompt, without requiring any updates to its underlying parameters. This is achieved by including various elements in the prompt context, such as:
+
+* **Reference Material:** Providing relevant text or data to inform the model's response.
+* **Input-Output Pairs:** Demonstrating the desired behavior through examples.
+* **Step-by-Step Instructions:** Guiding the model through a complex process.
+* **Clarifications:** Addressing potential ambiguities or providing additional constraints.
+* **Templates:** Offering structural guidance for the desired output.
+
+
+<----------section---------->
+
+
+### Prompts and NLP Tasks
+
+Prompt engineering enables LLMs to tackle a diverse range of NLP tasks, including:
+
+* **Text Summarization:** Condensing larger texts into concise summaries.
+* **Information Extraction:** Identifying and extracting specific information from a given text.
+* **Question Answering:** Providing answers to questions based on provided context.
+* **Text Classification:** Categorizing text into predefined categories.
+* **Code Generation:** Generating code in various programming languages.
+* **Reasoning:**  Performing logical reasoning tasks, although this remains a challenging area for LLMs and often requires careful prompt design and evaluation.
+
+
+<----------section---------->
+
+
+### System Prompts
+
+System prompts are instructions provided to the LLM before any user interaction.  They set the overall behavior, context, tone, and specific guidelines for the model's responses.  This helps establish a consistent persona and focus for the LLM, ensuring that it adheres to specific requirements throughout the conversation.  Examples include instructions to behave as a helpful assistant, a technical support agent, or a creative writer.
+
+
+<----------section---------->
+
+
+### Prompt Engineering Techniques
+
+**(Continued in the next part due to character limits.)**

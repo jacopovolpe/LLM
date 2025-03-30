@@ -1,0 +1,91 @@
+## Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica**
+
+**Lesson 11: From Transformers to LLMs**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+### Outline
+
+* Transformers for text representation and generation
+* Paradigm shift in NLP
+* Pre-training of LLMs
+* Datasets and data pre-processing
+* Using LLMs after pre-training
+
+### Transformers for text representation and generation
+
+Transformers are used for both text representation and generation.  The architecture allows for different configurations depending on the task. Encoder-only models like BERT are typically used for text representation, while decoder-only models like GPT are suited for text generation.  Seq2Seq models, combining encoder and decoder components, can be used for tasks like translation.
+
+*(The diagrams from the original PDF illustrating different transformer architectures should be reinserted here if possible)*
+
+
+### Paradigm Shift in NLP
+
+**Before LLMs:**
+
+* **Feature Engineering:**  Focus was on designing and selecting the best features for a specific task.
+* **Model Selection:** Choosing the optimal model architecture for each task.
+* **Transfer Learning:**  Addressing scarce labeled data by transferring knowledge from other domains.
+* **Overfitting vs. Generalization:** Balancing model complexity and capacity to prevent overfitting while maintaining performance.
+
+**Since LLMs:**
+
+* **Pre-training and Fine-tuning:** Leveraging large amounts of unlabeled data through pre-training, followed by fine-tuning on specific tasks.
+* **Zero-shot and Few-shot learning:** Enabling models to perform on tasks with limited or no training data.
+* **Prompting:** Guiding models to understand tasks by describing them in natural language.
+* **Interpretability and Explainability:**  Understanding the inner workings of these complex models.
+
+**What caused this shift?**
+
+Recurrent networks struggled with long sequences due to information loss during encoding and their sequential nature, hindering parallel training. The attention mechanism addressed these limitations by:
+
+* Handling long-range dependencies
+* Enabling parallel training
+* Calculating dynamic attention weights based on input.
+
+### Pre-training of LLMs
+
+**Self-supervised Pre-training:**
+
+LLMs are pre-trained in a self-supervised manner using vast amounts of unlabeled text data.  Supervised tasks are created from this unlabeled data to train the model.
+
+* **Autoencoding models (e.g., Masked Language Modeling - MLM):** Encoder-only models predict masked words using the surrounding context, providing a bidirectional understanding of the text.
+* **Autoregressive models (e.g., Causal Language Modeling - CLM):** Decoder-only models predict the next word in a sequence based on preceding words, making them suitable for text generation.
+* **Seq2seq models (e.g., Span Corruption):**  These models are trained to reconstruct corrupted spans of text, requiring both context understanding and generation capabilities.
+
+Different pre-training tasks can be combined, and the flexibility in designing these tasks contributes to the effectiveness of the learned representations. Self-supervised learning allows models to learn from the language itself, developing a general understanding that can be adapted to various downstream tasks.  Pre-trained language models can also serve as a knowledge base, enabling zero-shot performance on a range of NLP tasks.
+
+
+### Datasets and Data Pre-processing
+
+**Datasets:**
+
+LLM training requires massive text datasets.  Common sources include:
+
+* **Books:** BookCorpus, Gutenberg, and other proprietary book datasets.
+* **CommonCrawl:** A vast web crawl archive requiring pre-processing due to the presence of low-quality data.
+* **Wikipedia:**  A high-quality encyclopedia available in multiple languages.
+* **Other Sources:** Reddit, web pages, code repositories, etc.
+
+**Data Pre-processing:**
+
+Pre-processing is crucial for LLM performance and safety and includes:
+
+* **Quality Filtering:** Removing low-quality text using heuristics or classifiers.
+* **Deduplication:** Eliminating duplicate data to prevent training instability and dataset contamination.
+* **Privacy Scrubbing:** Removing sensitive information to protect privacy.
+* **Filtering Toxic and Biased Text:** Ensuring fairness and mitigating harmful outputs.
+
+### Using LLMs after Pre-training
+
+**Fine-tuning:**
+
+Fine-tuning involves adjusting model weights via gradient descent to optimize performance on a specific task. This can involve fine-tuning the entire network, specific readout heads, or using parameter-efficient methods like adapters.
+
+**Prompting:**
+
+Prompting involves designing input prompts to guide the model towards desired outputs without changing its parameters. This allows a single model to perform various tasks by simply adapting the input prompt.

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #6c757d;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 10px;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e5ec;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 32px;
+            letter-spacing: -0.5px;
+        }
+        
+        .file-input-container {
+            position: relative;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .file-input-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-input-label {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .file-input-label:hover {
+            background-color: #304dcc;
+            transform: translateY(-1px);
+        }
+        
+        #fileInput {
+            position: absolute;
+            left: -9999px;
+        }
+        
+        .file-input-text {
+            margin-left: 15px;
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+        
+        .logs-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        
+        .log-entry {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .log-entry:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .timestamp {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 15px;
+            background-color: rgba(67, 97, 238, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        
+        .log-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        
+        .log-field {
+            margin-bottom: 12px;
+        }
+        
+        .field-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .field-name::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .field-value {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            border: 1px solid #eee;
+            font-size: 14px;
+            line-height: 1.7;
+            max-height: 300px;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .missing {
+            color: var(--danger-color);
+            font-style: italic;
+        }
+        
+        .document-list {
+            margin-left: 10px;
+            list-style-type: none;
+        }
+        
+        .document-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            background-color: rgba(67, 97, 238, 0.05);
+            padding: 10px 10px 10px 35px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .document-list li:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .document-list li::before {
+            content: "📄";
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        
+        .model-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #eee;
+        }
+        
+        .model-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        .model-tag:hover {
+            background-color: #dee2e6;
+            transform: translateY(-2px);
+        }
+        
+        .no-logs {
+            text-align: center;
+            padding: 60px;
+            color: var(--secondary-color);
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .no-logs::before {
+            content: "📋";
+            display: block;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .query-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .query-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .log-entry {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Log Viewer</h1>
+        </header>
+        
+        
+        <div class="file-input-container">
+            <label for="fileInput" class="file-input-label">Seleziona File</label>
+            <span class="file-input-text">Nessun file selezionato</span>
+            <input type="file" id="fileInput" class="file-input" accept=".json, .log">
+        </div>
+        
+        <div id="logs" class="logs-container"></div>
+    </div>
+
+    <script>
+        // Funzione per caricare e visualizzare i log
+        function loadAndDisplayLogs(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const logs = JSON.parse(e.target.result);
+                    displayLogs(logs);
+                    document.querySelector('.file-input-text').textContent = file.name;
+                } catch (error) {
+                    alert("Errore nel parsing del file JSON.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Funzione per visualizzare i log
+        function displayLogs(logs) {
+            const logsContainer = document.getElementById('logs');
+            logsContainer.innerHTML = '';
+
+            if (!Array.isArray(logs) || logs.length === 0) {
+                logsContainer.innerHTML = '<div class="no-logs">Nessun log disponibile o il file JSON non contiene un array di log valido.</div>';
+                return;
+            }
+
+            // Ordina i log per timestamp (dal più recente al più vecchio)
+            logs.sort((a, b) => {
+                const dateA = a.timestamp ? new Date(a.timestamp) : 0;
+                const dateB = b.timestamp ? new Date(b.timestamp) : 0;
+                return dateB - dateA;
+            });
+
+            logs.forEach(log => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('log-entry');
+                
+                // Utilizza il timestamp direttamente dal formato italiano
+                const formattedDate = log.timestamp || "Mancante";
+                
+                entryDiv.innerHTML = `
+                    <div class="log-header">
+                        <span class="timestamp">${formattedDate}</span>
+                    </div>
+                    <div class="log-content">
+                        <div class="query-section">
+                            <div class="log-field">
+                                <div class="field-name">Domanda Originale:</div>
+                                <div class="field-value">${log.original_question || '<span class="missing">Mancante</span>'}</div>
+                            </div>
+                            
+                            <div class="log-field">
+                                <div class="field-name">Query Riformulata:</div>
+                                <div class="field-value">${log.reformulated_query || '<span class="missing">Mancante</span>'}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="log-field">
+                            <div class="field-name">Risposta Finale:</div>
+                            <div class="field-value">${log.final_response || '<span class="missing">Mancante</span>'}</div>
+                        </div>
+                        
+                        <div class="log-field">
+                            <div class="field-name">Documenti Recuperati:</div>
+                            <div class="field-value">${log.retrieved_documents ? formatDocuments(log.retrieved_documents) : '<span class="missing">Nessuno</span>'}</div>
+                        </div>
+                        
+                        <div class="model-info">
+                            <span class="model-tag">Generazione: ${log.generation_model || 'N/A'}</span>
+                            <span class="model-tag">Embedding: ${log.embedding_model || 'N/A'}</span>
+                            <span class="model-tag">FAISS: ${log.faiss_index || 'N/A'}</span>
+                        </div>
+                    </div>
+                `;
+                logsContainer.appendChild(entryDiv);
+            });
+        }
+
+        // Funzione per formattare i documenti recuperati come elenco
+        function formatDocuments(documents) {
+            if (!Array.isArray(documents) || documents.length === 0) return '<span class="missing">Nessuno</span>';
+            return `<ul class="document-list">${documents.map(doc => `<li>${doc}</li>`).join('')}</ul>`;
+        }
+
+        // Carica il file di log via API quando la pagina si carica
+        window.onload = function() {
+            fetch('/get_logs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ file_name: "assistant.log" }) 
+                })
+                .then(response => response.json()) // Convertiamo la risposta in JSON
+                .then(logs => {
+                    console.log(logs);
+                    displayLogs(logs);
+                })
+                .catch(error => {
+                    console.error("Errore nel caricamento:", error);
+                    document.getElementById('logs').innerHTML = 
+                        '<div class="no-logs">Impossibile caricare il file di log. Prova a selezionare un file manualmente.</div>';
+                });
+        };
+
+        // Gestione del cambio file
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            loadAndDisplayLogs(file);
+        });
+    </script>
+</body>
+</html>

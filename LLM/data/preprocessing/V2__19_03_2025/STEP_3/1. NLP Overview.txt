@@ -1,0 +1,614 @@
+# Natural Language Processing and Large Language Models
+
+**Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree in Computer Engineering) - Lesson 1: NLP Overview**
+
+**Nicola Capuano and Antonio Greco**
+
+**DIEM – University of Salerno**
+
+This document provides an overview of Natural Language Processing (NLP) and Large Language Models (LLMs), serving as the content for the first lesson of a course in Computer Engineering at the University of Salerno. It is presented by Nicola Capuano and Antonio Greco from the DIEM (Department of Information Engineering and Mathematics).
+
+<----------section---------->
+
+## Outline
+
+This lesson will cover the following key areas:
+
+*   **What is Natural Language Processing (NLP):** An introduction to the field of NLP, its goals, and its significance in the broader context of Artificial Intelligence.
+*   **Applications of NLP:** Exploration of the various real-world applications of NLP across different industries and domains.
+*   **History of NLP:** A brief overview of the historical development of NLP, tracing its evolution from early rule-based systems to modern deep learning approaches.
+
+<----------section---------->
+
+## What is Natural Language Processing?
+
+### NLP in the Press
+
+NLP is rapidly gaining recognition and importance, as evidenced by its increasing coverage in mainstream media outlets. The following headlines illustrate the growing interest and, at times, apprehension surrounding NLP's capabilities:
+
+*   "New powerful AI bot creates angst among users: Are robots ready to take our jobs?" - Reflects concerns about the potential displacement of human labor due to advancements in AI-driven automation.
+*   "A Smarter Robot: A new chatbot shows rapid advances in artificial intelligence." - *The New York Times* - Highlights the progress being made in AI, particularly in the development of more sophisticated and human-like chatbots.
+*   "What is ChatGPT, the viral social media AI?" - *The Washington Post* - Indicates the widespread public attention and curiosity surrounding specific NLP models like ChatGPT.
+*   "This AI chatbot is dominating social media with its frighteningly good essays." - *CNN* - Emphasizes the impressive text generation capabilities of AI chatbots, capable of producing high-quality written content.
+*   "ChatGPT may be coming for our jobs. Here are the 10 roles that AI is most likely to replace." - *Business Insider* - Underscores the potential impact of NLP on the job market, particularly for roles involving writing and communication.
+*   "Microsoft co-founder Bill Gates: ChatGPT ‘will change our world’" - *Reuters* - Showcases the transformative potential of NLP, as recognized by influential figures in the technology industry.
+
+<----------section---------->
+
+### Importance of NLP
+
+The significance of NLP is further highlighted by the following quotes from prominent figures in philosophy, technology, and academia:
+
+*   "Natural language is the most important part of Artificial Intelligence" - *John Searle, Philosopher* - Emphasizes the critical role of natural language understanding and generation in achieving true artificial intelligence.
+*   "Natural language processing is a cornerstone of artificial intelligence, allowing computers to read and understand human language, as well as to produce and recognize speech" - *Ginni Rometty, IBM CEO* - Highlights NLP as a foundational technology within AI, enabling computers to interact with and process human language in various forms.
+*   "Natural language processing is one of the most important fields in artificial intelligence and also one of the most difficult" - *Dan Jurafsky, Professor of Linguistics and Computer Science at Stanford University* - Acknowledges the complexity and challenges inherent in NLP, despite its importance.
+
+<----------section---------->
+
+### Definitions
+
+NLP can be defined in several ways, reflecting its interdisciplinary nature and diverse applications:
+
+*   "Natural language processing is the set of methods for making human language accessible to computers" - *Jacob Eisenstein* - Focuses on the goal of bridging the gap between human language and computer understanding.
+*   "Natural language processing is the field at the intersection of computer science and linguistics" - *Christopher Manning* - Highlights the convergence of computer science and linguistics in the pursuit of NLP.
+*   "Make computers to understand natural language to do certain tasks humans can do such as translation, summarization, questions answering" - *Behrooz Mansouri* - Emphasizes the practical application of NLP in replicating human language-based tasks.
+*   "Natural language processing is an area of research in computer science and artificial intelligence concerned with processing natural languages such as English or Mandarin. This processing generally involves translating natural language into data that a computer can use to learn about the world. And this understanding of the world is sometimes used to generate natural language text that reflects that understanding." - *(Natural Language Processing in Action)* - Provides a comprehensive definition, outlining the process of converting natural language into a machine-understandable format and using this understanding to generate new text.
+
+<----------section---------->
+
+### Natural Language Understanding (NLU)
+
+NLU is a subfield of NLP that focuses on enabling machines to comprehend human language.
+
+*   It involves extracting meaning, context, and intent from text, going beyond simple keyword recognition. This can be achieved by identifying named entities, resolving co-references, and inferring relationships between different parts of the text.
+*   Text is transformed into a numerical representation called an embedding, which captures the semantic meaning of words and phrases. Word embeddings like Word2Vec, GloVe, and FastText are commonly used for this purpose. These embeddings allow machines to perform mathematical operations on text, such as measuring the similarity between two sentences.
+
+**Who uses Embeddings:**
+
+*   **Search Engines:** Use embeddings to understand the intent behind search queries and retrieve relevant results, even if the exact keywords are not present in the documents.
+*   **Email Clients:** Employ embeddings to detect spam, classify emails based on their content, and prioritize important messages.
+*   **Social Media:** Use embeddings to moderate posts, identify hate speech, understand user sentiment, and personalize content recommendations.
+*   **CRM Tools:** Analyze customer inquiries to understand customer needs, route inquiries to the appropriate agents, and personalize customer interactions.
+*   **Recommender Systems:** Suggest articles, products, or content based on user preferences and past behavior, using embeddings to match user interests with relevant items.
+
+<----------section---------->
+
+### Natural Language Generation (NLG)
+
+NLG is a subfield of NLP focused on enabling machines to generate human-like text.
+
+*   It involves creating coherent, contextually appropriate text that is grammatically correct and stylistically natural. This requires the model to understand the underlying meaning and intent behind the desired output.
+*   NLG is based on a numerical representation of the meaning and sentiment you would like to convey. The model uses this representation to generate text that accurately reflects the desired message. Models such as Transformers use attention mechanisms to focus on the relevant parts of the input when generating the output.
+
+**Applications:**
+
+*   **Machine Translation:** Translates text from one language to another, preserving the meaning and context of the original text.
+*   **Text Summarization:** Creates concise summaries of long documents, preserving key information and main points. Techniques include extractive summarization (selecting existing sentences) and abstractive summarization (generating new sentences).
+*   **Dialogue Processing:** Powers chatbots and virtual assistants, allowing them to engage in conversations with users and provide relevant responses.
+*   **Content Creation:** Generates articles, reports, stories, poetry, and other forms of written content, often with minimal human input. This includes tasks such as generating product descriptions, writing marketing copy, and creating social media posts.
+
+<----------section---------->
+
+### Example: Conversational Agents
+
+Conversational agents (chatbots, virtual assistants) are a prime example of NLP in action, integrating various subfields to simulate human-like interaction.
+
+Conversational agents typically include the following components:
+
+*   **Speech recognition:** Converts spoken language into text.
+*   **Language analysis:** Analyzes the text to understand the user's intent, extract key information, and identify relevant entities.
+*   **Dialogue processing:** Manages the flow of the conversation, keeping track of the context and generating appropriate responses.
+*   **Information retrieval:** Retrieves relevant information from a knowledge base or the internet to answer user questions.
+*   **Text to speech:** Converts the generated text into spoken language.
+
+**Example conversation:**
+
+*   User: "Open the pod bay doors, Hal."
+*   Hal: "I’m sorry, Dave, I’m afraid I can’t do that."
+*   User: "What are you talking about, Hal?"
+*   Hal: "I know that you and Frank were planning to disconnect me, and I'm afraid that's something I cannot allow to happen."
+
+This example, taken from the movie *2001: A Space Odyssey*, illustrates the potential for sophisticated and nuanced interactions with conversational agents, but also highlights the potential for conflict and unexpected behavior.
+
+<----------section---------->
+
+### Conversational Agents in Movies
+
+Conversational agents are frequently featured in movies, reflecting both the fascination and the anxiety surrounding artificial intelligence. Movies like *Her*, *Ex Machina*, and *Blade Runner* explore the ethical and social implications of increasingly human-like AI systems.
+
+<----------section---------->
+
+### NLP is Hard
+
+"I made her duck… what does it mean?"
+
+This seemingly simple sentence illustrates the inherent ambiguity of natural language.
+
+*   "Duck": Can be a noun (waterfowl) or a verb (to lower the head or body quickly).
+*   "Make": Can mean to cook, to create, or to cause someone to do something.
+*   "Her": Can be a possessive pronoun (belonging to her) or a pronoun indicating the recipient of an action (for her).
+
+**Possible meanings:**
+
+*   I cooked waterfowl for her.
+*   I cooked waterfowl belonging to her.
+*   I created the (plaster?) duck she owns.
+*   I caused her to quickly lower her head or body.
+*   I waved my magic wand and turned her into undifferentiated waterfowl.
+
+The intended meaning depends on context, background knowledge, and pragmatic understanding.
+
+<----------section---------->
+
+### Ambiguity
+
+Natural language is extremely rich in form and structure and very ambiguous. This presents a significant challenge for NLP systems.
+
+*   One input can mean many different things. This requires NLP systems to disambiguate the intended meaning based on context, background knowledge, and pragmatic understanding.
+*   Many inputs can mean the same thing. NLP systems need to be able to recognize paraphrases and variations in wording to understand the underlying meaning.
+
+**Levels of ambiguity:**
+
+*   **Lexical ambiguity:** Different meanings of words (e.g., "bank" can refer to a financial institution or the side of a river).
+*   **Syntactic ambiguity:** Different ways to parse the sentence (e.g., "I saw the man on the hill with a telescope").
+*   **Interpreting partial information:** How to interpret pronouns (e.g., "John told Bill that he was wrong" – who was wrong?).
+*   **Contextual information:** Context of the sentence may affect the meaning of that sentence (e.g., sarcasm, irony).
+
+<----------section---------->
+
+### Ambiguity Examples
+
+*   "I saw bats… ?" (Were they flying mammals or cricket/baseball bats?)
+*   "Call me a cab… ?" (Is the speaker requesting a taxi or asking to be referred to as a cab?)
+
+<----------section---------->
+
+### NLP and Linguistics
+
+NLP techniques draw on various aspects of linguistics to understand and process natural language.
+
+*   **Phonetics:** Understanding the physical sounds of speech and how they are produced and perceived.
+*   **Morphology:** Knowledge of the structure and formation of words, including their meaningful components (morphemes). For example, understanding that "unbreakable" is composed of the morphemes "un-", "break", and "-able".
+*   **Syntax:** Understanding the rules and structures governing the arrangement of words in sentences (grammar).
+*   **Semantics:** Insight into the meaning of words, phrases, and sentences.
+*   **Pragmatics:** Understanding how context influences the interpretation of meaning, including speaker intent, background knowledge, and social conventions.
+
+<----------section---------->
+
+### NLP vs Linguistics
+
+While both NLP and linguistics are concerned with language, they have different goals and approaches:
+
+**Linguistics:**
+
+*   Focused on the study of language as a phenomenon.
+*   Explores the structure, meaning, and use of language from a theoretical perspective.
+*   May employ computational methods and tools as part of computational linguistics, but the primary goal is to understand language, not to build practical applications.
+
+**NLP:**
+
+*   Focused on providing computational capabilities that utilize human language.
+*   Designs and implements algorithms to understand and generate human language for specific tasks.
+*   Applies results from linguistics to develop practical applications, such as machine translation, chatbots, and information retrieval systems.
+
+<----------section---------->
+
+## Applications of Natural Language Processing
+
+### NLP Killer Applications
+
+Key applications of NLP include:
+
+*   **Language translation:** Automatically translating text or speech from one language to another.
+*   **Email smart filtering:** Classifying emails based on their content, prioritizing important messages, and filtering out spam.
+*   **Smart assistant:** Powering virtual assistants like Siri, Alexa, and Google Assistant, enabling them to respond to voice commands and provide information.
+*   **Sentiment analysis:** Determining the emotional tone or sentiment expressed in text, used for market research, brand monitoring, and customer feedback analysis.
+*   **Document analysis:** Extracting information from documents, identifying key themes, and summarizing content.
+*   **Chatbots:** Creating conversational agents that can interact with users and provide customer support, answer questions, or complete tasks.
+*   **Semantic searches:** Improving the accuracy and relevance of search results by understanding the meaning behind search queries.
+*   **Automatic summarization:** Generating concise summaries of long documents, preserving key information.
+
+<----------section---------->
+
+### Applications by Business Sector
+
+NLP is transforming various industries by automating tasks, improving efficiency, and providing new insights from textual data.
+
+*   **Healthcare:**
+    *   Process and interpret patient data, including medical records, to assist in diagnosis, treatment plans, and patient care. NLP can help extract information about symptoms, medications, and medical history from unstructured text.
+    *   Extract information from unstructured data sources such as doctor's notes and research papers to improve treatment plans and accelerate research.
+*   **Finance:**
+    *   Analyze market sentiment from news articles and social media to manage risk and detect fraudulent activities. NLP can also be used to identify patterns and anomalies in financial transactions.
+    *   Generate insights from financial reports and news to inform investment decisions and improve financial forecasting.
+*   **E-commerce and Retail:**
+    *   Personalized recommendations based on customer browsing history and purchase behavior, improved search functionalities, and customer service chatbots.
+    *   Sentiment analysis to gauge customer satisfaction and market trends, helping businesses understand customer preferences and adapt their strategies.
+*   **Legal:**
+    *   Automate document analysis, aiding in legal research by identifying relevant cases and precedents.
+    *   Streamlining the review process for contracts and legal documentation, identifying potential risks and ensuring compliance.
+*   **Customer Service:**
+    *   Automate responses to common customer inquiries, guide users through troubleshooting steps, and analyze feedback to improve efficiency and customer satisfaction.
+*   **Education:**
+    *   Automatic grading of essays and assignments, provision of personalized learning tools based on student needs.
+    *   Summarization and generation of educational materials to create personalized learning experiences and make educational content more accessible.
+*   **Automotive:**
+    *   Intelligent navigation systems that understand natural language voice commands and provide real-time traffic updates, and voice-activated controls for in-car entertainment and vehicle functions.
+*   **Technology:**
+    *   Assists in software development by generating code snippets and completing code, improving developer productivity.
+    *   Enhances code quality through automated reviews and suggestions, identifying potential bugs and improving code readability.
+*   **Media and Entertainment:**
+    *   Assist in generating scripts, articles, and creative writing, freeing up writers to focus on more complex tasks.
+    *   Enhance user engagement with interactive storytelling and personalized media experiences, creating immersive and engaging content.
+
+<----------section---------->
+
+### Many Other Applications…
+
+NLP is pervasive in modern technology, with applications that may surprise you.
+
+*   A search engine can provide more meaningful results if it indexes web pages or document archives in a way that takes into account the meaning of natural language text. This involves understanding the relationships between words, identifying key concepts, and disambiguating ambiguous terms.
+*   Autocomplete uses NLP to complete your thought and is common among search engines and mobile phone keyboards. This relies on predicting the most likely words or phrases based on the user's input and past behavior.
+*   Many word processors, browser plugins, and text editors have spelling correctors, grammar checkers, concordance composers, and most recently, style coaches. These tools use NLP techniques to identify errors in writing, suggest improvements, and ensure consistency in style and tone.
+*   Some dialogue engines (chatbots) use natural language search to find a response to their conversation partner’s message. This involves understanding the user's intent, identifying relevant keywords, and retrieving appropriate responses from a knowledge base.
+*   NLP pipelines that generate (compose) text can be used not only to compose short replies in chatbots and virtual assistants but also to assemble much longer passages of text. This involves generating coherent and contextually appropriate text that is grammatically correct and stylistically natural.
+*   The Associated Press uses NLP “robot journalists” to write entire financial news articles and sporting event reports. This involves extracting information from structured data sources, generating narrative text, and ensuring accuracy and objectivity.
+*   Bots can compose weather forecasts that sound a lot like what your hometown weather person might say, perhaps because human meteorologists use word processors with NLP features to draft scripts. This involves accessing weather data, generating descriptive text, and adapting the style and tone to match human meteorologists.
+*   NLP spam filters in early email programs helped email overtake telephone and fax communication channels in the '90s. And the spam filters have retained their edge in the cat and mouse game between spam filters and spam generators for email but may be losing in other environments like social networks. An estimated 20% of the tweets about the 2016 US presidential election were composed by chatbots.
+
+The following table categorizes NLP applications:
+
+| Category            | Application                                                                      |
+| :------------------ | :------------------------------------------------------------------------------- |
+| Search              | Web Documents, Autocomplete                                                      |
+| Editing             | Spelling, Grammar, Style                                                         |
+| Dialog              | Chatbot, Assistant, Scheduling                                                   |
+| Writing             | Index, Concordance, Table of contents                                            |
+| Email               | Spam filter, Classification, Prioritization                                        |
+| Text mining         | Summarization, Knowledge extraction, Medical diagnoses                             |
+| Law                 | Legal inference, Precedent search, Subpoena classification                          |
+| News                | Event detection, Fact checking, Headline composition                               |
+| Attribution         | Plagiarism detection, Literary forensics, Style coaching                            |
+| Sentiment analysis  | Community morale monitoring, Product review triage, Customer care                  |
+| Behavior prediction | Finance, Election forecasting, Marketing                                          |
+| Creative writing    | Movie scripts, Poetry, Song lyrics                                                |
+
+<----------section---------->
+
+### Hype Cycle
+
+The Gartner Hype Cycle for Emerging Technologies (2023) provides a framework for understanding the maturity, adoption rate, and potential impact of various technologies, including NLP and related fields. The cycle depicts stages from Innovation Trigger to Peak of Inflated Expectations, Trough of Disillusionment, Slope of Enlightenment, and finally, Plateau of Productivity.
+
+The Gartner Hype Cycle for Emerging Technologies (2023) positions NLP and related technologies within the innovation lifecycle, including:
+
+*   API-Centric SaaS
+*   Generative AI
+*   AI TRiSM
+*   WebAssembly (Wasm)
+*   Federated Machine Learning
+*   Industry Cloud Platforms
+*   Internal Developer Portal
+*   Cloud Sustainability
+*   Homomorphic Encryption
+*   Value Stream Management Platforms
+*   Reinforcement Learning
+*   Software Engineering
+*   Cloud Development Environments
+*   Graph Data Science
+*   AI Simulation
+*   Causal AI
+*   Postquantum Cryptography
+*   Neuro-Symbolic AI
+*   Augmented FinOps
+*   Generative Cybersecurity AI
+*   Cybersecurity
+*   Mesh Architecture
+
+The cycle depicts stages from Innovation Trigger to Peak of Inflated Expectations, Trough of Disillusionment, Slope of Enlightenment, and finally, Plateau of Productivity. The estimated time to reach the plateau varies for each technology. The placement of each technology on the Hype Cycle provides insights into its current state and future prospects. Technologies at the "Peak of Inflated Expectations" are often overhyped and may not yet be ready for widespread adoption, while technologies on the "Slope of Enlightenment" are beginning to show promise and are likely to become more mainstream in the coming years.
+
+<----------section---------->
+
+### NLP Market
+
+NLP is a promising career option, driven by the increasing demand for NLP applications across various industries.
+
+*   Growing demand for NLP applications across various industries, including healthcare, finance, e-commerce, and customer service.
+*   Projected employment growth of 22% between 2020 and 2030, indicating strong job prospects for NLP professionals.
+
+The NLP market global forecast in USD Billions is projected to increase from 18.9 in 2023 to 61.8 in 2028. This significant growth is driven by factors such as increasing data volumes, advancements in NLP algorithms, and growing adoption of AI-powered solutions.
+
+*   North America
+*   Europe
+*   Asia Pacific
+*   Middle East & Africa
+*   Latin America
+
+These regions are expected to contribute to the growth of the NLP market, with varying adoption rates and application areas. North America and Europe are currently the largest markets for NLP, while Asia Pacific is expected to be the fastest-growing region due to increasing investments in AI and growing adoption of NLP technologies across various industries.
+
+<----------section---------->
+
+## History of NLP
+
+### First Steps of NLP
+
+NLP has had a history of ups and downs, marked by periods of intense enthusiasm followed by periods of disillusionment.
+
+*   Influenced by the growth of computational resources and changes in approaches, shifting from rule-based systems to statistical models and, more recently, to deep learning.
+
+**1950's and 1960's**
+
+*   The first application that sparked interest in NLP was machine translation, driven by the Cold War and the need to automatically translate documents from Russian to English.
+*   The first machine translation systems used dictionary lookup and basic word order rules to produce translations. These early systems were limited by their inability to handle ambiguity, idiomatic expressions, and syntactic variations.
+*   The 1950s saw a lot of excitement: researchers predicted that machine translation can be solved in 3 years or so, reflecting the early optimism and overestimation of the challenges involved.
+
+<----------section---------->
+
+### Machine Translation in 50s
+
+**Example:**
+
+Given:
+
+```
+Dictionary: Red -> Rosso
+            House -> Casa
+```
+
+Translate:
+
+```
+The red house -> Il rosso casa   (incorrect)
+```
+
+But it should be:
+
+```
+La casa rossa (correct)
+```
+
+This example highlights the limitations of simple dictionary lookup approaches. Translating "The red house" word-by-word results in an incorrect translation in Italian because the adjective "red" follows the noun in Italian, and both need to agree in gender.
+
+Dictionary lookup alone is insufficient. Machine translation requires understanding grammatical rules, word order, and contextual information.
+
+<----------section---------->
+
+### How to deal with language ambiguity?
+
+### Generative Grammars
+
+**1957: Chomsky’s Generative Grammar**
+
+*   A system of rules for generating all possible sentences in a language, providing a formal framework for describing the syntax of natural language.
+*   Enabled prediction of grammatical correctness, allowing computers to verify whether a sentence is grammatically well-formed.
+*   Understanding of language structure, providing a basis for developing parsing algorithms and machine translation systems.
+*   Influenced research in machine translation, inspiring the development of syntax-based translation approaches.
+
+**1966: The Reality Check**
+
+*   Early translation systems fell short in effectiveness, failing to meet expectations and demonstrating limited accuracy.
+*   Limited by their inability to handle the ambiguity and complexity of natural language, struggling to deal with idiomatic expressions, metaphorical language, and contextual variations.
+
+<----------section---------->
+
+### ALPAC Report
+
+**Automatic Language Processing Advisory Committee**
+
+*   Established to assess advancements in computational linguistics, evaluating the progress and potential of machine translation research.
+*   The 1966 ALPAC report recommended halting research into machine translation due to the lack of significant progress and the limited practical value of existing systems.
+*   Shift focus from developing end-to-end machine translation systems to enhancing tools that assist human translators, recognizing the value of human expertise in language translation.
+*   It significantly impacted NLP and AI research, contributing to the first AI winter, a period of reduced funding and interest in AI research.
+
+[https://www.mt-archive.net/50/ALPAC-1966.pdf](https://www.mt-archive.net/50/ALPAC-1966.pdf)
+
+<----------section---------->
+
+### ELIZA
+
+A pioneering conversational agent, demonstrating the potential of computer-based conversation.
+
+*   Created by Joseph Weizenbaum in the 1960s, one of the earliest examples of a chatbot.
+*   Designed to simulate a conversation between a psychotherapist and a patient, using simple pattern matching and substitution techniques.
+
+**Features and Limitations:**
+
+*   Demonstrated the potential of computer-based conversation, showing that computers could engage in seemingly intelligent interactions with humans.
+*   Utilized pattern matching and substitution to generate responses, using keywords and rules to identify patterns in user input and generate appropriate responses.
+*   Limited in handling complex conversations, struggling to understand the meaning behind user input and often producing irrelevant or repetitive responses.
+*   Could not maintain context beyond a few exchanges, failing to remember previous turns in the conversation and losing track of the overall topic.
+*   Often produced irrelevant or repetitive responses, relying on simple heuristics and lacking the ability to generate original or insightful contributions.
+
+[https://psych.fullerton.edu/mbirnbaum/psych101/eliza.htm](https://psych.fullerton.edu/mbirnbaum/psych101/eliza.htm)
+
+<----------section---------->
+
+### The Turing Test
+
+"I propose to consider the question: can machines think? ... We can only see a short distance ahead, but we can see plenty there that needs to be done" - *Alan Turing, Computing Machinery and Intelligence, 1950*
+
+**Turing Test aka The Imitation game:**
+
+*   A human, a computer, and an interrogator in a different room communicate via written messages. The interrogator's task is to determine which participant is the human and which is the computer.
+*   The interrogator should classify the human and the machine based solely on their written responses, without knowing their identities.
+
+<----------section---------->
+
+### The Turing Test
+
+**Capabilities for passing the Turing Test**
+
+*   Natural Language Understanding to interpret user input accurately and extract relevant information.
+*   Knowledge Representation to draw on relevant information from a vast store of knowledge about the world.
+*   Automated Reasoning to generate appropriate and logical responses based on the context of the conversation.
+*   Natural Language Generation to produce human-like textual responses that are grammatically correct and stylistically natural.
+*   Context Management to maintain and utilize context across multiple exchanges in a conversation, remembering previous turns and tracking the overall topic.
+*   Adaptability and Learning to adapt responses based on user behavior and feedback, improving the quality of the conversation over time.
+
+<----------section---------->
+
+### The Turing Test
+
+**Successes with Turing test**
+
+*   A (controversial) success in 2014: a chatbot mimicking the answer of a 13 years old boy, raising questions about the criteria for intelligence and the validity of the Turing Test.
+*   Since then, other (controversial) successes, further fueling the debate about whether machines can truly think.
+
+**Limitations of Turing Test**
+
+*   Not reproducible, making it difficult to compare different systems and assess progress over time.
+*   Is emulating humans necessary for achieving intelligence? This questions whether human-like behavior is a necessary condition for intelligence.
+*   Many AI researchers have shifted focus to other benchmarks, such as those focused on specific tasks like image recognition and natural language understanding.
+*   Less commonly used today as a primary measure of AI progress, replaced by more focused and quantitative benchmarks.
+
+<----------section---------->
+
+### Raise of Symbolic Approaches
+
+**1970's and 1980's:**
+
+*   Programmers started creating structured representations of real-world information for computer understanding (ontologies), defining concepts, relationships, and properties in a formal and machine-readable way.
+*   Complex rule-based systems were developed for various NLP tasks, including parsing, morphology, semantics, reference, and dialogue processing, using handcrafted rules to analyze and generate natural language.
+
+**Main applications were:**
+
+*   **Expert Systems:** mimicked human expertise in specific domains, using rule-based reasoning to solve problems and provide advice.
+*   **Information Retrieval:** enhanced search and data extraction, using keyword matching and indexing techniques to retrieve relevant documents.
+
+**Main limitations were:**
+
+*   **Flexibility:** challenges in adapting to new or ambiguous contexts, struggling to handle variations in language and unexpected input.
+*   **Scalability:** difficulty handling large-scale or diverse data, requiring significant manual effort to maintain and update the rules.
+
+<----------section---------->
+
+### Statistical Revolution
+
+**1990's:**
+
+*   The computing power increased substantially, enabling the processing of large datasets and the development of more complex statistical models.
+*   Statistical models with simple representations started to outperform complex hand-coded linguistic rules, demonstrating the effectiveness of data-driven approaches.
+*   Learn patterns from data, using statistical techniques to identify relationships between words, phrases, and concepts.
+*   Can handle variations and complexities in natural language, adapting to different writing styles and linguistic variations.
+*   Large corpora became essential, providing the data needed to train statistical models and estimate probabilities.
+*   Long Short-Term Memory (LSTM) networks was invented by Hochreiter and Schmidhuber in 1997, a type of recurrent neural network capable of learning long-range dependencies in sequential data, opening up new possibilities for NLP tasks such as machine translation and language modeling.
+
+*"Whenever I fire a linguist, our machine translation performance improves" - Fred Jelinek, IBM*
+
+This quote, while humorous, reflects the shift away from rule-based approaches towards statistical methods in NLP.
+
+<----------section---------->
+
+### Advances in NLP
+
+**2000's**
+
+*   Increased Use of Neural Networks, inspired by the structure and function of the human brain.
+*   Introduction of Word Embeddings, representing words as dense vectors of numbers, capturing semantic relationships between words.
+    *   Words are represented as dense vectors of numbers, typically with hundreds of dimensions, capturing semantic and syntactic information.
+    *   Words with similar meanings are associated with similar vectors, allowing machines to measure the semantic similarity between words.
+    *   Early algorithms struggled to efficiently learn these representations, requiring large datasets and significant computational resources.
+
+**2006: launch of Google Translate**
+
+*   The first commercially successful NLP system, demonstrating the potential of statistical machine translation.
+*   Utilized statistical models to automatically translate documents, leveraging large parallel corpora and sophisticated algorithms.
+
+<----------section---------->
+
+### Deep Learning Era
+
+**2010's:**
+
+*   LSTM and CNN became widely adopted for NLP, enabling the development of more powerful and accurate models for various tasks.
+*   The availability of large text corpora enabled the training of increasingly complex models, driving significant improvements in NLP performance.
+
+**Word2Vec (2013):**
+
+*   Efficient Estimation of Word Representations in Vector Space, a groundbreaking algorithm for learning word embeddings from large text corpora.
+*   The first algorithm to efficiently learn word embeddings, making it possible to capture semantic relationships between words in a scalable and computationally efficient manner.
+*   Enables semantic operations with word vector, such as calculating the similarity between words, identifying analogies, and performing word arithmetic.
+*   Paved the way for more advanced models such as GloVe, fastText, ELMo, BERT, COLBERT, GPT, ..., inspiring further research and development in word embedding techniques.
+
+<----------section---------->
+
+### Deep Learning Era
+
+**Sequence-to-Sequence Models (2014):**
+
+*   Introduction of the encoder-decoder architecture, a fundamental framework for sequence generation tasks such as machine translation and text summarization.
+    *   **Encoder:** Encodes the input sequence into a context vector, capturing the essential information from the input.
+    *   **Decoder:** Decodes the output sequence from the context vector, generating the desired output based on the encoded information.
+*   Useful for automatic translation, question answering, text summarization, text generation, and other sequence generation tasks.
+
+**Example:**
+
+```
+The red house -> Context vector [0.3, 0.6, -0.2, ..., 0.1] -> La casa rossa
+```
+
+In this example, the encoder processes the English sentence "The red house" and generates a context vector representing its meaning. The decoder then uses this context vector to generate the equivalent Italian sentence, "La casa rossa."
+
+<----------section---------->
+
+### Virtual Assistants
+
+A Virtual Assistant performs a range of tasks or services based on user input in natural language. These tasks include setting alarms, playing music, providing weather updates, answering questions, and controlling smart home devices.
+
+Many VA were launched in 2010's:
+
+*   2011: Siri launched by Apple on iOS devices, pioneering voice-based interaction on smartphones.
+*   2014: Cortana introduced by Microsoft for Windows Phone, integrating voice interaction with desktop and mobile devices.
+*   2014: Alexa launched by Amazon with the Echo, pioneering voice-controlled smart home devices and establishing a new category of computing.
+*   2015: Google Assistant introduced, integrating voice interaction with Android and Google Home, providing a seamless voice-based experience across various devices.
+
+<----------section---------->
+
+### Deep Learning Era
+
+**Transformer (2017):**
+
+*   **Attention Is All You Need**, a seminal paper that introduced the Transformer architecture, revolutionizing the field of NLP and paving the way for Large Language Models.
+*   Integration of attention mechanisms, allowing the model to focus on the most relevant parts of the input sequence when processing each word or phrase.
+*   Allows a greater passage of information between the decoder and the encoder, improving the accuracy and coherence of generated text.
+*   Defined and adopted by Google for the translator, leading to significant improvements in machine translation quality.
+*   It remains the dominant architecture in NLP today, forming the basis for most state-of-the-art language models.
+
+*Diagram of Transformer Architecture* (This section would ideally include a visual representation of the Transformer architecture, highlighting the attention mechanism and encoder-decoder structure.)
+
+<----------section---------->
+
+### Large Language Models (LLM)
+
+After transformers, the next step was scaling...
+
+*   LLM leverage extensive data and computational power to understand and generate human-like text. These models are trained on massive datasets, often consisting of billions of words, and require significant computational resources to train and deploy.
+
+*   List of LLMs: GPT-4, ChatGPT, InstructGPT, Codex, Flan-PaLM, LLaMA, BLOOM, OPT, UL2, PaLM, Gopher, Chinchilla, Titan, Jurassic-1, Ernie 3.0, PanGu, etc.* This list represents a diverse range of LLMs developed by various organizations, each with its own strengths and capabilities.
+
+<----------section---------->
+
+### LLM Applications
+
+*   **Text Generation:** Producing articles, stories, and creative writing, often with minimal human input.
+*   **Machine Translation:** Translating between languages with high accuracy and fluency.
+*   **Chatbots:** Engaging in human-like conversations for customer support and interaction, providing personalized assistance and answering user questions.
+*   **Code Generation:** Generating and suggesting code snippets, completing code, and assisting with programming tasks, improving developer productivity and reducing errors.
+*   **Question Answering:** Providing answers based on a given context or database, leveraging knowledge retrieval and reasoning capabilities.
+*   **Text Summarization:** Condensing long documents into concise summaries, preserving key information and main points.
+*   **Writing Assistance:** Generating and completing text, improving grammar, and enhancing style, assisting users with writing tasks and improving the quality of their writing.
+
+<----------section---------->
+
+### Multimodal LLM
+
+Integrate and process multiple types of data, such as text, images, audio, and video, to create more comprehensive and versatile AI systems.
+
+*   **Image-to-Text:** generating descriptive text from images (CLIP), enabling machines to "see" and understand the content of images.
+*   **Text-to-Image:** creating images based on textual descriptions (DALL-E), allowing users to generate customized images from natural language prompts.
+*   **Audio-to-Text:** converting spoken language into written text (Whisper), enabling machines to transcribe audio recordings and understand spoken commands.
+*   **Text-to-Audio:** composing or generating audio, such as music, from textual descriptions (Jukebox), allowing users to create audio content from natural language prompts.
+
+<----------section---------->
+
+### Multimodal LLM
+
+Integr

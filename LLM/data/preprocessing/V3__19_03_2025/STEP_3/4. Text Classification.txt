@@ -1,0 +1,414 @@
+**Natural Language Processing and Large Language Models**
+
+Corso di Laurea Magistrale in Ingegneria Informatica Lesson 4: Text Classification
+
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+This document outlines a lesson on text classification within the context of a Master's degree course in Computer Engineering, focusing on Natural Language Processing (NLP) and Large Language Models (LLMs). The lesson is prepared by Nicola Capuano and Antonio Greco from the DIEM (Department of Information Engineering and Mathematics) at the University of Salerno. The primary subject is text classification, a fundamental task in NLP.
+
+<----------section---------->
+
+**Outline**
+
+*   Text Classification
+*   Topic Labelling Example
+*   Sentiment Analysis Exercise
+
+This is a structured agenda for the lesson. It begins with an introduction to text classification, followed by a practical example concerning topic labeling and concludes with an exercise on sentiment analysis.
+
+<----------section---------->
+
+**Text Classification**
+
+Text Classification is the process of assigning one or more classes to a text document for various purposes, such as:
+
+*   Topic labeling: Identifying the main subject or theme of a document.
+*   Intent detection: Determining the purpose or goal behind a text, often used in chatbots or virtual assistants.
+*   Sentiment analysis: Ascertaining the emotional tone or attitude expressed in a text (positive, negative, or neutral).
+
+The classification relies only on the text content. Other attributes of the document (metadata) are disregarded, which is different from document classification. The classes are predefined, which is different from document clustering.
+
+Text classification involves categorizing text documents based on their content. Common applications include topic labeling, intent detection, and sentiment analysis. The process exclusively uses the text's content, ignoring any metadata. It differs from document classification, which may consider metadata, and from document clustering, where classes are not predefined but are discovered by the algorithm.
+
+<----------section---------->
+
+**Definition**
+
+Given:
+
+*   A set of documents D = {d<sub>1</sub>, ..., d<sub>n</sub>}
+*   A set of predefined classes C = {c<sub>1</sub>, ..., c<sub>m</sub>}
+
+Text classification finds a classifier function:
+
+f: D x C -> {True, False}
+
+that assigns a Boolean value in {True, False} to each pair (d<sub>i</sub>, c<sub>j</sub>) ∈ D x C.
+
+This section provides a formal definition of text classification. Let D be a set of documents and C be a set of predefined classes. The goal of text classification is to define a function 'f' that maps a document-class pair to a boolean value. 'True' indicates that the document belongs to the class, while 'False' indicates it does not. This function is denoted as f: D x C -> {True, False}.
+
+<----------section---------->
+
+**Types of Classification**
+
+*   **Single-label:** Assigns each document in D to only one class in C.
+*   **Binary:** Like Single-label but C has only two classes. Classification is a decision between a class and its complement.
+*   **Multi-label:** Assigns each document to a variable number of classes in C. Can be reduced to a series of binary decisions.
+
+There are different approaches: In Single-label classification, each document belongs to only one class. In Binary classification, there are only two possible classes, thus it’s a special case of Single-label classification. In Multi-label classification, a document can be assigned to multiple classes simultaneously. Multi-label tasks can be approached by training multiple binary classifiers (one for each label).
+
+<----------section---------->
+
+**ML-Based Classification**
+
+*   A machine learning model is trained on a set of annotated text documents.
+*   Each document in the training set is associated with one or more class labels.
+*   After training, the model can predict the category (or categories) for a new document.
+*   The classifier may provide a confidence measure.
+*   A vector representation of documents, such as TF-IDF, must be used.
+
+This describes the process of performing text classification using machine learning (ML). The model learns from a training set of annotated documents, where each document is paired with its correct class label(s). After training, the model can predict the classes for new, unseen documents. The model often outputs a confidence score indicating the certainty of its prediction. To be used in ML models, text needs to be converted into a numerical representation, such as TF-IDF (Term Frequency-Inverse Document Frequency).
+
+<----------section---------->
+
+**Topic Labelling Example**
+
+**Classifying Reuters News**
+
+The Reuters 21578 dataset is multi-class and multi-label:
+
+*   90 distinct classes
+*   7,769 training documents, 3,019 test documents
+*   The number of words per document ranges from 93 to 1,263
+*   Skewness:
+    *   Some classes have over 1,000 documents
+    *   Other classes have fewer than 5 documents
+    *   Most documents are assigned either one or two labels, some documents are labeled with up to 15 categories
+
+More statistics on https://martin-thoma.com/nlp-reuters/
+
+This section provides an example of topic labeling using the Reuters-21578 dataset, a standard benchmark for text classification. The dataset is multi-class and multi-label, consisting of news articles categorized into 90 different topics. It includes 7,769 training documents and 3,019 test documents. The documents vary in length from 93 to 1,263 words. The dataset exhibits skewness, meaning some classes have a large number of documents, while others have very few. Most documents have one or two labels, but some have up to 15. The link provides more details on the dataset's statistics.
+
+<----------section---------->
+
+**Corpus Management**
+
+```python
+import nltk
+from nltk.corpus import reuters
+
+nltk.download('reuters')
+
+ids = reuters.fileids()
+
+training_ids = [id for id in ids if id.startswith("training")]
+test_ids = [id for id in ids if id.startswith("test")]
+categories = reuters.categories()
+
+print("{} training items:".format(len(training_ids)), training_ids)
+print("{} test items:".format(len(test_ids)), test_ids)
+print("{} categories:".format(len(categories)), categories)
+
+print("\nCategories of '{}':".format(training_ids[0]), reuters.categories(training_ids[0]))
+print("Categories of '{}':".format(test_ids[2]), reuters.categories(test_ids[2]))
+print("Items within the category 'trade'", reuters.fileids('trade'))
+```
+
+```
+[nltk_data] Downloading package reuters to /root/nltk_data...
+7769 training items: ['training/1', 'training/10', 'training/100', 'training/1000', 'training/100...
+3019 test items: ['test/14826', 'test/14828', 'test/14829', 'test/14832', 'test/14833', 'test/14...
+90 categories: ['acq', 'alum', 'barley', 'bop', 'carcass', 'castor-oil', 'cocoa', 'coconut', 'co...
+
+Categories of 'training/1': ['cocoa']
+Categories of 'test/14829': ['crude', 'nat-gas']
+Items within the category 'trade' ['test/14826', 'test/14832', 'test/14858', 'test/14862', 'test...
+```
+
+The code uses the NLTK (Natural Language Toolkit) library to load and manage the Reuters dataset. The code first downloads the Reuters corpus, if not already present. It then retrieves the file IDs, separating them into training and test sets. The available categories are also extracted. Finally, it prints the number of training and test items, the list of categories, and example categories for specific documents, along with the documents belonging to the 'trade' category.
+
+<----------section---------->
+
+**Process**
+
+*   Extract training and test samples and related labels
+*   Create the TF-IDF matrices for training and test set
+*   Transform label lists in a binary matrix for training and test set (one-hot encoding)
+*   Train a classifier, e.g., using an MLP. A sample is the TF-IDF vector of a text with its binary label.
+*   Test the classifier
+
+This section outlines the steps involved in building and evaluating a text classification model using the Reuters dataset. First, the training and test data, along with their corresponding labels, are extracted. Next, TF-IDF matrices are created to represent the text data numerically. The labels, which may be multi-label, are transformed into a binary matrix using one-hot encoding. A classifier, such as a Multilayer Perceptron (MLP), is trained on the training data. Finally, the trained classifier is tested on the test set. The input to the classifier is the TF-IDF vector representing the text, and the output is a binary label indicating the presence or absence of a particular topic.
+
+<----------section---------->
+
+**Pre-Processing**
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MultiLabelBinarizer
+
+# Generate training and test sets
+training_corpus = [reuters.raw(id) for id in training_ids]
+training_labels = [reuters.categories(id) for id in training_ids]
+test_corpus = [reuters.raw(id) for id in test_ids]
+test_labels = [reuters.categories(id) for id in test_ids]
+
+# Create TF-IDF matrices
+vectorizer = TfidfVectorizer(min_df=3)  # a word must appear in at least 3 documents
+training_vectors = vectorizer.fit_transform(training_corpus)
+test_vectors = vectorizer.transform(test_corpus)
+
+# Transform a list of label lists in binary matrix
+mlb = MultiLabelBinarizer()
+training_mlb = mlb.fit_transform(training_labels)
+test_mlb = mlb.transform(test_labels)
+
+len(vectorizer.vocabulary_)
+# 11361
+```
+
+`fit_transform` combines two sequential steps, first applying the `fit` function and then the `transform` one.
+
+The code performs the preprocessing steps necessary to prepare the Reuters dataset for machine learning. It extracts the raw text and labels for both training and test sets. It then uses the `TfidfVectorizer` from scikit-learn to create TF-IDF matrices. The `min_df=3` argument ensures that only words appearing in at least 3 documents are considered. The `fit_transform` method is used on the training corpus to learn the vocabulary and create the TF-IDF matrix, while the `transform` method is used on the test corpus to create the TF-IDF matrix using the already learned vocabulary. Finally, the `MultiLabelBinarizer` is used to transform the list of labels into a binary matrix, which is suitable for multi-label classification. The size of the vocabulary is printed at the end. Note that `fit_transform` is a combined operation where `fit` learns the parameters and `transform` applies those to generate the transformed data.
+
+<----------section---------->
+
+**MLP Classifier Training**
+
+```python
+from sklearn.neural_network import MLPClassifier
+import matplotlib.pyplot as plt
+
+# Train an MLP classifier
+classifier = MLPClassifier(hidden_layer_sizes=(128, 64), activation='relu', solver='adam',
+                            max_iter=100, early_stopping=True, verbose=True)
+
+classifier.fit(training_vectors, training_mlb)
+
+
+# Plot loss and validation curves
+def plot(ax, data, title, xlabel, ylabel):
+    ax.plot(data, label=title, marker='o')
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    ax.legend()
+    ax.grid()
+
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))  # create subplots
+
+plot(ax1, classifier.loss_curve_, 'Training Loss', 'Iterations', 'Loss')
+plot(ax2, classifier.validation_scores_, 'Validation Accuracy', 'Iterations', 'Accuracy')
+plt.tight_layout()  # Adjust layout to prevent overlapping
+plt.show()
+```
+
+The code trains a Multilayer Perceptron (MLP) classifier using the scikit-learn library. The `MLPClassifier` is configured with two hidden layers (128 and 64 neurons), the ReLU activation function, and the Adam solver. `max_iter=100` sets the maximum number of iterations, and `early_stopping=True` enables early stopping to prevent overfitting. The `verbose=True` argument displays training progress. The `fit` method trains the classifier on the training TF-IDF vectors and the binary label matrix. The code then defines a `plot` function to visualize training loss and validation accuracy over iterations. It creates subplots for training loss and validation accuracy and displays the plots using matplotlib. The visualization helps in understanding the training process and identifying potential issues like overfitting or underfitting.
+
+<----------section---------->
+
+**MLP Classifier Training (Example plot)**
+
+The image of "Training Loss Validation Accuracy" should be displayed here.
+
+This section refers to a visualization of the training process. The "Training Loss Validation Accuracy" plot typically shows the training loss decreasing over iterations and the validation accuracy increasing, ideally converging to a stable point. This plot helps diagnose the model's learning behavior.
+
+<----------section---------->
+
+**Testing Metrics**
+
+*   **Micro Average:** The average metric across all classes by considering the total number of true positives, false negatives, and false positives.
+*   **Macro Average:** Calculates the metric independently for each class and then takes the average (unweighted mean) of these values.
+*   **Weighted Average:** Computes the average of the metric, weighted by the support (the number of true instances) of each class.
+*   **Samples Average:** Computes the average of the metrics for each sample (instance) rather than for each class. Used in multi-label classification problems where each instance can belong to multiple classes.
+
+This section explains the different averaging methods used to evaluate the performance of a multi-class or multi-label classification model. Micro-average calculates the metrics globally by considering the total counts of true positives, false negatives, and false positives. Macro-average calculates the metric for each class independently and then averages the results, giving equal weight to each class. Weighted-average averages the metric for each class, weighted by the number of true instances for each class (support). Sample average computes the metrics on a per-sample basis, useful in multi-label classification where each sample can belong to multiple classes.
+
+<----------section---------->
+
+**Testing Results**
+
+```python
+from sklearn.metrics import classification_report
+
+# Predict the categories of the test set
+predictions = classifier.predict(test_vectors)
+
+# Print classification report
+print(classification_report(test_mlb, predictions, target_names=mlb.classes_, zero_division=0))
+```
+
+Example output:
+
+```
+              precision    recall  f1-score   support
+
+         acq       0.98      0.91      0.94       719
+        alum       1.00      0.30      0.47        23
+      barley       0.89      0.57      0.70        14
+         bop       1.00      0.43      0.60        30
+     carcass       0.67      0.22      0.33        18
+castor-oil       0.00      0.00      0.00         1
+       cocoa       1.00      0.56      0.71        18
+     coconut       0.00      0.00      0.00         2
+ coconut-oil       0.00      0.00      0.00         3
+
+   micro avg       0.97      0.79      0.87      3019
+   macro avg       0.56      0.36      0.42      3019
+weighted avg       0.95      0.79      0.85      3019
+ samples avg       0.96      0.80      0.85      3019
+```
+
+This code evaluates the trained classifier on the test set and prints a classification report using scikit-learn. It predicts the categories for the test TF-IDF vectors and then uses the `classification_report` function to calculate and display precision, recall, F1-score, and support for each class. The `target_names` argument provides the names of the classes, and `zero_division=0` handles cases where a class has no predicted or true instances. The report also includes micro, macro, weighted, and samples averages of these metrics. The example output shows the performance of the classifier for each category in the Reuters dataset.
+
+<----------section---------->
+
+**Sentiment Analysis Exercise**
+
+**Sentiment Analysis**
+
+The process of identifying and categorizing opinions expressed in a piece of text.
+
+**Applications:**
+
+*   **Business:** Analyzing customer feedback and product reviews to understand customer satisfaction and brand perception.
+*   **Finance:** Predicting market trends based on investor sentiment extracted from news articles and social media.
+*   **Politics:** Analyzing public opinion during elections or policy changes.
+
+Can be seen as a text classification problem: Given a text, classifying it as positive, negative, or neutral.
+
+This section introduces sentiment analysis. It explains that sentiment analysis is the task of identifying and categorizing opinions expressed in text. The section then outlines several applications of sentiment analysis, across different domains. It is highlighted that sentiment analysis can be treated as a text classification problem, where the text is classified into categories such as positive, negative, or neutral.
+
+<----------section---------->
+
+**IMDB Dataset**
+
+A set of 50,000 highly polarized reviews from the Internet Movie Database.
+
+*   The set consists of:
+    *   50% negative reviews
+    *   50% positive reviews
+*   Download CSV from Kaggle: https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+Example of the dataset:
+
+| Review                                                        | Sentiment |
+| :------------------------------------------------------------ | :-------- |
+| One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. The... | Positive  |
+| A wonderful little production. <br/>  <br/>The filming technique is very unassuming. Very old-time-B... | Positive  |
+| I thought this was a wonderful way to spend time on a too hot summer weekend, sitting in the air...     | Positive  |
+
+`Review` and `Sentiment` are unique values.
+
+This introduces the IMDB dataset, a popular resource for sentiment analysis. It contains 50,000 movie reviews from the Internet Movie Database, equally split between positive and negative reviews. A link to download the dataset from Kaggle is provided. The table exemplifies the structure of the dataset, showing a `Review` column containing the text of the review and a `Sentiment` column indicating whether the review is positive or negative. It is stated that `Review` and `Sentiment` are unique values, but this is inaccurate since multiple reviews can have the same sentiment.
+
+<----------section---------->
+
+**Exercise**
+
+Build a classifier for movie reviews:
+
+*   Given a review, the classifier will determine its polarity (positive or negative).
+*   Train the classifier on the IMDB Dataset.
+*   Use 80% for training and 20% for testing.
+*   Show and plot metrics and the confusion matrix.
+
+This presents the sentiment analysis exercise using the IMDB dataset. The task is to build a classifier that can determine the sentiment (positive or negative) of a movie review. The classifier should be trained on the IMDB dataset, using 80% of the data for training and 20% for testing. The exercise requires displaying relevant metrics (precision, recall, F1-score, accuracy) and plotting the confusion matrix to evaluate the classifier's performance.
+
+<----------section---------->
+
+**Suggestions**
+
+*   One-hot encode the labels: (1,0) = negative, (0, 1) = positive using the ScikitLearn `OneHotEncoder` class.
+*   To reduce the TF-IDF matrix, consider only words that appear at least in 5 documents.
+*   Use the ScikitLearn `confusion_matrix` function to build the confusion matrix.
+*   You can use the Seaborn `heatmap` to plot the confusion matrix: `pip install seaborn`.
+    *   [https://seaborn.pydata.org/generated/seaborn.heatmap.html](https://seaborn.pydata.org/generated/seaborn.heatmap.html)
+
+The suggestions give guidance on how to implement the sentiment analysis exercise. One-hot encoding converts the sentiment labels into numerical format suitable for machine learning. Limiting TF-IDF matrix dimensionality helps reduce noise and improve performance. Scikit-learn's `confusion_matrix` function is recommended to build the confusion matrix. The use of Seaborn's `heatmap` function is suggested as a visualization tool for the confusion matrix. Seaborn provides visually appealing heatmaps that helps in visualizing the model performance.
+
+<----------section---------->
+
+**Confusion Matrix Example**
+
+The image of a confusion matrix, with "Predicted Labels" on the x-axis (negative, positive) and count numbers (0 to 5000) on the y-axis, should be displayed here.
+
+This refers to a sample confusion matrix, a table visualizing the performance of a classification model. The x-axis represents the predicted labels (negative and positive), while the y-axis represents the actual labels. The cells of the matrix contain the counts of true positives, true negatives, false positives, and false negatives.
+
+<----------section---------->
+
+**Example Result**
+
+**Training Loss Validation Accuracy**
+
+The image of "Training Loss Validation Accuracy", with values on the axis, should be displayed here.
+
+Example Classification Report:
+
+```
+              precision    recall  f1-score   support
+
+    negative       0.90      0.91      0.90      5013
+    positive       0.90      0.90      0.90      4987
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+```
+
+This section presents example results for the sentiment analysis exercise. The first image is an example training loss and validation accuracy plot, showing how the model performs during training. The second part is a sample classification report, showing precision, recall, F1-score and support for each class (negative and positive). The overall accuracy, macro average and weighted average are also displayed.
+
+<----------section---------->
+
+**Text Classification Applications**
+
+*   Topic Labelling
+*   Sentiment Analysis
+*   Spam Filtering
+*   Intent Detection
+*   Language Detection
+*   Content Moderation
+*   Products Categorization
+*   Author Attribution
+*   Content Recommendation
+*   Ad Click Prediction
+*   Job matching
+*   Legal case classification
+
+This lists a range of applications of text classification across various domains. These applications demonstrate the versatility and practical significance of text classification in real-world problems.
+
+<----------section---------->
+
+**Further Readings**
+
+*   Pandas Docs: [https://pandas.pydata.org/docs/user_guide/](https://pandas.pydata.org/docs/user_guide/)
+*   Scikit-Learn Docs: [https://scikit-learn.org/stable/user_guide.html](https://scikit-learn.org/stable/user_guide.html)
+*   Seaborn Docs: [https://seaborn.pydata.org/api.html](https://seaborn.pydata.org/api.html)
+
+This provides links to the official documentation of the Python libraries used in the lesson: Pandas, Scikit-learn, and Seaborn. These documentations are useful resources for further learning and understanding the libraries' functionalities.
+
+<----------section---------->
+
+The document needs to address when vocabulary is much larger than labeled examples and consider Latent Discriminant Analysis (LDA) as a classifier. We can define what LDA does:
+1. Find a line, or axis, in your vector space, such that if you project all the vectors (data points) in the space on that axis, the two classes would be as separated as possible.
+2. Project all the vectors on that line.
+3. Predict the probability of each vector to belong to one of two classes, according to a cutoff point between the two classes.
+The document should mention the possibility of using MinMaxScalar to normalize the toxicity score.
+The document should also point out that the class methods `fit()` and `predict()` are available in every model in `sklearn`, and classifier models will have a `predict_proba()` method that gives you the probability scores for all the classes.
+The document should explain False Positive and False Negative mistakes.
+The document also needs to address the problem statement and training data for a multi-label intent classifier.
+When the vocabulary is much larger than the number of labeled examples, Naive Bayes classifiers often perform poorly. In such cases, consider using Latent Discriminant Analysis (LDA).
+
+LDA, in the context of classification, aims to:
+1.  Find an axis in the vector space that maximizes the separation between classes when the data is projected onto it.
+2.  Project the data vectors onto this axis.
+3.  Determine the probability of each vector belonging to a class based on a cutoff point on the projected axis.
+
+To scale the calculated toxicity score (obtained by projecting comments onto the centroid axis) into a probability-like range between 0 and 1, you can use Scikit-learn's `MinMaxScaler`. This helps in interpreting the score as a confidence level.
+
+Every model in Scikit-learn implements `fit()` for training and `predict()` for making predictions. Classifier models additionally offer `predict_proba()`, providing class membership probabilities.
+
+In classification, a "False Positive" occurs when the model incorrectly predicts a positive class for a negative instance. A "False Negative" occurs when the model incorrectly predicts a negative class for a positive instance.
+For multi-label intent classification, the problem is to predict all the possible intents or sentiments contained in a natural language passage.

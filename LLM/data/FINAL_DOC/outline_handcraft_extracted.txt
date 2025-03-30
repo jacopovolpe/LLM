@@ -1,0 +1,83 @@
+*   Tokenization: The process of breaking down text into smaller units (tokens).
+*   Bag of Words Representation: A method for representing text based on the frequency of words.
+*   Token Normalization: Techniques to standardize tokens for better analysis.
+*   Stemming and Lemmatization: Approaches to reduce words to their root form.
+*   Part of Speech Tagging: Identifying the grammatical role of each word.
+*   Introducing spaCy: An overview of the spaCy library, a powerful tool for NLP.
+*   **Term Frequency:**  The basic measure of how often a term appears in a document.
+*   **Vector Space Model:** A model that represents documents as vectors in a multi-dimensional space, where each dimension corresponds to a term.
+*   **TF-IDF:**  Term Frequency-Inverse Document Frequency, a weighting scheme that refines term frequency by considering how common or rare a term is across the entire corpus (collection of documents).
+*   **Building a Search Engine:** An application of the concepts learned in the lesson, demonstrating how to use term frequency, vector space models, and TF-IDF to create a basic search engine.
+*   Text Classification: An introduction to the process of categorizing text documents.
+*   Topic Labelling Example: A practical demonstration of text classification using the Reuters news dataset.
+*   Sentiment Analysis Exercise: A hands-on exercise involving sentiment classification using the IMDB dataset.
+*   Limitations of TF-IDF: Understanding why TF-IDF falls short in capturing semantic relationships between words.
+*   Word Embeddings: Introducing the concept of representing words as dense vectors in a continuous vector space.
+*   Learning Word Embeddings: Exploring methods like Word2Vec for learning these vector representations from text data.
+*   Word2Vec Alternatives: Discussing other approaches like GloVe and FastText that offer improvements or different perspectives.
+*   Working with Word Embeddings: Practical aspects of using pre-trained word embeddings and training your own.
+*   **Recurrent Neural Networks (RNNs):** Introduction to the basic architecture and principles of RNNs.
+*   **RNN Variants:** Exploration of different types of RNNs like Bidirectional RNNs, Long Short-Term Memory (LSTM) networks, and Gated Recurrent Units (GRUs).
+*   **Building a Spam Detector:** Practical application of RNNs for classifying SMS messages as spam or not spam.
+*   **Introduction to Text Generation:** Overview of generative models and the use of RNNs for generating text.
+*   **Building a Poetry Generator:** Developing a poetry generator using RNNs, providing a hands-on experience with text generation.
+*   Machine Translation: Automatically translating text from one language to another
+*   Question Answering: Generating answers to questions based on a given context
+*   Automatic Summarization: Creating concise summaries of longer texts
+*   Text Completion: Predicting and generating the continuation of a given text
+*   Dialogue Systems: Creating responses in conversational agents and chatbots
+*   Creative Writing: Assisting in generating poetry, stories, and other creative texts
+*   Task-Oriented Dialogue Systems: Defining characteristics and differences from other conversational AI.
+*   Introduction to Rasa: An overview of the Rasa framework for building conversational AI.
+*   Building a Chatbot with Rasa: A practical guide to constructing a chatbot using Rasa.
+*   Custom Actions: Extending chatbot functionality with custom code.
+*   Limitations of Recurrent Neural Networks (RNNs): Understanding the drawbacks of RNNs that led to the development of Transformers.
+*   Transformer: Introducing the Transformer architecture as an alternative to RNNs.
+*   Transformer’s Input: Detailing how input data is prepared and fed into the Transformer model.
+*   Self-Attention: Exploring the core mechanism of Transformers, enabling parallel processing and capturing relationships within the input sequence. Self-attention is the most straightforward and common way to implement attention. It takes the input sequence of embedding vectors and puts them through linear projections. A linear projection is merely a dot product or matrix multiplication. This dot product creates key, value and query vectors.
+*   Multi-Head Attention
+*   Encoder Output
+*   Decoder
+*   Masked Multi-Head Attention
+*   Encoder-Decoder Attention
+*   Output
+*   Transformer’s pipeline
+*   Transformers for text representation and generation
+*   Paradigm shift in NLP
+*   Pre-training of LLMs
+*   Datasets and data pre-processing
+*   Using LLMs after pre-training
+*   **Overview**: A general introduction to the subject matter.
+*   **Setup**: Configuring the environment for NLP tasks.
+*   **Pipeline**: Understanding NLP pipelines for processing text.
+*   **Model selection**: Choosing appropriate models for specific tasks.
+*   **Common models**: Familiarizing with frequently used NLP models.
+*   **Gradio**: Using Gradio for creating interactive demos.
+*   Encoder-only transformer architectures
+*   BERT (Bidirectional Encoder Representations from Transformers) model
+*   Practical exercises on token classification and named entity recognition
+*   **Decoder-only Transformers:** An introduction to the architecture and functionalities of decoder-only transformers.
+*   **GPT (Generative Pre-trained Transformer):** Exploration of the GPT model family, including its architecture, training, and applications.
+*   **LLAMA (Large Language Model Meta AI):** An overview of the LLAMA models developed by Meta, focusing on their design and capabilities.
+*   **Practice on Text Generation:** Practical exercises and demonstrations on generating text using various models and tools.
+*   Encoder-decoder transformer architectures.
+*   The T5 (Text-to-Text Transfer Transformer) model.
+*   Practical exercises on machine translation and text summarization.
+1.  **Goal of the project:** Defining the objective and scope of the chatbot.
+2.  **Tools to use for the project:** Specifying the acceptable technologies and methodologies.
+3.  **Chatbot evaluation procedure:** Establishing the metrics and methods for assessing the chatbot's performance.
+*   Types of fine tuning
+*   Parameter Efficient Fine Tuning (PEFT)
+*   Instruction Fine-Tuning
+*   Introduction to Prompt Engineering
+*   Prompt Engineering Techniques
+*   Prompt Testing
+*   Introduction to RAG
+*   Introduction to LangChain
+*   Building a RAG with LangChain and HuggingFace
+*   **Reinforcement Learning from Human Feedback (RLHF):** An in-depth exploration of the concept, its benefits, and drawbacks.
+*   **Transformers `trl` library:** Introduction to the Transformers Reinforcement Learning library (`trl`) by Hugging Face, which provides tools for training LLMs with reinforcement learning.
+*   **Try it yourself:** Practical exercises and resources to help you implement RLHF in your own projects.
+*   Adding guardrails to LLMs
+*   Techniques for adding guardrails
+*   Frameworks for implementing guardrails`

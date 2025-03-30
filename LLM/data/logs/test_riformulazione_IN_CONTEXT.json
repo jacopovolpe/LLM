@@ -1,0 +1,402 @@
+[
+    {
+        "domanda": "What type of communication does WebSockets enable between a chatbot and the frontend?",
+        "query_riformulata": "What type of communication does WebSockets enable between a chatbot and the frontend?"
+    },
+    {
+        "domanda": "What is the primary goal of sentiment analysis as a text classification application?",
+        "query_riformulata": "What is the primary goal of sentiment analysis as a text classification application?"
+    },
+    {
+        "domanda": "How will the chatbot differentiate between questions within the scope of the NLP and LLM course and those outside its purview?",
+        "query_riformulata": "How will the chatbot distinguish between questions that fall within the scope of the NLP and LLM course and those that are outside of its defined scope?"
+    },
+    {
+        "domanda": "What is the purpose of using the `--no-prompt` flag during Rasa initialization?",
+        "query_riformulata": "What is the purpose of using the `--no-prompt` flag during Rasa initialization?"
+    },
+    {
+        "domanda": "What specific topic is covered in Lesson 9 of the course?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''What specific topic is covered in Lesson 9 of the course?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "In what ways can RLHF enhance the quality and informativeness of text summarization?",
+        "query_riformulata": "In what ways can Reinforcement Learning from Human Feedback (RLHF) enhance the quality and informativeness of text summarization?"
+    },
+    {
+        "domanda": "How do LLAMA and GPT compare in terms of performance, particularly considering their respective sizes and efficiency?",
+        "query_riformulata": "How do LLAMA and GPT compare in terms of performance, particularly considering their respective sizes and efficiency?"
+    },
+    {
+        "domanda": "In a vocabulary of size *n*, how would a single word be represented using the Bag-of-Words model?",
+        "query_riformulata": "How is a single word represented in the Bag-of-Words model within a vocabulary of size *n*?"
+    },
+    {
+        "domanda": "What is the primary purpose of the `nlu.yml` file?",
+        "query_riformulata": "What is the primary purpose of the `nlu.yml` file?"
+    },
+    {
+        "domanda": "How can BERT be practically applied to Token Classification tasks?",
+        "query_riformulata": "How can BERT be practically applied to Token Classification tasks?"
+    },
+    {
+        "domanda": "Assuming Chapter 6 of \"Natural Language Processing in Action\" uses Gensim, how does the provided documentation support the practical application of concepts discussed in the chapter?",
+        "query_riformulata": "Assuming Chapter 6 of \"Natural Language Processing in Action\" uses Gensim, how does the Gensim documentation support the practical application of concepts discussed in that chapter?"
+    },
+    {
+        "domanda": "Name two examples of static embedding methods and two examples of contextualized embedding methods.",
+        "query_riformulata": "Name two examples of static embedding methods and two examples of contextualized embedding methods."
+    },
+    {
+        "domanda": "What are the three key components of effective conversation design?",
+        "query_riformulata": "What are the three key components of effective conversation design?"
+    },
+    {
+        "domanda": "What are the three main limitations of Large Language Models (LLMs) that Retrieval Augmented Generation (RAG) addresses?",
+        "query_riformulata": "What are the three main limitations of Large Language Models (LLMs) that Retrieval Augmented Generation (RAG) addresses?"
+    },
+    {
+        "domanda": "How are dialogue management policies used by a bot to decide the next action?",
+        "query_riformulata": "How do dialogue management policies enable a bot to determine its subsequent action in a conversation?"
+    },
+    {
+        "domanda": "What is the primary purpose of using Masked Multi-Head Attention in decoder training?",
+        "query_riformulata": "What is the primary purpose of using Masked Multi-Head Attention in decoder training?"
+    },
+    {
+        "domanda": "What are the advantages of word embeddings over traditional methods in NLP?",
+        "query_riformulata": "What are the advantages of word embeddings over traditional methods in NLP?"
+    },
+    {
+        "domanda": "What is the role of the pre-trained model when using adapters?",
+        "query_riformulata": "What is the role of the pre-trained language model when using adapter modules for fine-tuning?"
+    },
+    {
+        "domanda": "Why is it important to combine rule-based systems, machine learning classifiers, and continuous monitoring when building guardrails for LLMs?",
+        "query_riformulata": "Why is it important to combine rule-based systems, machine learning classifiers, and continuous monitoring when building guardrails for LLMs?"
+    },
+    {
+        "domanda": "What are some common methods for adding guardrails to Large Language Models (LLMs)?",
+        "query_riformulata": "What are some common methods for adding guardrails to Large Language Models (LLMs)?"
+    },
+    {
+        "domanda": "Name three examples of token attributes available in spaCy.",
+        "query_riformulata": "Name three examples of token attributes available in spaCy."
+    },
+    {
+        "domanda": "How does using a `PromptTemplate` improve interactions with LLMs compared to directly providing a query string?",
+        "query_riformulata": "How does utilizing a `PromptTemplate` enhance interactions with Large Language Models compared to directly inputting a query string?"
+    },
+    {
+        "domanda": "How does the decoder prevent \"peeking\" at future tokens during training, and why is this important?",
+        "query_riformulata": "How does the decoder in a sequence-to-sequence model prevent \"peeking\" at future tokens during training, and why is this important for accurate language modeling?"
+    },
+    {
+        "domanda": "How does the evaluation procedure address the chatbot's ability to handle questions outside the scope of the course content?",
+        "query_riformulata": "How does the evaluation procedure assess a chatbot's ability to handle out-of-scope questions regarding course content?"
+    },
+    {
+        "domanda": "What novel capabilities distinguish GPT-4 from the earlier GPT models, and what information regarding its architecture is publicly known?",
+        "query_riformulata": "What novel capabilities distinguish GPT-4 from the earlier GPT models, and what information regarding its architecture is publicly known?"
+    },
+    {
+        "domanda": "Why is an LSTM model chosen for this specific task of poetry generation?",
+        "query_riformulata": "Why is an LSTM model chosen for poetry generation?"
+    },
+    {
+        "domanda": "What is the key difference between text classification and document classification?",
+        "query_riformulata": "What is the key difference between text classification and document classification?"
+    },
+    {
+        "domanda": "What information does the Seaborn heatmap of the confusion matrix provide about the classifier's performance on positive and negative reviews?",
+        "query_riformulata": "What information does the Seaborn heatmap of the confusion matrix provide about the classifier's performance on positive and negative reviews?"
+    },
+    {
+        "domanda": "Which NLP task involves condensing longer texts into shorter versions?",
+        "query_riformulata": "Which NLP task focuses on condensing longer texts into shorter versions?"
+    },
+    {
+        "domanda": "What specific text generation exercises or practices can be implemented to effectively utilize models like GPT and LLAMA?",
+        "query_riformulata": "What specific text generation exercises or practices can be implemented to effectively utilize models like GPT and LLAMA?"
+    },
+    {
+        "domanda": "Beyond the architecture, what other aspects of BERT and its variants are covered in the provided overview?",
+        "query_riformulata": "Beyond the architecture, what other aspects of BERT and its variants are covered in the provided overview document?"
+    },
+    {
+        "domanda": "How does FastText handle rare words differently than Word2Vec?",
+        "query_riformulata": "How does FastText's subword-based approach address the rare word problem compared to Word2Vec's word-based approach?"
+    },
+    {
+        "domanda": "What is the primary benefit of case folding, and what is a potential drawback?",
+        "query_riformulata": "What is the primary benefit of case folding in NLP, and what is a potential drawback?"
+    },
+    {
+        "domanda": "What is the purpose of the encoder-decoder attention mechanism within the decoder block?",
+        "query_riformulata": "What is the purpose of the encoder-decoder attention mechanism within the decoder block?"
+    },
+    {
+        "domanda": "What resources does Hugging Face provide for learning about text generation?",
+        "query_riformulata": "What resources does Hugging Face provide for learning about text generation?"
+    },
+    {
+        "domanda": "How does lemmatization ensure that the reduced form of a word is always a valid dictionary word?",
+        "query_riformulata": "How does lemmatization guarantee that the reduced form of a word is always a valid dictionary word?"
+    },
+    {
+        "domanda": "What are the two primary methods for adapting pre-trained LLMs to specific downstream tasks?",
+        "query_riformulata": "What are the two primary methods for adapting pre-trained LLMs to specific downstream tasks?"
+    },
+    {
+        "domanda": "Give two examples of how system prompts can establish different personas for an AI assistant.",
+        "query_riformulata": "Give two examples of how system prompts can establish different personas for an AI assistant."
+    },
+    {
+        "domanda": "What is the purpose of providing context in a prompt?",
+        "query_riformulata": "What is the purpose of providing context in a prompt for a large language model?"
+    },
+    {
+        "domanda": "What is the purpose of an action server when using custom actions?",
+        "query_riformulata": "What is the purpose of an action server when using custom actions in the context of conversational AI and specifically related to Large Language Models?"
+    },
+    {
+        "domanda": "Where can I find more information about Rasa?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where can I find more information about Rasa?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "What is the purpose of the `actions` directory in a Rasa project?",
+        "query_riformulata": "What is the purpose of the `actions` directory in a Rasa project?"
+    },
+    {
+        "domanda": "What are Recurrent Neural Networks and how do they work?",
+        "query_riformulata": "What are Recurrent Neural Networks and how do they work?"
+    },
+    {
+        "domanda": "What makes Multimodal T5 distinct from the other T5 variants mentioned in the table?",
+        "query_riformulata": "What are the distinguishing characteristics of Multimodal T5 compared to other T5 variants?"
+    },
+    {
+        "domanda": "What is the purpose of tokenization in Natural Language Processing (NLP)?",
+        "query_riformulata": "What is the purpose of tokenization in Natural Language Processing (NLP)?"
+    },
+    {
+        "domanda": "Why is NLP considered a crucial field within Artificial Intelligence?",
+        "query_riformulata": "Why is Natural Language Processing considered a crucial field within Artificial Intelligence?"
+    },
+    {
+        "domanda": "How does a language model (LM) predict the next word in a sequence?",
+        "query_riformulata": "How does a language model predict the next word in a sequence?"
+    },
+    {
+        "domanda": "What is the relationship between the length of the prefix sequence and the expressiveness and efficiency of Prefix Tuning?",
+        "query_riformulata": "What is the relationship between the length of the prefix sequence and the expressiveness and efficiency of Prefix Tuning?"
+    },
+    {
+        "domanda": "How does utilizing WebSockets typically affect the user experience when interacting with a Rasa chatbot?",
+        "query_riformulata": "How does utilizing WebSockets typically affect the user experience when interacting with a Rasa chatbot?"
+    },
+    {
+        "domanda": "According to the provided definitions, what is the core function of Natural Language Processing (NLP)?",
+        "query_riformulata": "According to the provided definitions, what is the core function of Natural Language Processing (NLP)?"
+    },
+    {
+        "domanda": "What are the key differences between causal language modeling and masked language modeling, and why is the `mlm=False` setting crucial for fine-tuning a causal language model like GPT-2?",
+        "query_riformulata": "What are the key differences between causal language modeling and masked language modeling, and why is the `mlm=False` setting crucial for fine-tuning a causal language model like GPT-2?"
+    },
+    {
+        "domanda": "How can real-time monitoring and feedback improve the safety and accuracy of LLM outputs, and what are some methods for implementing this?",
+        "query_riformulata": "How can real-time monitoring and feedback improve the safety and accuracy of LLM outputs, and what methods exist for implementing real-time monitoring and feedback mechanisms for LLMs?"
+    },
+    {
+        "domanda": "While stemming and lemmatization can improve TF-IDF by grouping similar words, what are some drawbacks of these normalization techniques?",
+        "query_riformulata": "While stemming and lemmatization can improve TF-IDF by grouping similar words, what are some drawbacks of these normalization techniques?"
+    },
+    {
+        "domanda": "In which department and university is this course offered?",
+        "query_riformulata": "In which department and university is this course offered? "
+    },
+    {
+        "domanda": "How does the Transformer's Encoder address the limitation of self-attention with respect to word order?",
+        "query_riformulata": "How does the Transformer Encoder address the limitation of self-attention regarding word order?"
+    },
+    {
+        "domanda": "How can a development environment be set up for using Hugging Face models?",
+        "query_riformulata": "How can a development environment be set up for using Hugging Face models?"
+    },
+    {
+        "domanda": "How did ELIZA contribute to the field of NLP, and what were its limitations?",
+        "query_riformulata": "How did ELIZA contribute to the field of NLP, and what were its limitations?"
+    },
+    {
+        "domanda": "What is the primary focus of Chinchilla's development in terms of model optimization?",
+        "query_riformulata": "What is the primary focus of Chinchilla's development in terms of model optimization?"
+    },
+    {
+        "domanda": "What is the purpose of using multiple \"heads\" in multi-head attention?",
+        "query_riformulata": "What is the purpose of using multiple \"heads\" in multi-head attention?"
+    },
+    {
+        "domanda": "What distinguishes Codex from other GPT variants and what development tool does it power?",
+        "query_riformulata": "What distinguishes Codex from other GPT variants and what development tool does it power?"
+    },
+    {
+        "domanda": "In Encoder-Decoder Attention, where do the queries, keys, and values originate from?",
+        "query_riformulata": "In Encoder-Decoder Attention, what are the sources of the queries, keys, and values?"
+    },
+    {
+        "domanda": "What are some common variants of RNNs and what are their advantages and disadvantages?",
+        "query_riformulata": "What are some common variants of Recurrent Neural Networks (RNNs), and what are their advantages and disadvantages?"
+    },
+    {
+        "domanda": "What does the `rasa init` command generate when creating a new Rasa project?",
+        "query_riformulata": "What files and directories does the `rasa init` command generate when creating a new Rasa project?"
+    },
+    {
+        "domanda": "In a scenario with significant class imbalance, why might the micro average be a less suitable metric compared to the weighted average?",
+        "query_riformulata": "In a scenario with significant class imbalance, why might the micro average be a less suitable metric compared to the weighted average?"
+    },
+    {
+        "domanda": "Which positions should the decoder consider when generating the *i*-th output word?",
+        "query_riformulata": "Which positions should the decoder consider when generating the *i*-th output word?"
+    },
+    {
+        "domanda": "How does Reinforcement Learning from Human Feedback (RLHF) contribute to the development of interactive AI applications?",
+        "query_riformulata": "How does Reinforcement Learning from Human Feedback (RLHF) contribute to the development of interactive AI applications?"
+    },
+    {
+        "domanda": "How do Natural Language Understanding (NLU) and Natural Language Generation (NLG) contribute to the overall functionality of NLP?",
+        "query_riformulata": "How do Natural Language Understanding (NLU) and Natural Language Generation (NLG) contribute to the overall functionality of NLP?"
+    },
+    {
+        "domanda": "How does a decoder-only transformer architecture function in the context of text generation?",
+        "query_riformulata": "How does a decoder-only transformer architecture function in the context of text generation?"
+    },
+    {
+        "domanda": "How does the dynamic masking strategy enhance the performance of BERT's MLM task?",
+        "query_riformulata": "How does the dynamic masking strategy enhance the performance of BERT's Masked Language Model (MLM) task?"
+    },
+    {
+        "domanda": "How does the document address integrating the discussed framework with web frontends?",
+        "query_riformulata": "How does the document address integrating the discussed framework with web frontends?"
+    },
+    {
+        "domanda": "How does fine-tuning improve the safety and reliability of LLMs?",
+        "query_riformulata": "How does fine-tuning enhance the safety and reliability of Large Language Models?"
+    },
+    {
+        "domanda": "What is the purpose of setting `temperature` in the `HuggingFaceEndpoint` initialization?",
+        "query_riformulata": "What is the purpose of setting the `temperature` parameter during the initialization of a `HuggingFaceEndpoint`?"
+    },
+    {
+        "domanda": "In what programming language are custom actions typically written?",
+        "query_riformulata": "In what programming language are custom actions for conversational AI applications typically written?"
+    },
+    {
+        "domanda": "What are the primary functionalities offered by the Guardrails AI framework for managing LLM outputs?",
+        "query_riformulata": "What are the primary functionalities offered by the Guardrails AI framework for managing LLM outputs?"
+    },
+    {
+        "domanda": "What role can RLHF play in assisting with computer programming tasks based on natural language input?",
+        "query_riformulata": "What role can RLHF play in assisting with computer programming tasks based on natural language input?"
+    },
+    {
+        "domanda": "If a classifier performs exceptionally well on a few small classes but poorly on a large class, how would this be reflected in the macro and weighted average results?",
+        "query_riformulata": "If a classifier performs exceptionally well on a few small classes but poorly on a large class, how would this be reflected in the macro and weighted average results?"
+    },
+    {
+        "domanda": "If a researcher has limited computational resources, which LLaMA model would be the most suitable choice, and why?",
+        "query_riformulata": "Which LLaMA model is the most suitable for a researcher with limited computational resources, and what are the reasons for this choice?"
+    },
+    {
+        "domanda": "Despite the advancements brought by LLMs, what significant challenge remains a focus of ongoing research in the field of NLP?",
+        "query_riformulata": "Despite the advancements brought by Large Language Models, what significant challenge remains a focus of ongoing research in the field of Natural Language Processing?"
+    },
+    {
+        "domanda": "How do word embeddings differ from traditional term frequency methods like TF-IDF in representing text?",
+        "query_riformulata": "How do word embeddings differ from traditional term frequency methods like TF-IDF in representing text?"
+    },
+    {
+        "domanda": "Why does the balanced class distribution of the dataset simplify evaluation?",
+        "query_riformulata": "Why does a balanced class distribution in a dataset simplify the evaluation of machine learning models?"
+    },
+    {
+        "domanda": "What is the purpose of the Next Sentence Prediction (NSP) task in BERT's pre-training?",
+        "query_riformulata": "What is the purpose of the Next Sentence Prediction (NSP) task in BERT's pre-training?"
+    },
+    {
+        "domanda": "What are the primary sources of text data used for training Large Language Models (LLMs)?",
+        "query_riformulata": "What are the primary sources of text data used for training Large Language Models (LLMs)?"
+    },
+    {
+        "domanda": "What is the purpose of the `config.yml` file?",
+        "query_riformulata": "What is the purpose of the `config.yml` file in the context of Large Language Models or Natural Language Processing projects?"
+    },
+    {
+        "domanda": "What is rule-based filtering and how does it contribute to LLM safety?",
+        "query_riformulata": "What is rule-based filtering and how does it contribute to LLM safety?"
+    },
+    {
+        "domanda": "How are tokens represented for computational processing?",
+        "query_riformulata": "How are tokens represented for computational processing in the context of Natural Language Processing?"
+    },
+    {
+        "domanda": "What is meant by \"external validation\" in the context of LLM safety?",
+        "query_riformulata": "What is meant by \"external validation\" in the context of LLM safety?"
+    },
+    {
+        "domanda": "Explain the concept of cross-entropy loss and its role in the training of GPT models.",
+        "query_riformulata": "Explain the concept of cross-entropy loss and its role in the training of GPT models."
+    },
+    {
+        "domanda": "What is the significance of the dense representation used in word embeddings?",
+        "query_riformulata": "What is the significance of dense representations in word embeddings for NLP tasks?"
+    },
+    {
+        "domanda": "Explain the role of positional encodings in the Transformer architecture and why they are necessary.",
+        "query_riformulata": "Explain the role of positional encodings in the Transformer architecture and why they are necessary."
+    },
+    {
+        "domanda": "What is the expected output format when fine-tuning T5 for a question-answering task using the provided example prefix?",
+        "query_riformulata": "What is the expected output format when fine-tuning T5 for a question-answering task using a given example prefix?"
+    },
+    {
+        "domanda": "What are the benefits of using external validation layers for implementing guardrails, and how does this approach enhance scalability?",
+        "query_riformulata": "What are the benefits of using external validation layers for implementing guardrails, and how does this approach enhance scalability?"
+    },
+    {
+        "domanda": "Which datasets were used for training GPT-1, GPT-2, and GPT-3, and how do they differ in size and scope?",
+        "query_riformulata": "Which datasets were used for training GPT-1, GPT-2, and GPT-3, and how do they differ in size and scope?"
+    },
+    {
+        "domanda": "What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during training?",
+        "query_riformulata": "What is the primary cause of the vanishing gradient problem in Recurrent Neural Networks during training?"
+    },
+    {
+        "domanda": "What does the encoder produce after processing the input sequence?",
+        "query_riformulata": "What does the encoder in a sequence-to-sequence model produce after processing the input sequence?"
+    },
+    {
+        "domanda": "How many movie reviews are included in the IMDB dataset mentioned?",
+        "query_riformulata": "How many movie reviews are included in the IMDB dataset?"
+    },
+    {
+        "domanda": "Where is the action server endpoint configured?",
+        "query_riformulata": "OUT_OF_CONTEXT_QUESTION ''Where is the action server endpoint configured?'' does not relate to LLMs or NLP."
+    },
+    {
+        "domanda": "How does LangChain facilitate the development of RAG systems?",
+        "query_riformulata": "How does LangChain facilitate the development of Retrieval-Augmented Generation (RAG) systems?"
+    },
+    {
+        "domanda": "For what type of conversation patterns are \"Rules\" in Rasa particularly useful?",
+        "query_riformulata": "For what type of conversation patterns are \"Rules\" in Rasa particularly useful?"
+    },
+    {
+        "domanda": "How does TF-IDF contribute to text representation in machine learning?",
+        "query_riformulata": "How does TF-IDF contribute to text representation in machine learning?"
+    },
+    {
+        "domanda": "How does the architecture of LLaMA-7B differ from that of LLaMA-65B, and what are the implications of these differences?",
+        "query_riformulata": "How does the architecture of LLaMA-7B differ from that of LLaMA-65B, and what are the implications of these differences?"
+    }
+]

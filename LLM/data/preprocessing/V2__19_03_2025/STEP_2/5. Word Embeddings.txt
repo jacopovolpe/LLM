@@ -1,0 +1,677 @@
+# Natural Language Processing and Large Language Models
+Corso di Laurea Magistrale in Ingegneria Informatica Lesson 5
+Word Embeddings
+Nicola Capuano and Antonio Greco
+DIEM – University of Salerno
+
+## Outline
+*   Limitations of TF-IDF
+*   Word Embeddings
+*   Learning Word Embeddings
+*   Word2Vec Alternatives
+*   Working with Word Embeddings
+
+## Limitations of TF-IDF
+TF-IDF counts terms according to their exact spelling.
+Texts with the same meaning will have completely different TF-IDF vector representations if they use different words.
+
+**Examples:**
+*   The movie was amazing and exciting.
+*   The film was incredible and thrilling.
+*   The team conducted a detailed analysis of the data and found significant correlations between variables.
+*   The group performed an in-depth examination of the information and discovered notable relationships among factors.
+
+### Term Normalization
+Techniques like stemming and lemmatization help normalize terms. Words with similar spellings are collected under a single token.
+
+**Disadvantages:**
+*   They fail to group most synonyms.
+*   They may group together words with similar/same spelling but different meanings.
+*   She is leading the project vs. The plumber leads the pipe.
+*   The bat flew out of the cave vs. He hit the ball with a bat.
+
+### TF-IDF Applications
+TF-IDF is sufficient for many NLP applications:
+*   Information Retrieval (Search Engines)
+*   Information Filtering (Document Recommendation)
+*   Text Classification
+
+Other applications require a deeper understanding of text semantics:
+*   Text generation (Chatbot)
+*   Automatic Translation
+*   Question Answering
+*   Paraphrasing and Text Rewriting
+
+## Bag-of-Words (recap)
+Each word is assigned an index that represents its position in the vocabulary:
+*   the 1st word (e.g., apple) has index 0
+*   the 2nd word (e.g., banana) has index 1
+*   the 3rd word (e.g., king) has index 2
+*   ...
+
+Each word is then represented by a one-hot vector:
+*   apple = (1,0,0,0,…,0)
+*   banana = (0,1,0,0,…,0)
+*   king = (0,0,1,0,…,0)
+
+## Bag-of-Words (recap)
+With this encoding, the distance between any pair of vectors is always the same. It does not capture the semantics of words. Furthermore, it is not efficient since it uses sparse vectors.
+
+**Note:** The figure shows only three dimensions of a space where dimensions equals the cardinality of the vocabulary
+
+## Word Embeddings
+Word Embeddings: A technique for representing words with vectors (A.K.A. Word Vectors) that are:
+*   Dense
+*   With dimensions much smaller than the vocabulary size
+*   In a continuous vector space
+
+**Key feature:** Vectors are generated so that words with similar meanings are close to each other. The position in the space represents the semantics of the word.
+
+Word Embeddings:
+*   king and queen are close to each other
+*   apple and banana are close to each other
+The words of the first group are far from those of to the second group.
+
+**Example:**
+*   Apple = (0.25,0.16)
+*   Banana = (0.33,0.10)
+*   King = (0.29,0.68)
+*   Queen = (0.51,0.71)
+
+### Word Embedding: Properties
+Word embeddings enable semantic text reasoning based on vector arithmetic.
+
+**Examples:**
+*   Subtracting royal from king we arrive close to man: king – royal ≈ man
+*   Subtracting royal from queen we arrive close to woman: queen – royal ≈ woman
+*   Subtracting man from king and adding woman we arrive close to queen: king – man + woman ≈ queen
+
+### Semantic Queries
+Word embeddings allow for searching words or names by interpreting the semantic meaning of a query.
+
+**Examples:**
+*   Query: "Famous European woman physicist"
+    ```
+    wv['famous'] + wv['European'] + wv['woman'] + wv['physicist'] ≈ wv['Marie_Curie'] ≈ wv['Lise_Meitner'] ≈ …
+    ```
+*   Query: “Popular American rock band”
+    ```
+    wv['popular'] + wv['American'] + wv['rock'] + wv['band'] ≈ wv['Nirvana'] ≈ wv['Pearl Jam'] ≈ …
+    ```
+
+### Analogies
+Word embeddings enable answering analogy questions by leveraging their semantic relationships.
+
+**Examples:**
+*   Who is to physics what Louis Pasteur is to germs?
+    ```
+    wv['Louis_Pasteur'] – wv['germs'] + wv['physics'] ≈ wv['Marie_Curie']
+    ```
+*   Marie Curie is to science as who is to music?
+    ```
+    wv['Marie_Curie'] – wv['science'] + wv['music'] ≈ wv['Ludwig_van_Beethoven']
+    ```
+*   Legs is to walk as mouth is to what?
+    ```
+    wv['legs'] – wv['walk'] + wv['mouth'] ≈ wv['speak'] or wv['eat']
+    ```
+
+## Visualizing Word Embeddings
+Google News Word2vec 300-D vectors projected onto a 2D map using PCA. Semantic proximity approximates geographical proximity.
+
+news corpus, cities that are similar in size and culture are clustered close together despite being far apart geographically, such as San Diego and San Jose, or vacation destinations such as Honolulu and Reno.
+
+Fortunately you can use conventional algebra to add the vectors for cities to the vectors for states and state abbreviations. As you discovered in chapter 4, you can use tools such as principal components analysis to reduce the vector dimensions from your 300 dimensions to a human-understandable 2D representation. PCA enables you to see the projection or “shadow” of these 300-D vectors in a 2D plot. Best of all, the PCA algorithm ensures that this projection is the best possible view of your data, keeping the vectors as far apart as possible. PCA is like a good photographer that looks at something from every possible angle before composing the optimal photograph. You don’t even have to normalize the length of the vectors after summing the city + state + abbrev vectors, because PCA takes care of that for you.
+
+We saved these augmented city word vectors in the nlpia package so you can load them to use in your application. In the following code, you use PCA to project them onto a 2D plot.
+
+```python
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+us_300D = get_data('cities_us_wordvectors')
+us_2D = pca.fit_transform(us_300D.iloc[:, :300])
+```
+
+Figure 6.8 shows the 2D projection of all these 300-D word vectors for US cities:
+Figure 6.8 Google News Word2vec 300-D vectors projected onto a 2D map using PCA
+
+Listing 6.11 Bubble chart of US cities
+The 2D vectors producted by PCA are for visualization. Retain the original 300-D Word2vec vectors for any vector reasoning you might want to do.
+The last column of this DataFrame contains the city name, which is also stored in the DataFrame index.
+
+Memphis, Nashville,
+Charlotte, Raleigh, and Atlanta
+Houston and Dallas
+nearly coincide.
+Ft. Worth
+El Paso
+San Diego
+LA, SF, and San Jose
+America/Los_…(0.9647851, –0.7217035)
+Portland, OR
+Honolulu, Reno,
+Mesa, Tempe, and Phoenix
+
+Size: population
+Position: semantics
+Color: time zone
+America/Phoenix
+America/New_York
+America/Anchorage
+America/Indiana/Indianapolis
+America/Los_Angeles
+America/Boise
+America/Denver
+America/Kentucky/Louisville
+America/Chicago
+Pacific/Honolulu
+
+## Learning Word Embeddings
+
+### Word2Vec
+Word embeddings was introduced by Google in 2013 in the following paper:
+*   T. Mikolov, K. Chen, G. Corrado, and J. Dean, Efficient estimation of word representations in vector space in 1st International Conference on Learning Representations, ICLR 2013
+
+The paper defines Word2Vec:
+*   A methodology for the generation of word embeddings
+*   Based on neural networks
+*   Using unsupervised learning on a large unlabeled textual corpus
+
+### Word2Vec
+Idea: words with similar meanings are often found in similar contexts.
+*   Context: a sequence of words in a sentence
+
+**Example:**
+*   Consider the sentence Apple juice is delicious.
+*   Remove one word.
+*   The remaining sentence is ____ juice is delicious.
+*   Ask someone to guess the missing word.
+*   Terms such as banana, pear or apple would probably be suggested.
+*   These terms have similar meanings and used in similar contexts.
+
+### Continuous Bag-of-Word
+A neural network is trained to predict the central token of a context of m tokens.
+*   **Input:** the bag of words composed of the sum of all one-hot vectors of the surrounding tokens.
+*   **Output:** a probability distribution over the vocabulary with its maximum in the most probable missing word.
+*Example:* Claude Monet painted the Grand Canal in Venice in 1806.
+
+### Continuous Bag-of-Word
+|V| input and output neurons where V is the vocabulary
+n hidden neurons where n is the word embedding dimension
+
+### SKIP-GRAM VS. CBOW: WHEN TO USE WHICH APPROACH
+Mikolov highlighted that the skip-gram approach works well with small corpora and rare terms. With the skip-gram approach, you’ll have more examples due to the network structure. But the continuous bag-of-words approach shows higher accuracies for frequent words and is much faster to train.
+
+### Continuous bag of words vs. bag of words
+In previous chapters, we introduced the concept of a bag of words, but how is it different than a continuous bag of words? To establish the relationships between words in a sentence you slide a rolling window across the sentence to select the surrounding words for the target word. All words within the sliding window are considered to be the content of the continuous bag of words for the target word at the middle of that window.
+
+**Example:** for a continuous bag of words passing a rolling window of five words over the sentence “Claude Monet painted the Grand Canal of Venice in 1908.” The word painted is the target or center word within a five-word rolling window. “Claude,” “Monet,” “the,” and “Grand” are the four surrounding words for the first CBOW rolling window.
+
+### Continuous Bag-of-Word
+Ten 5-gram examples from the sentence about Monet
+
+CONTINUOUS BAG-OF-WORDS APPROACH
+In the continuous bag-of-words approach, you’re trying to predict the center word based on the surrounding words. Instead of creating pairs of input and output tokens, you’ll create a multi-hot vector of all surrounding terms as an input vector. The multi-hot input vector is the sum of all one-hot vectors of the surrounding tokens to the center, target token.
+
+Based on the training sets, you can create your multi-hot vectors as inputs and map them to the target word as output. The multi-hot vector is the sum of the one-hot vectors of the surrounding words’ training pairs wt-2 + wt-1 + wt+1 + wt+2 . You then build the training pairs with the multi-hot vector as the input and the target word wt as the output. During the training, the output is derived from the softmax of the output node with the highest probability.
+
+| Input word wt-2 | Input word wt-1 | Input word wt+1 | Input word wt+2 | Expected output wt |
+|-----------------|-----------------|-----------------|-----------------|--------------------|
+| Monet           | painted         | Claude          | Monet             | Claude             |
+| Claude          | painted         | the             | Monet             | painted            |
+| Claude          | Monet           | the             | Grand             | painted            |
+| Monet           | painted         | Grand           | Canal           | the                |
+| painted         | the             | Canal           | of              | Grand              |
+| the             | Grand           | of              | Venice            | Canal              |
+| Grand           | Canal           | Venice          | in              | of               |
+| Canal           | of              | in              | 1908            | Venice             |
+| of              | Venice          | 1908            | in              | in               |
+| Venice          | in              | 1908            |                  |                  |
+
+target word w t = word to be predicted
+surrounding words w t-2, w t-1 = input words
+surrounding words w t+1, w t+2
+
+painted the Grand Canal of Venice in 1908.
+
+### Continuous Bag-of-Word
+After the training is complete the output layer of the network is discarded. Only the weights of the inputs to the hidden layer are important. They represent the semantic meaning of words.
+Similar words are found in similar contexts …
+… their weights to the hidden layer adjust in similar ways
+… this result in similar vector representations
+
+SKIP-GRAM VS. CBOW: WHEN TO USE WHICH APPROACH
+Mikolov highlighted that the skip-gram approach works well with small corpora and rare terms. With the skip-gram approach, you’ll have more examples due to the network structure. But the continuous bag-of-words approach shows higher accuracies for frequent words and is much faster to train.
+
+Continuous bag of words vs. bag of words
+In previous chapters, we introduced the concept of a bag of words, but how is it different than a continuous bag of words? To establish the relationships between words in a sentence you slide a rolling window across the sentence to select the surround-ing words for the target word. All words within the sliding window are considered to be the content of the continuous bag of words for the target word at the middle of that window.
+
+Example for a continuous bag of words passing a rolling window of five words over the sentence “Claude Monet painted the Grand Canal of Venice in 1908.” The word painted is the target or center word within a five-word rolling window. “Claude,” “Monet,” “the,” and “Grand” are the four surrounding words for the first CBOW rolling window.
+
+the highest probability will be converted to 1, and all remaining terms will be set to 0.
+This simplifies the loss calculation.
+ After training of the neural network is completed, you’ll notice that the weights have been trained to represent the semantic meaning. Thanks to the one-hot vector conversion of your tokens, each row in the weight matrix represents each word from the vocabulary for your corpus. After the training, semantically similar words will have similar vectors, because they were trained to predict similar surrounding words. This is purely magical!
+ After the training is complete and you decide not to train your word model any further, the output layer of the network can be ignored. Only the weights of the inputs to the hidden layer are used as the embeddings. Or in other words: the weight matrix is your word embedding. The dot product between the one-hot vector representing the input term and the weights then represents the word vector embedding.
+
+Retrieving word vectors with linear algebra
+The weights of a hidden layer in a neural network are often represented as a matrix: one column per input neuron, one row per output neuron. This allows the weight matrix to be multiplied by the column vector of inputs coming from the previous layer to generate a column vector of outputs going to the next layer . So if you multiply (dot product) a one-hot row vector by the trained weight matrix, you’ll get a vector that is one weight from each neuron (from each matrix column). This also works if you take the weight matrix and multiply it (dot product) by a one-hot column vector for the word you are interested in.
+
+Of course, the one-hot vector dot product just selects that row from your weight matrix that contains the weights for that word, which is your word vector. So you could easily retrieve that row by just selecting it, using the word’s row number or index num-ber from your vocabulary.
+
+WE of Monet
+
+### Skip-Gram
+Alternative training method for Word2Vec
+*   A neural network is trained to predict a context of m tokens based on the central token
+*   **Input:** the one-hot vector of the central token
+*   **Output:** the one-hot vector of a surrounding word (one training iteration for each surrounding word)
+
+output example skip-grams are shown in figure 6.3. The predicted words for these skip-grams are the neighboring words “Claude,” “Monet,” “the,” and “Grand.”
+
+WHAT IS A SKIP-GRAM? Skip-grams are n -grams that contain gaps because you skip over intervening tokens. In this example, you’re predicting “Claude” from the input token “painted,” and you skip over the token “Monet.”
+The structure of the neural network used to predict the surrounding words is similar to the networks you learned about in chapter 5. As you can see in figure 6.4, the net-work consists of two layers of weights, where the hidden layer consists of n neurons; n is the number of vector dimensions used to represent a word. Both the input and out-put layers contain M neurons, where M is the number of words in the model’s vocabu-lary. The output layer activation function is a softmax, which is commonly used for classification problems.
+
+WHAT IS SOFTMAX ?
+The softmax function is often used as the activation function in the output layer of neural networks when the network’s goal is to learn classification problems. The softmax will squash the output results between 0 and 1, and the sum of all outputs will always add up to 1. That way, the results of an output layer with a softmax function can be considered as probabilities.
+ For each of the K output nodes, the softmax output value can be calculated using the normalized exponential function:
+
+```
+σ(z)j = exp(z_j) / Σ_{k=1}^{K} exp(z_k)
+```
+
+**Example 3D vector:**
+v = [0.5, 0.9, 0.2]
+
+word w t = input word
+
+painted the Grand Canal of Venice in 1908.
+surrounding words w t-2 , w t-1 = words to be predicted
+surrounding words w t+1 , w t+2
+
+### Skip-Gram
+|V| input and output neurons where V is the vocabulary
+n hidden neurons where n is the word embedding dimension
+
+The “squashed” vector after the softmax activation would look like this:
+
+**Example 3D vector after softmax:**
+σ(v) = [0.309, 0.461, 0.229]
+
+Notice that the sum of these values (rounded to three significant digits) is approximately 1.0, like a probability distribution.
+
+Figure 6.4 shows the numerical network input and output for the first two surrounding words. In this case, the input word is “Monet,” and the expected output of the network is either “Claude” or “painted,” depending on the training pair.
+
+### Skip-Gram
+Ten 5-gram examples from the sentence about Monet
+
+NOTE When you look at the structure of the neural network for word embedding, you’ll notice that the implementation looks similar to what you discovered in chapter 5.
+
+How does the network learn the vector representations?
+To train a Word2vec model, you’re using techniques from chapter 2. For example, in table 6.1, wt represents the one-hot vector for the token at position t. So if you want to train a Word2vec model using a skip-gram window size (radius) of two words, you’re considering the two words before and after each target word. You would then use your 5-gram tokenizer from chapter 2 to turn a sentence like this:
+
+```python
+sentence = "Claude Monet painted the Grand Canal of Venice in 1806."
+```
+
+into 10 5-grams with the input word at the center, one for each of the 10 words in the original sentence.
+
+The training set consisting of the input word and the surrounding (output) words are now the basis for the training of the neural network. In the case of four surrounding words, you would use four training iterations, where each output word is being pre-dicted based on the input word.
+
+Each of the words are represented as one-hot vectors before they are presented to the network (see chapter 2). The output vector for a neural network doing embedding is similar to a one-hot vector as well. The softmax activation of the output layer nodes (one for each token in the vocabulary) calculates the probability of an output word being found as a surrounding word of the input word. The output vector of word probabilities can then be converted into a one-hot vector where the word with the highest probability will be converted to 1, and all remaining terms will be set to 0.
+
+| Input word wt | Expected output wt-2 | Expected output wt-1 | Expected output wt+1 | Expected output wt+2 |
+|---------------|----------------------|----------------------|----------------------|----------------------|
+| Claude        |                      |                      | Monet                |                      |
+| Monet         |                      | Claude               | painted              |                      |
+| painted       | Claude               | Monet                | the                  | Grand                |
+| the           | Monet                | painted              | Grand                | Canal                |
+| Grand         | painted              | the                  | Canal                | of                   |
+| Canal         | the                  | Grand                | of                   | Venice               |
+| of            | Grand                | Canal                | Venice               | in                   |
+| Venice        | Canal                | of                   | in                   | 1908                 |
+| in            | of                   | Venice               | 1908                 |                      |
+| 1908          | Venice               | in                   |                      |                      |
+
+### Skip-Gram
+After the training is complete the output layer of the network is discarded. Only the weights of the inputs to the hidden layer are important. They represent the semantic meaning of words.
+Similar words are found in similar contexts …
+… their weights to the hidden layer adjust in similar ways
+… this result in similar vector representations
+
+### CBOW vs Skip-Gram
+**CBOW**
+*   Higher accuracies for frequent words, much faster to train, suitable for large datasets
+
+**Skip-Gram**
+*   Works well with small corpora and rare terms
+
+**Dimension of Embeddings (n)**
+*   Large enough to capture the semantic meaning of tokens for the specific task
+*   Not so large that it results in excessive computational expense
+
+### Improvements to Word2Vec
+**Frequent Bigrams**
+*   Some words often occur in combination
+*   Elvis is often followed by Presley forming a bigram
+*   Predicting Presley after Elvis doesn't add much value
+*   To let the network focus on useful predictions frequent bigrams and trigrams are included as terms in the Word2vec vocabulary
+*   Inclusion criteria: co-occurrence frequency greater than a threshold
+
+```
+score(wi, wj) = (count(wi, wj) - δ) / (count(wi) * count(wj))
+```
+
+*   Examples: Elvis\_Presley, New\_York, Chicago\_Bulls, Los\_Angeles\_Lakers, etc.
+
+### Improvements to Word2Vec
+**Subsampling Frequent Tokens**
+*   Common words (like stop-words) often don’t carry significant information
+*   Being frequent, they have a big influence on the training process
+
+**To reduce their effect...**
+*   During training (skip-gram method), words are sampled in inverse proportion to their frequency
+*   **Probability of sampling:**
+
+```
+P(wi) = 1 - sqrt(t / f(wi))
+```
+Where ```f(wi)``` is the frequency of a word across the corpus, and ```t``` represents a frequency threshold above which you want to apply the subsampling probability.
+
+*   The effect is like the IDF effect on TF-IDF vectors
+
+### Improvements to Word2Vec
+**Negative Sampling**
+*   Each training example causes the network to update all weights
+*   With thousands or millions of words in the vocabulary, this makes the process computationally expensive
+
+**Instead of updating all weights...**
+*   Select 5 to 20 negative words (words not in the context)
+*   Update weights only for the negative words and the target word
+*   Negative words are selected based on their frequency
+*   Common words are chosen more often than rare words
+*   The quality of embeddings in maintained
+
+## Word2Vec Alternatives
+
+### GloVe
+Global Vectors for Word Representation
+*   Introduced by researchers from Stanford University in 2014
+*   Uses classical optimization methods like Singular Value Decomposition instead of neural networks
+
+**Advantages:**
+*   Comparable precision to Word2Vec
+*   Significantly faster training times
+*   Effective on small corpora
+
+[https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/)
+
+### FastText
+Introduced by Facebook researchers in 2017
+*   Based on sub-words, predicts the surrounding n-character grams rather than the surrounding words
+*   Example: the word whisper would generate the following 2- and 3-character grams: wh, whi, hi, his, is, isp, sp, spe, pe, per, er
+
+**Advantages:**
+*   Particularly effective for rare or compound words
+*   Can handle misspelled words
+*   Available in 157 languages
+
+[https://fasttext.cc/](https://fasttext.cc/)
+
+### Static Embeddings
+Word2Vec, GloVe, FastText are Static Embeddings
+*   Each word is represented by a single static vector that captures the average meaning of the word based on the training corpus
+*   Once trained, vectors do not change based on context
+*   This does not account for polysemy and homonymy
+
+**Example:**
+*   The word apple could refer to the fruit, the tech company, or even a popular song (ABBA)
+*   A word embedding would blend these meanings into a single vector, failing to capture the specific context
+
+### Semantic Drift
+The meanings of words changes over time, posing a challenge for static embeddings
+*   Gay once meant cheerful but now primarily refers to homosexuality
+*   Broadcast shifted from casting out seeds to transmitting signals with the advent of radio and TV
+*   Awful changed from full of awe to terrible or appalling
+
+### Social Stereotypes
+Word embeddings can perpetuate and amplify societal biases present in the training data
+*   Man is to Doctor as Woman is to… Nurse
+
+Examples of gender, racial, and religious biases in analogies generated from word embeddings trained on the Reddit data from users from the USA.
+
+Black is to Criminal as Caucasian is to Police: Detecting and Removing Multiclass Bias in Word Embeddings
+
+### Other Issues of WEs
+**Out-of-Vocabulary words**
+*   Traditional WEs cannot handle unknown words
+*   They are limited to the words present in the training data
+*   Models based on sub-words (like FastText) can handle this
+
+**Lack of transparency**
+*   It can be difficult to interpret the meaning of individual dimensions or word vectors
+*   Difficult to analyze and improve the model, ensure its fairness, and explain its behavior to stakeholders
+
+### Contextual Embeddings
+Contextual Embeddings can be updated based on the context of surrounding words
+*   Context is used both during training and usage
+*   Effective for applications that need deep language understanding
+
+The embedding for not happy is closer to unhappy than in static embeddings
+
+**Examples:**
+*   ELMo (Embeddings from Language Model) – 2018
+*   BERT (Bi-directional Encoder Representations for Transformers) – 2020
+*   Many others, based on transformers… we will see them later
+
+## Working with Word Embeddings
+
+### Load Pre-trained WEs
+Gensim is a popular Python library for NLP supporting various word embedding models.
+
+[https://radimrehurek.com/gensim/](https://radimrehurek.com/gensim/)
+
+```bash
+pip install gensim
+```
+
+```python
+import gensim.downloader as api
+
+# Download word embeddings pre-trained on a part of the Google News dataset
+# The model contains 300-dimensional vectors for 3 million words and phrases
+# about 1.6 Gb data will be downloaded (only the first time)
+
+wv = api.load('word2vec-google-news-300')
+
+# print the first 10 words in the model
+for i, word in enumerate(wv.index_to_key[:10]):
+    print("Word {} is {}".format(i, word))
+```
+
+### Get a Word Vector
+
+```python
+wv['king'] # 300-dimensional vector
+```
+
+### Similarity Between Words
+
+```python
+pairs = [
+    ('car', 'minivan'), # a minivan is a kind of car
+    ('car', 'bicycle'), # still a wheeled vehicle
+    ('car', 'airplane'), # ok, no wheels, but still a vehicle
+    ('car', 'cereal'), # ... and so on
+    ('car', 'communism'),
+]
+
+for w1, w2 in pairs:
+    print("{:<6} {:<12} {:.2f}".format(w1, w2, wv.similarity(w1, w2)))
+```
+
+Compute similarity between words
+
+### Operations with WEs
+
+```python
+# most_similar find the top-N most similar keys. Positive keys contribute
+# positively towards the similarity, negative keys negatively.
+# Uses cosine similarity between word vectors.
+
+# king + woman - man = queen
+print(wv.most_similar(positive=['king', 'woman'], negative=['man'], topn=2))
+
+# Louis_Pasteur is to science as ... is to music
+print(wv.most_similar(positive=['Louis_Pasteur', 'music'], negative=['science'], topn=2))
+
+# Words most similar to 'cat'
+print(wv.most_similar('cat', topn=3))
+
+# Which key from the given list doesn’t go with the others (doesnt_match)?
+print(wv.doesnt_match("breakfast cereal dinner lunch".split()))
+```
+
+### Change the WE Model
+Gensim comes with several pre-trained models:
+*   fasttext-wiki-news-subwords-300
+*   conceptnet-numberbatch-17-06-300
+*   word2vec-ruscorpora-300
+*   word2vec-google-news-300
+*   glove-wiki-gigaword-50
+*   glove-wiki-gigaword-100
+*   glove-wiki-gigaword-200
+*   glove-wiki-gigaword-300
+*   glove-twitter-25
+*   glove-twitter-50
+*   glove-twitter-100
+*   glove-twitter-200
+
+You can also import an external model:
+
+### Using Italian WEs
+
+```python
+# Download Italian WE from https://mlunicampania.gitlab.io/italian-word2vec/ (700Mb)
+# Trained on Italian Wikipedia, contains 300-dimensional vectors for 618.224 words
+
+from gensim.models import KeyedVectors
+wv_ita = KeyedVectors.load("W2V.kv")
+```
+
+```python
+pairs = [
+    ('automobile', 'suv'), # a suv is a kind of car
+    ('automobile', 'bicicletta'), # still a wheeled vehicle
+    ('automobile', 'aereo'), # ok, no wheels, but still a vehicle
+    ('automobile', 'cereali'), # ... and so on
+    ('automobile', 'comunismo'),
+]
+for w1, w2 in pairs:
+    print("{:<12} {:<12} {:.2f}".format(w1, w2, wv_ita.similarity(w1, w2)))
+```
+
+Compute similarity between words
+
+### Train a WE Model
+
+```python
+import nltk
+from nltk.corpus import reuters
+from gensim.models import Word2Vec
+
+# Dwonload the Reuters corpus
+nltk.download('reuters')
+
+# Extract and tokenize training documents (we use the "words" method)
+training_ids = [id for id in reuters.fileids() if id.startswith("training")]
+training_corpus = [list(reuters.words(id)) for id in training_ids]
+
+# Training a word2vec model on the Reuters corpus
+model = Word2Vec(sentences=training_corpus, vector_size=100, window=5, min_count=5, workers=4)
+
+# print the first 10 words in the model
+for i, word in enumerate(model.wv.index_to_key[:10]):
+    print("Word {} is {}".format(i, word))
+
+# Save the model
+model.save("reuters_w2v")
+```
+
+*   Dimensions of word vectors
+*   Context window
+*   Min occurrences of a word to be considered
+*   Number of threads
+
+### Out-of-Vocabulary Words
+Before using a WE you should check if the token is present in the vocabulary. Usually out-of-vocabulary words are discarded.
+
+```python
+def check_print(model, word):
+    print(model.wv[word][:10] if word in model.wv else "Not present.")
+
+# Check if some words are present in the model
+check_print(model, 'nation')
+check_print(model, 'kingdom')
+check_print(model, 'king') # not present
+```
+
+### Using FastText
+FastText can generate embeddings for unknown words. Each word is treated as an aggregation of sub-words. WEs are generated based on the word’s morphological structure.
+
+```python
+from gensim.models import FastText
+
+# Training a FastText model on the Reuters corpus
+model_ft = FastText(sentences=training_corpus, vector_size=100, window=5, min_count=5, workers=4)
+
+# Check if some words are present in the model
+check_print(model_ft, 'nation')
+check_print(model_ft, 'kingdom')
+check_print(model_ft, 'king') # generated by FastText
+```
+
+### WEs in spaCy
+spaCy uses Word Vectors behind the scenes.
+
+```python
+import spacy
+sentence = "Leonardo da Vinci began painting the Mona Lisa at the age of 51."
+
+# The "small" language models include simple low-dimensional word vectors
+nlp_sm = spacy.load("en_core_web_sm") # load the language model
+
+doc = nlp_sm(sentence)
+
+print(doc[0].vector[:12], "...") # word vector of the first token (Leonardo)
+print(doc[0].vector.shape) # word vector shape
+
+# The "medium" and "large" models include 300-dimensional GloVe word vectors
+# python -m spacy download en_core_web_md
+
+nlp_md = spacy.load("en_core_web_md") # load the language model
+
+doc = nlp_md(sentence)
+
+print(doc[0].vector[:12], "...") # word vector of the first token (Leonardo)
+print(doc[0].vector.shape) # word vector shape
+```
+
+### Document Similarity
+Can Word Vectors be used for document similarity?
+
+Idea: compute the average of word vectors in a document to obtain a single vector representing it. spaCy uses this method through the Doc.similarity method.
+
+```python
+doc1 = nlp_md("The CEO addressed the staff about the upcoming changes in the company’s strategy.")
+doc2 = nlp_md("The executive leader informed the team about the forthcoming adjustments in the firm’s approach.")
+doc3 = nlp_md("Leonardo was born in Vinci, Italy, in 1452.")
+
+print(doc1.similarity(doc2), doc1.similarity(doc3), doc2.similarity(doc3))
+```
+
+## References
+Natural Language Processing IN ACTION Understanding, analyzing, and generating text with Python Chapter 6
+
+## Further Readings…
+Gensim documentation
+[https://radimrehurek.com/gensim/auto_examples/index.html#documentation](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)

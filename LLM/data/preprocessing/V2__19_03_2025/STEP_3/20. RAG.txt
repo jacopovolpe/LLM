@@ -1,0 +1,757 @@
+Natural Language Processing and Large Language Models. This material is from Lesson 20 of the Corso di Laurea Magistrale in Ingegneria Informatica (Master's Degree Course in Computer Engineering) on Retrieval Augmented Generation (RAG). It was prepared by Nicola Capuano and Antonio Greco, DIEM – University of Salerno.
+
+**Outline**
+
+This lesson will cover the following topics:
+
+*   Introduction to RAG
+*   Introduction to LangChain
+*   Building a RAG with LangChain and HuggingFace
+
+<----------section---------->
+
+**Introduction to RAG**
+
+**What is RAG?**
+
+Large Language Models (LLMs) are capable of sophisticated reasoning across a broad spectrum of topics. However, they have inherent limitations:
+
+*   **Limited Knowledge:** LLMs are constrained by the data they were trained on. Their understanding of the world is fixed at the point of their last training update.
+*   **Inability to Access New Information:** They cannot inherently access or reason about information introduced after their training cutoff date. This means they are unable to provide insights on current events or recently published data.
+*   **Lack of Access to Private Data:** LLMs, in their default configuration, cannot reason about private, proprietary, or sensitive data. This is a major limitation in enterprise environments where data security and privacy are paramount.
+
+Retrieval Augmented Generation (RAG) is a technique designed to overcome these limitations. RAG enhances the knowledge of LLMs by providing them with access to additional data sources. RAG enables the creation of AI applications that can:
+
+*   Reason about private or proprietary data in a secure and compliant manner.
+*   Incorporate and reason about data introduced after a model’s cutoff date, ensuring up-to-date and relevant responses.
+*   Effectively utilize external knowledge sources to enhance the quality and accuracy of LLM outputs.
+
+<----------section---------->
+
+**RAG Concepts**
+
+A typical RAG application consists of two primary components:
+
+*   **Indexing:** This is a pipeline responsible for ingesting data from various sources and indexing it for efficient retrieval. Indexing typically happens offline as a preparatory step. This process transforms raw data into a searchable format.
+*   **Retrieval and Generation:** This component operates at runtime, processing user queries and generating responses. The retrieval and generation process consists of the following steps:
+    *   **Query Input:** Receives the user's query as input.
+    *   **Data Retrieval:** Retrieves the relevant data from the index based on the user's query. This step leverages the indexed data to find information pertinent to the query.
+    *   **Prompt Generation:** Generates a prompt that combines the user query with the retrieved data. The prompt is carefully crafted to provide the LLM with the necessary context.
+    *   **LLM Generation:** Uses an LLM to generate an answer based on the augmented prompt. The LLM leverages both the original query and the retrieved context to produce a well-informed response.
+
+<----------section---------->
+
+**Indexing**
+
+The indexing process prepares external data for retrieval. The indexing pipeline typically involves the following stages:
+
+*   **Load:** The initial step involves loading data from a variety of sources. Popular RAG frameworks provide document loaders to handle a wide range of formats, including:
+    *   File Formats: PDF, CSV, HTML, JSON, etc.
+    *   Data Sources: File systems, websites, databases, etc.
+*   **Split:** Large documents are split into smaller, more manageable chunks. This splitting is done for two primary reasons:
+    *   **Indexing Efficiency:** Smaller chunks are easier to search and index, resulting in faster retrieval times.
+    *   **LLM Context Window:** Smaller chunks ensure that the relevant information fits within the LLM's finite context window, which limits the amount of text the model can process at once.
+*   **Store:** The final step involves storing and indexing the split chunks. This is often done using a Vector Store, which allows for efficient semantic search.
+
+<----------section---------->
+
+**Indexing: Vector Stores and Embeddings**
+
+Vector stores are used to represent text splits as vector representations (embeddings).
+
+**Vector Stores**
+
+These are specialized data stores that are designed to enable indexing and retrieving information based on embeddings.
+
+*   **Recap: Embeddings:** Embeddings are vector representations that capture the semantic meaning of data. They encode the meaning of text in a numerical format.
+*   **Advantage:** Information retrieval is based on semantic similarity rather than keyword matching. This allows for more nuanced and relevant search results.
+
+<----------section---------->
+
+**Retrieval and Generation**
+
+Given a user input, relevant splits are retrieved from the vector store. An LLM then generates an answer using a prompt that includes both the question and the retrieved data. This allows the LLM to leverage external knowledge to provide accurate and contextually relevant responses.
+
+<----------section---------->
+
+**Introduction to LangChain**
+
+**LangChain**
+
+LangChain is a framework designed to simplify the development of applications that utilize LLMs.
+
+*   It provides a set of building blocks to incorporate LLMs into applications, making it easier to integrate these models into complex workflows.
+*   It connects to third-party LLMs (like OpenAI and HuggingFace), enabling access to a wide range of models. It also connects to various data sources (such as Slack or Notion), and external tools, allowing for seamless integration with existing systems.
+*   It enables the chaining of different components to create sophisticated workflows, facilitating the creation of complex NLP pipelines.
+*   It supports several use cases like chatbots, document search, RAG, Q&A, data processing, information extraction, etc., providing a versatile platform for various NLP tasks.
+*   It has both open-source and commercial components, offering flexibility and scalability for different needs.
+
+<----------section---------->
+
+**Key Components of LangChain**
+
+LangChain provides a rich set of components that can be combined to build powerful NLP applications:
+
+*   **Prompt Templates:** These facilitate translating user input into language model instructions. They support both string and message list formats, allowing for flexible prompt engineering.
+*   **LLMs:** These are third-party language models that accept strings or messages as input and return strings as output. LangChain provides interfaces to connect with various LLM providers.
+*   **Chat Models:** These are third-party models designed for conversational applications. They use sequences of messages as input and output, supporting distinct roles within conversational messages to maintain context and coherence.
+*   **Example Selectors:** These dynamically select and format concrete examples in prompts to enhance model performance. By providing relevant examples, they guide the model towards more accurate and contextually appropriate outputs.
+*   **Output Parsers:** These convert model-generated text into structured formats (e.g., JSON, XML, CSV). They support error correction and advanced features, ensuring that the output is easily consumable by other applications.
+*   **Document Loaders:** These load documents from various data sources, providing a unified interface for accessing data regardless of its source or format.
+*   **Vector Stores:** These are systems for storing and retrieving unstructured documents and data using embedding vectors. They enable efficient semantic search and retrieval.
+*   **Retrievers:** These are interfaces for document and data retrieval that are compatible with vector stores and other external sources. They provide a flexible way to access and retrieve relevant information.
+*   **Agents:** These are systems leveraging LLMs for reasoning to decide actions based on user inputs. They can interact with external tools and data sources to accomplish complex tasks.
+
+<----------section---------->
+
+**Installation**
+
+To get started with LangChain, you need to install the core library and any relevant extensions. Here are the basic installation steps:
+
+*   Install the core LangChain library:
+
+    ```bash
+    pip install langchain
+    ```
+*   Install community-contributed extensions:
+
+    ```bash
+    pip install langchain_community
+    ```
+*   Installs Hugging Face integration for LangChain:
+
+    ```bash
+    pip install langchain_huggingface
+    ```
+*   Install a library to load, parse, and extract text from PDF:
+
+    ```bash
+    pip install pypdf
+    ```
+*   Install the FAISS vector store (CPU version):
+
+    ```bash
+    pip install faiss-cpu
+    ```
+
+<----------section---------->
+
+**Preliminary Steps**
+
+Before using the Hugging Face integration, you need to:
+
+*   Obtain a Hugging Face access token. Copy your Access token. This token is required to authenticate with the Hugging Face Hub.
+*   Gain access to the Mistral-7B-Instruct-v0.2 model by accepting the user license: [https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) This step is necessary to ensure you have the rights to use the model.
+
+<----------section---------->
+
+**Query a LLM Model**
+
+The following code demonstrates how to query a LLM model using LangChain and Hugging Face:
+
+```python
+from langchain_huggingface import HuggingFaceEndpoint
+import os
+
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_TOKEN"
+
+llm = HuggingFaceEndpoint(
+    repo_id = "mistralai/Mistral-7B-Instruct-v0.2",
+    temperature = 0.1
+)
+
+query = "Who won the FIFA World Cup in the year 2006?"
+print(llm.invoke(query))
+```
+
+This code will output:
+
+```
+The FIFA World Cup in the year 2006 was won by the Italian national football team. They defeated France in the final match held on July 9, 2006, at the Allianz Arena in Munich, Germany. The Italian team was coached by Marcello Lippi and was led by the legendary goalkeeper Gianluigi Buffon. The team's victory was significant as they had not won the World Cup since 1982. The final match ended in a 1-1 draw after extra time, and the Italians won the penalty shootout 5-3. The winning goal in the shootout was scored by Andrea Pirlo.
+```
+
+**NOTE:** It is recommended to save your API key in an environment variable for security and ease of use.
+
+*   On macOS or Linux:
+
+    ```bash
+    export HUGGINGFACEHUB_API_TOKEN="api_token"
+    ```
+*   On Windows with PowerShell:
+
+    ```powershell
+    setx HUGGINGFACEHUB_API_TOKEN "api_token"
+    ```
+
+<----------section---------->
+
+**Prompt Templates**
+
+Prompt templates are predefined text structures used to create dynamic and reusable prompts for interacting with LLMs. They allow you to easily format user input and inject variables into the prompt.
+
+```python
+from langchain.prompts import PromptTemplate
+
+template = "Who won the {competition} in the year {year}?"
+prompt_template = PromptTemplate(
+    template = template,
+    input_variables = ["competition", "year"]
+)
+
+query = prompt_template.invoke({"competition": "Davis Cup", "year": "2018"})
+answer = llm.invoke(query)
+
+print(answer)
+```
+
+This code will output:
+
+```
+The Davis Cup in the year 2018 was won by Croatia. They defeated France in the final held in Lille, France. The Croatian team was led by Marin Cilic and Borna Coric, while the French team was led by Jo-Wilfried Tsonga and Lucas Pouille. Croatia won the tie 3-2. This was Croatia's first Davis Cup title.
+```
+
+<----------section---------->
+
+**Introduction to Chains**
+
+Chains combine multiple steps in an NLP pipeline, automating complex tasks and integrating external systems.
+
+*   The output of each step becomes the input for the next, creating a seamless workflow.
+*   Chains are useful to automate complex tasks and integrate external systems, enabling the creation of more sophisticated applications.
+
+```python
+chain = prompt_template | llm
+answer = chain.invoke({"competition": "Davis Cup", "year": "2018"})
+
+print(answer)
+```
+
+This code will output:
+
+```
+The Davis Cup in the year 2018 was won by Croatia. They defeated France in the final held in Lille, France. The Croatian team was led by Marin Cilic and Borna Coric, while the French team was led by Jo-Wilfried Tsonga and Lucas Pouille. Croatia won the tie 3-2. This was Croatia's first Davis Cup title.
+```
+
+<----------section---------->
+
+**Chains: Refining LLM Output**
+
+Chains can be used to refine the LLM output for future processing, allowing for more structured and usable results.
+
+```python
+followup_template = """
+task: extract only the name of the winning team from the following text
+output format: json without formatting
+
+example: {{"winner": "Italy"}}
+
+### {text} ###
+"""
+
+followup_prompt_template = PromptTemplate(
+    template = followup_template,
+    input_variables = ["text"]
+)
+
+followup_chain = followup_prompt_template | llm
+
+print(followup_chain.invoke({"text": answer}))
+```
+
+This code will output:
+
+```json
+{"winner": "Croatia"}
+```
+
+<----------section---------->
+
+**Chaining All Together**
+
+LangChain allows you to create complex chains by combining multiple prompts and LLMs.
+
+```python
+from langchain_core.runnables import RunnablePassthrough
+
+chain = (
+    prompt_template
+    | llm
+    | {"text": RunnablePassthrough()}
+    | followup_prompt_template
+    | llm
+)
+
+print(chain.invoke({"competition": "Davis Cup", "year": "2018"}))
+```
+
+This code will output:
+
+```json
+{"winner": "Croatia"}
+```
+
+The `RunnablePassthrough` object forwards the output of the previous step to the next step associated with a specific dictionary key, allowing for flexible data flow within the chain.
+
+<----------section---------->
+
+**More on Chains: LCEL**
+
+LCEL (LangChain Expression Language) is a syntax to create modular pipelines for chaining operations, making it easier to build and manage complex NLP workflows.
+
+*   **Pipe Syntax:** The `|` operator allows for easy chaining of operations, creating a readable and intuitive syntax.
+*   **Modular and Reusable Components:** LCEL supports modular and reusable components, promoting code reuse and simplifying maintenance.
+*   **Branching Logic and Follow-Up Queries:** It can handle branching logic or follow-up queries, enabling the creation of dynamic and adaptive NLP pipelines.
+
+LangChain includes Predefined Chains for common tasks like question answering, document summarization, conversational agents, etc. Documentation: [https://python.langchain.com/docs/](https://python.langchain.com/docs/)
+
+<----------section---------->
+
+**Building a RAG with LangChain and HuggingFace**
+
+**Example Project**
+
+This section demonstrates building a RAG system capable of answering queries on documents from the Census Bureau US, an agency responsible for collecting statistics about the nation, its people, and its economy. The first step is to download the documents to be indexed:
+
+```python
+from urllib.request import urlretrieve
+import os
+
+os.makedirs("us_census", exist_ok = True)
+
+files = [
+    "https://www.census.gov/content/dam/Census/library/publications/2022/demo/p70-178.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-017.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-016.pdf",
+    "https://www.census.gov/content/dam/Census/library/publications/2023/acs/acsbr-015.pdf",
+]
+
+for url in files:
+    file_path = os.path.join("us_census", url.split("/")[-1])
+    urlretrieve(url, file_path)
+```
+
+This code downloads several PDF documents from the Census Bureau website and stores them in a directory named "us_census".
+
+<----------section---------->
+
+**Document Loaders**
+
+LangChain provides components used to extract content from diverse data sources, simplifying the process of ingesting data into the RAG pipeline:
+
+*   `TextLoader`: Handles plain text files, making it easy to load and process text-based data.
+*   `PyPDFLoader`: Extracts content from PDF documents, enabling the ingestion of information stored in PDF format.
+*   `CSVLoader`: Reads tabular data from CSV files, allowing for the incorporation of structured data into the RAG system.
+*   `WebBaseLoader`: Extracts content from web pages, enabling the retrieval of information from online sources.
+*   `WikipediaLoader`: Fetches Wikipedia pages, providing access to a vast repository of knowledge.
+*   `SQLDatabaseLoader`: Queries SQL databases to fetch and load content, allowing for the integration of data stored in relational databases.
+*   `MongoDBLoader`: Extracts data from MongoDB collections, enabling the use of NoSQL databases as a data source.
+*   `IMAPEmailLoader`: Loads emails using the IMAP protocol from various providers, facilitating the processing of email content.
+*   `HuggingFaceDatasetLoader`: Fetches datasets from the Hugging Face datasets library, providing access to a wide range of pre-processed datasets.
+*   and many others…
+
+<----------section---------->
+
+**Extract Content from PDFs**
+
+This section demonstrates how to extract text from PDF documents using LangChain's document loaders.
+
+We can use `PyPDFLoader` to extract text from a single PDF document:
+
+```python
+from langchain_community.document_loaders import PyPDFLoader
+
+loader = PyPDFLoader("us_census/p70-178.pdf")
+doc = loader.load()
+print(doc[0].page_content[0:100]) # Print the first page (first 100 characters)
+```
+
+This code will output the first 100 characters of the first page of the specified PDF document:
+
+```
+Occupation, Earnings, and Job
+Characteristics
+
+July 2022
+
+P70-178
+
+Clayton Gumber and Briana Sullivan
+```
+
+Alternatively, we can use `PyPDFDirectoryLoader` to fetch a set of PDF documents from a folder:
+
+```python
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+
+loader = PyPDFDirectoryLoader("./us_census/")
+docs = loader.load()
+
+print(docs[60].page_content[0:100]) # The 61st page (documents are concatenated)
+print('\n' + docs[60].metadata['source']) # The source of the page 61st page
+```
+
+This code will output the first 100 characters of the 61st page (documents are concatenated) and the source of that page:
+
+```
+U.S. Census Bureau 19
+
+insurance, can exacerbate the dif-
+ferences in monetary compensa -
+tion and w
+
+us_census/p70-178.pdf
+```
+
+<----------section---------->
+
+**Text Splitters**
+
+LangChain provides components used to break large text documents into smaller chunks, improving indexing and retrieval efficiency:
+
+*   `CharacterTextSplitter`: Splits text into chunks based on a character count, providing a simple way to divide documents.
+*   `RecursiveCharacterTextSplitter`: Attempts to split text intelligently by using hierarchical delimiters, such as paragraphs and sentences, to preserve semantic coherence.
+*   `TokenTextSplitter`: Splits text based on token count rather than characters, ensuring that chunks are of a consistent size in terms of tokens.
+*   `HTMLHeaderTextSplitter`: Splits HTML documents by focusing on headers (e.g., `<h1>`, `<h2>`) to create meaningful sections from structured web content.
+*   `HTMLSectionSplitter`: Divides HTML content into sections based on logical groupings or structural markers, enabling more granular control over document splitting.
+*   `NLPTextSplitter`: Uses NLP to split text into chunks based on semantic meaning, attempting to create chunks that represent complete ideas or concepts.
+*   and many others…
+
+<----------section---------->
+
+**Split Text in Chunks**
+
+This section demonstrates how to split text into chunks using LangChain's `RecursiveCharacterTextSplitter`.
+
+We use `RecursiveCharacterTextSplitter` to obtain:
+
+*   Chunks of about 700 characters, balancing the need for context with the limitations of the LLM's context window.
+*   Overlapped for about 50 characters, ensuring that context is preserved across chunks.
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 700,
+    chunk_overlap = 50,
+)
+
+chunks = text_splitter.split_documents(docs)
+
+print(chunks[0].page_content) # The first chunk
+```
+
+This code will output the content of the first chunk:
+
+```
+Health Insurance Coverage Status and Type
+by Geography: 2021 and 2022
+
+American Community Survey Briefs
+ACSBR-015
+```
+
+<----------section---------->
+
+**Split Text in Chunks: Analysis**
+
+This section analyzes the effect of splitting the text into chunks, comparing the average document length before and after the splitting process.
+
+```python
+len_chunks = len(chunks)
+avg_docs = sum([len(doc.page_content) for doc in docs]) // len(docs)
+avg_chunks = sum([len(chunk.page_content) for chunk in chunks]) // len(chunks)
+
+print(f'Before split: {len(docs)} pages, with {avg_docs} average characters.')
+print(f'After split: {len(chunks)} chunks, with {avg_chunks} average characters.')
+```
+
+This code will output the number of pages and average character count before splitting, and the number of chunks and average character count after splitting:
+
+```
+Before split: 63 pages, with 3840 average characters.
+After split: 398 chunks, with 624 average characters.
+```
+
+<----------section---------->
+
+**Index Chunks: Embeddings**
+
+Embeddings are used to index text chunks, enabling semantic search and retrieval. They transform text into numerical vectors that capture the meaning of the text.
+
+*   We can use pre-trained embedding models from Hugging Face, leveraging existing models to avoid the need for training our own.
+*   Bi-Directional Generative Embeddings (BGE) models excel at capturing relationships between text pairs, making them suitable for semantic search tasks.
+*   `BAAI/bge-small-en-v1.5` is a lightweight embedding model from the Beijing Academy of Artificial Intelligence, providing a good balance between speed and accuracy.
+*   Suitable for tasks requiring fast generation, making it ideal for real-time RAG applications.
+
+[https://huggingface.co/BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
+
+```python
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
+import numpy as np
+
+embedding_model = HuggingFaceBgeEmbeddings(
+    model_name = "BAAI/bge-small-en-v1.5",
+    encode_kwargs = {'normalize_embeddings': True}  # useful for similarity tasks
+)
+
+# Embed the first document chunk
+sample_embedding = np.array(embedding_model.embed_query(chunks[0].page_content))
+
+print(sample_embedding[:5])
+print("\nSize: ", sample_embedding.shape)
+```
+
+This code will output the first five elements of the embedding vector for the first chunk and the size of the embedding vector:
+
+```
+[-0.07508391 -0.01188472 -0.03148879  0.02940382  0.05034875]
+
+Size:  (384,)
+```
+
+<----------section---------->
+
+**Vector Stores: Storage and Retrieval**
+
+Vector stores enable semantic search and retrieval by indexing and querying embeddings of documents or text chunks. They provide efficient methods for finding the most relevant information for a given query.
+
+*   `FAISS`: Open-source library for efficient similarity search and clustering of dense vectors, ideal for local and small-to-medium datasets. FAISSDocumentStore in Haystack gives you three indexing approaches to choose from: 'Flat', 'HNSW', or 'IVF{num_clusters},Flat'.
+*   `Chroma`: Lightweight and embedded vector store suitable for local applications with minimal setup.
+*   `Qdrant`: Open-source vector database optimized for similarity searches and nearest-neighbor lookup.
+*   `Pinecone`: Managed vector database offering real-time, high-performance semantic search with automatic scaling.
+*   and many others…
+
+This example uses the Facebook AI Similarity Search (FAISS).
+
+```python
+from langchain_community.vectorstores import FAISS
+
+# Generate the vector store
+vectorstore = FAISS.from_documents(chunks, embedding_model)
+
+# Save the vector store for later use...
+vectorstore.save_local("faiss_index")
+
+# To load the vector store later...
+# loaded_vectorstore = FAISS.load_local("faiss_index", embedding_model)
+```
+
+This code generates a FAISS vector store from the text chunks and the embedding model. The vector store is then saved locally for later use.
+
+<----------section---------->
+
+**Querying the Vector Store: Semantic Search**
+
+This section demonstrates how to use the vector store to search for chunks relevant to a user query, leveraging the power of semantic search.
+
+```python
+query = """
+What were the trends in median household income across
+different states in the United States between 2021 and 2022.
+"""
+
+matches = vectorstore.similarity_search(query)
+
+print(f'There are {len(matches)} relevant chunks.\nThe first one is:\n')
+print(matches[0].page_content)
+```
+
+This code will output the number of relevant chunks found and the content of the first chunk:
+
+```
+There are 4 relevant chunks.
+The first one is:
+
+Comparisons
+The U.S. median household income
+```
+
+<----------section---------->
+
+**RAG Prompt Template: Integrating Context and Question**
+
+A RAG prompt template integrates the retrieved context with a user question, providing the LLM with the necessary information to generate an accurate and contextually relevant answer.
+
+*   A placeholder `{context}` is used to dynamically inject retrieved chunks, providing the LLM with the relevant information.
+*   A placeholder `{question}` is used to specify the user query, ensuring that the LLM addresses the specific question being asked.
+*   Explicit instructions are provided for handling the information, guiding the LLM on how to use the context and question to generate an answer.
+
+```python
+template = """
+Use the following pieces of context to answer the question at the end.
+Please follow the following rules:
+1. If you don't know the answer, don't try to make up an answer. Just say "I can't find the final answer".
+2. If you find the answer, write the answer in a concise way with five sentences maximum.
+
+{context}
+
+Question: {question}
+
+Helpful Answer:
+"""
+
+from langchain.prompts import PromptTemplate
+prompt_template = PromptTemplate(template = template, input_variables = ["context", "question"])
+```
+
+This code defines a prompt template that instructs the LLM to use the provided context to answer the question, avoid making up answers, and provide concise answers.
+
+<----------section---------->
+
+**Vector Store as a Retriever: Abstraction for Chains**
+
+To be used in chains, a vector store must be wrapped within a retriever interface. A retriever takes a text query as input and provides the most relevant information as output, abstracting away the complexities of the vector store.
+
+```python
+# Create a retriever interface on top of the vector store
+retriever = vectorstore.as_retriever(
+    search_type = "similarity",  # use cosine similarity
+    search_kwargs = {"k": 3}  # use the top 3 most relevant chunks
+)
+```
+
+This code creates a retriever interface on top of the vector store, using cosine similarity as the search type and retrieving the top 3 most relevant chunks.
+
+<----------section---------->
+
+**Custom RAG Chain: Orchestrating the Workflow**
+
+This section demonstrates how to define a custom RAG chain using LangChain, orchestrating the retrieval and generation steps.
+
+```python
+from langchain_core.runnables import RunnablePassthrough
+
+# Helper function to concatenate the retrieved chunks
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+my_rag_chain = (
+    {
+        "context": retriever | format_docs,
+        "question": RunnablePassthrough()
+    }
+    | prompt_template
+    | llm
+)
+```
+
+This code builds a dictionary where each value is obtained as the result of a sub-chain, allowing for a modular and flexible RAG pipeline. The `format_docs` function concatenates the retrieved chunks into a single string, providing the LLM with a coherent context.
+
+<----------section---------->
+
+**Predefined Chains: Streamlining Development**
+
+LangChain includes ready-to-use chains that handle common tasks with minimal setup, simplifying the development process.
+
+*   `LLMChain`: Executes a single prompt using a language model and returns the output, providing a basic building block for NLP pipelines.
+*   `RetrievalQAChain`: Combines a retriever and an LLM to answer questions based on retrieved context, providing a streamlined way to build RAG applications.
+*   `AnalyzeDocumentChain`: Extracts insights, structured data, or key information from documents, enabling more sophisticated document processing workflows.
+*   `SequentialChain`: Executes a series of chains sequentially, passing outputs from one as inputs to the next, allowing for the creation of complex, multi-step NLP pipelines.
+*   `ConditionalChain`: Executes different chains based on conditions in the input or intermediate outputs, providing a way to create adaptive and dynamic NLP workflows.
+*   and many others…
+
+<----------section---------->
+
+**Predefined RAG Chain: Simplifying RAG Implementation**
+
+This section demonstrates how to use a predefined `RetrievalQA` chain instead of a custom chain, further simplifying the implementation of a RAG system.
+
+```python
+from langchain.chains import RetrievalQA
+
+# Create a RetrievalQA chain
+retrievalQA = RetrievalQA.from_chain_type(
+    llm = llm,
+    retriever = retriever,
+    chain_type = "stuff",  # concatenate retrieved chunks
+    chain_type_kwargs = {"prompt": prompt_template},
+    return_source_documents = True
+)
+```
+
+This code creates a `RetrievalQA` chain, specifying the LLM, retriever, chain type (stuff, which concatenates retrieved chunks), prompt template, and whether to return source documents.
+
+<----------section---------->
+
+**Querying the RAG: Generating Answers**
+
+This section demonstrates how to use the RAG system for question answering, generating answers based on the retrieved context.
+
+```python
+query = """
+What were the trends in median household income across
+different states in the United States between 2021 and 2022.
+"""
+
+# Call the QA chain with our query.
+result = retrievalQA.invoke({"query": query})
+print(result['result'])
+```
+
+This code will output the answer generated by the RAG system:
+
+```
+Five states, including Alabama, Alaska, Delaware, Florida, and Utah, experienced a statistically
+significant increase in real median household income from 2021 to 2022. Conversely, 17 states showed
+a decrease. For 28 states, the District of Columbia, and Puerto Rico, there was no statistically
+
+YY difference in real median household income between the two years.
+```
+
+<----------section---------->
+
+**Querying the RAG: Identifying Sources**
+
+This section demonstrates how to identify the chunks that have been used to generate the answer, providing transparency and traceability.
+
+```python
+sources = result['source_documents']
+print(f'{len(sources)} chunks have been used to generate the answer.')
+
+for doc in sources:
+    print(f"\n------- from: {doc.metadata['source']}, page: {doc.metadata['page']}\n\n{doc.page_content}")
+```
+
+This code will output the number of chunks used and the content, source, and page number of each chunk:
+
+```
+3 chunks have been used to generate the answer.
+
+------- from: us_census/acsbr-017.pdf, page: 1
+
+Comparisons
+The U.S. median household income
+
+in 2022 was $74,755, according
+
+Figure 1.
+Median Household Income in the Past 12 Months in the United States: 2005-2022
+```
+
+<----------section---------->
+
+**Additional Context from Haystack Documentation**
+
+This section supplements the previous RAG workflow by referencing documentation from the Haystack framework, highlighting similarities and differences in implementation and concepts. This extra context can be used for further exploration of RAG implementations.
+
+In Haystack, your document storage database is wrapped in a `DocumentStore` object. The `DocumentStore` class gives you a consistent interface to the database containing the documents you just downloaded in a CSV. For now the "documents" are just the lines of text for an early version of the ASCIIDoc manuscript for this book — really really short documents. The haystack `DocumentStore` class allows you to connect to different open source and commercial vector databases that you can host locally on your machine, such as Faiss, PineCone, Milvus, ElasticSearch or even just SQLLite. For now, use the `FAISSDocumentStore` and its default indexing algorithm (`'Flat'`).
+
+```python
+>>> from haystack.document_stores import FAISSDocumentStore
+>>> document_store = FAISSDocumentStore(
+...     return_embedding=True)  # #1
+>>> document_store.write_documents(documents)
+```
+
+The FAISSDocumentStore in haystack gives you three of these indexing approaches to choose from. The default `'Flat'` index will give you the most accurate results (highest recall rate) but will use a lot of RAM and CPU. If you’re really constrained on RAM or CPU, like when you’re hosting your app on Hugging Face, you can experiment with two other FAISS options: `'HNSW'` or `f’IVF{num_clusters},Flat'`. The question-answering app you’ll see at the end of this section used the `'HNSW'` indexing approach to fit within a hugging face "free tier" server. See the Haystack documentation for details on how to tune your vector search index. You will need to balance speed, RAM, and recall for your needs. Like many NLP questions, there is no right answer to the question of the "best" vector database index. Hopefully, when you ask this question to your question-answering app, it will say something like "It depends…".
+
+Now go to your working directory where you ran this Python code. You should see a file named `'faiss_document_store.db'`. That’s because FAISS automatically created an SQLite database to contain the text of all your documents. Your app will need that file whenever you use the vector index to do semantic search. It will give you the actual text associated with the embedding vectors for each document. However, this file is not enough in order to load your data store into another piece of code - for that, you’ll need to you the `save` method of the `DocumentStore` class. We’ll do that later in the code after we fill the document store with embeddings.
+
+Now, it’s time to set up our indexing models! The semantic search process includes two main steps - retrieving documents that might be relevant to the query (semantic search), and processing those documents to create an answer. So you will need an EmbeddingRetriever semantic vector index and a generative transformer model.
+
+In Chapter 9 you met BERT and learn how to use it to create general-purpose embeddings that represent the meaning of text. Now you’ll learn how to use an embedding-based retriever to overcome the curse of dimensionality and find the embeddings for text most likely to answer a user’s question. You can probably guess that you’ll get better results if both your retriever and your reader are fine-tuned for question-answering tasks. Luckily there are a lot of BERT-based models that have been pretrained on question-answering datasets like SQuAD.
+
+Listing 10.17 Configuring the `reader` and `retriever` components of the question answering pipeline.
+
+```python
+>>> from haystack.nodes
